@@ -1,0 +1,14 @@
+Proprietario:userId
+  playlist:nomePlaylist
+    1.Brano,autore,anno
+    2.Brano,autore,anno
+    ...
+  ----------------------------
+  playlist:nomePlaylist
+    1.Brano,autore,anno
+    2.Brano,autore,anno
+    ...
+  ----------------------------
+  ....
+_.-._.-._.-._.-._.-._.-._
+Proprietario: theOne/n_.-._.-._.-._.-._.-._.-._
