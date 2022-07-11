@@ -1,0 +1,57 @@
+/**
+ * Repository
+ */
+package emotionalsongs;
+
+import java.io.*;
+import java.util.*;
+
+public class Repository {
+
+    private List<Brano> repository = new ArrayList<Brano>();
+    private int numeroBrani = 0;
+    private File CanzoniDati = new File("/Users/big/Documents/GitHub/EMOTIONALSONGS/data/Canzoni.dati.txt");
+
+  //Costruttore
+    public Repository() throws FileNotFoundException, IOException {
+        FileInputStream stream = new FileInputStream(CanzoniDati);
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(stream));
+        String line;
+        while((line = buffer.readLine()) != null){
+            String[] splittedLine = line.split("<SEP>");//Divido la line in stringhe divise da <SEP> e le salvo in un array
+            Brano branoCorrente = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
+            repository.add(branoCorrente);
+            numeroBrani++;
+        }
+    }
+
+  /**private void addBrano(Brano brano){
+    this.repository.add(brano);
+  }**/
+
+  public int dimensioneRepository(){
+      return this.numeroBrani;
+  }
+
+  public Brano getBrano(int index){
+    return repository.get(index);
+  }
+
+  public int getNumeroBrani(){
+    return numeroBrani;
+  }
+
+  public void stampaRepository(){
+    System.out.print("CANZONI NEL REPOSITORY:\n");
+    for(int i = 0;i<repository.size();i++){
+      Brano branoCorrente = repository.get(i);
+      System.out.print("Titolo: " + branoCorrente.getTitle().toUpperCase()+ "\n"
+                        + "   Autore: " + branoCorrente.getAuthor() + "\n"
+                        + "   Anno: " + branoCorrente.getYear() + ".\n");
+    }
+  }
+
+  public void stampaBrano(int index){
+    System.out.println(getBrano(index).toStringOrdinato());
+  }
+}

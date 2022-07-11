@@ -1,0 +1,35 @@
+14/04/2022
+  Creazione ed impostazione delle cartelle come richiesto nella specifica ed inizio stesura prime idee.
+    -Lavoro di gruppo-
+
+08/05/2022
+  Creazione del sistema di ricerca di un brano salvato nel file SearchSongBrain.java
+    -Lavoro di Bolelli Luca-
+
+09/05/2022
+  Riorganizzazione del codice per renderlo più chiaro, ampliamento playlist.
+    -Lavoro di Bolelli Luca-
+
+
+10-11-12/05/2022
+  Sviluppo Classe RegistrationForm contenente il codice per la registrazione dell' utente ed il salvataggio dei dati su file
+  utentiRegistrati.dati.csv.
+  La classe comprende anche di metodi per verificare il formato dei dati, che l' utente non vi sia già registrato, che l' utente sappia quale
+  password abbia scelto e che scelga un user id non ancora preso.
+    -Lavoro di Bolelli Luca-
+
+14/05/2022
+  Modificati i sorgenti .java in modo che i path dei file trattati vengano riconosciuti su qualsiasi dispositivo.
+    -Lavoro di Natanail Danailov-
+
+15/05/2022
+  Aggiunte le pagine HTML che costituiranno la documentazione (manuale utente e manuale tecnico).
+    -Lavoro di Natanail Danailov-
+
+22/05/2022
+  Effettuate pesanti modifiche al programma:
+  -create delle classi per rappresentare utenti, brani, playlist.
+  -la parte che si occupa di salvare i dati di ogni utente è stata inserita nella classe Utente, quindi il fileRegistrationForm.java è stato inserito nella cartella files obsoleti.
+  -il motore di ricerca SearchSongBrain.java è stato modificato in modo che ora la ricerca restituisce un oggetto di tipo brano scelto tra i risultati della ricerca.
+  -creato il tipo enumerativo Emotions che associa ad ogni emozione la sua descrizione.
+   -Lavoro di Bolelli Luca-
