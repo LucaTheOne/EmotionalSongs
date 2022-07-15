@@ -29,7 +29,7 @@ public class Utente {
     cf = setCFUser();
     while (userCFSigned(cf)) {
       System.out.println("utente già registrato!\n");
-      setCFUser();
+      //setCFUser();
       //System.out.println("Vuole effettuare l' accesso?\n"+"  Si -> s"+"  No->quasiasi tasto \n");
       //if == s ->accessoUtente() -> futura implementazione
     }
@@ -150,7 +150,7 @@ public class Utente {
     * nel caso la password non rispettasse tutti i requisiti
     **/
       while(!(m.matches())){
-        System.out.println("Password non valida! \n"+" Prego inserire una password valida:");
+        System.out.println("Password non valida! \n"+" Prego inserire una password valida: ");
         System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
         password = new Scanner(System.in).nextLine();
         m = p.matcher(password);

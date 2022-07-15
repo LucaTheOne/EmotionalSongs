@@ -7,10 +7,12 @@ public class Playlist{
 
   //campi
   String nomePlaylist;
+
   List<Brano> listaCanzoniPlaylist = new ArrayList<Brano>();
+
   //costruttore
   Playlist(String nomePlaylist, List<Brano> listaCanzoniPlaylist){
-    this.nomePlaylist = nomePlaylist;
+    setNomePlaylist();
     //this.listaCanzoniPlaylist = listaCanzoniPlaylist;
   }
 
@@ -62,6 +64,8 @@ public class Playlist{
       this.listaCanzoniPlaylist.add(brano);
     }
   }
+
+  //implementare metodo per riordinare la Playlist
 
   public String componiStringaPlaylist(){
     String stringa = "";

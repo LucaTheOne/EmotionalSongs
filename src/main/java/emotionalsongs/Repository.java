@@ -37,10 +37,6 @@ public class Repository {
     return repository.get(index);
   }
 
-  public int getNumeroBrani(){
-    return numeroBrani;
-  }
-
   public void stampaRepository(){
     System.out.print("CANZONI NEL REPOSITORY:\n");
     for(int i = 0;i<repository.size();i++){
