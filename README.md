@@ -5,4 +5,4 @@ Autori:
 Alexandru Boitor
 Luca Bolelli
 Natanail Danailov
-Sara Sartore
+Sara Sartori
