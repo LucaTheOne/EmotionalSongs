@@ -19,7 +19,7 @@ import java.util.regex.*;
 
 public class RegistrationForm {
 
-  private File utentiRegistrati = new File("/Users/big/Documents/GitHub/EMOTIONALSONGS/data/UtentiRegistrati.dati.csv");
+  private File utentiRegistrati = new File(Utilities.pathToUserDatabase);
 
   /**public static void main(String[] args) {
     registraNuovoUtente();

@@ -10,7 +10,7 @@ public class Repository {
 
     private List<Brano> repository = new ArrayList<Brano>();
     private int numeroBrani = 0;
-    private File CanzoniDati = new File("/Users/big/Documents/GitHub/EMOTIONALSONGS/data/Canzoni.dati.txt");
+    private File CanzoniDati = new File(Utilities.pathToCanzoniDatiTxt);
 
   //Costruttore
     public Repository() throws FileNotFoundException, IOException {

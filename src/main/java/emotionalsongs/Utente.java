@@ -5,22 +5,22 @@ import java.util.*;
 import java.util.regex.*;
 
 public class Utente {
-  //campi
-  //boolean autenticated = false;
-  String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
+    //campi
+    //boolean autenticated = false;
+    private String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
 
-  Utente(String userId, String nome,String cognome,String cf,String indirizzo,String email,String password,String dataNascita){
-    this.userId = userId;
-    this.nome = nome;
-    this.cognome = cognome;
-    this.cf = cf;
-    this.indirizzo = indirizzo;
-    this.email = email;
-    this.password = password;
-    this.dataNascita = dataNascita;
-  }
+    Utente(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
+        this.userId = userId;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.cf = cf;
+        this.indirizzo = indirizzo;
+        this.email = email;
+        this.password = password;
+        this.dataNascita = dataNascita;
+    }
 
-  static Utente Registrazione(){
+    static public Utente Registrazione() throws IOException {
     String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
 
     System.out.print("\n"+"INSERIMENTO DATI NUOVO UTENTE \n");
@@ -33,45 +33,61 @@ public class Utente {
       //System.out.println("Vuole effettuare l' accesso?\n"+"  Si -> s"+"  No->quasiasi tasto \n");
       //if == s ->accessoUtente() -> futura implementazione
     }
-		nome = setNome();
+    nome = setNome();
     cognome = setCognome();
     dataNascita = setBirthDate();
     indirizzo = setInd();
     userId = setUserID();
     email = setMail();
     password = setPassword();
+    
+    String stringaUtentePerFile =  userId+","+password+","+cf+","+nome+","+cognome+","+dataNascita+","+email+","+indirizzo+";"; 
+        salvaUtenteSuUtentiRegistrati(stringaUtentePerFile);
+        creaPlaylistSetVuoto(userId);
 
-		salvaUtenteSuUtentiRegistrati(componiStringa(cf,nome,cognome,dataNascita,indirizzo,userId,email,password));
-    creaPlaylistSetVuoto(userId);
+        Utente newUser = new Utente(userId, nome, cognome, cf, indirizzo, email, password, dataNascita);
+        return newUser;
+    }
 
-    Utente newUser = new Utente(userId, nome, cognome, cf, indirizzo, email, password, dataNascita);
-    return newUser;
-  }
-
-  static String componiStringa(String cf,String nome,String cognome,String dataNascita,String indirizzo,String userId,String email,String password) {
-    return "Codice fiscale: " + cf + "\n" +
-           "Nome: " + nome + "\n" +
-			     "Cognome: " + cognome + "\n" +
-			     "Data di Nascita: " + dataNascita + "\n" +
-			     "Indirizzo: " + indirizzo +"\n" +
-           "ID Utente: " + userId + "\n"+
-           "email: " + email +"\n"+
-           "Password: " + password +"\n" +
-           "_.-._.-._.-._.-._.-._.-._" + "\n";
-	}
-
-  static void salvaUtenteSuUtentiRegistrati(String testoDaScrivere) {
-    try {
-      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("/Users/big/Documents/GitHub/EMOTIONALSONGS/data/UtentiRegistrati.dati.csv",true));
+    public void stampaUtenteSuTerminale() {
+        System.out.println("Codice fiscale: " + cf);
+        System.out.println("Nome: " + nome);
+        System.out.println("Cognome: " + cognome);
+        System.out.println("Data di Nascita: " + dataNascita);
+        System.out.println("Indirizzo: " + indirizzo);
+        System.out.println("ID Utente: " + userId); 
+        System.out.println("email: " + email);
+        System.out.println("Password: " + password);
+    }
+    
+    static private void salvaUtenteSuUtentiRegistrati(String testoDaScrivere) throws IOException {
+      
+      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToUserDatabase,true));
       bufferedWriter.write(testoDaScrivere);
       bufferedWriter.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-      }
+   
       System.out.println("Utente registrato con successo");
+      
+      /**
+       * da implementare: metodo per riordinare il database - HINT: useremo un heapSort
+       * procedura:
+       * aprire stream(di lettura) verso file
+       * contare le righe != null
+       * salvarne il n umero in una variabile
+       * chiudere stream
+       * creare array che possa tenere tutte le righe
+       * aprire un nuovo stream
+       * finche non trovo una riga nulla,salvo le righe nell' array
+       * chiudo lo stream
+       * ordinio l' array
+       * apro uno stream(di scrittura) verso il file
+       * stampo in ogni riga una posizione dell' array(ordinato)
+       **/
+      
+   
   }
 
-  static String setNome(){
+    static private String setNome(){
     String nome = null;
     boolean valid = true;
     do{
@@ -88,7 +104,7 @@ public class Utente {
     return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
   }
 
-  static String setCognome(){
+    static private String setCognome(){
     String cognome = null;
     boolean valid = true;
     do{
@@ -104,7 +120,7 @@ public class Utente {
     return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
   }
 
-  static String setInd(){
+    static private String setInd(){
     boolean valid = true;
     String indirizzo = null;
     do{
@@ -118,13 +134,7 @@ public class Utente {
     return indirizzo.toLowerCase();
   }
 
-/**
-* metodo che si occupa di far inserire la Password
-* al utente e di verificarne che rispetti i requsisti.
-* Inoltre verifica anche che l' utente non abbia sbagliato a scriverla nel primo inserimento
-* mediante confronto.
-**/
-  static String setPassword() throws PatternSyntaxException{
+    static private String setPassword() throws PatternSyntaxException{
     String password,passwordCtrl;
     System.out.println("Scelga una password:");
     do{
@@ -168,8 +178,7 @@ public class Utente {
     return password;
   }
 
-
-  static String setMail() throws PatternSyntaxException{
+    static private String setMail() throws PatternSyntaxException{
     String mail;
     System.out.println("Inserire un indirizzo email valido:");
       mail = new Scanner(System.in).nextLine();
@@ -189,9 +198,7 @@ public class Utente {
       return mail;
   }
 
-
-
-  static String setCFUser() throws PatternSyntaxException{
+    static private String setCFUser() throws PatternSyntaxException{
     String cf;
     System.out.println("Inserisca il suo codice fiscale:");
     cf = new Scanner(System.in).nextLine().toUpperCase();
@@ -222,7 +229,7 @@ public class Utente {
     return cf.toUpperCase();
   }
 
-  static String setBirthDate() throws PatternSyntaxException {
+    static private String setBirthDate() throws PatternSyntaxException {
     String date;
     boolean valid = false;
     do{
@@ -241,7 +248,7 @@ public class Utente {
     return date;
   }
 
-  static boolean userCFSigned(String cf){
+    static private boolean userCFSigned(String cf){
     try{
       String fileUtenti = "../data/UtentiRegistrati.dati.csv";
       Scanner inputStream = new Scanner(new FileReader(fileUtenti));
@@ -263,7 +270,7 @@ public class Utente {
     return false;
   }
 
-  static String setUserID(){
+    static private String setUserID(){
     String id;
     boolean valid;
     do{
@@ -286,7 +293,7 @@ public class Utente {
     return id;
   }
 
-  static boolean userIDTaken(String id){
+    static private boolean userIDTaken(String id){
     try{
       String fileUtenti = "../data/UtentiRegistrati.dati.csv";
       Scanner inputStream = new Scanner(new FileReader(fileUtenti));
@@ -311,9 +318,9 @@ public class Utente {
     return false;
   }
 
-  static void creaPlaylistSetVuoto(String userId){
+    static private void creaPlaylistSetVuoto(String userId){
     try {
-      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("../data/Playlist.dati.csv",true));
+      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati,true));
       bufferedWriter.write("Proprietario: "+ userId + "/n"+"_.-._.-._.-._.-._.-._.-._\n");
       bufferedWriter.close();
     } catch (IOException e) {
@@ -322,39 +329,31 @@ public class Utente {
       System.out.println("Spazio generato con successo");
   }
 
-  public String getUserId(){
+    public String getUserId(){
     return userId;
   }
 
-  public String getNome(){
+    public String getNome(){
     return nome;
   }
 
-  public String getCognome(){
+    public String getCognome(){
     return cognome;
   }
 
-  public String getCF(){
+    public String getCF(){
     return cf;
   }
 
-  public String getIndirizzo(){
+    public String getIndirizzo(){
     return indirizzo;
   }
 
-  public String getEmail(){
+    public String getEmail(){
     return email;
   }
 
-  public String getPassword(){
-    return password;
-  }
-
-  public String getDataDiNascita(){
+    public String getDataDiNascita(){
     return dataNascita;
   }
-
-
-
-
 }
