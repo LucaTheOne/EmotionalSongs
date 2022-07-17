@@ -1,5 +1,6 @@
 package emotionalsongs;
 
+import static emotionalsongs.EMOTIONALSONGS.main;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -8,6 +9,7 @@ public class Utente {
     //campi
     //boolean autenticated = false;
     private String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
+    private ArrayList<Playlist> playlistSet; 
 
     Utente(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
         this.userId = userId;
@@ -41,12 +43,14 @@ public class Utente {
     email = setMail();
     password = setPassword();
     
-    String stringaUtentePerFile =  userId+","+password+","+cf+","+nome+","+cognome+","+dataNascita+","+email+","+indirizzo+";"; 
-        salvaUtenteSuUtentiRegistrati(stringaUtentePerFile);
-        creaPlaylistSetVuoto(userId);
+    Utente newUser = new Utente(userId, nome, cognome, cf, indirizzo, email, password, dataNascita);
+    
+    newUser.playlistSet = new ArrayList<Playlist>();
+    
+    salvaUtenteSuUtentiRegistrati(newUser);
+    creaPlaylistSetVuoto(userId);
 
-        Utente newUser = new Utente(userId, nome, cognome, cf, indirizzo, email, password, dataNascita);
-        return newUser;
+      return newUser;
     }
 
     public void stampaUtenteSuTerminale() {
@@ -60,32 +64,56 @@ public class Utente {
         System.out.println("Password: " + password);
     }
     
-    static private void salvaUtenteSuUtentiRegistrati(String testoDaScrivere) throws IOException {
+    private String stringUtente(){
+        return userId + "," + password + "," + cf + "," + nome + "," + cognome + "," + dataNascita + "," + email + "," + indirizzo;
+    }
+    
+    static private void salvaUtenteSuUtentiRegistrati(Utente userId) throws IOException, FileNotFoundException {
       
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToUserDatabase,true));
-      bufferedWriter.write(testoDaScrivere);
+      bufferedWriter.write(userId.stringUtente());
       bufferedWriter.close();
    
       System.out.println("Utente registrato con successo");
       
-      /**
-       * da implementare: metodo per riordinare il database - HINT: useremo un heapSort
-       * procedura:
-       * aprire stream(di lettura) verso file
-       * contare le righe != null
-       * salvarne il n umero in una variabile
-       * chiudere stream
-       * creare array che possa tenere tutte le righe
-       * aprire un nuovo stream
-       * finche non trovo una riga nulla,salvo le righe nell' array
-       * chiudo lo stream
-       * ordinio l' array
-       * apro uno stream(di scrittura) verso il file
-       * stampo in ogni riga una posizione dell' array(ordinato)
-       **/
-      
+     int conteggio = 0;
+     BufferedReader fileScan = new BufferedReader(new FileReader(Utilities.pathToUserDatabase));
+       
+     String riga;  
+       do{
+         riga = fileScan.readLine();
+         conteggio++;
+       }while (riga != null);
+       fileScan.close();
    
-  }
+       
+       String [] arrayOrdine = new String[conteggio];
+       fileScan = new BufferedReader(new FileReader(Utilities.pathToUserDatabase));
+       
+       for(int i = 0; i < conteggio;i++){
+           arrayOrdine[i] = fileScan.readLine();      
+       }
+       
+       for(int i = 0; i<conteggio-1; i++) {
+         for (int j = i+1; j<conteggio; j++) {
+            if(arrayOrdine[i].compareTo(arrayOrdine[j])>0) {
+               String temp = arrayOrdine[i];
+               arrayOrdine[i] = arrayOrdine[j];
+               arrayOrdine[j] = temp;
+            }
+         }
+      }
+       fileScan.close();
+       
+       BufferedWriter ordineWriter = new BufferedWriter(new FileWriter(Utilities.pathToUserDatabase));
+        for (int i = 0; i<conteggio;i++){
+            ordineWriter.write(arrayOrdine[i]);
+            ordineWriter.newLine();
+        }
+        ordineWriter.close();
+        
+    }
+      
 
     static private String setNome(){
     String nome = null;
@@ -356,4 +384,11 @@ public class Utente {
     public String getDataDiNascita(){
     return dataNascita;
   }
+    
+    public void addtoPlaylistSet(Playlist addplay){
+        playlistSet.add(addplay);
+    }
+    
+    
 }
+
