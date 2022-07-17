@@ -40,3 +40,12 @@
 	Decisi passi successivi.
 
 		-Lavoro di Bolelli Luca e Alexandru Boitor-
+
+17/07/2022
+    Metodo per riordinare la lista degli utenti registrati.
+    Migliorato la classe Playlist.
+    Modificato classe Utente.
+    Creata classe Playlistset.
+    Decisi passi successivi.
+        
+		-Lavoro di Bolelli Luca e Alexandru Boitor-
