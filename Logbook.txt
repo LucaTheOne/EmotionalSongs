@@ -49,3 +49,9 @@
     Decisi passi successivi.
         
 		-Lavoro di Bolelli Luca e Alexandru Boitor-
+
+20/07/2022
+    Estese funzionalità classi Brano e tipo enumerativo emozioni.
+    in fase di implementazione metodo per importare i dati delle emozioni per ogni brano.
+
+		-Lavoro di Bolelli Luca e Alexandru Boitor-
