@@ -16,7 +16,7 @@ class SearchSongBrain{
   * tramite titolo o tramite autore ed anno, a seconda della scelta
   * Si appoggia ad un altro metodo: SceltaTipoRicerca()
   **/
-  public static Brano cercaBranoMusicale() throws FileNotFoundException{
+  public static Brano cercaBranoMusicale() throws FileNotFoundException, IOException{
     return SceltaTipoRicerca();
   }
 
@@ -30,7 +30,7 @@ class SearchSongBrain{
   * Per la ricerca effettiva si appoggia ad altri metodi, in base
   * alla scelta dell' utente.
   **/
-  static Brano SceltaTipoRicerca() throws FileNotFoundException{
+  static Brano SceltaTipoRicerca() throws FileNotFoundException, IOException{
     //parte di comunicazione all' utente
     System.out.println("Selezionare tra: ");
     System.out.println("-Ricerca tramite Titolo della canzone -> T");
@@ -65,7 +65,7 @@ class SearchSongBrain{
   * analizza riga per riga in cerca della parola cercata, previa divisione di quest' ultima in sottostringhe
   * memorizzate in un array così che si possa sfruttarlo per il confronto.
   **/
-  static Brano ricercaBranoPerTitolo() throws FileNotFoundException{
+  static Brano ricercaBranoPerTitolo() throws FileNotFoundException, IOException{
 
     //Il file può sollevare eccezioni controllate quando non esiste, quindi le tratto esplicitamente
     //try{
@@ -154,7 +154,7 @@ class SearchSongBrain{
   * previa divisione di quest' ultima in sottostringhe
   * memorizzate in un array così che si possa sfruttarlo per il confronto.
   **/
-  static Brano ricercaBranoPerAutoreEAnno() throws FileNotFoundException{
+  static Brano ricercaBranoPerAutoreEAnno() throws FileNotFoundException, IOException{
 
     //try{
       List<String[]> resultsList = new ArrayList<String[]>();

@@ -18,7 +18,7 @@ public class Playlist{
   }
 
   //metodi
-  public static Playlist RegistraPlaylist(Utente proprietario) throws FileNotFoundException{
+  public static Playlist RegistraPlaylist(Utente proprietario) throws FileNotFoundException, IOException{
     ArrayList<Brano> playlist = new ArrayList<Brano>();  
     String nomePlayList = setNomePlaylist();
     boolean another = false;
@@ -66,7 +66,7 @@ public class Playlist{
     return nome;
   }
 
-   static public void addSongToPlaylist(List<Brano> l) throws FileNotFoundException{
+   static public void addSongToPlaylist(List<Brano> l) throws FileNotFoundException, IOException{
     Brano brano = SearchSongBrain.cercaBranoMusicale();
     if (brano != null) {
       l.add(brano);
