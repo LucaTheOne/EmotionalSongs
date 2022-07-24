@@ -1,6 +1,5 @@
 package emotionalsongs;
 
-import static emotionalsongs.EMOTIONALSONGS.main;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -20,39 +19,14 @@ public class Utente {
         this.email = email;
         this.password = password;
         this.dataNascita = dataNascita;
+        
     }
-
-    static public Utente Registrazione() throws IOException {
-    String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
-
-    System.out.print("\n"+"INSERIMENTO DATI NUOVO UTENTE \n");
-    System.out.print("-----------------------" + "\n");
-
-    cf = setCFUser();
-    while (userCFSigned(cf)) {
-      System.out.println("utente già registrato!\n");
-      //setCFUser();
-      //System.out.println("Vuole effettuare l' accesso?\n"+"  Si -> s"+"  No->quasiasi tasto \n");
-      //if == s ->accessoUtente() -> futura implementazione
+    
+    static public void Registrazione() throws IOException {
+        RegistrationForm regEngine = new RegistrationForm();
+        regEngine.registraNuovoUtente();
     }
-    nome = setNome();
-    cognome = setCognome();
-    dataNascita = setBirthDate();
-    indirizzo = setInd();
-    userId = setUserID();
-    email = setMail();
-    password = setPassword();
     
-    Utente newUser = new Utente(userId, nome, cognome, cf, indirizzo, email, password, dataNascita);
-    
-    newUser.playlistSet = new ArrayList<Playlist>();
-    
-    salvaUtenteSuUtentiRegistrati(newUser);
-    creaPlaylistSetVuoto(userId);
-
-      return newUser;
-    }
-
     public void stampaUtenteSuTerminale() {
         System.out.println("Codice fiscale: " + cf);
         System.out.println("Nome: " + nome);
@@ -64,110 +38,58 @@ public class Utente {
         System.out.println("Password: " + password);
     }
     
-    private String stringUtente(){
-        return userId + "," + password + "," + cf + "," + nome + "," + cognome + "," + dataNascita + "," + email + "," + indirizzo;
-    }
-    
-    static private void salvaUtenteSuUtentiRegistrati(Utente userId) throws IOException, FileNotFoundException {
-      
-      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToUserDatabase,true));
-      bufferedWriter.write(userId.stringUtente());
-      bufferedWriter.close();
-   
-      System.out.println("Utente registrato con successo");
-      
-     int conteggio = 0;
-     BufferedReader fileScan = new BufferedReader(new FileReader(Utilities.pathToUserDatabase));
-       
-     String riga;  
-       do{
-         riga = fileScan.readLine();
-         conteggio++;
-       }while (riga != null);
-       fileScan.close();
-   
-       
-       String [] arrayOrdine = new String[conteggio];
-       fileScan = new BufferedReader(new FileReader(Utilities.pathToUserDatabase));
-       
-       for(int i = 0; i < conteggio;i++){
-           arrayOrdine[i] = fileScan.readLine();      
-       }
-       
-       for(int i = 0; i<conteggio-1; i++) {
-         for (int j = i+1; j<conteggio; j++) {
-            if(arrayOrdine[i].compareTo(arrayOrdine[j])>0) {
-               String temp = arrayOrdine[i];
-               arrayOrdine[i] = arrayOrdine[j];
-               arrayOrdine[j] = temp;
-            }
-         }
-      }
-       fileScan.close();
-       
-       BufferedWriter ordineWriter = new BufferedWriter(new FileWriter(Utilities.pathToUserDatabase));
-        for (int i = 0; i<conteggio;i++){
-            ordineWriter.write(arrayOrdine[i]);
-            ordineWriter.newLine();
-        }
-        ordineWriter.close();
-        
-    }
-      
-
     static private String setNome(){
-    String nome = null;
-    boolean valid = true;
-    do{
-      System.out.println("Inserisca il suo primo nome:");
-      nome = new Scanner(System.in).nextLine();
-      if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
-        valid = false;
-        System.out.println("nome non valido");
-      }else{
-        valid=true;
-      }
-
-    }while(!valid);
-    return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
-  }
+        String nome = null;
+        boolean valid = true;
+        do{
+            System.out.println("Inserisca il suo primo nome:");
+            nome = new Scanner(System.in).nextLine();
+            if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
+                valid = false;
+                System.out.println("nome non valido");
+            }else{
+                valid=true;
+            }
+        }while(!valid);
+        return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
+    }
 
     static private String setCognome(){
-    String cognome = null;
-    boolean valid = true;
-    do{
-      System.out.println("Inserisca il suo primo cognome:");
-      cognome = new Scanner(System.in).nextLine();
-      if (cognome.length()>20||cognome.length()<3||cognome.isEmpty()||cognome.matches(".*\\d.*")) {
-        valid = false;
-        System.out.println("nome non valido");
-      }else{
-        valid=true;
-      }
-    }while(!valid);
-    return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
-  }
+        String cognome = null;
+        boolean valid = true;
+        do{
+            System.out.println("Inserisca il suo primo cognome:");
+            cognome = new Scanner(System.in).nextLine();
+            if (cognome.length()>20||cognome.length()<3||cognome.isEmpty()||cognome.matches(".*\\d.*")) {
+                valid = false;
+                System.out.println("nome non valido");
+            }else{
+                valid=true;
+            }
+        }while(!valid);
+        return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
+    }
 
     static private String setInd(){
-    boolean valid = true;
-    String indirizzo = null;
-    do{
-      System.out.print("Inserisca il suo indirizzo di residenza,\n"+"(via/piazza, numero civico, cap, comune, provincia): ");
+        boolean valid = true;
+        String indirizzo = null;
+        do{
+            System.out.print("Inserisca il suo indirizzo di residenza,\n"+"(via/piazza, numero civico, cap, comune, provincia): ");
 		  indirizzo = new Scanner(System.in).nextLine();
-      if(indirizzo.isEmpty()){
-        System.out.print("Questo campo deve essere compilato! ");
-        valid = false;
-      }
-    }while(!valid);
-    return indirizzo.toLowerCase();
-  }
+            if(indirizzo.isEmpty()){
+                System.out.print("Questo campo deve essere compilato! ");
+                valid = false;
+            }
+        }while(!valid);
+        return indirizzo.toLowerCase();
+    }
 
     static private String setPassword() throws PatternSyntaxException{
-    String password,passwordCtrl;
-    System.out.println("Scelga una password:");
-    do{
-      System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
-      password = new Scanner(System.in).nextLine();
+        String password,passwordCtrl;
+        System.out.println("Scelga una password:");
+        do{
+            System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
+            password = new Scanner(System.in).nextLine();
     /**
     * Stringa contenente i tipi di caratteri da controllare ve ne sia la presenza
     * di almeno uno per tipologia:
@@ -178,58 +100,58 @@ public class Utente {
     * (?=\\S+$) -> spazi bianchi non ammessi,
     * {8,20} -> minimo 8, massimo 20 caratteri.
     **/
-      String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
+        String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
     /** compila il pattern precedente **/
-      Pattern p = Pattern.compile(regex);
+        Pattern p = Pattern.compile(regex);
     /** Pattern class contiene il metodo .matcher() per verificare se la password coincide con il pattern.**/
-      Matcher m = p.matcher(password);
+        Matcher m = p.matcher(password);
     /**
     * Questa parte del codice gestissce la situazione
     * nel caso la password non rispettasse tutti i requisiti
     **/
-      while(!(m.matches())){
-        System.out.println("Password non valida! \n"+" Prego inserire una password valida: ");
-        System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
-        password = new Scanner(System.in).nextLine();
-        m = p.matcher(password);
-      }
+        while(!(m.matches())){
+            System.out.println("Password non valida! \n"+" Prego inserire una password valida: ");
+            System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
+            password = new Scanner(System.in).nextLine();
+            m = p.matcher(password);
+        }
     /**
     *Per verificare che l' utente sappia che password abbia inserito
     *gli si chiede di reinserirle per poi successivamente confrontarla
     **/
-      System.out.println("Reinserisca la password per verificare se è stata scritta correttamente");
-      passwordCtrl = new Scanner(System.in).nextLine();
-      if(!password.equals(passwordCtrl)){
-        System.out.println("Le password non coincidono! \n"+"reinserisca la password: ");
-      }
-   } while(!password.equals(passwordCtrl));
+        System.out.println("Reinserisca la password per verificare se è stata scritta correttamente");
+        passwordCtrl = new Scanner(System.in).nextLine();
+        if(!password.equals(passwordCtrl)){
+            System.out.println("Le password non coincidono! \n"+"reinserisca la password: ");
+        }
+    } while(!password.equals(passwordCtrl));
     return password;
   }
 
     static private String setMail() throws PatternSyntaxException{
-    String mail;
-    System.out.println("Inserire un indirizzo email valido:");
-      mail = new Scanner(System.in).nextLine();
-    // Regex to check valid password.
-      String regex = "^(.+)@(.+)$";
-    // Compile the ReGex
-      Pattern p = Pattern.compile(regex);
-    // Pattern class contains matcher() method to find matching between given password and regular expression.
-      Matcher m = p.matcher(mail);
-    // Nel caso la password non rispettasse i requisiti
-      while(!(m.matches())){
-        System.out.println("Indirizzo mail non valido:");
+        String mail;
         System.out.println("Inserire un indirizzo email valido:");
         mail = new Scanner(System.in).nextLine();
-        m = p.matcher(mail);
-      }
-      return mail;
-  }
+        // Regex to check valid password.
+        String regex = "^(.+)@(.+)$";
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+        // Pattern class contains matcher() method to find matching between given password and regular expression.
+        Matcher m = p.matcher(mail);
+        // Nel caso la password non rispettasse i requisiti
+        while(!(m.matches())){
+            System.out.println("Indirizzo mail non valido:");
+            System.out.println("Inserire un indirizzo email valido:");
+            mail = new Scanner(System.in).nextLine();
+            m = p.matcher(mail);
+        }
+        return mail;
+    }
 
     static private String setCFUser() throws PatternSyntaxException{
-    String cf;
-    System.out.println("Inserisca il suo codice fiscale:");
-    cf = new Scanner(System.in).nextLine().toUpperCase();
+        String cf;
+        System.out.println("Inserisca il suo codice fiscale:");
+        cf = new Scanner(System.in).nextLine().toUpperCase();
     /**
     * Stringa contenente i tipi di caratteri ed il formato
     * che deve presentare un codice fiscale italiano corretto:
@@ -239,112 +161,109 @@ public class Utente {
     * [0-9lmnpqrstuvLMNPQRSTUV]{3} -> nuovamente tre valori tra 0-9 o lmnpqrstuv.
     * [A-Za-z]{1} -> una lettera del alfabeto.
     **/
-    String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
+        String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
     /** compila il pattern precedente **/
-    Pattern p = Pattern.compile(regex);
+        Pattern p = Pattern.compile(regex);
     /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
-    Matcher m = p.matcher(cf);
+        Matcher m = p.matcher(cf);
     /**
     * Questa parte del codice gestissce la situazione
     * nel caso il cf non rispettasse il pattern
     **/
-    while(!(m.matches())){
-      System.out.println("Codice fiscale errato! \n"+" Prego reinserire un codice fiscale valido "+"(formato Italiano):");
-      cf = new Scanner(System.in).nextLine();
-      m = p.matcher(cf);
+        while(!(m.matches())){
+            System.out.println("Codice fiscale errato! \n"+" Prego reinserire un codice fiscale valido "+"(formato Italiano):");
+            cf = new Scanner(System.in).nextLine();
+            m = p.matcher(cf);
+        }
+        return cf.toUpperCase();
     }
-
-    return cf.toUpperCase();
-  }
 
     static private String setBirthDate() throws PatternSyntaxException {
-    String date;
-    boolean valid = false;
-    do{
-      System.out.println("Inserisca la sua data di nascita (gg/mm/aaaa)");
-      date = new Scanner(System.in).nextLine();
-      String regex = "^([0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4})$";
+        String date;
+        boolean valid = false;
+        do{
+            System.out.println("Inserisca la sua data di nascita (gg/mm/aaaa)");
+            date = new Scanner(System.in).nextLine();
+            String regex = "^([0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4})$";
       /** compila il pattern precedente **/
-      Pattern p = Pattern.compile(regex);
+            Pattern p = Pattern.compile(regex);
       /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
-      Matcher m = p.matcher(date);
-      if (!m.matches()) {
-        System.out.println("Formato data errato! \n");
-      }
-      valid = m.matches();
-    } while(!valid);
-    return date;
-  }
-
-    static private boolean userCFSigned(String cf){
-    try{
-      String fileUtenti = "../data/UtentiRegistrati.dati.csv";
-      Scanner inputStream = new Scanner(new FileReader(fileUtenti));
-      inputStream.useDelimiter("\n");
-
-      while(inputStream.hasNext()){
-        String line = inputStream.next();//prendo l' intera linea
-        if(line.contains("Codice fiscale:")){
-          if (line.contains(cf)) {
-            inputStream.close();
-            return true;
-          }
-        }
-      }
-    } catch (FileNotFoundException e){
-      e.printStackTrace();
+            Matcher m = p.matcher(date);
+            if (!m.matches()) {
+                System.out.println("Formato data errato! \n");
+            }
+            valid = m.matches();
+        } while(!valid);
+        return date;
     }
 
-    return false;
-  }
+    static private boolean userCFSigned(String cf){
+        try{
+            String fileUtenti = "../data/UtentiRegistrati.dati.csv";
+            Scanner inputStream = new Scanner(new FileReader(fileUtenti));
+            inputStream.useDelimiter("\n");
+
+            while(inputStream.hasNext()){
+            String line = inputStream.next();//prendo l' intera linea
+            if(line.contains("Codice fiscale:")){
+                if (line.contains(cf)) {
+                inputStream.close();
+                return true;
+                }
+            }
+        }
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     static private String setUserID(){
-    String id;
-    boolean valid;
-    do{
-      do{
-        System.out.println("Scelga un user ID;\n"+"sara neccessario per il suo accesso!\n"+"Max 10 caratteri, minimo 3 caratteri, niente spazi vuoti ammessi:");
-        id = new Scanner(System.in).nextLine();
-        if (id.length()<3||id.length()>10||id.contains(" ")) {
-          System.out.println("User ID scelto non valido!");
-          valid = false;
-        }else {valid = true;}
-      } while(!valid);
+        String id;
+        boolean valid;
+        do{
+            do{
+                System.out.println("Scelga un user ID;\n"+"sara neccessario per il suo accesso!\n"+"Max 10 caratteri, minimo 3 caratteri, niente spazi vuoti ammessi:");
+                id = new Scanner(System.in).nextLine();
+                if (id.length()<3||id.length()>10||id.contains(" ")) {
+                    System.out.println("User ID scelto non valido!");
+                    valid = false;
+                }else {valid = true;}
+            } while(!valid);
 
-      if (userIDTaken(id)) {
-        System.out.println("User ID già registrato!");
-        valid=false;
-      }
-
-    } while (!valid);
-
+            if (userIDTaken(id)) {
+                System.out.println("User ID già registrato!");
+            valid=false;
+            }
+        } while (!valid);
     return id;
   }
 
     static private boolean userIDTaken(String id){
-    try{
-      String fileUtenti = "../data/UtentiRegistrati.dati.csv";
-      Scanner inputStream = new Scanner(new FileReader(fileUtenti));
-      inputStream.useDelimiter("\n");
+        try{
+            String fileUtenti = "../data/UtentiRegistrati.dati.csv";
+            Scanner inputStream = new Scanner(new FileReader(fileUtenti));
+            inputStream.useDelimiter("\n");
 
-      while(inputStream.hasNext()){
-        int countline = 0;
-        String line = inputStream.next();//prendo l' intera linea
-        if(countline%9==0){
-          if (line.contains(id)) {
+            while(inputStream.hasNext()){
+            int countline = 0;
+            String line = inputStream.next();//prendo l' intera linea
+            if(countline%9==0){
+                if (line.contains(id)) {
+                    inputStream.close();
+                    return true;
+                }
+            }
+            countline++;
             inputStream.close();
-            return true;
-          }
-        }
-        countline++;
-        inputStream.close();
-      }
-    } catch (FileNotFoundException e){
-      e.printStackTrace();
+            }
+            
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }   
+        return false;
     }
-
-    return false;
-  }
 
     static private void creaPlaylistSetVuoto(String userId){
     try {
@@ -385,9 +304,11 @@ public class Utente {
     return dataNascita;
   }
     
-    public void addtoPlaylistSet(Playlist addplay){
+    public void addToPlaylistSet(Playlist addplay){
         playlistSet.add(addplay);
     }
+    
+    
     
     
 }

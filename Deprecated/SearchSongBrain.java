@@ -1,5 +1,6 @@
-package emotionalsongs;
 
+
+import emotionalsongs.*;
 import java.io.*;
 import java.util.*;
 

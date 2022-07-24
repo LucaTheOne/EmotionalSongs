@@ -55,3 +55,13 @@
     in fase di implementazione metodo per importare i dati delle emozioni per ogni brano.
 
 		-Lavoro di Bolelli Luca e Alexandru Boitor-
+
+24/07/2022
+    Iniziata ad imlementare GUI tramite swing.
+    Sistemata classe Utente e registrationform.
+    Adattata a modifiche classe loggger, repository, playlist set.
+    Piccole modifiche ai path, ora funzionano.
+    Verifica funzionamento login, registrazione, import repository.
+    
+                -Lavoro di Lavoro di Bolelli Luca, Alexandru Boitor, Natanail danailov-
+    

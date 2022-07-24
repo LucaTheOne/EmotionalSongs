@@ -6,6 +6,7 @@ public class Brano {
 
 //campi
   private String title,author,year,tag;
+  /**
   private Emozioni Amazement = Emozioni.AMAZEMENT;
   private Emozioni Solemnity = Emozioni.SOLEMNITY;
   private Emozioni Tenderness = Emozioni.TENDERNESS;
@@ -25,6 +26,7 @@ public class Brano {
   private int numberOfVoteForJoy;
   private int numberOfVoteForTension;
   private int numberOfVoteForSadness;
+  **/
   
 //costruttore
   Brano(String title, String author,String year,String tag) throws IOException{
@@ -32,7 +34,7 @@ public class Brano {
     this.author = author;
     this.year = year;
     this.tag = tag;
-    importazioneVotiBrano();
+    //importazioneVotiBrano();
     
     
   }
@@ -59,7 +61,7 @@ public class Brano {
 
     return this.title == brano.title&&this.author == brano.author&&this.year == brano.year;
   }
-  
+  /**
   public void voteBranoEmotions(){
       Amazement.voteAnEmotion();
       numberOfVoteForAmazement++;
@@ -89,12 +91,13 @@ public class Brano {
       numberOfVoteForSadness++;
       
   }
-
+  * **/
+  
   public String toStringOrdinato(){
-    String stringa ="Titolo: " +  this.getTitle() + "\n " +"   Autore: " + this.getAuthor() + "\n " + "   Anno di pubblicazione: " +this.year + "\n";
+    String stringa ="Titolo: " +  this.getTitle() +"Autore: " + this.getAuthor() + "Anno di pubblicazione: " +this.year + "\n";
     return stringa;
   }
-  
+  /**
   private void importazioneVotiBrano() throws FileNotFoundException, IOException{
     BufferedReader buffer = new BufferedReader(new FileReader(new File(Utilities.pathToEmozioniDati)));  
     String currentLine = "";
@@ -113,5 +116,5 @@ public class Brano {
         Amazement.notes = currentSplitted[3].split("<>");
     }
   }
-  
+  **/
 }

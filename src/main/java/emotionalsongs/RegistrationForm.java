@@ -19,14 +19,14 @@ import java.util.regex.*;
 
 public class RegistrationForm {
 
-  private File utentiRegistrati = new File(Utilities.pathToUserDatabase);
+    private File utentiRegistrati = new File(Utilities.pathToUserDatabase);
 
-  /**public static void main(String[] args) {
-    registraNuovoUtente();
-  }**/
-
-
-  private void registraNuovoUtente(){
+    public RegistrationForm() {
+        
+    }
+    
+    
+  public void registraNuovoUtente(){
     String userId,nome,cognome,cf,indirizzo,email,pswd,dataNascita;
 
     System.out.print("\n"+"INSERIMENTO DATI UTENTE \n");
@@ -47,34 +47,26 @@ public class RegistrationForm {
     email = setMail();
     pswd = setPassword();
 
-    salvaUtenteSuCsv(componiStringa(cf,nome,cognome,dataNascita,indirizzo,userId,email,pswd));
+    salvaUtenteSuFile(componiStringa(cf,nome,cognome,dataNascita,indirizzo,userId,email,pswd));
   }
 
 
 
-	public String componiStringa(String cf,String nome,String cognome,String dataNascita,String indirizzo,String userId,String email,String pswd) {
-    return "Codice fiscale/user id: " + cf + "\n" +
-           "Nome: " + nome + "\n" +
-			     "Cognome: " + cognome + "\n" +
-			     "Data di Nascita: " + dataNascita + "\n" +
-			     "Indirizzo: " + indirizzo +"\n" +
-           "ID Utente: " + userId + "\n"+
-           "email: " + email +"\n"+
-           "Password: " + pswd +"\n" +
-           "-------------------------" + "\n";
-	}
+    public String componiStringa(String cf,String nome,String cognome,String dataNascita,String indirizzo,String userId,String email,String pswd) {
+        return userId +";"+ pswd +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
+    }
 
 
-	public void salvaUtenteSuCsv(String testoDaScrivere) {
-      try {
-      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(utentiRegistrati,true));
-      bufferedWriter.write(testoDaScrivere);
-      bufferedWriter.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-      }
-      System.out.println("Utente registrato con successo");
-  }
+    public void salvaUtenteSuFile(String testoDaScrivere) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(utentiRegistrati,true));
+            bufferedWriter.write(testoDaScrivere);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Utente registrato con successo");
+    }
 
   private String setNome(){
     String nome = null;
@@ -250,8 +242,7 @@ public class RegistrationForm {
 
   private boolean userCFSigned(String cf){
     try{
-      String fileUtenti = "/Users/big/Documents/GitHub/EmotionalSongs/Files da consegnare/data/UtentiRegistrati.dati.csv";
-      Scanner inputStream = new Scanner(new FileReader(fileUtenti));
+      Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
       inputStream.useDelimiter("\n");
 
       while(inputStream.hasNext()){
@@ -295,8 +286,7 @@ public class RegistrationForm {
 
   private boolean userIDTaken(String id){
     try{
-      String fileUtenti = "/Users/big/Documents/GitHub/EmotionalSongs/Files da consegnare/data/UtentiRegistrati.dati.csv";
-      Scanner inputStream = new Scanner(new FileReader(fileUtenti));
+      Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
       inputStream.useDelimiter("\n");
 
       while(inputStream.hasNext()){

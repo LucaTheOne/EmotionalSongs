@@ -12,10 +12,13 @@ public class Logger {
     Logger(){
         
     }
+    
     Utente logIn() throws IOException{
         String userId = askUserId();
         String pswd = askPassword();
         Utente utente = matcher(userId, pswd);
+        System.out.println("Accesso eseguito con successo!");
+        System.out.println("Bentornato in  emotionalSongs");
         return utente;
     }
     
@@ -45,8 +48,9 @@ public class Logger {
             }else{
                System.out.println("Vuole registrarsi al programma EmotionalSongs? "); 
                yesOrNot = Utilities.readYesOrNot();
-               if(yesOrNot == true){
-                   return Utente.Registrazione();
+               if(Utilities.readYesOrNot()){
+                   Utente.Registrazione();
+                   return null;
                }
             }
         }
@@ -61,9 +65,9 @@ public class Logger {
         String stringaCorrente = "";
         while(!lineFound){
             stringaCorrente = buffer.readLine();
-            lineFound = stringaCorrente.split(",")[0].equals(userId);    
+            lineFound = stringaCorrente.split(";")[0].equals(userId);    
         }
-        String[] lineaDatiUtente = stringaCorrente.split(",");
+        String[] lineaDatiUtente = stringaCorrente.split(";");
         return new Utente(lineaDatiUtente[0],lineaDatiUtente[1],lineaDatiUtente[2],lineaDatiUtente[3],lineaDatiUtente[4],lineaDatiUtente[5],lineaDatiUtente[6],lineaDatiUtente[7]);
         
     }
@@ -75,7 +79,7 @@ public class Logger {
         while(!foundId){
             stringaCorrente = buffer.readLine();
             if(stringaCorrente == null) break;
-            foundId = stringaCorrente.split(",")[0].equals(userId);    
+            foundId = stringaCorrente.split(";")[0].equals(userId);    
         }
         return foundId;
     }
@@ -86,9 +90,9 @@ public class Logger {
         boolean foundIdLine = false;
         while(!foundIdLine){
             stringaId = buffer.readLine();
-            foundIdLine = stringaId.split(",")[0].equals(userid);
+            foundIdLine = stringaId.split(";")[0].equals(userid);
         }
-        return stringaId.split(",")[1].equals(password);
+        return stringaId.split(";")[1].equals(password);
     }
     
 }
