@@ -16,12 +16,20 @@ public class Utilities {
     
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
     
+    /**
+     * 
+     * @return 
+     */
     static boolean readYesOrNot(){
         System.out.println("Digiti 's' in caso affermativo, altrimenti digiti 'n' :");
         String scelta = new Scanner(System.in).nextLine();
         return scelta.toLowerCase().contains("s")? true:false;    
     }
     
+    /**
+     * 
+     * @return 
+     */
     static boolean richiestaUscita() {
         System.out.println("Vuole tornare al menu precedente? ");
         System.out.println("Digiti 's' in caso affermativo, altrimenti digiti 'n' :");

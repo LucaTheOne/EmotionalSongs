@@ -25,8 +25,11 @@ public class RegistrationForm {
         
     }
     
-    
-  public void registraNuovoUtente(){
+   /**
+    * 
+    * @throws IOException 
+    */ 
+   public void registraNuovoUtente() throws IOException{
     String userId,nome,cognome,cf,indirizzo,email,pswd,dataNascita;
 
     System.out.print("\n"+"INSERIMENTO DATI UTENTE \n");
@@ -51,77 +54,98 @@ public class RegistrationForm {
   }
 
 
-
+    /**
+     * 
+     * @param cf
+     * @param nome
+     * @param cognome
+     * @param dataNascita
+     * @param indirizzo
+     * @param userId
+     * @param email
+     * @param pswd
+     * @return 
+     */
     public String componiStringa(String cf,String nome,String cognome,String dataNascita,String indirizzo,String userId,String email,String pswd) {
         return userId +";"+ pswd +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
     }
 
-
-    public void salvaUtenteSuFile(String testoDaScrivere) {
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(utentiRegistrati,true));
-            bufferedWriter.write(testoDaScrivere);
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /**
+     * 
+     * @param testoDaScrivere
+     * @throws IOException 
+     */
+    public void salvaUtenteSuFile(String testoDaScrivere) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(utentiRegistrati,true));
+        bufferedWriter.write(testoDaScrivere);
+        bufferedWriter.close();
         System.out.println("Utente registrato con successo");
     }
-
-  private String setNome(){
-    String nome = null;
-    boolean valid = true;
-    do{
-      System.out.print("Inserisca il suo primo nome:");
-      nome = new Scanner(System.in).nextLine();
-      if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
-        valid = false;
-        System.out.println("nome non valido");
-      }else{
-        valid=true;
-      }
-
-    }while(!valid);
-    return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
-  }
-
-  private String setCognome(){
-    String cognome = null;
-    boolean valid = true;
-    do{
-      System.out.print("Inserisca il suo primo cognome:");
-      cognome = new Scanner(System.in).nextLine();
-      if (cognome.length()>20||cognome.length()<3||cognome.isEmpty()||cognome.matches(".*\\d.*")) {
-        valid = false;
-        System.out.println("nome non valido");
-      }else{
-        valid=true;
-      }
-
-    }while(!valid);
-
-    return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
-  }
-
-  private String setInd(){
-    boolean valid = true;
-    String indirizzo = null;
-    do{
-      System.out.print("Inserisca il suo indirizzo di residenza,\n"+"(via/piazza, numero civico, cap, comune, provincia): ");
+     
+     /**
+      * 
+      * @return 
+      */
+     private String setNome(){
+        String nome = null;
+        boolean valid = true;
+        do{
+            System.out.print("Inserisca il suo primo nome:");
+            nome = new Scanner(System.in).nextLine();
+            if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
+                valid = false;
+                System.out.println("nome non valido");
+             }else{
+                valid=true;
+             }
+        }while(!valid);
+        return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
+    }
+     
+     /**
+      * 
+      * @return 
+      */
+    private String setCognome(){
+        String cognome = null;
+        boolean valid = true;
+        do{
+            System.out.print("Inserisca il suo primo cognome:");
+            cognome = new Scanner(System.in).nextLine();
+            if (cognome.length()>20||cognome.length()<3||cognome.isEmpty()||cognome.matches(".*\\d.*")) {
+                valid = false;
+                System.out.println("nome non valido");
+            }else{
+                valid=true;
+            }
+        }while(!valid);
+        return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    private String setInd(){
+        boolean valid = true;
+        String indirizzo = null;
+        do{
+            System.out.print("Inserisca il suo indirizzo di residenza,\n"+"(via/piazza, numero civico, cap, comune, provincia): ");
 		  indirizzo = new Scanner(System.in).nextLine();
-      if(indirizzo.isEmpty()){
-        System.out.print("Questo campo deve essere compilato! ");
-        valid = false;
-      }
-    }while(!valid);
-    return indirizzo.toLowerCase();
-  }
+             if(indirizzo.isEmpty()){
+             System.out.print("Questo campo deve essere compilato! ");
+            valid = false;
+            }
+         }while(!valid);
+         return indirizzo.toLowerCase();
+         }
 
 /**
 * metodo che si occupa di far inserire la Password
 * al utente e di verificarne che rispetti i requsisti.
 * Inoltre verifica anche che l' utente non abbia sbagliato a scriverla nel primo inserimento
 * mediante confronto.
+* @throws PatternSyntaxException
 **/
   private String setPassword() throws PatternSyntaxException{
     String password,passwordCtrl;
@@ -154,6 +178,7 @@ public class RegistrationForm {
         password = new Scanner(System.in).nextLine();
         m = p.matcher(password);
       }
+      
     /**
     *Per verificare che l' utente sappia che password abbia inserito
     *gli si chiede di reinserirle per poi successivamente confrontarla
@@ -167,7 +192,11 @@ public class RegistrationForm {
    return password;
   }
 
-
+    /**
+    * 
+    * @return
+    * @throws PatternSyntaxException 
+    */
   private String setMail() throws PatternSyntaxException{
     String mail;
     System.out.println("Inserire un indirizzo email valido:");
@@ -185,8 +214,8 @@ public class RegistrationForm {
         mail = new Scanner(System.in).nextLine();
         m = p.matcher(mail);
       }
-   return mail;
-  }
+      return mail;
+     }
 
 
 
@@ -220,6 +249,11 @@ public class RegistrationForm {
    return cf.toUpperCase();
   }
 
+  /**
+   * 
+   * @return
+   * @throws PatternSyntaxException 
+   */
   private String setBirthDate() throws PatternSyntaxException {
     String date;
     boolean valid = false;
@@ -240,8 +274,13 @@ public class RegistrationForm {
     return date;
   }
 
-  private boolean userCFSigned(String cf){
-    try{
+  /**
+   * 
+   * @param cf
+   * @return
+   * @throws FileNotFoundException 
+   */  
+  private boolean userCFSigned(String cf) throws FileNotFoundException {
       Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
       inputStream.useDelimiter("\n");
 
@@ -255,13 +294,15 @@ public class RegistrationForm {
         }
         countline++;
       }
-    } catch (FileNotFoundException e){
-      e.printStackTrace();
-    }
     return false;
   }
-
-  private String setUserID(){
+  
+  /**
+   * 
+   * @return
+   * @throws FileNotFoundException 
+   */
+  private String setUserID() throws FileNotFoundException{
     String id;
     boolean valid;
     do{
@@ -283,9 +324,14 @@ public class RegistrationForm {
     } while (!valid);
     return id;
   }
-
-  private boolean userIDTaken(String id){
-    try{
+  
+  /**
+   *  
+   * @param id
+   * @return
+   * @throws FileNotFoundException 
+   */
+  private boolean userIDTaken(String id) throws FileNotFoundException{
       Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
       inputStream.useDelimiter("\n");
 
@@ -299,9 +345,6 @@ public class RegistrationForm {
         }
         countline++;
       }
-    } catch (FileNotFoundException e){
-      e.printStackTrace();
-    }
     return false;
   }
 }

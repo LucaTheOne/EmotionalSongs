@@ -9,10 +9,19 @@ import java.util.*;
  * @author luca
  */
 public class Logger {
+    
+    /**
+     * 
+     */
     Logger(){
         
     }
     
+    /**
+     * 
+     * @return
+     * @throws IOException 
+     */
     Utente logIn() throws IOException{
         String userId = askUserId();
         String pswd = askPassword();
@@ -22,6 +31,10 @@ public class Logger {
         return utente;
     }
     
+    /**
+     * 
+     * @return 
+     */
     private String askUserId(){
         System.out.print("Inserisca l' username scelto in fase di login: ");
         String user = new Scanner(System.in).nextLine(); 
@@ -29,6 +42,10 @@ public class Logger {
         return user;
     }
     
+    /**
+     * 
+     * @return 
+     */
     private String askPassword(){
         System.out.print("Inserisca la password scelta in fase di login: ");
         String password = new Scanner(System.in).nextLine(); 
@@ -36,6 +53,14 @@ public class Logger {
         return password;
     }
     
+    /**
+     * 
+     * @param userId
+     * @param pswd
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     private Utente matcher(String userId,String pswd)throws FileNotFoundException,IOException {
         boolean idFound = founderId(userId);
         while(!idFound){
@@ -72,6 +97,13 @@ public class Logger {
         
     }
     
+    /**
+     * 
+     * @param userId
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     private boolean founderId(String userId) throws FileNotFoundException, IOException{
         BufferedReader buffer = new BufferedReader(new FileReader(new File(Utilities.pathToUserDatabase)));
         boolean foundId = false;
@@ -84,6 +116,13 @@ public class Logger {
         return foundId;
     }
     
+    /**
+     * 
+     * @param userid
+     * @param password
+     * @return
+     * @throws IOException 
+     */
     private boolean passwordMatcher(String userid,String password) throws IOException{
         BufferedReader buffer = new BufferedReader(new FileReader(new File(Utilities.pathToUserDatabase)));
         String stringaId = "";
