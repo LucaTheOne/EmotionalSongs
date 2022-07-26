@@ -4,12 +4,28 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+/**
+ * 
+ * @author Luca
+ * @version 1.2.
+ */
 public class Utente {
     //campi
     //boolean autenticated = false;
     private String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
     private ArrayList<Playlist> playlistSet; 
 
+    /**
+     * 
+     * @param userId
+     * @param password
+     * @param cf
+     * @param nome
+     * @param cognome
+     * @param dataNascita
+     * @param email
+     * @param indirizzo 
+     */
     Utente(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
         this.userId = userId;
         this.nome = nome;
@@ -22,11 +38,18 @@ public class Utente {
         
     }
     
+    /**
+     * 
+     * @throws IOException 
+     */
     static public void Registrazione() throws IOException {
         RegistrationForm regEngine = new RegistrationForm();
         regEngine.registraNuovoUtente();
     }
     
+    /**
+     * 
+     */
     public void stampaUtenteSuTerminale() {
         System.out.println("Codice fiscale: " + cf);
         System.out.println("Nome: " + nome);
@@ -38,6 +61,10 @@ public class Utente {
         System.out.println("Password: " + password);
     }
     
+    /**
+     * 
+     * @return 
+     */
     static private String setNome(){
         String nome = null;
         boolean valid = true;
@@ -53,7 +80,11 @@ public class Utente {
         }while(!valid);
         return nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     static private String setCognome(){
         String cognome = null;
         boolean valid = true;
@@ -69,7 +100,11 @@ public class Utente {
         }while(!valid);
         return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     static private String setInd(){
         boolean valid = true;
         String indirizzo = null;
@@ -83,7 +118,12 @@ public class Utente {
         }while(!valid);
         return indirizzo.toLowerCase();
     }
-
+    
+    /**
+     * 
+     * @return
+     * @throws PatternSyntaxException 
+     */
     static private String setPassword() throws PatternSyntaxException{
         String password,passwordCtrl;
         System.out.println("Scelga una password:");
@@ -127,7 +167,12 @@ public class Utente {
     } while(!password.equals(passwordCtrl));
     return password;
   }
-
+    
+    /**
+     * 
+     * @return
+     * @throws PatternSyntaxException 
+     */
     static private String setMail() throws PatternSyntaxException{
         String mail;
         System.out.println("Inserire un indirizzo email valido:");
@@ -147,7 +192,12 @@ public class Utente {
         }
         return mail;
     }
-
+    
+    /**
+     * 
+     * @return
+     * @throws PatternSyntaxException 
+     */
     static private String setCFUser() throws PatternSyntaxException{
         String cf;
         System.out.println("Inserisca il suo codice fiscale:");
@@ -177,7 +227,12 @@ public class Utente {
         }
         return cf.toUpperCase();
     }
-
+    
+    /**
+     * 
+     * @return
+     * @throws PatternSyntaxException 
+     */
     static private String setBirthDate() throws PatternSyntaxException {
         String date;
         boolean valid = false;
@@ -196,9 +251,15 @@ public class Utente {
         } while(!valid);
         return date;
     }
-
-    static private boolean userCFSigned(String cf){
-        try{
+    
+    /**
+     * 
+     * @param cf
+     * @return
+     * @throws FileNotFoundException 
+     */
+    static private boolean userCFSigned(String cf) throws FileNotFoundException{
+    
             String fileUtenti = "../data/UtentiRegistrati.dati.csv";
             Scanner inputStream = new Scanner(new FileReader(fileUtenti));
             inputStream.useDelimiter("\n");
@@ -212,14 +273,15 @@ public class Utente {
                 }
             }
         }
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-
         return false;
     }
-
-    static private String setUserID(){
+    
+    /**
+     * 
+     * @return
+     * @throws FileNotFoundException 
+     */
+    static private String setUserID() throws FileNotFoundException{
         String id;
         boolean valid;
         do{
@@ -239,9 +301,14 @@ public class Utente {
         } while (!valid);
     return id;
   }
-
-    static private boolean userIDTaken(String id){
-        try{
+    
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws FileNotFoundException 
+     */
+    static private boolean userIDTaken(String id) throws FileNotFoundException {
             String fileUtenti = "../data/UtentiRegistrati.dati.csv";
             Scanner inputStream = new Scanner(new FileReader(fileUtenti));
             inputStream.useDelimiter("\n");
@@ -257,53 +324,82 @@ public class Utente {
             }
             countline++;
             inputStream.close();
-            }
-            
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }   
+            }  
         return false;
     }
-
-    static private void creaPlaylistSetVuoto(String userId){
-    try {
+    
+    /**
+     * 
+     * @param userId
+     * @throws IOException 
+     */
+    static private void creaPlaylistSetVuoto(String userId) throws IOException{
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati,true));
       bufferedWriter.write("Proprietario: "+ userId + "/n"+"_.-._.-._.-._.-._.-._.-._\n");
       bufferedWriter.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-      }
       System.out.println("Spazio generato con successo");
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getUserId(){
     return userId;
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getNome(){
     return nome;
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getCognome(){
     return cognome;
   }
 
+    /**
+     * 
+     * @return 
+     */
     public String getCF(){
     return cf;
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getIndirizzo(){
     return indirizzo;
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getEmail(){
     return email;
   }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getDataDiNascita(){
     return dataNascita;
   }
     
+    /**
+     * 
+     * @param addplay 
+     */
     public void addToPlaylistSet(Playlist addplay){
         playlistSet.add(addplay);
     }

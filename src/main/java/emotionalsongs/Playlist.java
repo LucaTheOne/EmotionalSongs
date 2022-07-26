@@ -3,6 +3,12 @@ package emotionalsongs;
 import java.io.*;
 import java.util.*;
 
+/**
+ *  La classe Playlist 
+ * @author Luca
+ * @version 1.4
+ *
+ */
 public class Playlist extends EMOTIONALSONGS{
 
     //campi
@@ -12,7 +18,10 @@ public class Playlist extends EMOTIONALSONGS{
     List<Brano> listaCanzoniPlaylist = new ArrayList<Brano>();
 
     //costruttore
-    
+    /**
+     * 
+     * @throws IOException 
+     */
     public Playlist() throws IOException{
         setNomePlaylist();
         System.out.println("Vuole aggiungere subito canzoni alla sua playlist "+ nomePlaylist +"? ");
@@ -21,13 +30,24 @@ public class Playlist extends EMOTIONALSONGS{
         }
         aggiungiPlaylistASetPlaylistsUtente();
     }
-
+    
+    /**
+     * 
+     * @param proprietario
+     * @param nomePlaylist
+     * @param listaCanzoniPlaylist 
+     */
     Playlist(String proprietario, String nomePlaylist, ArrayList<Brano> listaCanzoniPlaylist) {
         setNomePlaylist();
         //this.listaCanzoniPlaylist = listaCanzoniPlaylist;
     }
 
     //metodi
+    /**
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void registraPlaylist() throws FileNotFoundException, IOException{
         addSongToPlaylist();
         boolean another = false;
@@ -45,29 +65,46 @@ public class Playlist extends EMOTIONALSONGS{
         } while (another);
         inputStream.close();
     }
-  
-  private void aggiungiPlaylistASetPlaylistsUtente(){
-      super.loggedUser.addToPlaylistSet(this);
-  }
+    
+    /**
+     * 
+     * 
+     */
+    private void aggiungiPlaylistASetPlaylistsUtente(){
+        super.loggedUser.addToPlaylistSet(this);
+    }
+    
+    /**
+     * Il metodo restituisce una String con il nome della playlist
+     * @return il campo nomePlayList.
+     */
+    public String getNomePlaylist(){
+        return this.nomePlaylist;
+    }
+    
+    /**
+     * Il metodo restituisce una String con il nome della playlist scelto dall'utente.
+     * @return nome della Playlist
+     */
+    public static String setNomePlaylist(){
+        String nome;
+        Scanner inputStream = new Scanner(System.in);
+        do {
+            System.out.println("Scelga un nome per la sua playlist:");
+            nome = inputStream.nextLine();
+            if (nome.equals(null)) {
+            System.out.println("Deve dare un nome alla sua playlist!");
+            }
+        } while (nome.equals(null));
+        inputStream.close();
+        return nome;
+    }
 
-  public String getNomePlaylist(){
-    return this.nomePlaylist;
-  }
-
-  public static String setNomePlaylist(){
-    String nome;
-    Scanner inputStream = new Scanner(System.in);
-    do {
-      System.out.println("Scelga un nome per la sua playlist:");
-      nome = inputStream.nextLine();
-      if (nome.equals(null)) {
-        System.out.println("Deve dare un nome alla sua playlist!");
-      }
-    } while (nome.equals(null));
-    inputStream.close();
-    return nome;
-  }
-
+    /**
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void addSongToPlaylist() throws FileNotFoundException, IOException{
         SearchEngine search = new SearchEngine();
         ArrayList<Brano> listaScelte= search.cercaBranoMusicale();
@@ -104,7 +141,11 @@ public class Playlist extends EMOTIONALSONGS{
     public void cercaNellaPlaylist(){
         
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String componiStringaPlaylist(){
         String stringa = "";
         stringa = "Proprietario : " + proprietario + "\n";

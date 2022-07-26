@@ -64,4 +64,13 @@
     Verifica funzionamento login, registrazione, import repository.
     
                 -Lavoro di Lavoro di Bolelli Luca, Alexandru Boitor, Natanail danailov-
+		
+25/07/2022
+	Class RegistrationForm – modifiche da try e catch in throws.
+		Metodi  : salvaUtenteSuFile, setUserID, userIDTaken, userCFSigned
+	Class Utente – modifiche da try e catch in throws.
+		Metodi  : userCFSigned, setUserID, userIDTaken, creaPlaylistSetVuoto.
+	Ho iniziato ad impostare il javadoc con (@author, @return,@thwors ecc.) per ogni classe, e qualche commento(1 o 2).
+		- Alexandru Boitor ,  PS: SE NON HO COMBIANATO DEI PASTICI MOSTRUOSI..CONTINUERO.... SE SI SGRIDETEMI :( ).
+
     

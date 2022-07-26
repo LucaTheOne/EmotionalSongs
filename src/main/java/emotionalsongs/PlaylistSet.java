@@ -12,12 +12,18 @@ public class PlaylistSet {
     private List<Playlist> playlistSet;
     private Utente proprietario;
     
+    /**
+     * 
+     */
     public PlaylistSet(){
         this.proprietario = proprietario;
         this.playlistSet = new ArrayList<Playlist>();    
     }
     
-        
+    /**
+     * 
+     * @param playlist 
+     */    
     public void aggiungiPlaylistASet(Playlist playlist){
         EMOTIONALSONGS.loggedUser.addToPlaylistSet(playlist); 
     }
