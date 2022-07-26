@@ -88,4 +88,12 @@ class SearchEngine {
         }
         return stringa;
     }
+    
+    private void mostraRisultatiRicercaSuTerminale(){
+        System.out.println("Risultati ricerca: ");
+        if(risultatiRicerca.isEmpty()){
+            System.out.println("Nessun risultato presente nella ricerca");    
+        }
+        
+    }
 }
