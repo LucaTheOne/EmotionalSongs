@@ -23,7 +23,7 @@ class SearchEngine {
                 ricercaPerTitolo();
                 break;
             case 'a':
-                //ricercaPerAutoreEdAnno();
+                ricercaPerAutoreEdAnno();
                 break;
             case 'e':
                 //da implementare metodo per tornare al menu principale
@@ -33,6 +33,7 @@ class SearchEngine {
                 cercaBranoMusicale();
                 break;
         }
+        
         return risultatiRicerca;    
     }
     
