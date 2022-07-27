@@ -3,6 +3,7 @@ package emotionalsongs;
 import java.util.*;
 
 public enum Emozioni {
+  //tradurre
   AMAZEMENT("Amazement","Feeling of wonder or happiness."),
   SOLEMNITY("Solemnity","Feeling of trascendence,inspiration. Thrills."),
   TENDERNESS("Tenderness","Sensuality, affect, feeling of love."),
@@ -14,44 +15,43 @@ public enum Emozioni {
   SADNESS("Sadness","Feeling depressed, sorrowful.");
   
   //campi
-  final private String name;
-  final private String explanation;
+  final private String nomeEmozione;
+  final private String spiegazioneEmozione;
   int[] votes;
   String[] notes;
 
   //costruttori
   Emozioni(String name,String explanation){
-    this.name = name;
-    this.explanation = explanation;
+    this.nomeEmozione = name;
+    this.spiegazioneEmozione = explanation;
     //this.score = score;
     //this.note = note;
   }
   //metodi
-  public String getName(){
-    return this.name;
+  public String getNomeEmozione(){
+    return this.nomeEmozione;
   }
 
-  public String getExplanation(){
-    return this.explanation;
+  public String getSpiegazioneEmozione(){
+    return this.spiegazioneEmozione;
   }
   
     public void voteAnEmotion(){
         giveAVote();
-        System.out.println("Vuole inserire un commento riguardo a questa emozione: "+name+"? ");
-        System.out.println("Prema S se si, N se non vuole aggiungere commenti");
-        String scelta = new Scanner(System.in).nextLine();
-        if(scelta.toLowerCase().contains("s")){
+        System.out.println("Vuole inserire un commento riguardo a questa emozione: "+nomeEmozione+"? ");
+        if(Utilities.readYesOrNot()){
             commentAnEmotion();
         }
     }
     public void giveAVote(){
         System.out.println("Inserisca un voto da 1 a 5 in base a quanto ha percepito la seguente emozione, 1 per ninte, 5 molto:");
-        System.out.println(getName() + ","+ getExplanation()+": ");
+        System.out.println(getNomeEmozione() + ","+ getSpiegazioneEmozione()+": ");
         int[] newArrayVotes = new int[votes.length +1];
         for(int i = 0;i<votes.length;i++){
             newArrayVotes[i] = votes[i];
         }
         newArrayVotes[newArrayVotes.length-1] = new Scanner(System.in).nextInt();
+        //metodo che fa reinserire il voto all' utente nel caso sia minore di 1 e maggiore di 5.
         votes = newArrayVotes;
     }
     

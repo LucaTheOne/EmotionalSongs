@@ -23,7 +23,7 @@ class SearchEngine {
                 ricercaPerTitolo();
                 break;
             case 'a':
-                //ricercaPerAutoreEdAnno();
+                ricercaPerAutoreEdAnno();
                 break;
             case 'e':
                 //da implementare metodo per tornare al menu principale
@@ -33,6 +33,7 @@ class SearchEngine {
                 cercaBranoMusicale();
                 break;
         }
+        
         return risultatiRicerca;    
     }
     
@@ -86,5 +87,13 @@ class SearchEngine {
             stringa = stringa + (i+1)+". " + risultatiRicerca.get(i).toStringOrdinato();
         }
         return stringa;
+    }
+    
+    private void mostraRisultatiRicercaSuTerminale(){
+        System.out.println("Risultati ricerca: ");
+        if(risultatiRicerca.isEmpty()){
+            System.out.println("Nessun risultato presente nella ricerca");    
+        }
+        
     }
 }

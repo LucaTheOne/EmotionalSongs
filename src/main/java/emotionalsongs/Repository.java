@@ -34,10 +34,6 @@ public class Repository {
             numeroBrani++;
         }
     }
-
-  /**private void addBrano(Brano brano){
-    this.repository.add(brano);
-  }**/
     
     /**
      * 
@@ -76,5 +72,9 @@ public class Repository {
      */
     public void stampaBrano(int index){
         System.out.println(getBrano(index).toStringOrdinato());
+    }
+    
+    public void consultaRepository(){
+        //sistema per consultare repository
     }
 }
