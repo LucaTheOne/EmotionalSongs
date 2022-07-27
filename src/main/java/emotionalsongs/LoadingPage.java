@@ -1,39 +1,34 @@
 package emotionalsongs;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
 public class LoadingPage extends JPanel {
-    private JLabel logingLabel;
+    private JLabel loadingLabel;
 
     public LoadingPage() {
         
         //Immagine di sfondo
-        logingLabel = new JLabel ("Caricamento");
-        logingLabel.setIcon(Utilities.loadingImageIcon);
-        logingLabel.setBackground(Color.BLACK);
-        logingLabel.setOpaque(true);
-        logingLabel.setBounds(0, 0, 802, 572);
-        logingLabel.setText("Caricamento");
-        logingLabel.setForeground(Color.WHITE);
-        logingLabel.setHorizontalTextPosition(JLabel.CENTER);
-        //logingLabel.setHorizontalAlignment(JLabel.LEFT);
-        logingLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        logingLabel.setVerticalAlignment(JLabel.TOP);
-        logingLabel.setIconTextGap(2);
-        logingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, false));
-        logingLabel.setVisible(true);
-        setPreferredSize (new Dimension (802,571));
+        loadingLabel.setIcon(Utilities.loadingImageIcon);
+        loadingLabel.setBackground(Color.BLACK);
+        loadingLabel.setOpaque(true);
+        loadingLabel.setBounds(0, 0, 802, 572);
+        loadingLabel.setText("Caricamento...");
+        loadingLabel.setForeground(Color.WHITE);
+        loadingLabel.setHorizontalTextPosition(JLabel.CENTER);
+        loadingLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        loadingLabel.setIconTextGap(2);
+        loadingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, false));
+        loadingLabel.setVisible(true);
+        setPreferredSize (new Dimension (802,572));
         
         setLayout(null);
 
         //add components
-        add (logingLabel);
+        add (loadingLabel);
     }
 
-
+    
     public static void main (String[] args) {
         JFrame frame = new JFrame ("EMOTIONALSONGS");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
@@ -43,13 +38,5 @@ public class LoadingPage extends JPanel {
         frame.pack();
         frame.setVisible (true);
     }
-<<<<<<< HEAD
+}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    // End of variables declaration//GEN-END:variables
-    
-}
-=======
-}
->>>>>>> d8c51e3bed02a2ed7f8465b3b66031035db6e606
