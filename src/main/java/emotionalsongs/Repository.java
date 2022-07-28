@@ -24,22 +24,25 @@ public class Repository {
      * @throws IOException 
      */
     public Repository() throws FileNotFoundException, IOException {
+        LoadingPage.loadingFrameLabel.setText("Collegamento al repository...");
         FileInputStream stream = new FileInputStream(CanzoniDati);
         BufferedReader buffer = new BufferedReader(new InputStreamReader(stream));
         String line;
+        LoadingPage.loadingFrameLabel.setText("Importazione del repository...");
         while((line = buffer.readLine()) != null){
             String[] splittedLine = line.split("<SEP>");//Divido la line in stringhe divise da <SEP> e le salvo in un array
             Brano branoCorrente = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
             repository.add(branoCorrente);
             numeroBrani++;
         }
+        LoadingPage.loadingFrameLabel.setText("Repository di canzoni importato!");
     }
     
     /**
      * 
      * @return 
      */
-    public int dimensioneRepository(){
+    public int getDimensioneRepository(){
       return this.numeroBrani;
     }
     

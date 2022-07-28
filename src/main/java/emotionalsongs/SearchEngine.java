@@ -43,7 +43,7 @@ class SearchEngine {
         if(titoloCercato.equals("e")){
             cercaBranoMusicale();
         }
-        for(int i = 0;i<EMOTIONALSONGS.REPOSITORY.dimensioneRepository();i++){
+        for(int i = 0;i<EMOTIONALSONGS.REPOSITORY.getDimensioneRepository();i++){
             Brano corrente = EMOTIONALSONGS.REPOSITORY.getBrano(i);
             if (corrente.getTitle().toLowerCase().contains(titoloCercato)){
                 risultatiRicerca.add(corrente);
@@ -66,7 +66,7 @@ class SearchEngine {
             cercaBranoMusicale();
         }
         String[] autoreAnnoSplitted = autoreAnno.split(" ");
-        for(int i = 0;i<EMOTIONALSONGS.REPOSITORY.dimensioneRepository();i++){
+        for(int i = 0;i<EMOTIONALSONGS.REPOSITORY.getDimensioneRepository();i++){
             Brano corrente = EMOTIONALSONGS.REPOSITORY.getBrano(i);
             if (corrente.getAuthor().toLowerCase().contains(autoreAnnoSplitted[0]) && corrente.getYear().equals(autoreAnnoSplitted[1])){
                 risultatiRicerca.add(corrente);
@@ -80,7 +80,6 @@ class SearchEngine {
         }
     }
 
-    
     public String stampaRisultati(){
         String stringa = "";
         for(int i = 0; i<risultatiRicerca.size();i++){
@@ -95,5 +94,16 @@ class SearchEngine {
             System.out.println("Nessun risultato presente nella ricerca");    
         }
         
+    }
+    
+    public static Brano cercaBranoEsatto(String datiBrano,Repository repository){
+        String[] daCercare = datiBrano.split(",");//0 titolo, 1 autore, 2 anno, 3 id
+        for (int i = 0;i<repository.getDimensioneRepository();i++){
+            Brano corrente = repository.getBrano(i);
+           if(daCercare[0].equals(corrente.getTitle())&& daCercare[1].equals(corrente.getAuthor()) && daCercare[2].equals(corrente.getYear()) && daCercare[3].equals(corrente.getTag())){
+               return corrente;
+           } 
+        }
+        return null;
     }
 }

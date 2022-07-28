@@ -6,27 +6,8 @@ public class Brano {
 
 //campi
   private String title,author,year,tag;
-  /**
-  private Emozioni Amazement = Emozioni.AMAZEMENT;
-  private Emozioni Solemnity = Emozioni.SOLEMNITY;
-  private Emozioni Tenderness = Emozioni.TENDERNESS;
-  private Emozioni Nostalgia = Emozioni.NOSTALGIA;
-  private Emozioni Calmness = Emozioni.CALMNESS;
-  private Emozioni Power = Emozioni.POWER;
-  private Emozioni Joy = Emozioni.JOY;
-  private Emozioni Tension = Emozioni.TENSION;
-  private Emozioni Sadness = Emozioni.SADNESS;
+  public DatiEmozioniBrano datiEmozioniBrano = new DatiEmozioniBrano(this);
   
-  private int numberOfVoteForAmazement;
-  private int numberOfVoteForSolemnity;
-  private int numberOfVoteForTenderness;
-  private int numberOfVoteForNostalgia;
-  private int numberOfVoteForCalmness;
-  private int numberOfVoteForPower;
-  private int numberOfVoteForJoy;
-  private int numberOfVoteForTension;
-  private int numberOfVoteForSadness;
-  **/
   
 //costruttore
   Brano(String title, String author,String year,String tag) throws IOException{

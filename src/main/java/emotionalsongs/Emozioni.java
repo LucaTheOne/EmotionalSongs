@@ -3,39 +3,39 @@ package emotionalsongs;
 import java.util.*;
 
 public enum Emozioni {
-  //tradurre
-  AMAZEMENT("Amazement","Feeling of wonder or happiness."),
-  SOLEMNITY("Solemnity","Feeling of trascendence,inspiration. Thrills."),
-  TENDERNESS("Tenderness","Sensuality, affect, feeling of love."),
-  NOSTALGIA("Nostalgia","Dreamy, melancholic, sentimental feelings."),
-  CALMNESS("Calmness","Relaxation, serenity,meditativeness."),
-  POWER("Power","Feeling strong,heroic,triumphant, energetic."),
-  JOY("Joy","Feeling like dancing, bouncy feeling, animated, amused."),
-  TENSION("Tension","Feeling nervous,impatient,irritated."),
-  SADNESS("Sadness","Feeling depressed, sorrowful.");
+
+    AMAZEMENT("Meraviglia","Sensazione di stupore o felicità."),
+    SOLEMNITY("Solennità","Sensazione di trascendenza, ispirazione. Brividi."),
+    TENDERNESS("Tenereza","Sensualità, affetto, sentimento di amore."),
+    NOSTALGIA("Nostalgia","Sognante, malinconia, sentimento di emotività."),
+    CALMNESS("Pacatezza","Rilassamento, serenità, meditatività."),
+    POWER("Potere","Sentirsi forte, eroici , trionfanti, energetici."),
+    JOY("Gioia","Sentirrsi come danzanti, raggianti, animati, divertiti."),
+    TENSION("Tensione","Sentire nervosismo, impazienza, irritazione."),
+    SADNESS("Tristezza","Sentirsi depressi, scarichi, dispiaciuti.");
   
-  //campi
-  final private String nomeEmozione;
-  final private String spiegazioneEmozione;
-  int[] votes;
-  String[] notes;
+    //campi
+    final private String nomeEmozione;
+    final private String descrizioneEmozione;
+    private int numeroVoti;
+    private int[] votes;
+    private String[] notes;
 
   //costruttori
-  Emozioni(String name,String explanation){
-    this.nomeEmozione = name;
-    this.spiegazioneEmozione = explanation;
-    //this.score = score;
-    //this.note = note;
-  }
-  //metodi
-  public String getNomeEmozione(){
-    return this.nomeEmozione;
-  }
-
-  public String getSpiegazioneEmozione(){
-    return this.spiegazioneEmozione;
-  }
+    Emozioni(String name,String explanation){
+        this.nomeEmozione = name;
+        this.descrizioneEmozione = explanation;
+    }
   
+  //metodi
+    public String getNomeEmozione(){
+        return this.nomeEmozione;
+    }
+    
+    public String getDescrizioneEmozione(){
+        return this.descrizioneEmozione;
+    }
+    
     public void voteAnEmotion(){
         giveAVote();
         System.out.println("Vuole inserire un commento riguardo a questa emozione: "+nomeEmozione+"? ");
@@ -43,9 +43,10 @@ public enum Emozioni {
             commentAnEmotion();
         }
     }
+    
     public void giveAVote(){
         System.out.println("Inserisca un voto da 1 a 5 in base a quanto ha percepito la seguente emozione, 1 per ninte, 5 molto:");
-        System.out.println(getNomeEmozione() + ","+ getSpiegazioneEmozione()+": ");
+        System.out.println(getNomeEmozione() + ","+ getDescrizioneEmozione()+": ");
         int[] newArrayVotes = new int[votes.length +1];
         for(int i = 0;i<votes.length;i++){
             newArrayVotes[i] = votes[i];
@@ -70,5 +71,20 @@ public enum Emozioni {
         
         newCommentsArray[newCommentsArray.length-1] = new Scanner(System.in).nextLine();
         notes = newCommentsArray;
+    }
+    
+    public void importaVoti(String voti){
+        String[] votiSplitted = voti.split(" ");
+        int[] votiInt = new int[votiSplitted.length];
+        for(int i = 0; i<votiInt.length;i++){
+            votiInt[i] = Integer.parseInt(votiSplitted[i]);
+        }
+        votes = votiInt;
+        numeroVoti = votes.length;
+    }
+    
+    public void importaCommenti(String Commenti){
+        String[] commentiSplitted = Commenti.split("<>");
+        notes = commentiSplitted;
     }
 }

@@ -1,5 +1,5 @@
-idCanzone
-    AMAZEMENT;n voti;lista voti divisi da spazio ; Lista commenti separati da <>;  
+titolo,autore,anno,id
+    AMAZEMENT ; n voti ; lista voti divisi da spazio ; Lista commenti separati da <>;  
     SOLEMNITY;n voti;lista voti ; Lista commenti;
     TENDERNESS;n voti;lista voti ; Lista commenti;
     NOSTALGIA;n voti;lista voti ; Lista commenti;
