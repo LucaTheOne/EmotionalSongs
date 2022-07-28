@@ -9,11 +9,11 @@ import java.util.*;
  * @version 1.4
  *
  */
-public class Playlist extends EMOTIONALSONGS{
+public class Playlist {
 
     //campi
     String nomePlaylist;
-    String proprietario = super.loggedUser.getUserId();
+    Utente proprietario;
 
     List<Brano> listaCanzoniPlaylist = new ArrayList<Brano>();
 
@@ -22,8 +22,10 @@ public class Playlist extends EMOTIONALSONGS{
      * 
      * @throws IOException 
      */
-    public Playlist() throws IOException{
+    public Playlist(Utente proprietario) throws IOException{
+        this.proprietario = proprietario;
         setNomePlaylist();
+        
         System.out.println("Vuole aggiungere subito canzoni alla sua playlist "+ nomePlaylist +"? ");
         if(Utilities.readYesOrNot()){
             registraPlaylist();
@@ -31,17 +33,6 @@ public class Playlist extends EMOTIONALSONGS{
         aggiungiPlaylistASetPlaylistsUtente();
     }
     
-    /**
-     * 
-     * @param proprietario
-     * @param nomePlaylist
-     * @param listaCanzoniPlaylist 
-     */
-    Playlist(String proprietario, String nomePlaylist, ArrayList<Brano> listaCanzoniPlaylist) {
-        setNomePlaylist();
-        //this.listaCanzoniPlaylist = listaCanzoniPlaylist;
-    }
-
     //metodi
     /**
      * 
@@ -55,7 +46,7 @@ public class Playlist extends EMOTIONALSONGS{
         Scanner inputStream = new Scanner(System.in);
         do {
            
-            System.out.println("Vuole aggiungere un altro brano alla playlist?");
+            System.out.println("Vuole aggiungere un brano alla playlist?");
             if (Utilities.readYesOrNot()) {
                 addSongToPlaylist();
                 another = true;
@@ -71,7 +62,7 @@ public class Playlist extends EMOTIONALSONGS{
      * 
      */
     private void aggiungiPlaylistASetPlaylistsUtente(){
-        super.loggedUser.addToPlaylistSet(this);
+        proprietario.addToPlaylistSet(this);
     }
     
     /**
@@ -92,10 +83,10 @@ public class Playlist extends EMOTIONALSONGS{
         do {
             System.out.println("Scelga un nome per la sua playlist:");
             nome = inputStream.nextLine();
-            if (nome.equals(null)) {
+            if (nome.isBlank()) {
             System.out.println("Deve dare un nome alla sua playlist!");
             }
-        } while (nome.equals(null));
+        } while (nome.isBlank());
         inputStream.close();
         return nome;
     }
@@ -107,16 +98,18 @@ public class Playlist extends EMOTIONALSONGS{
      */
     public void addSongToPlaylist() throws FileNotFoundException, IOException{
         SearchEngine search = new SearchEngine();
-        ArrayList<Brano> listaScelte= search.cercaBranoMusicale();
-        if(listaScelte.size()==1){
+        ArrayList<Brano> risultatiRicerca = search.cercaBranoMusicale();
+        
+        if(risultatiRicerca.size()==1){
             System.out.println("Vuole aggiungere il brano: \n"+
-                    listaScelte.get(0).toStringOrdinato()+"alla sua playlist "+ 
+                    risultatiRicerca.get(0).toStringOrdinato()+"alla sua playlist: "+ 
                     getNomePlaylist()+"?");
                     
             if(Utilities.readYesOrNot()){
-                listaCanzoniPlaylist.add(listaScelte.get(0));
+                listaCanzoniPlaylist.add(risultatiRicerca.get(0));
             }
         }
+        
         System.out.println("Brani trovati: ");
         System.out.println(search.stampaRisultati());
         System.out.println("Digiti gli indici delle canzoni, separati da uno spazio che vuole aggiungere alla sua playlist "+getNomePlaylist()+":");
@@ -126,7 +119,7 @@ public class Playlist extends EMOTIONALSONGS{
             scelteint[i] = Integer.parseInt(scelte[i])-1;
         }
         for(int i = 0; i<scelte.length;i++){
-            listaCanzoniPlaylist.add(listaScelte.get(scelteint[i]));
+            listaCanzoniPlaylist.add(risultatiRicerca.get(scelteint[i]));
         }
         
         riordinaPlaylist();

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package emotionalsongs;
 
 import java.io.BufferedReader;
@@ -38,9 +35,10 @@ public class DatiEmozioniBrano {
         stringaDaStampare += "  " +  NOSTALGIA.getNomeEmozione() + ";" + NOSTALGIA.getNumeroVoti() + ";" + NOSTALGIA.stringaVoti() + NOSTALGIA.stringaCommenti() + "\r";
         stringaDaStampare += "  " +  CALMNESS.getNomeEmozione() + ";" + CALMNESS.getNumeroVoti() + ";" + CALMNESS.stringaVoti() + CALMNESS.stringaCommenti() + "\r";
         stringaDaStampare += "  " +  POWER.getNomeEmozione() + ";" + POWER.getNumeroVoti() + ";" + POWER.stringaVoti() + POWER.stringaCommenti() + "\r";
-        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.getNumeroVoti() + ";" + AMAZEMENT.stringaVoti() + AMAZEMENT.stringaCommenti() + "\r";
-        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.getNumeroVoti() + ";" + AMAZEMENT.stringaVoti() + AMAZEMENT.stringaCommenti() + "\r";
-
+        stringaDaStampare += "  " +  JOY.getNomeEmozione() + ";" + JOY.getNumeroVoti() + ";" + JOY.stringaVoti() + JOY.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  TENSION.getNomeEmozione() + ";" + TENSION.getNumeroVoti() + ";" + TENSION.stringaVoti() + TENSION.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  SADNESS.getNomeEmozione() + ";" + SADNESS.getNumeroVoti() + ";" + SADNESS.stringaVoti() + SADNESS.stringaCommenti() + "\r";
+        stringaDaStampare += Utilities.divisioreFinale;
         return stringaDaStampare;
     }
 }

@@ -17,11 +17,11 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class RegistrationForm {
+public class RegistrationPerformer {
 
     private File utentiRegistrati = new File(Utilities.pathToUserDatabase);
 
-    public RegistrationForm() {
+    public RegistrationPerformer() {
         
     }
     

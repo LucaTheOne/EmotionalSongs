@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package emotionalsongs;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Megaport
  */
-public class dataSetEmozioni {
+public class DataSetEmozioni {
     ArrayList<DatiEmozioniBrano> dataSetEmozioni = new ArrayList<>();
     
     public void importaDataSetEmozioni() throws FileNotFoundException, IOException{
@@ -91,7 +91,11 @@ public class dataSetEmozioni {
         reader.close();
     }
     
-    public void esportaDataSetEmozioni(){
-        //implementare
+    public void esportaDataSetEmozioni() throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(new File(Utilities.pathToEmozioniDati)));
+        for(int i = 0; i<dataSetEmozioni.size();i++){
+            writer.write(dataSetEmozioni.get(i).stringaEmozioniBrano());
+        }
+        writer.flush();
     }
 }

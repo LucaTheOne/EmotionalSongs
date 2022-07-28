@@ -43,7 +43,7 @@ public class Utente {
      * @throws IOException 
      */
     static public void Registrazione() throws IOException {
-        RegistrationForm regEngine = new RegistrationForm();
+        RegistrationPerformer regEngine = new RegistrationPerformer();
         regEngine.registraNuovoUtente();
     }
     

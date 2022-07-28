@@ -73,4 +73,12 @@
 	Ho iniziato ad impostare il javadoc con (@author, @return,@thwors ecc.) per ogni classe, e qualche commento(1 o 2).
 		- Alexandru Boitor ,  PS: SE NON HO COMBIANATO DEI PASTICI MOSTRUOSI..CONTINUERO.... SE SI SGRIDETEMI :( ).
 
-    
+28/07/2022
+    Creazione classi:
+    - DataSetEmozioni che rappresenterrebbe in memoria il file Emozioni.dati.txt
+    - DatiEmozioniBrano per rappresentare i voti ed i commenti dati ad ogni singolo brano nel dataset.
+    Modifiche classi Emozioni, Utente ed Utilities
+    Rinomainate classi:
+    -RegistrationForm -> RegistrationPerformer
+    -Logger -> LoginPerformer
+    Creata schermata png di caricamento software

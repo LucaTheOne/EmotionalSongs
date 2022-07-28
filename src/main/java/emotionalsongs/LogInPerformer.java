@@ -8,12 +8,12 @@ import java.util.*;
  *
  * @author luca
  */
-public class Logger {
+public class LogInPerformer {
     
     /**
      * 
      */
-    Logger(){
+    LogInPerformer(){
         
     }
     
@@ -36,7 +36,7 @@ public class Logger {
      * @return 
      */
     private String askUserId(){
-        System.out.print("Inserisca l' username scelto in fase di login: ");
+        System.out.print("Inserisca l' username scelto in fase di registrazione: ");
         String user = new Scanner(System.in).nextLine(); 
         System.out.print("\r");
         return user;
@@ -47,7 +47,7 @@ public class Logger {
      * @return 
      */
     private String askPassword(){
-        System.out.print("Inserisca la password scelta in fase di login: ");
+        System.out.print("Inserisca la password scelta in fase di registrazione: ");
         String password = new Scanner(System.in).nextLine(); 
         System.out.print("\r");
         return password;
@@ -85,7 +85,7 @@ public class Logger {
             passwordMatches = passwordMatcher(userId, askPassword());    
         }
         
-        BufferedReader buffer = new BufferedReader(new FileReader(new File("../EMOTIONALSONGS/data/UtentiRegistrati.dati.csv")));
+        BufferedReader buffer = new BufferedReader(new FileReader(new File(Utilities.pathToUserDatabase)));
         boolean lineFound = false;
         String stringaCorrente = "";
         while(!lineFound){
