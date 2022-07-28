@@ -87,4 +87,24 @@ public enum Emozioni {
         String[] commentiSplitted = Commenti.split("<>");
         notes = commentiSplitted;
     }
+
+    public int getNumeroVoti() {
+        return numeroVoti;
+    }
+    
+    public String stringaVoti(){
+        String stringa = "";
+        for(int i = 0;i<votes.length;i++){
+            stringa += i<votes.length-1? votes[i] + " ": votes[i];
+        }
+        return stringa;
+    }
+    
+    public String stringaCommenti(){
+        String stringa = "";
+        for(int i = 0;i<notes.length;i++){
+            stringa += i<notes.length-1? notes[i] + "<>": notes[i];
+        }
+        return stringa;
+    }
 }

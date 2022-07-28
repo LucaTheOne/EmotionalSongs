@@ -15,7 +15,7 @@ public class EMOTIONALSONGS {
     
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-       LoadingPage.runPage();
+       //LoadingPage.runPage();
        REPOSITORY = new Repository();
        SearchEngine serach = new SearchEngine();
        serach.cercaBranoMusicale();

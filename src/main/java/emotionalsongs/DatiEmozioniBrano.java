@@ -22,8 +22,8 @@ public class DatiEmozioniBrano {
     Emozioni CALMNESS = Emozioni.CALMNESS;
     Emozioni POWER = Emozioni.POWER;
     Emozioni JOY = Emozioni.JOY;
-    Emozioni SADNESS = Emozioni.SADNESS;
     Emozioni TENSION = Emozioni.TENSION;
+    Emozioni SADNESS = Emozioni.SADNESS;
 
     public DatiEmozioniBrano(Brano brano) {
         branoCorrelatoAlleEmozioni = brano;
@@ -32,7 +32,15 @@ public class DatiEmozioniBrano {
     public String stringaEmozioniBrano(){
         String stringaDaStampare = "";
         stringaDaStampare += branoCorrelatoAlleEmozioni.getTitle() + "," + branoCorrelatoAlleEmozioni.getAuthor() + "," + branoCorrelatoAlleEmozioni.getYear() + "," + branoCorrelatoAlleEmozioni.getTag() + "\r";
-        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.
+        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.getNumeroVoti() + ";" + AMAZEMENT.stringaVoti() + AMAZEMENT.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  SOLEMNITY.getNomeEmozione() + ";" + SOLEMNITY.getNumeroVoti() + ";" + SOLEMNITY.stringaVoti() + SOLEMNITY.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  TENDERNESS.getNomeEmozione() + ";" + TENDERNESS.getNumeroVoti() + ";" + TENDERNESS.stringaVoti() + TENDERNESS.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  NOSTALGIA.getNomeEmozione() + ";" + NOSTALGIA.getNumeroVoti() + ";" + NOSTALGIA.stringaVoti() + NOSTALGIA.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  CALMNESS.getNomeEmozione() + ";" + CALMNESS.getNumeroVoti() + ";" + CALMNESS.stringaVoti() + CALMNESS.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  POWER.getNomeEmozione() + ";" + POWER.getNumeroVoti() + ";" + POWER.stringaVoti() + POWER.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.getNumeroVoti() + ";" + AMAZEMENT.stringaVoti() + AMAZEMENT.stringaCommenti() + "\r";
+        stringaDaStampare += "  " +  AMAZEMENT.getNomeEmozione() + ";" + AMAZEMENT.getNumeroVoti() + ";" + AMAZEMENT.stringaVoti() + AMAZEMENT.stringaCommenti() + "\r";
+
         return stringaDaStampare;
     }
 }
