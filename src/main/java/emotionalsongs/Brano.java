@@ -20,7 +20,7 @@ public class Brano {
     
   }
 
-//metodi
+//metodi getter
   public String getTitle(){
     return this.title;
   }
@@ -37,9 +37,8 @@ public class Brano {
     return this.tag;
   }
 
-
+//metodi di confronto
   public boolean equalsTo(Brano brano) {
-
     return this.title == brano.title&&this.author == brano.author&&this.year == brano.year;
   }
   /**
@@ -73,29 +72,10 @@ public class Brano {
       
   }
   * **/
-  
+
+//metodi di esposizione  
   public String toStringOrdinato(){
-    String stringa ="Titolo: " +  this.getTitle() +"Autore: " + this.getAuthor() + "Anno di pubblicazione: " +this.year + "\n";
+    String stringa ="Titolo: " +  this.getTitle() +", Autore: " + this.getAuthor() + ", Anno di pubblicazione: " +this.year + ".\r";
     return stringa;
   }
-  /**
-  private void importazioneVotiBrano() throws FileNotFoundException, IOException{
-    BufferedReader buffer = new BufferedReader(new FileReader(new File(Utilities.pathToEmozioniDati)));  
-    String currentLine = "";
-    while(!currentLine.equals(getTag())){
-        currentLine = buffer.readLine();
-    }
-    while(!currentLine.equals(Utilities.divisioreFinale)){
-        currentLine = buffer.readLine();
-        String[] currentSplitted = currentLine.split(";");
-        numberOfVoteForAmazement = Integer.parseInt(currentSplitted[1]);
-        String[] serieVoti = currentSplitted[2].split(" ");
-        Amazement.votes = new int[numberOfVoteForAmazement];
-        for(int i = 0;i<serieVoti.length;i++){
-            Amazement.votes[i] = Integer.parseInt(serieVoti[i]);
-        }
-        Amazement.notes = currentSplitted[3].split("<>");
-    }
-  }
-  **/
 }

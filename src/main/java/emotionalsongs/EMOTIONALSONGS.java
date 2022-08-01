@@ -11,18 +11,18 @@ public class EMOTIONALSONGS {
     
     public static Utente loggedUser = null;
     public static Repository REPOSITORY;
+    public static DataSetEmozioni dataSetEmozioni;
     
     
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-       //LoadingPage.runPage();
-       REPOSITORY = new Repository();
-       SearchEngine serach = new SearchEngine();
-       serach.cercaBranoMusicale();
-    }
-    
-    private static void importaRepository() throws IOException{
-        REPOSITORY = new Repository();
+        //Window page = new LoadingFrame();
+        Window page = new MainFrame();
+        page.runWindow();
+        //REPOSITORY = new Repository();
+        //dataSetEmozioni = new DataSetEmozioni();
+        //System.out.println(REPOSITORY.getBrano(1257).toStringOrdinato());
+       
     }
     
 }

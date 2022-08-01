@@ -1,8 +1,12 @@
 
 package emotionalsongs;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.*;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,15 +23,19 @@ public class Utilities {
     static String pathToUserDatabase = "../EMOTIONALSONGS/data/UtentiRegistrati.dati.txt";
     
     //immagini
-    static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
+    public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
     static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
-    static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
+    public static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
+    static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
+
     
     //Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
     static String comma = ",";
     static String semiColon = ";";
     static String separatorRepository = "<SEP>";
+    public static Dimension LOADINGFRAMESIZE = new Dimension(832, 610);
+    public static Font fontLoadingFrame;
     
     
     //metodi ricorrenti
