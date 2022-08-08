@@ -11,12 +11,13 @@ public class MainFrame extends javax.swing.JFrame {
     Layout layout = new Layout();
     
     Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
+    Image scaledImage = img.getScaledInstance(layout.frameDimension.width,layout.frameDimension.height,Image.SCALE_SMOOTH);
     public MainFrame() throws IOException {
         this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(img, 0, 0, null);
+            g.drawImage(scaledImage, 0, 0, null);
          }
         });
         
