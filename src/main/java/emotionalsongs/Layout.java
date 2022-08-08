@@ -1,8 +1,7 @@
 package emotionalsongs;
 
 
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,7 +18,7 @@ public class Layout {
     Dimension HVGA = new Dimension(480,320);
     Dimension WVGA = new Dimension(800,480);
     Dimension FWVGA = new Dimension(854,480);
-    Dimension qHD = new Dimension(960, 540);
+    Dimension qHD = new Dimension(960, 540);//<-
     Dimension WSVGA = new Dimension(1024,600);
     Dimension XGA = new Dimension(1024,768);
     Dimension HD = new Dimension(1280, 720); //<-
@@ -52,8 +51,13 @@ public class Layout {
         //apropriateBackground(frameDimension);
         int widthFrame = this.frameDimension.width;
         int heightFrame = this.frameDimension.height;
+<<<<<<< Updated upstream
 
         upperBarDimension = new Dimension(widthFrame,heightFrame/36);
+=======
+        
+        upperBarDimension = new Dimension(widthFrame,heightFrame/40);
+>>>>>>> Stashed changes
         lowerBarDimension = new Dimension(widthFrame,heightFrame/90);
         centerLeftPanelDimension = new Dimension(widthFrame/8,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
         centerRightPanelDimension = new Dimension(widthFrame-centerLeftPanelDimension.width,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
@@ -61,30 +65,19 @@ public class Layout {
     }
 
     private void apropriateBackground(Dimension d1){
-        if (equalDimensions(QVGA, d1)) {/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(HVGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WVGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(FWVGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(qHD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WSVGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(XGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
+        if (lowerDimension(d1, HD)) {/*imposta immagine di background relativa alla risoluzione*/}
         else if (equalDimensions(HD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WXGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
+        else if (lowerDimension(d1, fullHD)){/*imposta immagine di background relativa alla risoluzione*/}
         else if (equalDimensions(fullHD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WUXGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(k2, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(QuadHD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WQXGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(UHD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(WQUXGA, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(k4, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(k5, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(k8, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(k16, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else {/*set hd+*/}
+        else if (lowerDimension(d1, WQXGA)){}
     }
 
     private boolean equalDimensions(Dimension d1, Dimension d2){
         return d1.width==d2.width && d1.height==d2.height;
     }
+    
+    private boolean lowerDimension(Dimension d1, Dimension d2){
+        return d1.width < d2.width || d1.width == d2.width && d1.height<d2.heigth;
+    }
+            
 }

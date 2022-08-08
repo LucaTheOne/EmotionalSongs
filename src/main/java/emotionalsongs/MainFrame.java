@@ -1,24 +1,15 @@
 package emotionalsongs;
 
-import emotionalsongs.Layout;
-import emotionalsongs.Utilities;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.LayoutManager;
-import java.awt.Toolkit;
-import java.io.IOException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.io.*;
+import javax.swing.*;
 
 public class MainFrame extends javax.swing.JFrame {
     JPanel upperBar;
     JPanel centerPanel;
     JPanel lowerBar;
     Layout layout = new Layout(Toolkit.getDefaultToolkit().getScreenSize());
+    
     Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
     public MainFrame() throws IOException {
         this.setContentPane(new JPanel() {
@@ -58,12 +49,15 @@ public class MainFrame extends javax.swing.JFrame {
         centerPanel.setPreferredSize(layout.centerPanelDimension);
         JPanel left = new JPanel(new GridLayout());
         JPanel right = new JPanel();
+        
         left.setPreferredSize(layout.centerLeftPanelDimension);
         left.setBackground(Color.PINK);
-        left.setOpaque(false);
+        left.setOpaque(true);
+        
         right.setPreferredSize(layout.centerRightPanelDimension);
         right.setBackground(Color.GREEN);
-        right.setOpaque(false);
+        right.setOpaque(true);
+        
         centerPanel.add(left,BorderLayout.WEST);
         centerPanel.add(right,BorderLayout.CENTER);
         centerPanel.setOpaque(false);
