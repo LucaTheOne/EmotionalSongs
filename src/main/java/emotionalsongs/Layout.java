@@ -18,7 +18,7 @@ public class Layout {
     Dimension HVGA = new Dimension(480,320);
     Dimension WVGA = new Dimension(800,480);
     Dimension FWVGA = new Dimension(854,480);
-    Dimension qHD = new Dimension(960, 540);//<-
+    Dimension qHD = new Dimension(960, 540); //<-
     Dimension WSVGA = new Dimension(1024,600);
     Dimension XGA = new Dimension(1024,768);
     Dimension HD = new Dimension(1280, 720); //<-
@@ -51,13 +51,10 @@ public class Layout {
         //apropriateBackground(frameDimension);
         int widthFrame = this.frameDimension.width;
         int heightFrame = this.frameDimension.height;
-<<<<<<< Updated upstream
 
         upperBarDimension = new Dimension(widthFrame,heightFrame/36);
-=======
-        
+
         upperBarDimension = new Dimension(widthFrame,heightFrame/40);
->>>>>>> Stashed changes
         lowerBarDimension = new Dimension(widthFrame,heightFrame/90);
         centerLeftPanelDimension = new Dimension(widthFrame/8,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
         centerRightPanelDimension = new Dimension(widthFrame-centerLeftPanelDimension.width,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
@@ -75,9 +72,9 @@ public class Layout {
     private boolean equalDimensions(Dimension d1, Dimension d2){
         return d1.width==d2.width && d1.height==d2.height;
     }
-    
+
     private boolean lowerDimension(Dimension d1, Dimension d2){
-        return d1.width < d2.width || d1.width == d2.width && d1.height<d2.heigth;
+        return d1.width < d2.width || d1.width == d2.width && d1.height<d2.height;
     }
-            
+
 }
