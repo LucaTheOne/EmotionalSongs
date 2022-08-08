@@ -1,11 +1,9 @@
 package emotionalsongs;
 
 
-import java.awt.Color;
-import java.awt.Cursor;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import emotionalsongs.Window;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -14,13 +12,11 @@ import javax.swing.JLabel;
 public class LoadingFrame extends Window{
     static JLabel loadingPageLabel = new JLabel(Utilities.loadingImageIconInsubria);
     JFrame loadingFrame = new JFrame();
-
+    Image scaledImage = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/LoadingPage.png")/*.getScaledInstance(800,550,Image.SCALE_SMOOTH)*/;
     public void runWindow(){
         setFrame();
-        setLabel();
-        
     }
-    
+    /*
     public void setLabel(){
         loadingPageLabel.setText("Caricamento...");
         loadingPageLabel.setForeground(Color.WHITE);
@@ -32,17 +28,23 @@ public class LoadingFrame extends Window{
         loadingPageLabel.setOpaque(true);
         loadingPageLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     }
-    
+    */
     private void setFrame(){
-        loadingFrame.setSize(818,608);
+        loadingFrame.setSize(800,576);
         loadingFrame.setResizable(false);
         loadingFrame.setCursor(Cursor.WAIT_CURSOR);
         loadingFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        loadingFrame.setTitle("EMOTIONALSONGS 🎵");
-        loadingFrame.setIconImage(Utilities.logo.getImage());
+        loadingFrame.setContentPane(new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(scaledImage, 0, 0, null);
+         }
+        });
         loadingFrame.setTitle("EMOTIONALSONGS 🎵");
         loadingFrame.setIconImage(Utilities.logo.getImage());
         loadingFrame.add(loadingPageLabel);
+        loadingFrame.add(new JLabel());
         loadingFrame.setVisible(true);
     }
     
