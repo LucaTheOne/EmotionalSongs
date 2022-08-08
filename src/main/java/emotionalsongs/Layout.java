@@ -46,8 +46,9 @@ public class Layout {
     public Image backGrImage;
 
 
-    public Layout(Dimension frameDimension) {
-        this.frameDimension =new Dimension(frameDimension.width,frameDimension.height-35);
+    public Layout() {
+        Dimension monitorSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.frameDimension = apropriateBackground(monitorSize);
         //apropriateBackground(frameDimension);
         int widthFrame = this.frameDimension.width;
         int heightFrame = this.frameDimension.height;
@@ -61,12 +62,39 @@ public class Layout {
         centerPanelDimension = new Dimension(widthFrame,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
     }
 
-    private void apropriateBackground(Dimension d1){
-        if (lowerDimension(d1, HD)) {/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(HD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (lowerDimension(d1, fullHD)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (equalDimensions(fullHD, d1)){/*imposta immagine di background relativa alla risoluzione*/}
-        else if (lowerDimension(d1, WQXGA)){}
+    private Dimension apropriateBackground(Dimension d1){
+        if (lowerDimension(d1, HD)) {
+                Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_960-540.png");
+                return adaptedDimension(qHD);
+        } else if (equalDimensions(HD, d1)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1280-720.png");
+            return adaptedDimension(HD);
+        } else if (lowerDimension(d1, fullHD)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1280-720.png");
+            return adaptedDimension(HD);
+        }
+        else if (equalDimensions(fullHD, d1)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1920-1080.png");
+            return adaptedDimension(fullHD);
+        } else if (lowerDimension(d1, WQXGA)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1920-1080.png");
+            return adaptedDimension(fullHD);
+        } else if (equalDimensions(d1, WQXGA)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_2560-1600.png");
+            return adaptedDimension(WQXGA);
+        } else if (lowerDimension(d1, UHD)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_2560-1600.png");
+            return adaptedDimension(WQXGA);
+        } else if (equalDimensions(d1, UHD)) {
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_3840-2160.png");
+            return adaptedDimension(UHD);
+        } else if (lowerDimension(d1, k4)){
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_3840-2160.png");
+            return adaptedDimension(UHD);
+        } else {
+            Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_4096-2560.png");
+            return adaptedDimension(k4);
+        }
     }
 
     private boolean equalDimensions(Dimension d1, Dimension d2){
@@ -75,6 +103,12 @@ public class Layout {
 
     private boolean lowerDimension(Dimension d1, Dimension d2){
         return d1.width < d2.width || d1.width == d2.width && d1.height<d2.height;
+    }
+    
+    private Dimension adaptedDimension(Dimension d){
+        
+        Dimension x = new Dimension(d.width,d.height-40);
+        return x;
     }
 
 }

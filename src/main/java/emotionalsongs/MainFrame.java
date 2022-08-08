@@ -8,9 +8,9 @@ public class MainFrame extends javax.swing.JFrame {
     JPanel upperBar;
     JPanel centerPanel;
     JPanel lowerBar;
-    Layout layout = new Layout(Toolkit.getDefaultToolkit().getScreenSize());
+    Layout layout = new Layout();
     
-    Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
+    Image img = layout.backGrImage;
     public MainFrame() throws IOException {
         this.setContentPane(new JPanel() {
             @Override
