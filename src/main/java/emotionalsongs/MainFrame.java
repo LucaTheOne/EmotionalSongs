@@ -8,6 +8,12 @@ public class MainFrame extends javax.swing.JFrame {
     JPanel upperBar;
     JPanel centerPanel;
     JPanel lowerBar;
+    JButton b1 = new JButton("Bottone");
+    JButton b2 = new JButton("Bottone");
+    JButton b3 = new JButton("Bottone");
+    JButton b4 = new JButton("Bottone");
+    JButton b5 = new JButton("Bottone");
+    JButton b6 = new JButton("Bottone");
     Layout layout = new Layout();
     
     Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
@@ -48,12 +54,19 @@ public class MainFrame extends javax.swing.JFrame {
     public void setCenterPanel(){
         centerPanel = new JPanel(new BorderLayout());
         centerPanel.setPreferredSize(layout.centerPanelDimension);
-        JPanel left = new JPanel(new GridLayout());
+        
+        JPanel left = new JPanel(new GridLayout(6,1));
         JPanel right = new JPanel();
         
         left.setPreferredSize(layout.centerLeftPanelDimension);
         left.setBackground(Color.PINK);
         left.setOpaque(false);
+        left.add(b1);
+        left.add(b2);
+        left.add(b3);
+        left.add(b4);
+        left.add(b5);
+        left.add(b6);
         
         right.setPreferredSize(layout.centerRightPanelDimension);
         right.setBackground(Color.GREEN);

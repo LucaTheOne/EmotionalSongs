@@ -82,3 +82,9 @@
     -RegistrationForm -> RegistrationPerformer
     -Logger -> LoginPerformer
     Creata schermata png di caricamento software
+
+08/08/2022
+    Creazione Classe layout per la gestione delle dimensioni delle varie parti dell' interfaccia.
+    Creato sfondo pagina principale del programma.
+    Implementato sistema per registrare i dati di ogni canzone.
+    Impostata prima bozza di layout.
