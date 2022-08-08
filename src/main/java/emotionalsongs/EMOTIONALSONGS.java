@@ -17,8 +17,8 @@ public class EMOTIONALSONGS {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         //Window page = new LoadingFrame();
-        Window page = new MainFrame();
-        page.runWindow();
+        MainFrame.run();
+       
         //REPOSITORY = new Repository();
         //dataSetEmozioni = new DataSetEmozioni();
         //System.out.println(REPOSITORY.getBrano(1257).toStringOrdinato());

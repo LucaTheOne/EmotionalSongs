@@ -24,9 +24,9 @@ public class Utilities {
     
     //immagini
     public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
-    static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
+    public static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
     public static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
-    static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
+    public static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
 
     
     //Stringhe ricorrenti
@@ -37,6 +37,17 @@ public class Utilities {
     public static Dimension LOADINGFRAMESIZE = new Dimension(832, 610);
     public static Font fontLoadingFrame;
     
+    //dimensions
+    
+    static Dimension qHD = new Dimension(960, 540);
+    public static Dimension HD = new Dimension(1280, 720);
+    static Dimension fullHd = new Dimension(1920, 1080);
+    static Dimension k2 = new Dimension(2048, 1080);
+    static Dimension QuadHD = new Dimension(2560, 1440);
+    static Dimension UHD = new Dimension(3840, 2160);
+    static Dimension k4 = new Dimension(4096, 2160);
+    static Dimension k5 = new Dimension(5120, 2880);
+    static Dimension k8 = new Dimension(7680, 4320);
     
     //metodi ricorrenti
     /**

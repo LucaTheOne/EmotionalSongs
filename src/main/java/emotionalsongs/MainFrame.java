@@ -1,114 +1,83 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package emotionalsongs;
 
+import emotionalsongs.Layout;
+import emotionalsongs.Utilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.LayoutManager;
+import java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Megaport
- */
-public class MainFrame extends Window {
-    
-    JFrame mainFrame;
-    JPanel basePanel;
-    JPanel staticPanel;
-    JPanel dinamicPanel;
-    JPanel centerPanel;
+public class MainFrame extends javax.swing.JFrame {
     JPanel upperBar;
+    JPanel centerPanel;
     JPanel lowerBar;
-    JLabel background = new JLabel(Utilities.backGround);
-    
-    Dimension frameDimension = new Dimension(1024, 780);
-    Dimension upperBarDimension = new Dimension(frameDimension.width,frameDimension.height/38);
-    Dimension lowerBarDimension = new Dimension(frameDimension.width,5);
-    Dimension staticPanelDimension = new Dimension((frameDimension.width/7)*3,frameDimension.height-upperBarDimension.height-lowerBarDimension.height);
-    Dimension dinamicPanelDimension = new Dimension((frameDimension.width/7)*4,frameDimension.height-upperBarDimension.height-lowerBarDimension.height);
-    
-    public void setFrame() {
-        mainFrame = new JFrame("EMOTIONALSONGS");
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setIconImage(Utilities.logo.getImage());
-        mainFrame.setSize(frameDimension);
-        mainFrame.setLayout(new BorderLayout()); 
-        setBasePanel();
-        mainFrame.add(basePanel);
- 
-        mainFrame.setVisible(true);
+    Layout layout = new Layout(Toolkit.getDefaultToolkit().getScreenSize());
+    Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
+    public MainFrame() throws IOException {
+        this.setContentPane(new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(img, 0, 0, null);
+         }
+        });
         
-    }
-    
-    public void setBackground(){
+        setTitle("EMOTIONALSONGS");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Utilities.logo.getImage());
+        setLayout(new BorderLayout());
+        setPreferredSize(layout.frameDimension);
         
-    }
-    
-    public void setBasePanel(){
-        basePanel = new JPanel();
-        basePanel.setPreferredSize(frameDimension);
-        basePanel.setLayout(new BorderLayout(1,1));
-        setCenterPanel();
         setUpperBar();
+        setCenterPanel();
         setLowerBar();
         
-        basePanel.add(upperBar, BorderLayout.NORTH);
-        basePanel.add(centerPanel,BorderLayout.CENTER);
-        basePanel.add(lowerBar,BorderLayout.SOUTH);   
+        add(upperBar,BorderLayout.NORTH);
+        add(centerPanel,BorderLayout.CENTER);
+        add(lowerBar,BorderLayout.SOUTH);
+        pack();
+        setVisible(true);
+    }
+
+    public void setUpperBar() {
+        upperBar = new JPanel();
+        upperBar.setPreferredSize(layout.upperBarDimension);
+        upperBar.setBackground(Color.red);
+        upperBar.setOpaque(true);
     }
     
     public void setCenterPanel(){
-        centerPanel = new JPanel();
-        setStaticPanel();
-        setDinamicPanel();
-        background.setPreferredSize(frameDimension);
-        centerPanel.add(background, BorderLayout.CENTER);
-        
-        centerPanel.add(staticPanel,BorderLayout.WEST);
-        centerPanel.add(dinamicPanel,BorderLayout.CENTER);
+        centerPanel = new JPanel(new BorderLayout());
+        centerPanel.setPreferredSize(layout.centerPanelDimension);
+        JPanel left = new JPanel(new GridLayout());
+        JPanel right = new JPanel();
+        left.setPreferredSize(layout.centerLeftPanelDimension);
+        left.setBackground(Color.PINK);
+        left.setOpaque(false);
+        right.setPreferredSize(layout.centerRightPanelDimension);
+        right.setBackground(Color.GREEN);
+        right.setOpaque(false);
+        centerPanel.add(left,BorderLayout.WEST);
+        centerPanel.add(right,BorderLayout.CENTER);
         centerPanel.setOpaque(false);
-
-    }
-    
-    public void setStaticPanel(){
-        staticPanel = new JPanel();
-        staticPanel.setPreferredSize(staticPanelDimension);
-        staticPanel.setBackground(Color.orange);
-        staticPanel.setOpaque(false);
-    }
-    
-    public void setDinamicPanel(){
-        dinamicPanel = new JPanel();
-        dinamicPanel.setPreferredSize(dinamicPanelDimension);
-        dinamicPanel.setBackground(Color.CYAN);
-        dinamicPanel.setOpaque(false);
-    }
-    
-    public void setUpperBar(){
-        upperBar = new JPanel();
-        upperBar.setPreferredSize(upperBarDimension);
-        upperBar.setBackground(Color.pink);
-        upperBar.setOpaque(false);
-    }
-
-    public void runWindow() {
-        setFrame();
-    }
-    
-    public void closeWindow(){
         
     }
-
-    private void setLowerBar() {
+    
+    public void setLowerBar(){
         lowerBar = new JPanel();
-        lowerBar.setPreferredSize(lowerBarDimension);
+        lowerBar.setPreferredSize(layout.lowerBarDimension);
         lowerBar.setBackground(Color.black);
+        lowerBar.setOpaque(true);
     }
-   
+    
+    public static void run() throws IOException {
+        new MainFrame();
+    }
 }
