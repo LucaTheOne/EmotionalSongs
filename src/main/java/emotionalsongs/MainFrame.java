@@ -11,7 +11,7 @@ public class MainFrame extends javax.swing.JFrame {
     Layout layout = new Layout();
     
     Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
-    Image scaledImage = img.getScaledInstance(layout.frameDimension.width,layout.frameDimension.height,Image.SCALE_SMOOTH);
+    Image scaledImage = img.getScaledInstance(layout.frameDimension.width,layout.frameDimension.height+100,Image.SCALE_SMOOTH);
     public MainFrame() throws IOException {
         this.setContentPane(new JPanel() {
             @Override

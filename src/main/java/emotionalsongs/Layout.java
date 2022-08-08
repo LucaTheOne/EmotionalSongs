@@ -42,7 +42,7 @@ public class Layout {
     public Dimension centerRightPanelDimension;
     public Dimension lowerBarDimension;
     public Dimension centerPanelDimension;
-
+    
     public Image backGrImage;
 
 
