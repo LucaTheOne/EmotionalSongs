@@ -19,7 +19,7 @@ public class Layout {
     Dimension HVGA = new Dimension(480,320);
     Dimension WVGA = new Dimension(800,480);
     Dimension FWVGA = new Dimension(854,480);
-    Dimension qHD = new Dimension(960, 540);
+    Dimension qHD = new Dimension(960, 540); //<-
     Dimension WSVGA = new Dimension(1024,600);
     Dimension XGA = new Dimension(1024,768);
     Dimension HD = new Dimension(1280, 720); //<-
