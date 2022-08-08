@@ -43,12 +43,13 @@ public class Layout {
     public Dimension lowerBarDimension;
     public Dimension centerPanelDimension;
 
-    public Image backGrImage;
+    public Image backGrImage = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_2560-1600.png");
 
 
     public Layout() {
         Dimension monitorSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.frameDimension = apropriateBackground(monitorSize);
+        this.frameDimension = monitorSize;
+        
         //apropriateBackground(frameDimension);
         int widthFrame = this.frameDimension.width;
         int heightFrame = this.frameDimension.height;
@@ -61,30 +62,36 @@ public class Layout {
         centerRightPanelDimension = new Dimension(widthFrame-centerLeftPanelDimension.width,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
         centerPanelDimension = new Dimension(widthFrame,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
     }
-
+    /*
     private Dimension apropriateBackground(Dimension d1){
         if (lowerDimension(d1, HD)) {
                 Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_960-540.png");
                 return adaptedDimension(qHD);
-        } else if (equalDimensions(HD, d1)){
+                
+        } else if (equalDimensions(d1, HD)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1280-720.png");
             return adaptedDimension(HD);
+            
         } else if (lowerDimension(d1, fullHD)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1280-720.png");
             return adaptedDimension(HD);
-        }
-        else if (equalDimensions(fullHD, d1)){
+            
+        } else if (equalDimensions(d1, fullHD)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1920-1080.png");
             return adaptedDimension(fullHD);
+            
         } else if (lowerDimension(d1, WQXGA)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_1920-1080.png");
             return adaptedDimension(fullHD);
+            
         } else if (equalDimensions(d1, WQXGA)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_2560-1600.png");
             return adaptedDimension(WQXGA);
+            
         } else if (lowerDimension(d1, UHD)){
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_2560-1600.png");
             return adaptedDimension(WQXGA);
+            
         } else if (equalDimensions(d1, UHD)) {
             Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/bg_3840-2160.png");
             return adaptedDimension(UHD);
@@ -102,7 +109,7 @@ public class Layout {
     }
 
     private boolean lowerDimension(Dimension d1, Dimension d2){
-        return d1.width < d2.width || d1.width == d2.width && d1.height<d2.height;
+        return d1.width < d2.width;
     }
     
     private Dimension adaptedDimension(Dimension d){
@@ -110,5 +117,5 @@ public class Layout {
         Dimension x = new Dimension(d.width,d.height-40);
         return x;
     }
-
+    */
 }

@@ -10,7 +10,7 @@ public class MainFrame extends javax.swing.JFrame {
     JPanel lowerBar;
     Layout layout = new Layout();
     
-    Image img = layout.backGrImage;
+    Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
     public MainFrame() throws IOException {
         this.setContentPane(new JPanel() {
             @Override
@@ -52,11 +52,11 @@ public class MainFrame extends javax.swing.JFrame {
         
         left.setPreferredSize(layout.centerLeftPanelDimension);
         left.setBackground(Color.PINK);
-        left.setOpaque(true);
+        left.setOpaque(false);
         
         right.setPreferredSize(layout.centerRightPanelDimension);
         right.setBackground(Color.GREEN);
-        right.setOpaque(true);
+        right.setOpaque(false);
         
         centerPanel.add(left,BorderLayout.WEST);
         centerPanel.add(right,BorderLayout.CENTER);
