@@ -16,14 +16,15 @@ public class MainFrame extends javax.swing.JFrame {
     JButton b6 = new JButton("Bottone");
     Layout layout = new Layout();
     
-    Image img = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
-    Image scaledImage = img.getScaledInstance(layout.frameDimension.width,layout.frameDimension.height+100,Image.SCALE_SMOOTH);
+    Image img = layout.mainFrameBG;
+    
     public MainFrame() throws IOException {
+        setPreferredSize(layout.frameDimension);
         this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(scaledImage, 0, 0, null);
+            g.drawImage(img, 0, 0,layout.frameDimension.width,layout.frameDimension.height, null);
          }
         });
         
@@ -31,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Utilities.logo.getImage());
         setLayout(new BorderLayout());
-        setPreferredSize(layout.frameDimension);
+
         
         setUpperBar();
         setCenterPanel();
