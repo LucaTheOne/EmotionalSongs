@@ -30,13 +30,11 @@ public class DataSetEmozioni {
    
     
     public void importaDataSetEmozioni() throws FileNotFoundException, IOException{
-        LoadingFrame.setText("Importazione dei dati delle emozioni...");
         BufferedReader reader = new BufferedReader(new FileReader(Utilities.pathToPlaylistDati));
         String stringaCorrente = "";
         if((stringaCorrente = reader.readLine())==null) {
             //System.out.println("DataSet vuoto!");
             reader.close();
-            LoadingFrame.setText("Dati emozioni importati!"); 
             return;
         }
         else{
@@ -112,7 +110,6 @@ public class DataSetEmozioni {
             }
         } 
         reader.close();
-        LoadingFrame.setText("Dati emozioni importati!"); 
     }
     
     public void esportaDataSetEmozioni() throws IOException{
