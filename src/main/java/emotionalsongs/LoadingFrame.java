@@ -18,7 +18,7 @@ public class LoadingFrame extends Window{
     
     private void setFrame(){
         Layout layout = new Layout();
-        backGround = layout.loadingFrameBG;
+        backGround = layout.prova.getImage();
         loadingFrame.setSize(layout.loadingFrameDimension);
         loadingFrame.setBackground(Color.black);
         loadingFrame.setResizable(false);
@@ -28,7 +28,7 @@ public class LoadingFrame extends Window{
             @Override
             public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(backGround,0,0,800,560, null);
+            g.drawImage(backGround,0,0,790,560, null);
          }
         });
         

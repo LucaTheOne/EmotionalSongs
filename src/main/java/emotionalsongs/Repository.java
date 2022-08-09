@@ -76,5 +76,6 @@ public class Repository {
     
     public void consultaRepository(){
         //sistema per consultare repository
+        //pannello per visualizzare il repository
     }
 }
