@@ -1,6 +1,4 @@
-/**
- * Repository
- */
+
 package emotionalsongs;
 
 import java.io.*;
@@ -13,6 +11,9 @@ import java.util.*;
  */
 public class Repository {
 
+    /**
+     * 
+     */
     List<Brano> repository = new ArrayList<Brano>();
     
     private int numeroBrani = 0;
@@ -37,25 +38,31 @@ public class Repository {
     }
     
     /**
-     * 
-     * @return 
+     * Il metodo restituisce il numero di brani presenti nella repository.
+     * @return numero di brani.
      */
     public int getDimensioneRepository(){
       return this.numeroBrani;
     }
     
     /**
-     * 
-     * @param index
-     * @return 
+     * Il metodo restituisce il Brano che si trova nella posizione richiesto dal
+     * parametro.
+     * @param index - richida la posizione del brano.
+     * @return Restituisce il brano.
      */
     public Brano getBrano(int index){
         return repository.get(index);
     }
     
     /**
-     * 
-     * 
+     * Il metodo stampa la repostiory : <p>
+     * <p>
+     *      Titolo: 
+     * <p>
+     *      Autore:  
+     * <p>
+     *      Anno: 
      */
     public void stampaRepository(){
         System.out.print("CANZONI NEL REPOSITORY:\n");

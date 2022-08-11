@@ -5,7 +5,8 @@ import java.util.*;
 import java.util.regex.*;
 
 /**
- * 
+ * La classe si occupa di creare l'oggetto Utente con i parametri : userID, password, codice fiscale,
+ * data di nascita, email, indirizzio, ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto Utente.
  * @author Luca
  * @version 1.2.
  */
@@ -16,15 +17,15 @@ public class Utente {
     private ArrayList<Playlist> playlistSet; 
 
     /**
-     * 
-     * @param userId
-     * @param password
-     * @param cf
-     * @param nome
-     * @param cognome
-     * @param dataNascita
-     * @param email
-     * @param indirizzo 
+     * Costruice l'oggetto Utente.
+     * @param userId - userId dell'utente.
+     * @param password - password dell'utente.
+     * @param cf - codice fiscale dell'utente.
+     * @param nome - il primo nome dell'utente.
+     * @param cognome - il primo cognome dell'utente.
+     * @param dataNascita - la data di nascita dell'utente.
+     * @param email - l'email dell'utente.
+     * @param indirizzo  - indirizzio dell'utente.
      */
     Utente(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
         this.userId = userId;
@@ -39,7 +40,8 @@ public class Utente {
     }
     
     /**
-     * 
+     * Il metodo crea un nuovo oggetto regEngine in cui verrà registrato i dati
+     * del nuovo utente.
      * @throws IOException 
      */
     static public void Registrazione() throws IOException {
@@ -48,7 +50,7 @@ public class Utente {
     }
     
     /**
-     * 
+     * Il metodo stampa sul termine: Codice fiscale, Nome, Cognome, Data di nascita, Indirizzio, ID Utente, Email, Password.
      */
     public void stampaUtenteSuTerminale() {
         System.out.println("Codice fiscale: " + cf);
@@ -62,9 +64,12 @@ public class Utente {
     }
     
     /**
-     * 
-     * @return 
-     */
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome, succesivamente
+      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
+      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean creato all'inizio
+      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
+      */
     static private String setNome(){
         String nome = null;
         boolean valid = true;
@@ -82,9 +87,12 @@ public class Utente {
     }
     
     /**
-     * 
-     * @return 
-     */
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo cognome, succesivamente
+      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
+      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean creato all'inizio
+      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * @return il Cognome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
+      */
     static private String setCognome(){
         String cognome = null;
         boolean valid = true;
@@ -101,9 +109,10 @@ public class Utente {
         return cognome.substring(0, 1).toUpperCase() + cognome.substring(1).toLowerCase();
     }
     
-    /**
-     * 
-     * @return 
+     /**
+     * Il metodo si occupa di chiedere all'utente di inserire il suo indirizzio, 
+     * se il campo non è vuoto, verrà assegnato alla stringa.
+     * @return l'indirizzio dell'utente scritto in minuscolo.
      */
     static private String setInd(){
         boolean valid = true;
@@ -120,10 +129,13 @@ public class Utente {
     }
     
     /**
-     * 
-     * @return
-     * @throws PatternSyntaxException 
-     */
+    * metodo che si occupa di far inserire la Password
+    * al utente e di verificarne che rispetti i requisiti.
+    * Inoltre verifica anche che l'utente non abbia sbagliato a scriverla nel primo inserimento
+    * mediante confronto.
+    * @throws PatternSyntaxException
+    * @return la password inserità dall'utente. 
+    **/
     static private String setPassword() throws PatternSyntaxException{
         String password,passwordCtrl;
         System.out.println("Scelga una password:");
@@ -169,10 +181,11 @@ public class Utente {
   }
     
     /**
-     * 
-     * @return
-     * @throws PatternSyntaxException 
-     */
+    * Il metodo si occupa si far inserire l'email all'utente, e di controllare la sua 
+    * validita.
+    * @return l'email dell'utente.
+    * @throws PatternSyntaxException 
+    */
     static private String setMail() throws PatternSyntaxException{
         String mail;
         System.out.println("Inserire un indirizzo email valido:");
@@ -193,11 +206,7 @@ public class Utente {
         return mail;
     }
     
-    /**
-     * 
-     * @return
-     * @throws PatternSyntaxException 
-     */
+    
     static private String setCFUser() throws PatternSyntaxException{
         String cf;
         System.out.println("Inserisca il suo codice fiscale:");
@@ -228,11 +237,13 @@ public class Utente {
         return cf.toUpperCase();
     }
     
-    /**
-     * 
-     * @return
-     * @throws PatternSyntaxException 
-     */
+   /**
+   * Il metodo si occupa di chiedere all'utente la data di nascita, 
+   * il formato da rispettare: GG/MM/AAAA , succesivamente si eseguira un controllo 
+   * con il codice fiscale.
+   * @return la data di nascita dell'utente.
+   * @throws PatternSyntaxException 
+   */
     static private String setBirthDate() throws PatternSyntaxException {
         String date;
         boolean valid = false;
@@ -252,12 +263,12 @@ public class Utente {
         return date;
     }
     
-    /**
-     * 
-     * @param cf
-     * @return
-     * @throws FileNotFoundException 
-     */
+   /**
+   * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
+   * @param cf - il codice fiscale dell'utente
+   * @return true - se codice fiscale è presente nella database, false - se il codice fiscal non è presente nella database.
+   * @throws FileNotFoundException 
+   */  
     static private boolean userCFSigned(String cf) throws FileNotFoundException{
     
             String fileUtenti = "../data/UtentiRegistrati.dati.csv";
@@ -276,11 +287,13 @@ public class Utente {
         return false;
     }
     
-    /**
-     * 
-     * @return
-     * @throws FileNotFoundException 
-     */
+   /**
+   * Il metodo si occupa di chiedere all'utente di inserire il userID, 
+   * l'userID inserito non deve: essere composto da meno di 3 caratteri o da più di 10 caratteri,
+   * non deve contenere spazzi, se rispetta queste tre condizioni, l'userID sarà registrato.
+   * @return - userID dell'utente.
+   * @throws FileNotFoundException 
+   */
     static private String setUserID() throws FileNotFoundException{
         String id;
         boolean valid;
@@ -302,12 +315,13 @@ public class Utente {
     return id;
   }
     
-    /**
-     * 
-     * @param id
-     * @return
-     * @throws FileNotFoundException 
-     */
+   /**
+   * Il metodo si occupa di controllare se l'userID inserito dall'utente non sià 
+   * già registrato.
+   * @param id - userID dell'utente.
+   * @return true - se l'userid è presente nella database, false - se l'userID non è presente nella database.
+   * @throws FileNotFoundException 
+   */
     static private boolean userIDTaken(String id) throws FileNotFoundException {
             String fileUtenti = "../data/UtentiRegistrati.dati.csv";
             Scanner inputStream = new Scanner(new FileReader(fileUtenti));
@@ -329,8 +343,8 @@ public class Utente {
     }
     
     /**
-     * 
-     * @param userId
+     * Il meteodo si occupa di creare la PlaylistSet vuota.
+     * @param userId userID dell'utente.
      * @throws IOException 
      */
     static private void creaPlaylistSetVuoto(String userId) throws IOException{
@@ -341,64 +355,64 @@ public class Utente {
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restituisce il userID dell'utente.
+     * @return userId dell'utente che esegue il metodo.
      */
     public String getUserId(){
     return userId;
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restiuisce il nome dell'utente.
+     * @return  nome dell'utente che esegue il metodo.
      */
     public String getNome(){
     return nome;
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restiusice il cognome dell'utente.
+     * @return cognome dell'utente che esegue il metodo.
      */
     public String getCognome(){
     return cognome;
   }
 
     /**
-     * 
-     * @return 
+     * Il metodo restituisce il codice fiscale dell'utente.
+     * @return codice fiscale dell'utente che esegue il metodo.
      */
     public String getCF(){
     return cf;
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restituisce l'indirzio dell'utente.
+     * @return indirizzio dell'utente che esegue il metodo.
      */
     public String getIndirizzo(){
     return indirizzo;
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restituisce l'email dell'utente.
+     * @return l'email dell'utente che esegue il metodo.
      */
     public String getEmail(){
     return email;
   }
     
     /**
-     * 
-     * @return 
+     * Il metodo restituisce la data di nascia dell'utente.
+     * @return data di nascita dell'utente che esegue il metodo.
      */
     public String getDataDiNascita(){
     return dataNascita;
   }
     
-    /**
-     * 
-     * @param addplay 
+     /**
+     * Il metodo aggiunge una nuova playlist.
+     * @param addplay
      */
     public void addToPlaylistSet(Playlist addplay){
         playlistSet.add(addplay);

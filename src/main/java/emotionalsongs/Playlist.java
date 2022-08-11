@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- *  La classe Playlist 
+ *  La classe si occupa di creare e di registrare la Playlist.
  * @author Luca
  * @version 1.4
  *
@@ -33,7 +33,7 @@ public class Playlist {
         aggiungiPlaylistASetPlaylistsUtente();
     }
     
-    //metodi
+    
     /**
      * 
      * @throws FileNotFoundException
@@ -66,7 +66,7 @@ public class Playlist {
     }
     
     /**
-     * Il metodo restituisce una String con il nome della playlist
+     * Il metodo restituisce una Stringa con il nome della playlist
      * @return il campo nomePlayList.
      */
     public String getNomePlaylist(){
@@ -74,7 +74,7 @@ public class Playlist {
     }
     
     /**
-     * Il metodo restituisce una String con il nome della playlist scelto dall'utente.
+     * Il metodo restituisce una Stringa con il nome della playlist scelto dall'utente.
      * @return nome della Playlist
      */
     public static String setNomePlaylist(){
