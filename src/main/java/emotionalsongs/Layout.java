@@ -2,11 +2,8 @@ package emotionalsongs;
 
 
 import java.awt.*;
+import javax.swing.ImageIcon;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
@@ -16,14 +13,21 @@ public class Layout {
     
     public Dimension frameDimension;
     public Dimension upperBarDimension;
-    public Dimension centerLeftPanelDimension;
-    public Dimension centerRightPanelDimension;
-    public Dimension lowerBarDimension;
+    
     public Dimension centerPanelDimension;
+        public Dimension centerLeftPanelDimension;
+    
+        public Dimension centerRightPanelDimension;
+            public Dimension lowerPartOfRepoView;
+            public Dimension upperPartOfRepoView;
+        public Dimension lowerBarDimension;
+    
+    
     public Dimension loadingFrameDimension = new Dimension(800,600);
+    
     public Image mainFrameBG = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/BackGround.png");
-    public Image loadingFrameBG = Toolkit.getDefaultToolkit().getImage("../EmotionalSongs/Risorse/LoadingPage.png");
-
+    public ImageIcon prova = new ImageIcon("../EmotionalSongs/Risorse/LoadingFrameBlack.png");
+   
     public Layout() {
         Dimension monitorSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.frameDimension = adaptedDimension(monitorSize);
@@ -37,6 +41,8 @@ public class Layout {
         centerLeftPanelDimension = new Dimension(widthFrame/8,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
         centerRightPanelDimension = new Dimension(widthFrame-centerLeftPanelDimension.width,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
         centerPanelDimension = new Dimension(widthFrame,heightFrame-(upperBarDimension.height+lowerBarDimension.height));
+        lowerPartOfRepoView = new Dimension(centerLeftPanelDimension.width,(centerLeftPanelDimension.height)/5);
+        upperPartOfRepoView = new Dimension(centerLeftPanelDimension.width/4,((centerLeftPanelDimension.height)/5)*4);
     }
     
     private Dimension adaptedDimension(Dimension d){
