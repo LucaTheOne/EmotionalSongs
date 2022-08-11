@@ -14,6 +14,7 @@ import java.util.*;
 public class Repository {
 
     List<Brano> repository = new ArrayList<Brano>();
+    
     private int numeroBrani = 0;
     private File CanzoniDati = new File(Utilities.pathToCanzoniDatiTxt);
 

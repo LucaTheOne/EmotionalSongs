@@ -1,13 +1,9 @@
 
 package emotionalsongs;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.*;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 /**
  *
@@ -27,27 +23,27 @@ public class Utilities {
     public static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
     public static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
     public static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
-
+    public static ImageIcon searchIcon = new ImageIcon("../EmotionalSongs/Risorse/IconaRicerca.png");
+    public static ImageIcon backButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/BackButton.png");
+    public static ImageIcon CreditsButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/Credits.png");
+    public static ImageIcon EngFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/EngFlag.png");
+    public static ImageIcon ItaFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaFlag.png");
+    public static ImageIcon EngLoginButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/EngLogin.png");
+    public static ImageIcon ItaLoginButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaLogin.png");
+    public static ImageIcon EngRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegEng.png");
+    public static ImageIcon ItaRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIta.png");
     
-    //Stringhe ricorrenti
+//Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
     static String comma = ",";
+    static String commaSpace = ", ";
     static String semiColon = ";";
     static String separatorRepository = "<SEP>";
     public static Dimension LOADINGFRAMESIZE = new Dimension(832, 610);
     public static Font fontLoadingFrame;
     
     //dimensions
-    
-    static Dimension qHD = new Dimension(960, 540);
-    public static Dimension HD = new Dimension(1280, 720);
-    static Dimension fullHd = new Dimension(1920, 1080);
-    static Dimension k2 = new Dimension(2048, 1080);
-    static Dimension QuadHD = new Dimension(2560, 1440);
-    static Dimension UHD = new Dimension(3840, 2160);
-    static Dimension k4 = new Dimension(4096, 2160);
-    static Dimension k5 = new Dimension(5120, 2880);
-    static Dimension k8 = new Dimension(7680, 4320);
+    public static Dimension FRAMESTARTDIMENSION = new Dimension(((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-80,((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight())-80);
     
     //metodi ricorrenti
     /**

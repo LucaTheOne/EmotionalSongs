@@ -69,9 +69,8 @@ public class MainFrame extends javax.swing.JFrame {
         left.add(b5);
         left.add(b6);
         
-        right.setPreferredSize(layout.centerRightPanelDimension);
-        right.setBackground(Color.GREEN);
-        right.setOpaque(false);
+        right.setLayout(new BorderLayout());
+        right.add(new inspectRepoPanel(),BorderLayout.CENTER);
         
         centerPanel.add(left,BorderLayout.WEST);
         centerPanel.add(right,BorderLayout.CENTER);

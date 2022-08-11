@@ -1,11 +1,13 @@
 package emotionalsongs;
 
 import java.io.*;
+import javax.swing.*;
 
 public class Brano {
 
 //campi
   private String title,author,year,tag;
+  public JButton branoButton = new JButton();
   public DatiEmozioniBrano datiEmozioniBrano = new DatiEmozioniBrano(this);
   
   
@@ -15,6 +17,7 @@ public class Brano {
     this.author = author;
     this.year = year;
     this.tag = tag;
+    branoButton.setText(title + ", "+author+", "+year+";");
     //importazioneVotiBrano();
     
     

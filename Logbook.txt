@@ -88,3 +88,7 @@
     Creato sfondo pagina principale del programma.
     Implementato sistema per registrare i dati di ogni canzone.
     Impostata prima bozza di layout.
+
+10/08/2022
+    Aggiunta alle istanze Brano un bottone che rappresenta il brano stesso.
+    Ristrutturata GUI, ora è divisa in moduli semi-indipendenti.
