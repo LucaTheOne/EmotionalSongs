@@ -1,14 +1,15 @@
 package emotionalsongs;
 
+import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
 public class Brano {
 
 //campi
-  private String title,author,year,tag;
-  public JButton branoButton = new JButton();
-  public DatiEmozioniBrano datiEmozioniBrano = new DatiEmozioniBrano(this);
+  private String title,author,tag,year;
+  public JButton button = new JButton();
+  public DatiEmozioniBrano datiEmozioniBrano;
   
   
 //costruttore
@@ -17,8 +18,12 @@ public class Brano {
     this.author = author;
     this.year = year;
     this.tag = tag;
-    branoButton.setText(title + ", "+author+", "+year+";");
-    //importazioneVotiBrano();
+    button.setText(toStringOrdinato());
+    button.setPreferredSize(new Dimension(600, 30));
+    button.setFont(new Font("Helvetica Neue", 0, 18));
+    button.setMargin(new Insets(4, 2, 2, 4));
+    button.setVisible(true);
+    //datiEmozioniBrano=importaVotiBrano(tag); da implementare
     
     
   }
@@ -38,6 +43,10 @@ public class Brano {
 
   public String getTag(){
     return this.tag;
+  }
+  
+  public JButton getButton(){
+      return this.button;
   }
 
 //metodi di confronto
@@ -78,7 +87,7 @@ public class Brano {
 
 //metodi di esposizione  
   public String toStringOrdinato(){
-    String stringa ="Titolo: " +  this.getTitle() +", Autore: " + this.getAuthor() + ", Anno di pubblicazione: " +this.year + ".\r";
+    String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
     return stringa;
   }
 }

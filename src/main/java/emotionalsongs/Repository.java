@@ -3,6 +3,7 @@ package emotionalsongs;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.*;
 
 /**
  * 
@@ -14,10 +15,9 @@ public class Repository {
     /**
      * 
      */
-    List<Brano> repository = new ArrayList<Brano>();
-    
+    ArrayList<Brano> repository = new ArrayList<Brano>();
+    ArrayList<JButton> repositoryButtons = new ArrayList<>();
     private int numeroBrani = 0;
-    private File CanzoniDati = new File(Utilities.pathToCanzoniDatiTxt);
 
   //Costruttore
     /**
@@ -25,16 +25,23 @@ public class Repository {
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public Repository() throws FileNotFoundException, IOException {
-        FileInputStream stream = new FileInputStream(CanzoniDati);
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(stream));
-        String line;
-        while((line = buffer.readLine()) != null){
+    public Repository() {
+        try {
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(Utilities.pathToCanzoniDatiTxt)));
+            String line;
+            while((line = buffer.readLine()) != null){
             String[] splittedLine = line.split("<SEP>");//Divido la line in stringhe divise da <SEP> e le salvo in un array
             Brano branoCorrente = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
             repository.add(branoCorrente);
+            repositoryButtons.add(branoCorrente.button);
             numeroBrani++;
         }
+        } catch (FileNotFoundException exception) {
+            exception.getMessage();
+        } catch (IOException exception){
+            exception.getMessage();
+        }
+        
     }
     
     /**
@@ -64,13 +71,9 @@ public class Repository {
      * <p>
      *      Anno: 
      */
-    public void stampaRepository(){
-        System.out.print("CANZONI NEL REPOSITORY:\n");
-        for(int i = 0;i<repository.size();i++){
-            Brano branoCorrente = repository.get(i);
-            System.out.print("Titolo: " + branoCorrente.getTitle().toUpperCase()+ "\n"
-                        + "   Autore: " + branoCorrente.getAuthor() + "\n"
-                        + "   Anno: " + branoCorrente.getYear() + ".\n");
+    public void mostraRepository(JScrollPane pannello){
+        for(int i = 0;i<numeroBrani;i++){
+            pannello.add(repositoryButtons.get(i));
         }
     }
     
@@ -82,8 +85,4 @@ public class Repository {
         System.out.println(getBrano(index).toStringOrdinato());
     }
     
-    public void consultaRepository(){
-        //sistema per consultare repository
-        //pannello per visualizzare il repository
-    }
 }

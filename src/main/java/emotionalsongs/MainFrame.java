@@ -52,7 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
         upperBar.setOpaque(true);
     }
     
-    public void setCenterPanel(){
+    public void setCenterPanel() throws IOException{
         centerPanel = new JPanel(new BorderLayout());
         centerPanel.setPreferredSize(layout.centerPanelDimension);
         
@@ -87,5 +87,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static void run() throws IOException {
         new MainFrame();
+    }
+    
+    public static void main(String[] args) throws IOException {
+        run();
     }
 }

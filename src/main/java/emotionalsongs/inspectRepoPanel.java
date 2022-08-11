@@ -4,6 +4,8 @@
  */
 package emotionalsongs;
 
+import java.io.*;
+
 /**
  *
  * @author big
@@ -13,7 +15,7 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     /**
      * Creates new form inspectRepoPanel
      */
-    public inspectRepoPanel() {
+    public inspectRepoPanel() throws IOException {
         initComponents();
     }
 
@@ -26,11 +28,19 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Repository repo = new Repository();
         repoButtonsView = new javax.swing.JScrollPane();
+        subPanelRepoView = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
         searchBar = new javax.swing.JTextField();
         BackButton = new javax.swing.JButton();
+        TitlePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setOpaque(false);
@@ -40,6 +50,14 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         repoButtonsView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         repoButtonsView.setAlignmentX(0.0F);
         repoButtonsView.setAlignmentY(0.0F);
+
+        subPanelRepoView.setPreferredSize(new java.awt.Dimension(500, 1500));
+        subPanelRepoView.setLayout(new java.awt.GridLayout(30, 0));
+        for(int i = 0; i<30;i++){
+            subPanelRepoView.add(repo.getBrano(i).getButton());
+        }
+        repoButtonsView.setViewportView(subPanelRepoView);
+
         add(repoButtonsView, java.awt.BorderLayout.CENTER);
 
         SearchPanel.setBackground(new java.awt.Color(89, 193, 201));
@@ -69,7 +87,48 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
         SearchPanel.add(BackButton, java.awt.BorderLayout.LINE_END);
 
-        add(SearchPanel, java.awt.BorderLayout.PAGE_START);
+        add(SearchPanel, java.awt.BorderLayout.SOUTH);
+
+        TitlePanel.setPreferredSize(new java.awt.Dimension(10, 30));
+        TitlePanel.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setBackground(new java.awt.Color(133, 37, 240));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TITOLO ~ AUTORE ~ ANNO");
+        jLabel1.setOpaque(true);
+        TitlePanel.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setBackground(new java.awt.Color(133, 37, 240));
+        jPanel1.setPreferredSize(new java.awt.Dimension(50, 100));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton1.setText("◀");
+        jButton1.setAlignmentY(0.0F);
+        jButton1.setPreferredSize(new java.awt.Dimension(50, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, java.awt.BorderLayout.EAST);
+
+        TitlePanel.add(jPanel1, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.setBackground(new java.awt.Color(133, 37, 240));
+        jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton2.setText("▶");
+        jButton2.setPreferredSize(new java.awt.Dimension(50, 40));
+        jPanel2.add(jButton2, java.awt.BorderLayout.EAST);
+
+        TitlePanel.add(jPanel2, java.awt.BorderLayout.LINE_END);
+
+        add(TitlePanel, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
@@ -80,13 +139,24 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;
+    private javax.swing.JPanel TitlePanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane repoButtonsView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
+    private javax.swing.JPanel subPanelRepoView;
     // End of variables declaration//GEN-END:variables
     
 }
