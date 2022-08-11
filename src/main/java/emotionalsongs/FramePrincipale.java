@@ -24,6 +24,8 @@ public class FramePrincipale extends javax.swing.JFrame {
 
         UpperMenuBarPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        WestMenuPanel = new javax.swing.JPanel();
+        CenterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EmotionalSongs");
@@ -36,9 +38,18 @@ public class FramePrincipale extends javax.swing.JFrame {
         UpperMenuBarPanel.add(new UnloggedToolBarPanel());
         getContentPane().add(UpperMenuBarPanel, java.awt.BorderLayout.PAGE_START);
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("StatusBar");
+        jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(42, 10));
         getContentPane().add(jLabel1, java.awt.BorderLayout.SOUTH);
+
+        WestMenuPanel.setPreferredSize(new java.awt.Dimension(160, 10));
+        getContentPane().add(WestMenuPanel, java.awt.BorderLayout.WEST);
+
+        CenterPanel.setPreferredSize(new java.awt.Dimension(1080, 720));
+        getContentPane().add(CenterPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,7 +90,9 @@ public class FramePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CenterPanel;
     private javax.swing.JPanel UpperMenuBarPanel;
+    private javax.swing.JPanel WestMenuPanel;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
