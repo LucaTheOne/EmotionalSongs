@@ -1,32 +1,39 @@
-/**
-* QuestaClasse si occupa di fornire i metodi necessari
-* a permettere all' utente di registrarsi inserendo dati come:
-* Codice fiscale(formato italiano), nome, cognome,indirizzo di residenza,
-* indirizzo email,data di nascita ed una password a scelta dell' utente.
-* La classe in essere implementa anche vari metodi di controllo che verificano:
-* -la validità del formato dei dati;
-* -che l' utente non vi sia già registrato;
-* -che l' utente sappia quale password ha scelto.
-* Oltreciò si occupa anche di salvarne i dati su un file .csv con una precisa impostazione,
-* denominato utentiRegistrati.dati.csv
-* nb v1.0 non vi è forma di controllo sull' indirizzo.
-**/
+
 package emotionalsongs;
 
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+/**
+* La classe si occupa di fornire i metodi necessari
+* a permettere all' utente di registrarsi inserendo dati come:
+* Codice fiscale(formato italiano), nome, cognome,indirizzo di residenza,
+* indirizzo email,data di nascita ed una password a scelta dell' utente.<p>
+* La classe in essere implementa anche vari metodi di controllo che verificano:<p>
+* -la validità del formato dei dati;<p>
+* -che l' utente non vi sia già registrato;<p>
+* -che l' utente sappia quale password ha scelto.<p>
+* Oltreciò si occupa anche di salvarne i dati su un file .csv con una precisa impostazione,
+* denominato utentiRegistrati.dati.csv
+* nb v1.0 non vi è forma di controllo sull' indirizzo.
+**/
 public class RegistrationPerformer {
 
     private File utentiRegistrati = new File(Utilities.pathToUserDatabase);
-
+    
+    /**
+     * Costruisce un oggetto con i dati dell'utente.
+     */
     public RegistrationPerformer() {
         
     }
     
-   /**
-    * 
+    /**
+    * Il metodo chiede all'utente di inserire l'userID, nome, 
+    * cognome, codice fiscale, indirizzio, indirizzio email, password, data di nascita,
+    * dopodichè viene eseguito un controllo del codice fiscale, se il codice fiscale è stato già utilizzato 
+    * l'utente verrà avvisto, se non è stato utilizzato si procedera alla regsitrazione dell'utente su file.
     * @throws IOException 
     */ 
    public void registraNuovoUtente() throws IOException{
@@ -55,24 +62,25 @@ public class RegistrationPerformer {
 
 
     /**
-     * 
-     * @param cf
-     * @param nome
-     * @param cognome
-     * @param dataNascita
-     * @param indirizzo
-     * @param userId
-     * @param email
-     * @param pswd
-     * @return 
+     * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, nome, cognome,
+     * data di Nascita, email, indirizzio, su un'unica riga separati dal ";".
+     * @param cf Il codice fiscale dell'utente.
+     * @param nome Il nome dell'utente.
+     * @param cognome Il cognome dell'utente.
+     * @param dataNascita La data di nascita dell'utente.
+     * @param indirizzo L'indirizzio dell'utente.
+     * @param userId L'userid dell'utente.
+     * @param email L'email dell'utente.
+     * @param pswd La password dell'utente.
+     * @return Una stringa formata dai parametri che esegue il metodo.
      */
     public String componiStringa(String cf,String nome,String cognome,String dataNascita,String indirizzo,String userId,String email,String pswd) {
         return userId +";"+ pswd +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
     }
 
-    /**
-     * 
-     * @param testoDaScrivere
+     /**
+     * Il metodo si occupa di scrivere il parametro del metodo sul file utentiRegistrati.
+     * @param testoDaScrivere - Prende la stringa con i dati dell'utente.
      * @throws IOException 
      */
     public void salvaUtenteSuFile(String testoDaScrivere) throws IOException {
@@ -83,8 +91,11 @@ public class RegistrationPerformer {
     }
      
      /**
-      * 
-      * @return 
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome, succesivamente
+      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
+      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean inizzializzato all'inizio
+      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
      private String setNome(){
         String nome = null;
@@ -103,8 +114,11 @@ public class RegistrationPerformer {
     }
      
      /**
-      * 
-      * @return 
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo cognome, succesivamente
+      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
+      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean inizializzato all'inizio
+      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * @return il Cognome dell'utente con la prima lettera in maiuscolo e le successive minuscole.
       */
     private String setCognome(){
         String cognome = null;
@@ -123,8 +137,9 @@ public class RegistrationPerformer {
     }
     
     /**
-     * 
-     * @return 
+     * Il metodo si occupa di chiedere all'utente di inserire il suo indirizzio, 
+     * se il campo non è vuoto, verrà assegnato alla stringa.
+     * @return l'indirizzio dell'utente scritto in minuscolo.
      */
     private String setInd(){
         boolean valid = true;
@@ -146,6 +161,7 @@ public class RegistrationPerformer {
 * Inoltre verifica anche che l' utente non abbia sbagliato a scriverla nel primo inserimento
 * mediante confronto.
 * @throws PatternSyntaxException
+* @return la password inserità dall'utente. 
 **/
   private String setPassword() throws PatternSyntaxException{
     String password,passwordCtrl;
@@ -193,8 +209,9 @@ public class RegistrationPerformer {
   }
 
     /**
-    * 
-    * @return
+    * Il metodo si occupa di inserire l'email all'utente, e di controllare la sua 
+    * validita.
+    * @return l'email dell'utente.
     * @throws PatternSyntaxException 
     */
   private String setMail() throws PatternSyntaxException{
@@ -218,11 +235,6 @@ public class RegistrationPerformer {
      }
 
 
-
-  private String setCFUser() throws PatternSyntaxException{
-    String cf;
-    System.out.println("Inserisca il suo codice fiscale:");
-    cf = new Scanner(System.in).nextLine().toUpperCase();
     /**
     * Stringa contenente i tipi di caratteri ed il formato
     * che deve presentare un codice fiscale italiano corretto:
@@ -232,6 +244,11 @@ public class RegistrationPerformer {
     * [0-9lmnpqrstuvLMNPQRSTUV]{3} -> nuovamente tre valori tra 0-9 o lmnpqrstuv.
     * [A-Za-z]{1} -> una lettera del alfabeto.
     **/
+  private String setCFUser() throws PatternSyntaxException{
+    String cf;
+    System.out.println("Inserisca il suo codice fiscale:");
+    cf = new Scanner(System.in).nextLine().toUpperCase();
+    
     String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
     /** compila il pattern precedente **/
     Pattern p = Pattern.compile(regex);
@@ -250,8 +267,10 @@ public class RegistrationPerformer {
   }
 
   /**
-   * 
-   * @return
+   * Il metodo si occupa di chiedere all'utente la data di nascita, 
+   * il formato da rispettare: GG/MM/AAAA , succesivamente si eseguira un controllo 
+   * con il codice fiscale.
+   * @return la data di nascita dell'utente.
    * @throws PatternSyntaxException 
    */
   private String setBirthDate() throws PatternSyntaxException {
@@ -274,10 +293,10 @@ public class RegistrationPerformer {
     return date;
   }
 
-  /**
-   * 
-   * @param cf
-   * @return
+   /**
+   * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
+   * @param cf - il codice fiscale dell'utente
+   * @return true - se codice fiscale è presente nella database, false - se il codice fiscal non è presente nella database.
    * @throws FileNotFoundException 
    */  
   private boolean userCFSigned(String cf) throws FileNotFoundException {
@@ -298,8 +317,10 @@ public class RegistrationPerformer {
   }
   
   /**
-   * 
-   * @return
+   * Il metodo si occupa di chiedere all'utente di inserire il userID, 
+   * l'userID inserito non deve: essere composto da meno di 3 caratteri o da più di 10 caratteri,
+   * non deve contenere spazzi, se rispetta queste tre condizioni, l'userID sarà registrato.
+   * @return - userID dell'utente.
    * @throws FileNotFoundException 
    */
   private String setUserID() throws FileNotFoundException{
@@ -325,10 +346,11 @@ public class RegistrationPerformer {
     return id;
   }
   
-  /**
-   *  
-   * @param id
-   * @return
+   /**
+   * Il metodo si occupa di controllare se l'userID inserito dall'utente non sià 
+   * già registrato.
+   * @param id - userID dell'utente.
+   * @return true - se l'userid è presente nella database, false - se l'userID non è presente nella database.
    * @throws FileNotFoundException 
    */
   private boolean userIDTaken(String id) throws FileNotFoundException{

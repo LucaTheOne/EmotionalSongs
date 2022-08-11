@@ -7,7 +7,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-
+/**
+ * 
+ * @author 
+ */
 public class DatiEmozioniBrano {
     
     Brano branoCorrelatoAlleEmozioni;

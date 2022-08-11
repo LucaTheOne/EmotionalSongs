@@ -6,13 +6,22 @@ import java.util.*;
 /**
  * Classe adibita alla ricerca di canzoni all' interno del repository di canzoni
  * tramite due tipologie di ricerca:
- * -Ricerca per autore ed anno
+ * <p>-Ricerca per autore ed anno
  * -Ricerca per titolo
+ * @author Luca
+ * @version 1.2
  */
 class SearchEngine {
     
+    
+   /**
+    * 
+    */
     public ArrayList<Brano> risultatiRicerca = new ArrayList<>();
     
+    /**
+    *
+    */
     public ArrayList<Brano> cercaBranoMusicale(){
         
         System.out.println("Digiti 't' per effettuare una ricerca per titolo, digiti invece 'a' per una ricerca tramite autore ed anno, digiti 'e' per tornare al menu principale: ");
@@ -36,6 +45,7 @@ class SearchEngine {
         
         return risultatiRicerca;    
     }
+    
     
     private void ricercaPerTitolo(){
         System.out.println("Digiti il titolo della canzone che vuole cercare: digiti 'e' per tornare alla scelta della tipologia di ricerca: ");
