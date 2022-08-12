@@ -6,7 +6,7 @@ import java.util.*;
  *
  * @author alexandruboitor
  */
-public class PlaylistSet {
+public class PlaylistSet extends EMOTIONALSONGS {
    
     //campi
     private List<Playlist> playlistSet;
@@ -25,7 +25,7 @@ public class PlaylistSet {
      * @param playlist 
      */    
     public void aggiungiPlaylistASet(Playlist playlist){
-        EMOTIONALSONGS.loggedUser.addToPlaylistSet(playlist); 
+        super.loggedUser.addToPlaylistSet(playlist); 
     }
      
      

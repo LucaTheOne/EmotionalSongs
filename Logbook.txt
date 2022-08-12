@@ -89,6 +89,9 @@
     Implementato sistema per registrare i dati di ogni canzone.
     Impostata prima bozza di layout.
 
-10/08/2022
+11/08/2022
     Aggiunta alle istanze Brano un bottone che rappresenta il brano stesso.
     Ristrutturata GUI, ora è divisa in moduli semi-indipendenti.
+    Adattata parte repository alla gui,
+    modifiche di adattamento classe brano, emotionalsongs, playlist e playlist set
+    javadoc - Brano, Emozioni, DataSetEmozioni.
