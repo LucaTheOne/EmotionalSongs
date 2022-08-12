@@ -1,8 +1,10 @@
+package emotionalsongs;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUIElements;
+
 
 /**
  *
@@ -46,49 +48,49 @@ public class ConsultaRepositoryMenu extends javax.swing.JPanel {
         ConsultaRepositoryWestButtonsMenuPanel.setPreferredSize(new java.awt.Dimension(160, 600));
         ConsultaRepositoryWestButtonsMenuPanel.setLayout(new java.awt.GridLayout(8, 1));
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/GUIElements/Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/Bundle"); // NOI18N
         CercaTitolo.setText(bundle.getString("ConsultaRepositoryMenu.CercaTitolo.text")); // NOI18N
         jPanel1.add(CercaTitolo);
 
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel1);
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         CercaAutoreAnno.setText(bundle.getString("ConsultaRepositoryMenu.CercaAutoreAnno.text")); // NOI18N
         jPanel2.add(CercaAutoreAnno);
 
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel2);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton3.setText(bundle.getString("ConsultaRepositoryMenu.jButton3.text")); // NOI18N
         jPanel3.add(jButton3);
 
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel3);
 
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton4.setText(bundle.getString("ConsultaRepositoryMenu.jButton4.text")); // NOI18N
         jPanel4.add(jButton4);
 
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel4);
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton5.setText(bundle.getString("ConsultaRepositoryMenu.jButton5.text")); // NOI18N
         jPanel5.add(jButton5);
 
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel5);
 
-        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel6);
 
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel7);
 
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
         ConsultaRepositoryWestButtonsMenuPanel.add(jPanel8);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

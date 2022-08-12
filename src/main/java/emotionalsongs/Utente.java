@@ -417,6 +417,10 @@ public class Utente {
     public void addToPlaylistSet(Playlist addplay){
         playlistSet.add(addplay);
     }
+
+    public String getPassword() {
+        return password;
+    }
     
     
     

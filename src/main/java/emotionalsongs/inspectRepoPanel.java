@@ -11,7 +11,9 @@ import java.io.*;
  * @author big
  */
 public class inspectRepoPanel extends javax.swing.JPanel {
-
+    int counterIndex = 30;
+    boolean firstPage = true;
+    Repository repo = new Repository();
     /**
      * Creates new form inspectRepoPanel
      */
@@ -34,13 +36,14 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
         searchBar = new javax.swing.JTextField();
-        BackButton = new javax.swing.JButton();
+        space = new javax.swing.JLabel();
+        space1 = new javax.swing.JLabel();
         TitlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setOpaque(false);
@@ -50,9 +53,11 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         repoButtonsView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         repoButtonsView.setAlignmentX(0.0F);
         repoButtonsView.setAlignmentY(0.0F);
+        repoButtonsView.setOpaque(false);
 
+        subPanelRepoView.setOpaque(false);
         subPanelRepoView.setPreferredSize(new java.awt.Dimension(500, 1500));
-        subPanelRepoView.setLayout(new java.awt.GridLayout(30, 0));
+        subPanelRepoView.setLayout(new java.awt.GridLayout(30, 1));
         for(int i = 0; i<30;i++){
             subPanelRepoView.add(repo.getBrano(i).getButton());
         }
@@ -83,37 +88,44 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         });
         SearchPanel.add(searchBar, java.awt.BorderLayout.CENTER);
 
-        BackButton.setIcon(Utilities.backButtonIcon);
-        BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
-        SearchPanel.add(BackButton, java.awt.BorderLayout.LINE_END);
+        space.setIcon(Utilities.spaceImage);
+        space.setPreferredSize(new java.awt.Dimension(50, 50));
+        space.setSize(new java.awt.Dimension(50, 50));
+        SearchPanel.add(space, java.awt.BorderLayout.LINE_END);
+
+        space1.setIcon(Utilities.spaceImage);
+        space1.setPreferredSize(new java.awt.Dimension(50, 50));
+        SearchPanel.add(space1, java.awt.BorderLayout.LINE_END);
 
         add(SearchPanel, java.awt.BorderLayout.SOUTH);
 
-        TitlePanel.setPreferredSize(new java.awt.Dimension(10, 30));
+        TitlePanel.setMinimumSize(new java.awt.Dimension(379, 50));
+        TitlePanel.setPreferredSize(new java.awt.Dimension(10, 50));
         TitlePanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setBackground(new java.awt.Color(133, 37, 240));
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 196, 205));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TITOLO ~ AUTORE ~ ANNO");
+        jLabel1.setText("Repository");
+        jLabel1.setMaximumSize(new java.awt.Dimension(235, 40));
+        jLabel1.setMinimumSize(new java.awt.Dimension(235, 40));
         jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(235, 50));
         TitlePanel.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jPanel1.setBackground(new java.awt.Color(133, 37, 240));
         jPanel1.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setText("◀");
-        jButton1.setAlignmentY(0.0F);
-        jButton1.setPreferredSize(new java.awt.Dimension(50, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BackButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, java.awt.BorderLayout.EAST);
+        jPanel1.add(BackButton, java.awt.BorderLayout.CENTER);
 
         TitlePanel.add(jPanel1, java.awt.BorderLayout.LINE_START);
 
@@ -121,10 +133,14 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton2.setText("▶");
-        jButton2.setPreferredSize(new java.awt.Dimension(50, 40));
-        jPanel2.add(jButton2, java.awt.BorderLayout.EAST);
+        nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(nextButton, java.awt.BorderLayout.CENTER);
 
         TitlePanel.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
@@ -139,23 +155,44 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        counterIndex -= 30;
+        if (counterIndex==30) {
+            BackButton.setBorderPainted(false);
+            BackButton.setFocusPainted(false);  
+        }
+        subPanelRepoView.removeAll();
+        for(int i = counterIndex-30;i<counterIndex;i++){
+            subPanelRepoView.add(repo.getBrano(i).getButton());
+        }
+        subPanelRepoView.revalidate();
+        subPanelRepoView.repaint();
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        counterIndex += 30;
+        
+        subPanelRepoView.removeAll();
+        for(int i = counterIndex-30;i<counterIndex;i++){
+            subPanelRepoView.add(repo.getBrano(i).getButton());
+        }
+        subPanelRepoView.revalidate();
+        subPanelRepoView.repaint();    }//GEN-LAST:event_nextButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JPanel TitlePanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton nextButton;
     private javax.swing.JScrollPane repoButtonsView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
+    private javax.swing.JLabel space;
+    private javax.swing.JLabel space1;
     private javax.swing.JPanel subPanelRepoView;
     // End of variables declaration//GEN-END:variables
     

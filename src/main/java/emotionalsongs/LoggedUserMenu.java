@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUIElements;
+package emotionalsongs;
 
 /**
  *
  * @author natanaild
  */
-public class ExternalUserMenu extends javax.swing.JPanel {
+public class LoggedUserMenu extends javax.swing.JPanel {
 
     /**
-     * Creates new form MenuButtonPanel
+     * Creates new form LoggedUserMenuButtonPanel
      */
-    public ExternalUserMenu() {
+    public LoggedUserMenu() {
         initComponents();
     }
 
@@ -26,40 +26,40 @@ public class ExternalUserMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ExternalUserWestButtonsMenuPanel = new javax.swing.JPanel();
+        LoggedUserWestButtonsMenuPanel = new javax.swing.JPanel();
         Panel1 = new javax.swing.JPanel();
         ConsultaRepositoryButton = new javax.swing.JButton();
-        Panel5 = new javax.swing.JPanel();
-        RegistrazioneButton = new javax.swing.JButton();
-        Panel6 = new javax.swing.JPanel();
-        LoginButton = new javax.swing.JButton();
+        Panel2 = new javax.swing.JPanel();
+        LeMiePlaylistButton = new javax.swing.JButton();
+        Panel3 = new javax.swing.JPanel();
+        LogoutButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(160, 600));
 
-        ExternalUserWestButtonsMenuPanel.setPreferredSize(new java.awt.Dimension(160, 600));
-        ExternalUserWestButtonsMenuPanel.setLayout(new java.awt.GridLayout(8, 1));
+        LoggedUserWestButtonsMenuPanel.setPreferredSize(new java.awt.Dimension(160, 600));
+        LoggedUserWestButtonsMenuPanel.setLayout(new java.awt.GridLayout(8, 1));
 
         Panel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/GUIElements/Bundle"); // NOI18N
-        ConsultaRepositoryButton.setText(bundle.getString("ExternalUserMenu.ConsultaRepositoryButton.text")); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/Bundle"); // NOI18N
+        ConsultaRepositoryButton.setText(bundle.getString("LoggedUserMenu.ConsultaRepositoryButton.text")); // NOI18N
         Panel1.add(ConsultaRepositoryButton);
 
-        ExternalUserWestButtonsMenuPanel.add(Panel1);
+        LoggedUserWestButtonsMenuPanel.add(Panel1);
 
-        Panel5.setLayout(new java.awt.GridLayout(1, 0));
+        Panel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        RegistrazioneButton.setText(bundle.getString("ExternalUserMenu.RegistrazioneButton.text")); // NOI18N
-        Panel5.add(RegistrazioneButton);
+        LeMiePlaylistButton.setText(bundle.getString("LoggedUserMenu.LeMiePlaylistButton.text")); // NOI18N
+        Panel2.add(LeMiePlaylistButton);
 
-        ExternalUserWestButtonsMenuPanel.add(Panel5);
+        LoggedUserWestButtonsMenuPanel.add(Panel2);
 
-        Panel6.setLayout(new java.awt.GridLayout(1, 0));
+        Panel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        LoginButton.setText(bundle.getString("ExternalUserMenu.LoginButton.text")); // NOI18N
-        Panel6.add(LoginButton);
+        LogoutButton.setText(bundle.getString("LoggedUserMenu.LogoutButton.text")); // NOI18N
+        Panel3.add(LogoutButton);
 
-        ExternalUserWestButtonsMenuPanel.add(Panel6);
+        LoggedUserWestButtonsMenuPanel.add(Panel3);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -69,16 +69,16 @@ public class ExternalUserMenu extends javax.swing.JPanel {
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(layout.createSequentialGroup()
                     .add(0, 0, Short.MAX_VALUE)
-                    .add(ExternalUserWestButtonsMenuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(LoggedUserWestButtonsMenuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 561, Short.MAX_VALUE)
+            .add(0, 600, Short.MAX_VALUE)
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(layout.createSequentialGroup()
                     .add(0, 0, Short.MAX_VALUE)
-                    .add(ExternalUserWestButtonsMenuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 561, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(LoggedUserWestButtonsMenuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -86,11 +86,11 @@ public class ExternalUserMenu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConsultaRepositoryButton;
-    private javax.swing.JPanel ExternalUserWestButtonsMenuPanel;
-    private javax.swing.JButton LoginButton;
+    private javax.swing.JButton LeMiePlaylistButton;
+    private javax.swing.JPanel LoggedUserWestButtonsMenuPanel;
+    private javax.swing.JButton LogoutButton;
     private javax.swing.JPanel Panel1;
-    private javax.swing.JPanel Panel5;
-    private javax.swing.JPanel Panel6;
-    private javax.swing.JButton RegistrazioneButton;
+    private javax.swing.JPanel Panel2;
+    private javax.swing.JPanel Panel3;
     // End of variables declaration//GEN-END:variables
 }

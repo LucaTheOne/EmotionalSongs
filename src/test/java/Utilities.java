@@ -25,7 +25,6 @@ public class Utilities {
     public static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
     public static ImageIcon searchIcon = new ImageIcon("../EmotionalSongs/Risorse/IconaRicerca.png");
     public static ImageIcon backButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/BackButton.png");
-    public static ImageIcon nextButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/NextButton.png");  
     public static ImageIcon CreditsButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/Credits.png");
     public static ImageIcon EngFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/EngFlag.png");
     public static ImageIcon ItaFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaFlag.png");
@@ -33,7 +32,6 @@ public class Utilities {
     public static ImageIcon ItaLoginButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaLogin.png");
     public static ImageIcon EngRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegEng.png");
     public static ImageIcon ItaRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIta.png");
-    public static ImageIcon spaceImage = new ImageIcon("../EmotionalSongs/Risorse/space.png");
     
 //Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";

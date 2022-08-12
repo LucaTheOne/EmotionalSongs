@@ -45,7 +45,6 @@ public class LoginFrame extends javax.swing.JFrame {
         AnnullaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 300));
         getContentPane().setLayout(new java.awt.GridLayout(4, 1));
 
         LoginLabelPanel.setLayout(new java.awt.GridLayout(1, 0));
@@ -66,10 +65,16 @@ public class LoginFrame extends javax.swing.JFrame {
 
         UserIDField.setText(bundle.getString("LoginFrame.UserIDField.text")); // NOI18N
         UserIDField.setPreferredSize(new java.awt.Dimension(200, 23));
+        UserIDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserIDFieldActionPerformed(evt);
+            }
+        });
         UserIDFieldPanel.add(UserIDField, new java.awt.GridBagConstraints());
 
         UserIDCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
         UserIDCheckLabel.setText(bundle.getString("LoginFrame.UserIDCheckLabel.text")); // NOI18N
+        UserIDCheckLabel.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -86,6 +91,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         PasswordField.setText(bundle.getString("LoginFrame.PasswordField.text_1")); // NOI18N
         PasswordField.setPreferredSize(new java.awt.Dimension(200, 23));
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordFieldActionPerformed(evt);
+            }
+        });
         PasswordFieldPanel.add(PasswordField, new java.awt.GridBagConstraints());
 
         PasswordCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -101,16 +111,42 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginButtonsPanel.setLayout(new java.awt.GridBagLayout());
 
         LoginButton.setText(bundle.getString("LoginFrame.LoginButton.text")); // NOI18N
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButtonActionPerformed(evt);
+            }
+        });
         LoginButtonsPanel.add(LoginButton, new java.awt.GridBagConstraints());
         LoginButtonsPanel.add(jPanel1, new java.awt.GridBagConstraints());
 
         AnnullaButton.setText(bundle.getString("LoginFrame.AnnullaButton.text")); // NOI18N
+        AnnullaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnnullaButtonActionPerformed(evt);
+            }
+        });
         LoginButtonsPanel.add(AnnullaButton, new java.awt.GridBagConstraints());
 
         getContentPane().add(LoginButtonsPanel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void UserIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIDFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserIDFieldActionPerformed
+
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordFieldActionPerformed
+
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void AnnullaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnullaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AnnullaButtonActionPerformed
 
     /**
      * @param args the command line arguments

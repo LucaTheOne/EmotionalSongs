@@ -2,7 +2,7 @@ package emotionalsongs;
 
 
 import java.awt.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -53,4 +53,3 @@ public class Layout {
     
     
 }
-

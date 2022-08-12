@@ -27,7 +27,7 @@ public class Repository {
      */
     public Repository() {
         try {
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(Utilities.pathToCanzoniDatiTxt)));
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream("../EMOTIONALSONGS/data/Canzoni.dati.txt")));
             String line;
             while((line = buffer.readLine()) != null){
             String[] splittedLine = line.split("<SEP>");//Divido la line in stringhe divise da <SEP> e le salvo in un array
