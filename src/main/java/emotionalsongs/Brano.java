@@ -4,6 +4,11 @@ import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
+/**
+La classe Brano si occupa di creare l'oggetto Brano.
+@authore Bolelli Luca
+@version 1.3
+*/
 public class Brano {
 
 //campi
@@ -13,6 +18,15 @@ public class Brano {
   
   
 //costruttore
+  
+  /**
+   * Costruisce l'oggetto Brano.
+   * @param title - Titolo del brano.
+   * @param author - Autore del brano.
+   * @param year - Anno del brano.
+   * @param tag 
+   * @throws IOException 
+   */
   Brano(String title, String author,String year,String tag) throws IOException{
     this.title = title;
     this.author = author;
@@ -29,27 +43,50 @@ public class Brano {
   }
 
 //metodi getter
+  /**
+   * Il metodo restiuisce una stringa con il titolo del brano.
+   * @return titolo del brano. 
+   */
   public String getTitle(){
     return this.title;
   }
 
+  /**
+   * Il metodo restiuisce una stringa con l'autore del brano.
+   * @return autore del brano.
+   */
   public String getAuthor(){
     return this.author;
   }
 
+  /**
+   * Il metodo restiuisce una stringa con l'anno del brano.
+   * @return anno del brano.
+   */  
   public String getYear(){
     return this.year;
   }
 
+  /**
+   * Il metodo restiuisce il tag del brano.
+   * @return tag brano.
+   */  
   public String getTag(){
     return this.tag;
   }
+  
   
   public JButton getButton(){
       return this.button;
   }
 
 //metodi di confronto
+  /**
+   * Il metodo restituisce true se il Brano rappresentato dall'oggetto che esegue il metodo
+   * e uguale a quello specificato tramite l'agomento, altrimenti false.
+   * @param brano
+   * @return true - se i brani sono uguali, altrimenti false.
+   */
   public boolean equalsTo(Brano brano) {
     return this.title == brano.title&&this.author == brano.author&&this.year == brano.year;
   }
@@ -85,7 +122,12 @@ public class Brano {
   }
   * **/
 
-//metodi di esposizione  
+//metodi di esposizione
+/**
+   * Il metodo si occupa di restituire una stringa con :
+   * <p> Titolo: ~ Autore: ~ Anno di pubblicazione: . 
+   * @return una stringa con i dati del brano.
+   */
   public String toStringOrdinato(){
     String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
     return stringa;
