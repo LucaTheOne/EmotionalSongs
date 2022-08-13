@@ -75,7 +75,10 @@ public class Brano {
     return this.tag;
   }
   
-  
+  /**
+   * 
+   * @hidden 
+   */
   public JButton getButton(){
       return this.button;
   }
@@ -126,7 +129,7 @@ public class Brano {
 /**
    * Il metodo si occupa di restituire una stringa con :
    * <p> Titolo: ~ Autore: ~ Anno di pubblicazione: . 
-   * @return una stringa con i dati del brano.
+   * @return una stringa ordinata con i dati del brano.
    */
   public String toStringOrdinato(){
     String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
