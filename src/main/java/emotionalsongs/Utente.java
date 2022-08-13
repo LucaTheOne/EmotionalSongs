@@ -5,8 +5,8 @@ import java.util.*;
 import java.util.regex.*;
 
 /**
- * La classe si occupa di creare l'oggetto Utente con i parametri : userID, password, codice fiscale,
- * data di nascita, email, indirizzio, ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto Utente.
+ * La classe si occupa di creare l'oggetto Utente con i suoi parametri, 
+ * ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto Utente.
  * @author Luca
  * @version 1.2.
  */
@@ -40,7 +40,7 @@ public class Utente {
     }
     
     /**
-     * Il metodo crea un nuovo oggetto regEngine in cui verrà registrato i dati
+     * Il metodo crea un nuovo oggetto regEngine in cui verranno registrati i dati
      * del nuovo utente.
      * @throws IOException 
      */
@@ -50,7 +50,7 @@ public class Utente {
     }
     
     /**
-     * Il metodo stampa sul termine: Codice fiscale, Nome, Cognome, Data di nascita, Indirizzio, ID Utente, Email, Password.
+     * Il metodo stampa sul terminale: Codice fiscale, Nome, Cognome, Data di nascita, Indirizzo, ID Utente, Email, Password.
      */
     public void stampaUtenteSuTerminale() {
         System.out.println("Codice fiscale: " + cf);
@@ -64,13 +64,19 @@ public class Utente {
     }
     
     /**
-      * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome, succesivamente
-      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
-      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean creato all'inizio
-      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome; succesivamente
+      * effettua un controllo. Il nome non deve : 
+      * <ul>
+      * <li>superare 20 caratteri.
+      * <li>avere meno di 3 caratteri.
+      * <li>essere vuoto.
+      * <li>contenere caratteri (.*\\d.*).
+      * </ul>
+      * Se rispetta le 4 condizioni il boolean creato all'inizio
+      * del metodo tornerà true e il nome dell'utente verrà assegnato alla stringa.
       * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
-    static private String setNome(){
+    static public String setNome(){
         String nome = null;
         boolean valid = true;
         do{
@@ -87,10 +93,16 @@ public class Utente {
     }
     
     /**
-      * Il metodo si occupa di chiedere all'utente di inserire il suo primo cognome, succesivamente
-      * effettuera un controllo, dove : non deve superare 20 caratteri, non deve avere meno di 3 caratteri,
-      * non deve essere vuoto e non deve contenere caratteri (.*\\d.*), se rispetta le 4 condizioni il boolean creato all'inizio
-      * del metodo tornera true e il nome dell'utente verrà assegnato alla stringa.
+      * Il metodo si occupa di chiedere all'utente di inserire il primo cognome; succesivamente
+      * effettua un controllo. Il cognome non deve : 
+      * <ul>
+      * <li>superare 20 caratteri.
+      * <li>avere meno di 3 caratteri.
+      * <li>essere vuoto.
+      * <li>contenere caratteri (.*\\d.*).
+      * </ul>
+      * Se rispetta le 4 condizioni il boolean creato all'inizio
+      * del metodo tornerà true e il cognome dell'utente verrà assegnato alla stringa.
       * @return il Cognome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
     static private String setCognome(){
@@ -110,7 +122,7 @@ public class Utente {
     }
     
      /**
-     * Il metodo si occupa di chiedere all'utente di inserire il suo indirizzio, 
+     * Il metodo si occupa di chiedere all'utente di inserire il suo indirizzo, 
      * se il campo non è vuoto, verrà assegnato alla stringa.
      * @return l'indirizzio dell'utente scritto in minuscolo.
      */
@@ -129,12 +141,12 @@ public class Utente {
     }
     
     /**
-    * metodo che si occupa di far inserire la Password
-    * al utente e di verificarne che rispetti i requisiti.
+    * Il metodo si occupa di far inserire la Password
+    * all'utente e di verificare che rispetti i requisiti.
     * Inoltre verifica anche che l'utente non abbia sbagliato a scriverla nel primo inserimento
     * mediante confronto.
     * @throws PatternSyntaxException
-    * @return la password inserità dall'utente. 
+    * @return la password inserita dall'utente. 
     **/
     static private String setPassword() throws PatternSyntaxException{
         String password,passwordCtrl;
@@ -143,23 +155,24 @@ public class Utente {
             System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
             password = new Scanner(System.in).nextLine();
     /**
-    * Stringa contenente i tipi di caratteri da controllare ve ne sia la presenza
+    * Stringa contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
     * di almeno uno per tipologia:
-    * (?=.*[0-9]) -> almeno un numero tra 0 e 9,
-    * (?=.*[a-z]) -> Almeno una lettera minuscola,
-    * (?=.*[A-Z]) -> Almeno una lettera maiuscola,
-    * (?=.*[@#$%^&+=!]) -> almeno uno dei seguenti caratteri speciali @#$%^&+=!,
-    * (?=\\S+$) -> spazi bianchi non ammessi,
-    * {8,20} -> minimo 8, massimo 20 caratteri.
+    * <ul>
+    * <li>(?=.*[0-9]) -> almeno un numero tra 0 e 9,
+    * <li>(?=.*[a-z]) -> Almeno una lettera minuscola,
+    * <li>(?=.*[A-Z]) -> Almeno una lettera maiuscola,
+    * <li>(?=.*[@#$%^&+=!]) -> almeno uno dei seguenti caratteri speciali @#$%^&+=!,
+    * <li>(?=\\S+$) -> spazi bianchi non ammessi,
+    * <li>{8,20} -> minimo 8, massimo 20 caratteri.
+    * </ul>
     **/
         String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
-    /** compila il pattern precedente **/
+    /** Compila il pattern precedente **/
         Pattern p = Pattern.compile(regex);
     /** Pattern class contiene il metodo .matcher() per verificare se la password coincide con il pattern.**/
         Matcher m = p.matcher(password);
     /**
-    * Questa parte del codice gestissce la situazione
-    * nel caso la password non rispettasse tutti i requisiti
+    * Questa parte del codice gestisce il caso in cui la password non rispetti tutti i requisiti.
     **/
         while(!(m.matches())){
             System.out.println("Password non valida! \n"+" Prego inserire una password valida: ");
@@ -168,8 +181,8 @@ public class Utente {
             m = p.matcher(password);
         }
     /**
-    *Per verificare che l' utente sappia che password abbia inserito
-    *gli si chiede di reinserirle per poi successivamente confrontarla
+    *Per verificare che l'utente ricordi la password inserita
+    *gli si chiede di reinserirla, per poi successivamente confrontarla con la prima.
     **/
         System.out.println("Reinserisca la password per verificare se è stata scritta correttamente");
         passwordCtrl = new Scanner(System.in).nextLine();
@@ -182,7 +195,7 @@ public class Utente {
     
     /**
     * Il metodo si occupa si far inserire l'email all'utente, e di controllare la sua 
-    * validita.
+    * validità.
     * @return l'email dell'utente.
     * @throws PatternSyntaxException 
     */
@@ -214,20 +227,22 @@ public class Utente {
     /**
     * Stringa contenente i tipi di caratteri ed il formato
     * che deve presentare un codice fiscale italiano corretto:
-    * [A-Za-z]{6} -> 6 lettere dell' alfabeto da a a z.
-    * [0-9lmnpqrstuvLMNPQRSTUV]{2} -> due valori tra 0-9 o lmnpqrstuv.
-    * [abcdehlmprstABCDEHLMPRST]{1} -> una lettera tra abcdehlmprst
-    * [0-9lmnpqrstuvLMNPQRSTUV]{3} -> nuovamente tre valori tra 0-9 o lmnpqrstuv.
-    * [A-Za-z]{1} -> una lettera del alfabeto.
+    * <ul>
+    * <li>[A-Za-z]{6} -> 6 lettere dell' alfabeto da a a z.
+    * <li>[0-9lmnpqrstuvLMNPQRSTUV]{2} -> due valori tra 0-9 o lmnpqrstuv.
+    * <li>[abcdehlmprstABCDEHLMPRST]{1} -> una lettera tra abcdehlmprst
+    * <li>[0-9lmnpqrstuvLMNPQRSTUV]{3} -> nuovamente tre valori tra 0-9 o lmnpqrstuv.
+    * <li>[A-Za-z]{1} -> una lettera del alfabeto.
+    * </ul>
     **/
         String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
-    /** compila il pattern precedente **/
+    /** Compila il pattern precedente **/
         Pattern p = Pattern.compile(regex);
     /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
         Matcher m = p.matcher(cf);
     /**
-    * Questa parte del codice gestissce la situazione
-    * nel caso il cf non rispettasse il pattern
+    * Questa parte del codice gestisce la situazione
+    * nel caso in cui il codice fiscale non rispetti il pattern.
     **/
         while(!(m.matches())){
             System.out.println("Codice fiscale errato! \n"+" Prego reinserire un codice fiscale valido "+"(formato Italiano):");
@@ -239,8 +254,7 @@ public class Utente {
     
    /**
    * Il metodo si occupa di chiedere all'utente la data di nascita, 
-   * il formato da rispettare: GG/MM/AAAA , succesivamente si eseguira un controllo 
-   * con il codice fiscale.
+   * nel formato: GG/MM/AAAA; dopodichè verrà eseguito un controllo con il codice fiscale.
    * @return la data di nascita dell'utente.
    * @throws PatternSyntaxException 
    */
@@ -251,7 +265,7 @@ public class Utente {
             System.out.println("Inserisca la sua data di nascita (gg/mm/aaaa)");
             date = new Scanner(System.in).nextLine();
             String regex = "^([0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4})$";
-      /** compila il pattern precedente **/
+      /** Compila il pattern precedente. **/
             Pattern p = Pattern.compile(regex);
       /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
             Matcher m = p.matcher(date);
@@ -266,7 +280,7 @@ public class Utente {
    /**
    * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
    * @param cf - il codice fiscale dell'utente
-   * @return true - se codice fiscale è presente nella database, false - se il codice fiscal non è presente nella database.
+   * @return true - se codice fiscale è presente nel database, false - se il codice fiscale non è presente nel database.
    * @throws FileNotFoundException 
    */  
     static private boolean userCFSigned(String cf) throws FileNotFoundException{
@@ -288,9 +302,13 @@ public class Utente {
     }
     
    /**
-   * Il metodo si occupa di chiedere all'utente di inserire il userID, 
-   * l'userID inserito non deve: essere composto da meno di 3 caratteri o da più di 10 caratteri,
-   * non deve contenere spazzi, se rispetta queste tre condizioni, l'userID sarà registrato.
+   * Il metodo si occupa di chiedere all'utente di inserire l'userID. 
+   * L'userID inserito non deve: 
+   * <ul>
+   * <li>essere composto da meno di 3 caratteri o da più di 10 caratteri,
+   * <li>non deve contenere spazi.
+   * </ul>
+   * Se rispetta queste tre condizioni, l'userID sarà registrato.
    * @return - userID dell'utente.
    * @throws FileNotFoundException 
    */
@@ -316,10 +334,10 @@ public class Utente {
   }
     
    /**
-   * Il metodo si occupa di controllare se l'userID inserito dall'utente non sià 
-   * già registrato.
+   * Il metodo si occupa di controllare se l'userID inserito dall'utente non sia 
+   * già presente nel database.
    * @param id - userID dell'utente.
-   * @return true - se l'userid è presente nella database, false - se l'userID non è presente nella database.
+   * @return true - se l'userID è presente nel database, false - se l'userID non è presente nel database.
    * @throws FileNotFoundException 
    */
     static private boolean userIDTaken(String id) throws FileNotFoundException {
@@ -344,7 +362,7 @@ public class Utente {
     
     /**
      * Il meteodo si occupa di creare la PlaylistSet vuota.
-     * @param userId userID dell'utente.
+     * @param userId - userID dell'utente.
      * @throws IOException 
      */
     static private void creaPlaylistSetVuoto(String userId) throws IOException{
@@ -355,8 +373,8 @@ public class Utente {
   }
     
     /**
-     * Il metodo restituisce il userID dell'utente.
-     * @return userId dell'utente che esegue il metodo.
+     * Il metodo restituisce l'userID dell'utente.
+     * @return userId - userID dell'utente.
      */
     public String getUserId(){
     return userId;
@@ -364,15 +382,15 @@ public class Utente {
     
     /**
      * Il metodo restiuisce il nome dell'utente.
-     * @return  nome dell'utente che esegue il metodo.
+     * @return  nome - nome dell'utente.
      */
     public String getNome(){
     return nome;
   }
     
     /**
-     * Il metodo restiusice il cognome dell'utente.
-     * @return cognome dell'utente che esegue il metodo.
+     * Il metodo restituisce il cognome dell'utente.
+     * @return cognome -  cognome dell'utente.
      */
     public String getCognome(){
     return cognome;
@@ -380,15 +398,15 @@ public class Utente {
 
     /**
      * Il metodo restituisce il codice fiscale dell'utente.
-     * @return codice fiscale dell'utente che esegue il metodo.
+     * @return cf - codice fiscale dell'utente.
      */
     public String getCF(){
     return cf;
   }
     
     /**
-     * Il metodo restituisce l'indirzio dell'utente.
-     * @return indirizzio dell'utente che esegue il metodo.
+     * Il metodo restituisce l'indirizzo dell'utente.
+     * @return indirizzo - indirizzo dell'utente.
      */
     public String getIndirizzo(){
     return indirizzo;
@@ -396,15 +414,15 @@ public class Utente {
     
     /**
      * Il metodo restituisce l'email dell'utente.
-     * @return l'email dell'utente che esegue il metodo.
+     * @return email - l'email dell'utente.
      */
     public String getEmail(){
     return email;
   }
     
     /**
-     * Il metodo restituisce la data di nascia dell'utente.
-     * @return data di nascita dell'utente che esegue il metodo.
+     * Il metodo restituisce la data di nascita dell'utente.
+     * @return dataNascita - la data di nascita dell'utente.
      */
     public String getDataDiNascita(){
     return dataNascita;
@@ -418,6 +436,10 @@ public class Utente {
         playlistSet.add(addplay);
     }
 
+    /**
+     * Il metodo restituisce la password dell'utente.
+     * @return password - password dell'utente.
+     */
     public String getPassword() {
         return password;
     }

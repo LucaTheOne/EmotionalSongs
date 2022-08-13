@@ -5,15 +5,21 @@ import java.io.*;
 import javax.swing.*;
 
 /**
-La classe Brano si occupa di creare l'oggetto Brano.
-@authore Bolelli Luca
-@version 1.3
+*La classe Brano si occupa di creare oggetti di tipo Brano.
+*@authore Bolelli Luca
+*@version 1.3
 */
 public class Brano {
 
 //campi
   private String title,author,tag,year;
+  /**
+   * @hidden
+   */
   public JButton button = new JButton();
+  /**
+   * @hidden
+   */
   public DatiEmozioniBrano datiEmozioniBrano;
   
   
@@ -24,7 +30,7 @@ public class Brano {
    * @param title - Titolo del brano.
    * @param author - Autore del brano.
    * @param year - Anno del brano.
-   * @param tag 
+   * @param tag - Tag del brano.
    * @throws IOException 
    */
   Brano(String title, String author,String year,String tag) throws IOException{
@@ -69,7 +75,7 @@ public class Brano {
 
   /**
    * Il metodo restiuisce il tag del brano.
-   * @return tag brano.
+   * @return tag del brano.
    */  
   public String getTag(){
     return this.tag;
@@ -87,7 +93,7 @@ public class Brano {
   /**
    * Il metodo restituisce true se il Brano rappresentato dall'oggetto che esegue il metodo
    * e uguale a quello specificato tramite l'agomento, altrimenti false.
-   * @param brano
+   * @param brano - argomento Brano.
    * @return true - se i brani sono uguali, altrimenti false.
    */
   public boolean equalsTo(Brano brano) {

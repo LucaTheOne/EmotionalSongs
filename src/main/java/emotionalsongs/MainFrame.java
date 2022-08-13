@@ -4,6 +4,10 @@ import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
+/**
+ * @hidden
+ * @author 
+ */
 public class MainFrame extends javax.swing.JFrame {
     JPanel upperBar;
     JPanel centerPanel;
