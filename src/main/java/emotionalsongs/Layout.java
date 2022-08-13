@@ -6,7 +6,7 @@ import javax.swing.*;
 
 
 /**
- *
+ *@hidden
  * @author Megaport
  */
 public class Layout {

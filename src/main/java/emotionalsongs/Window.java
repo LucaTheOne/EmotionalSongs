@@ -4,7 +4,7 @@ package emotionalsongs;
 import java.awt.Graphics;
 
 /**
- *
+ *@hidden
  * @author Megaport
  */
 public abstract class Window implements RunnableAndClosable{

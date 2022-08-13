@@ -5,7 +5,7 @@
 package emotionalsongs;
 
 /**
- *
+ *@hidden
  * @author big
  */
 public class UnloggedToolBarPanel extends javax.swing.JPanel {

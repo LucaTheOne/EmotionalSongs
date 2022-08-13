@@ -5,7 +5,7 @@
 package emotionalsongs;
 
 /**
- *
+ *@hidden
  * @author natanaild
  */
 public class LoggedUserMenu extends javax.swing.JPanel {

@@ -1,7 +1,7 @@
 
 package emotionalsongs;
 /**
- *
+ *@hidden
  * @author big
  */
 public class FramePrincipale extends javax.swing.JFrame {

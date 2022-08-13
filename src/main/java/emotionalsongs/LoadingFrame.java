@@ -6,7 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ *@hidden
  * @author Megaport
  */
 public class LoadingFrame extends Window{

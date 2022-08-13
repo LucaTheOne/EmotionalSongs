@@ -7,7 +7,7 @@ package emotionalsongs;
 
 
 /**
- *
+ *@hidden
  * @author natanaild
  */
 public class ConsultaRepositoryMenu extends javax.swing.JPanel {

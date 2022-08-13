@@ -7,7 +7,7 @@ package emotionalsongs;
 import java.io.*;
 
 /**
- *
+ *@hidden
  * @author big
  */
 public class inspectRepoPanel extends javax.swing.JPanel {

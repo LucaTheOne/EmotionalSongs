@@ -5,7 +5,7 @@
 package emotionalsongs.GUIElements;
 
 /**
- *
+ * @hidden
  * @author natanaild
  */
 public class RegistrazionePanel extends javax.swing.JPanel {

@@ -4,7 +4,7 @@ package emotionalsongs;
 import java.io.*;
 
 /**
- *
+ *@hidden
  * @author luca
  */
 public class LogInPerformer extends EMOTIONALSONGS{

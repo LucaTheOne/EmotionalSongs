@@ -2,7 +2,7 @@
 package emotionalsongs;
 
 /**
- *
+ *@hidden
  * @author Megaport
  */
 public interface RunnableAndClosable{
