@@ -3,7 +3,7 @@ package emotionalsongs;
 import java.util.*;
 
 /**
- * Le costanti rappresentato delle emozioni da attribuire al brano. 
+ * Le costanti rappresentano delle emozioni da attribuire al brano. 
  * @author Bolelli Luca
  */
 public enum Emozioni {
@@ -55,9 +55,9 @@ public enum Emozioni {
     
   //costruttori
      /**
-     * Costruisce l'oggetto con l'emozione e descrizione.
+     * Costruisce l'oggetto con l'emozione e relativa descrizione.
      * @param name - Nome dell'emozione.
-     * @param explanation - Descrive l'emozione.
+     * @param explanation - Descrizione dell'emozione.
      */
     Emozioni(String name,String explanation){
         this.nomeEmozione = name;
@@ -82,7 +82,7 @@ public enum Emozioni {
     }
     
     /**
-     * Il metodo chiede all'utente di dare un voto da 1 a 5 in base a quanto a percepito,
+     * Il metodo chiede all'utente di dare un voto da 1 a 5 in base a quanto percepito,
      * dopodichè chiede se vuole inserire un commento.
      */
     public void voteAnEmotion(){
@@ -95,7 +95,7 @@ public enum Emozioni {
     
     /**
      * Il metodo chiede all'utente di inserire un voto
-     * da 1 a 5 in base a quanto a percepito dopodichè il voto viene salvato in un array di tipo int.
+     * da 1 a 5 in base a quanto percepito, dopodichè il voto viene salvato in un array di tipo int.
      */
     public void giveAVote(){
         System.out.println("Inserisca un voto da 1 a 5 in base a quanto ha percepito la seguente emozione, 1 per ninte, 5 molto:");
@@ -110,8 +110,8 @@ public enum Emozioni {
     }
     
     /**
-     * Il metodo chiede all'utente di inserire un'commento che non deve 
-     * superare i 256 caratteri, se supera viene richiesto un'altro commento, 
+     * Il metodo chiede all'utente di inserire un commento che non deve 
+     * superare i 256 caratteri; se superati viene richiesto un altro commento, 
      * dopodichè viene salvato in un array di tipo String.
      */
     public void commentAnEmotion(){
@@ -155,7 +155,7 @@ public enum Emozioni {
     }
 
     /**
-     * Restituisce il voto.
+     * Il metodo restituisce il voto.
      * @return il voto.
      */
     public int getNumeroVoti() {
@@ -163,7 +163,7 @@ public enum Emozioni {
     }
     
     /**
-     * Restituisce una stringa con i voti inseriti dall'utente.
+     * Il metodo restituisce una stringa con i voti inseriti dall'utente.
      * @return i voti. 
      */
     public String stringaVoti(){
@@ -175,7 +175,7 @@ public enum Emozioni {
     }
     
     /**
-     * Restituisce una stringa con i commenti inseriti dall'utente.
+     * Il metodo restituisce una stringa con i commenti inseriti dall'utente.
      * @return i commenti.
      */
     public String stringaCommenti(){
