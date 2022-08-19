@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
- * 
+ * La classe importa le emozioni per ogni brani.
  * @author 
  */
 public class DatiEmozioniBrano {
@@ -29,6 +29,11 @@ public class DatiEmozioniBrano {
         branoCorrelatoAlleEmozioni = brano;
     }
     
+    /**
+     * Il metodo crea una stringa con il titolo del brano, autore, anno e tag,
+     * e una riga nuova con ogni emozione, voto e commento. 
+     * @return una stringa con il brano, emozioni e commenti.
+     */
     public String stringaEmozioniBrano(){
         String stringaDaStampare = "";
         stringaDaStampare += branoCorrelatoAlleEmozioni.getTitle() + "," + branoCorrelatoAlleEmozioni.getAuthor() + "," + branoCorrelatoAlleEmozioni.getYear() + "," + branoCorrelatoAlleEmozioni.getTag() + "\r";
