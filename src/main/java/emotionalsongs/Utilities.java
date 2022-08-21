@@ -34,6 +34,7 @@ public class Utilities {
     public static ImageIcon EngRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegEng.png");
     public static ImageIcon ItaRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIta.png");
     public static ImageIcon spaceImage = new ImageIcon("../EmotionalSongs/Risorse/space.png");
+    public static ImageIcon logingBG = new ImageIcon("../EmotionalSongs/Risorse/LoginBG.png");
     
 //Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";

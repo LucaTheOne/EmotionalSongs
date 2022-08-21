@@ -78,7 +78,7 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        // TODO add your handling code here:
+        new LogInFrame().setVisible(true);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
 

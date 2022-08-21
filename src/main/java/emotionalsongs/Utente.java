@@ -44,10 +44,6 @@ public class Utente {
      * del nuovo utente.
      * @throws IOException 
      */
-    static public void Registrazione() throws IOException {
-        RegistrationPerformer regEngine = new RegistrationPerformer();
-        regEngine.registraNuovoUtente();
-    }
     
     /**
      * Il metodo stampa sul terminale: Codice fiscale, Nome, Cognome, Data di nascita, Indirizzo, ID Utente, Email, Password.
@@ -444,7 +440,22 @@ public class Utente {
         return password;
     }
     
-    
+    /**
+     * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, nome, cognome,
+     * data di Nascita, email, indirizzio, su un'unica riga separati dal simbolo ";".
+     * @param cf Il codice fiscale dell'utente.
+     * @param nome Il nome dell'utente.
+     * @param cognome Il cognome dell'utente.
+     * @param dataNascita La data di nascita dell'utente.
+     * @param indirizzo L'indirizzo dell'utente.
+     * @param userId L'userid dell'utente.
+     * @param email L'email dell'utente.
+     * @param pswd La password dell'utente.
+     * @return Una stringa formata dai parametri.
+     */
+    public String componiStringa() {
+        return userId +";"+ password +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
+    }
     
     
 }

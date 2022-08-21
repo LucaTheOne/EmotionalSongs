@@ -10,8 +10,8 @@ import java.io.*;
 public class EMOTIONALSONGS {
     
     
-    public Utente loggedUser = null;
-    public Repository REPOSITORY;
+    public static Utente loggedUser = null;
+    public static Repository REPOSITORY;
     public DataSetEmozioni dataSetEmozioni;
     public static UserDatabase userDatabase;
     
@@ -19,7 +19,8 @@ public class EMOTIONALSONGS {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
         software.initialize();
-        LogInPerformer logInPerformer = new LogInPerformer(userDatabase);
+        MainFrame frame = new MainFrame();
+        frame.setVisible(true);
         
         //MainFrame.run();
         //LoadingFrame frame = new LoadingFrame();

@@ -9,43 +9,15 @@ import java.io.*;
  */
 public class LogInPerformer extends EMOTIONALSONGS{
     
-    LogInFrame loginWindow;
     UserDatabase database;
     Utente user;
     /**
      * 
      */
     LogInPerformer(UserDatabase database){
-        loginWindow = new LogInFrame();
-        loginWindow.setVisible(true);
+        
         this.database = database;
         
-    }
-    
-    /**
-     * 
-     * @return
-     * @throws IOException 
-     */
-    public void logIn() throws IOException{
-        
-        boolean idExists = foundId(loginWindow.idField.getText());
-        boolean passwordIsCorrect = passwordsMatch(String.valueOf(loginWindow.passwordField.getPassword()));
-        if(!idExists){
-            loginWindow.wrongId.setVisible(true);
-            loginWindow.revalidate();
-            loginWindow.repaint();
-        }
-        if(!passwordIsCorrect){
-            loginWindow.wrongPassword.setVisible(true);
-            loginWindow.revalidate();
-            loginWindow.repaint();
-        }
-        if(idExists&&passwordIsCorrect){
-            super.loggedUser = user;
-            //ridisegnare il mainFrame
-            loginWindow.dispose();
-        }
     }
     
     /**
@@ -55,9 +27,14 @@ public class LogInPerformer extends EMOTIONALSONGS{
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    private boolean foundId(String userId) throws FileNotFoundException, IOException{
-        user = ricercaBinaria(database, userId);
-        return user != null;
+    public boolean foundId(String userId) {
+        try {
+            user = ricercaBinaria(database, userId);
+            return user != null;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
     }
     
     /**
@@ -67,12 +44,17 @@ public class LogInPerformer extends EMOTIONALSONGS{
      * @return
      * @throws IOException 
      */
-    private boolean passwordsMatch(String password) throws IOException{
-        if(user == null) return false;
-        return user.getPassword().equals(password);
+    public boolean passwordsMatch(String password) {
+        try {
+            if(user == null) return false;
+            return user.getPassword().equals(password);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
     }
     
-    private Utente ricercaBinaria(UserDatabase database, String utente){
+    public Utente ricercaBinaria(UserDatabase database, String utente){
 	int low = 0;
 	int high = database.getDimensione();	
 	while (low<=high) {

@@ -49,4 +49,8 @@ public class UserDatabase {
     public Utente get(int index){
         return datiUtentiRegistrati.get(index);
     }
+    
+    public void addUser(Utente user){
+        datiUtentiRegistrati.add(user);
+    }
 }

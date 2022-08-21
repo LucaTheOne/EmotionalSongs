@@ -87,4 +87,7 @@ public class Repository {
         System.out.println(getBrano(index).toStringOrdinato());
     }
     
+    public ArrayList<Brano> getLista(){
+        return this.repository;
+    }
 }

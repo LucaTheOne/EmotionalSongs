@@ -4,19 +4,27 @@
  */
 package emotionalsongs;
 
-import java.io.*;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *@hidden
  * @author big
  */
 public class LogInFrame extends javax.swing.JFrame {
-    LogInPerformer logger;
+    LogInPerformer logger = new LogInPerformer(EMOTIONALSONGS.userDatabase);
+    Image bg = Utilities.logingBG.getImage();
     /**
      * Creates new form LogFrame
      */
     public LogInFrame() {
-        logger = new LogInPerformer(EMOTIONALSONGS.userDatabase);
+        this.setContentPane(new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(bg, 0, 0,400,400, null);
+         }
+        });
         initComponents();
     }
 
@@ -38,33 +46,36 @@ public class LogInFrame extends javax.swing.JFrame {
         wrongPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 400));
         setResizable(false);
+        setSize(new java.awt.Dimension(400, 400));
 
         loginButton.setPreferredSize(new java.awt.Dimension(100, 40));
-        loginButton.setSize(new java.awt.Dimension(100, 50));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
 
-        idField.setBounds(new java.awt.Rectangle(125, 300, 150, 20));
         idField.setPreferredSize(new java.awt.Dimension(150, 25));
 
         passwordField.setPreferredSize(new java.awt.Dimension(150, 25));
-        passwordField.setSize(new java.awt.Dimension(150, 25));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ID Utente");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
 
         wrongId.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
+        wrongId.setForeground(new java.awt.Color(255, 51, 51));
         wrongId.setText("ID Utente inesistente!");
         wrongId.setVisible(false);
 
         wrongPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
+        wrongPassword.setForeground(new java.awt.Color(255, 51, 51));
         wrongPassword.setText("Password errata!");
         wrongPassword.setVisible(false);
 
@@ -73,45 +84,39 @@ public class LogInFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(wrongPassword)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(wrongId)
-                                .addGap(26, 26, 26)
-                                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel1)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addComponent(wrongId)
+                    .addComponent(wrongPassword))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
+                .addGap(146, 146, 146)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wrongId))
-                .addGap(5, 5, 5)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(wrongId)
+                    .addComponent(jLabel1))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wrongPassword))
+                    .addComponent(wrongPassword)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -121,10 +126,23 @@ public class LogInFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        try {
-            logger.logIn();
-        } catch (IOException ex) {
-            ex.getMessage();
+         
+        boolean idExists = logger.foundId(this.idField.getText());
+        boolean passwordIsCorrect = logger.passwordsMatch(String.valueOf(this.passwordField.getPassword()));
+        if(!idExists){
+            this.wrongId.setVisible(true);
+            this.revalidate();
+            this.repaint();
+        }
+        if(!passwordIsCorrect){
+            this.wrongPassword.setVisible(true);
+            this.revalidate();
+            this.repaint();
+        }
+        if(idExists&&passwordIsCorrect){
+            EMOTIONALSONGS.loggedUser = logger.user;
+            //ridisegnare il mainFrame
+            this.dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

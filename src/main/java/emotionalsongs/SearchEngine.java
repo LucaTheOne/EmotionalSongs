@@ -17,7 +17,7 @@ class SearchEngine {
     * 
     */
     public ArrayList<Brano> risultatiRicerca = new ArrayList<>();
-    public Repository repository;
+    public Repository repository = EMOTIONALSONGS.REPOSITORY;
     /**
     *
     */

@@ -5,6 +5,8 @@
 package emotionalsongs;
 
 import java.io.*;
+import java.util.*;
+import javax.swing.*;
 
 /**
  *@hidden
@@ -13,7 +15,11 @@ import java.io.*;
 public class inspectRepoPanel extends javax.swing.JPanel {
     int counterIndex = 30;
     boolean firstPage = true;
-    Repository repo = new Repository();
+    boolean lastPage = false;
+    SearchEngine searchEngine = new SearchEngine();
+    final ArrayList<Brano> REPOSITORY = EMOTIONALSONGS.REPOSITORY.getLista();
+    ArrayList<Brano> repoAttuale = REPOSITORY;
+    //Repository repo = new Repository();
     /**
      * Creates new form inspectRepoPanel
      */
@@ -152,29 +158,64 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBarActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+        repoAttuale = searchEngine.cercaBranoMusicale(searchBar.getText());
+
+        if(searchBar.getText().isBlank()) {
+            repoAttuale = REPOSITORY;
+            for(int i = 0; i<30;i++){
+                subPanelRepoView.add(repoAttuale.get(i).getButton());
+                subPanelRepoView.revalidate();
+                subPanelRepoView.repaint();
+                return;
+            }
+        }
+        
+        if(repoAttuale.isEmpty()){
+            subPanelRepoView.removeAll();
+            subPanelRepoView.add(new JLabel("Nessun brano trovato corrispondente ai criteri di ricerca!"));
+            subPanelRepoView.revalidate();
+            subPanelRepoView.repaint();
+            return;
+        }
+        for(int i = 0;i<repoAttuale.size()&&i<30;i++){
+            subPanelRepoView.add(repoAttuale.get(i).getButton());
+        }
+        subPanelRepoView.revalidate();
+        subPanelRepoView.repaint();
+        
+        
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        if (firstPage) {
+            return;
+        }
         counterIndex -= 30;
         if (counterIndex==30) {
-            BackButton.setBorderPainted(false);
-            BackButton.setFocusPainted(false);  
+            firstPage = true;
         }
         subPanelRepoView.removeAll();
-        for(int i = counterIndex-30;i<counterIndex;i++){
-            subPanelRepoView.add(repo.getBrano(i).getButton());
+        for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
+            subPanelRepoView.add(repoAttuale.get(i).getButton());
         }
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        
+        if (lastPage||counterIndex>repoAttuale.size()) {
+            lastPage = true;
+            return;
+        }
+        if (firstPage) {
+            firstPage = false;
+        }
         counterIndex += 30;
         
         subPanelRepoView.removeAll();
-        for(int i = counterIndex-30;i<counterIndex;i++){
-            subPanelRepoView.add(repo.getBrano(i).getButton());
+        for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
+            subPanelRepoView.add(repoAttuale.get(i).getButton());
         }
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();    }//GEN-LAST:event_nextButtonActionPerformed
