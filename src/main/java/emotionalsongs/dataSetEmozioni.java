@@ -11,12 +11,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
- * @author Megaport
+ * La classe DataSetEmozioni si occupa di importare ed esportare i dati delle 
+ * emozioni.
+ * @author Bolelli Luca
  */
 public class DataSetEmozioni {
+    
+    
     private ArrayList<DatiEmozioniBrano> dataSetEmozioni = new ArrayList<>();
-
+    
+    /**
+     * Crea un oggetto che importa i dati delle emozioni.
+     */
     public DataSetEmozioni() {
         try {
             importaDataSetEmozioni();    
@@ -28,7 +34,12 @@ public class DataSetEmozioni {
     }
     
    
-    
+    /**
+     * Il metodo crea un buffer per leggere dal file i voti e commenti assegnati ad ogni emozione,
+     * dopidichè verrno salvati in un array di stringhe.
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void importaDataSetEmozioni() throws FileNotFoundException, IOException{
         BufferedReader reader = new BufferedReader(new FileReader(Utilities.pathToPlaylistDati));
         String stringaCorrente = "";
@@ -54,6 +65,7 @@ public class DataSetEmozioni {
                         dati.AMAZEMENT.importaVoti(StringaCorrenteSplitted[2] );
                         dati.AMAZEMENT.importaCommenti(StringaCorrenteSplitted[3]);
                         counter++;
+                        break;
                     case 2:
                         StringaCorrenteSplitted = stringaCorrente.split(";");
                         dati.SOLEMNITY.importaVoti(StringaCorrenteSplitted[2] );
@@ -112,6 +124,10 @@ public class DataSetEmozioni {
         reader.close();
     }
     
+    /**
+     * Il metodo crea un buffer per esportare i dati delle emozioni.
+     * @throws IOException 
+     */
     public void esportaDataSetEmozioni() throws IOException{
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File(Utilities.pathToEmozioniDati)));
         for(int i = 0; i<dataSetEmozioni.size();i++){

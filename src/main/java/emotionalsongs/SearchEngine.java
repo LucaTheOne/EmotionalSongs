@@ -5,22 +5,30 @@ import java.util.*;
 /**
  * Classe adibita alla ricerca di canzoni all' interno del repository di canzoni
  * tramite due tipologie di ricerca:
- * <p>-Ricerca per autore ed anno
- * -Ricerca per titolo
+ * <ul>
+ * <li>Ricerca per autore ed anno
+ * <li>Ricerca per titolo.
+ * </ul>
  * @author Luca
  * @version 1.2
  */
-class SearchEngine {
+public class SearchEngine {
     
     
-   /**
-    * 
-    */
+   
     public ArrayList<Brano> risultatiRicerca = new ArrayList<>();
+<<<<<<< HEAD
     public Repository repository = EMOTIONALSONGS.REPOSITORY;
+=======
+    public Repository repository;
+   
+>>>>>>> fc1b439b837b1bc3a820d9f445bd8bded70566e3
     /**
-    *
-    */
+     * Il metodo permette di selezionare la modalita di ricerca per autore ed anno opppure
+     * per titolo.
+     * @param stringaCercata 
+     * @return il brano, in base alla tipologia di ricerca scelta, per autore ed anno o per titolo.
+     */
     public ArrayList<Brano> cercaBranoMusicale(String stringaCercata){
         boolean flag = stringaCercata.contains(";");
         
@@ -34,6 +42,12 @@ class SearchEngine {
     }
     
     
+    /**
+     * Il metodo effettua la ricerca per titolo nella repository di brani e li 
+     * salva in un arraylist di brani.
+     * @param titolo - del brano.
+     * @return il brano ricercato.
+     */
     private ArrayList<Brano> ricercaPerTitolo(String titolo){
         
         ArrayList<Brano> risultatiRicerca = new ArrayList<>();
@@ -48,6 +62,13 @@ class SearchEngine {
         return risultatiRicerca;
     }
 
+    /**
+     * Il metodo effettua la ricerca per autore ed anno e salva i risultati 
+     * di ricerca in un arraylist di brani.
+     * @param autore - del brano.
+     * @param anno - del brano.
+     * @return il brano ricercato.
+     */
     private ArrayList<Brano> ricercaPerAutoreEdAnno(String autore, String anno){
 
         ArrayList<Brano> risultatiRicerca = new ArrayList<>();
