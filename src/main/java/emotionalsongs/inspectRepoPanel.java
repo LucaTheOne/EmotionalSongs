@@ -16,10 +16,15 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     int counterIndex = 30;
     boolean firstPage = true;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     boolean lastPage = false;
     SearchEngine searchEngine = new SearchEngine();
     final ArrayList<Brano> REPOSITORY = EMOTIONALSONGS.REPOSITORY.getLista();
     ArrayList<Brano> repoAttuale = REPOSITORY;
+=======
+    SearchEngine searchEngine = new SearchEngine();
+    ArrayList<Brano> repositoryAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
+>>>>>>> Stashed changes
 =======
     SearchEngine searchEngine = new SearchEngine();
     ArrayList<Brano> repositoryAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
@@ -164,6 +169,7 @@ public class inspectRepoPanel extends javax.swing.JPanel {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         repoAttuale = searchEngine.cercaBranoMusicale(searchBar.getText());
 
         if(searchBar.getText().isBlank()) {
@@ -178,6 +184,8 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         
         if(repoAttuale.isEmpty()){
 =======
+=======
+>>>>>>> Stashed changes
         if(searchBar.getText().isBlank()) {
             for(int i = 0; i<30;i++){
                 subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
@@ -187,11 +195,15 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         ArrayList<Brano> risultati;
         risultati = searchEngine.cercaBranoMusicale(searchBar.getText());
         if(risultati.isEmpty()){
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             subPanelRepoView.removeAll();
             subPanelRepoView.add(new JLabel("Nessun brano trovato corrispondente ai criteri di ricerca!"));
             subPanelRepoView.revalidate();
             subPanelRepoView.repaint();
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             return;
         }
@@ -203,6 +215,8 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         
         
 =======
+=======
+>>>>>>> Stashed changes
         } else {
             for(int i = 0;i<risultati.size()&&;i++){
                 subPanelRepoView.add(risultati.get(i).getButton());
@@ -210,6 +224,9 @@ public class inspectRepoPanel extends javax.swing.JPanel {
             subPanelRepoView.revalidate();
             subPanelRepoView.repaint();
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -223,8 +240,13 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         }
         subPanelRepoView.removeAll();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
             subPanelRepoView.add(repoAttuale.get(i).getButton());
+=======
+        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
+            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
+>>>>>>> Stashed changes
 =======
         for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
             subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
@@ -247,8 +269,13 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         
         subPanelRepoView.removeAll();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
             subPanelRepoView.add(repoAttuale.get(i).getButton());
+=======
+        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
+            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
+>>>>>>> Stashed changes
 =======
         for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
             subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());

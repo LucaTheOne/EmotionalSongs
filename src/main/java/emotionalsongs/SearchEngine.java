@@ -17,12 +17,16 @@ public class SearchEngine {
     
    
     public ArrayList<Brano> risultatiRicerca = new ArrayList<>();
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     public Repository repository = EMOTIONALSONGS.REPOSITORY;
 =======
     public Repository repository;
    
 >>>>>>> fc1b439b837b1bc3a820d9f445bd8bded70566e3
+=======
+    public Repository repository = EMOTIONALSONGS.REPOSITORY;
+>>>>>>> Stashed changes
     /**
      * Il metodo permette di selezionare la modalita di ricerca per autore ed anno opppure
      * per titolo.
