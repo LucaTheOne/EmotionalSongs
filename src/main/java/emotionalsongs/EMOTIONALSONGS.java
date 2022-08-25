@@ -17,10 +17,14 @@ public class EMOTIONALSONGS {
     
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
+<<<<<<< Updated upstream
         EMOTIONALSONGS software = new EMOTIONALSONGS();
         software.initialize();
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
+=======
+        //MainFrame.run();
+>>>>>>> Stashed changes
         
         //MainFrame.run();
         //LoadingFrame frame = new LoadingFrame();
@@ -30,7 +34,7 @@ public class EMOTIONALSONGS {
         //REPOSITORY = new Repository();
         //dataSetEmozioni = new DataSetEmozioni();
         //System.out.println(REPOSITORY.getBrano(1257).toStringOrdinato());
-       
+        
     }
     
     private void initialize() throws IOException{
