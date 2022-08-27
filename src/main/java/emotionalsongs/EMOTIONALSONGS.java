@@ -8,23 +8,30 @@ import java.io.*;
  * @author Luca
  */
 public class EMOTIONALSONGS {
-    
-    
+     
     public static Utente loggedUser = null;
     public static Repository REPOSITORY;
     public DataSetEmozioni dataSetEmozioni;
     public static UserDatabase userDatabase;
-    
-
+    public boolean logged = false;
+    public static MainPage mainWindow = new MainPage();
+   
     public static void main(String[] args) throws FileNotFoundException, IOException {
-<<<<<<< Updated upstream
+        
+        
+        mainWindow.setVisible(true);
+        /*
         EMOTIONALSONGS software = new EMOTIONALSONGS();
         software.initialize();
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
-=======
+        
+        InitializationFrame frame = new InitializationFrame();
+        frame.setVisible(true);
+        */
         //MainFrame.run();
->>>>>>> Stashed changes
+
+        //MainFrame.run();
         
         //MainFrame.run();
         //LoadingFrame frame = new LoadingFrame();
@@ -34,13 +41,11 @@ public class EMOTIONALSONGS {
         //REPOSITORY = new Repository();
         //dataSetEmozioni = new DataSetEmozioni();
         //System.out.println(REPOSITORY.getBrano(1257).toStringOrdinato());
-        
     }
     
     private void initialize() throws IOException{
         REPOSITORY = new Repository();
         userDatabase = new UserDatabase();
-        
     }
     
 }

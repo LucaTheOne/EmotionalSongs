@@ -4,16 +4,20 @@
  */
 package emotionalsongs;
 
+import java.awt.BorderLayout;
+
 /**
  *@hidden
  * @author big
  */
 public class UnloggedToolBarPanel extends javax.swing.JPanel {
-
+    
+    MainPage mainPage;
     /**
      * Creates new form UnloggedToolBarPanel
      */
-    public UnloggedToolBarPanel() {
+    public UnloggedToolBarPanel(MainPage correlated) {
+        mainPage = correlated;
         initComponents();
     }
 
@@ -27,6 +31,7 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
+        menuButton = new javax.swing.JToggleButton();
         LoginButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
@@ -34,12 +39,28 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
 
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setPreferredSize(new java.awt.Dimension(800, 30));
+        setPreferredSize(new java.awt.Dimension(800, 20));
         setLayout(new java.awt.BorderLayout());
 
         jToolBar1.setRollover(true);
         jToolBar1.setOpaque(false);
-        jToolBar1.setPreferredSize(new java.awt.Dimension(350, 25));
+        jToolBar1.setPreferredSize(new java.awt.Dimension(350, 20));
+
+        menuButton.setText("menu");
+        menuButton.setFocusable(false);
+        menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        menuButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                menuButtonStateChanged(evt);
+            }
+        });
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(menuButton);
 
         LoginButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         LoginButton.setText("Login");
@@ -81,6 +102,18 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
         new LogInFrame().setVisible(true);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuButtonActionPerformed
+
+    private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
+        if(menuButton.isSelected()){
+            mainPage.setLeftPanel(new UnloggedMenuExpanded(mainPage));
+        } else {
+            mainPage.setLeftPanel(new menuUnespanded(mainPage));
+        }
+    }//GEN-LAST:event_menuButtonStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreditsButton;
@@ -88,5 +121,6 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
     private javax.swing.JButton LoginButton;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToggleButton menuButton;
     // End of variables declaration//GEN-END:variables
 }

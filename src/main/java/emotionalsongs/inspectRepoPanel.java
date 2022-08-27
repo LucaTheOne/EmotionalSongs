@@ -15,19 +15,10 @@ import javax.swing.*;
 public class inspectRepoPanel extends javax.swing.JPanel {
     int counterIndex = 30;
     boolean firstPage = true;
-<<<<<<< Updated upstream
-
     boolean lastPage = false;
     SearchEngine searchEngine = new SearchEngine();
     final ArrayList<Brano> REPOSITORY = EMOTIONALSONGS.REPOSITORY.getLista();
-    ArrayList<Brano> repoAttuale = REPOSITORY;
-
-    ArrayList<Brano> repositoryAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
-
-=======
-    SearchEngine searchEngine = new SearchEngine();
-    ArrayList<Brano> repositoryAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
->>>>>>> Stashed changes
+    ArrayList<Brano> repoAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
     //Repository repo = new Repository();
     /**
      * Creates new form inspectRepoPanel
@@ -105,7 +96,6 @@ public class inspectRepoPanel extends javax.swing.JPanel {
 
         space.setIcon(Utilities.spaceImage);
         space.setPreferredSize(new java.awt.Dimension(50, 50));
-        space.setSize(new java.awt.Dimension(50, 50));
         SearchPanel.add(space, java.awt.BorderLayout.LINE_END);
 
         space1.setIcon(Utilities.spaceImage);
@@ -167,43 +157,28 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBarActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-<<<<<<< Updated upstream
 
         repoAttuale = searchEngine.cercaBranoMusicale(searchBar.getText());
 
         if(searchBar.getText().isBlank()) {
             repoAttuale = REPOSITORY;
+            subPanelRepoView.removeAll();
             for(int i = 0; i<30;i++){
-                subPanelRepoView.add(repoAttuale.get(i).getButton());
-                subPanelRepoView.revalidate();
-                subPanelRepoView.repaint();
-                return;
+                subPanelRepoView.add(repoAttuale.get(i).getButton());  
             }
+            subPanelRepoView.revalidate();
+            subPanelRepoView.repaint();
+            return;
         }
         
-        if(repoAttuale.isEmpty()){
-
-=======
->>>>>>> Stashed changes
-        if(searchBar.getText().isBlank()) {
-            for(int i = 0; i<30;i++){
-                subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
-                return;
-            }
-        }
         ArrayList<Brano> risultati;
         risultati = searchEngine.cercaBranoMusicale(searchBar.getText());
+        subPanelRepoView.removeAll();
+        
         if(risultati.isEmpty()){
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-            subPanelRepoView.removeAll();
             subPanelRepoView.add(new JLabel("Nessun brano trovato corrispondente ai criteri di ricerca!"));
             subPanelRepoView.revalidate();
             subPanelRepoView.repaint();
-<<<<<<< Updated upstream
-
             return;
         }
         for(int i = 0;i<repoAttuale.size()&&i<30;i++){
@@ -212,21 +187,6 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();
         
-        } else {
-            for(int i = 0;i<risultati.size()&&i<30;i++){
-=======
-        } else {
-            for(int i = 0;i<risultati.size()&&;i++){
->>>>>>> Stashed changes
-                subPanelRepoView.add(risultati.get(i).getButton());
-            }
-            subPanelRepoView.revalidate();
-            subPanelRepoView.repaint();
-        }
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -238,24 +198,9 @@ public class inspectRepoPanel extends javax.swing.JPanel {
             firstPage = true;
         }
         subPanelRepoView.removeAll();
-<<<<<<< Updated upstream
 
         for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
             subPanelRepoView.add(repoAttuale.get(i).getButton());
-
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
-
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
-
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
-
-=======
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
->>>>>>> Stashed changes
         }
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();
@@ -273,28 +218,9 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         counterIndex += 30;
         
         subPanelRepoView.removeAll();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         for(int i = counterIndex-30;i<counterIndex && i<repoAttuale.size();i++){
             subPanelRepoView.add(repoAttuale.get(i).getButton());
-=======
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
->>>>>>> Stashed changes
-=======
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
->>>>>>> Stashed changes
-=======
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
->>>>>>> Stashed changes
-=======
-        for(int i = counterIndex-30;i<counterIndex && i<repositoryAttuale.size();i++){
-            subPanelRepoView.add(EMOTIONALSONGS.REPOSITORY.getBrano(i).getButton());
->>>>>>> Stashed changes
         }
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();    }//GEN-LAST:event_nextButtonActionPerformed
