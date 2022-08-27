@@ -11,11 +11,12 @@ public class LogInPerformer extends EMOTIONALSONGS{
     
     UserDatabase database;
     Utente user;
+    LogInFrame loginFrame;
     /**
      * 
      */
-    LogInPerformer(UserDatabase database){
-        
+    LogInPerformer(UserDatabase database,LogInFrame correlatedFrame){
+        loginFrame = correlatedFrame;
         this.database = database;
         
     }

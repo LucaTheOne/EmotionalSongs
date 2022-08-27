@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class UserDatabase {
     private ArrayList<Utente> datiUtentiRegistrati;
-    
+    private Utente[] arrayUtenti;
     UserDatabase(){
         datiUtentiRegistrati = importData(Utilities.pathToUserDatabase);
     }
@@ -35,6 +35,7 @@ public class UserDatabase {
         } catch (Exception e) {
             e.getMessage();
         }
+        arrayUtenti = convertiInArray();
         return userList;   
     }
     
@@ -52,5 +53,21 @@ public class UserDatabase {
     
     public void addUser(Utente user){
         datiUtentiRegistrati.add(user);
+    }
+    
+    public Utente cerca(String userId){
+        
+    }
+    
+    public void riordina(){
+        
+    }
+    
+    public Utente[] convertiInArray(){
+        return datiUtentiRegistrati.toArray(arrayUtenti);
+    }
+    
+    public Utente[] getArray(){
+        return arrayUtenti;
     }
 }

@@ -5,6 +5,7 @@
 package emotionalsongs;
 
 import java.awt.*;
+import java.awt.geom.*;
 import javax.swing.*;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.*;
 public class LogInFrame extends javax.swing.JFrame {
     LogInPerformer logger = new LogInPerformer(EMOTIONALSONGS.userDatabase);
     Image bg = Utilities.logingBG.getImage();
+    MainWindow mainWindow = EMOTIONALSONGS.mainWindow;
     /**
      * Creates new form LogFrame
      */
@@ -25,6 +27,9 @@ public class LogInFrame extends javax.swing.JFrame {
             g.drawImage(bg, 0, 0,400,400, null);
          }
         });
+        setUndecorated(true);
+        setShape(new RoundRectangle2D.Double(0, 0, 400, 400, 20, 20));
+        
         initComponents();
     }
 
@@ -44,12 +49,14 @@ public class LogInFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         wrongId = new javax.swing.JLabel();
         wrongPassword = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         setSize(new java.awt.Dimension(400, 400));
 
+        loginButton.setText("Login");
         loginButton.setPreferredSize(new java.awt.Dimension(100, 40));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +86,13 @@ public class LogInFrame extends javax.swing.JFrame {
         wrongPassword.setText("Password errata!");
         wrongPassword.setVisible(false);
 
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,14 +114,16 @@ public class LogInFrame extends javax.swing.JFrame {
                     .addComponent(wrongPassword))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(79, 79, 79)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wrongId)
@@ -117,8 +133,10 @@ public class LogInFrame extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wrongPassword)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -142,10 +160,17 @@ public class LogInFrame extends javax.swing.JFrame {
         }
         if(idExists&&passwordIsCorrect){
             EMOTIONALSONGS.loggedUser = logger.user;
-            //ridisegnare il mainFrame
+            
+            mainWindow.setUpperBar(new LoggedToolBarPanel(mainWindow));
+            mainWindow.setLeftPanel(new LoggedMenuExpanded(mainWindow));
+            
             this.dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +211,7 @@ public class LogInFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField idField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButton;

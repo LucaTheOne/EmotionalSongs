@@ -1,10 +1,8 @@
 package emotionalsongs;
 
 
-import java.awt.Graphics;
-import java.awt.geom.RoundRectangle2D;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import java.awt.geom.*;
+import javax.swing.*;
 
 /**
  *
@@ -18,6 +16,7 @@ public class InitializationFrame extends javax.swing.JFrame {
     public InitializationFrame() {
         setUndecorated(true);
         initComponents();
+        setVisible(true);
     }
 
     /**

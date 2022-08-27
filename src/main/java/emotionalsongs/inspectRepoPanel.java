@@ -12,7 +12,8 @@ import javax.swing.*;
  *@hidden
  * @author big
  */
-public class inspectRepoPanel extends javax.swing.JPanel {
+public class InspectRepoPanel extends javax.swing.JPanel {
+    MainWindow mainWindow = EMOTIONALSONGS.mainWindow;
     int counterIndex = 30;
     boolean firstPage = true;
     boolean lastPage = false;
@@ -23,7 +24,7 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     /**
      * Creates new form inspectRepoPanel
      */
-    public inspectRepoPanel() throws IOException {
+    public InspectRepoPanel() throws IOException {
         initComponents();
     }
 
@@ -42,8 +43,7 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
         searchBar = new javax.swing.JTextField();
-        space = new javax.swing.JLabel();
-        space1 = new javax.swing.JLabel();
+        X = new javax.swing.JButton();
         TitlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -94,13 +94,20 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         });
         SearchPanel.add(searchBar, java.awt.BorderLayout.CENTER);
 
-        space.setIcon(Utilities.spaceImage);
-        space.setPreferredSize(new java.awt.Dimension(50, 50));
-        SearchPanel.add(space, java.awt.BorderLayout.LINE_END);
-
-        space1.setIcon(Utilities.spaceImage);
-        space1.setPreferredSize(new java.awt.Dimension(50, 50));
-        SearchPanel.add(space1, java.awt.BorderLayout.LINE_END);
+        X.setBackground(new java.awt.Color(255, 51, 51));
+        X.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        X.setForeground(new java.awt.Color(255, 255, 255));
+        X.setText("X");
+        X.setAlignmentY(0.0F);
+        X.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        X.setOpaque(true);
+        X.setPreferredSize(new java.awt.Dimension(100, 50));
+        X.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XActionPerformed(evt);
+            }
+        });
+        SearchPanel.add(X, java.awt.BorderLayout.LINE_END);
 
         add(SearchPanel, java.awt.BorderLayout.SOUTH);
 
@@ -225,11 +232,18 @@ public class inspectRepoPanel extends javax.swing.JPanel {
         subPanelRepoView.revalidate();
         subPanelRepoView.repaint();    }//GEN-LAST:event_nextButtonActionPerformed
 
+    private void XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XActionPerformed
+        mainWindow.mainPanel.removeAll();
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }//GEN-LAST:event_XActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JPanel TitlePanel;
+    private javax.swing.JButton X;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -237,8 +251,6 @@ public class inspectRepoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane repoButtonsView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
-    private javax.swing.JLabel space;
-    private javax.swing.JLabel space1;
     private javax.swing.JPanel subPanelRepoView;
     // End of variables declaration//GEN-END:variables
     

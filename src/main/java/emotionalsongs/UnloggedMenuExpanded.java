@@ -5,16 +5,20 @@
 
 package emotionalsongs;
 
+import java.awt.*;
+import java.io.*;
+import javax.swing.*;
+
 /**
  *
  * @author Megaport
  */
 public class UnloggedMenuExpanded extends javax.swing.JPanel {
     
-    MainPage mainPage;
+    MainWindow mainPage;
 
     /** Creates new form UnloggedMenu */
-    public UnloggedMenuExpanded(MainPage correlated) {
+    public UnloggedMenuExpanded(MainWindow correlated) {
         mainPage = correlated;
         initComponents();
     }
@@ -31,26 +35,26 @@ public class UnloggedMenuExpanded extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(80, 600));
+        setPreferredSize(new java.awt.Dimension(120, 600));
         setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(80, 300));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0,45));
+        jPanel3.setPreferredSize(new java.awt.Dimension(120, 300));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(230, 300));
         jPanel2.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        jButton2.setText("jButton2");
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        jButton2.setText("Repository");
+        jButton2.setToolTipText("");
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton2.setOpaque(true);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -58,24 +62,9 @@ public class UnloggedMenuExpanded extends javax.swing.JPanel {
         });
         jPanel2.add(jButton2);
 
-        jButton3.setText("jButton3");
-        jPanel2.add(jButton3);
-
-        jButton4.setText("jButton4");
-        jPanel2.add(jButton4);
-
-        jButton5.setText("jButton5");
-        jPanel2.add(jButton5);
-
-        jButton6.setText("jButton6");
-        jPanel2.add(jButton6);
-
-        jButton7.setText("jButton7");
-        jPanel2.add(jButton7);
-
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        jButton1.setText("Exit");
+        jButton1.setText("Chiudi");
         jButton1.setPreferredSize(new java.awt.Dimension(75, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,23 +76,29 @@ public class UnloggedMenuExpanded extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainPage.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            mainPage.setMainPanel(new InspectRepoPanel());
+            changeButtonColorsActive(jButton2);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void changeButtonColorsActive(JButton button){
+        button.setBackground(new Color(133, 35, 240));
+        button.setForeground(Color.WHITE);   
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

@@ -8,13 +8,13 @@ package emotionalsongs;
  *
  * @author Megaport
  */
-public class menuUnespanded extends javax.swing.JPanel {
+public class MenuUnespanded extends javax.swing.JPanel {
     
-    MainPage mainPage;
+    MainWindow mainPage;
     /**
      * Creates new form menuUnespanded
      */
-    public menuUnespanded(MainPage correlated) {
+    public MenuUnespanded(MainWindow correlated) {
         mainPage = correlated;
         initComponents();
     }

@@ -8,44 +8,27 @@ import java.io.*;
  * @author Luca
  */
 public class EMOTIONALSONGS {
-     
+    
+    
     public static Utente loggedUser = null;
     public static Repository REPOSITORY;
     public DataSetEmozioni dataSetEmozioni;
     public static UserDatabase userDatabase;
     public boolean logged = false;
-    public static MainPage mainWindow = new MainPage();
+    public static MainWindow mainWindow;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        
-        
-        mainWindow.setVisible(true);
-        /*
         EMOTIONALSONGS software = new EMOTIONALSONGS();
-        software.initialize();
-        MainFrame frame = new MainFrame();
-        frame.setVisible(true);
-        
-        InitializationFrame frame = new InitializationFrame();
-        frame.setVisible(true);
-        */
-        //MainFrame.run();
-
-        //MainFrame.run();
-        
-        //MainFrame.run();
-        //LoadingFrame frame = new LoadingFrame();
-        //frame.runWindow();
-         //JFrame frame= new FramePrincipale();
-         //frame.setVisible(true);
-        //REPOSITORY = new Repository();
-        //dataSetEmozioni = new DataSetEmozioni();
-        //System.out.println(REPOSITORY.getBrano(1257).toStringOrdinato());
+        software.initialize();      
     }
     
     private void initialize() throws IOException{
+        InitializationFrame init = new InitializationFrame();
         REPOSITORY = new Repository();
         userDatabase = new UserDatabase();
+        init.dispose();
+        mainWindow = new MainWindow();
+        mainWindow.setVisible(true);
     }
     
 }

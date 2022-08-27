@@ -1,14 +1,8 @@
 package emotionalsongs;
 
 
-import emotionalsongs.UnloggedToolBarPanel;
-import emotionalsongs.Utilities;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Panel;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
+import java.awt.*;
+import javax.swing.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,14 +13,14 @@ import javax.swing.border.Border;
  *
  * @author Megaport
  */
-public class MainPage extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form MainPage
      */
-    public MainPage() {
+    public MainWindow() {
         initComponents();
-        setLeftPanel(new menuUnespanded(this));
+        setLeftPanel(new MenuUnespanded(this));
         setUpperBar(new UnloggedToolBarPanel(this));
     }
 
@@ -43,6 +37,7 @@ public class MainPage extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
         upperBar = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EmotionalSongs");
@@ -70,6 +65,10 @@ public class MainPage extends javax.swing.JFrame {
         upperBar.setLayout(new java.awt.BorderLayout());
         getContentPane().add(upperBar, java.awt.BorderLayout.NORTH);
 
+        mainPanel.setOpaque(false);
+        mainPanel.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -90,9 +89,25 @@ public class MainPage extends javax.swing.JFrame {
         revalidate();
         repaint(); 
     }
+    
+    public void setMainPanel(JPanel newMainPanel){
+        mainPanel.removeAll();
+        mainPanel.add(newMainPanel,BorderLayout.CENTER);
+        mainPanel.setOpaque(true);
+        revalidate();
+        repaint();
+    }
+    
+    public void cleanUp(){
+        mainPanel.removeAll();
+        mainPanel.setOpaque(false);
+        revalidate();
+        repaint();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel leftPanel;
     private javax.swing.JLabel lowerBarStatusLabel;
+    public javax.swing.JPanel mainPanel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JPanel upperBar;
     // End of variables declaration//GEN-END:variables
