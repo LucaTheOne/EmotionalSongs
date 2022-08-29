@@ -27,17 +27,27 @@ import java.util.regex.*;
 * denominato utentiRegistrati.dati.txt .
 * nb v1.0 non vi è forma di controllo sull' indirizzo.
 **/
-public class RegistrationPerformer {
+public class EngineRegistration {
 
-    private File utentiRegistrati;
-    private UserDatabase userDatabase = EMOTIONALSONGS.userDatabase;
-    final RegistrationPanel panel;
+    private UserDatabase userDatabase;
+    boolean validCF;
+    boolean cfNotSigned;
+    boolean validNome;
+    boolean validCognome;
+    boolean validDataNascita;
+    boolean validIndirizzo;
+    boolean validUserId;
+    boolean validEmail;
+    boolean validPassword;
+    boolean passwordMatches;
+    
+    boolean allRight = false;
+    
     /**
      * Costruisce un oggetto vuoto.
      */
-    public RegistrationPerformer(RegistrationPanel form) {
-        utentiRegistrati = new File(Utilities.pathToUserDatabase);
-        panel = form;
+    public EngineRegistration(UserDatabase database) { 
+        userDatabase = database;
     }
     
     /**
@@ -47,39 +57,40 @@ public class RegistrationPerformer {
     * l'utente verrà avvisato, se non è stato utilizzato si procederà alla registrazione dell'utente su file.
     * @throws IOException 
     */ 
-    public void registraNuovoUtente(String userId,String nome,String cognome,String cf,String indirizzo,String email,String pswd,String dataNascita) throws IOException{
+    public void registraNuovoUtente(String userId,String nome,String cognome,String cf,String indirizzo,String email,String pswd,String contrPswd,String dataNascita) throws IOException{
         Utente nuovo;
-        boolean validCF = isValidCF(cf);
-        boolean validNome = isValidName(nome);
-        boolean validCognome = isValidCognome(cognome);
-        boolean validDataNascita = isValidBirthDate(dataNascita);
-        boolean validIndirizzo = isValidInd(indirizzo);
-        boolean validUserId = isValidUserID(userId);
-        boolean validEmail = isValidMail(email);
-        boolean validPassword = isValidPassword(pswd);
-        if(validCF&&validNome&&validCognome&&validDataNascita&&validIndirizzo&&validUserId&&validEmail&&validPassword){
+        
+        validCF = isValidCF(cf);
+        cfNotSigned = !userCFSigned(cf);
+        validNome = isValidName(nome);
+        validCognome = isValidCognome(cognome);
+        validDataNascita = isValidBirthDate(dataNascita);
+        validIndirizzo = isValidInd(indirizzo);
+        validUserId = isValidUserID(userId);
+        validEmail = isValidMail(email);
+        validPassword = isValidPassword(pswd);
+        passwordMatches = passwordsMatch(pswd, contrPswd);
+        
+        if(validCF 
+                && cfNotSigned 
+                && validNome 
+                && validCognome 
+                && validDataNascita 
+                && validIndirizzo
+                && validUserId 
+                && validEmail
+                && validPassword
+                && passwordMatches
+            ){
             nuovo = new Utente(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo);    
-            userDatabase.addUser(nuovo);
-            salva();
+            userDatabase.addNewUser(nuovo);
+            EMOTIONALSONGS.loggedUser = nuovo;
+            EMOTIONALSONGS.logged = true;
+            allRight = true;
         }
         
         
     }
-    
-     /**
-     * Il metodo si occupa di scrivere il proprio parametro sul file utentiRegistrati.
-     * @param testoDaScrivere - Prende la stringa con i dati dell'utente.
-     * @throws IOException 
-     */
-    public void salva() throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(utentiRegistrati));
-        for (int i = 0; i < userDatabase.getDimensione(); i++) {
-            bufferedWriter.write(userDatabase.get(i).componiStringa());
-        }
-        bufferedWriter.flush();
-        bufferedWriter.close();
-    }
-     
      /**
       * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome.
       * Succesivamente effettuerà un controllo sul nome, che non deve: 
@@ -93,12 +104,9 @@ public class RegistrationPerformer {
       * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
     private boolean isValidName(String nome){
-
         if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
-            return false;
-            panel.
+            return false;   
         }
-        
         return true;
     }
      
@@ -130,7 +138,6 @@ public class RegistrationPerformer {
         if(indirizzo.isEmpty()){
             return false;
         }
-
         return true;
     }
 
@@ -141,9 +148,8 @@ public class RegistrationPerformer {
 * @throws PatternSyntaxException
 * @return la password inserita dall'utente. 
 **/
-  private boolean isValidPassword(String password) throws PatternSyntaxException{
-      boolean validForm;
-      boolean passwordsEqual;
+    private boolean isValidPassword(String password) throws PatternSyntaxException{
+        boolean validForm;
     
       //System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
     /**
@@ -158,26 +164,23 @@ public class RegistrationPerformer {
     * <li>{8,20} -> minimo 8, massimo 20 caratteri.
     * </ul>
     **/
-    String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
+        String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
     /** Compila il pattern precedente. **/
-    Pattern p = Pattern.compile(regex);
+        Pattern p = Pattern.compile(regex);
     /** Pattern class contiene il metodo .matcher() per verificare se la password coincide con il pattern.**/
-    Matcher m = p.matcher(password);
+        Matcher m = p.matcher(password);
     /**
     * Questa parte del codice gestisce la situazione
     * nel caso in cui la password non rispetti tutti i requisiti.
     **/
-    validForm = m.matches();
-      
-    /**
-    *Per verificare che l'utente ricordi la password inserita
-    *gli si chiede di reinserirla, per poi successivamente confrontarla con la prima.
-    **/
-    String passwordCtrl = new Scanner(System.in).nextLine();//da modificare
-    passwordsEqual = password.equals(passwordCtrl);
+        validForm = m.matches();
     
-    return validForm&&passwordsEqual;
-  }
+        return validForm;
+    }
+  
+    public boolean passwordsMatch(String password,String controllo){
+        return password.equals(controllo);
+    }
 
     /**
     * Il metodo si occupa di chiedere l'email all'utente, e di controllare la sua 
@@ -225,9 +228,7 @@ public class RegistrationPerformer {
     
     boolean valid = m.matches();
    
-    boolean notSigned = userCFSigned(cf);
-    
-    return valid && notSigned;
+    return valid;
   }
 
   /**

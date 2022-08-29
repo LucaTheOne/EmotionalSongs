@@ -9,19 +9,19 @@ import java.util.*;
  * @author big
  */
 public class UserDatabase {
-    private ArrayList<Utente> datiUtentiRegistrati;
     private Utente[] arrayUtenti;
+    private String path = Utilities.pathToUserDatabase;
     UserDatabase(){
-        datiUtentiRegistrati = importData(Utilities.pathToUserDatabase);
+        importData();
     }
     
-    private ArrayList<Utente> importData(String path) {
-        ArrayList<Utente> userList = new ArrayList<>();
+    private void importData() {
         try {
-            BufferedReader buffer = new BufferedReader(new FileReader(new File(path)));
-            String currentLine = buffer.readLine();
-                while (currentLine != null) {
-                    userList.add(new Utente(currentLine.split(";")[0], 
+            Scanner scanner = new Scanner(new File(path));
+            ArrayList<Utente> listaProvvisoria = new ArrayList<>();
+            while(scanner.hasNextLine()){
+                String currentLine = scanner.nextLine();
+                listaProvvisoria.add(new Utente(currentLine.split(";")[0], 
                         currentLine.split(";")[1], 
                         currentLine.split(";")[2],
                         currentLine.split(";")[3], 
@@ -29,45 +29,63 @@ public class UserDatabase {
                         currentLine.split(";")[5], 
                         currentLine.split(";")[6], 
                         currentLine.split(";")[7]
-                    ));
-                    currentLine = buffer.readLine();
-                }    
+                )); 
+            }
+            arrayUtenti = new Utente[listaProvvisoria.size()];
+            for (int i = 0; i < listaProvvisoria.size(); i++) {
+                arrayUtenti[i] = listaProvvisoria.get(i);
+            }
         } catch (Exception e) {
             e.getMessage();
-        }
-        arrayUtenti = convertiInArray();
-        return userList;   
-    }
-    
-    public ArrayList<Utente> getUserDatabase(){
-        return datiUtentiRegistrati;
+        }  
     }
 
     public int getDimensione() {
-        return datiUtentiRegistrati.size();
+        return arrayUtenti.length;
     }
     
     public Utente get(int index){
-        return datiUtentiRegistrati.get(index);
+        return arrayUtenti[index];
     }
     
-    public void addUser(Utente user){
-        datiUtentiRegistrati.add(user);
+    public void addNewUser(Utente user){
+        Utente[] newArray = new Utente[arrayUtenti.length+1];
+        for(int i = 0; i<arrayUtenti.length;i++){
+            newArray[i]=arrayUtenti[i];
+        }
+        newArray[arrayUtenti.length] = user;
+        arrayUtenti = newArray;
+        riordina();
+        salvaDati();
+    }
+    
+    public void sostituisciIndice(int index, Utente daInserire){
+        arrayUtenti[index] = daInserire;
     }
     
     public Utente cerca(String userId){
-        
+        EngineSearch engineSearch = new EngineSearch();
+        return engineSearch.ricercaDicotomicaUtente(this, userId);
     }
     
     public void riordina(){
-        
+        EngineSort sortEngine = new EngineSort();
+        sortEngine.riordinaDatabase(this);    
     }
     
-    public Utente[] convertiInArray(){
-        return datiUtentiRegistrati.toArray(arrayUtenti);
+    public void salvaDati(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path)));
+            for (int i = 0; i < arrayUtenti.length; i++) {
+               writer.write(get(i).componiStringa());
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }     
     }
     
-    public Utente[] getArray(){
+    public Utente[] getArrayData(){
         return arrayUtenti;
     }
 }

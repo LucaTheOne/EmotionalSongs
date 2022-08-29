@@ -14,7 +14,7 @@ public class EMOTIONALSONGS {
     public static Repository REPOSITORY;
     public DataSetEmozioni dataSetEmozioni;
     public static UserDatabase userDatabase;
-    public boolean logged = false;
+    public static boolean logged = false;
     public static MainWindow mainWindow;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {

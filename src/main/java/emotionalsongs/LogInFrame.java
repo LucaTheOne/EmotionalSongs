@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author big
  */
 public class LogInFrame extends javax.swing.JFrame {
-    LogInPerformer logger = new LogInPerformer(EMOTIONALSONGS.userDatabase);
+    EngineLogIn logger = new EngineLogIn();
     Image bg = Utilities.logingBG.getImage();
     MainWindow mainWindow = EMOTIONALSONGS.mainWindow;
     /**
@@ -145,26 +145,24 @@ public class LogInFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-         
-        boolean idExists = logger.foundId(this.idField.getText());
-        boolean passwordIsCorrect = logger.passwordsMatch(String.valueOf(this.passwordField.getPassword()));
-        if(!idExists){
+        logger.login(idField.getText(), String.valueOf(passwordField.getPassword()));
+        
+        if(!logger.idFounded){
             this.wrongId.setVisible(true);
             this.revalidate();
             this.repaint();
         }
-        if(!passwordIsCorrect){
+        if(!logger.passwordMatches){
             this.wrongPassword.setVisible(true);
             this.revalidate();
             this.repaint();
         }
-        if(idExists&&passwordIsCorrect){
-            EMOTIONALSONGS.loggedUser = logger.user;
-            
+        if(logger.idFounded&&logger.passwordMatches){
+
             mainWindow.setUpperBar(new LoggedToolBarPanel(mainWindow));
             mainWindow.setLeftPanel(new LoggedMenuExpanded(mainWindow));
             
-            this.dispose();
+            dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

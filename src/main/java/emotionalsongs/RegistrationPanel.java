@@ -11,13 +11,12 @@ import java.io.*;
  * @author natanaild
  */
 public class RegistrationPanel extends javax.swing.JPanel {
-    String userId,nome,cognome,cf,indirizzo,email,pswd,dataNascita;
-
+    EngineRegistration engine ;
     /**
      * Creates new form RegistrazionePanel
      */
     public RegistrationPanel() {
-        
+        engine = new EngineRegistration(EMOTIONALSONGS.userDatabase);
         initComponents();
     }
 
@@ -32,15 +31,14 @@ public class RegistrationPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         RegistrazioneLabelPanel = new javax.swing.JPanel();
-        RegistrazioneLabel = new javax.swing.JLabel();
         NomePanel = new javax.swing.JPanel();
         NomeLabel = new javax.swing.JLabel();
         NomeField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        nomeCheckLabel = new javax.swing.JLabel();
         CognomePanel = new javax.swing.JPanel();
         CognomeLabel = new javax.swing.JLabel();
         CognomeField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        cognomeCheckLabel = new javax.swing.JLabel();
         CFPanel = new javax.swing.JPanel();
         CFLabel = new javax.swing.JLabel();
         CFField = new javax.swing.JTextField();
@@ -48,11 +46,11 @@ public class RegistrationPanel extends javax.swing.JPanel {
         DataNascitaPanel = new javax.swing.JPanel();
         DataNascitaLabel = new javax.swing.JLabel();
         DataNascitaField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        dataCheckLabel = new javax.swing.JLabel();
         IndirizzoPanel = new javax.swing.JPanel();
         IndirizzoLabel = new javax.swing.JLabel();
         IndirizzoField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        indirizzoCheckLabel = new javax.swing.JLabel();
         UserIDPanel = new javax.swing.JPanel();
         UserIDLabel = new javax.swing.JLabel();
         UserIDField = new javax.swing.JTextField();
@@ -60,12 +58,12 @@ public class RegistrationPanel extends javax.swing.JPanel {
         EmailPanel = new javax.swing.JPanel();
         EmailLabel = new javax.swing.JLabel();
         EmailField = new javax.swing.JTextField();
-        EmailCorrettoLabel = new javax.swing.JLabel();
+        EmailCheckLabel = new javax.swing.JLabel();
         PasswordPanel = new javax.swing.JPanel();
         PasswordLabel = new javax.swing.JLabel();
         PasswordField = new javax.swing.JPasswordField();
-        PasswordCheckLabel = new javax.swing.JLabel();
-        PasswordCheckField = new javax.swing.JPasswordField();
+        PasswordControlloLabel = new javax.swing.JLabel();
+        PasswordControlField = new javax.swing.JPasswordField();
         PasswordNonValidaLabel = new javax.swing.JLabel();
         PasswordNonCoincidonoLabel = new javax.swing.JLabel();
         RegistrazioneButtonsPanel = new javax.swing.JPanel();
@@ -77,20 +75,13 @@ public class RegistrationPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridLayout(10, 1));
 
         RegistrazioneLabelPanel.setLayout(new java.awt.GridLayout(1, 0));
-
-        RegistrazioneLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        RegistrazioneLabel.setForeground(new java.awt.Color(255, 255, 255));
-        RegistrazioneLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/GUIElements/Bundle"); // NOI18N
-        RegistrazioneLabel.setText(bundle.getString("RegistrationPanel.RegistrazioneLabel.text")); // NOI18N
-        RegistrazioneLabelPanel.add(RegistrazioneLabel);
-
         add(RegistrazioneLabelPanel);
 
         NomePanel.setLayout(new java.awt.GridBagLayout());
 
         NomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         NomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("emotionalsongs/GUIElements/Bundle"); // NOI18N
         NomeLabel.setText(bundle.getString("RegistrationPanel.NomeLabel.text")); // NOI18N
         NomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -103,11 +94,11 @@ public class RegistrationPanel extends javax.swing.JPanel {
         NomeField.setPreferredSize(new java.awt.Dimension(300, 23));
         NomePanel.add(NomeField, new java.awt.GridBagConstraints());
 
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        nomeCheckLabel.setForeground(new java.awt.Color(255, 0, 51));
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("emotionalsongs/Bundle"); // NOI18N
-        jLabel1.setText(bundle1.getString("RegistrationPanel.jLabel1.text")); // NOI18N
-        NomePanel.add(jLabel1, new java.awt.GridBagConstraints());
-        jLabel1.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.jLabel1.AccessibleContext.accessibleName")); // NOI18N
+        nomeCheckLabel.setText(bundle1.getString("RegistrationPanel.nomeCheckLabel.text")); // NOI18N
+        NomePanel.add(nomeCheckLabel, new java.awt.GridBagConstraints());
+        nomeCheckLabel.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.nomeCheckLabel.AccessibleContext.accessibleName")); // NOI18N
 
         add(NomePanel);
 
@@ -123,10 +114,10 @@ public class RegistrationPanel extends javax.swing.JPanel {
         CognomeField.setPreferredSize(new java.awt.Dimension(300, 23));
         CognomePanel.add(CognomeField, new java.awt.GridBagConstraints());
 
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText(bundle1.getString("RegistrationPanel.jLabel2.text")); // NOI18N
-        CognomePanel.add(jLabel2, new java.awt.GridBagConstraints());
-        jLabel2.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.jLabel2.AccessibleContext.accessibleName")); // NOI18N
+        cognomeCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
+        cognomeCheckLabel.setText(bundle1.getString("RegistrationPanel.cognomeCheckLabel.text")); // NOI18N
+        CognomePanel.add(cognomeCheckLabel, new java.awt.GridBagConstraints());
+        cognomeCheckLabel.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.cognomeCheckLabel.AccessibleContext.accessibleName")); // NOI18N
 
         add(CognomePanel);
 
@@ -149,10 +140,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         CFCheckLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CFCheckLabel.setLabelFor(CFField);
         CFCheckLabel.setText(bundle.getString("RegistrationPanel.CFCheckLabel.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        CFPanel.add(CFCheckLabel, gridBagConstraints);
+        CFPanel.add(CFCheckLabel, new java.awt.GridBagConstraints());
 
         add(CFPanel);
 
@@ -171,10 +159,10 @@ public class RegistrationPanel extends javax.swing.JPanel {
         DataNascitaField.setPreferredSize(new java.awt.Dimension(130, 23));
         DataNascitaPanel.add(DataNascitaField, new java.awt.GridBagConstraints());
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText(bundle1.getString("RegistrationPanel.jLabel3.text")); // NOI18N
-        DataNascitaPanel.add(jLabel3, new java.awt.GridBagConstraints());
-        jLabel3.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.jLabel3.AccessibleContext.accessibleName")); // NOI18N
+        dataCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
+        dataCheckLabel.setText(bundle1.getString("RegistrationPanel.dataCheckLabel.text")); // NOI18N
+        DataNascitaPanel.add(dataCheckLabel, new java.awt.GridBagConstraints());
+        dataCheckLabel.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.dataCheckLabel.AccessibleContext.accessibleName")); // NOI18N
 
         add(DataNascitaPanel);
 
@@ -192,10 +180,10 @@ public class RegistrationPanel extends javax.swing.JPanel {
         IndirizzoField.setPreferredSize(new java.awt.Dimension(400, 23));
         IndirizzoPanel.add(IndirizzoField, new java.awt.GridBagConstraints());
 
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText(bundle1.getString("RegistrationPanel.jLabel4.text")); // NOI18N
-        IndirizzoPanel.add(jLabel4, new java.awt.GridBagConstraints());
-        jLabel4.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.jLabel4.AccessibleContext.accessibleName")); // NOI18N
+        indirizzoCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
+        indirizzoCheckLabel.setText(bundle1.getString("RegistrationPanel.indirizzoCheckLabel.text")); // NOI18N
+        IndirizzoPanel.add(indirizzoCheckLabel, new java.awt.GridBagConstraints());
+        indirizzoCheckLabel.getAccessibleContext().setAccessibleName(bundle1.getString("RegistrationPanel.indirizzoCheckLabel.AccessibleContext.accessibleName")); // NOI18N
 
         add(IndirizzoPanel);
 
@@ -215,11 +203,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
 
         UserIDCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
         UserIDCheckLabel.setText(bundle.getString("RegistrationPanel.UserIDCheckLabel.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        UserIDPanel.add(UserIDCheckLabel, gridBagConstraints);
+        UserIDPanel.add(UserIDCheckLabel, new java.awt.GridBagConstraints());
 
         add(UserIDPanel);
 
@@ -237,12 +221,9 @@ public class RegistrationPanel extends javax.swing.JPanel {
         EmailField.setPreferredSize(new java.awt.Dimension(300, 23));
         EmailPanel.add(EmailField, new java.awt.GridBagConstraints());
 
-        EmailCorrettoLabel.setForeground(new java.awt.Color(255, 0, 0));
-        EmailCorrettoLabel.setText(bundle.getString("RegistrationPanel.EmailCorrettoLabel.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        EmailPanel.add(EmailCorrettoLabel, gridBagConstraints);
+        EmailCheckLabel.setForeground(new java.awt.Color(255, 0, 0));
+        EmailCheckLabel.setText(bundle.getString("RegistrationPanel.EmailCheckLabel.text")); // NOI18N
+        EmailPanel.add(EmailCheckLabel, new java.awt.GridBagConstraints());
 
         add(EmailPanel);
 
@@ -260,17 +241,17 @@ public class RegistrationPanel extends javax.swing.JPanel {
         PasswordField.setPreferredSize(new java.awt.Dimension(200, 23));
         PasswordPanel.add(PasswordField, new java.awt.GridBagConstraints());
 
-        PasswordCheckLabel.setForeground(new java.awt.Color(255, 255, 255));
-        PasswordCheckLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PasswordCheckLabel.setText(bundle.getString("RegistrationPanel.PasswordCheckLabel.text")); // NOI18N
+        PasswordControlloLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordControlloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PasswordControlloLabel.setText(bundle.getString("RegistrationPanel.PasswordControlloLabel.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 15;
-        PasswordPanel.add(PasswordCheckLabel, gridBagConstraints);
+        PasswordPanel.add(PasswordControlloLabel, gridBagConstraints);
 
-        PasswordCheckField.setText(bundle.getString("RegistrationPanel.PasswordCheckField.text")); // NOI18N
-        PasswordCheckField.setPreferredSize(new java.awt.Dimension(200, 23));
-        PasswordPanel.add(PasswordCheckField, new java.awt.GridBagConstraints());
+        PasswordControlField.setText(bundle.getString("RegistrationPanel.PasswordControlField.text")); // NOI18N
+        PasswordControlField.setPreferredSize(new java.awt.Dimension(200, 23));
+        PasswordPanel.add(PasswordControlField, new java.awt.GridBagConstraints());
 
         PasswordNonValidaLabel.setForeground(new java.awt.Color(255, 0, 0));
         PasswordNonValidaLabel.setText(bundle.getString("RegistrationPanel.PasswordNonValidaLabel.text")); // NOI18N
@@ -304,19 +285,47 @@ public class RegistrationPanel extends javax.swing.JPanel {
         RegistrazioneButtonsPanel.add(jPanel1, gridBagConstraints);
 
         AnnullaButton.setText(bundle.getString("RegistrationPanel.AnnullaButton.text")); // NOI18N
+        AnnullaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnnullaButtonActionPerformed(evt);
+            }
+        });
         RegistrazioneButtonsPanel.add(AnnullaButton, new java.awt.GridBagConstraints());
 
         add(RegistrazioneButtonsPanel);
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistratiButtonActionPerformed
-        RegistrationPerformer engine = new RegistrationPerformer(this);
+        
         try {
-            engine.registraNuovoUtente(userId, NomeField.getText(), CognomeField.getText(), CFField.getText(), IndirizzoField.getText(), EmailField.getText(), String.valueOf(PasswordField.getPassword()), DataNascitaField.getText());
+            engine.registraNuovoUtente(UserIDField.getText(), NomeField.getText(), CognomeField.getText(), CFField.getText(), IndirizzoField.getText(), EmailField.getText(), String.valueOf(PasswordField.getPassword()),String.valueOf(PasswordControlField.getPassword()), DataNascitaField.getText());
+            if(!engine.allRight){
+                if (!engine.validUserId) UserIDCheckLabel.setVisible(true);
+                if (!engine.validNome) nomeCheckLabel.setVisible(true);
+                if (!engine.validCognome) cognomeCheckLabel.setVisible(true);
+                if (!engine.validCF) CFCheckLabel.setVisible(true);
+                if (!engine.cfNotSigned) {
+                    CFCheckLabel.setText("Codice fiscale già registrato! prego effettuare LogIn");
+                    CFCheckLabel.setVisible(true);
+                }
+                if (!engine.validPassword) PasswordNonValidaLabel.setVisible(true);
+                if (!engine.passwordMatches) PasswordNonCoincidonoLabel.setVisible(true);
+                if (!engine.validEmail) EmailCheckLabel.setVisible(true);
+                if (!engine.validDataNascita) dataCheckLabel.setVisible(true);
+                if (!engine.validIndirizzo) indirizzoCheckLabel.setVisible(true);
+                revalidate();
+                repaint();
+            } else {
+                EMOTIONALSONGS.mainWindow.cleanUpMainPanel();
+            }
         } catch (IOException ex) {
             ex.getMessage();
         }
     }//GEN-LAST:event_RegistratiButtonActionPerformed
+
+    private void AnnullaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnullaButtonActionPerformed
+        removeAll();
+    }//GEN-LAST:event_AnnullaButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -331,7 +340,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JTextField DataNascitaField;
     private javax.swing.JLabel DataNascitaLabel;
     private javax.swing.JPanel DataNascitaPanel;
-    public javax.swing.JLabel EmailCorrettoLabel;
+    public javax.swing.JLabel EmailCheckLabel;
     private javax.swing.JTextField EmailField;
     private javax.swing.JLabel EmailLabel;
     private javax.swing.JPanel EmailPanel;
@@ -341,8 +350,8 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JTextField NomeField;
     private javax.swing.JLabel NomeLabel;
     private javax.swing.JPanel NomePanel;
-    private javax.swing.JPasswordField PasswordCheckField;
-    private javax.swing.JLabel PasswordCheckLabel;
+    private javax.swing.JPasswordField PasswordControlField;
+    private javax.swing.JLabel PasswordControlloLabel;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel PasswordNonCoincidonoLabel;
@@ -350,16 +359,15 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JPanel PasswordPanel;
     private javax.swing.JButton RegistratiButton;
     private javax.swing.JPanel RegistrazioneButtonsPanel;
-    private javax.swing.JLabel RegistrazioneLabel;
     private javax.swing.JPanel RegistrazioneLabelPanel;
     public javax.swing.JLabel UserIDCheckLabel;
     private javax.swing.JTextField UserIDField;
     private javax.swing.JLabel UserIDLabel;
     private javax.swing.JPanel UserIDPanel;
-    public javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel jLabel3;
-    public javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel cognomeCheckLabel;
+    public javax.swing.JLabel dataCheckLabel;
+    public javax.swing.JLabel indirizzoCheckLabel;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JLabel nomeCheckLabel;
     // End of variables declaration//GEN-END:variables
 }

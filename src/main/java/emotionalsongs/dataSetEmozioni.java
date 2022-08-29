@@ -57,7 +57,7 @@ public class DataSetEmozioni {
             while((stringaCorrente = reader.readLine()) != null){
                 switch (counter) {
                     case 0:
-                        dati = new DatiEmozioniBrano(SearchEngine.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
+                        dati = new DatiEmozioniBrano(EngineSearch.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
                         counter++;
                         break;
                     case 1:

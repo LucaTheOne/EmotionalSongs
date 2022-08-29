@@ -4,6 +4,8 @@
  */
 package emotionalsongs;
 
+import java.io.IOException;
+
 /**
  *@hidden
  * @author big
@@ -77,6 +79,11 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
         RegisterButton.setFocusable(false);
         RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterButtonActionPerformed(evt);
+            }
+        });
         upperToolBar.add(RegisterButton);
 
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
@@ -84,6 +91,11 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
         CreditsButton.setFocusable(false);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CreditsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreditsButtonActionPerformed(evt);
+            }
+        });
         upperToolBar.add(CreditsButton);
 
         LanguageButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
@@ -111,6 +123,15 @@ public class UnloggedToolBarPanel extends javax.swing.JPanel {
             mainPage.setLeftPanel(new MenuUnespanded(mainPage));
         }
     }//GEN-LAST:event_menuButtonStateChanged
+
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+
+            mainPage.setMainPanel(new GUIRegistrationPanel());            
+    }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
+        mainPage.setMainPanel(new CreditsPanel());
+    }//GEN-LAST:event_CreditsButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

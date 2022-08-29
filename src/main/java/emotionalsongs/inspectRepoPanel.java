@@ -17,7 +17,7 @@ public class InspectRepoPanel extends javax.swing.JPanel {
     int counterIndex = 30;
     boolean firstPage = true;
     boolean lastPage = false;
-    SearchEngine searchEngine = new SearchEngine();
+    EngineSearch searchEngine = new EngineSearch();
     final ArrayList<Brano> REPOSITORY = EMOTIONALSONGS.REPOSITORY.getLista();
     ArrayList<Brano> repoAttuale = EMOTIONALSONGS.REPOSITORY.getLista();
     //Repository repo = new Repository();

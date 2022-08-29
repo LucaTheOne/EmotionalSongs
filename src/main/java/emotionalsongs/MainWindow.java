@@ -94,11 +94,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.removeAll();
         mainPanel.add(newMainPanel,BorderLayout.CENTER);
         mainPanel.setOpaque(true);
+        newMainPanel.setVisible(true);
         revalidate();
         repaint();
     }
     
-    public void cleanUp(){
+    public void cleanUpMainPanel(){
         mainPanel.removeAll();
         mainPanel.setOpaque(false);
         revalidate();
