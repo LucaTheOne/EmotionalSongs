@@ -2,7 +2,6 @@
 package emotionalsongs;
 
 import java.io.*;
-import java.util.*;
 import java.util.regex.*;
 
 /**
@@ -37,6 +36,7 @@ public class EngineRegistration {
     boolean validDataNascita;
     boolean validIndirizzo;
     boolean validUserId;
+    boolean idNotTaken;
     boolean validEmail;
     boolean validPassword;
     boolean passwordMatches;
@@ -61,15 +61,19 @@ public class EngineRegistration {
         Utente nuovo;
         
         validCF = isValidCF(cf);
-        cfNotSigned = !userCFSigned(cf);
+        cfNotSigned = userCFNotSigned(cf);
         validNome = isValidName(nome);
         validCognome = isValidCognome(cognome);
         validDataNascita = isValidBirthDate(dataNascita);
         validIndirizzo = isValidInd(indirizzo);
         validUserId = isValidUserID(userId);
+        idNotTaken = userIDNotTaken(userId);
+        System.out.println("id controllato");
         validEmail = isValidMail(email);
+        System.out.println("mail controllato");
         validPassword = isValidPassword(pswd);
         passwordMatches = passwordsMatch(pswd, contrPswd);
+        System.out.println("psw controllato");
         
         if(validCF 
                 && cfNotSigned 
@@ -77,20 +81,23 @@ public class EngineRegistration {
                 && validCognome 
                 && validDataNascita 
                 && validIndirizzo
-                && validUserId 
+                && validUserId
+                && idNotTaken
                 && validEmail
                 && validPassword
                 && passwordMatches
             ){
-            nuovo = new Utente(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo);    
+            nuovo = new Utente(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo); 
+            System.out.println("utente creato");
             userDatabase.addNewUser(nuovo);
+            System.out.println("utente aggiunto");
             EMOTIONALSONGS.loggedUser = nuovo;
             EMOTIONALSONGS.logged = true;
             allRight = true;
-        }
-        
-        
+            System.out.println("fine");
+        }        
     }
+    
      /**
       * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome.
       * Succesivamente effettuerà un controllo sul nome, che non deve: 
@@ -104,13 +111,13 @@ public class EngineRegistration {
       * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
     private boolean isValidName(String nome){
-        if (nome.length()>20||nome.length()<3||nome.isEmpty()||nome.matches(".*\\d.*")) {
+        if (nome.length()>20||nome.length()<3||nome.isBlank()||nome.matches(".*\\d.*")) {
             return false;   
         }
         return true;
     }
      
-     /**
+    /**
       * Il metodo si occupa di chiedere all'utente di inserire il suo primo cognome.
       * Succesivamente effettuerà un controllo sul primo cognome, che non deve: 
       * <ul>
@@ -123,7 +130,7 @@ public class EngineRegistration {
       * @return il cognome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
     private boolean isValidCognome(String cognome){
-        if (cognome.length()>20||cognome.length()<3||cognome.isEmpty()||cognome.matches(".*\\d.*")) {
+        if (cognome.length()>20||cognome.length()<3||cognome.isBlank()||cognome.matches(".*\\d.*")) {
             return false;
         }
         return true;
@@ -135,23 +142,20 @@ public class EngineRegistration {
      * @return l'indirizzo dell'utente scritto in minuscolo.
      */
     private boolean isValidInd(String indirizzo){
-        if(indirizzo.isEmpty()){
+        if(indirizzo.isBlank()){
             return false;
         }
         return true;
     }
 
-/**
+    /**
 * Il metodo si occupa di far inserire la Password
 * all'utente e di verificare che rispetti i requisiti.
 * Inoltre verifica che l'utente abbia inserito la stessa password entrambe le volte.
 * @throws PatternSyntaxException
 * @return la password inserita dall'utente. 
 **/
-    private boolean isValidPassword(String password) throws PatternSyntaxException{
-        boolean validForm;
-    
-      //System.out.println("Minimo 8 - massimo 20 caratteri,\n"+"una minuscola, una maiuscola, un numero \n "+"ed almeno un carattere speciale tra: @#$%^&+=");
+    private boolean isValidPassword(String password) throws PatternSyntaxException{  
     /**
     * Stringa contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
     * di almeno uno per tipologia:
@@ -173,9 +177,8 @@ public class EngineRegistration {
     * Questa parte del codice gestisce la situazione
     * nel caso in cui la password non rispetti tutti i requisiti.
     **/
-        validForm = m.matches();
     
-        return validForm;
+        return m.matches();
     }
   
     public boolean passwordsMatch(String password,String controllo){
@@ -188,20 +191,19 @@ public class EngineRegistration {
     * @return l'email dell'utente.
     * @throws PatternSyntaxException 
     */
-  private boolean isValidMail(String email) throws PatternSyntaxException{
+    private boolean isValidMail(String email) throws PatternSyntaxException{
       
-    // Regex to check valid password.
-      String regex = "^(.+)@(.+)$";
-    // Compile the ReGex
-      Pattern p = Pattern.compile(regex);
-    // Pattern class contains matcher() method to find matching between given password and regular expression.
-      Matcher m = p.matcher(email);
-    // Nel caso la password non rispettasse i requisiti
+        // Regex to check valid password.
+        String regex = "^(.+)@(.+)$";
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+        // Pattern class contains matcher() method to find matching between given password and regular expression.
+        Matcher m = p.matcher(email);
+        // Nel caso la password non rispettasse i requisiti
       
-      return m.matches();
-     }
-
-
+        return m.matches();
+    }
+  
     /**
     * Stringa contenente i tipi di caratteri ed il formato
     * che deve presentare un codice fiscale italiano corretto:
@@ -213,25 +215,21 @@ public class EngineRegistration {
     * <li>[A-Za-z]{1} -> una lettera del alfabeto.
     * </ul>
     **/
-  private boolean isValidCF(String cf) throws PatternSyntaxException, FileNotFoundException{
+    private boolean isValidCF(String cf) throws PatternSyntaxException, FileNotFoundException{
     
-    String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
-    /** compila il pattern precedente **/
-    Pattern p = Pattern.compile(regex);
-    /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
-    Matcher m = p.matcher(cf);
-    /**
-    * Questa parte del codice gestisce la situazione
-    * nel caso in cui il codice fiscale non rispetti il pattern.
-    **/
-    
-    
-    boolean valid = m.matches();
-   
-    return valid;
-  }
+        String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
+        /** compila il pattern precedente **/
+        Pattern p = Pattern.compile(regex);
+        /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
+        Matcher m = p.matcher(cf);
+        /**
+        * Questa parte del codice gestisce la situazione
+        * nel caso in cui il codice fiscale non rispetti il pattern.
+        **/
+        return m.matches();
+    }
 
-  /**
+    /**
    * Il metodo si occupa di chiedere all'utente la data di nascita, 
    * nel formato: GG/MM/AAAA; dopodichè verrà eseguito un controllo con il codice fiscale.
    * @return la data di nascita dell'utente.
@@ -239,7 +237,7 @@ public class EngineRegistration {
    */
     private boolean isValidBirthDate(String birthDate) throws PatternSyntaxException {
     
-        String regex = "^([0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4})$";
+        String regex = "^([0-9]{2}[/][0-9]{2}[/][0-9]{4})$";
       /** compila il pattern precedente **/
         Pattern p = Pattern.compile(regex);
       /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
@@ -248,71 +246,40 @@ public class EngineRegistration {
         return m.matches();
     }
 
-   /**
-   * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
-   * @param cf - il codice fiscale dell'utente
-   * @return true - se codice fiscale è presente nel database, false - se il codice fiscale non è presente nel database.
-   * @throws FileNotFoundException 
-   */  
-  private boolean userCFSigned(String cf) throws FileNotFoundException {
-      Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
-      inputStream.useDelimiter("\n");
-
-      while(inputStream.hasNext()){
-        int countline = 0;
-        String line = inputStream.next();//prendo l' intera linea
-        if(countline%9==1){
-          if (line.contains(cf)) {
-            return true;
-          }
-        }
-        countline++;
-      }
-    return false;
-  }
-  
-  /**
-   * Il metodo si occupa di chiedere all'utente di inserire l'userID. 
-   * L'userID inserito non deve: 
-   * <ul>
-   * <li>essere composto da meno di 3 caratteri o da più di 10 caratteri,
-   * <li>non deve contenere spazi.
-   * </ul>
-   * Se rispetta queste tre condizioni, l'userID sarà registrato.
-   * @return - userID dell'utente.
-   * @throws FileNotFoundException 
-   */
+    /**
+    * Il metodo si occupa di chiedere all'utente di inserire l'userID. 
+    * L'userID inserito non deve: 
+    * <ul>
+    * <li>essere composto da meno di 3 caratteri o da più di 10 caratteri,
+    * <li>non deve contenere spazi.
+    * </ul>
+    * Se rispetta queste tre condizioni, l'userID sarà registrato.
+    * @return - userID dell'utente.
+    * @throws FileNotFoundException 
+    */
     private boolean isValidUserID(String userId) throws FileNotFoundException{
-        boolean valid;
-        boolean notTaken;
-        valid = userId.length()<3||userId.length()>10||userId.contains(" ");
-        notTaken = !userIDTaken(userId);
-
-
-        return valid&&notTaken;
+        return userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
   
-   /**
-   * Il metodo si occupa di controllare se l'userID inserito dall'utente non sia 
-   * già presente nel database.
-   * @param id - userID dell'utente.
-   * @return true - se l'userID è presente nel database, false - se l'userID non è presente nel database.
-   * @throws FileNotFoundException 
-   */
-  private boolean userIDTaken(String id) throws FileNotFoundException{
-      Scanner inputStream = new Scanner(new FileReader(Utilities.pathToUserDatabase));
-      inputStream.useDelimiter("\n");
+    /**
+    * Il metodo si occupa di controllare se l'userID inserito dall'utente non sia 
+    * già presente nel database.
+    * @param id - userID dell'utente.
+    * @return true - se l'userID è presente nel database, false - se l'userID non è presente nel database.
+    * @throws FileNotFoundException 
+    */
+    private boolean userIDNotTaken(String id) throws FileNotFoundException{
+        return userDatabase.cercaId(id) == null;
+    }  
 
-      while(inputStream.hasNext()){
-        int countline = 0;
-        String line = inputStream.next();//prendo l' intera linea
-        if(countline%9==0){
-          if (line.contains(id)) {
-            return true;
-          }
-        }
-        countline++;
-      }
-    return false;
-  }
+    /**
+    * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
+    * @param cf - il codice fiscale dell'utente
+    * @return true - se codice fiscale è presente nel database, false - se il codice fiscale non è presente nel database.
+    * @throws FileNotFoundException 
+    */  
+    private boolean userCFNotSigned(String cf) throws FileNotFoundException {
+        return userDatabase.cercaCf(cf) == null;
+    }  
+    
 }

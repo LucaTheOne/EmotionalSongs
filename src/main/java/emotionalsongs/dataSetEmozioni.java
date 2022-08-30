@@ -1,14 +1,8 @@
 
 package emotionalsongs;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 /**
  * La classe DataSetEmozioni si occupa di importare ed esportare i dati delle 
@@ -57,7 +51,7 @@ public class DataSetEmozioni {
             while((stringaCorrente = reader.readLine()) != null){
                 switch (counter) {
                     case 0:
-                        dati = new DatiEmozioniBrano(EngineSearch.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
+                        //dati = new DatiEmozioniBrano(EngineSearch.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
                         counter++;
                         break;
                     case 1:

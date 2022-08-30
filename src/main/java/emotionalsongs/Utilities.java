@@ -2,7 +2,6 @@
 package emotionalsongs;
 
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -22,19 +21,13 @@ public class Utilities {
     public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
     public static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
     public static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
-    public static ImageIcon backGround = new ImageIcon("../EmotionalSongs/Risorse/BackGround.png");
+    public static ImageIcon mainBackGround = new ImageIcon("../EmotionalSongs/Risorse/mainBackground.png");
     public static ImageIcon searchIcon = new ImageIcon("../EmotionalSongs/Risorse/IconaRicerca.png");
     public static ImageIcon backButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/BackButton.png");
     public static ImageIcon nextButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/NextButton.png");  
-    public static ImageIcon CreditsButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/Credits.png");
-    public static ImageIcon EngFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/EngFlag.png");
-    public static ImageIcon ItaFlagButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaFlag.png");
-    public static ImageIcon EngLoginButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/EngLogin.png");
-    public static ImageIcon ItaLoginButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ItaLogin.png");
-    public static ImageIcon EngRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegEng.png");
-    public static ImageIcon ItaRegButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIta.png");
     public static ImageIcon spaceImage = new ImageIcon("../EmotionalSongs/Risorse/space.png");
     public static ImageIcon logingBG = new ImageIcon("../EmotionalSongs/Risorse/LoginBG.png");
+    public static ImageIcon regBG = new ImageIcon("../EmotionalSongs/Risorse/RegBg.png");
     
 //Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
@@ -45,28 +38,10 @@ public class Utilities {
     public static Dimension LOADINGFRAMESIZE = new Dimension(832, 610);
     public static Font fontLoadingFrame;
     
-    //dimensions
-    public static Dimension FRAMESTARTDIMENSION = new Dimension(((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-80,((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight())-80);
-    
-    //metodi ricorrenti
-    /**
-     * 
-     * @return 
-     */
-    static boolean readYesOrNot(){
-        System.out.println("Digiti 's' in caso affermativo, altrimenti digiti 'n' :");
-        String scelta = new Scanner(System.in).nextLine();
-        return scelta.toLowerCase().contains("s")? true:false;    
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    static boolean richiestaUscita() {
-        System.out.println("Vuole tornare al menu precedente? ");
-        System.out.println("Digiti 's' in caso affermativo, altrimenti digiti 'n' :");
-        String scelta = new Scanner(System.in).nextLine();
-        return scelta.toLowerCase().contains("s")? true:false; 
+// metodi
+    public static String capitalize(String str)
+    {
+        if(str == null || str.length()<=1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

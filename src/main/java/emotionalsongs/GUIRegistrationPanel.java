@@ -4,11 +4,15 @@
  */
 package emotionalsongs;
 
+import java.io.*;
+
 /**
  *
  * @author Megaport
  */
 public class GUIRegistrationPanel extends javax.swing.JPanel {
+    
+    GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
 
     /**
      * Creates new form GUIRegistrationPanel
@@ -16,7 +20,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     public GUIRegistrationPanel() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,45 +29,463 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        registratiButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        voidPanel = new javax.swing.JPanel();
+        mainGridPanel = new javax.swing.JPanel();
+        nomePanel = new javax.swing.JPanel();
+        nomeLabel = new javax.swing.JLabel();
+        nomeTextField = new javax.swing.JTextField();
+        nomeCheckLabel = new javax.swing.JLabel();
+        cognomePanel = new javax.swing.JPanel();
+        cognomeLabel = new javax.swing.JLabel();
+        cognomeTextField = new javax.swing.JTextField();
+        cognomeCheckLabel = new javax.swing.JLabel();
+        dataDiNascitaPanel = new javax.swing.JPanel();
+        dataDiNascitaLabel = new javax.swing.JLabel();
+        dataDiNascitaTextField = new javax.swing.JTextField();
+        dataDiNascitaCheckLabel = new javax.swing.JLabel();
+        CfPanel = new javax.swing.JPanel();
+        cfLabel = new javax.swing.JLabel();
+        cfTextField = new javax.swing.JTextField();
+        cfCheckLabel = new javax.swing.JLabel();
+        indirizzoPanel = new javax.swing.JPanel();
+        indirizzoLabel = new javax.swing.JLabel();
+        indirizzoTextField = new javax.swing.JTextField();
+        indirizzoCheckLabel = new javax.swing.JLabel();
+        mailPanel = new javax.swing.JPanel();
+        mailLabel = new javax.swing.JLabel();
+        mailTextField = new javax.swing.JTextField();
+        mailCheckLabel = new javax.swing.JLabel();
+        idPanel = new javax.swing.JPanel();
+        idLabel = new javax.swing.JLabel();
+        idTextField = new javax.swing.JTextField();
+        idCheckLabel = new javax.swing.JLabel();
+        passwordPanel = new javax.swing.JPanel();
+        passwordLabel = new javax.swing.JLabel();
+        controlloLabel = new javax.swing.JLabel();
+        passwordCheckLabel = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JPasswordField();
+        controlloTextField = new javax.swing.JPasswordField();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 60));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRAZIONE");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
+        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(600, 50));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("jButton1");
-        jPanel2.add(jButton1, new java.awt.GridBagConstraints());
+        registratiButton.setText("Registrati");
+        registratiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registratiButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 28, 0, 28);
+        jPanel2.add(registratiButton, gridBagConstraints);
 
-        jButton2.setText("jButton2");
-        jPanel2.add(jButton2, new java.awt.GridBagConstraints());
+        closeButton.setText("Chiudi");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 24, 0, 24);
+        jPanel2.add(closeButton, gridBagConstraints);
 
         add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(200, 100));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        voidPanel.setOpaque(false);
+        voidPanel.setPreferredSize(new java.awt.Dimension(100, 250));
+        voidPanel.setSize(new java.awt.Dimension(100, 200));
+        jPanel3.add(voidPanel, java.awt.BorderLayout.PAGE_START);
+
+        mainGridPanel.setLayout(new java.awt.GridLayout(8, 0));
+
+        nomePanel.setOpaque(false);
+        java.awt.GridBagLayout nomePanelLayout = new java.awt.GridBagLayout();
+        nomePanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        nomePanelLayout.rowHeights = new int[] {0};
+        nomePanel.setLayout(nomePanelLayout);
+
+        nomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        nomeLabel.setText("NOME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        nomePanel.add(nomeLabel, gridBagConstraints);
+
+        nomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        nomeTextField.setSize(new java.awt.Dimension(150, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        nomePanel.add(nomeTextField, gridBagConstraints);
+
+        nomeCheckLabel.setVisible(false);
+        nomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        nomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        nomeCheckLabel.setText("Nome non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        nomePanel.add(nomeCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(nomePanel);
+
+        cognomePanel.setOpaque(false);
+        java.awt.GridBagLayout cognomePanelLayout = new java.awt.GridBagLayout();
+        cognomePanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        cognomePanelLayout.rowHeights = new int[] {0};
+        cognomePanel.setLayout(cognomePanelLayout);
+
+        cognomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cognomeLabel.setText("COGNOME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        cognomePanel.add(cognomeLabel, gridBagConstraints);
+
+        cognomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        cognomePanel.add(cognomeTextField, gridBagConstraints);
+
+        cognomeCheckLabel.setVisible(false);
+        cognomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        cognomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        cognomeCheckLabel.setText("Cognome non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        cognomePanel.add(cognomeCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(cognomePanel);
+
+        dataDiNascitaPanel.setOpaque(false);
+        java.awt.GridBagLayout dataDiNascitaPanelLayout = new java.awt.GridBagLayout();
+        dataDiNascitaPanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        dataDiNascitaPanelLayout.rowHeights = new int[] {0};
+        dataDiNascitaPanel.setLayout(dataDiNascitaPanelLayout);
+
+        dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        dataDiNascitaLabel.setText("DATA DI NASCITA");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        dataDiNascitaPanel.add(dataDiNascitaLabel, gridBagConstraints);
+
+        dataDiNascitaTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        dataDiNascitaPanel.add(dataDiNascitaTextField, gridBagConstraints);
+
+        dataDiNascitaCheckLabel.setVisible(false);
+        dataDiNascitaCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        dataDiNascitaCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        dataDiNascitaCheckLabel.setText("Formato data non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        dataDiNascitaPanel.add(dataDiNascitaCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(dataDiNascitaPanel);
+
+        CfPanel.setOpaque(false);
+        java.awt.GridBagLayout CfPanelLayout = new java.awt.GridBagLayout();
+        CfPanelLayout.columnWidths = new int[] {0, 10, 0, 10, 0, 10, 0, 10, 0};
+        CfPanelLayout.rowHeights = new int[] {0};
+        CfPanel.setLayout(CfPanelLayout);
+
+        cfLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cfLabel.setText("CODICE FISCALE");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        CfPanel.add(cfLabel, gridBagConstraints);
+
+        cfTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        CfPanel.add(cfTextField, gridBagConstraints);
+
+        cfCheckLabel.setVisible(false);
+        cfCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        cfCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        cfCheckLabel.setText("Formato data non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        CfPanel.add(cfCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(CfPanel);
+
+        indirizzoPanel.setOpaque(false);
+        java.awt.GridBagLayout indirizzoPanelLayout = new java.awt.GridBagLayout();
+        indirizzoPanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        indirizzoPanelLayout.rowHeights = new int[] {0};
+        indirizzoPanel.setLayout(indirizzoPanelLayout);
+
+        indirizzoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        indirizzoLabel.setText("INDIRIZZO ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        indirizzoPanel.add(indirizzoLabel, gridBagConstraints);
+
+        indirizzoTextField.setPreferredSize(new java.awt.Dimension(400, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        indirizzoPanel.add(indirizzoTextField, gridBagConstraints);
+
+        indirizzoCheckLabel.setVisible(false);
+        indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        indirizzoCheckLabel.setText("Questo campo non può essere vuoto!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        indirizzoPanel.add(indirizzoCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(indirizzoPanel);
+
+        mailPanel.setOpaque(false);
+        java.awt.GridBagLayout mailPanelLayout = new java.awt.GridBagLayout();
+        mailPanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        mailPanelLayout.rowHeights = new int[] {0};
+        mailPanel.setLayout(mailPanelLayout);
+
+        mailLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        mailLabel.setText("INDIRIZZO E-MAIL");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        mailPanel.add(mailLabel, gridBagConstraints);
+
+        mailTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        mailPanel.add(mailTextField, gridBagConstraints);
+
+        mailCheckLabel.setVisible(false);
+        mailCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        mailCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        mailCheckLabel.setText("Indirizzo non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        mailPanel.add(mailCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(mailPanel);
+
+        idPanel.setOpaque(false);
+        java.awt.GridBagLayout idPanelLayout = new java.awt.GridBagLayout();
+        idPanelLayout.columnWidths = new int[] {0, 20, 0, 20, 0};
+        idPanelLayout.rowHeights = new int[] {0};
+        idPanel.setLayout(idPanelLayout);
+
+        idLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        idLabel.setText("USER ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        idPanel.add(idLabel, gridBagConstraints);
+
+        idTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        idPanel.add(idTextField, gridBagConstraints);
+
+        idCheckLabel.setVisible(false);
+        idCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        idCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        idCheckLabel.setText("User id non valido!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        idPanel.add(idCheckLabel, gridBagConstraints);
+
+        mainGridPanel.add(idPanel);
+
+        passwordPanel.setOpaque(false);
+        java.awt.GridBagLayout jPanel11Layout = new java.awt.GridBagLayout();
+        jPanel11Layout.columnWidths = new int[] {0, 10, 0, 10, 0, 10, 0, 10, 0};
+        jPanel11Layout.rowHeights = new int[] {0, 5, 0};
+        passwordPanel.setLayout(jPanel11Layout);
+
+        passwordLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        passwordLabel.setText("PASSWORD");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        passwordPanel.add(passwordLabel, gridBagConstraints);
+
+        controlloLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        controlloLabel.setText("CONTROLLO PSW");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        passwordPanel.add(controlloLabel, gridBagConstraints);
+
+        passwordCheckLabel.setVisible(false);
+        passwordCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        passwordCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        passwordCheckLabel.setText("Password non valida!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        passwordPanel.add(passwordCheckLabel, gridBagConstraints);
+
+        passwordTextField.setText("jPasswordField1");
+        passwordTextField.setPreferredSize(new java.awt.Dimension(180, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        passwordPanel.add(passwordTextField, gridBagConstraints);
+
+        controlloTextField.setText("jPasswordField2");
+        controlloTextField.setPreferredSize(new java.awt.Dimension(180, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        passwordPanel.add(controlloTextField, gridBagConstraints);
+
+        mainGridPanel.add(passwordPanel);
+
+        jPanel3.add(mainGridPanel, java.awt.BorderLayout.CENTER);
+
+        add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        mainWindow.cleanUpMainPanel();
+    }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
+        EngineRegistration engineRegistration = new EngineRegistration(EMOTIONALSONGS.userDatabase);
+        
+        setAllCheckOff();
+        
+        try {
+            engineRegistration.registraNuovoUtente(
+                    idTextField.getText(),
+                    nomeTextField.getText(),
+                    cognomeTextField.getText(),
+                    cfTextField.getText().toUpperCase(),
+                    indirizzoTextField.getText(),
+                    mailTextField.getText(),
+                    String.valueOf(passwordTextField.getPassword()),
+                    String.valueOf(controlloTextField.getPassword()),
+                    dataDiNascitaTextField.getText()
+            );
+            
+            if (engineRegistration.allRight) {
+                mainWindow.cleanUpMainPanel();
+                if(mainWindow.leftPanel instanceof GUIUnloggedMenuExpanded){
+                   mainWindow.setLeftPanel(new GUILoggedMenuExpanded(mainWindow));
+                } else {
+                    mainWindow.setLeftPanel(new GUILeftMenuUnespanded(mainWindow));
+                }
+                mainWindow.setUpperBar(new GUILoggedToolBarPanel(mainWindow));
+                mainWindow.update();
+            }
+            
+            else{
+                if (!engineRegistration.validCF) { cfCheckLabel.setText("Codice fiscale non valido!"); cfCheckLabel.setVisible(true); }
+                if (!engineRegistration.cfNotSigned) { cfCheckLabel.setText("Codice fiscale già presente nel sistema!");cfCheckLabel.setVisible(true); }
+                if (!engineRegistration.validNome) { nomeCheckLabel.setVisible(true); }
+                if (!engineRegistration.validCognome) { cognomeCheckLabel.setVisible(true); }
+                if (!engineRegistration.validDataNascita) { dataDiNascitaCheckLabel.setVisible(true); }
+                if (!engineRegistration.validIndirizzo) { indirizzoCheckLabel.setVisible(true); }
+                if (!engineRegistration.validEmail) { mailCheckLabel.setVisible(true); }
+                if (!engineRegistration.validPassword && engineRegistration.passwordMatches) { passwordCheckLabel.setText("Password non valida!"); passwordCheckLabel.setVisible(true); }
+                if (!engineRegistration.passwordMatches && engineRegistration.validPassword) { passwordCheckLabel.setText("Password non coincidono!"); passwordCheckLabel.setVisible(true); }
+                if (!engineRegistration.passwordMatches && !engineRegistration.validPassword) { passwordCheckLabel.setText("Password non valide, ne coincidenti!"); passwordCheckLabel.setVisible(true);  }
+                if (!engineRegistration.validUserId) { idCheckLabel.setText("User id non valido!");idCheckLabel.setVisible(true);}
+                if (!engineRegistration.idNotTaken) { idCheckLabel.setText("User id già preso da un altro utente!"); idCheckLabel.setVisible(true); }
+            
+                mainWindow.update();
+            }
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_registratiButtonActionPerformed
+    
+    private void setAllCheckOff(){
+        cfCheckLabel.setVisible(false);
+        cfCheckLabel.setText("Codice fiscale non valido!");cfCheckLabel.setVisible(false);
+        nomeCheckLabel.setVisible(false);
+        cognomeCheckLabel.setVisible(false);
+        indirizzoCheckLabel.setVisible(false);
+        mailCheckLabel.setVisible(false);
+        passwordCheckLabel.setVisible(false);
+        idCheckLabel.setVisible(false);
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel CfPanel;
+    private javax.swing.JLabel cfCheckLabel;
+    private javax.swing.JLabel cfLabel;
+    private javax.swing.JTextField cfTextField;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JLabel cognomeCheckLabel;
+    private javax.swing.JLabel cognomeLabel;
+    private javax.swing.JPanel cognomePanel;
+    private javax.swing.JTextField cognomeTextField;
+    private javax.swing.JLabel controlloLabel;
+    private javax.swing.JPasswordField controlloTextField;
+    private javax.swing.JLabel dataDiNascitaCheckLabel;
+    private javax.swing.JLabel dataDiNascitaLabel;
+    private javax.swing.JPanel dataDiNascitaPanel;
+    private javax.swing.JTextField dataDiNascitaTextField;
+    private javax.swing.JLabel idCheckLabel;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JPanel idPanel;
+    private javax.swing.JTextField idTextField;
+    private javax.swing.JLabel indirizzoCheckLabel;
+    private javax.swing.JLabel indirizzoLabel;
+    private javax.swing.JPanel indirizzoPanel;
+    private javax.swing.JTextField indirizzoTextField;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel mailCheckLabel;
+    private javax.swing.JLabel mailLabel;
+    private javax.swing.JPanel mailPanel;
+    private javax.swing.JTextField mailTextField;
+    private javax.swing.JPanel mainGridPanel;
+    public javax.swing.JLabel nomeCheckLabel;
+    private javax.swing.JLabel nomeLabel;
+    private javax.swing.JPanel nomePanel;
+    private javax.swing.JTextField nomeTextField;
+    private javax.swing.JLabel passwordCheckLabel;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPanel passwordPanel;
+    private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JButton registratiButton;
+    private javax.swing.JPanel voidPanel;
     // End of variables declaration//GEN-END:variables
 }

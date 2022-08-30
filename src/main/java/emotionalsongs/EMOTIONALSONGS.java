@@ -15,7 +15,7 @@ public class EMOTIONALSONGS {
     public DataSetEmozioni dataSetEmozioni;
     public static UserDatabase userDatabase;
     public static boolean logged = false;
-    public static MainWindow mainWindow;
+    public static GUIMainFrame mainWindow;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
@@ -23,11 +23,11 @@ public class EMOTIONALSONGS {
     }
     
     private void initialize() throws IOException{
-        InitializationFrame init = new InitializationFrame();
+        GUIInitializationFrame init = new GUIInitializationFrame();
         REPOSITORY = new Repository();
         userDatabase = new UserDatabase();
         init.dispose();
-        mainWindow = new MainWindow();
+        mainWindow = new GUIMainFrame();
         mainWindow.setVisible(true);
     }
     

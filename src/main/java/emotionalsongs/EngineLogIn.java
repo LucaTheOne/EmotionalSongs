@@ -40,7 +40,7 @@ public class EngineLogIn extends EMOTIONALSONGS{
      */
     public void foundsId(String userId) {
             EngineSearch engineSearch = new EngineSearch();
-            user = engineSearch.ricercaDicotomicaUtente(database, userId);
+            user = engineSearch.ricercaId(database, userId);
             idFounded = user != null; 
     }
     

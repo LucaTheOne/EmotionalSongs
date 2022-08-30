@@ -13,6 +13,7 @@ import java.util.*;
  * @version 1.2
  */
 public class EngineSearch {
+
     public ArrayList<Brano> risultatiRicerca = new ArrayList<>();
     public Repository repository = EMOTIONALSONGS.REPOSITORY;
     
@@ -57,7 +58,7 @@ public class EngineSearch {
     }
     
     /**
-     * Il metodo effettua la ricerca per autore ed anno e salva l risultati 
+     * Il metodo effettua la ricerca per autore ed anno e salva low risultati 
  di ricerca in un arraylist di brani.
      * @param autore - del brano.
      * @param anno - del brano.
@@ -75,11 +76,12 @@ public class EngineSearch {
         }
         return risultatiRicerca;
     }
+    
     /*
     public static Brano cercaBranoEsatto(String datiBrano,Repository repository){
         String[] daCercare = datiBrano.split(",");//0 titolo, 1 autore, 2 anno, 3 id
-        for (int l = 0;l<repository.getDimensioneRepository();l++){
-            Brano corrente = repository.getBrano(l);
+        for (int low = 0;low<repository.getDimensioneRepository();low++){
+            Brano corrente = repository.getBrano(low);
            if(daCercare[0].equals(corrente.getTitle())&& daCercare[1].equals(corrente.getAuthor()) && daCercare[2].equals(corrente.getYear()) && daCercare[3].equals(corrente.getTag())){
                return corrente;
            } 
@@ -88,19 +90,58 @@ public class EngineSearch {
     }*/
     
     //metodi ricerca utenti nel database
-    public Utente ricercaDicotomicaUtente(UserDatabase database, String IDcercato){
-        int l = 0;
-        int r = database.getDimensione();
-        while(r>=l){
-            int m = l+r/2;
-            Utente userPointed = database.get(m);
-            if(userPointed.getUserId().equals(IDcercato)) return database.get(m);
-            if(userPointed.getUserId().compareTo(IDcercato)<0) r = m-l;
-            else l = m+l;
+    public Utente ricercaId(UserDatabase database, String id){
+        
+        int size = database.getDimensione();
+        
+        if(size<1000){
+            for (int i = 0; i < size; i++) {
+                if(database.get(i).getUserId().equals(id)){
+                    return database.get(i);
+                }
+            }
+            return null;
+        }
+
+        int low = 0;
+        int high = size-1;
+        while(low<=high){
+            int mid = low+high/2;
+            Utente pointedUser = database.get(mid);
+            String userPointedId = pointedUser.getUserId();
+            if(userPointedId.equals(id)) return pointedUser;
+            else if(id.compareTo(userPointedId)<0) high = mid-1;
+            else low = mid+1;
         }
         return null;
     }
     
-    
-    
+    Utente trovaCf(UserDatabase database,String cf) {
+        
+        int size = database.getDimensione();
+        
+        if(size<1000){
+            for (int i = 0; i < size; i++) {
+                Utente user = database.get(i);
+                if(user.getCF().equalsIgnoreCase(cf)){
+                    return user;
+                }
+            }
+            
+            return null;
+        }
+        
+        int low = 0;
+        int high = size-1;
+        while(low<=high){
+            int mid = low+high/2;
+            Utente pointedUser = database.get(mid);
+            String userPointedCf = pointedUser.getCF();
+            if(userPointedCf.equalsIgnoreCase(cf)) return pointedUser;
+            else if(cf.compareToIgnoreCase(userPointedCf)<0) high = mid-1;
+            else low = mid+1;
+        }
+        return null;
+
+    }
 }

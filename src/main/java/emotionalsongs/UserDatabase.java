@@ -63,9 +63,9 @@ public class UserDatabase {
         arrayUtenti[index] = daInserire;
     }
     
-    public Utente cerca(String userId){
+    public Utente cercaId(String userId){
         EngineSearch engineSearch = new EngineSearch();
-        return engineSearch.ricercaDicotomicaUtente(this, userId);
+        return engineSearch.ricercaId(this, userId);
     }
     
     public void riordina(){
@@ -88,4 +88,10 @@ public class UserDatabase {
     public Utente[] getArrayData(){
         return arrayUtenti;
     }
+
+    Utente cercaCf(String cf) {
+        EngineSearch engineSearch = new EngineSearch();
+        return engineSearch.trovaCf(this, cf);
+    }
+    
 }

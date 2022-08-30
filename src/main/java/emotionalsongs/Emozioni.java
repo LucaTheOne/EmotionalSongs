@@ -87,10 +87,7 @@ public enum Emozioni {
      */
     public void voteAnEmotion(){
         giveAVote();
-        System.out.println("Vuole inserire un commento riguardo a questa emozione: "+nomeEmozione+"? ");
-        if(Utilities.readYesOrNot()){
-            commentAnEmotion();
-        }
+       
     }
     
     /**
