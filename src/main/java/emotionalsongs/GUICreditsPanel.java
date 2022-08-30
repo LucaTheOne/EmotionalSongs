@@ -8,12 +8,12 @@ package emotionalsongs;
  *
  * @author Megaport
  */
-public class CreditsPanel extends javax.swing.JPanel {
+public class GUICreditsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form creditsPanel
      */
-    public CreditsPanel() {
+    public GUICreditsPanel() {
         initComponents();
     }
 

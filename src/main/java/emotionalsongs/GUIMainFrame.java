@@ -35,11 +35,19 @@ public class GUIMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lowerBarStatusLabel = new javax.swing.JLabel();
+        globalPanel =     new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics g2 = g.create();
+                g2.drawImage(Utilities.mainBackGround.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.dispose();
+            }
+        };
         leftPanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
         upperBar = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
+        lowerBarStatusLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EmotionalSongs");
@@ -50,28 +58,32 @@ public class GUIMainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setSize(new java.awt.Dimension(1000, 700));
 
-        lowerBarStatusLabel.setBackground(new java.awt.Color(0, 0, 0));
-        lowerBarStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
-        lowerBarStatusLabel.setText("lowerBarStatusLabel");
-        lowerBarStatusLabel.setOpaque(true);
-        getContentPane().add(lowerBarStatusLabel, java.awt.BorderLayout.SOUTH);
-        lowerBarStatusLabel.getAccessibleContext().setAccessibleName("LowerBarStatusLabel");
+        globalPanel.setLayout(new java.awt.BorderLayout());
 
-        leftPanel.setPreferredSize(new java.awt.Dimension(40, 659));
+        leftPanel.setPreferredSize(new java.awt.Dimension(0, 659));
         leftPanel.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(leftPanel, java.awt.BorderLayout.WEST);
+        globalPanel.add(leftPanel, java.awt.BorderLayout.WEST);
 
         rightPanel.setPreferredSize(new java.awt.Dimension(0, 659));
         rightPanel.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(rightPanel, java.awt.BorderLayout.EAST);
+        globalPanel.add(rightPanel, java.awt.BorderLayout.EAST);
 
-        upperBar.setPreferredSize(new java.awt.Dimension(1000, 25));
+        upperBar.setPreferredSize(new java.awt.Dimension(1000, 0));
         upperBar.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(upperBar, java.awt.BorderLayout.NORTH);
+        globalPanel.add(upperBar, java.awt.BorderLayout.NORTH);
 
         mainPanel.setOpaque(false);
         mainPanel.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+        globalPanel.add(mainPanel, java.awt.BorderLayout.CENTER);
+
+        lowerBarStatusLabel.setBackground(new java.awt.Color(0, 0, 0));
+        lowerBarStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lowerBarStatusLabel.setText("EmotionalSongs ");
+        lowerBarStatusLabel.setOpaque(true);
+        globalPanel.add(lowerBarStatusLabel, java.awt.BorderLayout.SOUTH);
+        lowerBarStatusLabel.getAccessibleContext().setAccessibleName("LowerBarStatusLabel");
+
+        getContentPane().add(globalPanel, java.awt.BorderLayout.CENTER);
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -79,6 +91,21 @@ public class GUIMainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+ 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel globalPanel;
+    public javax.swing.JPanel leftPanel;
+    private javax.swing.JLabel lowerBarStatusLabel;
+    public javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel rightPanel;
+    public javax.swing.JPanel upperBar;
+    // End of variables declaration//GEN-END:variables
+
+    void update() {
+        revalidate();
+        repaint();
+    }
     
     public void setLeftPanel(JPanel newLeftPanel){
         leftPanel.removeAll();
@@ -108,18 +135,6 @@ public class GUIMainFrame extends javax.swing.JFrame {
     public void cleanUpMainPanel(){
         mainPanel.removeAll();
         mainPanel.setOpaque(false);
-        revalidate();
-        repaint();
-    }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel leftPanel;
-    private javax.swing.JLabel lowerBarStatusLabel;
-    public javax.swing.JPanel mainPanel;
-    private javax.swing.JPanel rightPanel;
-    public javax.swing.JPanel upperBar;
-    // End of variables declaration//GEN-END:variables
-
-    void update() {
         revalidate();
         repaint();
     }

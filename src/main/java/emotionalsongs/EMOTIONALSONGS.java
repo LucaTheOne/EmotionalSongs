@@ -12,7 +12,7 @@ public class EMOTIONALSONGS {
     
     public static Utente loggedUser = null;
     public static Repository REPOSITORY;
-    public DataSetEmozioni dataSetEmozioni;
+    public RaccoltaDatiEmozioniBrano dataSetEmozioni;
     public static UserDatabase userDatabase;
     public static boolean logged = false;
     public static GUIMainFrame mainWindow;

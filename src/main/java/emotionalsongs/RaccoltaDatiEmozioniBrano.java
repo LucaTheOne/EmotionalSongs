@@ -9,7 +9,7 @@ import java.util.*;
  * emozioni.
  * @author Bolelli Luca
  */
-public class DataSetEmozioni {
+public class RaccoltaDatiEmozioniBrano {
     
     
     private ArrayList<DatiEmozioniBrano> dataSetEmozioni = new ArrayList<>();
@@ -17,7 +17,7 @@ public class DataSetEmozioni {
     /**
      * Crea un oggetto che importa i dati delle emozioni.
      */
-    public DataSetEmozioni() {
+    public RaccoltaDatiEmozioniBrano() {
         try {
             importaDataSetEmozioni();    
         } catch (IOException e) {

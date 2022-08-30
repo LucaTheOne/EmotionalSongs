@@ -95,3 +95,11 @@
     Adattata parte repository alla gui,
     modifiche di adattamento classe brano, emotionalsongs, playlist e playlist set
     javadoc - Brano, Emozioni, DataSetEmozioni.
+
+30/08/2022
+    Con questo update il software inizia a prendere forma tangibile;
+    Ora login e registrazione funzionano,
+    è possibile visionare il repository e cercare determinate canzoni (Anche se è ancora da revisionare bene),
+    dopo lunghe ricerche è stato trovato un modo efficiente di impostare uno sfondo per la pagina principale,
+    inizio di spunto di design.
+        -Bolelli Luca-

@@ -37,12 +37,12 @@ public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 0, 0));
-        setOpaque(false);
+        setBackground(new java.awt.Color(22,33,62, 160));
         setPreferredSize(new java.awt.Dimension(120, 600));
         setLayout(new java.awt.BorderLayout(0, 5));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0,45));
+        jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(120, 300));
         jPanel3.setLayout(new java.awt.BorderLayout());
 

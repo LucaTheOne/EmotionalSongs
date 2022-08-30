@@ -29,26 +29,36 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        upperToolBar = new javax.swing.JToolBar();
+        jPanel1 = new javax.swing.JPanel();
         menuButton = new javax.swing.JToggleButton();
-        LoginButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
         LanguageButton = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(22, 33, 62, 160)
+        );
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setPreferredSize(new java.awt.Dimension(800, 30));
+        setPreferredSize(new java.awt.Dimension(800, 20));
         setLayout(new java.awt.BorderLayout());
 
-        upperToolBar.setRollover(true);
-        upperToolBar.setOpaque(false);
-        upperToolBar.setPreferredSize(new java.awt.Dimension(350, 30));
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(390, 30));
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0};
+        jPanel1Layout.rowHeights = new int[] {0};
+        jPanel1.setLayout(jPanel1Layout);
 
-        menuButton.setText("menu");
-        menuButton.setFocusable(false);
+        menuButton.setBackground(new java.awt.Color(15, 52, 96));
+        menuButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        menuButton.setForeground(new java.awt.Color(255, 255, 255));
+        menuButton.setText("Menu");
+        menuButton.setAlignmentY(0.0F);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         menuButton.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -60,52 +70,83 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
                 menuButtonActionPerformed(evt);
             }
         });
-        upperToolBar.add(menuButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(menuButton, gridBagConstraints);
 
-        LoginButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        LoginButton.setText("Login");
-        LoginButton.setFocusable(false);
-        LoginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        LoginButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        LoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginButtonActionPerformed(evt);
-            }
-        });
-        upperToolBar.add(LoginButton);
-
-        RegisterButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        RegisterButton.setBackground(new java.awt.Color(15, 52, 96));
+        RegisterButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
         RegisterButton.setText("Register");
-        RegisterButton.setFocusable(false);
+        RegisterButton.setAlignmentY(0.0F);
         RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RegisterButton.setPreferredSize(new java.awt.Dimension(72, 18));
         RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegisterButtonActionPerformed(evt);
             }
         });
-        upperToolBar.add(RegisterButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(RegisterButton, gridBagConstraints);
 
-        CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
+        CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
         CreditsButton.setText("Credits");
-        CreditsButton.setFocusable(false);
+        CreditsButton.setAlignmentY(0.0F);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         CreditsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreditsButtonActionPerformed(evt);
             }
         });
-        upperToolBar.add(CreditsButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(CreditsButton, gridBagConstraints);
 
-        LanguageButton.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        LanguageButton.setBackground(new java.awt.Color(15, 52, 96));
+        LanguageButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
         LanguageButton.setText("English");
-        LanguageButton.setFocusable(false);
+        LanguageButton.setAlignmentY(0.0F);
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        upperToolBar.add(LanguageButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(LanguageButton, gridBagConstraints);
 
-        add(upperToolBar, java.awt.BorderLayout.CENTER);
+        LoginButton.setBackground(new java.awt.Color(15, 52, 96));
+        LoginButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        LoginButton.setForeground(new java.awt.Color(255, 255, 255));
+        LoginButton.setText("Login");
+        LoginButton.setAlignmentY(0.0F);
+        LoginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LoginButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        LoginButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(LoginButton, gridBagConstraints);
+
+        add(jPanel1, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
@@ -130,7 +171,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
-        mainPage.setMainPanel(new CreditsPanel());
+        mainPage.setMainPanel(new GUICreditsPanel());
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
 
@@ -139,7 +180,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
     private javax.swing.JButton LanguageButton;
     private javax.swing.JButton LoginButton;
     private javax.swing.JButton RegisterButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton menuButton;
-    private javax.swing.JToolBar upperToolBar;
     // End of variables declaration//GEN-END:variables
 }
