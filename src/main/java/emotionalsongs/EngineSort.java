@@ -13,7 +13,7 @@ public class EngineSort {
     
     
     //metodi di ordinamento
-    public void riordinaDatabase(UserDatabase database){
+    public void riordinaDatabase(DatabaseUtenti database){
         HeapUtenti heap = new HeapUtenti(database);
         heap.buildBU();
         for(int i = database.getDimensione()-1;i>=0;i--){
@@ -21,6 +21,14 @@ public class EngineSort {
         }  
     }//Tramite heapSort riordina il database secondo UserId
     
+    public void riordinaArrayUtenti(Utente[] array){
+        HeapUtenti heap = new HeapUtenti(array);
+        heap.buildBU();
+        for(int i = array.length-1;i>=0;i++){ 
+            array[i]=heap.delete();
+        }  
+    }
+
     
     //Strutture dati speciali
     private class HeapUtenti {
@@ -28,11 +36,15 @@ public class EngineSort {
         private Utente[] pq;
         private int n=0;
     
-        public HeapUtenti(UserDatabase database){
-            arrayUtenti = database.getArrayData();
-            pq = new Utente[arrayUtenti.length+1];
+        public HeapUtenti(Utente[] array){
+            arrayUtenti = arrayUtenti;
+            pq = new Utente[array.length+1];
         }
-    
+        
+        public HeapUtenti(DatabaseUtenti database){
+           this(database.getArrayData());
+        }
+        
         public boolean isEmpty(){
             return n==0;
         }

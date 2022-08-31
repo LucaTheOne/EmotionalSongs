@@ -13,7 +13,7 @@ public class EMOTIONALSONGS {
     public static Utente loggedUser = null;
     public static Repository REPOSITORY;
     public RaccoltaDatiEmozioniBrano dataSetEmozioni;
-    public static UserDatabase userDatabase;
+    public static DatabaseUtenti userDatabase;
     public static boolean logged = false;
     public static GUIMainFrame mainWindow;
    
@@ -25,7 +25,7 @@ public class EMOTIONALSONGS {
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
         REPOSITORY = new Repository();
-        userDatabase = new UserDatabase();
+        userDatabase = new DatabaseUtenti();
         init.dispose();
         mainWindow = new GUIMainFrame();
         mainWindow.setVisible(true);

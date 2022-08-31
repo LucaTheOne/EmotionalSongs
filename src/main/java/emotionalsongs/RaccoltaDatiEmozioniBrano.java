@@ -12,7 +12,7 @@ import java.util.*;
 public class RaccoltaDatiEmozioniBrano {
     
     
-    private ArrayList<DatiEmozioniBrano> dataSetEmozioni = new ArrayList<>();
+    private ArrayList<EmozioniRecord> dataSetEmozioni = new ArrayList<>();
     
     /**
      * Crea un oggetto che importa i dati delle emozioni.
@@ -46,12 +46,12 @@ public class RaccoltaDatiEmozioniBrano {
            int counter = 0;
         
             String[] StringaCorrenteSplitted = new String[1];
-            DatiEmozioniBrano dati = null;
+            EmozioniRecord dati = null;
             
             while((stringaCorrente = reader.readLine()) != null){
                 switch (counter) {
                     case 0:
-                        //dati = new DatiEmozioniBrano(EngineSearch.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
+                        //dati = new EmozioniRecord(EngineSearch.cercaBranoEsatto(stringaCorrente, EMOTIONALSONGS.REPOSITORY));
                         counter++;
                         break;
                     case 1:

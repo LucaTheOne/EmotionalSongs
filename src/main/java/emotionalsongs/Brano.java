@@ -20,7 +20,7 @@ public class Brano {
   /**
    * @hidden
    */
-  public DatiEmozioniBrano datiEmozioniBrano;
+  public EmozioniRecord datiEmozioniBrano;
   
   
 //costruttore

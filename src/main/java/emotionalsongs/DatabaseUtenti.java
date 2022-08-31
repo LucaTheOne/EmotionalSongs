@@ -8,10 +8,10 @@ import java.util.*;
  *
  * @author big
  */
-public class UserDatabase {
+public class DatabaseUtenti {
     private Utente[] arrayUtenti;
     private String path = Utilities.pathToUserDatabase;
-    UserDatabase(){
+    DatabaseUtenti(){
         importData();
     }
     

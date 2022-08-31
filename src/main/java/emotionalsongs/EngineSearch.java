@@ -90,7 +90,7 @@ public class EngineSearch {
     }*/
     
     //metodi ricerca utenti nel database
-    public Utente ricercaId(UserDatabase database, String id){
+    public Utente ricercaId(DatabaseUtenti database, String id){
         
         int size = database.getDimensione();
         
@@ -116,7 +116,7 @@ public class EngineSearch {
         return null;
     }
     
-    Utente trovaCf(UserDatabase database,String cf) {
+    Utente trovaCf(DatabaseUtenti database,String cf) {
         
         int size = database.getDimensione();
         

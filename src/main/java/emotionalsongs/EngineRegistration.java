@@ -28,7 +28,7 @@ import java.util.regex.*;
 **/
 public class EngineRegistration {
 
-    private UserDatabase userDatabase;
+    private DatabaseUtenti userDatabase;
     boolean validCF;
     boolean cfNotSigned;
     boolean validNome;
@@ -46,7 +46,7 @@ public class EngineRegistration {
     /**
      * Costruisce un oggetto vuoto.
      */
-    public EngineRegistration(UserDatabase database) { 
+    public EngineRegistration(DatabaseUtenti database) { 
         userDatabase = database;
     }
     

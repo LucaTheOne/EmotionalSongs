@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class EngineLogIn extends EMOTIONALSONGS{
     
-    UserDatabase database = EMOTIONALSONGS.userDatabase;
+    DatabaseUtenti database = EMOTIONALSONGS.userDatabase;
     Utente user;
     boolean idFounded = false;
     boolean passwordMatches = false;

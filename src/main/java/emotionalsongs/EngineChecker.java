@@ -104,11 +104,11 @@ public class EngineChecker {
         return userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
     
-    boolean checkIdNotTaken(UserDatabase userDatabase,String id) {
+    boolean checkIdNotTaken(DatabaseUtenti userDatabase,String id) {
         return userDatabase.cercaId(id) == null;
     }
     
-    boolean checkCfNotPresent(UserDatabase userDatabase,String cf) {
+    boolean checkCfNotPresent(DatabaseUtenti userDatabase,String cf) {
         return userDatabase.cercaCf(cf) == null;
     }
 }

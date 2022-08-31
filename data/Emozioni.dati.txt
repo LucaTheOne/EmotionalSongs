@@ -1,12 +1,1 @@
-titolo,autore,anno,id
-    AMAZEMENT ; n voti ; lista voti divisi da spazio ; Lista commenti separati da <>;  
-    SOLEMNITY;n voti;lista voti ; Lista commenti;
-    TENDERNESS;n voti;lista voti ; Lista commenti;
-    NOSTALGIA;n voti;lista voti ; Lista commenti;
-    CALMNESS;n voti;lista voti ; Lista commenti;
-    POWER;n voti;lista voti ; Lista commenti;
-    JOY;n voti;lista voti ; Lista commenti;
-    TENSION;n voti;lista voti ; Lista commenti;
-    SADNESS;n voti;lista voti ; Lista commenti;
-_.-._.-._.-._.-._.-._.-._
-    
+idBrano ; lista id utenti che hanno votato divisi da <SEP> ;lista voti AMAZEMENT divisi da , ; lista commenti AMAZEMENT divisi da <SEP>;lista voti SOLEMNITY divisi da , ; lista commenti SOLEMNITY divisi da <SEP>; lista voti TENDERNESS divisi da , ; lista commenti TENDERNESS divisi da <SEP> ; lista voti NOSTALGIA divisi da , ; lista commenti NOSTALGIA divisi da <SEP>; lista voti CALMNESS divisi da , ; lista commenti CALMNESS divisi da <SEP>; lista voti POWER divisi da , ; lista commenti POWER divisi da <SEP>; lista voti JOY divisi da , ; lista commenti JOY divisi da <SEP>; lista voti TENSION divisi da , ; lista commenti TENSION divisi da <SEP>; lista voti SADNESS divisi da , ; lista commenti SADNESS divisi da <SEP>;
