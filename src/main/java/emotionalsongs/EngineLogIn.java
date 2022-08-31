@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class EngineLogIn extends EMOTIONALSONGS{
     
-    DatabaseUtenti database = EMOTIONALSONGS.userDatabase;
+    DataBaseUtenti database = EMOTIONALSONGS.userDataBase;
     Utente user;
     boolean idFounded = false;
     boolean passwordMatches = false;
@@ -39,8 +39,8 @@ public class EngineLogIn extends EMOTIONALSONGS{
      * @throws IOException 
      */
     public void foundsId(String userId) {
-            EngineSearch engineSearch = new EngineSearch();
-            user = engineSearch.ricercaId(database, userId);
+            EngineSearcher engineSearch = new EngineSearcher();
+            user = engineSearch.getUserFromId(database, userId);
             idFounded = user != null; 
     }
     

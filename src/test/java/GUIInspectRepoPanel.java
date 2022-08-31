@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs;
 
+
+import emotionalsongs.*;
 import java.io.*;
 import javax.swing.*;
 
@@ -38,7 +39,6 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
 
         Repository repo = new Repository();
         repoButtonsView = new javax.swing.JScrollPane();
-        subPanelRepoView = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
         searchBar = new javax.swing.JTextField();
@@ -59,15 +59,6 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         repoButtonsView.setAlignmentX(0.0F);
         repoButtonsView.setAlignmentY(0.0F);
         repoButtonsView.setOpaque(false);
-
-        subPanelRepoView.setOpaque(false);
-        subPanelRepoView.setPreferredSize(new java.awt.Dimension(500, 1500));
-        subPanelRepoView.setLayout(new java.awt.GridLayout(30, 1));
-        for(int i = 0; i<30;i++){
-            subPanelRepoView.add(repo.getBrano(i).getButton());
-        }
-        repoButtonsView.setViewportView(subPanelRepoView);
-
         add(repoButtonsView, java.awt.BorderLayout.CENTER);
 
         SearchPanel.setBackground(new java.awt.Color(89, 193, 201));
@@ -251,7 +242,6 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane repoButtonsView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
-    private javax.swing.JPanel subPanelRepoView;
     // End of variables declaration//GEN-END:variables
     
 }

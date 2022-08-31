@@ -4,8 +4,6 @@
  */
 package emotionalsongs;
 
-import java.io.IOException;
-
 /**
  *@hidden
  * @author big
@@ -42,7 +40,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         );
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setPreferredSize(new java.awt.Dimension(800, 20));
+        setPreferredSize(new java.awt.Dimension(800, 25));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setOpaque(false);
@@ -57,7 +55,9 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         menuButton.setForeground(new java.awt.Color(255, 255, 255));
         menuButton.setText("Menu");
         menuButton.setAlignmentY(0.0F);
+        menuButton.setBorder(null);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuButton.setOpaque(true);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         menuButton.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -80,6 +80,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
         RegisterButton.setText("Register");
         RegisterButton.setAlignmentY(0.0F);
+        RegisterButton.setBorder(null);
         RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RegisterButton.setPreferredSize(new java.awt.Dimension(72, 18));
         RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -99,6 +100,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
         CreditsButton.setText("Credits");
         CreditsButton.setAlignmentY(0.0F);
+        CreditsButton.setBorder(null);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -118,6 +120,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
         LanguageButton.setText("English");
         LanguageButton.setAlignmentY(0.0F);
+        LanguageButton.setBorder(null);
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -132,6 +135,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         LoginButton.setForeground(new java.awt.Color(255, 255, 255));
         LoginButton.setText("Login");
         LoginButton.setAlignmentY(0.0F);
+        LoginButton.setBorder(null);
         LoginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LoginButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LoginButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

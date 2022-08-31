@@ -8,10 +8,10 @@ import java.util.*;
  *
  * @author big
  */
-public class DatabaseUtenti {
+public class DataBaseUtenti {
     private Utente[] arrayUtenti;
     private String path = Utilities.pathToUserDatabase;
-    DatabaseUtenti(){
+    DataBaseUtenti(){
         importData();
     }
     
@@ -64,13 +64,13 @@ public class DatabaseUtenti {
     }
     
     public Utente cercaId(String userId){
-        EngineSearch engineSearch = new EngineSearch();
-        return engineSearch.ricercaId(this, userId);
+        EngineSearcher engineSearch = new EngineSearcher();
+        return engineSearch.getUserFromId(this, userId);
     }
     
     public void riordina(){
-        EngineSort sortEngine = new EngineSort();
-        sortEngine.riordinaDatabase(this);    
+        EngineSorter sortEngine = new EngineSorter();
+        sortEngine.sortDatabaseById(this);    
     }
     
     public void salvaDati(){
@@ -90,8 +90,8 @@ public class DatabaseUtenti {
     }
 
     Utente cercaCf(String cf) {
-        EngineSearch engineSearch = new EngineSearch();
-        return engineSearch.trovaCf(this, cf);
+        EngineSearcher engineSearch = new EngineSearcher();
+        return engineSearch.getUserFromCf(this, cf);
     }
     
 }

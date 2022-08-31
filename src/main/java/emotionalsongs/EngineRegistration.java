@@ -28,7 +28,7 @@ import java.util.regex.*;
 **/
 public class EngineRegistration {
 
-    private DatabaseUtenti userDatabase;
+    private DataBaseUtenti userDatabase;
     boolean validCF;
     boolean cfNotSigned;
     boolean validNome;
@@ -46,7 +46,7 @@ public class EngineRegistration {
     /**
      * Costruisce un oggetto vuoto.
      */
-    public EngineRegistration(DatabaseUtenti database) { 
+    public EngineRegistration(DataBaseUtenti database) { 
         userDatabase = database;
     }
     
@@ -273,7 +273,7 @@ public class EngineRegistration {
     }  
 
     /**
-    * Il metodo controlla se all'interno dell'userDatabase il codice fiscale è già presente.
+    * Il metodo controlla se all'interno dell'userDataBase il codice fiscale è già presente.
     * @param cf - il codice fiscale dell'utente
     * @return true - se codice fiscale è presente nel database, false - se il codice fiscale non è presente nel database.
     * @throws FileNotFoundException 

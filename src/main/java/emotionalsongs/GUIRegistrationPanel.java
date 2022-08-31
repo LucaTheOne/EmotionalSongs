@@ -384,7 +384,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
-        EngineRegistration engineRegistration = new EngineRegistration(EMOTIONALSONGS.userDatabase);
+        EngineRegistration engineRegistration = new EngineRegistration(EMOTIONALSONGS.userDataBase);
         
         setAllCheckOff();
         

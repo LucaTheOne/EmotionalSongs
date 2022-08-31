@@ -149,7 +149,7 @@ public class Utente {
     private void setNewUserID(String UserId) throws FileNotFoundException{
         EngineChecker checker = new EngineChecker();
         if(checker.checkIdValidity(UserId)){
-            if(checker.checkIdNotTaken(EMOTIONALSONGS.userDatabase, userId)){
+            if(checker.checkIdNotTaken(EMOTIONALSONGS.userDataBase, userId)){
                 this.userId = userId;
             }
         }
