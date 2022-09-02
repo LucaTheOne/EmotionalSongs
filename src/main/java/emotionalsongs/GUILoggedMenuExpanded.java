@@ -1,5 +1,7 @@
 package emotionalsongs;
 
+import java.io.*;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -56,10 +58,11 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
         repositoryPanel.setBackground(new java.awt.Color(0, 0, 0));
         repositoryPanel.setLayout(new java.awt.BorderLayout());
 
-        repositoryButton.setBackground(new java.awt.Color(0, 0, 0));
+        repositoryButton.setBackground(new java.awt.Color(15, 27, 54));
         repositoryButton.setForeground(new java.awt.Color(255, 255, 255));
         repositoryButton.setText("Repository");
         repositoryButton.setToolTipText("");
+        repositoryButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         repositoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repositoryButtonActionPerformed(evt);
@@ -72,10 +75,11 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
         playlistPanel.setBackground(new java.awt.Color(0, 0, 0));
         playlistPanel.setLayout(new java.awt.BorderLayout());
 
-        playlistsButton.setBackground(new java.awt.Color(0, 0, 0));
+        playlistsButton.setBackground(new java.awt.Color(15, 27, 54));
         playlistsButton.setForeground(new java.awt.Color(255, 255, 255));
         playlistsButton.setText("PlayLists");
         playlistsButton.setToolTipText("");
+        playlistsButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         playlistsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playlistsButtonActionPerformed(evt);
@@ -88,10 +92,11 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
         createPlaylistPanel.setBackground(new java.awt.Color(0, 0, 0));
         createPlaylistPanel.setLayout(new java.awt.BorderLayout());
 
-        createPlaylistButton.setBackground(new java.awt.Color(0, 0, 0));
+        createPlaylistButton.setBackground(new java.awt.Color(15, 27, 54));
         createPlaylistButton.setForeground(new java.awt.Color(255, 255, 255));
         createPlaylistButton.setText("Crea Playlist");
         createPlaylistButton.setToolTipText("");
+        createPlaylistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createPlaylistButtonActionPerformed(evt);
@@ -112,10 +117,11 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
         });
         jPanel3.add(closeButton, java.awt.BorderLayout.PAGE_END);
 
-        profileButton.setBackground(new java.awt.Color(0, 0, 0));
+        profileButton.setBackground(new java.awt.Color(15, 27, 54));
         profileButton.setForeground(new java.awt.Color(255, 255, 255));
         profileButton.setText("Profilo");
         profileButton.setToolTipText("");
+        profileButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         profileButton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         profileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         profileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +139,11 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void repositoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repositoryButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            mainPage.setMainPanel(new GUIInspectRepoPanel());
+        } catch (IOException ex) {
+            ex.getMessage();
+        } 
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed

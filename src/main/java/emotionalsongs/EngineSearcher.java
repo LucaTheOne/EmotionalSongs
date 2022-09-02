@@ -37,27 +37,30 @@ public class EngineSearcher {
     
     /**
      * Il metodo effettua la ricerca per titolo nella repository di brani e li 
-     * salva in un arraylist di brani.
+     * salva in un array di brani.
      * @param titolo - del brano.
      * @return il brano ricercato.
      */
     private Brano[] ricercaPerTitolo(String titolo){
         
-        ArrayList<Brano> risultatiLista = new ArrayList<>();
+        ArrayList<Brano> resultsList = new ArrayList<>();
+        Brano[] resultsArray;
         
-        for(int i = 0;i<repository.getDimensioneRepository();i++){
-            Brano corrente = repository.getBrano(i);
-            if (corrente.getTitle().toLowerCase().contains(titolo.toLowerCase())){
-                risultatiRicerca.add(corrente);
+        for(int i = 0;i<repository.getSize();i++){
+            Brano current = repository.getBrano(i);
+            String currentTitle = current.getTitle().toLowerCase();
+            if (currentTitle.contains(titolo.toLowerCase())){
+                resultsList.add(current);
             }
         }
-        
-        Brano[] risultatiRicerca = new Brano[risultatiLista.size()];
-        for (int i = 0; i < risultatiRicerca.length; i++) {
-            risultatiRicerca[i] = risultatiLista.get(i);
+        if(resultsList.isEmpty()) return null;
+        resultsArray=new Brano[resultsList.size()];
+        for(int i = 0;i<resultsList.size();i++){
+            resultsArray[i] = resultsList.get(i);
         }
+        sortByTitle(resultsArray);
         
-        return risultatiRicerca;
+        return resultsArray;
     }
     
     /**
@@ -68,27 +71,30 @@ public class EngineSearcher {
      * @return il brano ricercato.
      */
     private Brano[] ricercaPerAutoreEdAnno(String autore, String anno){
-
-        ArrayList<Brano> risultatiLista = new ArrayList<>();
         
-        for(int i = 0;i<repository.getDimensioneRepository();i++){
-            Brano branoCorrente = repository.getBrano(i);
-            if (branoCorrente.getAuthor().equalsIgnoreCase(autore) && branoCorrente.getYear().equalsIgnoreCase(anno)){
-                risultatiRicerca.add(branoCorrente);
+        ArrayList<Brano> resultsList = new ArrayList<>();
+        Brano[] results;
+        
+        for(int i = 0;i<repository.getSize();i++){
+            Brano current = repository.getBrano(i);
+            String currentAuthor = current.getAuthor().toLowerCase();
+            if (currentAuthor.equalsIgnoreCase(autore) && current.getYear()==Integer.parseInt(anno)){
+                resultsList.add(current);
             }
         }
-        
-        Brano[] risultatiRicerca = new Brano[risultatiLista.size()];
-        for (int i = 0; i < risultatiRicerca.length; i++) {
-            risultatiRicerca[i] = risultatiLista.get(i);
+        if(resultsList.isEmpty()) return null;
+        results = new Brano[resultsList.size()];
+        for (int i = 0; i < resultsList.size(); i++) {
+            results[i] = resultsList.get(i);
         }
+        sortByAuthor(results);
         
-        return risultatiRicerca;
+        return results;
     }
     
-    Brano cercaBranoTag(Repository repository,String id) {
-        repository.sortRepoByTags();
-        int size = repository.getDimensioneRepository();
+    Brano searchBranoTag(Repository repository,String id) {
+        repository.sortByTags();
+        int size = repository.getSize();
         int low = 0;
         int high = size-1;
         while(low<=high){
@@ -106,11 +112,11 @@ public class EngineSearcher {
     
     Utente getUserFromCf(DataBaseUtenti database,String cf) {
         
-        int size = database.getDimensione();
+        int size = database.getSize();
         
         if(size<1000){
             for (int i = 0; i < size; i++) {
-                Utente user = database.get(i);
+                Utente user = database.getUser(i);
                 if(user.getCF().equalsIgnoreCase(cf)){
                     return user;
                 }
@@ -123,7 +129,7 @@ public class EngineSearcher {
         int high = size-1;
         while(low<=high){
             int mid = low+high/2;
-            Utente pointedUser = database.get(mid);
+            Utente pointedUser = database.getUser(mid);
             String userPointedCf = pointedUser.getCF();
             if(userPointedCf.equalsIgnoreCase(cf)) return pointedUser;
             else if(cf.compareToIgnoreCase(userPointedCf)<0) high = mid-1;
@@ -135,12 +141,12 @@ public class EngineSearcher {
 
     Utente getUserFromId(DataBaseUtenti dataBaseUtenti,String id) {
         
-        int size = dataBaseUtenti.getDimensione();
+        int size = dataBaseUtenti.getSize();
         
         
         if(size<1000){
             for (int i = 0; i < size; i++) {
-                Utente user = dataBaseUtenti.get(i);
+                Utente user = dataBaseUtenti.getUser(i);
                 if(user.getUserId().equalsIgnoreCase(id)){
                     return user;
                 }
@@ -150,13 +156,13 @@ public class EngineSearcher {
         }
         
         EngineSorter sorter = new EngineSorter();
-        sorter.sortDatabaseById(dataBaseUtenti);
+        sorter.sortUsersById(dataBaseUtenti);
         
         int low = 0;
         int high = size-1;
         while(low<=high){
             int mid = low+high/2;
-            Utente pointedUser = dataBaseUtenti.get(mid);
+            Utente pointedUser = dataBaseUtenti.getUser(mid);
             String userPointedId = pointedUser.getUserId();
             if(userPointedId.equalsIgnoreCase(id)) return pointedUser;
             else if(id.compareToIgnoreCase(userPointedId)<0) high = mid-1;
@@ -171,15 +177,15 @@ public class EngineSearcher {
         int posCounter = 0;
         
         EngineSorter sorter = new EngineSorter();
-        sorter.sortDatabaseById(userDataBase);
-        int size = userDataBase.getDimensione();
+        sorter.sortUsersById(userDataBase);
+        int size = userDataBase.getSize();
         for (int i = 0; i < utenti.length; i++) {
             String id = splittedString[i];
             int low = 0;
             int high = size-1;
             while(low<=high){
                 int mid = low+high/2;
-                Utente pointedUser = userDataBase.get(mid);
+                Utente pointedUser = userDataBase.getUser(mid);
                 String userPointedId = pointedUser.getUserId();
                 if(userPointedId.equalsIgnoreCase(id)) {
                     utenti[posCounter++]=pointedUser;
@@ -190,5 +196,32 @@ public class EngineSearcher {
             }
         }
         return utenti;
+    }
+    
+    //supportMethods
+    private void addTo(Brano[] array,Brano track){
+        if(array.length == 1) array[0] = track;
+        else {
+            Brano[] newOne = new Brano[array.length+1];
+            for (int i = 0; i < array.length; i++) {
+                newOne[i] = array[i];
+            }
+            newOne[array.length] = track;
+            array=newOne;
+        }    
+    }
+    
+    private void sortByAuthor(Brano[] tracks){
+        if(tracks[0] != null && tracks.length > 1){
+            EngineSorter sorter = new EngineSorter();
+            sorter.sortTracksByAuthors(tracks);
+        }
+    }
+    
+    private void sortByTitle(Brano[] tracks){
+        if(tracks[0] != null && tracks.length > 1){
+            EngineSorter sorter = new EngineSorter();
+            sorter.sortTracksByTitles(tracks);
+        }
     }
 }

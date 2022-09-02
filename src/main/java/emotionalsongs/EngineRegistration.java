@@ -94,7 +94,7 @@ public class EngineRegistration {
             EMOTIONALSONGS.loggedUser = nuovo;
             EMOTIONALSONGS.logged = true;
             allRight = true;
-            System.out.println("fine");
+            
         }        
     }
     
@@ -269,7 +269,7 @@ public class EngineRegistration {
     * @throws FileNotFoundException 
     */
     private boolean userIDNotTaken(String id) throws FileNotFoundException{
-        return userDatabase.cercaId(id) == null;
+        return userDatabase.searchUserId(id) == null;
     }  
 
     /**
@@ -279,7 +279,7 @@ public class EngineRegistration {
     * @throws FileNotFoundException 
     */  
     private boolean userCFNotSigned(String cf) throws FileNotFoundException {
-        return userDatabase.cercaCf(cf) == null;
+        return userDatabase.searchUserCf(cf) == null;
     }  
     
 }

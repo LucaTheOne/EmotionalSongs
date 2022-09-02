@@ -2,6 +2,8 @@
 package emotionalsongs;
 
 import java.awt.*;
+import java.io.*;
+import java.nio.file.*;
 import javax.swing.*;
 
 /**
@@ -28,6 +30,11 @@ public class Utilities {
     public static ImageIcon spaceImage = new ImageIcon("../EmotionalSongs/Risorse/space.png");
     public static ImageIcon logingBG = new ImageIcon("../EmotionalSongs/Risorse/LoginBG.png");
     public static ImageIcon regBG = new ImageIcon("../EmotionalSongs/Risorse/RegBg.png");
+    public static ImageIcon chartButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/chartButton.png");
+    public static ImageIcon regIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIcon.png");
+    public static ImageIcon clearButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ClearButtonIcon.png");
+    public static ImageIcon closeButton = new ImageIcon("../EmotionalSongs/Risorse/CloseButton.png");
+    
     
 //Stringhe ricorrenti
     static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
@@ -39,9 +46,24 @@ public class Utilities {
     public static Font fontLoadingFrame;
     
 // metodi
-    public static String capitalize(String str)
-    {
+    public static String capitalize(String str){
         if(str == null || str.length()<=1) return str;
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+    
+    public static long countLines(String fileName) {
+        
+      Path path = Paths.get(fileName);
+      long lines = 0;
+      try {
+          lines = Files.lines(path).count();
+
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
+        return lines;
+        
+    }
+    
 }

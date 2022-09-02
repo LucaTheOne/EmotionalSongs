@@ -32,27 +32,31 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         menuButton = new javax.swing.JToggleButton();
-        profileButton = new javax.swing.JButton();
+        ProfileButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
         LanguageButton = new javax.swing.JButton();
-        logOutButton = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(39,16,62,100)
         );
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setPreferredSize(new java.awt.Dimension(800, 30));
+        setPreferredSize(new java.awt.Dimension(800, 25));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(390, 30));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0};
+        jPanel1Layout.rowHeights = new int[] {0};
+        jPanel1.setLayout(jPanel1Layout);
 
         menuButton.setBackground(new java.awt.Color(15, 52, 96));
         menuButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         menuButton.setForeground(new java.awt.Color(255, 255, 255));
         menuButton.setText("Menu");
         menuButton.setAlignmentY(0.0F);
+        menuButton.setBorder(null);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -71,30 +75,32 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         jPanel1.add(menuButton, gridBagConstraints);
 
-        profileButton.setBackground(new java.awt.Color(15, 52, 96));
-        profileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        profileButton.setForeground(new java.awt.Color(255, 255, 255));
-        profileButton.setText("Profile");
-        profileButton.setAlignmentY(0.0F);
-        profileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        profileButton.setPreferredSize(new java.awt.Dimension(72, 18));
-        profileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        profileButton.addActionListener(new java.awt.event.ActionListener() {
+        ProfileButton.setBackground(new java.awt.Color(15, 52, 96));
+        ProfileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
+        ProfileButton.setText("Profile");
+        ProfileButton.setAlignmentY(0.0F);
+        ProfileButton.setBorder(null);
+        ProfileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ProfileButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        ProfileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profileButtonActionPerformed(evt);
+                ProfileButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(profileButton, gridBagConstraints);
+        jPanel1.add(ProfileButton, gridBagConstraints);
 
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
         CreditsButton.setText("Credits");
         CreditsButton.setAlignmentY(0.0F);
+        CreditsButton.setBorder(null);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -114,6 +120,7 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
         LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
         LanguageButton.setText("English");
         LanguageButton.setAlignmentY(0.0F);
+        LanguageButton.setBorder(null);
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -123,24 +130,25 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(LanguageButton, gridBagConstraints);
 
-        logOutButton.setBackground(new java.awt.Color(15, 52, 96));
-        logOutButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        logOutButton.setForeground(new java.awt.Color(255, 255, 255));
-        logOutButton.setText("LogOut");
-        logOutButton.setAlignmentY(0.0F);
-        logOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        logOutButton.setPreferredSize(new java.awt.Dimension(72, 18));
-        logOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+        LogOutButton.setBackground(new java.awt.Color(15, 52, 96));
+        LogOutButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        LogOutButton.setForeground(new java.awt.Color(255, 255, 255));
+        LogOutButton.setText("LogOut");
+        LogOutButton.setAlignmentY(0.0F);
+        LogOutButton.setBorder(null);
+        LogOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LogOutButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        LogOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOutButtonActionPerformed(evt);
+                LogOutButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(logOutButton, gridBagConstraints);
+        jPanel1.add(LogOutButton, gridBagConstraints);
 
         add(jPanel1, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
@@ -157,28 +165,28 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuButtonActionPerformed
 
-    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
 
-        //visualizza dati utente
-    }//GEN-LAST:event_profileButtonActionPerformed
+        //profile info
+    }//GEN-LAST:event_ProfileButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
         mainPage.setMainPanel(new GUICreditsPanel());
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
-    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         mainPage.setUpperBar(new GUIUnloggedToolBarPanel(mainPage));
         mainPage.setLeftPanel(new GUILeftMenuUnespanded(mainPage));
-        mainPage.update();
-    }//GEN-LAST:event_logOutButtonActionPerformed
+        mainPage.cleanUpMainPanel();
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreditsButton;
     private javax.swing.JButton LanguageButton;
+    private javax.swing.JButton LogOutButton;
+    private javax.swing.JButton ProfileButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton logOutButton;
     private javax.swing.JToggleButton menuButton;
-    private javax.swing.JButton profileButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,7 @@ public class EngineSorter {
         int[] interi ={1,9,4,7,36,259,123,234,345,1000,33,29465};
 
         EngineSorter e = new EngineSorter();
-        e.riordinaArrayInt(interi);
+        e.sortIntArray(interi);
         String stringaOrdinata = "";
         for (int i = 0; i < interi.length; i++) {
             stringaOrdinata += i<interi.length-1? interi[i]+",":interi[i]+".";
@@ -23,35 +23,24 @@ public class EngineSorter {
         System.out.println(stringaOrdinata);
     }
     */
-    //metodi di ordinamento
-    public void sortDatabaseById(DataBaseUtenti database){
-        sortUserArrayById(database.getArrayData()); 
-    }//Tramite heapSort riordina il database secondo UserId
     
-    public void sortDatabaseByCf(DataBaseUtenti database){
+    //User sort methods
+    public void sortUsersById(DataBaseUtenti database){
+        HeapUtentiId heap = new HeapUtentiId(database);
+        heap.buildBU();
+        for(int i = database.getSize()-1;i>=0;i++){ 
+            database.replace(i, heap.delete());
+        } 
+    }
+    
+    public void sortUserByCf(DataBaseUtenti database){
         HeapUtentiCf heap = new HeapUtentiCf(database);
         heap.buildBU();
-        for(int i = database.getDimensione()-1;i>=0;i++){ 
-            database.sostituisciIndice(i, heap.delete());
+        for(int i = database.getSize()-1;i>=0;i++){ 
+            database.replace(i, heap.delete());
         }  
-    }//Tramite heapSort riordina un array di utenti secondo CF
-
-    void riordinaArrayInt(int[] arrayInt) {
-        HeapInt heap = new HeapInt(arrayInt);
-        heap.buildBU();
-        for (int i = arrayInt.length-1; i>=0; i--) {
-            arrayInt[i] = heap.delete();
-        }
-    }//Tramite heapSort riordina un array di interi
-    
-    void sortRepoByTags(Brano[] arrayBrani){
-        HeapTagBrani heap = new HeapTagBrani(arrayBrani);
-        heap.buildBU();
-        for(int i = 0;i<arrayBrani.length;i++){
-            arrayBrani[i] = heap.delete();
-        }
     }
-
+    
     void sortUserArrayById(Utente[] arrayUtenti) {
         HeapUtentiId heap = new HeapUtentiId(arrayUtenti);
         heap.buildBU();
@@ -60,6 +49,48 @@ public class EngineSorter {
         } 
     }
     
+    void sortUserArrayByCf(Utente[] arrayUtenti){
+        HeapUtentiCf heap = new HeapUtentiCf(arrayUtenti);
+        heap.buildBU();
+        for(int i = arrayUtenti.length-1;i>=0;i++){ 
+            arrayUtenti[i] = heap.delete();
+        }
+    }
+    
+    void sortTracksByTags(Brano[] arrayBrani){
+        HeapTagBrani heap = new HeapTagBrani(arrayBrani);
+        heap.buildBU();
+        for(int i = 0;i<arrayBrani.length;i++){
+            arrayBrani[i] = heap.delete();
+        }
+    }
+   
+    //Tracks sort methods
+    void sortTracksByTitles(Brano[] arrayBrani) {
+        HeapTitleBrani heap = new HeapTitleBrani(arrayBrani);
+        heap.buildBU();
+        for(int i = 0;i<arrayBrani.length;i++){
+            arrayBrani[i] = heap.delete();
+        }
+    }
+
+    void sortTracksByAuthors(Brano[] arrayBrani) {
+        HeapAuthorBrani heap = new HeapAuthorBrani(arrayBrani);
+        heap.buildBU();
+        for(int i = 0;i<arrayBrani.length;i++){
+            arrayBrani[i] = heap.delete();
+        }
+    }
+    
+    //General sort methods
+     void sortIntArray(int[] arrayInt) {
+        HeapInt heap = new HeapInt(arrayInt);
+        heap.buildBU();
+        for (int i = arrayInt.length-1; i>=0; i--) {
+            arrayInt[i] = heap.delete();
+        }
+    }
+     
     //Strutture dati speciali Utente
     private class HeapUtentiId {
         private Utente[] arrayUtenti;
@@ -72,7 +103,7 @@ public class EngineSorter {
         }
         
         public HeapUtentiId(DataBaseUtenti database){
-           this(database.getArrayData());
+           this(database.getDatabase());
         }
         
         public boolean isEmpty(){
@@ -147,7 +178,7 @@ public class EngineSorter {
         }
         
         public HeapUtentiCf(DataBaseUtenti database){
-           this(database.getArrayData());
+           this(database.getDatabase());
         }
         
         public boolean isEmpty(){
@@ -248,7 +279,7 @@ public class EngineSorter {
             return max;
         }
     
-        private boolean precede(int i,int j){
+        private boolean isBefore(int i,int j){
             return (pq[i].getTag()).compareTo(pq[j].getTag())<0;
         }
     
@@ -259,7 +290,7 @@ public class EngineSorter {
         }
     
         private void swim(int k){
-            while(k>1&&precede(k/2,k)){
+            while(k>1&&isBefore(k/2,k)){
                 exch(k/2,k);
                 k=k/2;
             }
@@ -268,8 +299,150 @@ public class EngineSorter {
         private void sink(int k){
             while(2*k<=n){
                 int j=2*k;
-                if(j<n&&precede(j,j+1))j++;
-                if(!precede(k,j))break;
+                if(j<n&&isBefore(j,j+1))j++;
+                if(!isBefore(k,j))break;
+                exch(k,j);
+                k=j;
+            }
+        }   
+    
+        public void buildBU(){
+            if(arrayBrani.length<pq.length){
+                n=arrayBrani.length;
+                for(int i=0;i<arrayBrani.length;i++) pq[i+1]=arrayBrani[i];
+                for(int i=n/2;i>=1;i--) sink(i);
+            } 
+        }   
+    }
+    
+    private class HeapTitleBrani{
+        private Brano[] arrayBrani;
+        private Brano[] pq;
+        private int n=0;
+    
+        public HeapTitleBrani(Brano[] brani){
+            arrayBrani = brani;
+            pq = new Brano[brani.length+1];
+        }
+        
+        public boolean isEmpty(){
+            return n==0;
+        }
+    
+        public int size(){
+            return n;
+        }
+ 
+        public void insert(Brano brano){
+            pq[++n]=brano;
+            swim(n);
+        }
+        
+        public Brano read(){
+            return pq[1];
+        }
+    
+        public Brano delete(){
+            Brano max=pq[1];
+            exch(1,n--);
+            pq[n+1]=null;
+            sink(1);
+            return max;
+        }
+    
+        private boolean isBefore(int i,int j){
+            return (pq[i].getTitle()).compareTo(pq[j].getTitle())<0;
+        }
+    
+        private void exch(int i,int j){
+            Brano t=pq[i];
+            pq[i]=pq[j];
+            pq[j] = t;
+        }
+    
+        private void swim(int k){
+            while(k>1&&isBefore(k/2,k)){
+                exch(k/2,k);
+                k=k/2;
+            }
+        }
+    
+        private void sink(int k){
+            while(2*k<=n){
+                int j=2*k;
+                if(j<n&&isBefore(j,j+1))j++;
+                if(!isBefore(k,j))break;
+                exch(k,j);
+                k=j;
+            }
+        }   
+    
+        public void buildBU(){
+            if(arrayBrani.length<pq.length){
+                n=arrayBrani.length;
+                for(int i=0;i<arrayBrani.length;i++) pq[i+1]=arrayBrani[i];
+                for(int i=n/2;i>=1;i--) sink(i);
+            } 
+        }   
+    }
+    
+    private class HeapAuthorBrani{
+        private Brano[] arrayBrani;
+        private Brano[] pq;
+        private int n=0;
+    
+        public HeapAuthorBrani(Brano[] brani){
+            arrayBrani = brani;
+            pq = new Brano[brani.length+1];
+        }
+        
+        public boolean isEmpty(){
+            return n==0;
+        }
+    
+        public int size(){
+            return n;
+        }
+ 
+        public void insert(Brano brano){
+            pq[++n]=brano;
+            swim(n);
+        }
+        
+        public Brano read(){
+            return pq[1];
+        }
+    
+        public Brano delete(){
+            Brano max=pq[1];
+            exch(1,n--);
+            pq[n+1]=null;
+            sink(1);
+            return max;
+        }
+    
+        private boolean isBefore(int i,int j){
+            return (pq[i].getAuthor()).compareTo(pq[j].getAuthor())<0;
+        }
+    
+        private void exch(int i,int j){
+            Brano t=pq[i];
+            pq[i]=pq[j];
+            pq[j] = t;
+        }
+    
+        private void swim(int k){
+            while(k>1&&isBefore(k/2,k)){
+                exch(k/2,k);
+                k=k/2;
+            }
+        }
+    
+        private void sink(int k){
+            while(2*k<=n){
+                int j=2*k;
+                if(j<n&&isBefore(j,j+1))j++;
+                if(!isBefore(k,j))break;
                 exch(k,j);
                 k=j;
             }

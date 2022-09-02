@@ -105,10 +105,10 @@ public class EngineChecker {
     }
     
     boolean checkIdNotTaken(DataBaseUtenti userDatabase,String id) {
-        return userDatabase.cercaId(id) == null;
+        return userDatabase.searchUserId(id) == null;
     }
     
     boolean checkCfNotPresent(DataBaseUtenti userDatabase,String cf) {
-        return userDatabase.cercaCf(cf) == null;
+        return userDatabase.searchUserCf(cf) == null;
     }
 }

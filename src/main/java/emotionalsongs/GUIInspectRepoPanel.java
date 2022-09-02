@@ -5,19 +5,21 @@
 package emotionalsongs;
 
 import java.io.*;
-import javax.swing.*;
 
 /**
  *@hidden
  * @author big
  */
 public class GUIInspectRepoPanel extends javax.swing.JPanel {
+    
     GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
-    int counterIndex = 30;
+    int tracksPerView = 100;
+    int startIndex = 0;
     boolean firstPage = true;
     boolean lastPage = false;
+    
     Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
-    Brano[] risultatiRicerche = repositoryCorrelato.getArrayBrani();
+    Brano[] actualArrayWorking = repositoryCorrelato.getRepo();
 
     //Repository repo = new Repository();
     /**
@@ -36,41 +38,37 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Repository repo = new Repository();
-        repoButtonsView = new javax.swing.JScrollPane();
-        subPanelRepoView = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
-        searchBar = new javax.swing.JTextField();
         X = new javax.swing.JButton();
+        centerLowPanel = new javax.swing.JPanel();
+        clearButton = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        numberResultsLabel = new javax.swing.JLabel();
+        searchBar = new javax.swing.JTextField();
         TitlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         BackButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         nextButton = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
+        titlesPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        titleLabel1 = new javax.swing.JLabel();
+        authorLabel1 = new javax.swing.JLabel();
+        yearLabel1 = new javax.swing.JLabel();
+        scrollView = new javax.swing.JScrollPane();
+        innerScroll = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(900, 700));
         setLayout(new java.awt.BorderLayout());
 
-        repoButtonsView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        repoButtonsView.setAlignmentX(0.0F);
-        repoButtonsView.setAlignmentY(0.0F);
-        repoButtonsView.setOpaque(false);
-
-        subPanelRepoView.setOpaque(false);
-        subPanelRepoView.setPreferredSize(new java.awt.Dimension(500, 1500));
-        subPanelRepoView.setLayout(new java.awt.GridLayout(30, 1));
-        for(int i = 0; i<30;i++){
-            subPanelRepoView.add(repo.getBrano(i).getButton());
-        }
-        repoButtonsView.setViewportView(subPanelRepoView);
-
-        add(repoButtonsView, java.awt.BorderLayout.CENTER);
-
-        SearchPanel.setBackground(new java.awt.Color(89, 193, 201));
+        SearchPanel.setBackground(new java.awt.Color(81, 119, 140));
         SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
@@ -85,22 +83,13 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         });
         SearchPanel.add(searchButton, java.awt.BorderLayout.LINE_START);
 
-        searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        searchBar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBarActionPerformed(evt);
-            }
-        });
-        SearchPanel.add(searchBar, java.awt.BorderLayout.CENTER);
-
         X.setBackground(new java.awt.Color(255, 51, 51));
         X.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         X.setForeground(new java.awt.Color(255, 255, 255));
-        X.setText("X");
+        X.setIcon(Utilities.closeButton);
         X.setAlignmentY(0.0F);
-        X.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        X.setOpaque(true);
-        X.setPreferredSize(new java.awt.Dimension(100, 50));
+        X.setBorder(null);
+        X.setPreferredSize(new java.awt.Dimension(50, 50));
         X.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 XActionPerformed(evt);
@@ -108,13 +97,48 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         });
         SearchPanel.add(X, java.awt.BorderLayout.LINE_END);
 
+        centerLowPanel.setOpaque(false);
+        centerLowPanel.setLayout(new java.awt.BorderLayout());
+
+        clearButton.setIcon(Utilities.clearButtonIcon);
+        clearButton.setBorder(null);
+        clearButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+        centerLowPanel.add(clearButton, java.awt.BorderLayout.LINE_END);
+
+        jPanel6.setOpaque(false);
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        numberResultsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numberResultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numberResultsLabel.setText(actualArrayWorking.length + " brani presenti!");
+        numberResultsLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        numberResultsLabel.setPreferredSize(new java.awt.Dimension(190, 50));
+        jPanel6.add(numberResultsLabel, java.awt.BorderLayout.LINE_END);
+
+        searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(searchBar, java.awt.BorderLayout.CENTER);
+
+        centerLowPanel.add(jPanel6, java.awt.BorderLayout.CENTER);
+
+        SearchPanel.add(centerLowPanel, java.awt.BorderLayout.CENTER);
+
         add(SearchPanel, java.awt.BorderLayout.SOUTH);
 
         TitlePanel.setMinimumSize(new java.awt.Dimension(379, 50));
         TitlePanel.setPreferredSize(new java.awt.Dimension(10, 50));
         TitlePanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setBackground(new java.awt.Color(0, 196, 205));
+        jLabel1.setBackground(new java.awt.Color(85, 124, 147));
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -156,6 +180,81 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         TitlePanel.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
         add(TitlePanel, java.awt.BorderLayout.PAGE_START);
+
+        mainPanel.setLayout(new java.awt.BorderLayout());
+
+        titlesPanel.setPreferredSize(new java.awt.Dimension(100, 30));
+        titlesPanel.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setBackground(new java.awt.Color(5, 23, 44));
+        jPanel3.setMinimumSize(new java.awt.Dimension(720, 30));
+        jPanel3.setPreferredSize(new java.awt.Dimension(800, 30));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBackground(new java.awt.Color(5, 23, 44));
+        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(136, 100));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
+
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
+
+        titleLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel1.setText("Titolo");
+        titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titleLabel1.setOpaque(true);
+        titleLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel5.add(titleLabel1);
+
+        authorLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        authorLabel1.setText("Autore");
+        authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        authorLabel1.setOpaque(true);
+        authorLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel5.add(authorLabel1);
+
+        yearLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        yearLabel1.setText("Anno");
+        yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        yearLabel1.setOpaque(true);
+        yearLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel5.add(yearLabel1);
+
+        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        titlesPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        mainPanel.add(titlesPanel, java.awt.BorderLayout.PAGE_START);
+
+        scrollView.setBorder(null);
+        scrollView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollView.setAlignmentX(0.0F);
+        scrollView.setAlignmentY(0.0F);
+        scrollView.setOpaque(false);
+
+        innerScroll.setBackground(new java.awt.Color(0, 24, 46));
+        innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
+        innerScroll.setLayout(new java.awt.GridLayout(100, 1));
+        for(int i = 0;i<tracksPerView;i++){
+            innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelView());
+        }
+        scrollView.setViewportView(innerScroll);
+
+        mainPanel.add(scrollView, java.awt.BorderLayout.CENTER);
+
+        add(mainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
@@ -163,36 +262,48 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBarActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        
-        EngineSearcher searchEngine = new EngineSearcher();
-        risultatiRicerche = searchEngine.cercaBranoMusicale(searchBar.getText());
 
         if(searchBar.getText().isBlank()) {
-            risultatiRicerche = repositoryCorrelato.getArrayBrani();
-            subPanelRepoView.removeAll();
-            for(int i = 0; i<30;i++){
-                subPanelRepoView.add(risultatiRicerche[i].getButton());  
+            actualArrayWorking = repositoryCorrelato.getRepo();
+            innerScroll.removeAll();
+            for(int i = 0; i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelView());  
             }
-            subPanelRepoView.revalidate();
-            subPanelRepoView.repaint();
+            numberResultsLabel.setText(actualArrayWorking.length +" brani presenti!");
+            numberResultsLabel.revalidate();
+            numberResultsLabel.repaint();
+            firstPage = true;
+            lastPage = false;
+            scrollView.revalidate();
+            scrollView.repaint();
             return;
         }
         
-        Brano[] risultati;
-        risultati = searchEngine.cercaBranoMusicale(searchBar.getText());
-        subPanelRepoView.removeAll();
+        EngineSearcher searchEngine = new EngineSearcher();
+        actualArrayWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        innerScroll.removeAll();
         
-        if(risultati == null){
-            subPanelRepoView.add(new JLabel("Nessun brano trovato corrispondente ai criteri di ricerca!"));
-            subPanelRepoView.revalidate();
-            subPanelRepoView.repaint();
+        if(actualArrayWorking == null){
+            innerScroll.removeAll();
+            innerScroll.revalidate();
+            innerScroll.repaint();
+            numberResultsLabel.setText("0 brani trovati!");
+            numberResultsLabel.revalidate();
+            numberResultsLabel.repaint();
+            firstPage = true;
+            lastPage = true;
             return;
         }
-        for(int i = 0;i<risultatiRicerche.length&&i<30;i++){
-            subPanelRepoView.add(risultatiRicerche[i].getButton());
+        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());
         }
-        subPanelRepoView.revalidate();
-        subPanelRepoView.repaint();
+        numberResultsLabel.setText(actualArrayWorking.length +" risultati trovati!");
+        numberResultsLabel.revalidate();
+        numberResultsLabel.repaint();
+        firstPage = true;
+        lastPage = false;
+        innerScroll.revalidate();
+        innerScroll.repaint();
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -200,43 +311,55 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         if (firstPage) {
             return;
         }
-        counterIndex -= 30;
-        if (counterIndex==30) {
+        startIndex -= tracksPerView;
+        if (startIndex == 0) {
             firstPage = true;
         }
-        subPanelRepoView.removeAll();
+        innerScroll.removeAll();
 
-        for(int i = counterIndex-30;i<counterIndex && i<risultatiRicerche.size();i++){
-            subPanelRepoView.add(risultatiRicerche.get(i).getButton());
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());
         }
-        subPanelRepoView.revalidate();
-        subPanelRepoView.repaint();
+        lastPage = false;
+        innerScroll.revalidate();
+        innerScroll.repaint();
     }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        
-        if (lastPage||counterIndex>risultatiRicerche.size()) {
-            lastPage = true;
-            return;
-        }
-        if (firstPage) {
-            firstPage = false;
-        }
-        counterIndex += 30;
-        
-        subPanelRepoView.removeAll();
-
-        for(int i = counterIndex-30;i<counterIndex && i<risultatiRicerche.size();i++){
-            subPanelRepoView.add(risultatiRicerche.get(i).getButton());
-        }
-        subPanelRepoView.revalidate();
-        subPanelRepoView.repaint();    }//GEN-LAST:event_nextButtonActionPerformed
-
     private void XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XActionPerformed
-        mainWindow.mainPanel.removeAll();
-        mainWindow.revalidate();
-        mainWindow.repaint();
+        mainWindow.cleanUpMainPanel();
     }//GEN-LAST:event_XActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        if((startIndex+tracksPerView) >= actualArrayWorking.length-1 ) lastPage = true;
+        
+        if (lastPage) return;
+        firstPage = false;
+
+        startIndex += tracksPerView;
+        
+        innerScroll.removeAll();
+
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());
+        }
+        innerScroll.revalidate();
+        innerScroll.repaint();
+    }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        searchBar.setText("");
+        actualArrayWorking = repositoryCorrelato.getRepo();
+        innerScroll.removeAll();
+        for(int i = 0; i<tracksPerView;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());  
+        }
+        firstPage = true;
+        lastPage = false;
+        numberResultsLabel.setText(actualArrayWorking.length +" brani presenti!");
+        scrollView.revalidate();
+        scrollView.repaint();
+            
+    }//GEN-LAST:event_clearButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,14 +367,26 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JPanel TitlePanel;
     private javax.swing.JButton X;
+    private javax.swing.JLabel authorLabel1;
+    private javax.swing.JPanel centerLowPanel;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JPanel innerScroll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JButton nextButton;
-    private javax.swing.JScrollPane repoButtonsView;
+    private javax.swing.JLabel numberResultsLabel;
+    private javax.swing.JScrollPane scrollView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
-    private javax.swing.JPanel subPanelRepoView;
+    private javax.swing.JLabel titleLabel1;
+    private javax.swing.JPanel titlesPanel;
+    private javax.swing.JLabel yearLabel1;
     // End of variables declaration//GEN-END:variables
     
 }

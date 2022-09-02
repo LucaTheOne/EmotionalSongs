@@ -36,7 +36,7 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         LanguageButton = new javax.swing.JButton();
         LoginButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(22, 33, 62, 160)
+        setBackground(new java.awt.Color(15,27,54, 160)
         );
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
@@ -57,7 +57,6 @@ public class GUIUnloggedToolBarPanel extends javax.swing.JPanel {
         menuButton.setAlignmentY(0.0F);
         menuButton.setBorder(null);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        menuButton.setOpaque(true);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         menuButton.addChangeListener(new javax.swing.event.ChangeListener() {

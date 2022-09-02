@@ -25,7 +25,7 @@ public class EMOTIONALSONGS {
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
         REPOSITORY = new Repository();
-        //userDataBase = new DataBaseUtenti();
+        userDataBase = new DataBaseUtenti();
         init.dispose();
         mainWindow = new GUIMainFrame();
         mainWindow.setVisible(true);

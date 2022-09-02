@@ -35,7 +35,7 @@ public class GUIMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        globalPanel =     new JPanel(){
+        globalPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
                 Graphics g2 = g.create();

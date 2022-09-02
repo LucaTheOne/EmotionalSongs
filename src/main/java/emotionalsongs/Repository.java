@@ -2,8 +2,6 @@
 package emotionalsongs;
 
 import java.io.*;
-import java.util.*;
-import javax.swing.*;
 
 /**
  * La classe Repository si occupa della gestione del repository Brani e della
@@ -13,17 +11,9 @@ import javax.swing.*;
  */
 public class Repository {
 
-    /**
-     * @hidden
-     */
-    ArrayList<Brano> repository = new ArrayList<Brano>();
-    /**
-     * @hidden
-     */
-    ArrayList<JButton> repositoryButtons = new ArrayList<>();
-    private int numeroBrani = 0;
+    private Brano[] repository;
 
-  //Costruttore
+    //Costruttore
     /**
      * Il costruttore crea un oggetto di tipo Repository. Usando il metodo BufferedReader accede al
      * file contenente la lista di Brani e crea un array di stringhe le cui righe contengono i dati di ogni
@@ -35,14 +25,11 @@ public class Repository {
     public Repository() {
         try {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream("../EMOTIONALSONGS/data/Canzoni.dati.txt")));
-            String line;
-            while((line = buffer.readLine()) != null){
-            String[] splittedLine = line.split("<SEP>");//Divido la line in stringhe divise da <SEP> e le salvo in un array
-            Brano branoCorrente = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
-            repository.add(branoCorrente);
-            repositoryButtons.add(branoCorrente.button);
-            numeroBrani++;
-        }
+            repository = new Brano[(int)Utilities.countLines(Utilities.pathToCanzoniDatiTxt)];
+            for(int i = 0; i<repository.length;i++){
+                String[] splittedLine = buffer.readLine().split("<SEP>");
+                repository[i] = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
+            }            
         } catch (FileNotFoundException exception) {
             exception.getMessage();
         } catch (IOException exception){
@@ -51,12 +38,39 @@ public class Repository {
         
     }
     
+    //modify methods
+    private void addTrack(Brano brano){
+        
+            Brano[] newArray = new Brano[repository.length+1];
+            for(int i = 0; i<repository.length;i++){
+                newArray[i] = repository[i];
+            }
+            newArray[newArray.length-1] = brano;
+        
+    }
+    
+    void sortByTags(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortTracksByTags(repository);
+    }
+    
+    void sortByTitles(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortTracksByTitles(repository);
+    }
+    
+    void sortByAuthor(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortTracksByAuthors(repository);
+    }
+    
+    //getter methods   
     /**
-     * Il metodo restituisce il numero di brani presenti nel repository.
-     * @return numeroBrani - numero di brani.
+     * Il metodo restituisce il numero di repository presenti nel repository.
+     * @return numeroBrani - numero di repository.
      */
-    public int getDimensioneRepository(){
-      return this.numeroBrani;
+    public int getSize(){
+        return repository.length;
     }
     
     /**
@@ -66,19 +80,14 @@ public class Repository {
      * @return Restituisce il brano.
      */
     public Brano getBrano(int index){
-        return repository.get(index);
+        return repository[index];
     }
     
-    /**
-     * Il metodo stampa la repository, scrivendo i dettagli di ogni brano.
-     * 
-     */
-    public void mostraRepository(JScrollPane pannello){
-        for(int i = 0;i<numeroBrani;i++){
-            pannello.add(repositoryButtons.get(i));
-        }
+    public Brano[] getRepo(){
+        return repository;
     }
     
+    //view methods
     /**
      * Il metodo stampa il Brano richiesto dall'utente.
      * @param index posizione Brano.
@@ -87,7 +96,5 @@ public class Repository {
         System.out.println(getBrano(index).toStringOrdinato());
     }
     
-    public ArrayList<Brano> getLista(){
-        return this.repository;
-    }
+    
 }

@@ -5,9 +5,7 @@
 
 package emotionalsongs;
 
-import java.awt.*;
 import java.io.*;
-import javax.swing.*;
 
 /**
  *
@@ -50,7 +48,9 @@ public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(230, 300));
         jPanel2.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
+        jButton2.setBackground(new java.awt.Color(15, 27, 54));
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Repository");
         jButton2.setToolTipText("");
         jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -83,18 +83,12 @@ public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             mainPage.setMainPanel(new GUIInspectRepoPanel());
-            changeButtonColorsActive(jButton2);
         } catch (IOException ex) {
             ex.getMessage();
-        }
-        
-        
+        }    
     }//GEN-LAST:event_jButton2ActionPerformed
     
-    private void changeButtonColorsActive(JButton button){
-        button.setBackground(new Color(133, 35, 240));
-        button.setForeground(Color.WHITE);   
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -43,7 +43,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="globalPanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="    new JPanel(){&#xd;&#xa;        @Override&#xd;&#xa;        protected void paintComponent(Graphics g){&#xd;&#xa;            Graphics g2 = g.create();&#xd;&#xa;            g2.drawImage(Utilities.mainBackGround.getImage(), 0, 0, getWidth(), getHeight(), null);&#xd;&#xa;            g2.dispose();&#xd;&#xa;        }&#xd;&#xa;    }"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JPanel(){&#xa;    @Override&#xa;    protected void paintComponent(Graphics g){&#xa;        Graphics g2 = g.create();&#xa;        g2.drawImage(Utilities.mainBackGround.getImage(), 0, 0, getWidth(), getHeight(), null);&#xa;        g2.dispose();&#xa;    }&#xa;}"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
