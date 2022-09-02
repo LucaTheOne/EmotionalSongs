@@ -90,7 +90,11 @@ public class Brano {
         return stringa;
     }
     
-    public GUIBranoViewPanel buildPanelView(){
-        return new GUIBranoViewPanel(this);
+    public GUIBranoViewPanelUnlogged buildPanelView(){
+        return new GUIBranoViewPanelUnlogged(this);
+    }
+    
+    public GUIBranoViewPanelLogged buildPanelViewLogged(){
+        return new GUIBranoViewPanelLogged(this);
     }
 }

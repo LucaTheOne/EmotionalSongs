@@ -8,14 +8,14 @@ package emotionalsongs;
  *
  * @author big
  */
-public class GUIBranoViewPanel extends javax.swing.JPanel {
+public class GUIBranoViewPanelUnlogged extends javax.swing.JPanel {
     
     Brano brano;
     
     /**
      * Creates new form GUIbranoViewPanel
      */
-    public GUIBranoViewPanel(Brano brano) {
+    public GUIBranoViewPanelUnlogged(Brano brano) {
         this.brano = brano;
         initComponents();
     }
@@ -29,8 +29,9 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        buttonsPanel = new javax.swing.JPanel();
         chartButton1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         titleLabel1 = new javax.swing.JLabel();
         authorLabel1 = new javax.swing.JLabel();
@@ -42,9 +43,9 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 30));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(5, 23, 44));
-        jPanel2.setPreferredSize(new java.awt.Dimension(120, 100));
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        buttonsPanel.setBackground(new java.awt.Color(5, 23, 44));
+        buttonsPanel.setPreferredSize(new java.awt.Dimension(120, 100));
+        buttonsPanel.setLayout(new java.awt.GridLayout());
 
         chartButton1.setBackground(new java.awt.Color(0, 24, 46));
         chartButton1.setIcon(Utilities.chartButtonIcon);
@@ -56,9 +57,13 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
                 chartButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chartButton1, java.awt.BorderLayout.CENTER);
+        buttonsPanel.add(chartButton1);
 
-        add(jPanel2, java.awt.BorderLayout.LINE_END);
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setOpaque(true);
+        buttonsPanel.add(jButton1);
+
+        add(buttonsPanel, java.awt.BorderLayout.LINE_END);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
@@ -106,8 +111,9 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel authorLabel1;
+    private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton chartButton1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel titleLabel1;
     private javax.swing.JLabel yearLabel1;

@@ -7,7 +7,7 @@ import java.io.*;
  *@hidden
  * @author luca
  */
-public class EngineLogIn extends EMOTIONALSONGS{
+public class EngineLogger extends EMOTIONALSONGS{
     
     DataBaseUtenti database = EMOTIONALSONGS.userDataBase;
     Utente user;
@@ -17,7 +17,7 @@ public class EngineLogIn extends EMOTIONALSONGS{
      * 
      */
 
-    public EngineLogIn() {
+    public EngineLogger() {
     }
     
     public void login(String UserId, String Password){
@@ -31,6 +31,7 @@ public class EngineLogIn extends EMOTIONALSONGS{
         }
         
     }
+    
     /**
      * 
      * @param userId
@@ -53,5 +54,10 @@ public class EngineLogIn extends EMOTIONALSONGS{
      */
     public void passwordsMatch(String password) {
             passwordMatches = user.getPassword().equals(password);
+    }
+    
+    public static void logout(){
+        EMOTIONALSONGS.logged = false;
+        EMOTIONALSONGS.loggedUser = null;
     }
 }

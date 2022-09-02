@@ -15,6 +15,40 @@ public class DataBaseEmozioni {
     BranoRecords[] database;
     int size;
     
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        String idBrano = "x";
+        String[] users = {"theOne","Estarossa","Escanor"};
+        
+        int[] amazementMarks = {1,2,3};
+        String[] amazementNotes = {"amazement","Notes","!"};
+        
+        int[] solemnityMarks = {1,2,3};
+        String[] solemnityNotes = {"solemnity","Notes","!"};
+        
+        int[] tendernessMarks = {1,2,3};
+        String[] tendernessNotes = {"tenderness","Notes","!"};
+        
+        int[] nostalgiaMarks = {1,2,3};
+        String[] nostalgiaNotes = {"nostalgia","Notes","!"};
+        
+        int[] calmnessMarks = {1,2,3};
+        String[] calmnessNotes = {"calmness","Notes","!"};
+        
+        int[] powerMarks = {1,2,3};
+        String[] powerNotes = {"power","Notes","!"};
+        
+        int[] joyMarks = {1,2,3};
+        String[] joyNotes = {"joy","Notes","!"};
+        
+        int[] tensionMarks = {1,2,3};
+        String[] tensionNotes = {"tension","Notes","!"};
+        
+        int[] sadnessMarks = {1,2,3};
+        String[] sadnessNotes = {"sadness","Notes","!"};
+        
+        BranoRecords b = new BranoRecords(idBrano, users, amazementMarks, amazementNotes, solemnityMarks, solemnityNotes, tendernessMarks, tendernessNotes, nostalgiaMarks, nostalgiaNotes, calmnessMarks, calmnessNotes, powerMarks, powerNotes, joyMarks, joyNotes, tensionMarks, tensionNotes, sadnessMarks, sadnessNotes);
+        System.out.println(b.stringaEmozioniBrano());
+    }
     /**
      * Crea un oggetto che importa i dati delle emozioni.
      */

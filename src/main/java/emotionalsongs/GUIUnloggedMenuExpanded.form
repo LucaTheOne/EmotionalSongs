@@ -94,7 +94,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Chiudi"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[75, 40]"/>
+              <Dimension value="[75, 50]"/>
             </Property>
           </Properties>
           <Events>

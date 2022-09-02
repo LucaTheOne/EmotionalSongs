@@ -26,7 +26,7 @@ import java.util.regex.*;
 * denominato utentiRegistrati.dati.txt .
 * nb v1.0 non vi è forma di controllo sull' indirizzo.
 **/
-public class EngineRegistration {
+public class EngineRegistrer {
 
     private DataBaseUtenti userDatabase;
     boolean validCF;
@@ -46,7 +46,7 @@ public class EngineRegistration {
     /**
      * Costruisce un oggetto vuoto.
      */
-    public EngineRegistration(DataBaseUtenti database) { 
+    public EngineRegistrer(DataBaseUtenti database) { 
         userDatabase = database;
     }
     

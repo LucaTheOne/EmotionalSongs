@@ -109,7 +109,7 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
         closeButton.setText("Chiudi");
-        closeButton.setPreferredSize(new java.awt.Dimension(75, 40));
+        closeButton.setPreferredSize(new java.awt.Dimension(75, 50));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);

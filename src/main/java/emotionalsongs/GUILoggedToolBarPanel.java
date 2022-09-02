@@ -175,6 +175,7 @@ public class GUILoggedToolBarPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+        EngineLogger.logout();
         mainPage.setUpperBar(new GUIUnloggedToolBarPanel(mainPage));
         mainPage.setLeftPanel(new GUILeftMenuUnespanded(mainPage));
         mainPage.cleanUpMainPanel();

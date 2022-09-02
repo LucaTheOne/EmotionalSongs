@@ -12,7 +12,7 @@ public class BranoRecords {
     
     private String branoTag;
     
-    Utente[] arrayUtentiVotato;
+    String[] arrayUtentiVotato;
     
     int[] votiAmazement;
     String[] commentiAmazement;
@@ -40,7 +40,31 @@ public class BranoRecords {
     
     int[] votiSadness;
     String[] commentiSadness;
-            
+    
+    //costruttori
+    public BranoRecords(String branoTag,String[] userList,int[] amazementMarks,String[] amazementNotes,int[] solemnityMarks,String[] solemnityNotes,int[] tendernessMarks,String[] tendernessNotes,int[] nostalgiaMarks,String[] nostalgiaNotes,int[] calmnessMarks,String[] calmnessNotes,int[] powerMarks,String[] powerNotes,int[] joyMarks,String[] joyNotes,int[] tensionMarks,String[] tensionNotes,int[] sadnessMarks,String[] sadnessNotes){
+        this.branoTag = branoTag;
+        arrayUtentiVotato = userList;
+        this.votiAmazement = amazementMarks;
+        this.commentiAmazement = amazementNotes;
+        this.votiSolemnity = solemnityMarks;
+        this.commentiSolemnity = solemnityNotes;
+        this.votiTenderness = tendernessMarks;
+        this.commentiTenderness = tendernessNotes;
+        this.votiNostalgia = nostalgiaMarks;
+        this.commentiNostalgia = nostalgiaNotes;
+        this.votiCalmness = calmnessMarks;
+        this.commentiCalmness = calmnessNotes;
+        this.votiPower = powerMarks;
+        this.commentiPower = powerNotes;
+        this.votiJoy = joyMarks;
+        this.commentiJoy = joyNotes;
+        this.votiTension = tensionMarks;
+        this.commentiTension = tensionNotes;
+        this.votiSadness = sadnessMarks;
+        this.commentiSadness = sadnessNotes;
+    }
+    
     public BranoRecords(String BranoTag,String userList,String amazementMarks,String amazementNotes,String solemnityMarks,String solemnityNotes,String tendernessMarks,String tendernessNotes,String nostalgiaMarks,String nostalgiaNotes,String calmnessMarks,String calmnessNotes,String powerMarks,String powerNotes,String joyMarks,String joyNotes,String tensionMarks,String tensionNotes,String sadnessMarks,String sadnessNotes) {
         this.branoTag = branoTag;
         arrayUtentiVotato = toUtenteArray(userList);
@@ -62,7 +86,11 @@ public class BranoRecords {
         this.commentiTension = convertiInArrayStrings(tensionNotes);
         this.votiSadness = convertiInArrayInts(sadnessMarks);
         this.commentiSadness = convertiInArrayStrings(sadnessNotes);        
-    }    
+    } 
+    
+    public BranoRecords(String stringa){
+        this(stringa.split(";")[0], stringa.split(";")[1], stringa.split(";")[2], stringa.split(";")[3], stringa.split(";")[4], stringa.split(";")[5], stringa.split(";")[6], stringa.split(";")[7], stringa.split(";")[8], stringa.split(";")[9], stringa.split(";")[10], stringa.split(";")[11], stringa.split(";")[12], stringa.split(";")[12], stringa.split(";")[13], stringa.split(";")[14], stringa.split(";")[15], stringa.split(";")[16], stringa.split(";")[17], stringa.split(";")[18]);    
+    }
     
     /**
      * Il metodo crea una stringa con il titolo del brano, autore, anno e tag,
@@ -70,7 +98,7 @@ public class BranoRecords {
      * @return una stringa con il brano, emozioni e commenti.
      */
     public String stringaEmozioniBrano(){
-        return brano.getTag()+";"+
+        return branoTag +";"+
                 stringaUtenti()+
                 stringaAmazement()+
                 stringaSolemnity()+
@@ -85,22 +113,20 @@ public class BranoRecords {
     
     //Utente
     public void aggiornaListaUtentiVotato(Utente user){
-        Utente[] newArray = new Utente[arrayUtentiVotato.length+1];
+        String[] newArray = new String[arrayUtentiVotato.length+1];
         for(int i = 0;i<arrayUtentiVotato.length;i++){
            newArray[i] = arrayUtentiVotato[i];
         }
-        newArray[newArray.length-1] = user;
+        newArray[newArray.length-1] = user.getUserId();
         arrayUtentiVotato=newArray;
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortUserArrayById(newArray);
     }
     
     private String stringaUtenti(){
-        String stringa = "";
-        for (int i = 0; i < arrayUtentiVotato.length;i++){
-            stringa += i!=arrayUtentiVotato.length-1 ? stringa + arrayUtentiVotato[i].getUserId()+",": stringa + arrayUtentiVotato[i].getUserId()+ ";" ;
+        String stringa = arrayUtentiVotato[0];
+        for (int i = 1; i < arrayUtentiVotato.length;i++){
+            stringa += "," + arrayUtentiVotato[i];
         }
-        return stringa;
+        return stringa+";";
     }
     
     //Amazement
@@ -574,13 +600,9 @@ public class BranoRecords {
         return arrayString;
     }
     
-    private Utente[] toUtenteArray(String userList){
-        EngineSearcher searcher = new EngineSearcher();
-        //String[] stringSplitted = userList.split(",");
-        Utente[] arrayUsers = searcher.getUsersFromId(userDatabase, userList);
-        
+    private String[] toUtenteArray(String userList){
+        String[] arrayUsers = userList.split(",");
         EngineSorter sorter = new EngineSorter();
-        sorter.sortUserArrayById(arrayUsers);
         return arrayUsers;
     }
 }

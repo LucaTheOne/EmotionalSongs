@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author big
  */
 public class GUILogInFrame extends javax.swing.JFrame {
-    EngineLogIn logger = new EngineLogIn();
+    EngineLogger logger = new EngineLogger();
     Image bg = Utilities.logingBG.getImage();
     GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
     /**
@@ -107,7 +107,6 @@ public class GUILogInFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         logger.login(idField.getText(), String.valueOf(passwordField.getPassword()));
-        
         if(!logger.idFounded){
             this.wrongId.setVisible(true);
             this.revalidate();
@@ -119,10 +118,9 @@ public class GUILogInFrame extends javax.swing.JFrame {
             this.repaint();
         }
         if(logger.idFounded&&logger.passwordMatches){
-
+            mainWindow.cleanUpMainPanel();
             mainWindow.setUpperBar(new GUILoggedToolBarPanel(mainWindow));
             mainWindow.setLeftPanel(new GUILoggedMenuExpanded(mainWindow));
-            
             dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed

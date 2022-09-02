@@ -65,7 +65,7 @@ public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
         jButton1.setText("Chiudi");
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 40));
+        jButton1.setPreferredSize(new java.awt.Dimension(75, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

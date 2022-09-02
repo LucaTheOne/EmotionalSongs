@@ -93,7 +93,6 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
 
         iconPanel.setOpaque(false);
         iconPanel.setPreferredSize(new java.awt.Dimension(100, 250));
-        iconPanel.setSize(new java.awt.Dimension(100, 200));
         iconPanel.setLayout(new java.awt.GridLayout(1, 3));
         iconPanel.add(jLabel1);
 
@@ -245,7 +244,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         passwordPanel.setOpaque(false);
         passwordPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        passwordLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        passwordLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         passwordLabel.setText("PASSWORD    ");
@@ -255,10 +254,10 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         passwordTextField.setPreferredSize(new java.awt.Dimension(180, 30));
         passwordPanel.add(passwordTextField);
 
-        controlloLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        controlloLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         controlloLabel.setForeground(new java.awt.Color(255, 255, 255));
         controlloLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        controlloLabel.setText("CONTROLLO PSW    ");
+        controlloLabel.setText("VERIFICA PASSWORD    ");
         passwordPanel.add(controlloLabel);
 
         controlloTextField.setText("jPasswordField2");
@@ -271,7 +270,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         passwordCheckLabel.setText("    Password non valida!");
         passwordPanel.add(passwordCheckLabel);
 
-        lowPanel.add(passwordPanel, java.awt.BorderLayout.CENTER);
+        lowPanel.add(passwordPanel, java.awt.BorderLayout.NORTH);
 
         buttonsPanel.setOpaque(false);
         buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 120));
@@ -300,7 +299,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 24, 0, 24);
         buttonsPanel.add(closeButton, gridBagConstraints);
 
-        lowPanel.add(buttonsPanel, java.awt.BorderLayout.PAGE_START);
+        lowPanel.add(buttonsPanel, java.awt.BorderLayout.CENTER);
 
         mainPanel.add(lowPanel, java.awt.BorderLayout.PAGE_END);
 
@@ -312,7 +311,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
-        EngineRegistration engineRegistration = new EngineRegistration(EMOTIONALSONGS.userDataBase);
+        EngineRegistrer engineRegistration = new EngineRegistrer(EMOTIONALSONGS.userDataBase);
         
         setAllCheckOff();
         

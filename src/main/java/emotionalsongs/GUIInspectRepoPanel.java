@@ -13,6 +13,7 @@ import java.io.*;
 public class GUIInspectRepoPanel extends javax.swing.JPanel {
     
     GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    boolean logged = EMOTIONALSONGS.logged;
     int tracksPerView = 100;
     int startIndex = 0;
     boolean firstPage = true;
@@ -68,7 +69,7 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(900, 700));
         setLayout(new java.awt.BorderLayout());
 
-        SearchPanel.setBackground(new java.awt.Color(81, 119, 140));
+        SearchPanel.setBackground(new java.awt.Color(85, 124, 147));
         SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
@@ -100,8 +101,10 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         centerLowPanel.setOpaque(false);
         centerLowPanel.setLayout(new java.awt.BorderLayout());
 
+        clearButton.setBackground(new java.awt.Color(85, 124, 147));
         clearButton.setIcon(Utilities.clearButtonIcon);
         clearButton.setBorder(null);
+        clearButton.setOpaque(true);
         clearButton.setPreferredSize(new java.awt.Dimension(50, 50));
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,8 +250,14 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
         innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
         innerScroll.setLayout(new java.awt.GridLayout(100, 1));
-        for(int i = 0;i<tracksPerView;i++){
-            innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelView());
+        if(!logged){
+            for(int i = 0;i<tracksPerView;i++){
+                innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelView());
+            }
+        } else {
+            for(int i = 0;i<tracksPerView;i++){
+                innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelViewLogged());
+            }
         }
         scrollView.setViewportView(innerScroll);
 
@@ -266,8 +275,14 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         if(searchBar.getText().isBlank()) {
             actualArrayWorking = repositoryCorrelato.getRepo();
             innerScroll.removeAll();
-            for(int i = 0; i<tracksPerView;i++){
-                innerScroll.add(actualArrayWorking[i].buildPanelView());  
+            if(!logged){
+                for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                    innerScroll.add(actualArrayWorking[i].buildPanelView());
+                }
+            } else {
+                for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                    innerScroll.add(actualArrayWorking[i].buildPanelViewLogged());
+                }
             }
             numberResultsLabel.setText(actualArrayWorking.length +" brani presenti!");
             numberResultsLabel.revalidate();
@@ -294,9 +309,16 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
             lastPage = true;
             return;
         }
-        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());
+        if(!logged){
+            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelView());
+            }
+        } else {
+            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelViewLogged());
+            }
         }
+        
         numberResultsLabel.setText(actualArrayWorking.length +" risultati trovati!");
         numberResultsLabel.revalidate();
         numberResultsLabel.repaint();
@@ -316,9 +338,15 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
             firstPage = true;
         }
         innerScroll.removeAll();
-
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());
+        
+        if(!logged){
+            for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelView());
+            }
+        } else {
+            for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelViewLogged());
+            }
         }
         lastPage = false;
         innerScroll.revalidate();
@@ -338,10 +366,16 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         startIndex += tracksPerView;
         
         innerScroll.removeAll();
-
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());
-        }
+        
+        if(!logged){
+            for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelView());
+            }
+        } else {
+            for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelViewLogged());
+            }
+        }    
         innerScroll.revalidate();
         innerScroll.repaint();
     }//GEN-LAST:event_nextButtonActionPerformed
@@ -350,8 +384,14 @@ public class GUIInspectRepoPanel extends javax.swing.JPanel {
         searchBar.setText("");
         actualArrayWorking = repositoryCorrelato.getRepo();
         innerScroll.removeAll();
-        for(int i = 0; i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());  
+        if(!logged){
+            for(int i = 0; i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelView());  
+            }
+        } else {
+            for(int i = 0; i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelViewLogged());  
+            }
         }
         firstPage = true;
         lastPage = false;
