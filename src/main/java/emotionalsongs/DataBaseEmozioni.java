@@ -47,7 +47,7 @@ public class DataBaseEmozioni {
         String[] sadnessNotes = {"sadness","Notes","!"};
         
         BranoRecords b = new BranoRecords(idBrano, users, amazementMarks, amazementNotes, solemnityMarks, solemnityNotes, tendernessMarks, tendernessNotes, nostalgiaMarks, nostalgiaNotes, calmnessMarks, calmnessNotes, powerMarks, powerNotes, joyMarks, joyNotes, tensionMarks, tensionNotes, sadnessMarks, sadnessNotes);
-        System.out.println(b.stringaEmozioniBrano());
+        System.out.println(b.stringaRecord());
     }
     /**
      * Crea un oggetto che importa i dati delle emozioni.

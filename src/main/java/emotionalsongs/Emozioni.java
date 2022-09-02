@@ -48,8 +48,7 @@ public enum Emozioni {
     //campi
     final private String nomeEmozione;
     final private String descrizioneEmozione;
-    private int numeroVoti;
-    private int[] votes;
+    private int[] marks;
     private String[] notes;
 
     
@@ -69,7 +68,7 @@ public enum Emozioni {
      * Restituisce una stringa con il nome dell'emozione.
      * @return Il nome dell'emozione.
      */
-    public String getNomeEmozione(){
+    public String getName(){
         return this.nomeEmozione;
     }
     
@@ -77,33 +76,25 @@ public enum Emozioni {
      * Restituisce una stringa con la descrizione dell'emozione.
      * @return La descrizione dell'emozione.
      */
-    public String getDescrizioneEmozione(){
+    public String getDescription(){
         return this.descrizioneEmozione;
+    }
+    
+    public Emozioni getEmotion(){
+        return this;
     }
     
     /**
      * Il metodo chiede all'utente di dare un voto da 1 a 5 in base a quanto percepito,
      * dopodichè chiede se vuole inserire un commento.
      */
-    public void voteAnEmotion(){
-        giveAVote();
-       
-    }
-    
-    /**
-     * Il metodo chiede all'utente di inserire un voto
-     * da 1 a 5 in base a quanto percepito, dopodichè il voto viene salvato in un array di tipo int.
-     */
-    public void giveAVote(){
-        System.out.println("Inserisca un voto da 1 a 5 in base a quanto ha percepito la seguente emozione, 1 per ninte, 5 molto:");
-        System.out.println(getNomeEmozione() + ","+ getDescrizioneEmozione()+": ");
-        int[] newArrayVotes = new int[votes.length +1];
-        for(int i = 0;i<votes.length;i++){
-            newArrayVotes[i] = votes[i];
+    public void voteEmotion(int mark){
+        int[] array = new int[marks.length];
+        for(int i = 0;i<marks.length;i++){
+            array[i] = marks[i];
         }
-        newArrayVotes[newArrayVotes.length-1] = new Scanner(System.in).nextInt();
-        //metodo che fa reinserire il voto all' utente nel caso sia minore di 1 e maggiore di 5.
-        votes = newArrayVotes;
+        array[array.length-1] = mark;
+        marks = array;
     }
     
     /**
@@ -111,75 +102,62 @@ public enum Emozioni {
      * superare i 256 caratteri; se superati viene richiesto un altro commento, 
      * dopodichè viene salvato in un array di tipo String.
      */
-    public void commentAnEmotion(){
-        System.out.println("Inserisca il suo commento, max 256 caratteri!");
-        String commentoUtente = new Scanner(System.in).nextLine();
-        while(commentoUtente.length()>256) {
-            System.out.println("Troppi caratteri nel suo commento,Inserisca un commento di max 256 caratteri!");
-            commentoUtente = new Scanner(System.in).nextLine();
+    public void commentEmotion(String note){
+        String[] array = new String[notes.length];
+        for(int i = 0;i<notes.length;i++){
+            array[i] = notes[i];
         }
-        
-        String[] newCommentsArray = new String[notes.length + 1];
-        for (int i = 0; i < notes.length; i++){
-            newCommentsArray[i] = notes[i];  
-        }
-        
-        newCommentsArray[newCommentsArray.length-1] = new Scanner(System.in).nextLine();
-        notes = newCommentsArray;
-    }
-    
-    /**
-     * Il metodo importa i voti inseriti.
-     * @param voti 
-     */
-    public void importaVoti(String voti){
-        String[] votiSplitted = voti.split(" ");
-        int[] votiInt = new int[votiSplitted.length];
-        for(int i = 0; i<votiInt.length;i++){
-            votiInt[i] = Integer.parseInt(votiSplitted[i]);
-        }
-        votes = votiInt;
-        numeroVoti = votes.length;
+        array[array.length-1] = note;
+        notes = array;
     }
     
     /**
      * Il metodo importa i commenti inseriti dall'utente.
      * @param Commenti 
      */
-    public void importaCommenti(String Commenti){
+    public void importNotes(String Commenti){
         String[] commentiSplitted = Commenti.split("<>");
         notes = commentiSplitted;
     }
-
+    
+    public int [] getMarks(){
+        return this.marks;
+    }
     /**
      * Il metodo restituisce il voto.
      * @return il voto.
      */
     public int getNumeroVoti() {
-        return numeroVoti;
+        return marks.length;
     }
     
+    public String[] getNotes(){
+        return this.notes;
+    }
+    
+    public String stringaEmozione(){
+        return stringaVoti()+stringaCommenti();
+    }
     /**
      * Il metodo restituisce una stringa con i voti inseriti dall'utente.
      * @return i voti. 
      */
-    public String stringaVoti(){
-        String stringa = "";
-        for(int i = 0;i<votes.length;i++){
-            stringa += i<votes.length-1? votes[i] + " ": votes[i];
+    private String stringaVoti(){
+        String stringa = String.valueOf(marks[0]);
+        for (int i = 1; i < marks.length;i++){
+            stringa += "," + marks[i];
         }
-        return stringa;
+        return stringa+";";
     }
     
     /**
      * Il metodo restituisce una stringa con i commenti inseriti dall'utente.
      * @return i commenti.
      */
-    public String stringaCommenti(){
-        String stringa = "";
-        for(int i = 0;i<notes.length;i++){
-            stringa += i<notes.length-1? notes[i] + "<>": notes[i];
-        }
+    private String stringaCommenti(){
+        String stringa = notes[0];
+        for (int i = 1; i < notes.length;i++){
+            stringa += "<SEP>" + notes[i];        }
         return stringa;
     }
 }
