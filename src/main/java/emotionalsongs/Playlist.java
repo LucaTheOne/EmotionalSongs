@@ -1,7 +1,6 @@
 package emotionalsongs;
 
 import java.io.*;
-import java.util.*;
 
 /**
  *  La classe si occupa di creare e di registrare la Playlist.
@@ -9,99 +8,91 @@ import java.util.*;
  * @version 1.4
  *
  */
-public class Playlist extends EMOTIONALSONGS {
+public class Playlist {
 
     //campi
     /**
      * Nome playlist.
      */
-    String nomePlaylist;
-    
-    /**
-     * Utente.
-     */
-    Utente proprietario;
-    /**
-     * Dimensione playlist.
-     */
-    int dimensione;
+    String playlistName;//no special characters ;
 
-    ArrayList<Brano> listaCanzoniPlaylist = new ArrayList<Brano>();
+    String[] songsTags;
 
     //costruttore
     /**
-     * Crea l'oggetto Playlist prendendo come argomenti un oggetto proprietario di tipo Utente,
-     * un oggetto nomePlaylist di tipo String e un oggetto listaCanzoniPlaylist di tipo ArrayList<Brano>.
+     * Crea l'oggetto Playlist prendendo come argomenti un oggetto owner di tipo User,
+        un oggetto playlistName di tipo String e un oggetto playlist di tipo ArrayList<Brano>.
      * @throws IOException 
      */
-    public Playlist(Utente proprietario,String nomePlaylist,ArrayList<Brano> listaCanzoniPlaylist) throws IOException{
-        this.proprietario = proprietario;
-        this.nomePlaylist = nomePlaylist;
-        this.listaCanzoniPlaylist = listaCanzoniPlaylist;
+    public Playlist(String nomePlaylist,String listaCanzoniPlaylist) {
+        this.playlistName = nomePlaylist;
+        this.songsTags = listaCanzoniPlaylist.split(",");
+        sort();
     }
     
-    
-    /**
-     * Il metodo crea una nuova Playlist e la registra.
-     * @throws FileNotFoundException
-     * @throws IOException 
-     */
-    public static void registraPlaylist(Utente user,String nome,ArrayList<Brano> brani) throws FileNotFoundException, IOException{
-        
-        Playlist playlist = new Playlist(user, nome, brani);
-        aggiungiPlaylistASetPlaylistsUtente(user,playlist);
+    public Playlist(String stringFromFile){
+        this(stringFromFile.split(":")[0], stringFromFile.split(":")[1]);
     }
     
-    /**
-     * Il metodo aggiunge la playlist all'utente.
-     * @param proprietario - dati dell'utente.
-     * @param playlist - playlist.
-     */
-    private static void aggiungiPlaylistASetPlaylistsUtente(Utente proprietario,Playlist playlist){
-        proprietario.addToPlaylistSet(playlist);
-        
+    public Playlist(String playlistName,Song[] selectedSongs){
+        this.playlistName = playlistName;
+        this.songsTags = new String[selectedSongs.length];
+        for(int i = 0; i<selectedSongs.length;i++){
+            songsTags[i] = selectedSongs[i].getTag();
+        }
+        sort();
     }
-    
+    //Getter methods
     /**
      * Il metodo restituisce una Stringa con il nome della playlist.
      * @return il nome della playlist.
      */
-    public String getNomePlaylist(){
-        return this.nomePlaylist;
+    public String getName(){
+        return this.playlistName;
     }
-
+    
+    public int getSize(){
+        return songsTags.length;
+    }
+    
+    public String get(int index){
+        return songsTags[index];
+    }
+    
     /**
-     * Il metodo preleva il brano e lo aggiunge alla playlist.
+     * Il metodo preleva il songTag e lo aggiunge alla playlist.
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public void aggiungiCanzone(Brano brano) throws FileNotFoundException, IOException{
-        listaCanzoniPlaylist.add(brano);
-        riordinaPlaylist();
+    public void add(String songTag) {
+        String[] newOne = new String[songsTags.length+1];
+        for(int i = 0;i<songsTags.length;i++){
+            newOne[i] = songsTags[i];
+        }
+        newOne[newOne.length-1] = songTag;
+        sort();
     }
 
     /**
      * Il metodo restituisce la playlist.
      * @return  playlist.
      */
-    public ArrayList<Brano> getListaCanzoniPlaylist() {
-        return listaCanzoniPlaylist;
-    }
-        
-
-    //implementare metodo per riordinare la Playlist
-    private void riordinaPlaylist(){
-        
+    public String[] getArray() {
+        return songsTags;
     }
     
-    //implementare metodo di ricerca interno alla playlist
-    public void filtraPerTitolo(){
-        
+    public String componiStringa(){
+        sort();
+        String stringa = playlistName+":"; 
+        for (int i = 0; i < songsTags.length; i++) {
+            stringa += "," + songsTags[i];
+        }
+        return stringa + ";";
     }
     
-    public void filtraPerAutore(){
-        
+    public void sort(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortStringsArray(songsTags);
     }
-    
 }
  

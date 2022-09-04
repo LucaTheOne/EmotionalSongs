@@ -28,7 +28,7 @@ import java.util.regex.*;
 **/
 public class EngineRegistrer {
 
-    private DataBaseUtenti userDatabase;
+    private DataBaseUsers userDatabase;
     boolean validCF;
     boolean cfNotSigned;
     boolean validNome;
@@ -46,7 +46,7 @@ public class EngineRegistrer {
     /**
      * Costruisce un oggetto vuoto.
      */
-    public EngineRegistrer(DataBaseUtenti database) { 
+    public EngineRegistrer(DataBaseUsers database) { 
         userDatabase = database;
     }
     
@@ -58,7 +58,7 @@ public class EngineRegistrer {
     * @throws IOException 
     */ 
     public void registraNuovoUtente(String userId,String nome,String cognome,String cf,String indirizzo,String email,String pswd,String contrPswd,String dataNascita) throws IOException{
-        Utente nuovo;
+        User nuovo;
         
         validCF = isValidCF(cf);
         cfNotSigned = userCFNotSigned(cf);
@@ -87,7 +87,7 @@ public class EngineRegistrer {
                 && validPassword
                 && passwordMatches
             ){
-            nuovo = new Utente(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo); 
+            nuovo = new User(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo); 
             System.out.println("utente creato");
             userDatabase.addNewUser(nuovo);
             System.out.println("utente aggiunto");

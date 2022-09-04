@@ -22,8 +22,8 @@ public class GUIMainFrame extends javax.swing.JFrame {
         
         initComponents();
         
-        setLeftPanel(new GUILeftMenuUnespanded(this));
-        setUpperBar(new GUIUnloggedToolBarPanel(this));
+        setLeftPanel(new GUIMenuLeftVoid(this));
+        setUpperBar(new GUIMainUpperBarUnloggedPanel(this));
     }
 
     /**
@@ -135,6 +135,11 @@ public class GUIMainFrame extends javax.swing.JFrame {
     public void cleanUpMainPanel(){
         mainPanel.removeAll();
         mainPanel.setOpaque(false);
+        revalidate();
+        repaint();
+    }
+
+    void updateView() {
         revalidate();
         repaint();
     }

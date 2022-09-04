@@ -12,6 +12,7 @@ import java.util.regex.*;
  */
 public class EngineChecker {
     
+    //Methods checking data validity
     boolean checkNameValidity(String nome){
         if (nome.length()>20||nome.length()<3||nome.isBlank()||nome.matches(".*\\d.*")) {
             return false;   
@@ -104,11 +105,36 @@ public class EngineChecker {
         return userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
     
-    boolean checkIdNotTaken(DataBaseUtenti userDatabase,String id) {
+    boolean checkIdNotTaken(DataBaseUsers userDatabase,String id) {
         return userDatabase.searchUserId(id) == null;
     }
     
-    boolean checkCfNotPresent(DataBaseUtenti userDatabase,String cf) {
+    //
+    boolean checkCfNotPresent(DataBaseUsers userDatabase,String cf) {
         return userDatabase.searchUserCf(cf) == null;
     }
+
+    boolean checkIfVoted(String userId, Song brano, DataBaseRecords dataSetEmozioni) {
+        if (dataSetEmozioni.isEmpty()) {
+            return false;
+        }
+        Record[] array = dataSetEmozioni.getArray();
+        for (int i = 0; i < array.length; i++) {
+            if(array[i].getTag().equals(brano.getTag())){
+                String[] usersIds = array[i].getUsersIds();
+                for (int j = 0; j < usersIds.length; j++) {
+                    if(usersIds[j].equals(userId)) return true;
+                }
+            }
+        }
+        return false;
+    }    
+
+    boolean checkIfContains(Song[] songs,String songtag) {
+        for (int i = 0; i < songs.length; i++) {
+            if(songs[i].getTag().equals(songtag)) return true;
+        }
+        return false;
+    }
+    
 }

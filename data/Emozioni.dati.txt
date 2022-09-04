@@ -1,0 +1,7 @@
+1234567;Roronoa Zoro;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+aaaaaaa;Jinbe;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+ccccccc;Nami;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+ddddddd;Tony Tony Chopper;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+eeeeeee;Judge D. Sanji;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+kkkkkkk;Monkey D. Luffy;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;
+zzzzzzz;Nico Robin;3;amazementNotes;0;solemnityNotes;0;tendernessNotes;0;nostalgiaNotes;0;calmenessNotes;0;power notes;0;joy notes;0;tension notes;0;sadnesss notes;

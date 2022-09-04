@@ -1,16 +1,14 @@
 package emotionalsongs;
 
-import java.util.*;
-
 /**
  * Le costanti rappresentano delle emozioni da attribuire al brano. 
  * @author Bolelli Luca
  */
 public enum Emozioni {
 
-     /**
-     * Meraviglia - Sensazione di stupore o felicità.
-     */    
+    /**
+    * Meraviglia - Sensazione di stupore o felicità.
+    */    
     AMAZEMENT("Meraviglia","Sensazione di stupore o felicità."),
     /**
      * Solennità - Sensazione di trascendenza, ispirazione. Brividi.
@@ -48,22 +46,22 @@ public enum Emozioni {
     //campi
     final private String nomeEmozione;
     final private String descrizioneEmozione;
-    private int[] marks;
+    private int[] grades;
     private String[] notes;
 
     
-  //costruttori
-     /**
-     * Costruisce l'oggetto con l'emozione e relativa descrizione.
-     * @param name - Nome dell'emozione.
-     * @param explanation - Descrizione dell'emozione.
-     */
+    //costruttori
+    /**
+    * Costruisce l'oggetto con l'emozione e relativa descrizione.
+    * @param name - Nome dell'emozione.
+    * @param explanation - Descrizione dell'emozione.
+    */
     Emozioni(String name,String explanation){
         this.nomeEmozione = name;
         this.descrizioneEmozione = explanation;
     }
   
-  //metodi
+    //metodi getter
      /**
      * Restituisce una stringa con il nome dell'emozione.
      * @return Il nome dell'emozione.
@@ -84,17 +82,26 @@ public enum Emozioni {
         return this;
     }
     
-    /**
-     * Il metodo chiede all'utente di dare un voto da 1 a 5 in base a quanto percepito,
-     * dopodichè chiede se vuole inserire un commento.
-     */
-    public void voteEmotion(int mark){
-        int[] array = new int[marks.length];
-        for(int i = 0;i<marks.length;i++){
-            array[i] = marks[i];
+    public int [] getMarks(){
+        return this.grades;
+    }
+    
+    public int getNumeroVoti() {
+        return grades.length;
+    }
+    
+    public String[] getNotes(){
+        return this.notes;
+    }
+    
+    //metodi setter
+    public void giveGrade(int mark){
+        int[] array = new int[grades.length];
+        for(int i = 0;i<grades.length;i++){
+            array[i] = grades[i];
         }
         array[array.length-1] = mark;
-        marks = array;
+        grades = array;
     }
     
     /**
@@ -102,7 +109,7 @@ public enum Emozioni {
      * superare i 256 caratteri; se superati viene richiesto un altro commento, 
      * dopodichè viene salvato in un array di tipo String.
      */
-    public void commentEmotion(String note){
+    public void giveNote(String note){
         String[] array = new String[notes.length];
         for(int i = 0;i<notes.length;i++){
             array[i] = notes[i];
@@ -111,41 +118,45 @@ public enum Emozioni {
         notes = array;
     }
     
+    void setMarks(String marks){
+        String[] array = marks.split(",");
+        this.grades = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            this.grades[i] = Integer.parseInt(array[i]);
+        }
+        
+    }
+    
+    void setMarks(int[] marks){
+        this.grades = marks;
+    }
+    
     /**
      * Il metodo importa i commenti inseriti dall'utente.
      * @param Commenti 
      */
-    public void importNotes(String Commenti){
+    void setNotes(String Commenti){
         String[] commentiSplitted = Commenti.split("<>");
         notes = commentiSplitted;
     }
     
-    public int [] getMarks(){
-        return this.marks;
-    }
-    /**
-     * Il metodo restituisce il voto.
-     * @return il voto.
-     */
-    public int getNumeroVoti() {
-        return marks.length;
+    void setNotes(String[] notes){
+        this.notes = notes;
     }
     
-    public String[] getNotes(){
-        return this.notes;
-    }
-    
+    //String Methods
     public String stringaEmozione(){
         return stringaVoti()+stringaCommenti();
     }
+    
     /**
      * Il metodo restituisce una stringa con i voti inseriti dall'utente.
      * @return i voti. 
      */
-    private String stringaVoti(){
-        String stringa = String.valueOf(marks[0]);
-        for (int i = 1; i < marks.length;i++){
-            stringa += "," + marks[i];
+    public String stringaVoti(){
+        String stringa = String.valueOf(grades[0]);
+        for (int i = 1; i < grades.length;i++){
+            stringa += "," + grades[i];
         }
         return stringa+";";
     }
@@ -154,10 +165,11 @@ public enum Emozioni {
      * Il metodo restituisce una stringa con i commenti inseriti dall'utente.
      * @return i commenti.
      */
-    private String stringaCommenti(){
+    public String stringaCommenti(){
         String stringa = notes[0];
         for (int i = 1; i < notes.length;i++){
-            stringa += "<SEP>" + notes[i];        }
+            stringa += "<>" + notes[i];        }
         return stringa;
     }
+    
 }

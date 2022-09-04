@@ -1,22 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package emotionalsongs;
 
 /**
  *
  * @author big
  */
-public class GUIBranoViewPanelLogged extends javax.swing.JPanel {
-    
-    Brano brano;
-    
+public class GUISongSimpleViewPanel extends javax.swing.JPanel {
+
     /**
-     * Creates new form GUIbranoViewPanel
+     * Creates new form GUISongSimpleViewPanel
      */
-    public GUIBranoViewPanelLogged(Brano brano) {
-        this.brano = brano;
+    Song correlatedSong;
+    public GUISongSimpleViewPanel(Song song) {
         initComponents();
     }
 
@@ -29,59 +24,21 @@ public class GUIBranoViewPanelLogged extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonsPanel = new javax.swing.JPanel();
-        addButton = new javax.swing.JButton();
-        chartButton1 = new javax.swing.JButton();
-        ytButton = new javax.swing.JButton();
         labelsPanel = new javax.swing.JPanel();
         titleLabel1 = new javax.swing.JLabel();
         authorLabel1 = new javax.swing.JLabel();
         yearLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 24, 46));
-        setMinimumSize(new java.awt.Dimension(720, 30));
-        setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(800, 30));
         setLayout(new java.awt.BorderLayout());
 
-        buttonsPanel.setBackground(new java.awt.Color(5, 23, 44));
-        buttonsPanel.setPreferredSize(new java.awt.Dimension(120, 100));
-        buttonsPanel.setLayout(new java.awt.GridLayout(1, 0));
-
-        addButton.setText("+");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
-        buttonsPanel.add(addButton);
-
-        chartButton1.setBackground(new java.awt.Color(0, 24, 46));
-        chartButton1.setIcon(Utilities.chartButtonIcon);
-        chartButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(102, 102, 102), new java.awt.Color(102, 102, 102)));
-        chartButton1.setOpaque(true);
-        chartButton1.setPreferredSize(new java.awt.Dimension(80, 24));
-        chartButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chartButton1ActionPerformed(evt);
-            }
-        });
-        buttonsPanel.add(chartButton1);
-
-        ytButton.setBackground(new java.awt.Color(255, 51, 51));
-        ytButton.setOpaque(true);
-        buttonsPanel.add(ytButton);
-
-        add(buttonsPanel, java.awt.BorderLayout.LINE_END);
-
         labelsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        labelsPanel.setLayout(new java.awt.GridLayout(1, 0));
+        labelsPanel.setLayout(new java.awt.GridLayout());
 
         titleLabel1.setBackground(new java.awt.Color(5, 23, 44));
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(brano.getTitle());
+        titleLabel1.setText(correlatedSong.getTitle());
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -92,7 +49,7 @@ public class GUIBranoViewPanelLogged extends javax.swing.JPanel {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(brano.getAuthor());
+        authorLabel1.setText(correlatedSong.getAuthor());
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -103,7 +60,7 @@ public class GUIBranoViewPanelLogged extends javax.swing.JPanel {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(String.valueOf(brano.getYear()));
+        yearLabel1.setText(String.valueOf(correlatedSong.getYear()));
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);
@@ -113,23 +70,11 @@ public class GUIBranoViewPanelLogged extends javax.swing.JPanel {
         add(labelsPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chartButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chartButton1ActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
     private javax.swing.JLabel authorLabel1;
-    private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JButton chartButton1;
     private javax.swing.JPanel labelsPanel;
     private javax.swing.JLabel titleLabel1;
     private javax.swing.JLabel yearLabel1;
-    private javax.swing.JButton ytButton;
     // End of variables declaration//GEN-END:variables
 }

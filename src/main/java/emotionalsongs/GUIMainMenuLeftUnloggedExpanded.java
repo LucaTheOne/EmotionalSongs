@@ -11,12 +11,12 @@ import java.io.*;
  *
  * @author Megaport
  */
-public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
+public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
     
     GUIMainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
-    public GUIUnloggedMenuExpanded(GUIMainFrame correlated) {
+    public GUIMainMenuLeftUnloggedExpanded(GUIMainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }
@@ -82,7 +82,7 @@ public class GUIUnloggedMenuExpanded extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            mainPage.setMainPanel(new GUIInspectRepoPanel());
+            mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
         }    

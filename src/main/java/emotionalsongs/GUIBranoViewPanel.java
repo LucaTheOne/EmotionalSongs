@@ -8,14 +8,14 @@ package emotionalsongs;
  *
  * @author big
  */
-public class GUIBranoViewPanelUnlogged extends javax.swing.JPanel {
+public class GUIBranoViewPanel extends javax.swing.JPanel {
     
-    Brano brano;
+    Song brano;
     
     /**
      * Creates new form GUIbranoViewPanel
      */
-    public GUIBranoViewPanelUnlogged(Brano brano) {
+    public GUIBranoViewPanel(Song brano) {
         this.brano = brano;
         initComponents();
     }
@@ -45,7 +45,7 @@ public class GUIBranoViewPanelUnlogged extends javax.swing.JPanel {
 
         buttonsPanel.setBackground(new java.awt.Color(5, 23, 44));
         buttonsPanel.setPreferredSize(new java.awt.Dimension(120, 100));
-        buttonsPanel.setLayout(new java.awt.GridLayout());
+        buttonsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         chartButton1.setBackground(new java.awt.Color(0, 24, 46));
         chartButton1.setIcon(Utilities.chartButtonIcon);

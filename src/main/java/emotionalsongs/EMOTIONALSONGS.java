@@ -10,12 +10,14 @@ import java.io.*;
 public class EMOTIONALSONGS {
     
     
-    public static Utente loggedUser = null;
+    public static User loggedUser = null;
     public static Repository REPOSITORY;
-    public DataBaseEmozioni dataSetEmozioni;
-    public static DataBaseUtenti userDataBase;
+    public static DataBaseRecords dataSetEmozioni;
+    public static DataBaseUsers userDataBase;
+    public static DataBasePlaylists dataBasePlaylists;
     public static boolean logged = false;
     public static GUIMainFrame mainWindow;
+    public static PlayListsManager playListsManager;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
@@ -25,7 +27,9 @@ public class EMOTIONALSONGS {
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
         REPOSITORY = new Repository();
-        userDataBase = new DataBaseUtenti();
+        userDataBase = new DataBaseUsers();
+        dataSetEmozioni = new DataBaseRecords();
+        dataBasePlaylists = new DataBasePlaylists();
         init.dispose();
         mainWindow = new GUIMainFrame();
         mainWindow.setVisible(true);

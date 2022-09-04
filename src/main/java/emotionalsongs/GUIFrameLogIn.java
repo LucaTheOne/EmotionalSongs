@@ -12,14 +12,14 @@ import javax.swing.*;
  *@hidden
  * @author big
  */
-public class GUILogInFrame extends javax.swing.JFrame {
+public class GUIFrameLogIn extends javax.swing.JFrame {
     EngineLogger logger = new EngineLogger();
     Image bg = Utilities.logingBG.getImage();
     GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
     /**
      * Creates new form LogFrame
      */
-    public GUILogInFrame() {
+    public GUIFrameLogIn() {
 
         initComponents();
     }
@@ -44,7 +44,6 @@ public class GUILogInFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
         setUndecorated(true);
         setResizable(false);
@@ -119,8 +118,8 @@ public class GUILogInFrame extends javax.swing.JFrame {
         }
         if(logger.idFounded&&logger.passwordMatches){
             mainWindow.cleanUpMainPanel();
-            mainWindow.setUpperBar(new GUILoggedToolBarPanel(mainWindow));
-            mainWindow.setLeftPanel(new GUILoggedMenuExpanded(mainWindow));
+            mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
+            mainWindow.setLeftPanel(new GUIMainMenuLeftLogged(mainWindow));
             dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -147,14 +146,18 @@ public class GUILogInFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUILogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIFrameLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUILogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIFrameLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUILogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIFrameLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUILogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIFrameLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -163,7 +166,7 @@ public class GUILogInFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUILogInFrame().setVisible(true);
+                new GUIFrameLogIn().setVisible(true);
             }
         });
     }

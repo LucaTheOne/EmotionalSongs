@@ -330,12 +330,12 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
             
             if (engineRegistration.allRight) {
                 mainWindow.cleanUpMainPanel();
-                if(mainWindow.leftPanel instanceof GUIUnloggedMenuExpanded){
-                   mainWindow.setLeftPanel(new GUILoggedMenuExpanded(mainWindow));
+                if(mainWindow.leftPanel instanceof GUIMainMenuLeftUnloggedExpanded){
+                   mainWindow.setLeftPanel(new GUIMainMenuLeftLogged(mainWindow));
                 } else {
-                    mainWindow.setLeftPanel(new GUILeftMenuUnespanded(mainWindow));
+                    mainWindow.setLeftPanel(new GUIMenuLeftVoid(mainWindow));
                 }
-                mainWindow.setUpperBar(new GUILoggedToolBarPanel(mainWindow));
+                mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
                 mainWindow.update();
             }
             

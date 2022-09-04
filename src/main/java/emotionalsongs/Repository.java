@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class Repository {
 
-    private Brano[] repository;
+    private Song[] repository;
 
     //Costruttore
     /**
@@ -25,10 +25,10 @@ public class Repository {
     public Repository() {
         try {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream("../EMOTIONALSONGS/data/Canzoni.dati.txt")));
-            repository = new Brano[(int)Utilities.countLines(Utilities.pathToCanzoniDatiTxt)];
+            repository = new Song[(int)Utilities.countLines(Utilities.pathToCanzoniDatiTxt)];
             for(int i = 0; i<repository.length;i++){
                 String[] splittedLine = buffer.readLine().split("<SEP>");
-                repository[i] = new Brano(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
+                repository[i] = new Song(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
             }            
         } catch (FileNotFoundException exception) {
             exception.getMessage();
@@ -39,9 +39,9 @@ public class Repository {
     }
     
     //modify methods
-    private void addTrack(Brano brano){
+    private void addTrack(Song brano){
         
-            Brano[] newArray = new Brano[repository.length+1];
+            Song[] newArray = new Song[repository.length+1];
             for(int i = 0; i<repository.length;i++){
                 newArray[i] = repository[i];
             }
@@ -74,23 +74,23 @@ public class Repository {
     }
     
     /**
-     * Il metodo restituisce il Brano che si trova nella posizione richiesta dal
-     * parametro.
+     * Il metodo restituisce il Song che si trova nella posizione richiesta dal
+ parametro.
      * @param index richiede la posizione del brano.
      * @return Restituisce il brano.
      */
-    public Brano getBrano(int index){
+    public Song getBrano(int index){
         return repository[index];
     }
     
-    public Brano[] getRepo(){
+    public Song[] getRepo(){
         return repository;
     }
     
     //view methods
     /**
-     * Il metodo stampa il Brano richiesto dall'utente.
-     * @param index posizione Brano.
+     * Il metodo stampa il Song richiesto dall'utente.
+     * @param index posizione Song.
      */
     public void stampaBrano(int index){
         System.out.println(getBrano(index).toStringOrdinato());

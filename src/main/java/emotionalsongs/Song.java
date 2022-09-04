@@ -3,11 +3,11 @@ package emotionalsongs;
 import java.io.*;
 
 /**
-*La classe Brano si occupa di creare oggetti di tipo Brano.
+*La classe Song si occupa di creare oggetti di tipo Song.
 *@authore Bolelli Luca
 *@version 1.3
 */
-public class Brano {
+public class Song {
 
 //campi
   private String title,author,tag;
@@ -15,7 +15,7 @@ public class Brano {
   /**
    * @hidden
    */
-  public BranoRecords datiEmozioniBrano;
+  public Record datiEmozioniBrano;
   
   
     //costruttore
@@ -27,7 +27,7 @@ public class Brano {
     * @param tag - Tag del brano.
     * @throws IOException 
     */
-    Brano(String title, String author,String year,String tag) throws IOException{
+    Song(String title, String author,String year,String tag) throws IOException{
         this.title = title;
         this.author = author;
         this.year = Integer.parseInt(year);
@@ -70,12 +70,12 @@ public class Brano {
 
     //metodi di confronto
     /**
-    * Il metodo restituisce true se il Brano rappresentato dall'oggetto che esegue il metodo
-    * e uguale a quello specificato tramite l'agomento, altrimenti false.
-    * @param brano - argomento Brano.
+    * Il metodo restituisce true se il Song rappresentato dall'oggetto che esegue il metodo
+ e uguale a quello specificato tramite l'agomento, altrimenti false.
+    * @param brano - argomento Song.
     * @return true - se i brani sono uguali, altrimenti false.
     **/
-    public boolean equalsTo(Brano brano) {
+    public boolean equalsTo(Song brano) {
         return this.title == brano.title&&this.author == brano.author&&this.year == brano.year;
     }
     
@@ -90,11 +90,24 @@ public class Brano {
         return stringa;
     }
     
-    public GUIBranoViewPanelUnlogged buildPanelView(){
-        return new GUIBranoViewPanelUnlogged(this);
+    public GUIBranoViewPanel buildPanelView(){
+        return new GUIBranoViewPanel(this);
     }
     
-    public GUIBranoViewPanelLogged buildPanelViewLogged(){
-        return new GUIBranoViewPanelLogged(this);
+    public GUIBranoViewVotePanel buildPanelViewVote(){
+        return new GUIBranoViewVotePanel(this);
     }
+    
+    public GUISongSimpleViewPanel buildSimpleRepresentation(){
+        return new GUISongSimpleViewPanel(this);
+    }
+    
+    public void visualizzaEmozioneBrano(){
+        //da implementare
+    }
+
+    GUIBranoAddPlaylistPanel buildPanelAddToPlaylist() {
+        return new GUIBranoAddPlaylistPanel(this, EMOTIONALSONGS.playListsManager);
+    }
+
 }

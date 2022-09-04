@@ -1,20 +1,19 @@
 package emotionalsongs;
 
 import java.io.*;
-import java.util.*;
 import java.util.regex.*;
 
 /**
- * La classe si occupa di creare l'oggetto Utente con i suoi parametri, 
- * ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto Utente.
+ * La classe si occupa di creare l'oggetto User con i suoi parametri, 
+ ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto User.
  * @author Luca
  * @version 1.2.
  */
-public class Utente {
+public class User {
     //campi
     //boolean autenticated = false;
     private String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
-    private ArrayList<Playlist> playlistSet; 
+    private PlaylistSet playlistSet; 
 
     /**
      * Costruice l'oggetto Utente.
@@ -27,7 +26,7 @@ public class Utente {
      * @param email - l'email dell'utente.
      * @param indirizzo  - indirizzio dell'utente.
      */
-    Utente(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
+    User(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
         this.userId = userId;
         this.nome = nome;
         this.cognome = cognome;
@@ -161,67 +160,84 @@ public class Utente {
      * @throws IOException 
      */
     static private void creaPlaylistSetVuoto(String userId) throws IOException{
-      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati,true));
-      bufferedWriter.write("Proprietario: "+ userId + "/n"+"_.-._.-._.-._.-._.-._.-._\n");
-      bufferedWriter.close();
-      System.out.println("Spazio generato con successo");
-  }
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati,true));
+        bufferedWriter.write("Proprietario: "+ userId + "/n"+"_.-._.-._.-._.-._.-._.-._\n");
+        bufferedWriter.close();
+        System.out.println("Spazio generato con successo");
+    }
     
+    //metodi getter
     /**
      * Il metodo restituisce l'userID dell'utente.
      * @return userId - userID dell'utente.
      */
     public String getUserId(){
-    return userId;
-  }
+        return userId;
+    }
     
     /**
      * Il metodo restiuisce il nome dell'utente.
      * @return  nome - nome dell'utente.
      */
     public String getNome(){
-    return nome;
-  }
+        return nome;
+    }
     
     /**
      * Il metodo restituisce il cognome dell'utente.
      * @return cognome -  cognome dell'utente.
      */
     public String getCognome(){
-    return cognome;
-  }
+        return cognome;
+    }
 
     /**
      * Il metodo restituisce il codice fiscale dell'utente.
      * @return cf - codice fiscale dell'utente.
      */
     public String getCF(){
-    return cf;
-  }
+        return cf;
+    }
     
     /**
      * Il metodo restituisce l'indirizzo dell'utente.
      * @return indirizzo - indirizzo dell'utente.
      */
     public String getIndirizzo(){
-    return indirizzo;
-  }
+        return indirizzo;
+    }
     
     /**
      * Il metodo restituisce l'email dell'utente.
      * @return email - l'email dell'utente.
      */
     public String getEmail(){
-    return email;
-  }
+        return email;
+    }
     
     /**
      * Il metodo restituisce la data di nascita dell'utente.
      * @return dataNascita - la data di nascita dell'utente.
      */
     public String getDataDiNascita(){
-    return dataNascita;
-  }
+        return dataNascita;
+    }
+    
+    /**
+     * Il metodo restituisce la password dell'utente.
+     * @return password - password dell'utente.
+     */
+    public String getPassword() {
+        return password;
+    }
+    
+    public PlaylistSet getPlaylistSet(){
+        EngineSearcher searcher = new EngineSearcher();
+        return searcher.searchUserSet(this, EMOTIONALSONGS.dataBasePlaylists);
+    }
+    
+    //modifyng method
+    
     
      /**
      * Il metodo aggiunge una nuova playlist.
@@ -230,14 +246,8 @@ public class Utente {
     public void addToPlaylistSet(Playlist addplay){
         playlistSet.add(addplay);
     }
-
-    /**
-     * Il metodo restituisce la password dell'utente.
-     * @return password - password dell'utente.
-     */
-    public String getPassword() {
-        return password;
-    }
+    
+    
     
     /**
      * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, nome, cognome,

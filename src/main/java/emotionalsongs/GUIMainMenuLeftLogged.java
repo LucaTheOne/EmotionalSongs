@@ -11,12 +11,12 @@ import java.io.*;
  *
  * @author Megaport
  */
-public class GUILoggedMenuExpanded extends javax.swing.JPanel {
+public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
     
     GUIMainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
-    public GUILoggedMenuExpanded(GUIMainFrame correlated) {
+    public GUIMainMenuLeftLogged(GUIMainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }
@@ -140,14 +140,14 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
 
     private void repositoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repositoryButtonActionPerformed
         try {
-            mainPage.setMainPanel(new GUIInspectRepoPanel());
+            mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
         } 
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
-        // TODO add your handling code here:
+        EMOTIONALSONGS.playListsManager.showUserPlaylistsSet();
     }//GEN-LAST:event_playlistsButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
@@ -155,7 +155,8 @@ public class GUILoggedMenuExpanded extends javax.swing.JPanel {
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlaylistButtonActionPerformed
-        // TODO add your handling code here:
+        GUIPlaylistCreationFrame creationFrame = new GUIPlaylistCreationFrame();
+        creationFrame.run();
     }//GEN-LAST:event_createPlaylistButtonActionPerformed
 
 

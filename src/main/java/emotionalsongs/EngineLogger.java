@@ -9,8 +9,8 @@ import java.io.*;
  */
 public class EngineLogger extends EMOTIONALSONGS{
     
-    DataBaseUtenti database = EMOTIONALSONGS.userDataBase;
-    Utente user;
+    DataBaseUsers database = EMOTIONALSONGS.userDataBase;
+    User user;
     boolean idFounded = false;
     boolean passwordMatches = false;
     /**
@@ -29,7 +29,7 @@ public class EngineLogger extends EMOTIONALSONGS{
                 EMOTIONALSONGS.loggedUser = user;
             }  
         }
-        
+        EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
     }
     
     /**

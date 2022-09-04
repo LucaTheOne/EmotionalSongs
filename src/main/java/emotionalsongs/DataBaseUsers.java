@@ -7,10 +7,10 @@ import java.io.*;
  *
  * @author big
  */
-public class DataBaseUtenti {
-    private Utente[] database;
+public class DataBaseUsers {
+    private User[] database;
     private String path = Utilities.pathToUserDatabase;
-    DataBaseUtenti(){
+    DataBaseUsers(){
         importData();
     }
     
@@ -18,10 +18,10 @@ public class DataBaseUtenti {
         
         try {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(Utilities.pathToUserDatabase)));
-            database = new Utente[(int)Utilities.countLines(Utilities.pathToUserDatabase)];
+            database = new User[(int)Utilities.countLines(Utilities.pathToUserDatabase)];
             for(int i = 0; i<database.length;i++){
                 String[] currentLine = buffer.readLine().split(";");
-                database[i] = new Utente(currentLine[0], 
+                database[i] = new User(currentLine[0], 
                         currentLine[1], 
                         currentLine[2],
                         currentLine[3], 
@@ -43,7 +43,7 @@ public class DataBaseUtenti {
             ArrayList<Utente> listaProvvisoria = new ArrayList<>();
             while(scanner.hasNextLine()){
                 String currentLine = scanner.nextLine();
-                listaProvvisoria.add(new Utente(currentLine.split(";")[0], 
+                listaProvvisoria.add(new User(currentLine.split(";")[0], 
                         currentLine.split(";")[1], 
                         currentLine.split(";")[2],
                         currentLine.split(";")[3], 
@@ -53,7 +53,7 @@ public class DataBaseUtenti {
                         currentLine.split(";")[7]
                 )); 
             }
-            database = new Utente[listaProvvisoria.size()];
+            database = new User[listaProvvisoria.size()];
             for (int i = 0; i < listaProvvisoria.size(); i++) {
                 database[i] = listaProvvisoria.getUser(i);
             }
@@ -66,12 +66,12 @@ public class DataBaseUtenti {
         return database.length;
     }
     
-    public Utente getUser(int index){
+    public User getUser(int index){
         return database[index];
     }
     
-    public void addNewUser(Utente user){
-        Utente[] newArray = new Utente[database.length+1];
+    public void addNewUser(User user){
+        User[] newArray = new User[database.length+1];
         for(int i = 0; i<database.length;i++){
             newArray[i]=database[i];
         }
@@ -81,11 +81,11 @@ public class DataBaseUtenti {
         saveData();
     }
     
-    public void replace(int index, Utente daInserire){
+    public void replace(int index, User daInserire){
         database[index] = daInserire;
     }
     
-    public Utente searchUserId(String userId){
+    public User searchUserId(String userId){
         EngineSearcher engineSearch = new EngineSearcher();
         return engineSearch.getUserFromId(this, userId);
     }
@@ -107,11 +107,11 @@ public class DataBaseUtenti {
         }     
     }
     
-    public Utente[] getDatabase(){
+    public User[] getDatabase(){
         return database;
     }
 
-    Utente searchUserCf(String cf) {
+    User searchUserCf(String cf) {
         EngineSearcher engineSearch = new EngineSearcher();
         return engineSearch.getUserFromCf(this, cf);
     }
