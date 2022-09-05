@@ -1,6 +1,11 @@
 
 package emotionalsongs;
 
+import emotionalsongs.GUI.GUIInitializationFrame;
+import emotionalsongs.GUI.GUIMainFrame;
+import emotionalsongs.BasicsStructure.User;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Managers.*;
 import java.io.*;
 
 /**

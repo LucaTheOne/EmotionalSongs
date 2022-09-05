@@ -1,7 +1,6 @@
 
 package emotionalsongs;
 
-import java.awt.*;
 import java.io.*;
 import java.nio.file.*;
 import javax.swing.*;
@@ -14,10 +13,10 @@ public class Utilities {
     //campi statici
     
     //Path verso files
-    static String pathToCanzoniDatiTxt = "../EMOTIONALSONGS/data/Canzoni.dati.txt";
-    static String pathToEmozioniDati = "../EMOTIONALSONGS/data/Emozioni.dati.txt";
-    static String pathToPlaylistDati = "../EMOTIONALSONGS/data/Playlist.dati.txt";
-    static String pathToUserDatabase = "../EMOTIONALSONGS/data/UtentiRegistrati.dati.txt";
+    public static String pathToCanzoniDatiTxt = "../EMOTIONALSONGS/data/Canzoni.dati.txt";
+    public static String pathToEmozioniDati = "../EMOTIONALSONGS/data/Emozioni.dati.txt";
+    public static String pathToPlaylistDati = "../EMOTIONALSONGS/data/Playlist.dati.txt";
+    public static String pathToUserDatabase = "../EMOTIONALSONGS/data/UtentiRegistrati.dati.txt";
     
     //immagini
     public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
@@ -37,13 +36,10 @@ public class Utilities {
     
     
 //Stringhe ricorrenti
-    static String divisioreFinale = "_.-._.-._.-._.-._.-._.-._";
-    static String comma = ",";
-    static String commaSpace = ", ";
-    static String semiColon = ";";
-    static String separatorRepository = "<SEP>";
-    public static Dimension LOADINGFRAMESIZE = new Dimension(832, 610);
-    public static Font fontLoadingFrame;
+    public static String comma = ",";
+    public static String commaSpace = ", ";
+    public static String semiColon = ";";
+    public static String separatorRepository = "<SEP>";
     
 // metodi
     public static String capitalize(String str){

@@ -103,3 +103,28 @@
     dopo lunghe ricerche è stato trovato un modo efficiente di impostare uno sfondo per la pagina principale,
     inizio di spunto di design.
         -Bolelli Luca-
+
+05/09/2022
+    Totale ristrutturazione del codice!!
+        ora il progetto è diviso nei seguenti package:
+        - emotionalSongs, contenente le classi:
+            +Utilities -> elementi di uso generale nel programma.
+            +EMOTIONALSONGS -> contenente il main.
+
+        - emotionalsongs.BasicsStructure, contenente le classi:
+            + Emozioni -> tipo enum. contenente rapr. delle 9 emozioni.
+            + Playlist, PlaylistSet,Record,Song,User -> rappresentano la forma oggetto dei relativi dati.
+        
+        - emotionalsongs.DataBases, contenente le classi:
+            + DataBasePlaylists
+            + DataBaseRecords
+            + DataBaseUsers
+            + Repository
+        - ...
+        
+        Ora è finalmente possibile creare playlist.
+        aggiunta funzione che tramite query di yt porta a cercare la canzone rappresentata dall' oggetto.
+        ristrutturazione algoitmo di ordinamento, !attenzione con stringhe non funziona, da rivedere!
+     
+            -Bolelli Luca-
+             
