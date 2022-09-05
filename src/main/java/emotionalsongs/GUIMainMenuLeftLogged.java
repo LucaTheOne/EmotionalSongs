@@ -155,8 +155,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlaylistButtonActionPerformed
-        GUIPlaylistCreationFrame creationFrame = new GUIPlaylistCreationFrame();
-        creationFrame.run();
+        EMOTIONALSONGS.playListsManager.openCreationFrame();
     }//GEN-LAST:event_createPlaylistButtonActionPerformed
 
 

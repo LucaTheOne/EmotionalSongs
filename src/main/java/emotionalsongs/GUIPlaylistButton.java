@@ -14,10 +14,10 @@ public class GUIPlaylistButton extends javax.swing.JPanel {
      * Creates new form GUIPlaylistButton
      */
     Playlist correlatedPlaylist;
-    PlayListsManager playListsManager;
+    PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     public GUIPlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
         correlatedPlaylist = playlist;
-        this.playListsManager = playListsManager;
+        //this.playListsManager = playListsManager;
         initComponents();
     }
 
@@ -48,8 +48,7 @@ public class GUIPlaylistButton extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
-        playListsManager.setRightPanel(new GUIPlaylistsSubRightPanel(correlatedPlaylist));
-        EMOTIONALSONGS.mainWindow.updateView();
+        
     }//GEN-LAST:event_playListButtonActionPerformed
 
 

@@ -120,7 +120,7 @@ public class EngineChecker {
         }
         Record[] array = dataSetEmozioni.getArray();
         for (int i = 0; i < array.length; i++) {
-            if(array[i].getTag().equals(brano.getTag())){
+            if(array[i].getBranoTag().equals(brano.getTag())){
                 String[] usersIds = array[i].getUsersIds();
                 for (int j = 0; j < usersIds.length; j++) {
                     if(usersIds[j].equals(userId)) return true;

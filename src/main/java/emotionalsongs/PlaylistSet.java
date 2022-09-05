@@ -58,26 +58,31 @@ public class PlaylistSet {
             newOne[i] = playlistArray[i];
         }
         newOne[newOne.length-1] = playlist;
-        sort();
+        playlistArray = newOne;
+        //sort();
     }
     
     //sorter method
     private void sort(){
         EngineSorter sorter = new EngineSorter();
-        sorter.sortPlaylistSet(this);
+        sorter.sortSetOfPlaylists(this);
     }
     
     //String methods
     public String componiStringa(){
         String stringa = idOwner+";";
         for (int i = 0; i < playlistArray.length; i++) {
-            stringa += stringa + playlistArray[i].componiStringa();
+            stringa += playlistArray[i].componiStringa();
         }
-        return stringa;
+        return stringa+"\n";
     }
 
     Playlist getPlaylist(int index) {
         return playlistArray[index];
+    }
+
+    int compareTo(PlaylistSet playlistSet) {
+        return this.idOwner.compareToIgnoreCase(playlistSet.getOwnerId());
     }
 
      

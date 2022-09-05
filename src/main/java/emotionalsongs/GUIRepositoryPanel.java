@@ -19,7 +19,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
     boolean lastPage = false;
     
     Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
-    Song[] actualArrayWorking = repositoryCorrelato.getRepo();
+    Song[] actualArrayWorking = repositoryCorrelato.getArray();
 
     //Repository repo = new Repository();
     /**
@@ -266,7 +266,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelato.getRepo();
+            actualArrayWorking = repositoryCorrelato.getArray();
             innerScroll.removeAll();
 
             for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
@@ -356,7 +356,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         searchBar.setText("");
-        actualArrayWorking = repositoryCorrelato.getRepo();
+        actualArrayWorking = repositoryCorrelato.getArray();
         innerScroll.removeAll();
         for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
             innerScroll.add(actualArrayWorking[i].buildPanelView());   

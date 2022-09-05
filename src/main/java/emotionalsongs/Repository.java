@@ -83,7 +83,7 @@ public class Repository {
         return repository[index];
     }
     
-    public Song[] getRepo(){
+    public Song[] getArray(){
         return repository;
     }
     

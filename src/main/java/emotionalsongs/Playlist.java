@@ -27,7 +27,7 @@ public class Playlist {
     public Playlist(String nomePlaylist,String listaCanzoniPlaylist) {
         this.playlistName = nomePlaylist;
         this.songsTags = listaCanzoniPlaylist.split(",");
-        sort();
+        //sort();
     }
     
     public Playlist(String stringFromFile){
@@ -39,8 +39,9 @@ public class Playlist {
         this.songsTags = new String[selectedSongs.length];
         for(int i = 0; i<selectedSongs.length;i++){
             songsTags[i] = selectedSongs[i].getTag();
+            System.out.println("song"+selectedSongs[i].getTitle());
         }
-        sort();
+        //sort();
     }
     //Getter methods
     /**
@@ -85,14 +86,18 @@ public class Playlist {
         sort();
         String stringa = playlistName+":"; 
         for (int i = 0; i < songsTags.length; i++) {
-            stringa += "," + songsTags[i];
+            stringa += i>0 ? "," + songsTags[i] : songsTags[i];
         }
         return stringa + ";";
     }
     
     public void sort(){
         EngineSorter sorter = new EngineSorter();
-        sorter.sortStringsArray(songsTags);
+        sorter.sortStringsArray(songsTags,false);
+    }
+
+    int compareTo(Playlist playlist) {
+        return this.playlistName.compareToIgnoreCase(playlist.getName());
     }
 }
  

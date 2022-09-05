@@ -2,8 +2,7 @@
 package emotionalsongs;
 
 import java.awt.*;
-import java.io.*;
-import java.util.logging.*;
+import java.awt.geom.*;
 import javax.swing.*;
 
 /**
@@ -15,8 +14,18 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
     /**
      * Creates new form GUIPlaylistCreationFrame
      */
+    PlayListsManager playlistsManager = EMOTIONALSONGS.playListsManager;
+    Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
+    Song[] actualArrayWorking = repositoryCorrelato.getArray();
+    
+    int tracksPerView = 100;
+    int startIndex = 0;
+    boolean firstPage = true;
+    boolean lastPage = false;
     
     public GUIPlaylistCreationFrame() {
+        setUndecorated(true);
+        setShape(new RoundRectangle2D.Double(0, 0, 800, 650, 20, 20));
         initComponents();
     }
 
@@ -38,26 +47,157 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
                 g2.dispose();
             }
         };
+        createButtonPanel = new javax.swing.JPanel();
+        createButton = new javax.swing.JButton();
+        annullaButton = new javax.swing.JButton();
+        selectedSongsPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        selectedSongScrollViewPanel = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
+        SearchPanel = new javax.swing.JPanel();
+        searchButton = new javax.swing.JToggleButton();
+        numberSelectedSongLabel = new javax.swing.JLabel();
+        searchBar = new javax.swing.JTextField();
+        TitlePanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        BackButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        nextButton = new javax.swing.JButton();
         selectPlaylistNamePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         playlistNameTextField = new javax.swing.JTextField();
-        createButtonPanel = new javax.swing.JPanel();
-        createButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
-        selectedSongsPanel = new javax.swing.JPanel();
-        addSongsPanel = new javax.swing.JPanel();
-        searchSongToAddButton = new javax.swing.JToggleButton();
-        changingPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        selectedSongScrollViewPanel = new javax.swing.JPanel();
+        mainPanel1 = new javax.swing.JPanel();
+        titlesPanel = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        titleLabel1 = new javax.swing.JLabel();
+        authorLabel1 = new javax.swing.JLabel();
+        yearLabel1 = new javax.swing.JLabel();
+        scrollView = new javax.swing.JScrollPane();
+        innerScroll = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
+        setPreferredSize(new java.awt.Dimension(800, 650));
 
         mainPanel.setOpaque(true);
         mainPanel.setLayout(new java.awt.BorderLayout());
 
-        selectPlaylistNamePanel.setOpaque(false);
+        createButtonPanel.setOpaque(false);
+        createButtonPanel.setPreferredSize(new java.awt.Dimension(120, 40));
+        java.awt.GridBagLayout createButtonPanelLayout = new java.awt.GridBagLayout();
+        createButtonPanelLayout.columnWidths = new int[] {0, 60, 0};
+        createButtonPanelLayout.rowHeights = new int[] {0};
+        createButtonPanel.setLayout(createButtonPanelLayout);
+
+        createButton.setText("Crea nuova playlist");
+        createButton.setPreferredSize(new java.awt.Dimension(150, 40));
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        createButtonPanel.add(createButton, gridBagConstraints);
+
+        annullaButton.setText("annulla");
+        annullaButton.setPreferredSize(new java.awt.Dimension(120, 40));
+        annullaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annullaButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        createButtonPanel.add(annullaButton, gridBagConstraints);
+
+        mainPanel.add(createButtonPanel, java.awt.BorderLayout.PAGE_END);
+
+        selectedSongsPanel.setOpaque(false);
+        selectedSongsPanel.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setOpaque(false);
+
+        selectedSongScrollViewPanel.setBackground(new Color(0,0,0,160));
+        selectedSongScrollViewPanel.setOpaque(false);
+        selectedSongScrollViewPanel.setPreferredSize(new Dimension(jScrollPane1.getWidth(),30*EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd()));
+        selectedSongScrollViewPanel.setLayout(new java.awt.GridLayout(EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd(), 1));
+
+        searchPanel.setBackground(new java.awt.Color(51, 51, 51));
+        searchPanel.setOpaque(false);
+        searchPanel.setPreferredSize(new java.awt.Dimension(900, 700));
+        searchPanel.setLayout(new java.awt.BorderLayout());
+
+        SearchPanel.setBackground(new java.awt.Color(85, 124, 147));
+        SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
+        SearchPanel.setLayout(new java.awt.BorderLayout());
+
+        searchButton.setIcon(Utilities.searchIcon);
+        searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        searchButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        searchButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        SearchPanel.add(searchButton, java.awt.BorderLayout.WEST);
+
+        numberSelectedSongLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numberSelectedSongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numberSelectedSongLabel.setText(playlistsManager.getNumberOfSongToAdd() + " brani selezionati!");
+        numberSelectedSongLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        numberSelectedSongLabel.setPreferredSize(new java.awt.Dimension(190, 50));
+        SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
+
+        searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarActionPerformed(evt);
+            }
+        });
+        SearchPanel.add(searchBar, java.awt.BorderLayout.CENTER);
+
+        searchPanel.add(SearchPanel, java.awt.BorderLayout.SOUTH);
+
+        TitlePanel.setMinimumSize(new java.awt.Dimension(379, 50));
+        TitlePanel.setPreferredSize(new java.awt.Dimension(10, 50));
+        TitlePanel.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(133, 37, 240));
+        jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BackButton, java.awt.BorderLayout.CENTER);
+
+        TitlePanel.add(jPanel2, java.awt.BorderLayout.LINE_START);
+
+        jPanel3.setBackground(new java.awt.Color(133, 37, 240));
+        jPanel3.setPreferredSize(new java.awt.Dimension(50, 100));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(nextButton, java.awt.BorderLayout.CENTER);
+
+        TitlePanel.add(jPanel3, java.awt.BorderLayout.LINE_END);
+
+        selectPlaylistNamePanel.setBackground(new java.awt.Color(85, 124, 147));
         selectPlaylistNamePanel.setPreferredSize(new java.awt.Dimension(700, 50));
         selectPlaylistNamePanel.setLayout(new java.awt.GridBagLayout());
 
@@ -75,79 +215,90 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
         });
         selectPlaylistNamePanel.add(playlistNameTextField, new java.awt.GridBagConstraints());
 
-        mainPanel.add(selectPlaylistNamePanel, java.awt.BorderLayout.PAGE_START);
+        TitlePanel.add(selectPlaylistNamePanel, java.awt.BorderLayout.CENTER);
 
-        createButtonPanel.setOpaque(false);
-        createButtonPanel.setPreferredSize(new java.awt.Dimension(120, 40));
-        java.awt.GridBagLayout createButtonPanelLayout = new java.awt.GridBagLayout();
-        createButtonPanelLayout.columnWidths = new int[] {0, 80, 0};
-        createButtonPanelLayout.rowHeights = new int[] {0};
-        createButtonPanel.setLayout(createButtonPanelLayout);
+        searchPanel.add(TitlePanel, java.awt.BorderLayout.PAGE_START);
 
-        createButton.setText("jButton2");
-        createButton.setPreferredSize(new java.awt.Dimension(120, 40));
-        createButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        createButtonPanel.add(createButton, gridBagConstraints);
+        mainPanel1.setLayout(new java.awt.BorderLayout());
 
-        backButton.setText("jButton3");
-        backButton.setPreferredSize(new java.awt.Dimension(120, 40));
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        createButtonPanel.add(backButton, gridBagConstraints);
+        titlesPanel.setPreferredSize(new java.awt.Dimension(100, 30));
+        titlesPanel.setLayout(new java.awt.BorderLayout());
 
-        mainPanel.add(createButtonPanel, java.awt.BorderLayout.PAGE_END);
+        jPanel4.setBackground(new java.awt.Color(5, 23, 44));
+        jPanel4.setMinimumSize(new java.awt.Dimension(720, 30));
+        jPanel4.setPreferredSize(new java.awt.Dimension(800, 30));
+        jPanel4.setLayout(new java.awt.BorderLayout());
 
-        selectedSongsPanel.setOpaque(false);
-        selectedSongsPanel.setLayout(new java.awt.BorderLayout());
+        jPanel5.setBackground(new java.awt.Color(5, 23, 44));
+        jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.setPreferredSize(new java.awt.Dimension(136, 100));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(jPanel5, java.awt.BorderLayout.LINE_END);
 
-        addSongsPanel.setOpaque(false);
-        addSongsPanel.setPreferredSize(new java.awt.Dimension(700, 40));
-        addSongsPanel.setLayout(new java.awt.BorderLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
-        searchSongToAddButton.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                searchSongToAddButtonStateChanged(evt);
-            }
-        });
-        searchSongToAddButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchSongToAddButtonActionPerformed(evt);
-            }
-        });
-        addSongsPanel.add(searchSongToAddButton, java.awt.BorderLayout.CENTER);
+        titleLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel1.setText("Titolo");
+        titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titleLabel1.setOpaque(true);
+        titleLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel8.add(titleLabel1);
 
-        selectedSongsPanel.add(addSongsPanel, java.awt.BorderLayout.PAGE_END);
+        authorLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        authorLabel1.setText("Autore");
+        authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        authorLabel1.setOpaque(true);
+        authorLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel8.add(authorLabel1);
 
-        changingPanel.setOpaque(false);
-        changingPanel.setLayout(new java.awt.BorderLayout());
+        yearLabel1.setBackground(new java.awt.Color(5, 23, 44));
+        yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        yearLabel1.setText("Anno");
+        yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        yearLabel1.setOpaque(true);
+        yearLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jPanel8.add(yearLabel1);
 
-        jScrollPane1.setOpaque(false);
+        jPanel4.add(jPanel8, java.awt.BorderLayout.CENTER);
 
-        selectedSongScrollViewPanel.setBackground(new Color(0,0,0,160));
-        selectedSongScrollViewPanel.setOpaque(false);
-        selectedSongScrollViewPanel.setPreferredSize(new Dimension(jScrollPane1.getWidth(),30*EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd()));
-        for(int i = 0;i<EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd();i++){
-            selectedSongScrollViewPanel.add(EMOTIONALSONGS.playListsManager.getSongToAdd(i).buildSimpleRepresentation());
+        titlesPanel.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        mainPanel1.add(titlesPanel, java.awt.BorderLayout.PAGE_START);
+
+        scrollView.setBorder(null);
+        scrollView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollView.setAlignmentX(0.0F);
+        scrollView.setAlignmentY(0.0F);
+        scrollView.setOpaque(false);
+
+        innerScroll.setBackground(new java.awt.Color(0, 24, 46));
+        innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
+        innerScroll.setLayout(new java.awt.GridLayout(100, 1));
+        for(int i = 0;i<tracksPerView;i++){
+            innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelAddToPlaylist());
         }
-        selectedSongScrollViewPanel.setLayout(new java.awt.GridLayout(EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd(), 1));
+        scrollView.setViewportView(innerScroll);
+
+        mainPanel1.add(scrollView, java.awt.BorderLayout.CENTER);
+
+        searchPanel.add(mainPanel1, java.awt.BorderLayout.CENTER);
+
+        selectedSongScrollViewPanel.add(searchPanel);
+
         jScrollPane1.setViewportView(selectedSongScrollViewPanel);
 
-        changingPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        selectedSongsPanel.add(changingPanel, java.awt.BorderLayout.CENTER);
+        selectedSongsPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         mainPanel.add(selectedSongsPanel, java.awt.BorderLayout.CENTER);
 
@@ -161,23 +312,9 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_playlistNameTextFieldActionPerformed
 
-    private void searchSongToAddButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_searchSongToAddButtonStateChanged
-        
-            try {
-                changingPanel.removeAll();
-                if(searchSongToAddButton.isSelected()) changingPanel.add(new GUIPlaylistSongSearchPanel(EMOTIONALSONGS.playListsManager));
-                else changingPanel.add(new GUIPlaylistSongToAddViewPanel(EMOTIONALSONGS.playListsManager));
-                revalidate();
-                repaint();
-                
-            } catch (IOException ex) {
-                Logger.getLogger(GUIPlaylistCreationFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_searchSongToAddButtonStateChanged
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void annullaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annullaButtonActionPerformed
         close();
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_annullaButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         EMOTIONALSONGS.playListsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
@@ -185,9 +322,93 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void searchSongToAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSongToAddButtonActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        if(searchBar.getText().isBlank()) {
+            actualArrayWorking = repositoryCorrelato.getArray();
+            innerScroll.removeAll();
+
+            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+            }
+
+            numberSelectedSongLabel.revalidate();
+            numberSelectedSongLabel.repaint();
+            firstPage = true;
+            lastPage = false;
+            scrollView.revalidate();
+            scrollView.repaint();
+            return;
+        }
+
+        EngineSearcher searchEngine = new EngineSearcher();
+        actualArrayWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        innerScroll.removeAll();
+
+        if(actualArrayWorking == null){
+            innerScroll.removeAll();
+            innerScroll.revalidate();
+            innerScroll.repaint();
+            numberSelectedSongLabel.revalidate();
+            numberSelectedSongLabel.repaint();
+            firstPage = true;
+            lastPage = true;
+            return;
+        }
+
+        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        }
+
+        numberSelectedSongLabel.revalidate();
+        numberSelectedSongLabel.repaint();
+        firstPage = true;
+        lastPage = false;
+        innerScroll.revalidate();
+        innerScroll.repaint();
+
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchSongToAddButtonActionPerformed
+    }//GEN-LAST:event_searchBarActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        if (firstPage) {
+            return;
+        }
+        startIndex -= tracksPerView;
+        if (startIndex == 0) {
+            firstPage = true;
+        }
+        innerScroll.removeAll();
+
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        }
+
+        lastPage = false;
+        innerScroll.revalidate();
+        innerScroll.repaint();
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        if((startIndex+tracksPerView) >= actualArrayWorking.length-1 ) lastPage = true;
+
+        if (lastPage) return;
+        firstPage = false;
+
+        startIndex += tracksPerView;
+
+        innerScroll.removeAll();
+
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        }
+
+        innerScroll.revalidate();
+        innerScroll.repaint();
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     
     public void run() {
@@ -227,20 +448,42 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
         EMOTIONALSONGS.playListsManager.eraseSongToAdd();
         EMOTIONALSONGS.playListsManager.eraseTitlePlaylist();
     }
+    
+    public void updateSongSelectedLabel(){
+        numberSelectedSongLabel.revalidate();
+        numberSelectedSongLabel.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addSongsPanel;
-    private javax.swing.JButton backButton;
-    private javax.swing.JPanel changingPanel;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JPanel SearchPanel;
+    private javax.swing.JPanel TitlePanel;
+    private javax.swing.JButton annullaButton;
+    private javax.swing.JLabel authorLabel1;
     private javax.swing.JButton createButton;
     private javax.swing.JPanel createButtonPanel;
+    private javax.swing.JPanel innerScroll;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel mainPanel1;
+    private javax.swing.JButton nextButton;
+    public javax.swing.JLabel numberSelectedSongLabel;
     private javax.swing.JTextField playlistNameTextField;
-    private javax.swing.JToggleButton searchSongToAddButton;
+    private javax.swing.JScrollPane scrollView;
+    private javax.swing.JTextField searchBar;
+    private javax.swing.JToggleButton searchButton;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JPanel selectPlaylistNamePanel;
     private javax.swing.JPanel selectedSongScrollViewPanel;
     private javax.swing.JPanel selectedSongsPanel;
+    private javax.swing.JLabel titleLabel1;
+    private javax.swing.JPanel titlesPanel;
+    private javax.swing.JLabel yearLabel1;
     // End of variables declaration//GEN-END:variables
 }

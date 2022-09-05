@@ -4,19 +4,23 @@
  */
 package emotionalsongs;
 
+import java.awt.*;
+import java.io.*;
+import java.net.*;
+
 /**
  *
  * @author big
  */
 public class GUIBranoViewPanel extends javax.swing.JPanel {
     
-    Song brano;
+    Song correlatedSong;
     
     /**
      * Creates new form GUIbranoViewPanel
      */
-    public GUIBranoViewPanel(Song brano) {
-        this.brano = brano;
+    public GUIBranoViewPanel(Song songToRepresent) {
+        this.correlatedSong = songToRepresent;
         initComponents();
     }
 
@@ -61,6 +65,11 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setOpaque(true);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         buttonsPanel.add(jButton1);
 
         add(buttonsPanel, java.awt.BorderLayout.LINE_END);
@@ -72,7 +81,7 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(brano.getTitle());
+        titleLabel1.setText(correlatedSong.getTitle());
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -83,7 +92,7 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(brano.getAuthor());
+        authorLabel1.setText(correlatedSong.getAuthor());
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -94,7 +103,7 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(String.valueOf(brano.getYear()));
+        yearLabel1.setText(String.valueOf(correlatedSong.getYear()));
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);
@@ -107,6 +116,20 @@ public class GUIBranoViewPanel extends javax.swing.JPanel {
     private void chartButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chartButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Desktop desktop = java.awt.Desktop.getDesktop();
+            try {
+                //specify the protocol along with the URL
+		URI linkToYT = new URI(correlatedSong.buildResearchQueryUrl());
+		desktop.browse(linkToYT);
+            } catch (URISyntaxException e) {
+		// TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

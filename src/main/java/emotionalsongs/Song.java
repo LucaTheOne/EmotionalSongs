@@ -98,10 +98,6 @@ public class Song {
         return new GUIBranoViewVotePanel(this);
     }
     
-    public GUISongSimpleViewPanel buildSimpleRepresentation(){
-        return new GUISongSimpleViewPanel(this);
-    }
-    
     public void visualizzaEmozioneBrano(){
         //da implementare
     }
@@ -109,5 +105,28 @@ public class Song {
     GUIBranoAddPlaylistPanel buildPanelAddToPlaylist() {
         return new GUIBranoAddPlaylistPanel(this, EMOTIONALSONGS.playListsManager);
     }
+    
+    String buildResearchQueryUrl(){
+        return "https://www.youtube.com/results?search_query=" + 
+                title.replaceAll(" ", "+") +
+                "+" + author.replaceAll(" ", "")+
+                "+" + String.valueOf(year);
+    }
 
+    int compareTag(Song song) {
+        return this.tag.compareTo(song.getTag());
+    }
+
+    int compareTitle(Song song) {
+        return this.title.compareTo(song.getTitle());
+    }
+    
+    int compareAuthor(Song song) {
+        return this.author.compareTo(song.getAuthor());
+    }
+    
+    int compareYear(Song song) {
+        return this.year-song.getYear();
+    }
+    
 }

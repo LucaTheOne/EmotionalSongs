@@ -6,7 +6,6 @@ package emotionalsongs;
 
 import java.awt.*;
 import java.awt.geom.*;
-import javax.swing.*;
 
 /**
  *@hidden
@@ -120,6 +119,7 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
             mainWindow.cleanUpMainPanel();
             mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
             mainWindow.setLeftPanel(new GUIMainMenuLeftLogged(mainWindow));
+            System.out.println(EMOTIONALSONGS.loggedUser.getUserId());
             dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed

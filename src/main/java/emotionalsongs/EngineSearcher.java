@@ -78,7 +78,7 @@ public class EngineSearcher {
         for(int i = 0;i<repository.getSize();i++){
             Song current = repository.getBrano(i);
             String currentAuthor = current.getAuthor().toLowerCase();
-            if (currentAuthor.equalsIgnoreCase(autore) && current.getYear()==Integer.parseInt(anno)){
+            if (currentAuthor.contains(autore.toLowerCase()) && current.getYear()==Integer.parseInt(anno)){
                 resultsList.add(current);
             }
         }
@@ -221,7 +221,7 @@ public class EngineSearcher {
         while(low<=high){
             int mid = low+high/2;
             Record pointedRecord = dataBase.getIndex(mid);
-            String pointedTag = pointedRecord.getTag();
+            String pointedTag = pointedRecord.getBranoTag();
             if(pointedTag.equals(branoTag)) return pointedRecord;
             else if(branoTag.compareTo(pointedTag)<0) high = mid-1;
             else low = mid+1;
@@ -232,8 +232,9 @@ public class EngineSearcher {
     //metodi di ricerca playlist
     PlaylistSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
         PlaylistSet[] sets = dataBasePlaylists.getArray();
+        if(sets == null) return null;        
         EngineSorter sorter = new EngineSorter();
-        if(sets.length >1) sorter.sortDataBase(dataBasePlaylists);
+        if(sets.length >1) sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
         int size = dataBasePlaylists.getSize();
         int low = 0;
         int high = size-1;

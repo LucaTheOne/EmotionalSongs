@@ -75,9 +75,10 @@ public class DataBaseUsers {
         for(int i = 0; i<database.length;i++){
             newArray[i]=database[i];
         }
-        newArray[database.length] = user;
+        newArray[newArray.length-1] = user;
         database = newArray;
-        sortById();
+        HeapSortId heapSortId = new HeapSortId();
+        heapSortId.sort(database);
         saveData();
     }
     
@@ -107,7 +108,7 @@ public class DataBaseUsers {
         }     
     }
     
-    public User[] getDatabase(){
+    public User[] getArray(){
         return database;
     }
 

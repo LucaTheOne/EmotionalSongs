@@ -114,12 +114,16 @@ public class GUIBranoAddPlaylistPanel extends javax.swing.JPanel {
         playListsManager.addToSelectedSongs(song);
         removeButton.setEnabled(true);
         addButton.setEnabled(false);
+        playListsManager.increaseNumberOfSongToAdd();
+        playListsManager.updateSongSelectedLabel();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         playListsManager.removeToSelectedSongs(song);
         removeButton.setEnabled(false);
-        addButton.setEnabled(true);       
+        addButton.setEnabled(true);
+        playListsManager.decreaseNumberOfSongToAdd();
+        playListsManager.updateSongSelectedLabel();
     }//GEN-LAST:event_removeButtonActionPerformed
 
 

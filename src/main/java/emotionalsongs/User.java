@@ -265,7 +265,13 @@ public class User {
     public String componiStringa() {
         return userId +";"+ password +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
     }
+
+    public int compareId(User user) {
+        return this.userId.compareToIgnoreCase(user.getUserId());
+    }
     
-    
+    public int compareCf(User user) {
+        return this.cf.compareToIgnoreCase(user.getCF());
+    }
 }
 

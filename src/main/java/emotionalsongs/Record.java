@@ -132,12 +132,16 @@ public class Record {
         return stringa+";";
     }
 
-    String getTag() {
+    String getBranoTag() {
         return this.branoTag;
     }
 
     String[] getUsersIds() {
         return this.usersIds;
+    }
+
+    int compareTo(Record record) {
+        return this.branoTag.compareTo(record.getBranoTag());
     }
     
     

@@ -51,8 +51,8 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         nomeLabel = new javax.swing.JLabel();
         cognomeLabel = new javax.swing.JLabel();
         indirizzoLabel = new javax.swing.JLabel();
-        cfLabel = new javax.swing.JLabel();
         dataDiNascitaLabel = new javax.swing.JLabel();
+        cfLabel = new javax.swing.JLabel();
         mailLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
         textFieldsLabel = new javax.swing.JPanel();
@@ -130,19 +130,19 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         indirizzoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(indirizzoLabel);
 
-        cfLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        cfLabel.setForeground(new java.awt.Color(255, 255, 255));
-        cfLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cfLabel.setText("CODICE FISCALE    ");
-        cfLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        labelsPanel.add(cfLabel);
-
         dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dataDiNascitaLabel.setForeground(new java.awt.Color(255, 255, 255));
         dataDiNascitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         dataDiNascitaLabel.setText("DATA DI NASCITA    ");
         dataDiNascitaLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(dataDiNascitaLabel);
+
+        cfLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cfLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cfLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        cfLabel.setText("CODICE FISCALE    ");
+        cfLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(cfLabel);
 
         mailLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         mailLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,6 +173,11 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         textFieldsLabel.add(indirizzoTextField);
 
         dataDiNascitaTextField.setPreferredSize(new java.awt.Dimension(350, 30));
+        dataDiNascitaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataDiNascitaTextFieldActionPerformed(evt);
+            }
+        });
         textFieldsLabel.add(dataDiNascitaTextField);
 
         cfTextField.setPreferredSize(new java.awt.Dimension(350, 30));
@@ -360,6 +365,10 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_registratiButtonActionPerformed
+
+    private void dataDiNascitaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataDiNascitaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataDiNascitaTextFieldActionPerformed
     
     private void setAllCheckOff(){
         cfCheckLabel.setVisible(false);

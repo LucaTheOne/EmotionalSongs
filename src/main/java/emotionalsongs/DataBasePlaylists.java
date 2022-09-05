@@ -9,7 +9,7 @@ import java.util.logging.*;
  */
 public class DataBasePlaylists {
     
-    PlaylistSet[] dataBase;
+    PlaylistSet[] dataBase = new PlaylistSet[0];
     boolean empty = true;
     
     public DataBasePlaylists() {
@@ -40,11 +40,21 @@ public class DataBasePlaylists {
             newOne[i] = dataBase[i];
         }
         newOne[newOne.length-1] = set;
-        sort();
-        save();
+        dataBase = newOne;
+        //sort();
     }
     
     public void save(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati));
+            for (int i = 0; i < dataBase.length; i++) {
+                writer.write(dataBase[i].componiStringa());
+            }
+            writer.flush();
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DataBasePlaylists.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -60,7 +70,7 @@ public class DataBasePlaylists {
     //sort method
     public void sort(){
         EngineSorter sorter = new EngineSorter();
-        sorter.sortDataBase(this);
+        sorter.sortDataBaseOfPlaylistSet(this);
     }
 
     PlaylistSet getSet(int index) {

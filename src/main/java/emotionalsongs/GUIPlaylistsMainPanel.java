@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package emotionalsongs;
+
+import java.awt.*;
 
 /**
  *
@@ -15,6 +14,7 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
      */
     
     User user;
+    PlaylistSet userSet;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     public GUIPlaylistsMainPanel(User user,PlayListsManager playListsManager) {
         EngineSearcher searcher = new EngineSearcher();
@@ -33,31 +33,54 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         leftPanel = new javax.swing.JPanel();
-        rightPanel = new javax.swing.JPanel();
+        createNewPlaylistButton = new javax.swing.JButton();
+        viewPlaylistSetPanel = new javax.swing.JScrollPane();
+        innerPanelLeft = new javax.swing.JPanel();
+        viewPlaylistScroll = new javax.swing.JScrollPane();
+        innerPanelRight = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
         leftPanel.setPreferredSize(new java.awt.Dimension(200, 300));
         leftPanel.setLayout(new java.awt.BorderLayout());
+
+        createNewPlaylistButton.setText("Crea nuova playlist");
+        createNewPlaylistButton.setPreferredSize(new java.awt.Dimension(78, 30));
+        createNewPlaylistButton.setSize(new java.awt.Dimension(78, 30));
+        createNewPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewPlaylistButtonActionPerformed(evt);
+            }
+        });
+        leftPanel.add(createNewPlaylistButton, java.awt.BorderLayout.PAGE_END);
+
+        innerPanelLeft.setPreferredSize(new Dimension(viewPlaylistScroll.getWidth(),50*playListsManager.userSetDimension));
+        innerPanelLeft.setLayout(new java.awt.GridLayout(playListsManager.userSetDimension, 1, 0, 5));
+        for(int i = 0; i<playListsManager.userSetDimension;i++){
+            innerPanelLeft.add(new GUIPlaylistButton(playListsManager.userSet.getPlaylist(i), playListsManager));
+        }
+        viewPlaylistSetPanel.setViewportView(innerPanelLeft);
+
+        leftPanel.add(viewPlaylistSetPanel, java.awt.BorderLayout.CENTER);
+
         add(leftPanel, java.awt.BorderLayout.LINE_START);
 
-        rightPanel.setLayout(new java.awt.BorderLayout());
-        add(rightPanel, java.awt.BorderLayout.CENTER);
+        viewPlaylistScroll.setViewportView(innerPanelRight);
+
+        add(viewPlaylistScroll, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
+        playListsManager.openCreationFrame();
+    }//GEN-LAST:event_createNewPlaylistButtonActionPerformed
     
-    void setLeftPanel(GUIPlaylistsSubLeftPanel left){
-        leftPanel.add(left);
-        revalidate();
-        repaint();
-    }
     
-    void setRightPanel(GUIPlaylistsSubRightPanel right){
-        rightPanel.add(right);
-        revalidate();
-        repaint();
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createNewPlaylistButton;
+    private javax.swing.JPanel innerPanelLeft;
+    private javax.swing.JPanel innerPanelRight;
     private javax.swing.JPanel leftPanel;
-    private javax.swing.JPanel rightPanel;
+    private javax.swing.JScrollPane viewPlaylistScroll;
+    private javax.swing.JScrollPane viewPlaylistSetPanel;
     // End of variables declaration//GEN-END:variables
 }
