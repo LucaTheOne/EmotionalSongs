@@ -1,9 +1,7 @@
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.EMOTIONALSONGS;
-import emotionalsongs.GUI.GUIBranoAddPlaylistPanel;
-import emotionalsongs.GUI.GUIBranoViewPanel;
-import emotionalsongs.GUI.GUIBranoViewVotePanel;
+import emotionalsongs.*;
+import emotionalsongs.GUI.*;
 import java.io.*;
 
 /**
@@ -94,8 +92,8 @@ public class Song {
         return stringa;
     }
     
-    public GUIBranoViewPanel buildPanelView(){
-        return new GUIBranoViewPanel(this);
+    public SongChartYTPanel buildPanelView(){
+        return new SongChartYTPanel(this);
     }
     
     public GUIBranoViewVotePanel buildPanelViewVote(){

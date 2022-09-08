@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package emotionalsongs.GUI;
 
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.DataBases.Repository;
-import emotionalsongs.EMOTIONALSONGS;
-import emotionalsongs.Engines.EngineSearcher;
-import emotionalsongs.Utilities;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.*;
+import java.awt.*;
 import java.io.*;
+import javax.swing.*;
 
 /**
  *@hidden
@@ -58,14 +56,14 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         nextButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
-        titlesPanel = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        titleLabel1 = new javax.swing.JLabel();
-        authorLabel1 = new javax.swing.JLabel();
-        yearLabel1 = new javax.swing.JLabel();
-        scrollView = new javax.swing.JScrollPane();
+        scrollView = new JScrollPane(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics g2 = g.create();
+                g2.drawImage(Utilities.RepoBgIcon.getImage(), 0, 0, 1000, 800, null);
+                g2.dispose();
+            }
+        };
         innerScroll = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));
@@ -190,70 +188,15 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
 
         mainPanel.setLayout(new java.awt.BorderLayout());
 
-        titlesPanel.setPreferredSize(new java.awt.Dimension(100, 30));
-        titlesPanel.setLayout(new java.awt.BorderLayout());
-
-        jPanel3.setBackground(new java.awt.Color(5, 23, 44));
-        jPanel3.setMinimumSize(new java.awt.Dimension(720, 30));
-        jPanel3.setPreferredSize(new java.awt.Dimension(800, 30));
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jPanel4.setBackground(new java.awt.Color(5, 23, 44));
-        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(136, 100));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
-
-        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
-
-        titleLabel1.setBackground(new java.awt.Color(5, 23, 44));
-        titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
-        titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText("Titolo");
-        titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setOpaque(true);
-        titleLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
-        jPanel5.add(titleLabel1);
-
-        authorLabel1.setBackground(new java.awt.Color(5, 23, 44));
-        authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
-        authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText("Autore");
-        authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setOpaque(true);
-        authorLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
-        jPanel5.add(authorLabel1);
-
-        yearLabel1.setBackground(new java.awt.Color(5, 23, 44));
-        yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
-        yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText("Anno");
-        yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setOpaque(true);
-        yearLabel1.setPreferredSize(new java.awt.Dimension(160, 30));
-        jPanel5.add(yearLabel1);
-
-        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
-
-        titlesPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        mainPanel.add(titlesPanel, java.awt.BorderLayout.PAGE_START);
-
         scrollView.setBorder(null);
         scrollView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollView.setAlignmentX(0.0F);
         scrollView.setAlignmentY(0.0F);
         scrollView.setOpaque(false);
 
-        innerScroll.setBackground(new java.awt.Color(0, 24, 46));
-        innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
-        innerScroll.setLayout(new java.awt.GridLayout(100, 1));
+        innerScroll.setBackground(new java.awt.Color(22, 33, 62));
+        innerScroll.setPreferredSize(new Dimension(730,75*tracksPerView));
+        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView, 1));
         for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
             innerScroll.add(actualArrayWorking[i].buildPanelView());
         }
@@ -294,8 +237,8 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         
         if(actualArrayWorking == null){
             innerScroll.removeAll();
-            innerScroll.revalidate();
-            innerScroll.repaint();
+            scrollView.revalidate();
+            scrollView.repaint();
             numberResultsLabel.setText("0 brani trovati!");
             numberResultsLabel.revalidate();
             numberResultsLabel.repaint();
@@ -313,13 +256,13 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         numberResultsLabel.repaint();
         firstPage = true;
         lastPage = false;
-        innerScroll.revalidate();
-        innerScroll.repaint();
+        scrollView.revalidate();
+        scrollView.repaint();
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        if (firstPage) {
+         if (firstPage) {
             return;
         }
         startIndex -= tracksPerView;
@@ -327,11 +270,11 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
             firstPage = true;
         }
         innerScroll.removeAll();
-        
-        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());   
+
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());
         }
-        
+
         lastPage = false;
         innerScroll.revalidate();
         innerScroll.repaint();
@@ -343,18 +286,18 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         if((startIndex+tracksPerView) >= actualArrayWorking.length-1 ) lastPage = true;
-        
+
         if (lastPage) return;
         firstPage = false;
 
         startIndex += tracksPerView;
-        
+
         innerScroll.removeAll();
-        
-        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelView());   
+
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelView());
         }
-        
+
         innerScroll.revalidate();
         innerScroll.repaint();
     }//GEN-LAST:event_nextButtonActionPerformed
@@ -369,6 +312,8 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         firstPage = true;
         lastPage = false;
         numberResultsLabel.setText(actualArrayWorking.length +" brani presenti!");
+        innerScroll.revalidate();
+        innerScroll.repaint();
         scrollView.revalidate();
         scrollView.repaint();
             
@@ -380,16 +325,12 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JPanel TitlePanel;
     private javax.swing.JButton X;
-    private javax.swing.JLabel authorLabel1;
     private javax.swing.JPanel centerLowPanel;
     private javax.swing.JButton clearButton;
     private javax.swing.JPanel innerScroll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton nextButton;
@@ -397,9 +338,6 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
-    private javax.swing.JLabel titleLabel1;
-    private javax.swing.JPanel titlesPanel;
-    private javax.swing.JLabel yearLabel1;
     // End of variables declaration//GEN-END:variables
     
 }

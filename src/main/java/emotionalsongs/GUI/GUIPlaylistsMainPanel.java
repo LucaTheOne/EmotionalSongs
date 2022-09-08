@@ -3,9 +3,7 @@ package emotionalsongs.GUI;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.GUIPlaylistButton;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 
@@ -80,6 +78,7 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
         viewPlaylistScroll.setOpaque(false);
 
         innerPanelRight.setOpaque(false);
+        innerPanelRight.setPreferredSize(new java.awt.Dimension(viewPlaylistScroll.getWidth(),viewPlaylistScroll.getHeight()<75*playListsManager.getNumberOfSongOfSelectedPlaylist()?75*playListsManager.getNumberOfSongOfSelectedPlaylist():viewPlaylistScroll.getHeight()));
         viewPlaylistScroll.setViewportView(innerPanelRight);
 
         add(viewPlaylistScroll, java.awt.BorderLayout.CENTER);

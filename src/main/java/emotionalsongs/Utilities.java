@@ -33,7 +33,8 @@ public class Utilities {
     public static ImageIcon regIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIcon.png");
     public static ImageIcon clearButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ClearButtonIcon.png");
     public static ImageIcon closeButton = new ImageIcon("../EmotionalSongs/Risorse/CloseButton.png");
-    
+    public static ImageIcon SongViewIcon = new ImageIcon("../EmotionalSongs/Risorse/SongViewBorder.png");
+    public static ImageIcon RepoBgIcon = new ImageIcon("../EmotionalSongs/Risorse/RepoBG.png");
     
 //Stringhe ricorrenti
     public static String comma = ",";

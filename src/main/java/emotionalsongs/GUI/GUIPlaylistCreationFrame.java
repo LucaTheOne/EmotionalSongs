@@ -1,12 +1,15 @@
 
 package emotionalsongs.GUI;
 
-import emotionalsongs.BasicsStructure.Song;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
-import emotionalsongs.EMOTIONALSONGS;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
-import emotionalsongs.Utilities;
+import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
@@ -81,9 +84,18 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
         authorLabel1 = new javax.swing.JLabel();
         yearLabel1 = new javax.swing.JLabel();
         scrollView = new javax.swing.JScrollPane();
-        innerScroll = new javax.swing.JPanel();
+        innerScroll = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics g2 = g.create();
+                g2.drawImage(Utilities.RepoBgIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.dispose();
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(700, 600));
 
         mainPanel.setOpaque(true);
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -281,13 +293,14 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
 
         mainPanel1.add(titlesPanel, java.awt.BorderLayout.PAGE_START);
 
+        scrollView.setBackground(new java.awt.Color(0, 24, 46));
         scrollView.setBorder(null);
         scrollView.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollView.setAlignmentX(0.0F);
         scrollView.setAlignmentY(0.0F);
-        scrollView.setOpaque(false);
 
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
+        innerScroll.setOpaque(false);
         innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
         innerScroll.setLayout(new java.awt.GridLayout(100, 1));
         for(int i = 0;i<tracksPerView;i++){

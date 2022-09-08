@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package emotionalsongs.GUI;
 
-import emotionalsongs.EMOTIONALSONGS;
 import emotionalsongs.Engines.*;
-import emotionalsongs.Utilities;
+import emotionalsongs.*;
 import java.awt.*;
 import java.awt.geom.*;
 

@@ -1,15 +1,11 @@
 
 package emotionalsongs.Managers;
 
-import emotionalsongs.GUI.GUIPlaylistsMainPanel;
-import emotionalsongs.GUI.GUIPlaylistCreationFrame;
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.BasicsStructure.PlaylistSet;
-import emotionalsongs.BasicsStructure.Playlist;
-import emotionalsongs.BasicsStructure.User;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
 import emotionalsongs.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.*;
 
 
 /**
@@ -163,6 +159,10 @@ public class PlayListsManager {
 
     public int getNumberOfPlaylists() {
         return userSetDimension;
+    }
+
+    public int getNumberOfSongOfSelectedPlaylist() {
+        return numberOfSongSelectedPlaylist;
     }
 
     
