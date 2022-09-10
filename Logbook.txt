@@ -127,4 +127,7 @@
         ristrutturazione algoitmo di ordinamento, !attenzione con stringhe non funziona, da rivedere!
      
             -Bolelli Luca-
+
+10/09/2022
+	Aggiornata cartella doc; aggiunti collegamenti al manuale utente e tecnico, che si trovano online sul sito web emotionalsongs.tk
              
