@@ -248,7 +248,7 @@ public class User {
      * @param addplay
      */
     public void addToPlaylistSet(Playlist addplay){
-        playlistSet.add(addplay);
+        playlistSet.addPlaylist(addplay);
     }
     
     

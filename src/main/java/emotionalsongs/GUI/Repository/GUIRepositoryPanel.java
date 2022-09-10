@@ -1,6 +1,7 @@
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.Repository;
 
+import emotionalsongs.GUI.mainWindow.MainFrame;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
@@ -15,7 +16,7 @@ import javax.swing.*;
  */
 public class GUIRepositoryPanel extends javax.swing.JPanel {
     
-    GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
     int tracksPerView = 100;
     int startIndex = 0;
     boolean firstPage = true;

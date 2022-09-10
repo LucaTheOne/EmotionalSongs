@@ -4,8 +4,10 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.*;
+import emotionalsongs.GUI.PlayLists.*;
 
 
 /**
@@ -14,8 +16,8 @@ import emotionalsongs.GUI.*;
  */
 public class PlayListsManager {
     
-    GUIPlaylistsMainPanel playlistPanel ;
-    GUIPlaylistCreationFrame creationFrame;
+    PlaylistsMainPanel playlistPanel ;
+    PlaylistCreationFrame creationFrame;
     final DataBasePlaylists dataBasePlaylists;
         
     User user = EMOTIONALSONGS.loggedUser;
@@ -52,9 +54,11 @@ public class PlayListsManager {
         userSet = dataBasePlaylists.getUserSet(user);
         if(userSet == null){
             userSet = new PlaylistSet(user.getUserId(), newPlaylist);
+            userSet.addPlaylist(newPlaylist);
             dataBasePlaylists.add(userSet);
+            
         } else {
-            userSet.add(newPlaylist);
+            userSet.addPlaylist(newPlaylist);
         }
         dataBasePlaylists.save();    
     }
@@ -126,12 +130,12 @@ public class PlayListsManager {
         return songsToAdd;
     }
     
-    private GUIPlaylistsMainPanel buildUserPlaylistsPanel(){
-       return new GUIPlaylistsMainPanel(EMOTIONALSONGS.loggedUser,this);
+    private PlaylistsMainPanel buildUserPlaylistsPanel(){
+       return new PlaylistsMainPanel(EMOTIONALSONGS.loggedUser,this);
     }
     
     public void openCreationFrame(){
-        creationFrame = new GUIPlaylistCreationFrame();
+        creationFrame = new PlaylistCreationFrame();
         creationFrame.setVisible(true);
     }
     
@@ -164,7 +168,54 @@ public class PlayListsManager {
     public int getNumberOfSongOfSelectedPlaylist() {
         return numberOfSongSelectedPlaylist;
     }
+    
+    public void setRightPane(PlaylistSongsViewPanel viewPanel){
+       playlistPanel.redrawRightPanel(viewPanel);
+    }
 
+    public void selectPlaylist(Playlist correlatedPlaylist) {
+        this.selectedOne = correlatedPlaylist;
+        numberOfSongSelectedPlaylist = correlatedPlaylist.getSize();
+    }
+
+    public void addToPlaylistSet(Playlist playlist) {
+        userSet.addPlaylist(playlist);
+        playlistPanel.addToLeftPanel(playlist.buildPlaylistButton());
+        updatePlaylistsPanel();
+    }
+
+    public void updatePlaylistsPanel() {
+        playlistPanel = new PlaylistsMainPanel(user, this);
+        EMOTIONALSONGS.mainWindow.cleanUpMainPanel();
+        EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
+        EMOTIONALSONGS.mainWindow.revalidate();
+        EMOTIONALSONGS.mainWindow.repaint();
+    }
+    
+    public void addSongToPlaylist(Song songToAdd,Playlist playlistWhereToAddSong){
+        //da implementare insieme a GUI per aggiungere una canzone alla playlist.
+    }
+    
+    public void deleteAsongFromAPlaylist(Song songToDelete,Playlist playlistWhereToDeleteSong){
+        Song[] aux = playlistWhereToDeleteSong.getArraySongs();
+        Song[] newPlaylist = new Song[aux.length-1];
+        int counter = 0;
+        for(int i = 0;i<aux.length;i++){
+            if(!aux[i].equalsTo(songToDelete)){
+                newPlaylist[counter++] = aux[i];
+            }
+        }
+        playlistWhereToDeleteSong.updatePlaylist(newPlaylist);
+        selectedOne = playlistWhereToDeleteSong;
+        dataBasePlaylists.save();
+        setRightPane(new PlaylistSongsViewPanel(selectedOne));
+        selectedOne = null;
+        
+    }
+    
+    public void deletePlaylistFromSet(Playlist playlistToDelete, PlaylistSet setWhereToDeleteThePlaylist){
+        
+    }
     
 }
 

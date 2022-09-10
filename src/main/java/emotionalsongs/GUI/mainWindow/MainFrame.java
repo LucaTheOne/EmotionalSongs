@@ -1,7 +1,7 @@
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.mainWindow;
 
 
-import emotionalsongs.Utilities;
+import emotionalsongs.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -14,12 +14,12 @@ import javax.swing.*;
  *
  * @author Megaport
  */
-public class GUIMainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainPage
      */
-    public GUIMainFrame() {
+    public MainFrame() {
         
         initComponents();
         
@@ -103,7 +103,7 @@ public class GUIMainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel upperBar;
     // End of variables declaration//GEN-END:variables
 
-    void update() {
+    public void updateView() {
         revalidate();
         repaint();
     }
@@ -140,8 +140,4 @@ public class GUIMainFrame extends javax.swing.JFrame {
         repaint();
     }
 
-    void updateView() {
-        revalidate();
-        repaint();
-    }
 }

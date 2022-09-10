@@ -1,5 +1,5 @@
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.Song;
 import emotionalsongs.EMOTIONALSONGS;

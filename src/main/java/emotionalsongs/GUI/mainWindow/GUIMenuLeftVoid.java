@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.mainWindow;
 
 /**
  *
@@ -10,11 +10,11 @@ package emotionalsongs.GUI;
  */
 public class GUIMenuLeftVoid extends javax.swing.JPanel {
     
-    GUIMainFrame mainPage;
+    MainFrame mainPage;
     /**
      * Creates new form menuUnespanded
      */
-    public GUIMenuLeftVoid(GUIMainFrame correlated) {
+    public GUIMenuLeftVoid(MainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }

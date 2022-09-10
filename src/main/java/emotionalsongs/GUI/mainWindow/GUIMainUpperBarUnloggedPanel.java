@@ -1,23 +1,24 @@
-package emotionalsongs.GUI;
-
-import emotionalsongs.Engines.EngineLogger;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
+package emotionalsongs.GUI.mainWindow;
+
+import emotionalsongs.GUI.Generics.GUICreditsPanel;
+import emotionalsongs.GUI.Login.GUIFrameLogIn;
+import emotionalsongs.GUI.Registration.GUIRegistrationPanel;
 
 /**
  *@hidden
  * @author big
  */
-public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
+public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
     
-    GUIMainFrame mainPage;
+    MainFrame mainPage;
     /**
      * Creates new form UnloggedToolBarPanel
      */
-    public GUIMainUpperBarLoggedPanel(GUIMainFrame correlated) {
+    public GUIMainUpperBarUnloggedPanel(MainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }
@@ -34,12 +35,12 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         menuButton = new javax.swing.JToggleButton();
-        ProfileButton = new javax.swing.JButton();
+        RegisterButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
         LanguageButton = new javax.swing.JButton();
-        LogOutButton = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(39,16,62,100)
+        setBackground(new java.awt.Color(15,27,54, 160)
         );
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
@@ -77,25 +78,25 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         jPanel1.add(menuButton, gridBagConstraints);
 
-        ProfileButton.setBackground(new java.awt.Color(15, 52, 96));
-        ProfileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
-        ProfileButton.setText("Profile");
-        ProfileButton.setAlignmentY(0.0F);
-        ProfileButton.setBorder(null);
-        ProfileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ProfileButton.setPreferredSize(new java.awt.Dimension(72, 18));
-        ProfileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
+        RegisterButton.setBackground(new java.awt.Color(15, 52, 96));
+        RegisterButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
+        RegisterButton.setText("Register");
+        RegisterButton.setAlignmentY(0.0F);
+        RegisterButton.setBorder(null);
+        RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RegisterButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileButtonActionPerformed(evt);
+                RegisterButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(ProfileButton, gridBagConstraints);
+        jPanel1.add(RegisterButton, gridBagConstraints);
 
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
@@ -132,63 +133,60 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(LanguageButton, gridBagConstraints);
 
-        LogOutButton.setBackground(new java.awt.Color(15, 52, 96));
-        LogOutButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        LogOutButton.setForeground(new java.awt.Color(255, 255, 255));
-        LogOutButton.setText("LogOut");
-        LogOutButton.setAlignmentY(0.0F);
-        LogOutButton.setBorder(null);
-        LogOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        LogOutButton.setPreferredSize(new java.awt.Dimension(72, 18));
-        LogOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
+        LoginButton.setBackground(new java.awt.Color(15, 52, 96));
+        LoginButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        LoginButton.setForeground(new java.awt.Color(255, 255, 255));
+        LoginButton.setText("Login");
+        LoginButton.setAlignmentY(0.0F);
+        LoginButton.setBorder(null);
+        LoginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LoginButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        LoginButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogOutButtonActionPerformed(evt);
+                LoginButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(LogOutButton, gridBagConstraints);
+        jPanel1.add(LoginButton, gridBagConstraints);
 
         add(jPanel1, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
-        if(menuButton.isSelected()){
-            mainPage.setLeftPanel(new GUIMainMenuLeftLogged(mainPage));
-        } else {
-            mainPage.setLeftPanel(new GUIMenuLeftVoid(mainPage));
-        }
-    }//GEN-LAST:event_menuButtonStateChanged
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        new GUIFrameLogIn().setVisible(true);
+    }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuButtonActionPerformed
 
-    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
+    private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
+        if(menuButton.isSelected()){
+            mainPage.setLeftPanel(new GUIMainMenuLeftUnloggedExpanded(mainPage));
+        } else {
+            mainPage.setLeftPanel(new GUIMenuLeftVoid(mainPage));
+        }
+    }//GEN-LAST:event_menuButtonStateChanged
 
-        //profile info
-    }//GEN-LAST:event_ProfileButtonActionPerformed
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+
+            mainPage.setMainPanel(new GUIRegistrationPanel());            
+    }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
         mainPage.setMainPanel(new GUICreditsPanel());
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
-        EngineLogger.logout();
-        mainPage.setUpperBar(new GUIMainUpperBarUnloggedPanel(mainPage));
-        mainPage.setLeftPanel(new GUIMenuLeftVoid(mainPage));
-        mainPage.cleanUpMainPanel();
-    }//GEN-LAST:event_LogOutButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreditsButton;
     private javax.swing.JButton LanguageButton;
-    private javax.swing.JButton LogOutButton;
-    private javax.swing.JButton ProfileButton;
+    private javax.swing.JButton LoginButton;
+    private javax.swing.JButton RegisterButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton menuButton;
     // End of variables declaration//GEN-END:variables

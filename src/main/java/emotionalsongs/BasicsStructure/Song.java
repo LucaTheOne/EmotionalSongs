@@ -1,7 +1,8 @@
 package emotionalsongs.BasicsStructure;
 
 import emotionalsongs.*;
-import emotionalsongs.GUI.*;
+import emotionalsongs.GUI.PlayLists.*;
+import emotionalsongs.GUI.Repository.*;
 import java.io.*;
 
 /**
@@ -78,7 +79,7 @@ public class Song {
     * @return true - se i brani sono uguali, altrimenti false.
     **/
     public boolean equalsTo(Song brano) {
-        return this.title == brano.title&&this.author == brano.author&&this.year == brano.year;
+        return this.tag.equals(brano.tag);
     }
     
     //metodi di esposizione
@@ -96,10 +97,6 @@ public class Song {
         return new SongChartYTPanel(this);
     }
     
-    public GUIBranoViewVotePanel buildPanelViewVote(){
-        return new GUIBranoViewVotePanel(this);
-    }
-    
     public void visualizzaEmozioneBrano(){
         //da implementare
     }
@@ -114,7 +111,11 @@ public class Song {
                 "+" + author.replaceAll(" ", "")+
                 "+" + String.valueOf(year);
     }
-
+    
+    public SongChartForPlaylist buildPlaylistPanel(Playlist propertPlaylist){
+        return new SongChartForPlaylist(this,propertPlaylist);
+    }
+    
     public int compareTag(Song song) {
         return this.tag.compareTo(song.getTag());
     }

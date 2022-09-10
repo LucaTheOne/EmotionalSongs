@@ -1,8 +1,7 @@
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.*;
-import emotionalsongs.GUI.GUIMainFrame;
-import emotionalsongs.GUI.GUIRepositoryPanel;
+import emotionalsongs.GUI.Repository.GUIRepositoryPanel;
 import java.io.*;
 
 /*
@@ -16,10 +15,10 @@ import java.io.*;
  */
 public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
     
-    GUIMainFrame mainPage;
+    MainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
-    public GUIMainMenuLeftLogged(GUIMainFrame correlated) {
+    public GUIMainMenuLeftLogged(MainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }
@@ -149,7 +148,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
-        EMOTIONALSONGS.playListsManager.showUserPlaylistsSet();
+        EMOTIONALSONGS.playListsManager.updatePlaylistsPanel();
     }//GEN-LAST:event_playlistsButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed

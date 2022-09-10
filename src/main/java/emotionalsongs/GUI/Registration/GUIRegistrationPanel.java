@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.Registration;
 
-import emotionalsongs.EMOTIONALSONGS;
 import emotionalsongs.Engines.*;
-import emotionalsongs.Utilities;
+import emotionalsongs.GUI.mainWindow.*;
+import emotionalsongs.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.mainWindow.*;
 import java.awt.*;
 import java.io.*;
 import java.util.logging.*;
@@ -18,7 +20,7 @@ import javax.swing.*;
  */
 public class GUIRegistrationPanel extends javax.swing.JPanel {
     
-    GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
 
     /**
      * Creates new form GUIRegistrationPanel
@@ -344,7 +346,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
                     mainWindow.setLeftPanel(new GUIMenuLeftVoid(mainWindow));
                 }
                 mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
-                mainWindow.update();
+                mainWindow.updateView();
             }
             
             else{
@@ -361,7 +363,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
                 if (!engineRegistration.validUserId) { idCheckLabel.setText("User id non valido!");idCheckLabel.setVisible(true);}
                 if (!engineRegistration.idNotTaken) { idCheckLabel.setText("User id già preso da un altro utente!"); idCheckLabel.setVisible(true); }
                 
-                mainWindow.update();
+                mainWindow.updateView();
             }
         } catch (IOException ex) {
             Logger.getLogger(GUIRegistrationPanel.class.getName()).log(Level.SEVERE, null, ex);

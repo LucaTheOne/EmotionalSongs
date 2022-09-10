@@ -1,8 +1,8 @@
 
 package emotionalsongs;
 
-import emotionalsongs.GUI.GUIInitializationFrame;
-import emotionalsongs.GUI.GUIMainFrame;
+import emotionalsongs.GUI.Generics.GUIInitializationFrame;
+import emotionalsongs.GUI.mainWindow.MainFrame;
 import emotionalsongs.BasicsStructure.User;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Managers.*;
@@ -21,7 +21,7 @@ public class EMOTIONALSONGS {
     public static DataBaseUsers userDataBase;
     public static DataBasePlaylists dataBasePlaylists;
     public static boolean logged = false;
-    public static GUIMainFrame mainWindow;
+    public static MainFrame mainWindow;
     public static PlayListsManager playListsManager;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -36,7 +36,7 @@ public class EMOTIONALSONGS {
         dataSetEmozioni = new DataBaseRecords();
         dataBasePlaylists = new DataBasePlaylists();
         init.dispose();
-        mainWindow = new GUIMainFrame();
+        mainWindow = new MainFrame();
         mainWindow.setVisible(true);
     }
     

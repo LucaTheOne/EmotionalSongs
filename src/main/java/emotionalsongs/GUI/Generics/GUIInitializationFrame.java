@@ -1,4 +1,4 @@
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.Generics;
 
 
 import java.awt.geom.*;

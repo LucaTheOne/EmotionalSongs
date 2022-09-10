@@ -54,7 +54,7 @@ public class PlaylistSet {
      * 
      * @param playlist 
      */    
-    public void add(Playlist playlist){
+    public void addPlaylist(Playlist playlist){
         Playlist[] newOne = new Playlist[playlistArray.length+1];
         for (int i = 0; i < playlistArray.length; i++) {
             newOne[i] = playlistArray[i];

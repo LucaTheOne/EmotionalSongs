@@ -1,6 +1,9 @@
 package emotionalsongs.BasicsStructure;
 
+import emotionalsongs.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.PlayLists.*;
+import emotionalsongs.Managers.*;
 import java.io.*;
 
 /**
@@ -18,6 +21,10 @@ public class Playlist {
     String playlistName;//no special characters ;
 
     String[] songsTags;
+    
+    Song[] playListSongs;
+    
+    PlayListsManager manager = EMOTIONALSONGS.playListsManager;
 
     //costruttore
     /**
@@ -28,6 +35,10 @@ public class Playlist {
     public Playlist(String nomePlaylist,String listaCanzoniPlaylist) {
         this.playlistName = nomePlaylist;
         this.songsTags = listaCanzoniPlaylist.split(",");
+        playListSongs = new Song[songsTags.length];
+        for (int i = 0; i < songsTags.length; i++) {
+            playListSongs[i] = searchFromTag(songsTags[i]);
+        }
         //sort();
     }
     
@@ -40,7 +51,6 @@ public class Playlist {
         this.songsTags = new String[selectedSongs.length];
         for(int i = 0; i<selectedSongs.length;i++){
             songsTags[i] = selectedSongs[i].getTag();
-            System.out.println("song"+selectedSongs[i].getTitle());
         }
         //sort();
     }
@@ -54,7 +64,7 @@ public class Playlist {
     }
     
     public int getSize(){
-        return songsTags.length;
+        return playListSongs.length;
     }
     
     public String get(int index){
@@ -66,21 +76,34 @@ public class Playlist {
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public void add(String songTag) {
+    public void addSongTag(String songTag) {
         String[] newOne = new String[songsTags.length+1];
         for(int i = 0;i<songsTags.length;i++){
             newOne[i] = songsTags[i];
         }
         newOne[newOne.length-1] = songTag;
-        sort();
+        //sort();
     }
-
+    
+    public void addSong(Song newSong){
+        Song[] newPlaylist = new Song[playListSongs.length+1];
+        for (int i = 0; i < playListSongs.length; i++) {
+            newPlaylist[i] = playListSongs[i];
+        }
+        newPlaylist[newPlaylist.length-1] = newSong;
+        //sort
+    }
+    
     /**
      * Il metodo restituisce la playlist.
      * @return  playlist.
      */
-    public String[] getArray() {
+    public String[] getArrayTags() {
         return songsTags;
+    }
+    
+    public Song[] getArraySongs() {
+        return playListSongs;
     }
     
     public String componiStringa(){
@@ -99,6 +122,23 @@ public class Playlist {
 
     public int compareTo(Playlist playlist) {
         return this.playlistName.compareToIgnoreCase(playlist.getName());
+    }
+    
+    private Song searchFromTag(String songTag){
+        EngineSearcher finder = new EngineSearcher();
+        return finder.searchBranoTag(EMOTIONALSONGS.REPOSITORY, songTag);
+    }
+    
+    public PlaylistSongsViewPanel buildPlaylistView(){
+        return new PlaylistSongsViewPanel(this);
+    }
+    
+    public PlaylistButton buildPlaylistButton(){
+        return new PlaylistButton(this, manager);
+    }
+
+    public void updatePlaylist(Song[] newPlaylist) {
+        this.playListSongs = newPlaylist;
     }
 }
  

@@ -1,10 +1,10 @@
 package emotionalsongs.DataBases;
 
-import emotionalsongs.BasicsStructure.PlaylistSet;
-import emotionalsongs.BasicsStructure.User;
-import emotionalsongs.Engines.EngineSearcher;
-import emotionalsongs.Engines.EngineSorter;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
 import java.io.*;
 import java.util.logging.*;
 
@@ -31,7 +31,7 @@ public class DataBasePlaylists {
                 dataBase[i] = new PlaylistSet(reader.readLine());
             }
             empty = false;
-            //sort();
+            sort();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataBasePlaylists.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -46,7 +46,7 @@ public class DataBasePlaylists {
         }
         newOne[newOne.length-1] = set;
         dataBase = newOne;
-        //sort();
+        sort();
     }
     
     public void save(){

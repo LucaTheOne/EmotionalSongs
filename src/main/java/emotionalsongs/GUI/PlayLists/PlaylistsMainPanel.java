@@ -1,8 +1,9 @@
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 import java.awt.*;
@@ -11,18 +12,19 @@ import java.awt.*;
  *
  * @author big
  */
-public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
+public class PlaylistsMainPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form GUIPlaylistsMainPanel
+     * Creates new form PlaylistsMainPanel
      */
     
     User user;
     PlaylistSet userSet;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
-    public GUIPlaylistsMainPanel(User user,PlayListsManager playListsManager) {
-        EngineSearcher searcher = new EngineSearcher();
+    public PlaylistsMainPanel(User user,PlayListsManager playListsManager) {
         this.user = user;
+        EngineSearcher searcher = new EngineSearcher();
+        userSet = searcher.searchUserSet(user, EMOTIONALSONGS.dataBasePlaylists);
         initComponents();
         //this.playListsManager = playListsManager;
     }
@@ -66,8 +68,8 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelLeft.setOpaque(false);
         innerPanelLeft.setPreferredSize(new Dimension(viewPlaylistScroll.getWidth(),50*playListsManager.getNumberOfPlaylists()));
         innerPanelLeft.setLayout(new java.awt.GridLayout(playListsManager.getNumberOfPlaylists()<20 ? 20 : playListsManager.getNumberOfPlaylists(), 1, 0, 5));
-        for(int i = 0; i<playListsManager.getNumberOfPlaylists();i++){
-            innerPanelLeft.add(new GUIPlaylistButton(playListsManager.getUserSet().getPlaylist(i), playListsManager));
+        for(int i = 0; i<userSet.getSize();i++){
+            innerPanelLeft.add(new emotionalsongs.GUI.PlayLists.PlaylistButton(userSet.getPlaylist(i), playListsManager));
         }
         viewPlaylistSetPanel.setViewportView(innerPanelLeft);
 
@@ -77,8 +79,9 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
 
         viewPlaylistScroll.setOpaque(false);
 
-        innerPanelRight.setOpaque(false);
+        innerPanelRight.setBackground(new java.awt.Color(22, 33, 62));
         innerPanelRight.setPreferredSize(new java.awt.Dimension(viewPlaylistScroll.getWidth(),viewPlaylistScroll.getHeight()<75*playListsManager.getNumberOfSongOfSelectedPlaylist()?75*playListsManager.getNumberOfSongOfSelectedPlaylist():viewPlaylistScroll.getHeight()));
+        innerPanelRight.setLayout(new java.awt.BorderLayout());
         viewPlaylistScroll.setViewportView(innerPanelRight);
 
         add(viewPlaylistScroll, java.awt.BorderLayout.CENTER);
@@ -100,8 +103,21 @@ public class GUIPlaylistsMainPanel extends javax.swing.JPanel {
 
     public void setLeftInnerPanel(PlaylistSet userSet) {
         for(int i = 0; i<userSet.getSize();i++){
-            innerPanelLeft.add(new GUIPlaylistButton(userSet.getArray()[i],playListsManager));
+            innerPanelLeft.add(new PlaylistButton(userSet.getArray()[i],playListsManager));
         }
+        innerPanelLeft.revalidate();
+        innerPanelLeft.repaint();
+    }
+    
+    public void redrawRightPanel(PlaylistSongsViewPanel viewPanel){
+        innerPanelRight.removeAll();
+        innerPanelRight.add(viewPanel);
+        innerPanelRight.revalidate();
+        innerPanelRight.repaint();
+    }
+
+    public void addToLeftPanel(PlaylistButton playlistButton) {
+        innerPanelLeft.add(playlistButton);
         innerPanelLeft.revalidate();
         innerPanelLeft.repaint();
     }

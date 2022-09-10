@@ -1,12 +1,11 @@
 package emotionalsongs.Engines;
 
-import emotionalsongs.DataBases.*;
-import emotionalsongs.EMOTIONALSONGS;
-import emotionalsongs.BasicsStructure.PlaylistSet;
 import emotionalsongs.BasicsStructure.Record;
-import emotionalsongs.DataBases.Repository;
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.BasicsStructure.User;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import java.util.*;
 
 /**
@@ -99,19 +98,23 @@ public class EngineSearcher {
         return results;
     }
     
-    public Song searchBranoTag(Repository repository,String id) {
-        repository.sortByTags();
+    public Song searchBranoTag(Repository repository,String songTag) {
+        //repository.sortByTags();
         int size = repository.getSize();
+        for (int i = 0; i < size; i++) {
+            if(repository.getBrano(i).getTag().equals(songTag)) return repository.getBrano(i);
+        }
+        /*
         int low = 0;
         int high = size-1;
         while(low<=high){
             int mid = low+high/2;
             Song pointedBrano = repository.getBrano(mid);
             String pointedBranoTag = pointedBrano.getTag();
-            if(pointedBrano.equals(id)) return pointedBrano;
-            else if(id.compareTo(pointedBranoTag)<0) high = mid-1;
+            if(pointedBrano.equals(songTag)) return pointedBrano;
+            else if(songTag.compareTo(pointedBranoTag)<0) high = mid-1;
             else low = mid+1;
-        }
+        }*/
         return null;
     }
     
@@ -240,9 +243,13 @@ public class EngineSearcher {
     public PlaylistSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
         PlaylistSet[] sets = dataBasePlaylists.getArray();
         if(sets == null) return null;        
-        EngineSorter sorter = new EngineSorter();
-        if(sets.length >1) sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
+        //EngineSorter sorter = new EngineSorter();
+        //if(sets.length >1) sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
         int size = dataBasePlaylists.getSize();
+        for (int i = 0; i < size; i++) {
+            if(dataBasePlaylists.getSet(i).getOwnerId().equals(user.getUserId())) return dataBasePlaylists.getSet(i);
+        }
+        /*
         int low = 0;
         int high = size-1;
         while(low<=high){
@@ -252,7 +259,7 @@ public class EngineSearcher {
             if(pointedSetUser.equals(user.getUserId())) return pointedSet;
             else if(pointedSetUser.compareTo(user.getUserId())<0) high = mid-1;
             else low = mid+1;
-        }
+        }*/
         return null;
     }
     

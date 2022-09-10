@@ -1,5 +1,5 @@
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
@@ -18,10 +18,10 @@ import javax.swing.*;
  *
  * @author big
  */
-public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
+public class PlaylistCreationFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form GUIPlaylistCreationFrame
+     * Creates new form PlaylistCreationFrame
      */
     PlayListsManager playlistsManager = EMOTIONALSONGS.playListsManager;
     Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
@@ -32,7 +32,7 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
     boolean firstPage = true;
     boolean lastPage = false;
     
-    public GUIPlaylistCreationFrame() {
+    public PlaylistCreationFrame() {
         setUndecorated(true);
         setShape(new RoundRectangle2D.Double(0, 0, 800, 650, 20, 20));
         initComponents();
@@ -95,7 +95,6 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 600));
-        setPreferredSize(new java.awt.Dimension(700, 600));
 
         mainPanel.setOpaque(true);
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -337,7 +336,7 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         EMOTIONALSONGS.playListsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
         EMOTIONALSONGS.playListsManager.registraPlaylist();
-        EMOTIONALSONGS.playListsManager.showUserPlaylistsSet();
+        EMOTIONALSONGS.playListsManager.updatePlaylistsPanel();
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 
@@ -389,7 +388,48 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
-        // TODO add your handling code here:
+        if(searchBar.getText().isBlank()) {
+            actualArrayWorking = repositoryCorrelato.getArray();
+            innerScroll.removeAll();
+
+            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+            }
+
+            numberSelectedSongLabel.revalidate();
+            numberSelectedSongLabel.repaint();
+            firstPage = true;
+            lastPage = false;
+            scrollView.revalidate();
+            scrollView.repaint();
+            return;
+        }
+
+        EngineSearcher searchEngine = new EngineSearcher();
+        actualArrayWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        innerScroll.removeAll();
+
+        if(actualArrayWorking == null){
+            innerScroll.removeAll();
+            innerScroll.revalidate();
+            innerScroll.repaint();
+            numberSelectedSongLabel.revalidate();
+            numberSelectedSongLabel.repaint();
+            firstPage = true;
+            lastPage = true;
+            return;
+        }
+
+        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
+            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        }
+
+        numberSelectedSongLabel.revalidate();
+        numberSelectedSongLabel.repaint();
+        firstPage = true;
+        lastPage = false;
+        innerScroll.revalidate();
+        innerScroll.repaint();
     }//GEN-LAST:event_searchBarActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -444,20 +484,21 @@ public class GUIPlaylistCreationFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIPlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIPlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIPlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIPlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIPlaylistCreationFrame().setVisible(true);
+                new PlaylistCreationFrame().setVisible(true);
             }
         });
     }

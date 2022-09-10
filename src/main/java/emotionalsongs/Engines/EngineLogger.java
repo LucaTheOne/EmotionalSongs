@@ -5,8 +5,6 @@ import emotionalsongs.BasicsStructure.User;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Managers.*;
 import java.io.*;
 
 /**
@@ -35,7 +33,10 @@ public class EngineLogger extends EMOTIONALSONGS{
                 EMOTIONALSONGS.loggedUser = user;
             }  
         }
-        EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
+        if(idFounded&&passwordMatches){
+            EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
+    
+        }
     }
     
     /**

@@ -1,6 +1,9 @@
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.Login;
 
+import emotionalsongs.GUI.mainWindow.MainFrame;
+import emotionalsongs.GUI.mainWindow.GUIMainMenuLeftLogged;
+import emotionalsongs.GUI.mainWindow.GUIMainUpperBarLoggedPanel;
 import emotionalsongs.Engines.*;
 import emotionalsongs.*;
 import java.awt.*;
@@ -13,7 +16,7 @@ import java.awt.geom.*;
 public class GUIFrameLogIn extends javax.swing.JFrame {
     EngineLogger logger = new EngineLogger();
     Image bg = Utilities.logingBG.getImage();
-    GUIMainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
     /**
      * Creates new form LogFrame
      */

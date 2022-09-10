@@ -1,25 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package emotionalsongs.GUI;
 
-import emotionalsongs.BasicsStructure.Playlist;
-import emotionalsongs.EMOTIONALSONGS;
+package emotionalsongs.GUI.PlayLists;
+
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.*;
 import emotionalsongs.Managers.*;
 
 /**
  *
  * @author big
  */
-public class GUIPlaylistButton extends javax.swing.JPanel {
+public class PlaylistButton extends javax.swing.JPanel {
 
     /**
-     * Creates new form GUIPlaylistButton
+     * Creates new form PlaylistButton
      */
     Playlist correlatedPlaylist;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
-    public GUIPlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
+    public PlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
         correlatedPlaylist = playlist;
         //this.playListsManager = playListsManager;
         initComponents();
@@ -52,7 +49,7 @@ public class GUIPlaylistButton extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
-        
+        playListsManager.setRightPane(correlatedPlaylist.buildPlaylistView());
     }//GEN-LAST:event_playListButtonActionPerformed
 
 

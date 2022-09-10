@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
-package emotionalsongs.GUI;
+package emotionalsongs.GUI.mainWindow;
 
+import emotionalsongs.GUI.Repository.GUIRepositoryPanel;
 import java.io.*;
 
 /**
@@ -13,10 +14,10 @@ import java.io.*;
  */
 public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
     
-    GUIMainFrame mainPage;
+    MainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
-    public GUIMainMenuLeftUnloggedExpanded(GUIMainFrame correlated) {
+    public GUIMainMenuLeftUnloggedExpanded(MainFrame correlated) {
         mainPage = correlated;
         initComponents();
     }
