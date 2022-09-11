@@ -131,3 +131,14 @@
 10/09/2022
 	Aggiornata cartella doc; aggiunti collegamenti al manuale utente e tecnico, che si trovano online sul sito web emotionalsongs.tk
              
+            -Team-
+
+11/09/2022
+        Modificata struttura registrazione:
+            -Implementata classe registrationManager che si occupa di gestire la registrazione dell' utente sfruttando le classi RegistrationEngine e RegistrationPanel.
+            -Attenzione! non cliccare pulsante vicino nome playlist, elimina l' intero database; da risolvere!
+            -Gli algoritmi di ordinamento sono passatti da heapsort a mergeSort, entrambi Onlogn, ma mergesort stabile.
+            -Ora dopo la registrazione viene inviata una mail al nuovo utente.
+            -risolti alcuni bug minori.
+
+                -Bolelli Luca-

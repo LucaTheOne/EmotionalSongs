@@ -87,4 +87,12 @@ public class DataBasePlaylists {
         EngineSearcher finder = new EngineSearcher();
         return finder.searchUserSet(user, this);    
     }
+    
+    public void updateSet(User propertyUser,PlaylistSet newUserSet){
+        EngineSearcher searcher = new EngineSearcher();
+        PlaylistSet set = searcher.searchUserSet(propertyUser, this);
+        set = newUserSet;
+        save();
+    }
+    
 }

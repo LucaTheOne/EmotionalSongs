@@ -4,14 +4,10 @@
  */
 package emotionalsongs.GUI.Registration;
 
-import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.mainWindow.*;
+import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.mainWindow.*;
 import java.awt.*;
-import java.io.*;
-import java.util.logging.*;
 import javax.swing.*;
 
 /**
@@ -21,11 +17,12 @@ import javax.swing.*;
 public class GUIRegistrationPanel extends javax.swing.JPanel {
     
     MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
-
+    RegistrationManager manager;
     /**
      * Creates new form GUIRegistrationPanel
      */
-    public GUIRegistrationPanel() {
+    public GUIRegistrationPanel(RegistrationManager manager) {
+        this.manager = manager;
         initComponents();
     }
     
@@ -322,60 +319,15 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
-        try {
-            EngineRegistrer engineRegistration = new EngineRegistrer(EMOTIONALSONGS.userDataBase);
-            
-            setAllCheckOff();
-            
-            engineRegistration.registraNuovoUtente(
-                    idTextField.getText(),
-                    nomeTextField.getText(),
-                    cognomeTextField.getText(),
-                    cfTextField.getText().toUpperCase(),
-                    indirizzoTextField.getText(),
-                    mailTextField.getText(),
-                    String.valueOf(passwordTextField.getPassword()),
-                    String.valueOf(controlloTextField.getPassword()),
-                    dataDiNascitaTextField.getText()
-            );
-            if (engineRegistration.allRight) {
-                mainWindow.cleanUpMainPanel();
-                if(mainWindow.leftPanel instanceof GUIMainMenuLeftUnloggedExpanded){
-                    mainWindow.setLeftPanel(new GUIMainMenuLeftLogged(mainWindow));
-                } else {
-                    mainWindow.setLeftPanel(new GUIMenuLeftVoid(mainWindow));
-                }
-                mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
-                mainWindow.updateView();
-            }
-            
-            else{
-                if (!engineRegistration.validCF) { cfCheckLabel.setText("Codice fiscale non valido!"); cfCheckLabel.setVisible(true); }
-                if (!engineRegistration.cfNotSigned) { cfCheckLabel.setText("Codice fiscale già presente nel sistema!");cfCheckLabel.setVisible(true); }
-                if (!engineRegistration.validNome) { nomeCheckLabel.setVisible(true); }
-                if (!engineRegistration.validCognome) { cognomeCheckLabel.setVisible(true); }
-                if (!engineRegistration.validDataNascita) { dataDiNascitaCheckLabel.setVisible(true); }
-                if (!engineRegistration.validIndirizzo) { indirizzoCheckLabel.setVisible(true); }
-                if (!engineRegistration.validEmail) { mailCheckLabel.setVisible(true); }
-                if (!engineRegistration.validPassword && engineRegistration.passwordMatches) { passwordCheckLabel.setText("Password non valida!"); passwordCheckLabel.setVisible(true); }
-                if (!engineRegistration.passwordMatches && engineRegistration.validPassword) { passwordCheckLabel.setText("Password non coincidono!"); passwordCheckLabel.setVisible(true); }
-                if (!engineRegistration.passwordMatches && !engineRegistration.validPassword) { passwordCheckLabel.setText("Password non valide, ne coincidenti!"); passwordCheckLabel.setVisible(true);  }
-                if (!engineRegistration.validUserId) { idCheckLabel.setText("User id non valido!");idCheckLabel.setVisible(true);}
-                if (!engineRegistration.idNotTaken) { idCheckLabel.setText("User id già preso da un altro utente!"); idCheckLabel.setVisible(true); }
-                
-                mainWindow.updateView();
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(GUIRegistrationPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        exportToManager();
+        manager.startRegistration();
     }//GEN-LAST:event_registratiButtonActionPerformed
 
     private void dataDiNascitaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataDiNascitaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dataDiNascitaTextFieldActionPerformed
     
-    private void setAllCheckOff(){
+    public void setAllCheckOff(){
         cfCheckLabel.setVisible(false);
         cfCheckLabel.setText("Codice fiscale non valido!");cfCheckLabel.setVisible(false);
         nomeCheckLabel.setVisible(false);
@@ -387,25 +339,37 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         
     }
     
+    public void exportToManager(){
+        manager.userId = idTextField.getText();
+        manager.name = nomeTextField.getText();
+        manager.secondName = cognomeTextField.getText();
+        manager.fiscalCode = cfTextField.getText();
+        manager.address = indirizzoTextField.getText();
+        manager.email = mailTextField.getText();
+        manager.password = String.valueOf(passwordTextField.getPassword());
+        manager.passwordControl = String.valueOf(controlloTextField.getPassword());
+        manager.birthDay = dataDiNascitaTextField.getText();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JLabel cfCheckLabel;
+    public javax.swing.JLabel cfCheckLabel;
     private javax.swing.JLabel cfLabel;
     private javax.swing.JTextField cfTextField;
     private javax.swing.JButton closeButton;
-    private javax.swing.JLabel cognomeCheckLabel;
+    public javax.swing.JLabel cognomeCheckLabel;
     private javax.swing.JLabel cognomeLabel;
     private javax.swing.JTextField cognomeTextField;
     private javax.swing.JLabel controlloLabel;
     private javax.swing.JPasswordField controlloTextField;
-    private javax.swing.JLabel dataDiNascitaCheckLabel;
+    public javax.swing.JLabel dataDiNascitaCheckLabel;
     private javax.swing.JLabel dataDiNascitaLabel;
     private javax.swing.JTextField dataDiNascitaTextField;
     private javax.swing.JPanel iconPanel;
-    private javax.swing.JLabel idCheckLabel;
+    public javax.swing.JLabel idCheckLabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTextField;
-    private javax.swing.JLabel indirizzoCheckLabel;
+    public javax.swing.JLabel indirizzoCheckLabel;
     private javax.swing.JLabel indirizzoLabel;
     private javax.swing.JTextField indirizzoTextField;
     private javax.swing.JLabel jLabel1;
@@ -414,7 +378,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel labelsPanel;
     private javax.swing.JPanel lowPanel;
-    private javax.swing.JLabel mailCheckLabel;
+    public javax.swing.JLabel mailCheckLabel;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JTextField mailTextField;
     private javax.swing.JPanel mainGridPanel;
@@ -422,7 +386,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
     public javax.swing.JLabel nomeCheckLabel;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JTextField nomeTextField;
-    private javax.swing.JLabel passwordCheckLabel;
+    public javax.swing.JLabel passwordCheckLabel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel passwordPanel;
     private javax.swing.JPasswordField passwordTextField;

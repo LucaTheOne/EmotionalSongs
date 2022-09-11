@@ -1,9 +1,8 @@
 package emotionalsongs.DataBases;
 
-import emotionalsongs.BasicsStructure.User;
-import emotionalsongs.Engines.EngineSearcher;
-import emotionalsongs.Engines.EngineSorter;
-import emotionalsongs.HeapSorter.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.SorterAlgorithms.UserSortingAlgos.*;
 import emotionalsongs.*;
 import java.io.*;
 
@@ -82,8 +81,8 @@ public class DataBaseUsers {
         }
         newArray[newArray.length-1] = user;
         database = newArray;
-        HeapSortId heapSortId = new HeapSortId();
-        heapSortId.sort(database);
+        SorterUserById sorter = new SorterUserById();
+        sorter.mergeSort(database);
         saveData();
     }
     

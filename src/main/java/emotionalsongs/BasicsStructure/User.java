@@ -133,7 +133,7 @@ public class User {
    */
     private void setNewBirthDate(String birthdate) throws PatternSyntaxException {
         EngineChecker checker = new EngineChecker();
-        if(checker.checkDateValidity(birthdate)){
+        if(checker.checkBirthDayValidity(birthdate)){
             dataNascita = birthdate;
         }
     }

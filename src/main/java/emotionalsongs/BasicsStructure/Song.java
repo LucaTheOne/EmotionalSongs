@@ -116,15 +116,15 @@ public class Song {
         return new SongChartForPlaylist(this,propertPlaylist);
     }
     
-    public int compareTag(Song song) {
+    public int compareTags(Song song) {
         return this.tag.compareTo(song.getTag());
     }
 
-    public int compareTitle(Song song) {
+    public int compareTitles(Song song) {
         return this.title.compareTo(song.getTitle());
     }
     
-    public int compareAuthor(Song song) {
+    public int compareAuthors(Song song) {
         return this.author.compareTo(song.getAuthor());
     }
     

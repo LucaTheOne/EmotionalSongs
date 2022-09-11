@@ -4,10 +4,8 @@
  */
 package emotionalsongs.Engines;
 
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.BasicsStructure.Record;
-import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import java.util.regex.*;
 
@@ -19,27 +17,31 @@ public class EngineChecker {
     
     //Methods checking data validity
     public boolean checkNameValidity(String nome){
-        if (nome.length()>20||nome.length()<3||nome.isBlank()||nome.matches(".*\\d.*")) {
+        if(nome == null) return false;
+        if (nome.isBlank()||nome.length()>20||nome.length()<3||nome.matches(".*\\d.*")) {
             return false;   
         }
         return true;
     }
     
     public boolean checkCognomeValidity(String cognome){
-        if (cognome.length()>20||cognome.length()<3||cognome.isBlank()||cognome.matches(".*\\d.*")) {
+        if(cognome == null) return false;
+        if (cognome == null && cognome.length()>20||cognome.length()<3||cognome.isBlank()||cognome.matches(".*\\d.*")) {
             return false;
         }
         return true;
     }
     
     public boolean checkAddresValidity(String indirizzo){
+        if(indirizzo == null) return false;
         if(indirizzo.isBlank()){
             return false;
         }
         return true;
     }
     
-    public boolean checkPasswordValidity(String password) throws PatternSyntaxException{  
+    public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
+        if(password == null) return false;
     /**
     * Stringa contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
     * di almeno uno per tipologia:
@@ -65,11 +67,12 @@ public class EngineChecker {
     }
     
     public boolean passwordsMatch(String password,String controllo){
+        if(controllo == null) return false;
         return password.equals(controllo);
     }
     
     public boolean checkMailValidity(String email) throws PatternSyntaxException{
-      
+        if(email == null) return false;
         // Regex to check valid password.
         String regex = "^(.+)@(.+)$";
         // Compile the ReGex
@@ -82,7 +85,7 @@ public class EngineChecker {
     }
     
     public boolean checkCfValidity(String cf) throws PatternSyntaxException {
-    
+        if(cf == null) return false;
         String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
         /** compila il pattern precedente **/
         Pattern p = Pattern.compile(regex);
@@ -95,28 +98,29 @@ public class EngineChecker {
         return m.matches();
     }
     
-    public boolean checkDateValidity(String date) throws PatternSyntaxException {
-    
+    public boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
+        if(birthDay == null) return false;
         String regex = "^([0-9]{2}[/][0-9]{2}[/][0-9]{4})$";
       /** compila il pattern precedente **/
         Pattern p = Pattern.compile(regex);
       /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
-        Matcher m = p.matcher(date);
+        Matcher m = p.matcher(birthDay);
 
         return m.matches();
     }
     
     public boolean checkIdValidity(String userId) {
-        return userId.length()>3 && userId.length()<20 && !userId.isBlank();
+        return userId != null && userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
     
     public boolean checkIdNotTaken(DataBaseUsers userDatabase,String id) {
+        if(id == null) return false;
         return userDatabase.searchUserId(id) == null;
     }
     
     //
     public boolean checkCfNotPresent(DataBaseUsers userDatabase,String cf) {
-        return userDatabase.searchUserCf(cf) == null;
+        return cf != null && userDatabase.searchUserCf(cf) == null;
     }
 
     public boolean checkIfVoted(String userId, Song brano, DataBaseRecords dataSetEmozioni) {
