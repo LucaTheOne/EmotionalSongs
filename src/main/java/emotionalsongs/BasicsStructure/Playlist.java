@@ -22,7 +22,7 @@ public class Playlist {
 
     String[] songsTags;
     
-    Song[] playListSongs;
+    Song[] playlist;
     
     PlayListsManager manager = EMOTIONALSONGS.playListsManager;
 
@@ -35,9 +35,9 @@ public class Playlist {
     public Playlist(String nomePlaylist,String listaCanzoniPlaylist) {
         this.playlistName = nomePlaylist;
         this.songsTags = listaCanzoniPlaylist.split(",");
-        playListSongs = new Song[songsTags.length];
+        playlist = new Song[songsTags.length];
         for (int i = 0; i < songsTags.length; i++) {
-            playListSongs[i] = searchFromTag(songsTags[i]);
+            playlist[i] = searchFromTag(songsTags[i]);
         }
         //sort();
     }
@@ -64,7 +64,7 @@ public class Playlist {
     }
     
     public int getSize(){
-        return playListSongs.length;
+        return playlist.length;
     }
     
     public String get(int index){
@@ -86,9 +86,9 @@ public class Playlist {
     }
     
     public void addSong(Song newSong){
-        Song[] newPlaylist = new Song[playListSongs.length+1];
-        for (int i = 0; i < playListSongs.length; i++) {
-            newPlaylist[i] = playListSongs[i];
+        Song[] newPlaylist = new Song[playlist.length+1];
+        for (int i = 0; i < playlist.length; i++) {
+            newPlaylist[i] = playlist[i];
         }
         newPlaylist[newPlaylist.length-1] = newSong;
         //sort
@@ -103,7 +103,7 @@ public class Playlist {
     }
     
     public Song[] getArraySongs() {
-        return playListSongs;
+        return playlist;
     }
     
     public String componiStringa(){
@@ -137,8 +137,19 @@ public class Playlist {
         return new PlaylistButton(this, manager);
     }
 
-    public void updatePlaylist(Song[] newPlaylist) {
-        this.playListSongs = newPlaylist;
+    public void removeSong(Song songToRemove) {
+        Song[] newPlaylist = new Song[playlist.length-1];
+        int counter = 0;
+        for(int i = 0; i<playlist.length;i++){
+            if(!playlist[i].equalsTo(songToRemove)){
+                newPlaylist[counter++] = playlist[i];
+            }
+        }
+        playlist = newPlaylist;
+    }
+    
+    public boolean equalsTo(Playlist playlistToDelete) {
+        return this.getName().equals(playlistToDelete.getName());
     }
 }
  

@@ -25,7 +25,7 @@ public class PlayListsManager {
     PlaylistSet userSet;
     int userSetDimension;
     
-    Playlist selectedOne;
+    Playlist selectedPlaylist;
     int numberOfSongSelectedPlaylist;
     private String nameNewPlaylist = "";
     
@@ -174,7 +174,7 @@ public class PlayListsManager {
     }
 
     public void selectPlaylist(Playlist correlatedPlaylist) {
-        this.selectedOne = correlatedPlaylist;
+        this.selectedPlaylist = correlatedPlaylist;
         numberOfSongSelectedPlaylist = correlatedPlaylist.getSize();
     }
 
@@ -196,25 +196,20 @@ public class PlayListsManager {
         //da implementare insieme a GUI per aggiungere una canzone alla playlist.
     }
     
-    public void deleteAsongFromAPlaylist(Song songToDelete,Playlist playlistWhereToDeleteSong){
-        Song[] aux = playlistWhereToDeleteSong.getArraySongs();
-        Song[] newPlaylist = new Song[aux.length-1];
-        int counter = 0;
-        for(int i = 0;i<aux.length;i++){
-            if(!aux[i].equalsTo(songToDelete)){
-                newPlaylist[counter++] = aux[i];
-            }
-        }
-        playlistWhereToDeleteSong.updatePlaylist(newPlaylist);
-        selectedOne = playlistWhereToDeleteSong;
+    public void deleteAsongFromAPlaylist(Song songToDelete){
+        selectedPlaylist.removeSong(songToDelete);
         dataBasePlaylists.save();
-        setRightPane(new PlaylistSongsViewPanel(selectedOne));
-        selectedOne = null;
-        
+        setRightPane(new PlaylistSongsViewPanel(selectedPlaylist));
     }
     
-    public void deletePlaylistFromSet(Playlist playlistToDelete, PlaylistSet setWhereToDeleteThePlaylist){
-        
+    public void deletePlaylistFromSet(Playlist playlistToDelete){
+        userSet.deletePlaylist(playlistToDelete);
+        dataBasePlaylists.updateSet(user, userSet);
+        updatePlaylistsPanel();
+    }
+    
+    public void setSelectedPlaylist(Playlist selectedPlaylist){
+        this.selectedPlaylist = selectedPlaylist;
     }
     
 }

@@ -4,6 +4,8 @@ package emotionalsongs.GUI.PlayLists;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -181,7 +183,7 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     }//GEN-LAST:event_ytButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        playListsManager.deleteAsongFromAPlaylist(representedSong, propertyPlaylist);
+        playListsManager.deleteAsongFromAPlaylist(representedSong);
     }//GEN-LAST:event_removeButtonActionPerformed
 
             @Override

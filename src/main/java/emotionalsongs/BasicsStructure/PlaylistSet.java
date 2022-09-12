@@ -9,7 +9,7 @@ import emotionalsongs.Engines.*;
 public class PlaylistSet {
    
     //campi
-    private Playlist[] playlistArray;
+    private Playlist[] set;
     private String idOwner;
     //costructors
     /**
@@ -22,28 +22,28 @@ public class PlaylistSet {
         for(int i = 1;i<str.length;i++){
             newOne[i-1] = new Playlist(str[i]);
         }
-        playlistArray = newOne;
+        set = newOne;
     }
     
     public PlaylistSet(String idOwner,Playlist[] playlists){
         this.idOwner = idOwner;
-        playlistArray = playlists;
+        set = playlists;
         sort();
     }
     
     public PlaylistSet(String idOwner, Playlist singlePlaylist){
         this.idOwner = idOwner;
-        playlistArray = new Playlist[1];
-        playlistArray[0] = singlePlaylist;
+        set = new Playlist[1];
+        set[0] = singlePlaylist;
     }
     
     //getterMethod
     public Playlist[] getArray(){
-        return this.playlistArray;
+        return this.set;
     }
     
     public int getSize(){
-        return playlistArray.length;
+        return set.length;
     }
      
     public String getOwnerId(){
@@ -55,12 +55,12 @@ public class PlaylistSet {
      * @param playlist 
      */    
     public void addPlaylist(Playlist playlist){
-        Playlist[] newOne = new Playlist[playlistArray.length+1];
-        for (int i = 0; i < playlistArray.length; i++) {
-            newOne[i] = playlistArray[i];
+        Playlist[] newOne = new Playlist[set.length+1];
+        for (int i = 0; i < set.length; i++) {
+            newOne[i] = set[i];
         }
         newOne[newOne.length-1] = playlist;
-        playlistArray = newOne;
+        set = newOne;
         //sort();
     }
     
@@ -73,20 +73,36 @@ public class PlaylistSet {
     //String methods
     public String componiStringa(){
         String stringa = idOwner+";";
-        for (int i = 0; i < playlistArray.length; i++) {
-            stringa += playlistArray[i].componiStringa();
+        for (int i = 0; i < set.length; i++) {
+            stringa += set[i].componiStringa();
         }
         return stringa+"\n";
     }
 
     public Playlist getPlaylist(int index) {
-        return playlistArray[index];
+        return set[index];
     }
 
     public int compareTo(PlaylistSet playlistSet) {
         return this.idOwner.compareToIgnoreCase(playlistSet.getOwnerId());
     }
 
+    public void updateSet(Playlist[] newSet) {
+        this.set = newSet;
+        
+    }
+    
+    public void deletePlaylist(Playlist playlistToDelete){
+        Playlist[] newSet = new Playlist[set.length-1];
+        int counter = 0;
+        for(int i = 0; i< set.length;i++){
+            if(!set[i].getName().equals(playlistToDelete.getName())){
+                newSet[counter++] = set[i]; 
+            }
+        }
+        
+        set = newSet;
+    }
      
 }
 

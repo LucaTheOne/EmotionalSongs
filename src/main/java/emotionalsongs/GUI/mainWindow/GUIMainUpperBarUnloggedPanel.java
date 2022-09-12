@@ -4,9 +4,9 @@
  */
 package emotionalsongs.GUI.mainWindow;
 
-import emotionalsongs.GUI.Generics.GUICreditsPanel;
-import emotionalsongs.GUI.Login.GUIFrameLogIn;
-import emotionalsongs.GUI.Registration.GUIRegistrationPanel;
+import emotionalsongs.GUI.Generics.*;
+import emotionalsongs.GUI.Login.*;
+import emotionalsongs.Managers.*;
 
 /**
  *@hidden
@@ -173,8 +173,8 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_menuButtonStateChanged
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-
-            mainPage.setMainPanel(new GUIRegistrationPanel());            
+            RegistrationManager manager = new RegistrationManager();
+            manager.startForm();
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed

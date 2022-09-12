@@ -15,9 +15,11 @@ public class PlaylistButton extends javax.swing.JPanel {
      * Creates new form PlaylistButton
      */
     Playlist correlatedPlaylist;
+    PlaylistSet originSet;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     public PlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
         correlatedPlaylist = playlist;
+        this.originSet = playListsManager.getUserSet();
         //this.playListsManager = playListsManager;
         initComponents();
     }
@@ -32,6 +34,7 @@ public class PlaylistButton extends javax.swing.JPanel {
     private void initComponents() {
 
         playListButton = new javax.swing.JButton();
+        deletePlaylistButton = new javax.swing.JButton();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(300, 60));
@@ -46,14 +49,28 @@ public class PlaylistButton extends javax.swing.JPanel {
             }
         });
         add(playListButton, java.awt.BorderLayout.CENTER);
+
+        deletePlaylistButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        deletePlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePlaylistButtonActionPerformed(evt);
+            }
+        });
+        add(deletePlaylistButton, java.awt.BorderLayout.EAST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
         playListsManager.setRightPane(correlatedPlaylist.buildPlaylistView());
+        playListsManager.setSelectedPlaylist(correlatedPlaylist);
     }//GEN-LAST:event_playListButtonActionPerformed
+
+    private void deletePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePlaylistButtonActionPerformed
+        playListsManager.deletePlaylistFromSet(correlatedPlaylist);
+    }//GEN-LAST:event_deletePlaylistButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deletePlaylistButton;
     private javax.swing.JButton playListButton;
     // End of variables declaration//GEN-END:variables
 }

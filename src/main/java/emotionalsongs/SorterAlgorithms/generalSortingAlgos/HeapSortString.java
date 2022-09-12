@@ -1,5 +1,5 @@
 
-package emotionalsongs.HeapSorter;
+package emotionalsongs.SorterAlgorithms.generalSortingAlgos;
 
 /**
  *

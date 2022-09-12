@@ -1,10 +1,10 @@
 
 package emotionalsongs;
 
-import emotionalsongs.GUI.Generics.GUIInitializationFrame;
-import emotionalsongs.GUI.mainWindow.MainFrame;
-import emotionalsongs.BasicsStructure.User;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
+import emotionalsongs.GUI.Generics.*;
+import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
 
@@ -26,7 +26,7 @@ public class EMOTIONALSONGS {
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
-        software.initialize();      
+        software.initialize();    
     }
     
     private void initialize() throws IOException{
