@@ -2,9 +2,7 @@ package emotionalsongs.welcomeEmailSender;
 
 
 
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.DataBases.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -60,7 +58,7 @@ public class WelcomeMailSender {
             
             HTMLWelcomeBuilder b = new HTMLWelcomeBuilder();
             // Now set the actual message
-             message.setContent(b.html,"text/html");
+             message.setContent(b.buildMessage(),"text/html");
 
             // Send message
             Transport.send(message);
@@ -69,12 +67,4 @@ public class WelcomeMailSender {
         }
 
     }
-    
-    public static void main(String[] args) {
-        EMOTIONALSONGS.userDataBase = new DataBaseUsers();
-        EMOTIONALSONGS.loggedUser = EMOTIONALSONGS.userDataBase.getUser(5);
-        HTMLWelcomeBuilder h = new HTMLWelcomeBuilder();
-        sendMailToNewUser();
-    }
-
 }
