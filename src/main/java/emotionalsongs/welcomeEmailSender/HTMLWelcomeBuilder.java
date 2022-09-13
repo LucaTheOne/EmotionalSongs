@@ -3,6 +3,7 @@ package emotionalsongs.welcomeEmailSender;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 
 
 
@@ -17,7 +18,7 @@ import emotionalsongs.*;
  */
 class HTMLWelcomeBuilder {
     
-    User user = EMOTIONALSONGS.userDataBase.getUser(5);
+    User user = EMOTIONALSONGS.loggedUser;
     
     public HTMLWelcomeBuilder() {                
     }
@@ -127,31 +128,9 @@ class HTMLWelcomeBuilder {
 "				max-height: none !important;\n" +
 "			}\n" +
 "\n" +
-"			.reverse {\n" +
-"				display: table;\n" +
-"				width: 100%;\n" +
-"			}\n" +
-"\n" +
-"			.reverse .column.first {\n" +
-"				display: table-footer-group !important;\n" +
-"			}\n" +
-"\n" +
-"			.reverse .column.last {\n" +
-"				display: table-header-group !important;\n" +
-"			}\n" +
-"\n" +
-"			.row-9 td.column.first>table,\n" +
-"			.row-9 td.column.last>table {\n" +
-"				padding-left: 30px;\n" +
-"				padding-right: 30px;\n" +
-"			}\n" +
-"\n" +
-"			.row-9 td.column.first .border,\n" +
-"			.row-9 td.column.last .border {\n" +
-"				border-top: 0;\n" +
-"				border-right: 0px;\n" +
-"				border-bottom: 0;\n" +
-"				border-left: 0;\n" +
+"			.row-10 .column-1 .block-4.paragraph_block td.pad>div {\n" +
+"				text-align: center !important;\n" +
+"				font-size: 10px !important;\n" +
 "			}\n" +
 "		}\n" +
 "	</style>\n" +
@@ -181,7 +160,7 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"image_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\" style=\"width:100%;padding-right:0px;padding-left:0px;padding-top:5px;padding-bottom:5px;\">\n" +
-"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/EmotionalSongsLogo.png\" style=\"display: block; height: auto; border: 0; width: 102px; max-width: 100%;\" width=\"102\"/></div>\n" +
+"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img src=\"images/EmotionalSongsLogo.png\" style=\"display: block; height: auto; border: 0; width: 102px; max-width: 100%;\" width=\"102\"/></div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
@@ -227,7 +206,7 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"image_block block-1\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\" style=\"width:100%;padding-right:0px;padding-left:0px;\">\n" +
-"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img alt=\"Contacts\" class=\"fullMobileWidth\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/contacts_no-bg.gif\" style=\"display: block; height: auto; border: 0; width: 340px; max-width: 100%;\" title=\"Contacts\" width=\"340\"/></div>\n" +
+"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img alt=\"Contacts\" class=\"fullMobileWidth\" src=\"images/contacts_no-bg.gif\" style=\"display: block; height: auto; border: 0; width: 340px; max-width: 100%;\" title=\"Contacts\" width=\"340\"/></div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
@@ -287,11 +266,14 @@ class HTMLWelcomeBuilder {
 "<tbody>\n" +
 "<tr>\n" +
 "<td class=\"column column-1\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"25%\">\n" +
+"<div class=\"spacer_block\" style=\"height:30px;line-height:5px;font-size:1px;\"> </div>\n" +
+"</td>\n" +
+"<td class=\"column column-2\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"50%\">\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\" style=\"padding-top:5px;\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:right;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\"><strong>Nome:</strong></p>\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Nome:</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
@@ -299,8 +281,8 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-3\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:right;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\"><strong>Cognome:</strong></p>\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getNome()+"</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
@@ -308,8 +290,8 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:right;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\"><strong>E-mail:</strong></p>\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Cognome:</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
@@ -317,68 +299,87 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-5\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:right;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\"><strong>Indirizzo:</strong></p>\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getCognome()+"</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-6\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Data di nascita:</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-7\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getDataDiNascita()+"</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-8\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Codice fiscale:</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-9\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getCF()+"</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-10\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Indirizzo:</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-11\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getIndirizzo()+"</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-12\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:700;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">E-mail:</p>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-13\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
 "<td class=\"pad\" style=\"padding-bottom:5px;\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:right;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\"><strong>Codice fiscale:</strong></p>\n" +
+"<div style=\"color:#101112;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">"+user.getEmail()+"</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
 "</td>\n" +
-"<td class=\"column column-2\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"75%\">\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\" style=\"padding-top:5px;\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getNome() +"</p>\n" +
-"</div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-3\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getCognome() +"</p>\n" +
-"</div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getEmail() +"</p>\n" +
-"</div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-5\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getIndirizzo() +"</p>\n" +
-"</div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-6\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\" style=\"padding-bottom:5px;\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getCF() +"</p>\n" +
-"</div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
+"<td class=\"column column-3\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"25%\">\n" +
+"<div class=\"spacer_block\" style=\"height:30px;line-height:5px;font-size:1px;\"> </div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</tbody>\n" +
@@ -420,19 +421,13 @@ class HTMLWelcomeBuilder {
 "<tbody>\n" +
 "<tr>\n" +
 "<td class=\"column column-1\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"25%\">\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"empty_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\" style=\"padding-right:0px;padding-bottom:5px;padding-left:0px;padding-top:5px;\">\n" +
-"<div></div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
+"<div class=\"spacer_block\" style=\"height:30px;line-height:5px;font-size:1px;\"> </div>\n" +
 "</td>\n" +
 "<td class=\"column column-2\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"50%\">\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\" style=\"padding-top:5px;\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
+"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:700;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
 "<p style=\"margin: 0;\"><strong>User ID:</strong></p>\n" +
 "</div>\n" +
 "</td>\n" +
@@ -442,7 +437,7 @@ class HTMLWelcomeBuilder {
 "<tr>\n" +
 "<td class=\"pad\">\n" +
 "<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:200%;text-align:center;mso-line-height-alt:32px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getUserId() +"</p>\n" +
+"<p style=\"margin: 0;\">"+user.getUserId()+"</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
@@ -450,7 +445,7 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\">\n" +
-"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
+"<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:700;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
 "<p style=\"margin: 0;\"><strong>Password:</strong></p>\n" +
 "</div>\n" +
 "</td>\n" +
@@ -460,20 +455,14 @@ class HTMLWelcomeBuilder {
 "<tr>\n" +
 "<td class=\"pad\" style=\"padding-bottom:5px;\">\n" +
 "<div style=\"color:#101112;direction:ltr;font-family:Poppins, Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;\">\n" +
-"<p style=\"margin: 0;\">"+ user.getPassword() +"</p>\n" +
+"<p style=\"margin: 0;\">"+user.getPassword()+"</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
 "</td>\n" +
 "<td class=\"column column-3\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"25%\">\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"empty_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
-"<tr>\n" +
-"<td class=\"pad\" style=\"padding-right:0px;padding-bottom:5px;padding-left:0px;padding-top:5px;\">\n" +
-"<div></div>\n" +
-"</td>\n" +
-"</tr>\n" +
-"</table>\n" +
+"<div class=\"spacer_block\" style=\"height:30px;line-height:5px;font-size:1px;\"> </div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</tbody>\n" +
@@ -515,7 +504,7 @@ class HTMLWelcomeBuilder {
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"image_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
 "<td class=\"pad\" style=\"width:100%;padding-right:0px;padding-left:0px;\">\n" +
-"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img class=\"big\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/footer-bg.png\" style=\"display: block; height: auto; border: 0; width: 680px; max-width: 100%;\" width=\"680\"/></div>\n" +
+"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img class=\"big\" src=\"images/footer-bg.png\" style=\"display: block; height: auto; border: 0; width: 680px; max-width: 100%;\" width=\"680\"/></div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
@@ -531,33 +520,27 @@ class HTMLWelcomeBuilder {
 "<tbody>\n" +
 "<tr>\n" +
 "<td>\n" +
-"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"row-content stack\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fafafa; color: #000000; width: 680px;\" width=\"680\">\n" +
+"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"row-content stack\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; border-radius: 0; color: #000000; width: 680px;\" width=\"680\">\n" +
 "<tbody>\n" +
-"<tr class=\"reverse\">\n" +
-"<td class=\"column column-1 first\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-left: 30px; padding-right: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"50%\">\n" +
-"<div class=\"border\">\n" +
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"heading_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
-"<td class=\"pad\" style=\"padding-bottom:40px;padding-top:35px;text-align:center;width:100%;\">\n" +
+"<td class=\"column column-1\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"100%\">\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"heading_block block-1\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\" style=\"padding-bottom:10px;padding-top:15px;text-align:center;width:100%;\">\n" +
 "<h3 style=\"margin: 0; color: #0452ee; direction: ltr; font-family: Poppins, Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 400; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0;\"><strong><span class=\"tinyMce-placeholder\">Hai domande?</span></strong></h3>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
-"</div>\n" +
-"</td>\n" +
-"<td class=\"column column-2 last\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-left: 30px; padding-right: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"50%\">\n" +
-"<div class=\"border\">\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"button_block block-2\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
-"<td class=\"pad\" style=\"text-align:center;padding-top:25px;padding-bottom:50px;\">\n" +
+"<td class=\"pad\" style=\"text-align:center;\">\n" +
 "<div align=\"center\" class=\"alignment\">\n" +
-"<!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"https://emotionalsongs.tk\" style=\"height:42px;width:112px;v-text-anchor:middle;\" arcsize=\"72%\" strokeweight=\"1.5pt\" strokecolor=\"#0452EE\" fill=\"false\"><w:anchorlock/><v:textbox inset=\"0px,0px,0px,0px\"><center style=\"color:#2d2d2d; font-family:Arial, sans-serif; font-size:14px\"><![endif]--><a href=\"https://emotionalsongs.tk\" style=\"text-decoration:none;display:inline-block;color:#2d2d2d;background-color:transparent;border-radius:30px;width:auto;border-top:2px solid #0452EE;font-weight:400;border-right:2px solid #0452EE;border-bottom:2px solid #0452EE;border-left:2px solid #0452EE;padding-top:5px;padding-bottom:5px;font-family:Poppins, Arial, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;\" target=\"_blank\"><span style=\"padding-left:30px;padding-right:30px;font-size:14px;display:inline-block;letter-spacing:normal;\"><span dir=\"ltr\" style=\"word-break: break-word;\"><span class=\"tinyMce-placeholder\" data-mce-style=\"\" dir=\"ltr\" style=\"line-height: 28px;\">Scrivici</span></span></span></a>\n" +
+"<!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"https://emotionalsongs.tk\" style=\"height:42px;width:116px;v-text-anchor:middle;\" arcsize=\"72%\" strokeweight=\"1.5pt\" strokecolor=\"#0452EE\" fill=\"false\"><w:anchorlock/><v:textbox inset=\"0px,0px,0px,0px\"><center style=\"color:#2d2d2d; font-family:Arial, sans-serif; font-size:14px\"><![endif]--><a href=\"https://emotionalsongs.tk\" style=\"text-decoration:none;display:inline-block;color:#2d2d2d;background-color:transparent;border-radius:30px;width:auto;border-top:2px solid #0452EE;font-weight:400;border-right:2px solid #0452EE;border-bottom:2px solid #0452EE;border-left:2px solid #0452EE;padding-top:5px;padding-bottom:5px;font-family:Poppins, Arial, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;\" target=\"_blank\"><span style=\"padding-left:30px;padding-right:30px;font-size:14px;display:inline-block;letter-spacing:normal;\"><span dir=\"ltr\" style=\"word-break: break-word;\"><span class=\"tinyMce-placeholder\" data-mce-style=\"\" dir=\"ltr\" style=\"line-height: 28px;\">Scrivici</span></span></span></a>\n" +
 "<!--[if mso]></center></v:textbox></v:roundrect><![endif]-->\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</table>\n" +
-"</div>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</tbody>\n" +
@@ -587,9 +570,9 @@ class HTMLWelcomeBuilder {
 "<div class=\"alignment\" style=\"text-align:center;\">\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"social-table\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;\" width=\"108px\">\n" +
 "<tr>\n" +
-"<td style=\"padding:0 2px 0 2px;\"><a href=\"https://www.twitter.com/emosongslab\" target=\"_blank\"><img alt=\"Twitter\" height=\"32\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/twitter2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"Twitter\" width=\"32\"/></a></td>\n" +
-"<td style=\"padding:0 2px 0 2px;\"><a href=\"https://t.me/emotionalsongslab\" target=\"_blank\"><img alt=\"Telegram\" height=\"32\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/telegram2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"Telegram\" width=\"32\"/></a></td>\n" +
-"<td style=\"padding:0 2px 0 2px;\"><a href=\"mailto:mailto:emotionalsongs@ik.me\" target=\"_blank\"><img alt=\"E-Mail\" height=\"32\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main/Risorse/email-registration-confirm-def/images/mail2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"E-Mail\" width=\"32\"/></a></td>\n" +
+"<td style=\"padding:0 2px 0 2px;\"><a href=\"https://www.twitter.com/emosongslab\" target=\"_blank\"><img alt=\"Twitter\" height=\"32\" src=\"images/twitter2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"Twitter\" width=\"32\"/></a></td>\n" +
+"<td style=\"padding:0 2px 0 2px;\"><a href=\"https://t.me/emotionalsongslab\" target=\"_blank\"><img alt=\"Telegram\" height=\"32\" src=\"images/telegram2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"Telegram\" width=\"32\"/></a></td>\n" +
+"<td style=\"padding:0 2px 0 2px;\"><a href=\"mailto:mailto:emotionalsongs@ik.me\" target=\"_blank\"><img alt=\"E-Mail\" height=\"32\" src=\"images/mail2x.png\" style=\"display: block; height: auto; border: 0;\" title=\"E-Mail\" width=\"32\"/></a></td>\n" +
 "</tr>\n" +
 "</table>\n" +
 "</div>\n" +
@@ -601,8 +584,17 @@ class HTMLWelcomeBuilder {
 "<td class=\"pad\">\n" +
 "<div style=\"font-family: sans-serif\">\n" +
 "<div class=\"\" style=\"font-size: 12px; font-family: Poppins, Arial, Helvetica, sans-serif; mso-line-height-alt: 18px; color: #fafafa; line-height: 1.5;\">\n" +
-"<p style=\"margin: 0; font-size: 10px; text-align: center; mso-line-height-alt: 15px;\"><span style=\"font-size:10px;\"><span style=\"\">© 2022 Company. </span></span><span style=\"font-size:10px;\"><span style=\"\"> All Rights Reserved.</span></span></p>\n" +
+"<p style=\"margin: 0; font-size: 10px; text-align: center; mso-line-height-alt: 15px;\"><span style=\"font-size:10px;\"><span style=\"\">© 2022 Emotional Songs. </span></span><span style=\"font-size:10px;\"><span style=\"\"> All Rights Reserved.</span></span></p>\n" +
 "</div>\n" +
+"</div>\n" +
+"</td>\n" +
+"</tr>\n" +
+"</table>\n" +
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"paragraph_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;\" width=\"100%\">\n" +
+"<tr>\n" +
+"<td class=\"pad\">\n" +
+"<div style=\"color:#efefef;font-size:16px;font-family:Poppins, Arial, Helvetica, sans-serif;font-weight:400;line-height:180%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:28.8px;\">\n" +
+"<p style=\"margin: 0;\">Se non visualizzi correttamente la mail, fai clic qui.</p>\n" +
 "</div>\n" +
 "</td>\n" +
 "</tr>\n" +
@@ -634,7 +626,7 @@ class HTMLWelcomeBuilder {
 "<table cellpadding=\"0\" cellspacing=\"0\" class=\"icons-inner\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;\">\n" +
 "<!--<![endif]-->\n" +
 "<tr>\n" +
-"<td style=\"vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;\"><a href=\"https://www.designedwithbee.com/\" style=\"text-decoration: none;\" target=\"_blank\"><img align=\"center\" alt=\"Designed with BEE\" class=\"icon\" height=\"32\" src=\"https://github.com/LucaTheOne/EmotionalSongs/blob/main//Risorse/email-registration-confirm-def/images/bee.png\" style=\"display: block; height: auto; margin: 0 auto; border: 0;\" width=\"34\"/></a></td>\n" +
+"<td style=\"vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;\"><a href=\"https://www.designedwithbee.com/\" style=\"text-decoration: none;\" target=\"_blank\"><img align=\"center\" alt=\"Designed with BEE\" class=\"icon\" height=\"32\" src=\"images/bee.png\" style=\"display: block; height: auto; margin: 0 auto; border: 0;\" width=\"34\"/></a></td>\n" +
 "<td style=\"font-family: Poppins, Arial, Helvetica, sans-serif; font-size: 15px; color: #9d9d9d; vertical-align: middle; letter-spacing: undefined; text-align: center;\"><a href=\"https://www.designedwithbee.com/\" style=\"color: #9d9d9d; text-decoration: none;\" target=\"_blank\">Designed with BEE</a></td>\n" +
 "</tr>\n" +
 "</table>\n" +

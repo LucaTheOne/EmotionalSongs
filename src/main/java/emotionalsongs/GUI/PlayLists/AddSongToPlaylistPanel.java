@@ -9,7 +9,7 @@ import emotionalsongs.Managers.*;
  *
  * @author big
  */
-public class GUIBranoAddPlaylistPanel extends javax.swing.JPanel {
+public class AddSongToPlaylistPanel extends javax.swing.JPanel {
     
     Song song;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
@@ -17,7 +17,7 @@ public class GUIBranoAddPlaylistPanel extends javax.swing.JPanel {
     /**
      * Creates new form GUIbranoViewPanel
      */
-    public GUIBranoAddPlaylistPanel(Song brano,PlayListsManager playListsManager) {
+    public AddSongToPlaylistPanel(Song brano,PlayListsManager playListsManager) {
         //this.playListsManager = playListsManager;
         this.song = brano;
         initComponents();

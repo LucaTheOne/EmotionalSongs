@@ -4,8 +4,6 @@ import emotionalsongs.BasicsStructure.Record;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import java.util.*;
 
 /**
@@ -209,20 +207,8 @@ public class EngineSearcher {
     
     //metodi di ricerca records
     public Record getRecordFromTag(DataBaseRecords dataBase, String branoTag){
-        
+        if(dataBase == null) return null;
         int size = dataBase.getSize();
-        /*
-        if(size<1000){
-            for (int i = 0; i < size; i++) {
-                User user = dataBaseUtenti.getUser(i);
-                if(user.getUserId().equalsIgnoreCase(id)){
-                    return user;
-                }
-            }
-            
-            return null;
-        }
-        */
         EngineSorter sorter = new EngineSorter();
         sorter.sortRecords(dataBase);
         

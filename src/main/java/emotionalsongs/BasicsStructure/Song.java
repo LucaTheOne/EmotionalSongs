@@ -101,8 +101,8 @@ public class Song {
         //da implementare
     }
 
-    public GUIBranoAddPlaylistPanel buildPanelAddToPlaylist() {
-        return new GUIBranoAddPlaylistPanel(this, EMOTIONALSONGS.playListsManager);
+    public AddSongToPlaylistPanel buildPanelAddToPlaylist() {
+        return new AddSongToPlaylistPanel(this, EMOTIONALSONGS.playListsManager);
     }
     
     public String buildResearchQueryUrl(){

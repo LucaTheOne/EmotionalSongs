@@ -2,8 +2,9 @@ package emotionalsongs.welcomeEmailSender;
 
 
 
+import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -13,7 +14,7 @@ public class WelcomeMailSender {
     public static void sendMailToNewUser() {
 
         // Recipient's email ID needs to be mentioned.
-        String to = EMOTIONALSONGS.userDataBase.getUser(5).getEmail();
+        String to = EMOTIONALSONGS.loggedUser.getEmail();
 
         // Sender's email ID needs to be mentioned
         String from = "bigs.development.studio@gmail.com";
@@ -67,6 +68,13 @@ public class WelcomeMailSender {
             mex.printStackTrace();
         }
 
+    }
+    
+    public static void main(String[] args) {
+        EMOTIONALSONGS.userDataBase = new DataBaseUsers();
+        EMOTIONALSONGS.loggedUser = EMOTIONALSONGS.userDataBase.getUser(5);
+        HTMLWelcomeBuilder h = new HTMLWelcomeBuilder();
+        sendMailToNewUser();
     }
 
 }
