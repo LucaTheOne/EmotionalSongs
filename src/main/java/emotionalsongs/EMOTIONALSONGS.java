@@ -3,6 +3,9 @@ package emotionalsongs;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
+import emotionalsongs.Dialoghi.Dialoghi;
+import emotionalsongs.Dialoghi.DialoghiEng;
+import emotionalsongs.Dialoghi.DialoghiIta;
 import emotionalsongs.GUI.Generics.*;
 import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.Managers.*;
@@ -23,6 +26,8 @@ public class EMOTIONALSONGS {
     public static boolean logged = false;
     public static MainFrame mainWindow;
     public static PlayListsManager playListsManager;
+    public static Dialoghi dialoghi = new DialoghiIta();
+    public static int lenguage = 1;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();

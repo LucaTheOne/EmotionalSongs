@@ -1,5 +1,7 @@
 package emotionalsongs.GUI.mainWindow;
 
+import emotionalsongs.Dialoghi.DialoghiEng;
+import emotionalsongs.Dialoghi.DialoghiIta;
 import emotionalsongs.Engines.EngineLogger;
 import emotionalsongs.GUI.Generics.GUICreditsPanel;
 
@@ -127,6 +129,11 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LanguageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LanguageButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 0;
@@ -183,6 +190,18 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         mainPage.setLeftPanel(new GUIMenuLeftVoid(mainPage));
         mainPage.cleanUpMainPanel();
     }//GEN-LAST:event_LogOutButtonActionPerformed
+
+    private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
+       if(emotionalsongs.EMOTIONALSONGS.dialoghi instanceof DialoghiIta){
+            emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiEng();
+            LanguageButton.setText("English");
+            emotionalsongs.EMOTIONALSONGS.mainWindow.updateView();
+       } else {
+           emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiIta();
+            LanguageButton.setText("Italiano");
+            emotionalsongs.EMOTIONALSONGS.mainWindow.updateView();
+       }
+    }//GEN-LAST:event_LanguageButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
