@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package emotionalsongs.GUI.Generics;
+import emotionalsongs.Utilities;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -28,19 +31,14 @@ public class GUICreditsPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(600, 600));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
-
+@Override
+            protected void paintComponent(Graphics g){
+                Graphics g2 = g.create();
+                g2.drawImage(Utilities.CreditsIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.dispose();
+            }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
