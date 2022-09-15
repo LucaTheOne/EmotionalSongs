@@ -95,7 +95,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         createPlaylistButton.setBackground(new java.awt.Color(15, 27, 54));
         createPlaylistButton.setForeground(new java.awt.Color(255, 255, 255));
-        createPlaylistButton.setText("Crea Playlist");
+        createPlaylistButton.setText(EMOTIONALSONGS.dialoghi.creaPlaylist());
         createPlaylistButton.setToolTipText("");
         createPlaylistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +109,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        closeButton.setText("Chiudi");
+        closeButton.setText(EMOTIONALSONGS.dialoghi.chiudi());
         closeButton.setPreferredSize(new java.awt.Dimension(75, 50));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -52,7 +52,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         leftPanel.setPreferredSize(new java.awt.Dimension(200, 300));
         leftPanel.setLayout(new java.awt.BorderLayout());
 
-        createNewPlaylistButton.setText("Crea nuova playlist");
+        createNewPlaylistButton.setText(EMOTIONALSONGS.dialoghi.creaNuovaPlaylist());
         createNewPlaylistButton.setPreferredSize(new java.awt.Dimension(78, 30));
         createNewPlaylistButton.setSize(new java.awt.Dimension(78, 30));
         createNewPlaylistButton.addActionListener(new java.awt.event.ActionListener() {

@@ -35,90 +35,121 @@ public class DialoghiEng extends Dialoghi{
     
     //GUI REGISTRATION PANEL
 
-    @Override
     public String name() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "NAME: ";
     }
 
-    @Override
     public String nomeNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Name not valid!";
     }
 
-    @Override
     public String cognome() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "SURNAME: ";
     }
 
-    @Override
     public String cognomeNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Surname not valid!";
     }
 
-    @Override
     public String indirizzo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ADDRESS: ";
     }
 
-    @Override
     public String indirizzoNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "This field cannot be empty!";
     }
 
-    @Override
     public String dataNascita() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return "BIRTH DATE:";
     }
 
-    @Override
     public String dataNasciataNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Format data not valid!";
     }
 
-    @Override
     public String cf() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "FISCAL CODE: ";
     }
 
-    @Override
     public String cfNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return "Format data not valid!";
     }
 
-    @Override
     public String email() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "E-MAIL ADDRESS: ";
     }
 
-    @Override
     public String emailNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Address not valid!";
     }
 
-    @Override
     public String userid() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "USER ID: ";
     }
 
-    @Override
     public String useridNon() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String passwordCheck() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String registrati() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String chiudi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "User ID not valid!";
     }
     
+    public String passswordR(){
+        return "PASSWORD";
+    }
+
+    public String passwordCheck() {
+        return "PASSWORD";
+    }
+
+    public String passwordNon(){
+        return "Password not valid!";
+    }
+   
+    public String registrati() {
+        return "Registration";
+    }
+
+    public String chiudi() {
+        return "Close";
+    }
+    
+    //GUI PLATYLIST CREATION FRAME
+    
+    public String nuovaPlaylist() {
+        return "Nome of new playlist: ";
+    }
+
+    public String titolo() {
+        return "Title";
+    }
+
+    public String autore() {
+        return "Autor";
+    }
+
+    public String anno() {
+        return "Year";
+    }
+
+    public String creaNuovaPlaylist() {
+        return "Create new playlist";
+    }
+
+    public String annulla() {
+        return "Cancel";
+    }
+    
+    //GUI MAIN MENU LEFT LOGGED
+    
+    public String creaPlaylist(){
+        return "Create Playlist";
+    }
+
+    
+    public String profile() {
+        return "Profile";
+    }
+
+    public String credits() {
+        return "Credits";
+    }
     
 }
