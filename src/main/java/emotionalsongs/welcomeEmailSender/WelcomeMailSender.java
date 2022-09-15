@@ -65,6 +65,5 @@ public class WelcomeMailSender {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
-
     }
 }

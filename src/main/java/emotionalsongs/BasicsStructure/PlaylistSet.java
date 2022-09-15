@@ -1,5 +1,6 @@
 package emotionalsongs.BasicsStructure;
 
+import emotionalsongs.*;
 import emotionalsongs.Engines.*;
 
 /**
@@ -61,7 +62,9 @@ public class PlaylistSet {
         }
         newOne[newOne.length-1] = playlist;
         set = newOne;
-        //sort();
+        if(set.length >1){
+            sort();
+        }
     }
     
     //sorter method
@@ -84,25 +87,28 @@ public class PlaylistSet {
     }
 
     public int compareTo(PlaylistSet playlistSet) {
-        return this.idOwner.compareToIgnoreCase(playlistSet.getOwnerId());
+        return this.idOwner.compareTo(playlistSet.getOwnerId());
     }
 
     public void updateSet(Playlist[] newSet) {
         this.set = newSet;
         
-    }
-    
-    public void deletePlaylist(Playlist playlistToDelete){
-        Playlist[] newSet = new Playlist[set.length-1];
+    }  
+
+    public void removePlaylist(Playlist playlistToDelete) {
         int counter = 0;
-        for(int i = 0; i< set.length;i++){
-            if(!set[i].getName().equals(playlistToDelete.getName())){
-                newSet[counter++] = set[i]; 
-            }
+        Playlist[] newSet = new Playlist[set.length-1];
+        for (int i = 0; i < set.length; i++) {
+            if(set[i].equals(playlistToDelete)) set[i] = null;    
+        }
+        
+        for (int i = 0; i < set.length; i++) {
+            if(set[i] == null) continue;
+            newSet[counter++] = set[i];
         }
         
         set = newSet;
+        EMOTIONALSONGS.dataBasePlaylists.save();
     }
-     
 }
 

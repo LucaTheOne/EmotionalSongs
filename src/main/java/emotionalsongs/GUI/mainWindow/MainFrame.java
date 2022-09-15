@@ -125,7 +125,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     public void setMainPanel(JPanel newMainPanel){
-        mainPanel.removeAll();
+        cleanUpMainPanel();
         mainPanel.add(newMainPanel,BorderLayout.CENTER);
         mainPanel.setOpaque(true);
         newMainPanel.setVisible(true);

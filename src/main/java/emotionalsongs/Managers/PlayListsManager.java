@@ -4,8 +4,6 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.PlayLists.*;
 
@@ -36,38 +34,48 @@ public class PlayListsManager {
 
     public PlayListsManager(DataBasePlaylists dataBasePlaylists) {
         EngineSearcher finder = new EngineSearcher();
-        userSet = finder.searchUserSet(user, dataBasePlaylists);
+        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(user, dataBasePlaylists);
+        userSet = EMOTIONALSONGS.userPlaylistSet;
         userSetDimension = userSet==null ? 0 : userSet.getSize();
         this.dataBasePlaylists = dataBasePlaylists;
     }
     
+    //getter method
     public PlaylistSet getUserSet(){
-        return userSet;
+        return EMOTIONALSONGS.userPlaylistSet;
     }
     
+    public int getNumberOfSongToAdd() {
+        return numberOfSongsSelected;
+    }
+    
+    public Song getSongToAdd(int index){
+        return songsToAdd[index];
+    }
+    
+    public Song[] getSongsToAdd() {
+        return songsToAdd;
+    }
+    
+    //generator method
     public void registraPlaylist(){
         if(songsToAdd.length == 0){
             //avviso che non si possono creare playlists vuote
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
-        userSet = dataBasePlaylists.getUserSet(user);
+        userSet = EMOTIONALSONGS.userPlaylistSet;
         if(userSet == null){
             userSet = new PlaylistSet(user.getUserId(), newPlaylist);
             userSet.addPlaylist(newPlaylist);
             dataBasePlaylists.add(userSet);
-            
         } else {
             userSet.addPlaylist(newPlaylist);
-        }
-        dataBasePlaylists.save();    
+            dataBasePlaylists.update();
+        }  
     }
     
-    public void showUserPlaylistsSet(){
-        playlistPanel = buildUserPlaylistsPanel();
-        EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
-    }
-
+    //updater methods
     public void addToSelectedSongs(Song song) {
         Song[] newOne = new Song[songsToAdd.length+1];
         if(newOne.length==1) {
@@ -95,20 +103,6 @@ public class PlayListsManager {
             }
         }
     }
-
-    public boolean containInSongsToAdd(Song song) {
-        if(songsToAdd.length == 0) return false;
-        EngineChecker checker = new EngineChecker();
-        return checker.checkIfContains(songsToAdd,song.getTag());    
-    }
-
-    public int getNumberOfSongToAdd() {
-        return numberOfSongsSelected;
-    }
-    
-    public Song getSongToAdd(int index){
-        return songsToAdd[index];
-    }
     
     public void eraseSongToAdd(){
         songsToAdd = new Song[0];
@@ -117,26 +111,13 @@ public class PlayListsManager {
     public void eraseTitlePlaylist() {
         nameNewPlaylist = "";
     }
-
+    
     public void setTitlePlaylist(String title) {
         nameNewPlaylist = title;
     }
     
     public void updateUser(User user){
         this.user = user;
-    }
-
-    public Song[] getSongsToAdd() {
-        return songsToAdd;
-    }
-    
-    private PlaylistsMainPanel buildUserPlaylistsPanel(){
-       return new PlaylistsMainPanel(EMOTIONALSONGS.loggedUser,this);
-    }
-    
-    public void openCreationFrame(){
-        creationFrame = new PlaylistCreationFrame();
-        creationFrame.setVisible(true);
     }
     
     public void updateSongSelectedLabel(){
@@ -159,6 +140,22 @@ public class PlayListsManager {
     
     public void setPlaylistsButtonPanel(){
         playlistPanel.setLeftInnerPanel(userSet);
+    }
+    
+    //checker methods
+    public boolean containInSongsToAdd(Song song) {
+        if(songsToAdd.length == 0) return false;
+        EngineChecker checker = new EngineChecker();
+        return checker.checkIfContains(songsToAdd,song.getTag());    
+    }
+    
+    private PlaylistsMainPanel buildUserPlaylistsPanel(){
+       return new PlaylistsMainPanel(userSet,this);
+    }
+    
+    public void openCreationFrame(){
+        creationFrame = new PlaylistCreationFrame();
+        creationFrame.setVisible(true);
     }
 
     public int getNumberOfPlaylists() {
@@ -185,8 +182,7 @@ public class PlayListsManager {
     }
 
     public void updatePlaylistsPanel() {
-        playlistPanel = new PlaylistsMainPanel(user, this);
-        EMOTIONALSONGS.mainWindow.cleanUpMainPanel();
+        playlistPanel = new PlaylistsMainPanel(EMOTIONALSONGS.userPlaylistSet, this);
         EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
         EMOTIONALSONGS.mainWindow.revalidate();
         EMOTIONALSONGS.mainWindow.repaint();
@@ -202,15 +198,17 @@ public class PlayListsManager {
         setRightPane(new PlaylistSongsViewPanel(selectedPlaylist));
     }
     
-    public void deletePlaylistFromSet(Playlist playlistToDelete){
-        userSet.deletePlaylist(playlistToDelete);
-        dataBasePlaylists.updateSet(user, userSet);
-        updatePlaylistsPanel();
-    }
-    
     public void setSelectedPlaylist(Playlist selectedPlaylist){
         this.selectedPlaylist = selectedPlaylist;
     }
+
+    public void reset() {
+        selectedPlaylist = null;
+        numberOfSongSelectedPlaylist = 0;
+        songsToAdd = new Song[0];
+        numberOfSongsSelected = 0;
+    }
+
     
 }
 

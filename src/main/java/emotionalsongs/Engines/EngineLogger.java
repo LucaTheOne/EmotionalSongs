@@ -1,10 +1,12 @@
 
 package emotionalsongs.Engines;
 
-import emotionalsongs.BasicsStructure.User;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Managers.*;
-import emotionalsongs.*;
 import java.io.*;
 
 /**
@@ -30,12 +32,12 @@ public class EngineLogger extends EMOTIONALSONGS{
           passwordsMatch(Password);
             if(idFounded&&passwordMatches){
                 EMOTIONALSONGS.logged = true;
-                EMOTIONALSONGS.loggedUser = user;
+                EngineSearcher finder = new EngineSearcher();
+                EMOTIONALSONGS.loggedUser = finder.getUserFromId(database, UserId);
+                EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(loggedUser, dataBasePlaylists);
+                EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
+
             }  
-        }
-        if(idFounded&&passwordMatches){
-            EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
-    
         }
     }
     

@@ -3,6 +3,7 @@ package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 
 /**
@@ -19,7 +20,7 @@ public class PlaylistButton extends javax.swing.JPanel {
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     public PlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
         correlatedPlaylist = playlist;
-        this.originSet = playListsManager.getUserSet();
+        this.originSet = EMOTIONALSONGS.userPlaylistSet;
         //this.playListsManager = playListsManager;
         initComponents();
     }
@@ -65,7 +66,11 @@ public class PlaylistButton extends javax.swing.JPanel {
     }//GEN-LAST:event_playListButtonActionPerformed
 
     private void deletePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePlaylistButtonActionPerformed
-        playListsManager.deletePlaylistFromSet(correlatedPlaylist);
+        EngineSearcher finder = new EngineSearcher();
+        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.loggedUser, EMOTIONALSONGS.dataBasePlaylists);
+        EMOTIONALSONGS.userPlaylistSet.removePlaylist(correlatedPlaylist);
+        playListsManager.updatePlaylistsPanel();
+        playListsManager.reset();
     }//GEN-LAST:event_deletePlaylistButtonActionPerformed
 
 
