@@ -36,19 +36,19 @@ public class DialoghiEng extends Dialoghi{
     //GUI REGISTRATION PANEL
 
     public String name() {
-        return "NAME: ";
+        return "FIRST NAME: ";
     }
 
     public String nomeNon() {
-        return "Name not valid!";
+        return "First name not valid!";
     }
 
     public String cognome() {
-        return "SURNAME: ";
+        return "LAST NAME: ";
     }
 
     public String cognomeNon() {
-        return "Surname not valid!";
+        return "Last name not valid!";
     }
 
     public String indirizzo() {
@@ -60,7 +60,7 @@ public class DialoghiEng extends Dialoghi{
     }
 
     public String dataNascita() {
-       return "BIRTH DATE:";
+       return "DATE OF BIRTH:";
     }
 
     public String dataNasciataNon() {
@@ -114,7 +114,7 @@ public class DialoghiEng extends Dialoghi{
     //GUI PLATYLIST CREATION FRAME
     
     public String nuovaPlaylist() {
-        return "Nome of new playlist: ";
+        return "Nome of the new playlist: ";
     }
 
     public String titolo() {
@@ -134,7 +134,7 @@ public class DialoghiEng extends Dialoghi{
     }
 
     public String annulla() {
-        return "Cancel";
+        return "Delete";
     }
     
     //GUI MAIN MENU LEFT LOGGED
@@ -152,4 +152,7 @@ public class DialoghiEng extends Dialoghi{
         return "Credits";
     }
     
+    public String menu() {
+        return "Menu";
+    }
 }

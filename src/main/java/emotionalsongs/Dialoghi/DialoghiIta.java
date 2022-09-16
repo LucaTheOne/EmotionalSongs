@@ -149,6 +149,10 @@ public class DialoghiIta extends Dialoghi{
     public String credits() {
         return "Crediti";
     }
+
+    public String menu() {
+        return "Menu";
+    }
    
     
     
