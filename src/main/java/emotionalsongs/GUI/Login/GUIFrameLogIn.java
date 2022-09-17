@@ -1,10 +1,8 @@
 
 package emotionalsongs.GUI.Login;
 
-import emotionalsongs.GUI.mainWindow.MainFrame;
-import emotionalsongs.GUI.mainWindow.GUIMainMenuLeftLogged;
-import emotionalsongs.GUI.mainWindow.GUIMainUpperBarLoggedPanel;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.*;
 import java.awt.*;
 import java.awt.geom.*;

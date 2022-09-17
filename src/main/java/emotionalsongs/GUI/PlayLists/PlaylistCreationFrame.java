@@ -336,7 +336,6 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         EMOTIONALSONGS.playListsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
         EMOTIONALSONGS.playListsManager.registraPlaylist();
-        EMOTIONALSONGS.playListsManager.updatePlaylistsPanel();
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 

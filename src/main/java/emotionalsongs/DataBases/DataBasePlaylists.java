@@ -39,7 +39,8 @@ public class DataBasePlaylists {
         }    
     }
     
-    public void add(PlaylistSet set){
+    //updating methods
+    public void addNewSet(PlaylistSet set){
         PlaylistSet[] newOne = new PlaylistSet[dataBase.length+1];
         for (int i = 0; i < dataBase.length; i++) {
             newOne[i] = dataBase[i];
@@ -47,16 +48,27 @@ public class DataBasePlaylists {
         newOne[newOne.length-1] = set;
         dataBase = newOne;
         sort();
+        save();
     }
     
+    public void addToSet(Playlist playlist){
+        EMOTIONALSONGS.userPlaylistSet.addPlaylist(playlist);
+        save();
+    }
+    
+    //saving method
     public void save(){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati));
-            for (int i = 0; i < dataBase.length; i++) {
+            if(dataBase.length != 0){
+                for (int i = 0; i < dataBase.length; i++) {
                 writer.write(dataBase[i].componiStringa());
+                }
+                writer.flush();
+                writer.close();
+            } else {
+                System.out.println("database is void");
             }
-            writer.flush();
-            writer.close();
         } catch (IOException ex) {
             Logger.getLogger(DataBasePlaylists.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,12 +84,6 @@ public class DataBasePlaylists {
         return dataBase;
     }
     
-    //sort method
-    public void sort(){
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortDataBaseOfPlaylistSet(this);
-    }
-
     public PlaylistSet getSet(int index) {
         return dataBase[index];
     }
@@ -88,11 +94,10 @@ public class DataBasePlaylists {
         return finder.searchUserSet(user, this);    
     }
     
-    public void updateSet(User propertyUser,PlaylistSet newUserSet){
-        EngineSearcher searcher = new EngineSearcher();
-        PlaylistSet set = searcher.searchUserSet(propertyUser, this);
-        set = newUserSet;
-        save();
-    }
     
+    //sort method
+    public void sort(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortDataBaseOfPlaylistSet(this);
+    }
 }

@@ -1,7 +1,7 @@
 package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.*;
-import emotionalsongs.GUI.Repository.GUIRepositoryPanel;
+import emotionalsongs.GUI.Repository.*;
 import java.io.*;
 
 /*
@@ -14,7 +14,7 @@ import java.io.*;
  * @author Megaport
  */
 public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
-    
+
     MainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
@@ -38,8 +38,6 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         repositoryButton = new javax.swing.JButton();
         playlistPanel = new javax.swing.JPanel();
         playlistsButton = new javax.swing.JButton();
-        createPlaylistPanel = new javax.swing.JPanel();
-        createPlaylistButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
 
@@ -90,6 +88,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         jPanel2.add(playlistPanel);
 
+
         createPlaylistPanel.setBackground(new java.awt.Color(0, 0, 0));
         createPlaylistPanel.setLayout(new java.awt.BorderLayout());
 
@@ -106,6 +105,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         createPlaylistPanel.add(createPlaylistButton, java.awt.BorderLayout.CENTER);
 
         jPanel2.add(createPlaylistPanel);
+
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
@@ -144,7 +144,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
             mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
-        } 
+        }
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
@@ -155,15 +155,9 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_profileButtonActionPerformed
 
-    private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlaylistButtonActionPerformed
-        EMOTIONALSONGS.playListsManager.openCreationFrame();
-    }//GEN-LAST:event_createPlaylistButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton createPlaylistButton;
-    private javax.swing.JPanel createPlaylistPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel playlistPanel;
