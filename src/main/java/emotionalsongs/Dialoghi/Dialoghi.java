@@ -51,12 +51,43 @@ public abstract class Dialoghi {
     
     public abstract String useridNon();
     
+    public abstract String passswordR();
+    
     public abstract String passwordCheck();
+    
+    public abstract String passwordNon();
     
     public abstract String registrati();
     
     public abstract String chiudi();
     
-  
+    //GUI PLAYLIST CREATION FRAME
+    
+    public abstract String nuovaPlaylist();
+    
+    public abstract String titolo();
+    
+    public abstract String autore();
+    
+    public abstract String anno();
+    
+    public abstract String creaNuovaPlaylist();
+    
+    public abstract String annulla();
+    
+    //GUI MAIN MENU LEFT LOGGED
+    
+    public abstract String creaPlaylist();
+    
+    //GUI MAIN UPPER BAR LOGGED PANEL
+    
+    public abstract String profile();
+    
+    public abstract String credits();
+    
+    //GUI MAIN UPPER BAR UNLOGGED PANEL
+    
+    public abstract String menu();
+    
     
 }

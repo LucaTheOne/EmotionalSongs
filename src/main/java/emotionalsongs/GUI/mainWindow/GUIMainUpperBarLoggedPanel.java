@@ -4,6 +4,8 @@ import emotionalsongs.Dialoghi.DialoghiEng;
 import emotionalsongs.Dialoghi.DialoghiIta;
 import emotionalsongs.Engines.EngineLogger;
 import emotionalsongs.GUI.Generics.GUICreditsPanel;
+import emotionalsongs.*;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -83,9 +85,8 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         ProfileButton.setBackground(new java.awt.Color(15, 52, 96));
         ProfileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
-        ProfileButton.setText("Profile");
+        ProfileButton.setText(EMOTIONALSONGS.dialoghi.profile());
         ProfileButton.setAlignmentY(0.0F);
-        ProfileButton.setBorder(null);
         ProfileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ProfileButton.setPreferredSize(new java.awt.Dimension(72, 18));
         ProfileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -103,9 +104,8 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreditsButton.setText("Credits");
+        CreditsButton.setText(EMOTIONALSONGS.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
-        CreditsButton.setBorder(null);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

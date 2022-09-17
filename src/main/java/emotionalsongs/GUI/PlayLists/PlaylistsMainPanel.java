@@ -16,7 +16,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     /**
      * Creates new form PlaylistsMainPanel
      */
-    
+
     PlaylistSet userSet = EMOTIONALSONGS.userPlaylistSet;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     public PlaylistsMainPanel() {
@@ -45,6 +45,17 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         leftPanel.setOpaque(false);
         leftPanel.setPreferredSize(new java.awt.Dimension(300, 300));
         leftPanel.setLayout(new java.awt.BorderLayout());
+
+        createNewPlaylistButton.setText(EMOTIONALSONGS.dialoghi.creaNuovaPlaylist());
+        createNewPlaylistButton.setPreferredSize(new java.awt.Dimension(78, 30));
+        createNewPlaylistButton.setSize(new java.awt.Dimension(78, 30));
+        createNewPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewPlaylistButtonActionPerformed(evt);
+            }
+        });
+        leftPanel.add(createNewPlaylistButton, java.awt.BorderLayout.PAGE_END);
+
 
         viewPlaylistSetPanel.setBackground(new java.awt.Color(22,33,62,160));
         viewPlaylistSetPanel.setOpaque(false);
@@ -84,8 +95,8 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EMOTIONALSONGS.playListsManager.openCreationFrame();
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel innerPanelLeft;
     private javax.swing.JPanel innerPanelRight;
@@ -103,7 +114,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelLeft.revalidate();
         innerPanelLeft.repaint();
     }
-    
+
     public void redrawRightPanel(PlaylistSongsViewPanel viewPanel){
         innerPanelRight.removeAll();
         innerPanelRight.add(viewPanel);

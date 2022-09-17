@@ -90,10 +90,17 @@ public class DialoghiIta extends Dialoghi{
         return "User id non valido!";
     }
 
+    public String passswordR(){
+        return "PASSWORD";
+    }
+    
     public String passwordCheck() {
         return "VERIFICA PASSWORD";
     }
-
+    
+    public String passwordNon(){
+        return "Password non valido!";
+    }
     
     public String registrati() {
         return "Registrati";
@@ -102,5 +109,52 @@ public class DialoghiIta extends Dialoghi{
     public String chiudi() {
         return "Chiudi";
     }
+
+    //GUI PLATYLIST CREATION FRAME
+    
+    public String nuovaPlaylist() {
+        return "Nome della nuova playlist: ";
+    }
+
+    public String titolo() {
+        return "Titolo";
+    }
+
+    public String autore() {
+        return "Autore";
+    }
+
+    public String anno() {
+        return "Anno";
+    }
+
+    public String creaNuovaPlaylist() {
+        return "Crea nuova playlist";
+    }
+
+    public String annulla() {
+        return "Annulla";
+    }
+    
+   //GUI MAIN MENU LEFT LOGGED
+    
+    public String creaPlaylist(){
+        return "Crea Playlist";
+    }
+
+    public String profile() {
+        return "Profilo";
+    }
+
+    public String credits() {
+        return "Crediti";
+    }
+
+    public String menu() {
+        return "Menu";
+    }
+   
+    
+    
     
 }

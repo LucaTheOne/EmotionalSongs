@@ -115,49 +115,49 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         nomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         nomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        nomeLabel.setText("NOME    ");
+        nomeLabel.setText(EMOTIONALSONGS.dialoghi.name());
         nomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(nomeLabel);
 
         cognomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         cognomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         cognomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cognomeLabel.setText("COGNOME    ");
+        cognomeLabel.setText(EMOTIONALSONGS.dialoghi.cognome());
         cognomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cognomeLabel);
 
         indirizzoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         indirizzoLabel.setForeground(new java.awt.Color(255, 255, 255));
         indirizzoLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        indirizzoLabel.setText("INDIRIZZO    ");
+        indirizzoLabel.setText(EMOTIONALSONGS.dialoghi.indirizzo());
         indirizzoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(indirizzoLabel);
 
         dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dataDiNascitaLabel.setForeground(new java.awt.Color(255, 255, 255));
         dataDiNascitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        dataDiNascitaLabel.setText("DATA DI NASCITA    ");
+        dataDiNascitaLabel.setText(EMOTIONALSONGS.dialoghi.dataNascita());
         dataDiNascitaLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(dataDiNascitaLabel);
 
         cfLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         cfLabel.setForeground(new java.awt.Color(255, 255, 255));
         cfLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cfLabel.setText("CODICE FISCALE    ");
+        cfLabel.setText(EMOTIONALSONGS.dialoghi.cf());
         cfLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cfLabel);
 
         mailLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         mailLabel.setForeground(new java.awt.Color(255, 255, 255));
         mailLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        mailLabel.setText("INDIRIZZO E-MAIL    ");
+        mailLabel.setText(EMOTIONALSONGS.dialoghi.email());
         mailLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(mailLabel);
 
         idLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        idLabel.setText("USER ID    ");
+        idLabel.setText(EMOTIONALSONGS.dialoghi.userid());
         idLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(idLabel);
 
@@ -200,43 +200,43 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         nomeCheckLabel.setVisible(false);
         nomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         nomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        nomeCheckLabel.setText("    Nome non valido!");
+        nomeCheckLabel.setText(EMOTIONALSONGS.dialoghi.nomeNon());
         warningLabelsPanel.add(nomeCheckLabel);
 
         cognomeCheckLabel.setVisible(false);
         cognomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cognomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cognomeCheckLabel.setText("    Cognome non valido!");
+        cognomeCheckLabel.setText(EMOTIONALSONGS.dialoghi.cognomeNon());
         warningLabelsPanel.add(cognomeCheckLabel);
 
         indirizzoCheckLabel.setVisible(false);
         indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        indirizzoCheckLabel.setText("    Questo campo non può essere vuoto!");
+        indirizzoCheckLabel.setText(EMOTIONALSONGS.dialoghi.indirizzoNon());
         warningLabelsPanel.add(indirizzoCheckLabel);
 
         dataDiNascitaCheckLabel.setVisible(false);
         dataDiNascitaCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         dataDiNascitaCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        dataDiNascitaCheckLabel.setText("    Formato data non valido!");
+        dataDiNascitaCheckLabel.setText(EMOTIONALSONGS.dialoghi.dataNasciataNon());
         warningLabelsPanel.add(dataDiNascitaCheckLabel);
 
         cfCheckLabel.setVisible(false);
         cfCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cfCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cfCheckLabel.setText("    Formato data non valido!");
+        cfCheckLabel.setText(EMOTIONALSONGS.dialoghi.cfNon());
         warningLabelsPanel.add(cfCheckLabel);
 
         mailCheckLabel.setVisible(false);
         mailCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         mailCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        mailCheckLabel.setText("    Indirizzo non valido!");
+        mailCheckLabel.setText(EMOTIONALSONGS.dialoghi.emailNon());
         warningLabelsPanel.add(mailCheckLabel);
 
         idCheckLabel.setVisible(false);
         idCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         idCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        idCheckLabel.setText("    User id non valido!");
+        idCheckLabel.setText(EMOTIONALSONGS.dialoghi.useridNon());
         warningLabelsPanel.add(idCheckLabel);
 
         mainGridPanel.add(warningLabelsPanel);
@@ -255,7 +255,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         passwordLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        passwordLabel.setText("PASSWORD    ");
+        passwordLabel.setText(EMOTIONALSONGS.dialoghi.passswordR());
         passwordPanel.add(passwordLabel);
 
         passwordTextField.setText("jPasswordField1");
@@ -265,7 +265,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         controlloLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         controlloLabel.setForeground(new java.awt.Color(255, 255, 255));
         controlloLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        controlloLabel.setText("VERIFICA PASSWORD    ");
+        controlloLabel.setText(EMOTIONALSONGS.dialoghi.passwordCheck());
         passwordPanel.add(controlloLabel);
 
         controlloTextField.setText("jPasswordField2");
@@ -275,7 +275,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         passwordCheckLabel.setVisible(false);
         passwordCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         passwordCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        passwordCheckLabel.setText("    Password non valida!");
+        passwordCheckLabel.setText(EMOTIONALSONGS.dialoghi.passwordNon());
         passwordPanel.add(passwordCheckLabel);
 
         lowPanel.add(passwordPanel, java.awt.BorderLayout.NORTH);
@@ -284,7 +284,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 120));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
-        registratiButton.setText("Registrati");
+        registratiButton.setText(EMOTIONALSONGS.dialoghi.registrati());
         registratiButton.setPreferredSize(new java.awt.Dimension(180, 60));
         registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +296,7 @@ public class GUIRegistrationPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 28, 0, 28);
         buttonsPanel.add(registratiButton, gridBagConstraints);
 
-        closeButton.setText("Chiudi");
+        closeButton.setText(EMOTIONALSONGS.dialoghi.chiudi());
         closeButton.setPreferredSize(new java.awt.Dimension(180, 60));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

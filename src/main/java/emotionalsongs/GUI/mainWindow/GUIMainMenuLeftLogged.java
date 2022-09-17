@@ -14,7 +14,7 @@ import java.io.*;
  * @author Megaport
  */
 public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
-    
+
     MainFrame mainPage;
 
     /** Creates new form UnloggedMenu */
@@ -88,9 +88,28 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         jPanel2.add(playlistPanel);
 
+
+        createPlaylistPanel.setBackground(new java.awt.Color(0, 0, 0));
+        createPlaylistPanel.setLayout(new java.awt.BorderLayout());
+
+        createPlaylistButton.setBackground(new java.awt.Color(15, 27, 54));
+        createPlaylistButton.setForeground(new java.awt.Color(255, 255, 255));
+        createPlaylistButton.setText(EMOTIONALSONGS.dialoghi.creaPlaylist());
+        createPlaylistButton.setToolTipText("");
+        createPlaylistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPlaylistButtonActionPerformed(evt);
+            }
+        });
+        createPlaylistPanel.add(createPlaylistButton, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(createPlaylistPanel);
+
+
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        closeButton.setText("Chiudi");
+        closeButton.setText(EMOTIONALSONGS.dialoghi.chiudi());
         closeButton.setPreferredSize(new java.awt.Dimension(75, 50));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +144,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
             mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
-        } 
+        }
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed

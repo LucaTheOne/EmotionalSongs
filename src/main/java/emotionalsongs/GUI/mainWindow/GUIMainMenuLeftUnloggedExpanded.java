@@ -7,6 +7,7 @@ package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.GUI.Repository.GUIRepositoryPanel;
 import java.io.*;
+import emotionalsongs.*;
 
 /**
  *
@@ -65,7 +66,7 @@ public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        jButton1.setText("Chiudi");
+        jButton1.setText(EMOTIONALSONGS.dialoghi.chiudi());
         jButton1.setPreferredSize(new java.awt.Dimension(75, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
