@@ -27,6 +27,7 @@ public class EMOTIONALSONGS {
     public static Dialoghi dialoghi = new DialoghiIta();
     public static int lenguage = 1;
     public static PlaylistSet userPlaylistSet;
+    public static VoteManager voteManager;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
@@ -39,6 +40,7 @@ public class EMOTIONALSONGS {
         userDataBase = new DataBaseUsers();
         dataSetEmozioni = new DataBaseRecords();
         dataBasePlaylists = new DataBasePlaylists();
+        voteManager = new VoteManager();
         init.dispose();
         mainWindow = new MainFrame();
         mainWindow.setVisible(true);

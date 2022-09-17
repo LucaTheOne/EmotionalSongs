@@ -1,5 +1,7 @@
 package emotionalsongs.BasicsStructure;
 
+import emotionalsongs.GUI.VotingSongs.*;
+
 /**
  * Le costanti rappresentano delle emozioni da attribuire al brano. 
  * @author Bolelli Luca
@@ -170,6 +172,10 @@ public enum Emozioni {
         for (int i = 1; i < notes.length;i++){
             stringa += "<>" + notes[i];        }
         return stringa;
+    }
+    
+    public voteEmotionPanel buildVoteEmotionPanel(){
+        return new voteEmotionPanel(this);
     }
     
 }

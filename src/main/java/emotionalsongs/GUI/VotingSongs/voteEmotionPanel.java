@@ -5,7 +5,11 @@
 package emotionalsongs.GUI.VotingSongs;
 
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -17,6 +21,7 @@ public class voteEmotionPanel extends javax.swing.JPanel {
      * Creates new form voteEmotionPanel
      */
     Emozioni emotion;
+    VoteManager manager = EMOTIONALSONGS.voteManager;
     public voteEmotionPanel(Emozioni emotion) {
         this.emotion = emotion;
         initComponents();
@@ -33,57 +38,154 @@ public class voteEmotionPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         numbersPanel = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
 
-        setPreferredSize(new java.awt.Dimension(700, 500));
-        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 30, 0};
-        layout.rowHeights = new int[] {0, 20, 0, 20, 0, 20, 0};
-        setLayout(layout);
+        setPreferredSize(new java.awt.Dimension(700, 200));
+        setLayout(new java.awt.GridLayout(3, 1));
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 40)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(emotion.getName());
-        jLabel1.setPreferredSize(new Dimension(getWidth(),75));
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jLabel1);
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 22)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText(emotion.getDescription());
+        jLabel3.setPreferredSize(new java.awt.Dimension(600, 50));
+        add(jLabel3);
+
+        numbersPanel.setLayout(new java.awt.GridBagLayout());
+
+        jRadioButton1.setText("1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        numbersPanel.add(jRadioButton1, new java.awt.GridBagConstraints());
+
+        jRadioButton2.setText("2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        add(jLabel1, gridBagConstraints);
+        numbersPanel.add(jRadioButton2, gridBagConstraints);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText(emotion.getDescription());
-        jTextArea1.setBorder(null);
-        jTextArea1.setPreferredSize(new Dimension(getWidth(), 80)
-        );
-        jScrollPane1.setViewportView(jTextArea1);
-
+        jRadioButton3.setText("3");
+        jRadioButton3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioButton3StateChanged(evt);
+            }
+        });
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        add(jScrollPane1, gridBagConstraints);
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        numbersPanel.add(jRadioButton3, gridBagConstraints);
 
-        jLabel2.setText("Dia un voto da 1 a 5, dove 1 indica per nulla e 5 moltissimo, per quanto ha percepito l' emozione sopra descritta:");
+        jRadioButton4.setText("4");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        add(jLabel2, gridBagConstraints);
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        numbersPanel.add(jRadioButton4, gridBagConstraints);
 
-        numbersPanel.setLayout(new java.awt.BorderLayout());
+        jRadioButton5.setText("5");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        add(numbersPanel, gridBagConstraints);
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        numbersPanel.add(jRadioButton5, gridBagConstraints);
+
+        add(numbersPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+            jRadioButton1.setSelected(false);
+            jRadioButton2.setSelected(false);
+            jRadioButton4.setSelected(false);
+            jRadioButton5.setSelected(false);
+            manager.setEmotionVote(emotion,3);
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioButton3StateChanged
+        
+    }//GEN-LAST:event_jRadioButton3StateChanged
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        if(jRadioButton1.isSelected()){
+            jRadioButton2.setSelected(false);
+            jRadioButton3.setSelected(false);
+            jRadioButton4.setSelected(false);
+            jRadioButton5.setSelected(false);
+            manager.setEmotionVote(emotion,1);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        jRadioButton1.setSelected(false);
+        jRadioButton3.setSelected(false);
+        jRadioButton4.setSelected(false);
+        jRadioButton5.setSelected(false);
+        manager.setEmotionVote(emotion,2);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jRadioButton3.setSelected(false);
+        jRadioButton5.setSelected(false);
+        manager.setEmotionVote(emotion,4);
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jRadioButton3.setSelected(false);
+        jRadioButton4.setSelected(false);
+        manager.setEmotionVote(emotion,5);
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(750, 300);
+        frame.setLayout(new BorderLayout());
+        Emozioni emozione = Emozioni.AMAZEMENT;
+        frame.add(emozione.buildVoteEmotionPanel());
+        frame.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JPanel numbersPanel;
     // End of variables declaration//GEN-END:variables
 }
