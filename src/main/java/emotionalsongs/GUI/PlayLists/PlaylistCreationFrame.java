@@ -6,6 +6,10 @@ import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
@@ -332,8 +336,6 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         EMOTIONALSONGS.playListsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
         EMOTIONALSONGS.playListsManager.registraPlaylist();
-        EMOTIONALSONGS.playListsManager.reset();
-        EMOTIONALSONGS.playListsManager.updatePlaylistsPanel();
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 

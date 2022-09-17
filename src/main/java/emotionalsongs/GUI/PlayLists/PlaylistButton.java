@@ -3,6 +3,7 @@ package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 

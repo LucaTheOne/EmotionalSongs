@@ -40,7 +40,7 @@ public class DataBasePlaylists {
     }
     
     //updating methods
-    public void add(PlaylistSet set){
+    public void addNewSet(PlaylistSet set){
         PlaylistSet[] newOne = new PlaylistSet[dataBase.length+1];
         for (int i = 0; i < dataBase.length; i++) {
             newOne[i] = dataBase[i];
@@ -48,12 +48,12 @@ public class DataBasePlaylists {
         newOne[newOne.length-1] = set;
         dataBase = newOne;
         sort();
-        update();
+        save();
     }
     
-    public void update(){
+    public void addToSet(Playlist playlist){
+        EMOTIONALSONGS.userPlaylistSet.addPlaylist(playlist);
         save();
-        importData();
     }
     
     //saving method

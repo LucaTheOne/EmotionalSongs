@@ -4,8 +4,11 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.PlayLists.*;
+import javax.swing.*;
 
 
 /**
@@ -60,19 +63,25 @@ public class PlayListsManager {
     //generator method
     public void registraPlaylist(){
         if(songsToAdd.length == 0){
-            //avviso che non si possono creare playlists vuote
+            JOptionPane.showMessageDialog(null, "Non si possono creare playlists vuote!");
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
         userSet = EMOTIONALSONGS.userPlaylistSet;
         if(userSet == null){
             userSet = new PlaylistSet(user.getUserId(), newPlaylist);
-            userSet.addPlaylist(newPlaylist);
-            dataBasePlaylists.add(userSet);
+            dataBasePlaylists.addNewSet(userSet);
+            EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
+            userSet = new EngineSearcher().searchUserSet(user, EMOTIONALSONGS.dataBasePlaylists);
         } else {
-            userSet.addPlaylist(newPlaylist);
-            dataBasePlaylists.update();
-        }  
+            dataBasePlaylists.addToSet(newPlaylist);
+            EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
+            userSet = new EngineSearcher().searchUserSet(user, EMOTIONALSONGS.dataBasePlaylists);
+        } 
+        
+        playlistPanel.setLeftInnerPanel(userSet);
+        EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
+        
     }
     
     //updater methods
@@ -150,7 +159,7 @@ public class PlayListsManager {
     }
     
     private PlaylistsMainPanel buildUserPlaylistsPanel(){
-       return new PlaylistsMainPanel(userSet,this);
+       return new PlaylistsMainPanel();
     }
     
     public void openCreationFrame(){
@@ -182,7 +191,7 @@ public class PlayListsManager {
     }
 
     public void updatePlaylistsPanel() {
-        playlistPanel = new PlaylistsMainPanel(EMOTIONALSONGS.userPlaylistSet, this);
+        playlistPanel = new PlaylistsMainPanel();
         EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
         EMOTIONALSONGS.mainWindow.revalidate();
         EMOTIONALSONGS.mainWindow.repaint();
