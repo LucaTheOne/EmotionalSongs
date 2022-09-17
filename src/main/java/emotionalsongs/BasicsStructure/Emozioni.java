@@ -1,4 +1,4 @@
-
+package emotionalsongs.BasicsStructure;
 /**
  * Le costanti rappresentano delle emozioni da attribuire al brano.
  * @author Bolelli Luca
