@@ -7,7 +7,64 @@ package emotionalsongs.Dialoghi;
  */
 public abstract class Dialoghi {
     
-    // 
+    //BASICS STRUCTURE: EMOZIONI
+    
+    public abstract String amazementNome();
+    
+    public abstract String amazementESpiegazione();
+    
+    public abstract String solemnityNome();
+    
+    public abstract String solemnitySpiegazione();
+    
+    public abstract String tendernessNome();
+    
+    public abstract String tendernessSpiegazione();
+    
+    public abstract String nostalgiaNome();
+    
+    public abstract String nostalgiaSpiegazione();
+    
+    public abstract String calmnessNome();
+    
+    public abstract String calmnessSpiegazione();
+    
+    public abstract String powerNome();
+    
+    public abstract String powerSpiegazione();
+    
+    public abstract String joyNome();
+    
+    public abstract String joySpiegazione();
+    
+    public abstract String tensionNome();
+    
+    public abstract String tensioneSpiegazione();
+    
+    public abstract String sadnessNome();
+    
+    public abstract String sadnessSpiegazione();
+    
+    
+    //BASICS STRUCTURE: USER
+    
+    public abstract String uProprietario();
+    
+    public abstract String spazioG();
+    
+    
+    //BASICS DATABASES: DATABASEPLAYLISTS
+    
+    public abstract String isVoid();
+    
+    
+    // ENGINES : EngineRegister
+    
+    public abstract String utenteCreato();
+    
+    public abstract String utenteAggiunto();
+    
+    
     
     public abstract String idUtente();
     
@@ -43,11 +100,15 @@ public abstract class Dialoghi {
     
     public abstract String cfNon();
     
+    public abstract String cfpresente();
+    
     public abstract String email();
     
     public abstract String emailNon();
     
     public abstract String userid();
+    
+    public abstract String userIdpresente();
     
     public abstract String useridNon();
     
@@ -56,6 +117,8 @@ public abstract class Dialoghi {
     public abstract String passwordCheck();
     
     public abstract String passwordNon();
+    
+    public abstract String passwordNonCoincidono();
     
     public abstract String registrati();
     
@@ -88,6 +151,8 @@ public abstract class Dialoghi {
     //GUI MAIN UPPER BAR UNLOGGED PANEL
     
     public abstract String menu();
+    
+   
     
     
 }

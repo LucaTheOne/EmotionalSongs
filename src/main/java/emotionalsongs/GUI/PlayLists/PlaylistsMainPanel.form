@@ -36,7 +36,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-
         <Component class="javax.swing.JButton" name="createNewPlaylistButton">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -58,7 +57,6 @@
             </Constraint>
           </Constraints>
         </Component>
-
         <Container class="javax.swing.JScrollPane" name="viewPlaylistSetPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

@@ -43,65 +43,65 @@ public class RegistrationManager {
         if(checker.checkIdValidity(userId)){
             if(!checker.checkIdNotTaken(EMOTIONALSONGS.userDataBase, userId)){
                 panel.idCheckLabel.setVisible(true);
-                panel.idCheckLabel.setText("ID già presente!");
+                panel.idCheckLabel.setText(EMOTIONALSONGS.dialoghi.userIdpresente());
                 allDataValid = false;
             }
         } else {
             panel.idCheckLabel.setVisible(true);
-            panel.idCheckLabel.setText("ID non valido!");
+            panel.idCheckLabel.setText(EMOTIONALSONGS.dialoghi.useridNon());
             allDataValid = false;
         }
         
         if(!checker.checkNameValidity(name)){
             panel.nomeCheckLabel.setVisible(true);
-            panel.nomeCheckLabel.setText("nome non valido!");
+            panel.nomeCheckLabel.setText(EMOTIONALSONGS.dialoghi.nomeNon());
             allDataValid = false;
         }
         
         if(!checker.checkCognomeValidity(secondName)){
             panel.cognomeCheckLabel.setVisible(true);
-            panel.cognomeCheckLabel.setText("Cognome non valido!");
+            panel.cognomeCheckLabel.setText(EMOTIONALSONGS.dialoghi.cognomeNon());
             allDataValid = false;
         }
         
         if(checker.checkCfValidity(fiscalCode)){
             if(!checker.checkCfNotPresent(EMOTIONALSONGS.userDataBase, fiscalCode)){
                 panel.cfCheckLabel.setVisible(true);
-                panel.cfCheckLabel.setText("Codice fiscale già presente nel sistema!");
+                panel.cfCheckLabel.setText(EMOTIONALSONGS.dialoghi.cfpresente());
                 allDataValid = false;
             }
         }else{
             panel.cfCheckLabel.setVisible(true);
-            panel.cfCheckLabel.setText("Codice fiscale non valido!");
+            panel.cfCheckLabel.setText(EMOTIONALSONGS.dialoghi.cfNon());
             allDataValid = false;
         }
         
         if(!checker.checkAddresValidity(address)){
             panel.indirizzoCheckLabel.setVisible(true);
-            panel.indirizzoCheckLabel.setText("Indirizzo non valido!");
+            panel.indirizzoCheckLabel.setText(EMOTIONALSONGS.dialoghi.indirizzoNon());
             allDataValid = false;
         }
         
         if(!checker.checkMailValidity(email)){
             panel.mailCheckLabel.setVisible(true);
-            panel.mailCheckLabel.setText("Indirizzo e-mail non valido!");
+            panel.mailCheckLabel.setText(EMOTIONALSONGS.dialoghi.emailNon());
             allDataValid = false;
         }
         
         if(checker.checkPasswordValidity(password)){
             if(!checker.passwordsMatch(password, passwordControl)) {
-                panel.passwordCheckLabel.setText("Password non coincidono!");
+                panel.passwordCheckLabel.setText(EMOTIONALSONGS.dialoghi.passwordNonCoincidono());
                 panel.passwordCheckLabel.setVisible(true);
                 allDataValid = false;                
             }
         } else {
-           panel.passwordCheckLabel.setText("password non valida!");
+           panel.passwordCheckLabel.setText(EMOTIONALSONGS.dialoghi.passwordNon());
            panel.passwordCheckLabel.setVisible(true);
            allDataValid = false;
         }
         
         if(!checker.checkBirthDayValidity(birthDay)){
-            panel.dataDiNascitaCheckLabel.setText("data di nascita non valida!");
+            panel.dataDiNascitaCheckLabel.setText(EMOTIONALSONGS.dialoghi.dataNasciataNon());
             panel.dataDiNascitaCheckLabel.setVisible(true);
             allDataValid = false;
         }

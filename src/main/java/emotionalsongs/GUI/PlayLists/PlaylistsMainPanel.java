@@ -3,7 +3,6 @@ package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 

@@ -6,6 +6,107 @@ package emotionalsongs.Dialoghi;
  * @author alexandruboitor
  */
 public class DialoghiEng extends Dialoghi{
+    
+    //BASICS STRUCTURE: EMOZIONI
+
+     public String amazementNome() {
+         return "Amazement";
+    }
+
+    public String amazementESpiegazione() {
+        return "Feeling of wonder or happiness.";
+    }
+
+    public String solemnityNome() {
+        return "Solemnity";
+    }
+
+    public String solemnitySpiegazione() {
+        return "Feeling of transcendence, inspiration. Thrills.";
+    }
+
+    public String tendernessNome() {
+        return "Tenderness";
+    }
+
+    public String tendernessSpiegazione() {
+        return "Sensuality, affect, feeling of love.";
+    }
+
+    public String nostalgiaNome() {
+        return "Nostalgia";
+    }
+
+    public String nostalgiaSpiegazione() {
+        return "Dreamy, melancholic, sentimental feelings.";
+    }
+
+    public String calmnessNome() {
+        return "Calmness";
+    }
+
+    public String calmnessSpiegazione() {
+        return "Relaxation, serenity, meditativeness";
+    }
+
+    public String powerNome() {
+        return "Power";
+    }
+
+    public String powerSpiegazione() {
+        return "Feeling strong, heroic, triumphant, energetic.";
+    }
+
+    public String joyNome() {
+        return "Joy";
+    }
+
+    public String joySpiegazione() {
+        return "Feels like dancing, bouncy feeling, animated, amused.";
+    }
+
+    public String tensionNome() {
+        return "Tension";
+    }
+  
+    public String tensioneSpiegazione() {
+        return "Feeling Nervous, impatient, irritated.";
+    }
+
+    public String sadnessNome() {
+        return "Sadness";
+    }
+
+    public String sadnessSpiegazione() {
+        return "Feeling Depressed, sorrowful.";
+    }
+    
+    //BASIC STRUCTURE : USER
+    
+    public String uProprietario(){
+        return "Proprietario: ";
+    }
+    
+    public String spazioG(){
+        return "Spazio generato con successo";
+    }
+    
+    //BASICS DATABASES: DATABASEPLAYLISTS
+
+    public String isVoid(){
+        return "Database is void";
+    }
+    
+    // ENGINES : EngineRegister
+    
+    public String utenteCreato(){
+        return "";
+    }
+    
+    public String utenteAggiunto(){
+        return "";
+    }
+    
 
     //GUI FRAME LOGIN 
   
@@ -74,6 +175,10 @@ public class DialoghiEng extends Dialoghi{
     public String cfNon() {
        return "Format data not valid!";
     }
+    
+    public String cfpresente(){
+        return "Fiscal code already used";
+    }
 
     public String email() {
         return "E-MAIL ADDRESS: ";
@@ -85,6 +190,10 @@ public class DialoghiEng extends Dialoghi{
 
     public String userid() {
         return "USER ID: ";
+    }
+    
+    public String userIdpresente(){
+        return "ID used";
     }
 
     public String useridNon() {
@@ -101,6 +210,10 @@ public class DialoghiEng extends Dialoghi{
 
     public String passwordNon(){
         return "Password not valid!";
+    }
+    
+    public String passwordNonCoincidono(){
+        return "Password non coincidono!";
     }
    
     public String registrati() {

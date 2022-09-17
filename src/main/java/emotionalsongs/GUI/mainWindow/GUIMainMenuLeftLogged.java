@@ -14,10 +14,11 @@ import java.io.*;
  * @author Megaport
  */
 public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
-    
+
     MainFrame mainPage;
 
-    /** Creates new form UnloggedMenu */
+    /** Creates new form UnloggedMenu
+     * @param correlated */
     public GUIMainMenuLeftLogged(MainFrame correlated) {
         mainPage = correlated;
         initComponents();
@@ -38,6 +39,8 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         repositoryButton = new javax.swing.JButton();
         playlistPanel = new javax.swing.JPanel();
         playlistsButton = new javax.swing.JButton();
+        createPlaylistPanel = new javax.swing.JPanel();
+        createPlaylistButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
 
@@ -88,6 +91,23 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         jPanel2.add(playlistPanel);
 
+        createPlaylistPanel.setBackground(new java.awt.Color(0, 0, 0));
+        createPlaylistPanel.setLayout(new java.awt.BorderLayout());
+
+        createPlaylistButton.setBackground(new java.awt.Color(15, 27, 54));
+        createPlaylistButton.setForeground(new java.awt.Color(255, 255, 255));
+        createPlaylistButton.setText(EMOTIONALSONGS.dialoghi.creaPlaylist());
+        createPlaylistButton.setToolTipText("");
+        createPlaylistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPlaylistButtonActionPerformed(evt);
+            }
+        });
+        createPlaylistPanel.add(createPlaylistButton, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(createPlaylistPanel);
+
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
         closeButton.setText("Chiudi");
@@ -125,7 +145,7 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
             mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
-        } 
+        }
     }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
@@ -139,6 +159,8 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
+    private javax.swing.JButton createPlaylistButton;
+    private javax.swing.JPanel createPlaylistPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel playlistPanel;

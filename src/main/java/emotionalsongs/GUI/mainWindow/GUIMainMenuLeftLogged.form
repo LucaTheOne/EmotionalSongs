@@ -136,7 +136,6 @@
                 </Component>
               </SubComponents>
             </Container>
-
             <Container class="javax.swing.JPanel" name="createPlaylistPanel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
