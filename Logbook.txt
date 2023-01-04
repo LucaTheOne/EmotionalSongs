@@ -142,3 +142,12 @@
             -risolti alcuni bug minori.
 
                 -Bolelli Luca-
+
+04/01/2023
+        Ristrutturato file Emozioni
+            - ora le linee del file rappresentano ogniuna un record, quest'ultimo rappresenta un giudizio da parte di un utente su una canzone.
+            - notevolmente snellita ed efficentizzata la struttura di un record e del databaseRecords.
+            - Ora la struttura dati per i records DatabaseRecords e strutturata sul pattern singleton, successivamente tutte le strutture dati verrano così impostate.
+            - creato un form funzionante per la votazione di un singolo brano.
+            
+                -Bolelli Luca-
