@@ -1,10 +1,6 @@
 
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.Engines.EngineSorter;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.EMOTIONALSONGS;
-
 /**
  * La classe importa le emozioni per ogni brani.
  * @author 
@@ -12,45 +8,49 @@ import emotionalsongs.EMOTIONALSONGS;
 public class Record {
 
     Emozioni emotions;
-    DataBaseUsers userDatabase = EMOTIONALSONGS.userDataBase;
+    //DataBaseUsers userDatabase = EMOTIONALSONGS.userDataBase;
     
     private String branoTag;
     
-    private String[] usersIds;
+    private String userID;
     
+    private int amazementMark,solemnityMark,tendernessMark,nostalgiaMark,calmnessMark,powerMark,joyMark,tensionMark,sadnessMark;
     
+    private String amazementNotes, solemnityNotes, tendernessNotes, nostalgiaNotes, calmnessNotes, powerNotes, joyNotes, tensionNotes, sadnessNotes;
     //costruttori
     
     public Record(String fileLine){
         
-        String[] lineSpliltted = fileLine.split(";");
+        String[] fileLineSplitted = fileLine.split(";");
         
-        branoTag = lineSpliltted[0];
-        usersIds = toUtenteArray(lineSpliltted[1]);
+        branoTag = fileLineSplitted[0];
+        userID= fileLineSplitted[1];
         
-        emotions.AMAZEMENT.setMarks(lineSpliltted[2]); emotions.AMAZEMENT.setNotes(lineSpliltted[3]);
-        emotions.SOLEMNITY.setMarks(lineSpliltted[4]); emotions.SOLEMNITY.setNotes(lineSpliltted[5]);
-        emotions.TENDERNESS.setMarks(lineSpliltted[6]); emotions.TENDERNESS.setNotes(lineSpliltted[7]);
-        emotions.NOSTALGIA.setMarks(lineSpliltted[8]); emotions.NOSTALGIA.setNotes(lineSpliltted[9]);
-        emotions.CALMNESS.setMarks(lineSpliltted[10]); emotions.CALMNESS.setNotes(lineSpliltted[11]);
-        emotions.POWER.setMarks(lineSpliltted[12]); emotions.POWER.setNotes(lineSpliltted[13]);
-        emotions.JOY.setMarks(lineSpliltted[14]); emotions.JOY.setNotes(lineSpliltted[15]);
-        emotions.TENSION.setMarks(lineSpliltted[16]); emotions.TENSION.setNotes(lineSpliltted[17]);
-        emotions.SADNESS.setMarks(lineSpliltted[18]); emotions.SADNESS.setNotes(lineSpliltted[19]);     
+        amazementMark = Integer.parseInt(fileLineSplitted[2]); amazementNotes = fileLineSplitted[3];
+        solemnityMark = Integer.parseInt(fileLineSplitted[4]); solemnityNotes = fileLineSplitted[5];
+        tendernessMark = Integer.parseInt(fileLineSplitted[6]); tendernessNotes = fileLineSplitted[7];
+        nostalgiaMark = Integer.parseInt(fileLineSplitted[8]); nostalgiaNotes = fileLineSplitted[9];
+        calmnessMark = Integer.parseInt(fileLineSplitted[10]); calmnessNotes = fileLineSplitted[11];
+        powerMark = Integer.parseInt(fileLineSplitted[12]); powerNotes = fileLineSplitted[13];
+        joyMark = Integer.parseInt(fileLineSplitted[14]); joyNotes = fileLineSplitted[15];
+        tensionMark = Integer.parseInt(fileLineSplitted[16]); tensionNotes = fileLineSplitted[17];
+        sadnessMark = Integer.parseInt(fileLineSplitted[18]); sadnessNotes = fileLineSplitted[19];
     }
 
-    public Record(String branoTag, String[] usersIds, int[] amazementMarks, String[] amazementNotes, int[] solemnityMarks, String[] solemnityNotes, int[] tendernessMarks, String[] tendernessNotes, int[] nostalgiaMarks, String[] nostalgiaNotes, int[] calmnessMarks, String[] calmnessNotes, int[] powerMarks, String[] powerNotes, int[] joyMarks, String[] joyNotes, int[] tensionMarks, String[] tensionNotes, int[] sadnessMarks, String[] sadnessNotes) {
+    public Record(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
+        
         this.branoTag = branoTag;
-        this.usersIds = usersIds;
-        this.emotions.AMAZEMENT.setMarks(amazementMarks); this.emotions.AMAZEMENT.setNotes(amazementNotes);
-        this.emotions.SOLEMNITY.setMarks(solemnityMarks); this.emotions.SOLEMNITY.setNotes(solemnityNotes);
-        this.emotions.TENDERNESS.setMarks(tendernessMarks); this.emotions.TENDERNESS.setNotes(tendernessNotes);
-        this.emotions.NOSTALGIA.setMarks(nostalgiaMarks); this.emotions.NOSTALGIA.setNotes(nostalgiaNotes);
-        this.emotions.CALMNESS.setMarks(calmnessMarks); this.emotions.CALMNESS.setNotes(calmnessNotes);
-        this.emotions.POWER.setMarks(powerMarks); this.emotions.POWER.setNotes(powerNotes);
-        this.emotions.JOY.setMarks(joyMarks); this.emotions.JOY.setNotes(joyNotes);
-        this.emotions.TENSION.setMarks(tensionMarks); this.emotions.TENSION.setNotes(tensionNotes);
-        this.emotions.SADNESS.setMarks(sadnessMarks); this.emotions.SADNESS.setNotes(sadnessNotes);        
+        this.userID = userID;
+        
+        this.amazementMark = amazementMarks; this.amazementNotes = amazementNotes;
+        this.solemnityMark = solemnityMarks; this.solemnityNotes = solemnityNotes;
+        this.tendernessMark = tendernessMarks; this.tendernessNotes = tendernessNotes;
+        this.nostalgiaMark = nostalgiaMarks; this.nostalgiaNotes = nostalgiaNotes;
+        this.calmnessMark = calmnessMarks; this.calmnessNotes = calmnessNotes;
+        this.powerMark = powerMarks; this.powerNotes = powerNotes;
+        this.joyMark = joyMarks; this.joyNotes = joyNotes;
+        this.tensionMark = tensionMarks; this.tensionNotes = tensionNotes;
+        this.sadnessMark = sadnessMarks; this.sadnessNotes = sadnessNotes;
     }
 
     /**
@@ -60,18 +60,18 @@ public class Record {
      */
     public String stringaRecord() {
         return branoTag +";"+
-                stringaUtenti()+
-                stringaEmozione(emotions.AMAZEMENT)+
-                stringaEmozione(emotions.SOLEMNITY)+
-                stringaEmozione(emotions.TENDERNESS)+
-                stringaEmozione(emotions.NOSTALGIA)+
-                stringaEmozione(emotions.CALMNESS)+
-                stringaEmozione(emotions.POWER)+
-                stringaEmozione(emotions.JOY)+
-                stringaEmozione(emotions.TENSION)+
-                stringaEmozione(emotions.SADNESS);
+                userID +";"+
+                amazementMark+";"+ amazementNotes +";"+
+                solemnityMark+";"+ solemnityNotes +";"+
+                tendernessMark+";"+ tendernessNotes +";"+
+                nostalgiaMark+";"+ nostalgiaNotes +";"+
+                calmnessMark+";"+ calmnessNotes +";"+
+                powerMark+";"+ powerNotes +";"+
+                joyMark+";"+ joyNotes +";"+
+                tensionMark+";"+ tensionNotes +";"+
+                sadnessMark+";"+ sadnessNotes +";";
     }
-    
+    /*
     //Utente
     public void aggiornaListaUtentiVotato(User user){
         String[] newArray = new String[usersIds.length+1];
@@ -89,61 +89,18 @@ public class Record {
         }
         return stringa+";";
     }
-    
-    private String stringaEmozione(Emozioni emotion){
-        return stringaVoti(emotion.getMarks()) + stringaCommenti(emotion.getNotes());
-    }
-    //metodi di uso generale nella classe
-    private int[] convertiInArrayInts(String stringa){
-        String[] stringSplitted = stringa.split(",");
-        int[] arrayInt = new int[stringSplitted.length];
-        for (int i = 0; i < arrayInt.length; i++) {
-            arrayInt[i] = Integer.parseInt(stringSplitted[i]);
-        }
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortIntArray(arrayInt);
-        return arrayInt;
-    }
-    
-    private String[] convertiInArrayStrings(String stringa){
-        String[] stringSplitted = stringa.split("<>");
-        String[] arrayString = new String[stringSplitted.length];
-        for (int i = 0; i < arrayString.length; i++) {
-            arrayString[i] = stringSplitted[i];
-        }
-        return arrayString;
-    }
-    
-    private String[] toUtenteArray(String userList){
-        String[] arrayUsers = userList.split(",");
-        EngineSorter sorter = new EngineSorter();
-        return arrayUsers;
-    }
+    */
 
-    private String stringaVoti(int[] marks) {
-        String stringa = String.valueOf(marks[0]);
-        for (int i = 1; i < usersIds.length;i++){
-            stringa += "," + String.valueOf(marks[i]);
-        }
-        return stringa+";";
-    }
-
-    private String stringaCommenti(String[] notes) {
-        String stringa = notes[0];
-        for (int i = 1; i < usersIds.length;i++){
-            stringa += "<>" + notes[i];
-        }
-        return stringa+";";
-    }
-
+    //getters
     public String getBranoTag() {
         return this.branoTag;
     }
 
-    public String[] getUsersIds() {
-        return this.usersIds;
+    public String getUserIDRecord() {
+        return this.userID;
     }
-
+    
+    //comparing
     public int compareTo(Record record) {
         return this.branoTag.compareTo(record.getBranoTag());
     }

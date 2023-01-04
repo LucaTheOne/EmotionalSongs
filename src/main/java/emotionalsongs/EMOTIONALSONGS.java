@@ -17,7 +17,7 @@ public class EMOTIONALSONGS {
     
     
     public static User loggedUser = null;
-    public static Repository REPOSITORY;
+    public static Repository REPOSITORY = new Repository();
     public static DataBaseRecords dataSetEmozioni;
     public static DataBaseUsers userDataBase;
     public static DataBasePlaylists dataBasePlaylists;
@@ -38,7 +38,6 @@ public class EMOTIONALSONGS {
         GUIInitializationFrame init = new GUIInitializationFrame();
         REPOSITORY = new Repository();
         userDataBase = new DataBaseUsers();
-        dataSetEmozioni = new DataBaseRecords();
         dataBasePlaylists = new DataBasePlaylists();
         voteManager = new VoteManager();
         init.dispose();

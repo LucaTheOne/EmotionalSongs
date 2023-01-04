@@ -127,13 +127,11 @@ public class EngineChecker {
         if (dataSetEmozioni.isEmpty()) {
             return false;
         }
-        Record[] array = dataSetEmozioni.getArray();
-        for (int i = 0; i < array.length; i++) {
-            if(array[i].getBranoTag().equals(brano.getTag())){
-                String[] usersIds = array[i].getUsersIds();
-                for (int j = 0; j < usersIds.length; j++) {
-                    if(usersIds[j].equals(userId)) return true;
-                }
+        Record[] arrayRecords = dataSetEmozioni.getArray();
+        for (int i = 0; i < arrayRecords.length; i++) {
+            if(arrayRecords[i].getBranoTag().equals(brano.getTag())){
+                String userIDCurrentRecord = arrayRecords[i].getUserIDRecord();
+                if(userIDCurrentRecord.equals(userId)) return true;
             }
         }
         return false;

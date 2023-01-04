@@ -4,18 +4,27 @@
  */
 package emotionalsongs.GUI.VotingSongs;
 
+import emotionalsongs.BasicsStructure.Record;
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.*;
+import emotionalsongs.Engines.*;
+import javax.swing.*;
 
 /**
  *
  * @author big
  */
 public class voteForm extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form voteForm
      */
-    public voteForm() {
+    public voteForm(String loggedUserId,String songToVoteTag) {
+        this.loggedUserId = loggedUserId;
+        this.songToVoteTag = songToVoteTag;
+        EngineSearcher searcher = new EngineSearcher();
+        songUnderVotation = searcher.searchBranoTag(EMOTIONALSONGS.REPOSITORY, songToVoteTag);
         initComponents();
     }
 
@@ -32,762 +41,1470 @@ public class voteForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         innerPanel = new javax.swing.JPanel();
         amazementPane = new javax.swing.JPanel();
-        descriptionPane = new javax.swing.JPanel();
-        descriptionLabel = new javax.swing.JLabel();
-        mainEmotionPane = new javax.swing.JPanel();
-        emotionTitle = new javax.swing.JLabel();
-        EmozionDescription = new javax.swing.JLabel();
-        marksPanel = new javax.swing.JPanel();
-        vote1 = new javax.swing.JRadioButton();
-        vote2 = new javax.swing.JRadioButton();
-        vote3 = new javax.swing.JRadioButton();
-        vote4 = new javax.swing.JRadioButton();
-        vote5 = new javax.swing.JRadioButton();
+        GeneralDescriptionPane = new javax.swing.JPanel();
+        songDataLabel = new javax.swing.JLabel();
+        mainAmazementEmotionPane = new javax.swing.JPanel();
+        amazementTitle = new javax.swing.JLabel();
+        amazementDescription = new javax.swing.JLabel();
+        amazementMarksPanel = new javax.swing.JPanel();
+        amazementMark1 = new javax.swing.JRadioButton();
+        amazementMark2 = new javax.swing.JRadioButton();
+        amazementMark3 = new javax.swing.JRadioButton();
+        amazementMark4 = new javax.swing.JRadioButton();
+        amazementMark5 = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        notesTextArea = new javax.swing.JTextArea();
+        amazementNotes = new javax.swing.JTextArea();
         solemnityPane = new javax.swing.JPanel();
-        emotionTitle1 = new javax.swing.JLabel();
-        EmozionDescription1 = new javax.swing.JLabel();
-        marksPanel1 = new javax.swing.JPanel();
-        vote6 = new javax.swing.JRadioButton();
-        vote7 = new javax.swing.JRadioButton();
-        vote8 = new javax.swing.JRadioButton();
-        vote9 = new javax.swing.JRadioButton();
-        vote10 = new javax.swing.JRadioButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        notesTextArea1 = new javax.swing.JTextArea();
+        solemnityTitle = new javax.swing.JLabel();
+        solemnityDescription = new javax.swing.JLabel();
+        solemnityMarksPane = new javax.swing.JPanel();
+        solemnityMark1 = new javax.swing.JRadioButton();
+        solemnityMark2 = new javax.swing.JRadioButton();
+        solemnityMark3 = new javax.swing.JRadioButton();
+        solemnityMark4 = new javax.swing.JRadioButton();
+        solemnityMark5 = new javax.swing.JRadioButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        solemnityNotes = new javax.swing.JTextArea();
         tendernessPane = new javax.swing.JPanel();
-        emotionTitle2 = new javax.swing.JLabel();
-        EmozionDescription2 = new javax.swing.JLabel();
-        marksPanel2 = new javax.swing.JPanel();
-        vote11 = new javax.swing.JRadioButton();
-        vote12 = new javax.swing.JRadioButton();
-        vote13 = new javax.swing.JRadioButton();
-        vote14 = new javax.swing.JRadioButton();
-        vote15 = new javax.swing.JRadioButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        notesTextArea2 = new javax.swing.JTextArea();
+        tendernessTitle = new javax.swing.JLabel();
+        tendernessDescription = new javax.swing.JLabel();
+        tendernessMarksPanel = new javax.swing.JPanel();
+        tendernessMark1 = new javax.swing.JRadioButton();
+        tendernessMark2 = new javax.swing.JRadioButton();
+        tendernessMark3 = new javax.swing.JRadioButton();
+        tendernessMark4 = new javax.swing.JRadioButton();
+        tendernessMark5 = new javax.swing.JRadioButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tendernessNotes = new javax.swing.JTextArea();
         nostalgiaPane = new javax.swing.JPanel();
-        emotionTitle3 = new javax.swing.JLabel();
-        EmozionDescription3 = new javax.swing.JLabel();
-        marksPanel3 = new javax.swing.JPanel();
-        vote16 = new javax.swing.JRadioButton();
-        vote17 = new javax.swing.JRadioButton();
-        vote18 = new javax.swing.JRadioButton();
-        vote19 = new javax.swing.JRadioButton();
-        vote20 = new javax.swing.JRadioButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        notesTextArea3 = new javax.swing.JTextArea();
+        nostalgiaTitle = new javax.swing.JLabel();
+        nostalgiaDescription = new javax.swing.JLabel();
+        nostalgiaMarksPanel = new javax.swing.JPanel();
+        nostalgiaMark1 = new javax.swing.JRadioButton();
+        nostalgiaMark2 = new javax.swing.JRadioButton();
+        nostalgiaMark3 = new javax.swing.JRadioButton();
+        nostalgiaMark4 = new javax.swing.JRadioButton();
+        nostalgiaMark5 = new javax.swing.JRadioButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        nostalgiaNotes = new javax.swing.JTextArea();
         calmnessPane = new javax.swing.JPanel();
-        emotionTitle4 = new javax.swing.JLabel();
-        EmozionDescription4 = new javax.swing.JLabel();
-        marksPanel4 = new javax.swing.JPanel();
-        vote21 = new javax.swing.JRadioButton();
-        vote22 = new javax.swing.JRadioButton();
-        vote23 = new javax.swing.JRadioButton();
-        vote24 = new javax.swing.JRadioButton();
-        vote25 = new javax.swing.JRadioButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        notesTextArea4 = new javax.swing.JTextArea();
+        calmnessTitle = new javax.swing.JLabel();
+        calmnessDescription = new javax.swing.JLabel();
+        calmnessMarkPanel = new javax.swing.JPanel();
+        calmnessMark1 = new javax.swing.JRadioButton();
+        calmnessMark2 = new javax.swing.JRadioButton();
+        calmnessMark3 = new javax.swing.JRadioButton();
+        calmnessMark4 = new javax.swing.JRadioButton();
+        calmnessMark5 = new javax.swing.JRadioButton();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        calmnessNotes = new javax.swing.JTextArea();
         powerPane = new javax.swing.JPanel();
-        emotionTitle5 = new javax.swing.JLabel();
-        EmozionDescription5 = new javax.swing.JLabel();
-        marksPanel5 = new javax.swing.JPanel();
-        vote26 = new javax.swing.JRadioButton();
-        vote27 = new javax.swing.JRadioButton();
-        vote28 = new javax.swing.JRadioButton();
-        vote29 = new javax.swing.JRadioButton();
-        vote30 = new javax.swing.JRadioButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        notesTextArea5 = new javax.swing.JTextArea();
+        powerTitle = new javax.swing.JLabel();
+        powerDescription = new javax.swing.JLabel();
+        powerMarksPanel = new javax.swing.JPanel();
+        powerMark1 = new javax.swing.JRadioButton();
+        powerMark2 = new javax.swing.JRadioButton();
+        powerMark3 = new javax.swing.JRadioButton();
+        powerMark4 = new javax.swing.JRadioButton();
+        powerMark5 = new javax.swing.JRadioButton();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        powerNotes = new javax.swing.JTextArea();
         joyPane = new javax.swing.JPanel();
-        emotionTitle6 = new javax.swing.JLabel();
-        EmozionDescription6 = new javax.swing.JLabel();
-        marksPanel6 = new javax.swing.JPanel();
-        vote31 = new javax.swing.JRadioButton();
-        vote32 = new javax.swing.JRadioButton();
-        vote33 = new javax.swing.JRadioButton();
-        vote34 = new javax.swing.JRadioButton();
-        vote35 = new javax.swing.JRadioButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        notesTextArea6 = new javax.swing.JTextArea();
+        joyTitle = new javax.swing.JLabel();
+        joyDescription = new javax.swing.JLabel();
+        joyMarksPanel = new javax.swing.JPanel();
+        joyMark1 = new javax.swing.JRadioButton();
+        joyMark2 = new javax.swing.JRadioButton();
+        joyMark3 = new javax.swing.JRadioButton();
+        joyMark4 = new javax.swing.JRadioButton();
+        joyMark5 = new javax.swing.JRadioButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        joyNotes = new javax.swing.JTextArea();
         tensionPane = new javax.swing.JPanel();
-        emotionTitle7 = new javax.swing.JLabel();
-        EmozionDescription7 = new javax.swing.JLabel();
-        marksPanel7 = new javax.swing.JPanel();
-        vote36 = new javax.swing.JRadioButton();
-        vote37 = new javax.swing.JRadioButton();
-        vote38 = new javax.swing.JRadioButton();
-        vote39 = new javax.swing.JRadioButton();
-        vote40 = new javax.swing.JRadioButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        notesTextArea7 = new javax.swing.JTextArea();
+        tensionTitle = new javax.swing.JLabel();
+        tensionDescription = new javax.swing.JLabel();
+        tensionMarksPanel = new javax.swing.JPanel();
+        tensionMark1 = new javax.swing.JRadioButton();
+        tensionMark2 = new javax.swing.JRadioButton();
+        tensionMark3 = new javax.swing.JRadioButton();
+        tensionMark4 = new javax.swing.JRadioButton();
+        tensionMark5 = new javax.swing.JRadioButton();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tensionNotes = new javax.swing.JTextArea();
         sadnessPane = new javax.swing.JPanel();
-        emotionTitle8 = new javax.swing.JLabel();
-        EmozionDescription8 = new javax.swing.JLabel();
-        marksPanel8 = new javax.swing.JPanel();
-        vote41 = new javax.swing.JRadioButton();
-        vote42 = new javax.swing.JRadioButton();
-        vote43 = new javax.swing.JRadioButton();
-        vote44 = new javax.swing.JRadioButton();
-        vote45 = new javax.swing.JRadioButton();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        notesTextArea8 = new javax.swing.JTextArea();
+        sadnessTitle = new javax.swing.JLabel();
+        sadnessDescription = new javax.swing.JLabel();
+        sadnessMarksPanes = new javax.swing.JPanel();
+        sadnessMark1 = new javax.swing.JRadioButton();
+        sadnessMark2 = new javax.swing.JRadioButton();
+        sadnessMark3 = new javax.swing.JRadioButton();
+        sadnessMark4 = new javax.swing.JRadioButton();
+        sadnessMark5 = new javax.swing.JRadioButton();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        sadnessNotes = new javax.swing.JTextArea();
+        buttonPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        CompleteOperation = new javax.swing.JButton();
+        AbortOperation = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
         innerPanel.setPreferredSize(new java.awt.Dimension(998, 3600));
-        innerPanel.setLayout(new java.awt.GridLayout(9, 1));
+        innerPanel.setLayout(new java.awt.GridLayout(10, 1));
 
         amazementPane.setLayout(new java.awt.BorderLayout());
 
-        descriptionPane.setPreferredSize(new java.awt.Dimension(996, 50));
-        descriptionPane.setLayout(new java.awt.BorderLayout());
+        GeneralDescriptionPane.setPreferredSize(new java.awt.Dimension(996, 50));
+        GeneralDescriptionPane.setLayout(new java.awt.BorderLayout());
 
-        descriptionLabel.setText("breve descrizione");
-        descriptionPane.add(descriptionLabel, java.awt.BorderLayout.CENTER);
+        songDataLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        songDataLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        songDataLabel.setText("Titolo Brano: " + songUnderVotation.getTitle() + " - " +
+            "Artista: "+ songUnderVotation.getAuthor() + " - " +
+            "Anno di publicazione: " + songUnderVotation.getYear());
+        GeneralDescriptionPane.add(songDataLabel, java.awt.BorderLayout.CENTER);
 
-        amazementPane.add(descriptionPane, java.awt.BorderLayout.PAGE_START);
+        amazementPane.add(GeneralDescriptionPane, java.awt.BorderLayout.PAGE_START);
 
-        java.awt.GridBagLayout jPanel11Layout = new java.awt.GridBagLayout();
-        jPanel11Layout.columnWidths = new int[] {0, 20, 0};
-        jPanel11Layout.rowHeights = new int[] {0, 20, 0, 20, 0, 20, 0};
-        mainEmotionPane.setLayout(jPanel11Layout);
+        java.awt.GridBagLayout mainAmazementEmotionPaneLayout = new java.awt.GridBagLayout();
+        jPanel11Layout.columnWidths = new int[] {0, 10, 0};
+        jPanel11Layout.rowHeights = new int[] {0, 10, 0, 10, 0, 10, 0};
+        mainAmazementEmotionPane.setLayout(mainAmazementEmotionPaneLayout);
 
-        emotionTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle.setText(Emozioni.AMAZEMENT.getName());
+        amazementTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        amazementTitle.setText(Emozioni.AMAZEMENT.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        mainEmotionPane.add(emotionTitle, gridBagConstraints);
+        mainAmazementEmotionPane.add(amazementTitle, gridBagConstraints);
 
-        EmozionDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription.setText(Emozioni.AMAZEMENT.getDescription());
+        amazementDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        amazementDescription.setText(Emozioni.AMAZEMENT.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        mainEmotionPane.add(EmozionDescription, gridBagConstraints);
+        mainAmazementEmotionPane.add(amazementDescription, gridBagConstraints);
 
-        marksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel.setLayout(new java.awt.GridLayout(1, 5));
+        amazementMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        amazementMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote1.setText("1");
-        vote1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel.add(vote1);
+        amazementMark1.setText("1");
+        amazementMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amazementMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amazementMark1ActionPerformed(evt);
+            }
+        });
+        amazementMarksPanel.add(amazementMark1);
 
-        vote2.setText("2");
-        vote2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel.add(vote2);
+        amazementMark2.setText("2");
+        amazementMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amazementMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amazementMark2ActionPerformed(evt);
+            }
+        });
+        amazementMarksPanel.add(amazementMark2);
 
-        vote3.setText("3");
-        vote3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel.add(vote3);
+        amazementMark3.setText("3");
+        amazementMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amazementMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amazementMark3ActionPerformed(evt);
+            }
+        });
+        amazementMarksPanel.add(amazementMark3);
 
-        vote4.setText("4");
-        vote4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel.add(vote4);
+        amazementMark4.setText("4");
+        amazementMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amazementMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amazementMark4ActionPerformed(evt);
+            }
+        });
+        amazementMarksPanel.add(amazementMark4);
 
-        vote5.setText("5");
-        vote5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel.add(vote5);
+        amazementMark5.setText("5");
+        amazementMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amazementMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amazementMark5ActionPerformed(evt);
+            }
+        });
+        amazementMarksPanel.add(amazementMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        mainEmotionPane.add(marksPanel, gridBagConstraints);
+        mainAmazementEmotionPane.add(amazementMarksPanel, gridBagConstraints);
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea.setColumns(20);
-        notesTextArea.setRows(5);
-        notesTextArea.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
-        notesTextArea.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane2.setViewportView(notesTextArea);
+        amazementNotes.setColumns(20);
+        amazementNotes.setRows(5);
+        amazementNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        amazementNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane2.setViewportView(amazementNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        mainEmotionPane.add(jScrollPane2, gridBagConstraints);
+        mainAmazementEmotionPane.add(jScrollPane2, gridBagConstraints);
 
-        amazementPane.add(mainEmotionPane, java.awt.BorderLayout.CENTER);
+        amazementPane.add(mainAmazementEmotionPane, java.awt.BorderLayout.CENTER);
 
         innerPanel.add(amazementPane);
 
-        solemnityPane.setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout solemnityPaneLayout = new java.awt.GridBagLayout();
+        solemnityPaneLayout.columnWidths = new int[] {0, 15, 0};
+        solemnityPaneLayout.rowHeights = new int[] {0, 15, 0, 15, 0, 15, 0};
+        solemnityPane.setLayout(solemnityPaneLayout);
 
-        emotionTitle1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle1.setText("emozione titolo");
+        solemnityTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        solemnityTitle.setText(Emozioni.SOLEMNITY.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        solemnityPane.add(emotionTitle1, gridBagConstraints);
+        solemnityPane.add(solemnityTitle, gridBagConstraints);
 
-        EmozionDescription1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription1.setText("Emozione descrizione");
+        solemnityDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        solemnityDescription.setText(Emozioni.SOLEMNITY.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        solemnityPane.add(EmozionDescription1, gridBagConstraints);
+        solemnityPane.add(solemnityDescription, gridBagConstraints);
 
-        marksPanel1.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel1.setLayout(new java.awt.GridLayout(1, 5));
+        solemnityMarksPane.setPreferredSize(new java.awt.Dimension(500, 50));
+        solemnityMarksPane.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote6.setText("1");
-        vote6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel1.add(vote6);
+        solemnityMark1.setText("1");
+        solemnityMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        solemnityMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solemnityMark1ActionPerformed(evt);
+            }
+        });
+        solemnityMarksPane.add(solemnityMark1);
 
-        vote7.setText("2");
-        vote7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel1.add(vote7);
+        solemnityMark2.setText("2");
+        solemnityMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        solemnityMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solemnityMark2ActionPerformed(evt);
+            }
+        });
+        solemnityMarksPane.add(solemnityMark2);
 
-        vote8.setText("3");
-        vote8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel1.add(vote8);
+        solemnityMark3.setText("3");
+        solemnityMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        solemnityMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solemnityMark3ActionPerformed(evt);
+            }
+        });
+        solemnityMarksPane.add(solemnityMark3);
 
-        vote9.setText("4");
-        vote9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel1.add(vote9);
+        solemnityMark4.setText("4");
+        solemnityMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        solemnityMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solemnityMark4ActionPerformed(evt);
+            }
+        });
+        solemnityMarksPane.add(solemnityMark4);
 
-        vote10.setText("5");
-        vote10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel1.add(vote10);
+        solemnityMark5.setText("5");
+        solemnityMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        solemnityMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solemnityMark5ActionPerformed(evt);
+            }
+        });
+        solemnityMarksPane.add(solemnityMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        solemnityPane.add(marksPanel1, gridBagConstraints);
+        solemnityPane.add(solemnityMarksPane, gridBagConstraints);
 
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane11.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea1.setColumns(20);
-        notesTextArea1.setRows(5);
-        notesTextArea1.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
-        notesTextArea1.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane3.setViewportView(notesTextArea1);
+        solemnityNotes.setColumns(20);
+        solemnityNotes.setRows(5);
+        solemnityNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        solemnityNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane11.setViewportView(solemnityNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        solemnityPane.add(jScrollPane3, gridBagConstraints);
+        solemnityPane.add(jScrollPane11, gridBagConstraints);
 
         innerPanel.add(solemnityPane);
 
         tendernessPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle2.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle2.setText("emozione titolo");
+        tendernessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        tendernessTitle.setText(Emozioni.TENDERNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        tendernessPane.add(emotionTitle2, gridBagConstraints);
+        tendernessPane.add(tendernessTitle, gridBagConstraints);
 
-        EmozionDescription2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription2.setText("Emozione descrizione");
+        tendernessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        tendernessDescription.setText(Emozioni.TENDERNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        tendernessPane.add(EmozionDescription2, gridBagConstraints);
+        tendernessPane.add(tendernessDescription, gridBagConstraints);
 
-        marksPanel2.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel2.setLayout(new java.awt.GridLayout(1, 5));
+        tendernessMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        tendernessMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote11.setText("1");
-        vote11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel2.add(vote11);
+        tendernessMark1.setText("1");
+        tendernessMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tendernessMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tendernessMark1ActionPerformed(evt);
+            }
+        });
+        tendernessMarksPanel.add(tendernessMark1);
 
-        vote12.setText("2");
-        vote12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel2.add(vote12);
+        tendernessMark2.setText("2");
+        tendernessMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tendernessMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tendernessMark2ActionPerformed(evt);
+            }
+        });
+        tendernessMarksPanel.add(tendernessMark2);
 
-        vote13.setText("3");
-        vote13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel2.add(vote13);
+        tendernessMark3.setText("3");
+        tendernessMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tendernessMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tendernessMark3ActionPerformed(evt);
+            }
+        });
+        tendernessMarksPanel.add(tendernessMark3);
 
-        vote14.setText("4");
-        vote14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel2.add(vote14);
+        tendernessMark4.setText("4");
+        tendernessMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tendernessMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tendernessMark4ActionPerformed(evt);
+            }
+        });
+        tendernessMarksPanel.add(tendernessMark4);
 
-        vote15.setText("5");
-        vote15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel2.add(vote15);
+        tendernessMark5.setText("5");
+        tendernessMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tendernessMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tendernessMark5ActionPerformed(evt);
+            }
+        });
+        tendernessMarksPanel.add(tendernessMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        tendernessPane.add(marksPanel2, gridBagConstraints);
+        tendernessPane.add(tendernessMarksPanel, gridBagConstraints);
 
-        jScrollPane4.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane12.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea2.setColumns(20);
-        notesTextArea2.setRows(5);
-        notesTextArea2.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane4.setViewportView(notesTextArea2);
+        tendernessNotes.setColumns(20);
+        tendernessNotes.setRows(5);
+        tendernessNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        tendernessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane12.setViewportView(tendernessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        tendernessPane.add(jScrollPane4, gridBagConstraints);
+        tendernessPane.add(jScrollPane12, gridBagConstraints);
 
         innerPanel.add(tendernessPane);
 
         nostalgiaPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle3.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle3.setText("emozione titolo");
+        nostalgiaTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        nostalgiaTitle.setText(Emozioni.NOSTALGIA.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        nostalgiaPane.add(emotionTitle3, gridBagConstraints);
+        nostalgiaPane.add(nostalgiaTitle, gridBagConstraints);
 
-        EmozionDescription3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription3.setText("Emozione descrizione");
+        nostalgiaDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        nostalgiaDescription.setText(Emozioni.NOSTALGIA.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        nostalgiaPane.add(EmozionDescription3, gridBagConstraints);
+        nostalgiaPane.add(nostalgiaDescription, gridBagConstraints);
 
-        marksPanel3.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel3.setLayout(new java.awt.GridLayout(1, 5));
+        nostalgiaMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        nostalgiaMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote16.setText("1");
-        vote16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel3.add(vote16);
+        nostalgiaMark1.setText("1");
+        nostalgiaMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nostalgiaMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nostalgiaMark1ActionPerformed(evt);
+            }
+        });
+        nostalgiaMarksPanel.add(nostalgiaMark1);
 
-        vote17.setText("2");
-        vote17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel3.add(vote17);
+        nostalgiaMark2.setText("2");
+        nostalgiaMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nostalgiaMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nostalgiaMark2ActionPerformed(evt);
+            }
+        });
+        nostalgiaMarksPanel.add(nostalgiaMark2);
 
-        vote18.setText("3");
-        vote18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel3.add(vote18);
+        nostalgiaMark3.setText("3");
+        nostalgiaMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nostalgiaMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nostalgiaMark3ActionPerformed(evt);
+            }
+        });
+        nostalgiaMarksPanel.add(nostalgiaMark3);
 
-        vote19.setText("4");
-        vote19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel3.add(vote19);
+        nostalgiaMark4.setText("4");
+        nostalgiaMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nostalgiaMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nostalgiaMark4ActionPerformed(evt);
+            }
+        });
+        nostalgiaMarksPanel.add(nostalgiaMark4);
 
-        vote20.setText("5");
-        vote20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel3.add(vote20);
+        nostalgiaMark5.setText("5");
+        nostalgiaMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nostalgiaMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nostalgiaMark5ActionPerformed(evt);
+            }
+        });
+        nostalgiaMarksPanel.add(nostalgiaMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        nostalgiaPane.add(marksPanel3, gridBagConstraints);
+        nostalgiaPane.add(nostalgiaMarksPanel, gridBagConstraints);
 
-        jScrollPane5.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane13.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea3.setColumns(20);
-        notesTextArea3.setRows(5);
-        notesTextArea3.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane5.setViewportView(notesTextArea3);
+        nostalgiaNotes.setColumns(20);
+        nostalgiaNotes.setRows(5);
+        nostalgiaNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        nostalgiaNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane13.setViewportView(nostalgiaNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        nostalgiaPane.add(jScrollPane5, gridBagConstraints);
+        nostalgiaPane.add(jScrollPane13, gridBagConstraints);
 
         innerPanel.add(nostalgiaPane);
 
         calmnessPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle4.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle4.setText("emozione titolo");
+        calmnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        calmnessTitle.setText(Emozioni.CALMNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        calmnessPane.add(emotionTitle4, gridBagConstraints);
+        calmnessPane.add(calmnessTitle, gridBagConstraints);
 
-        EmozionDescription4.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription4.setText("Emozione descrizione");
+        calmnessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        calmnessDescription.setText(Emozioni.CALMNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        calmnessPane.add(EmozionDescription4, gridBagConstraints);
+        calmnessPane.add(calmnessDescription, gridBagConstraints);
 
-        marksPanel4.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel4.setLayout(new java.awt.GridLayout(1, 5));
+        calmnessMarkPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        calmnessMarkPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote21.setText("1");
-        vote21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel4.add(vote21);
+        calmnessMark1.setText("1");
+        calmnessMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        calmnessMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calmnessMark1ActionPerformed(evt);
+            }
+        });
+        calmnessMarkPanel.add(calmnessMark1);
 
-        vote22.setText("2");
-        vote22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel4.add(vote22);
+        calmnessMark2.setText("2");
+        calmnessMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        calmnessMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calmnessMark2ActionPerformed(evt);
+            }
+        });
+        calmnessMarkPanel.add(calmnessMark2);
 
-        vote23.setText("3");
-        vote23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel4.add(vote23);
+        calmnessMark3.setText("3");
+        calmnessMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        calmnessMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calmnessMark3ActionPerformed(evt);
+            }
+        });
+        calmnessMarkPanel.add(calmnessMark3);
 
-        vote24.setText("4");
-        vote24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel4.add(vote24);
+        calmnessMark4.setText("4");
+        calmnessMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        calmnessMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calmnessMark4ActionPerformed(evt);
+            }
+        });
+        calmnessMarkPanel.add(calmnessMark4);
 
-        vote25.setText("5");
-        vote25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel4.add(vote25);
+        calmnessMark5.setText("5");
+        calmnessMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        calmnessMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calmnessMark5ActionPerformed(evt);
+            }
+        });
+        calmnessMarkPanel.add(calmnessMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        calmnessPane.add(marksPanel4, gridBagConstraints);
+        calmnessPane.add(calmnessMarkPanel, gridBagConstraints);
 
-        jScrollPane6.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane14.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea4.setColumns(20);
-        notesTextArea4.setRows(5);
-        notesTextArea4.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane6.setViewportView(notesTextArea4);
+        calmnessNotes.setColumns(20);
+        calmnessNotes.setRows(5);
+        calmnessNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        calmnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane14.setViewportView(calmnessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        calmnessPane.add(jScrollPane6, gridBagConstraints);
+        calmnessPane.add(jScrollPane14, gridBagConstraints);
 
         innerPanel.add(calmnessPane);
 
         powerPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle5.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle5.setText("emozione titolo");
+        powerTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        powerTitle.setText(Emozioni.POWER.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        powerPane.add(emotionTitle5, gridBagConstraints);
+        powerPane.add(powerTitle, gridBagConstraints);
 
-        EmozionDescription5.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription5.setText("Emozione descrizione");
+        powerDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        powerDescription.setText(Emozioni.POWER.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        powerPane.add(EmozionDescription5, gridBagConstraints);
+        powerPane.add(powerDescription, gridBagConstraints);
 
-        marksPanel5.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel5.setLayout(new java.awt.GridLayout(1, 5));
+        powerMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        powerMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote26.setText("1");
-        vote26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel5.add(vote26);
+        powerMark1.setText("1");
+        powerMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        powerMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                powerMark1ActionPerformed(evt);
+            }
+        });
+        powerMarksPanel.add(powerMark1);
 
-        vote27.setText("2");
-        vote27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel5.add(vote27);
+        powerMark2.setText("2");
+        powerMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        powerMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                powerMark2ActionPerformed(evt);
+            }
+        });
+        powerMarksPanel.add(powerMark2);
 
-        vote28.setText("3");
-        vote28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel5.add(vote28);
+        powerMark3.setText("3");
+        powerMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        powerMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                powerMark3ActionPerformed(evt);
+            }
+        });
+        powerMarksPanel.add(powerMark3);
 
-        vote29.setText("4");
-        vote29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel5.add(vote29);
+        powerMark4.setText("4");
+        powerMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        powerMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                powerMark4ActionPerformed(evt);
+            }
+        });
+        powerMarksPanel.add(powerMark4);
 
-        vote30.setText("5");
-        vote30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel5.add(vote30);
+        powerMark5.setText("5");
+        powerMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        powerMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                powerMark5ActionPerformed(evt);
+            }
+        });
+        powerMarksPanel.add(powerMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        powerPane.add(marksPanel5, gridBagConstraints);
+        powerPane.add(powerMarksPanel, gridBagConstraints);
 
-        jScrollPane7.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane15.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea5.setColumns(20);
-        notesTextArea5.setRows(5);
-        notesTextArea5.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane7.setViewportView(notesTextArea5);
+        powerNotes.setColumns(20);
+        powerNotes.setRows(5);
+        powerNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        powerNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane15.setViewportView(powerNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        powerPane.add(jScrollPane7, gridBagConstraints);
+        powerPane.add(jScrollPane15, gridBagConstraints);
 
         innerPanel.add(powerPane);
 
         joyPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle6.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle6.setText("emozione titolo");
+        joyTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        joyTitle.setText(Emozioni.JOY.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        joyPane.add(emotionTitle6, gridBagConstraints);
+        joyPane.add(joyTitle, gridBagConstraints);
 
-        EmozionDescription6.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription6.setText("Emozione descrizione");
+        joyDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        joyDescription.setText(Emozioni.JOY.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        joyPane.add(EmozionDescription6, gridBagConstraints);
+        joyPane.add(joyDescription, gridBagConstraints);
 
-        marksPanel6.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel6.setLayout(new java.awt.GridLayout(1, 5));
+        joyMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        joyMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote31.setText("1");
-        vote31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel6.add(vote31);
+        joyMark1.setText("1");
+        joyMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        joyMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyMark1ActionPerformed(evt);
+            }
+        });
+        joyMarksPanel.add(joyMark1);
 
-        vote32.setText("2");
-        vote32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel6.add(vote32);
+        joyMark2.setText("2");
+        joyMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        joyMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyMark2ActionPerformed(evt);
+            }
+        });
+        joyMarksPanel.add(joyMark2);
 
-        vote33.setText("3");
-        vote33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel6.add(vote33);
+        joyMark3.setText("3");
+        joyMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        joyMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyMark3ActionPerformed(evt);
+            }
+        });
+        joyMarksPanel.add(joyMark3);
 
-        vote34.setText("4");
-        vote34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel6.add(vote34);
+        joyMark4.setText("4");
+        joyMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        joyMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyMark4ActionPerformed(evt);
+            }
+        });
+        joyMarksPanel.add(joyMark4);
 
-        vote35.setText("5");
-        vote35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel6.add(vote35);
+        joyMark5.setText("5");
+        joyMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        joyMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyMark5ActionPerformed(evt);
+            }
+        });
+        joyMarksPanel.add(joyMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        joyPane.add(marksPanel6, gridBagConstraints);
+        joyPane.add(joyMarksPanel, gridBagConstraints);
 
-        jScrollPane8.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane16.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea6.setColumns(20);
-        notesTextArea6.setRows(5);
-        notesTextArea6.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane8.setViewportView(notesTextArea6);
+        joyNotes.setColumns(20);
+        joyNotes.setRows(5);
+        joyNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        joyNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane16.setViewportView(joyNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        joyPane.add(jScrollPane8, gridBagConstraints);
+        joyPane.add(jScrollPane16, gridBagConstraints);
 
         innerPanel.add(joyPane);
 
         tensionPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle7.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle7.setText("emozione titolo");
+        tensionTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        tensionTitle.setText(Emozioni.TENSION.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        tensionPane.add(emotionTitle7, gridBagConstraints);
+        tensionPane.add(tensionTitle, gridBagConstraints);
 
-        EmozionDescription7.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription7.setText("Emozione descrizione");
+        tensionDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        tensionDescription.setText(Emozioni.TENSION.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        tensionPane.add(EmozionDescription7, gridBagConstraints);
+        tensionPane.add(tensionDescription, gridBagConstraints);
 
-        marksPanel7.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel7.setLayout(new java.awt.GridLayout(1, 5));
+        tensionMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
+        tensionMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote36.setText("1");
-        vote36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel7.add(vote36);
+        tensionMark1.setText("1");
+        tensionMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tensionMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tensionMark1ActionPerformed(evt);
+            }
+        });
+        tensionMarksPanel.add(tensionMark1);
 
-        vote37.setText("2");
-        vote37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel7.add(vote37);
+        tensionMark2.setText("2");
+        tensionMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tensionMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tensionMark2ActionPerformed(evt);
+            }
+        });
+        tensionMarksPanel.add(tensionMark2);
 
-        vote38.setText("3");
-        vote38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel7.add(vote38);
+        tensionMark3.setText("3");
+        tensionMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tensionMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tensionMark3ActionPerformed(evt);
+            }
+        });
+        tensionMarksPanel.add(tensionMark3);
 
-        vote39.setText("4");
-        vote39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel7.add(vote39);
+        tensionMark4.setText("4");
+        tensionMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tensionMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tensionMark4ActionPerformed(evt);
+            }
+        });
+        tensionMarksPanel.add(tensionMark4);
 
-        vote40.setText("5");
-        vote40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel7.add(vote40);
+        tensionMark5.setText("5");
+        tensionMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tensionMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tensionMark5ActionPerformed(evt);
+            }
+        });
+        tensionMarksPanel.add(tensionMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        tensionPane.add(marksPanel7, gridBagConstraints);
+        tensionPane.add(tensionMarksPanel, gridBagConstraints);
 
-        jScrollPane9.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane17.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea7.setColumns(20);
-        notesTextArea7.setRows(5);
-        notesTextArea7.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane9.setViewportView(notesTextArea7);
+        tensionNotes.setColumns(20);
+        tensionNotes.setRows(5);
+        tensionNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        tensionNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane17.setViewportView(tensionNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        tensionPane.add(jScrollPane9, gridBagConstraints);
+        tensionPane.add(jScrollPane17, gridBagConstraints);
 
         innerPanel.add(tensionPane);
 
         sadnessPane.setLayout(new java.awt.GridBagLayout());
 
-        emotionTitle8.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        emotionTitle8.setText("emozione titolo");
+        sadnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        sadnessTitle.setText(Emozioni.SADNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        sadnessPane.add(emotionTitle8, gridBagConstraints);
+        sadnessPane.add(sadnessTitle, gridBagConstraints);
 
-        EmozionDescription8.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        EmozionDescription8.setText("Emozione descrizione");
+        sadnessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        sadnessDescription.setText(Emozioni.SADNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        sadnessPane.add(EmozionDescription8, gridBagConstraints);
+        sadnessPane.add(sadnessDescription, gridBagConstraints);
 
-        marksPanel8.setPreferredSize(new java.awt.Dimension(500, 50));
-        marksPanel8.setLayout(new java.awt.GridLayout(1, 5));
+        sadnessMarksPanes.setPreferredSize(new java.awt.Dimension(500, 50));
+        sadnessMarksPanes.setLayout(new java.awt.GridLayout(1, 5));
 
-        vote41.setText("1");
-        vote41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel8.add(vote41);
+        sadnessMark1.setText("1");
+        sadnessMark1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sadnessMark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sadnessMark1ActionPerformed(evt);
+            }
+        });
+        sadnessMarksPanes.add(sadnessMark1);
 
-        vote42.setText("2");
-        vote42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel8.add(vote42);
+        sadnessMark2.setText("2");
+        sadnessMark2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sadnessMark2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sadnessMark2ActionPerformed(evt);
+            }
+        });
+        sadnessMarksPanes.add(sadnessMark2);
 
-        vote43.setText("3");
-        vote43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel8.add(vote43);
+        sadnessMark3.setText("3");
+        sadnessMark3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sadnessMark3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sadnessMark3ActionPerformed(evt);
+            }
+        });
+        sadnessMarksPanes.add(sadnessMark3);
 
-        vote44.setText("4");
-        vote44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel8.add(vote44);
+        sadnessMark4.setText("4");
+        sadnessMark4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sadnessMark4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sadnessMark4ActionPerformed(evt);
+            }
+        });
+        sadnessMarksPanes.add(sadnessMark4);
 
-        vote45.setText("5");
-        vote45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marksPanel8.add(vote45);
+        sadnessMark5.setText("5");
+        sadnessMark5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sadnessMark5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sadnessMark5ActionPerformed(evt);
+            }
+        });
+        sadnessMarksPanes.add(sadnessMark5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        sadnessPane.add(marksPanel8, gridBagConstraints);
+        sadnessPane.add(sadnessMarksPanes, gridBagConstraints);
 
-        jScrollPane10.setPreferredSize(new java.awt.Dimension(800, 150));
+        jScrollPane18.setPreferredSize(new java.awt.Dimension(800, 150));
 
-        notesTextArea8.setColumns(20);
-        notesTextArea8.setRows(5);
-        notesTextArea8.setPreferredSize(new java.awt.Dimension(800, 300));
-        jScrollPane10.setViewportView(notesTextArea8);
+        sadnessNotes.setColumns(20);
+        sadnessNotes.setRows(5);
+        sadnessNotes.setText("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.");
+        sadnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        jScrollPane18.setViewportView(sadnessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        sadnessPane.add(jScrollPane10, gridBagConstraints);
+        sadnessPane.add(jScrollPane18, gridBagConstraints);
 
         innerPanel.add(sadnessPane);
+
+        buttonPanel.setLayout(new java.awt.GridLayout(5, 1));
+
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        new java.awt.GridBagLayout().columnWidths = new int[] {0};
+        new java.awt.GridBagLayout().rowHeights = new int[] {0, 5, 0, 5, 0};
+        jPanel1.setLayout(jPanel1Layout);
+
+        CompleteOperation.setText("Registra votazione");
+        CompleteOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompleteOperationActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(CompleteOperation, gridBagConstraints);
+
+        AbortOperation.setText("Annulla");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel1.add(AbortOperation, gridBagConstraints);
+
+        buttonPanel.add(jPanel1);
+
+        innerPanel.add(buttonPanel);
 
         jScrollPane1.setViewportView(innerPanel);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+    //solemnityZone
+    private void solemnityMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark1ActionPerformed
+        marks[1] = 1;
+        solemnityMark2.setSelected(false);
+        solemnityMark3.setSelected(false);
+        solemnityMark4.setSelected(false);
+        solemnityMark5.setSelected(false);
+    }//GEN-LAST:event_solemnityMark1ActionPerformed
 
+    private void solemnityMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark2ActionPerformed
+        marks[1] = 2;
+        solemnityMark1.setSelected(false);
+        solemnityMark3.setSelected(false);
+        solemnityMark4.setSelected(false);
+        solemnityMark5.setSelected(false);
+    }//GEN-LAST:event_solemnityMark2ActionPerformed
 
+    private void solemnityMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark3ActionPerformed
+        marks[1] = 3;
+        solemnityMark2.setSelected(false);
+        solemnityMark1.setSelected(false);
+        solemnityMark4.setSelected(false);
+        solemnityMark5.setSelected(false);
+    }//GEN-LAST:event_solemnityMark3ActionPerformed
+
+    private void solemnityMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark4ActionPerformed
+        marks[1] = 4;
+        solemnityMark2.setSelected(false);
+        solemnityMark3.setSelected(false);
+        solemnityMark1.setSelected(false);
+        solemnityMark5.setSelected(false);
+    }//GEN-LAST:event_solemnityMark4ActionPerformed
+
+    private void solemnityMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark5ActionPerformed
+        marks[1] = 5;
+        solemnityMark2.setSelected(false);
+        solemnityMark3.setSelected(false);
+        solemnityMark4.setSelected(false);
+        solemnityMark1.setSelected(false);
+    }//GEN-LAST:event_solemnityMark5ActionPerformed
+    //tenderness Zone
+    private void tendernessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark1ActionPerformed
+        marks[2] = 1;
+        tendernessMark2.setSelected(false);
+        tendernessMark3.setSelected(false);
+        tendernessMark4.setSelected(false);
+        tendernessMark5.setSelected(false);
+    }//GEN-LAST:event_tendernessMark1ActionPerformed
+
+    private void tendernessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark2ActionPerformed
+        marks[2] = 2;
+        tendernessMark1.setSelected(false);
+        tendernessMark3.setSelected(false);
+        tendernessMark4.setSelected(false);
+        tendernessMark5.setSelected(false);
+    }//GEN-LAST:event_tendernessMark2ActionPerformed
+
+    private void tendernessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark3ActionPerformed
+        marks[2] = 3;
+        tendernessMark2.setSelected(false);
+        tendernessMark1.setSelected(false);
+        tendernessMark4.setSelected(false);
+        tendernessMark5.setSelected(false);
+    }//GEN-LAST:event_tendernessMark3ActionPerformed
+
+    private void tendernessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark4ActionPerformed
+        marks[2] = 4;
+        tendernessMark1.setSelected(false);
+        tendernessMark2.setSelected(false);
+        tendernessMark3.setSelected(false);
+        tendernessMark5.setSelected(false);
+    }//GEN-LAST:event_tendernessMark4ActionPerformed
+
+    private void tendernessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark5ActionPerformed
+        marks[2] = 5;
+        tendernessMark1.setSelected(false);
+        tendernessMark2.setSelected(false);
+        tendernessMark3.setSelected(false);
+        tendernessMark4.setSelected(false);
+    }//GEN-LAST:event_tendernessMark5ActionPerformed
+    //nostalgia Zone
+    private void nostalgiaMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark1ActionPerformed
+        marks[3] = 1;
+        nostalgiaMark2.setSelected(false);
+        nostalgiaMark3.setSelected(false);
+        nostalgiaMark4.setSelected(false);
+        nostalgiaMark5.setSelected(false);
+    }//GEN-LAST:event_nostalgiaMark1ActionPerformed
+
+    private void nostalgiaMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark2ActionPerformed
+        marks[3] = 2;
+        nostalgiaMark1.setSelected(false);
+        nostalgiaMark3.setSelected(false);
+        nostalgiaMark4.setSelected(false);
+        nostalgiaMark5.setSelected(false);
+    }//GEN-LAST:event_nostalgiaMark2ActionPerformed
+
+    private void nostalgiaMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark3ActionPerformed
+        marks[3] = 3;
+        nostalgiaMark1.setSelected(false);
+        nostalgiaMark2.setSelected(false);
+        nostalgiaMark4.setSelected(false);
+        nostalgiaMark5.setSelected(false);
+    }//GEN-LAST:event_nostalgiaMark3ActionPerformed
+
+    private void nostalgiaMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark4ActionPerformed
+        marks[3] = 4;
+        nostalgiaMark1.setSelected(false);
+        nostalgiaMark2.setSelected(false);
+        nostalgiaMark3.setSelected(false);
+        nostalgiaMark5.setSelected(false);
+    }//GEN-LAST:event_nostalgiaMark4ActionPerformed
+
+    private void nostalgiaMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark5ActionPerformed
+        marks[3] = 5;
+        nostalgiaMark1.setSelected(false);
+        nostalgiaMark2.setSelected(false);
+        nostalgiaMark3.setSelected(false);
+        nostalgiaMark4.setSelected(false);
+    }//GEN-LAST:event_nostalgiaMark5ActionPerformed
+    //calmness Zone
+    private void calmnessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark1ActionPerformed
+        marks[4] = 1;
+        calmnessMark2.setSelected(false);
+        calmnessMark3.setSelected(false);
+        calmnessMark4.setSelected(false);
+        calmnessMark5.setSelected(false);
+    }//GEN-LAST:event_calmnessMark1ActionPerformed
+
+    private void calmnessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark2ActionPerformed
+        marks[4] = 2;
+        calmnessMark1.setSelected(false);
+        calmnessMark3.setSelected(false);
+        calmnessMark4.setSelected(false);
+        calmnessMark5.setSelected(false);
+    }//GEN-LAST:event_calmnessMark2ActionPerformed
+
+    private void calmnessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark3ActionPerformed
+        marks[4] = 3;
+        calmnessMark1.setSelected(false);
+        calmnessMark2.setSelected(false);
+        calmnessMark4.setSelected(false);
+        calmnessMark5.setSelected(false);
+    }//GEN-LAST:event_calmnessMark3ActionPerformed
+
+    private void calmnessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark4ActionPerformed
+        marks[4] = 4;
+        calmnessMark2.setSelected(false);
+        calmnessMark3.setSelected(false);
+        calmnessMark1.setSelected(false);
+        calmnessMark5.setSelected(false);
+    }//GEN-LAST:event_calmnessMark4ActionPerformed
+
+    private void calmnessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark5ActionPerformed
+        marks[4] = 5;
+        calmnessMark2.setSelected(false);
+        calmnessMark3.setSelected(false);
+        calmnessMark4.setSelected(false);
+        calmnessMark1.setSelected(false);
+    }//GEN-LAST:event_calmnessMark5ActionPerformed
+    //power zone
+    private void powerMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark1ActionPerformed
+        marks[5] = 1;
+        powerMark2.setSelected(false);
+        powerMark3.setSelected(false);
+        powerMark4.setSelected(false);
+        powerMark5.setSelected(false);
+    }//GEN-LAST:event_powerMark1ActionPerformed
+
+    private void powerMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark2ActionPerformed
+        marks[5] = 2;
+        powerMark1.setSelected(false);
+        powerMark3.setSelected(false);
+        powerMark4.setSelected(false);
+        powerMark5.setSelected(false);
+    }//GEN-LAST:event_powerMark2ActionPerformed
+
+    private void powerMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark3ActionPerformed
+        marks[5] = 3;
+        powerMark2.setSelected(false);
+        powerMark1.setSelected(false);
+        powerMark4.setSelected(false);
+        powerMark5.setSelected(false);
+    }//GEN-LAST:event_powerMark3ActionPerformed
+
+    private void powerMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark4ActionPerformed
+        marks[5] = 4;
+        powerMark2.setSelected(false);
+        powerMark3.setSelected(false);
+        powerMark1.setSelected(false);
+        powerMark5.setSelected(false);
+    }//GEN-LAST:event_powerMark4ActionPerformed
+
+    private void powerMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark5ActionPerformed
+        marks[5] = 5;
+        powerMark2.setSelected(false);
+        powerMark3.setSelected(false);
+        powerMark4.setSelected(false);
+        powerMark1.setSelected(false);
+    }//GEN-LAST:event_powerMark5ActionPerformed
+    //joy zone
+    private void joyMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark1ActionPerformed
+        marks[6] = 1;
+        joyMark2.setSelected(false);
+        joyMark3.setSelected(false);
+        joyMark4.setSelected(false);
+        joyMark5.setSelected(false);
+    }//GEN-LAST:event_joyMark1ActionPerformed
+
+    private void joyMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark2ActionPerformed
+        marks[6] = 2;
+        joyMark1.setSelected(false);
+        joyMark3.setSelected(false);
+        joyMark4.setSelected(false);
+        joyMark5.setSelected(false);
+    }//GEN-LAST:event_joyMark2ActionPerformed
+
+    private void joyMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark3ActionPerformed
+        marks[6] = 3;
+        joyMark2.setSelected(false);
+        joyMark1.setSelected(false);
+        joyMark4.setSelected(false);
+        joyMark5.setSelected(false);
+    }//GEN-LAST:event_joyMark3ActionPerformed
+
+    private void joyMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark4ActionPerformed
+        marks[6] = 4;
+        joyMark2.setSelected(false);
+        joyMark3.setSelected(false);
+        joyMark1.setSelected(false);
+        joyMark5.setSelected(false);
+    }//GEN-LAST:event_joyMark4ActionPerformed
+
+    private void joyMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark5ActionPerformed
+        marks[6] = 5;
+        joyMark2.setSelected(false);
+        joyMark3.setSelected(false);
+        joyMark4.setSelected(false);
+        joyMark1.setSelected(false);
+    }//GEN-LAST:event_joyMark5ActionPerformed
+    //tension Zone
+    private void tensionMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark1ActionPerformed
+        marks[7] = 1;
+        tensionMark2.setSelected(false);
+        tensionMark3.setSelected(false);
+        tensionMark4.setSelected(false);
+        tensionMark5.setSelected(false);
+    }//GEN-LAST:event_tensionMark1ActionPerformed
+
+    private void tensionMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark2ActionPerformed
+        marks[7] = 2;
+        tensionMark1.setSelected(false);
+        tensionMark3.setSelected(false);
+        tensionMark4.setSelected(false);
+        tensionMark5.setSelected(false);
+    }//GEN-LAST:event_tensionMark2ActionPerformed
+
+    private void tensionMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark3ActionPerformed
+        marks[7] = 3;
+        tensionMark2.setSelected(false);
+        tensionMark1.setSelected(false);
+        tensionMark4.setSelected(false);
+        tensionMark5.setSelected(false);
+    }//GEN-LAST:event_tensionMark3ActionPerformed
+
+    private void tensionMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark4ActionPerformed
+        marks[7] = 4;
+        tensionMark2.setSelected(false);
+        tensionMark3.setSelected(false);
+        tensionMark1.setSelected(false);
+        tensionMark5.setSelected(false);
+    }//GEN-LAST:event_tensionMark4ActionPerformed
+
+    private void tensionMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark5ActionPerformed
+        marks[7] = 5;
+        tensionMark2.setSelected(false);
+        tensionMark3.setSelected(false);
+        tensionMark4.setSelected(false);
+        tensionMark1.setSelected(false);
+    }//GEN-LAST:event_tensionMark5ActionPerformed
+    //sadness zone
+    private void sadnessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark1ActionPerformed
+        marks[8] = 1;
+        sadnessMark2.setSelected(false);
+        sadnessMark3.setSelected(false);
+        sadnessMark4.setSelected(false);
+        sadnessMark5.setSelected(false);
+    }//GEN-LAST:event_sadnessMark1ActionPerformed
+
+    private void sadnessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark2ActionPerformed
+        marks[8] = 2;
+        sadnessMark1.setSelected(false);
+        sadnessMark3.setSelected(false);
+        sadnessMark4.setSelected(false);
+        sadnessMark5.setSelected(false);
+    }//GEN-LAST:event_sadnessMark2ActionPerformed
+
+    private void sadnessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark3ActionPerformed
+        marks[8] = 3;
+        sadnessMark2.setSelected(false);
+        sadnessMark1.setSelected(false);
+        sadnessMark4.setSelected(false);
+        sadnessMark5.setSelected(false);
+    }//GEN-LAST:event_sadnessMark3ActionPerformed
+
+    private void amazementMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark5ActionPerformed
+        marks[0] = 5;
+        amazementMark2.setSelected(false);
+        amazementMark3.setSelected(false);
+        amazementMark4.setSelected(false);
+        amazementMark1.setSelected(false);
+    }//GEN-LAST:event_amazementMark5ActionPerformed
+
+    private void amazementMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark4ActionPerformed
+        marks[0] = 4;
+        amazementMark2.setSelected(false);
+        amazementMark3.setSelected(false);
+        amazementMark1.setSelected(false);
+        amazementMark5.setSelected(false);
+    }//GEN-LAST:event_amazementMark4ActionPerformed
+
+    private void amazementMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark3ActionPerformed
+        marks[0] = 3;
+        amazementMark2.setSelected(false);
+        amazementMark1.setSelected(false);
+        amazementMark4.setSelected(false);
+        amazementMark5.setSelected(false);
+    }//GEN-LAST:event_amazementMark3ActionPerformed
+
+    private void amazementMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark2ActionPerformed
+        marks[0] = 2;
+        amazementMark1.setSelected(false);
+        amazementMark3.setSelected(false);
+        amazementMark4.setSelected(false);
+        amazementMark5.setSelected(false);
+    }//GEN-LAST:event_amazementMark2ActionPerformed
+
+    //amazementZone
+    private void amazementMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark1ActionPerformed
+        marks[0] = 1;
+        amazementMark2.setSelected(false);
+        amazementMark3.setSelected(false);
+        amazementMark4.setSelected(false);
+        amazementMark5.setSelected(false);
+    }//GEN-LAST:event_amazementMark1ActionPerformed
+
+    private void sadnessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark4ActionPerformed
+        marks[8] = 4;
+        sadnessMark2.setSelected(false);
+        sadnessMark3.setSelected(false);
+        sadnessMark1.setSelected(false);
+        sadnessMark5.setSelected(false);
+    }//GEN-LAST:event_sadnessMark4ActionPerformed
+
+    private void sadnessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark5ActionPerformed
+        marks[8] = 5;
+        sadnessMark2.setSelected(false);
+        sadnessMark3.setSelected(false);
+        sadnessMark4.setSelected(false);
+        sadnessMark1.setSelected(false);
+    }//GEN-LAST:event_sadnessMark5ActionPerformed
+
+    private void CompleteOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteOperationActionPerformed
+        if(allEmotionsVoted()) {
+            notes[0] = amazementNotes.getText();
+            notes[1] = solemnityNotes.getText();
+            notes[2] = tendernessNotes.getText();
+            notes[3] = nostalgiaNotes.getText();
+            notes[4] = calmnessNotes.getText();
+            notes[5] = powerNotes.getText();
+            notes[6] = joyNotes.getText();
+            notes[7] = tensionNotes.getText();
+            notes[8] = sadnessNotes.getText();
+
+            for(int i=0;i<notes.length;i++) {
+                notes[i] = formatAndCleanString(notes[i]);
+            }
+
+            DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
+            dataBaseRecords.addNewRecord(new Record(
+                songToVoteTag,
+                loggedUserId,
+                marks[0],notes[0],//amazement
+                marks[1],notes[1],//solemnity
+                marks[2],notes[2],//tenderness
+                marks[3],notes[3],//nostalgia
+                marks[4],notes[4],//calmness
+                marks[5],notes[5],//power
+                marks[6],notes[6],//joy
+                marks[7],notes[7],//tension
+                marks[8],notes[8]//sadness
+            ));
+            SwingUtilities.getWindowAncestor(this).dispose();
+        }
+
+    }//GEN-LAST:event_CompleteOperationActionPerformed
+    //internal methods
+    private boolean allEmotionsVoted(){
+        for(int i = 0;i<marks.length;i++) if(marks[i]==0) return false;
+        return true;
+    }
+    
+    private String formatAndCleanString(String stringToFormat){
+        if(stringToFormat.equals("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.") || stringToFormat.equals("If you want, you can write here a comment about your perception of this emotion during the listening of the song.")){
+            return " ";
+        } else {
+            stringToFormat.replace("\n", " ");
+            stringToFormat.replace("\r", " ");
+            stringToFormat.replace("\t", " ");
+            if(!stringToFormat.endsWith(".")) stringToFormat+=".";
+            return stringToFormat;
+        }
+    }
+    
+    /*DEBUGGING*/
+    /*
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(800, 800);
+        Repository repo = EMOTIONALSONGS.REPOSITORY;
+        Song trySong = repo.getBrano(1527);
+        frame.add(new voteForm("userIdTryal",trySong.getTag()));
+        frame.setVisible(true);
+    }
+    */
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel EmozionDescription;
-    private javax.swing.JLabel EmozionDescription1;
-    private javax.swing.JLabel EmozionDescription2;
-    private javax.swing.JLabel EmozionDescription3;
-    private javax.swing.JLabel EmozionDescription4;
-    private javax.swing.JLabel EmozionDescription5;
-    private javax.swing.JLabel EmozionDescription6;
-    private javax.swing.JLabel EmozionDescription7;
-    private javax.swing.JLabel EmozionDescription8;
+    private javax.swing.JButton AbortOperation;
+    private javax.swing.JButton CompleteOperation;
+    private javax.swing.JPanel GeneralDescriptionPane;
+    private javax.swing.JLabel amazementDescription;
+    private javax.swing.JRadioButton amazementMark1;
+    private javax.swing.JRadioButton amazementMark2;
+    private javax.swing.JRadioButton amazementMark3;
+    private javax.swing.JRadioButton amazementMark4;
+    private javax.swing.JRadioButton amazementMark5;
+    private javax.swing.JPanel amazementMarksPanel;
+    private javax.swing.JTextArea amazementNotes;
     private javax.swing.JPanel amazementPane;
+    private javax.swing.JLabel amazementTitle;
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JLabel calmnessDescription;
+    private javax.swing.JRadioButton calmnessMark1;
+    private javax.swing.JRadioButton calmnessMark2;
+    private javax.swing.JRadioButton calmnessMark3;
+    private javax.swing.JRadioButton calmnessMark4;
+    private javax.swing.JRadioButton calmnessMark5;
+    private javax.swing.JPanel calmnessMarkPanel;
+    private javax.swing.JTextArea calmnessNotes;
     private javax.swing.JPanel calmnessPane;
-    private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JPanel descriptionPane;
-    private javax.swing.JLabel emotionTitle;
-    private javax.swing.JLabel emotionTitle1;
-    private javax.swing.JLabel emotionTitle2;
-    private javax.swing.JLabel emotionTitle3;
-    private javax.swing.JLabel emotionTitle4;
-    private javax.swing.JLabel emotionTitle5;
-    private javax.swing.JLabel emotionTitle6;
-    private javax.swing.JLabel emotionTitle7;
-    private javax.swing.JLabel emotionTitle8;
+    private javax.swing.JLabel calmnessTitle;
     private javax.swing.JPanel innerPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JLabel joyDescription;
+    private javax.swing.JRadioButton joyMark1;
+    private javax.swing.JRadioButton joyMark2;
+    private javax.swing.JRadioButton joyMark3;
+    private javax.swing.JRadioButton joyMark4;
+    private javax.swing.JRadioButton joyMark5;
+    private javax.swing.JPanel joyMarksPanel;
+    private javax.swing.JTextArea joyNotes;
     private javax.swing.JPanel joyPane;
-    private javax.swing.JPanel mainEmotionPane;
-    private javax.swing.JPanel marksPanel;
-    private javax.swing.JPanel marksPanel1;
-    private javax.swing.JPanel marksPanel2;
-    private javax.swing.JPanel marksPanel3;
-    private javax.swing.JPanel marksPanel4;
-    private javax.swing.JPanel marksPanel5;
-    private javax.swing.JPanel marksPanel6;
-    private javax.swing.JPanel marksPanel7;
-    private javax.swing.JPanel marksPanel8;
+    private javax.swing.JLabel joyTitle;
+    private javax.swing.JPanel mainAmazementEmotionPane;
+    private javax.swing.JLabel nostalgiaDescription;
+    private javax.swing.JRadioButton nostalgiaMark1;
+    private javax.swing.JRadioButton nostalgiaMark2;
+    private javax.swing.JRadioButton nostalgiaMark3;
+    private javax.swing.JRadioButton nostalgiaMark4;
+    private javax.swing.JRadioButton nostalgiaMark5;
+    private javax.swing.JPanel nostalgiaMarksPanel;
+    private javax.swing.JTextArea nostalgiaNotes;
     private javax.swing.JPanel nostalgiaPane;
-    private javax.swing.JTextArea notesTextArea;
-    private javax.swing.JTextArea notesTextArea1;
-    private javax.swing.JTextArea notesTextArea2;
-    private javax.swing.JTextArea notesTextArea3;
-    private javax.swing.JTextArea notesTextArea4;
-    private javax.swing.JTextArea notesTextArea5;
-    private javax.swing.JTextArea notesTextArea6;
-    private javax.swing.JTextArea notesTextArea7;
-    private javax.swing.JTextArea notesTextArea8;
+    private javax.swing.JLabel nostalgiaTitle;
+    private javax.swing.JLabel powerDescription;
+    private javax.swing.JRadioButton powerMark1;
+    private javax.swing.JRadioButton powerMark2;
+    private javax.swing.JRadioButton powerMark3;
+    private javax.swing.JRadioButton powerMark4;
+    private javax.swing.JRadioButton powerMark5;
+    private javax.swing.JPanel powerMarksPanel;
+    private javax.swing.JTextArea powerNotes;
     private javax.swing.JPanel powerPane;
+    private javax.swing.JLabel powerTitle;
+    private javax.swing.JLabel sadnessDescription;
+    private javax.swing.JRadioButton sadnessMark1;
+    private javax.swing.JRadioButton sadnessMark2;
+    private javax.swing.JRadioButton sadnessMark3;
+    private javax.swing.JRadioButton sadnessMark4;
+    private javax.swing.JRadioButton sadnessMark5;
+    private javax.swing.JPanel sadnessMarksPanes;
+    private javax.swing.JTextArea sadnessNotes;
     private javax.swing.JPanel sadnessPane;
+    private javax.swing.JLabel sadnessTitle;
+    private javax.swing.JLabel solemnityDescription;
+    private javax.swing.JRadioButton solemnityMark1;
+    private javax.swing.JRadioButton solemnityMark2;
+    private javax.swing.JRadioButton solemnityMark3;
+    private javax.swing.JRadioButton solemnityMark4;
+    private javax.swing.JRadioButton solemnityMark5;
+    private javax.swing.JPanel solemnityMarksPane;
+    private javax.swing.JTextArea solemnityNotes;
     private javax.swing.JPanel solemnityPane;
+    private javax.swing.JLabel solemnityTitle;
+    private javax.swing.JLabel songDataLabel;
+    private javax.swing.JLabel tendernessDescription;
+    private javax.swing.JRadioButton tendernessMark1;
+    private javax.swing.JRadioButton tendernessMark2;
+    private javax.swing.JRadioButton tendernessMark3;
+    private javax.swing.JRadioButton tendernessMark4;
+    private javax.swing.JRadioButton tendernessMark5;
+    private javax.swing.JPanel tendernessMarksPanel;
+    private javax.swing.JTextArea tendernessNotes;
     private javax.swing.JPanel tendernessPane;
+    private javax.swing.JLabel tendernessTitle;
+    private javax.swing.JLabel tensionDescription;
+    private javax.swing.JRadioButton tensionMark1;
+    private javax.swing.JRadioButton tensionMark2;
+    private javax.swing.JRadioButton tensionMark3;
+    private javax.swing.JRadioButton tensionMark4;
+    private javax.swing.JRadioButton tensionMark5;
+    private javax.swing.JPanel tensionMarksPanel;
+    private javax.swing.JTextArea tensionNotes;
     private javax.swing.JPanel tensionPane;
-    private javax.swing.JRadioButton vote1;
-    private javax.swing.JRadioButton vote10;
-    private javax.swing.JRadioButton vote11;
-    private javax.swing.JRadioButton vote12;
-    private javax.swing.JRadioButton vote13;
-    private javax.swing.JRadioButton vote14;
-    private javax.swing.JRadioButton vote15;
-    private javax.swing.JRadioButton vote16;
-    private javax.swing.JRadioButton vote17;
-    private javax.swing.JRadioButton vote18;
-    private javax.swing.JRadioButton vote19;
-    private javax.swing.JRadioButton vote2;
-    private javax.swing.JRadioButton vote20;
-    private javax.swing.JRadioButton vote21;
-    private javax.swing.JRadioButton vote22;
-    private javax.swing.JRadioButton vote23;
-    private javax.swing.JRadioButton vote24;
-    private javax.swing.JRadioButton vote25;
-    private javax.swing.JRadioButton vote26;
-    private javax.swing.JRadioButton vote27;
-    private javax.swing.JRadioButton vote28;
-    private javax.swing.JRadioButton vote29;
-    private javax.swing.JRadioButton vote3;
-    private javax.swing.JRadioButton vote30;
-    private javax.swing.JRadioButton vote31;
-    private javax.swing.JRadioButton vote32;
-    private javax.swing.JRadioButton vote33;
-    private javax.swing.JRadioButton vote34;
-    private javax.swing.JRadioButton vote35;
-    private javax.swing.JRadioButton vote36;
-    private javax.swing.JRadioButton vote37;
-    private javax.swing.JRadioButton vote38;
-    private javax.swing.JRadioButton vote39;
-    private javax.swing.JRadioButton vote4;
-    private javax.swing.JRadioButton vote40;
-    private javax.swing.JRadioButton vote41;
-    private javax.swing.JRadioButton vote42;
-    private javax.swing.JRadioButton vote43;
-    private javax.swing.JRadioButton vote44;
-    private javax.swing.JRadioButton vote45;
-    private javax.swing.JRadioButton vote5;
-    private javax.swing.JRadioButton vote6;
-    private javax.swing.JRadioButton vote7;
-    private javax.swing.JRadioButton vote8;
-    private javax.swing.JRadioButton vote9;
+    private javax.swing.JLabel tensionTitle;
     // End of variables declaration//GEN-END:variables
+    private int[] marks = new int[9];
+    //amazementMark=>0,solemnityMark=>1,tendernessMark=>2,nostalgiaMark=>3,calmnessMark=>4,powerMark=>5,joyMark=>6,tensionMark=>7,sadnessMark=>8;
+    private String[] notes = new String[9];
+    //amazementNote => 0,solemnityNote => 1,tendernessNote => 2,nostalgiaNote => 3,calmnessNote => 4,powerNote => 5,joyNote => 6,tensionNote => 7,sadnessNote => 8;
+    private String loggedUserId;
+    private String songToVoteTag;
+    private Song songUnderVotation;
+    private java.awt.GridBagLayout jPanel11Layout = new java.awt.GridBagLayout();
 }

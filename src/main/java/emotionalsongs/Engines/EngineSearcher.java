@@ -216,7 +216,7 @@ public class EngineSearcher {
         int high = size-1;
         while(low<=high){
             int mid = low+high/2;
-            Record pointedRecord = dataBase.getSongFromIndex(mid);
+            Record pointedRecord = dataBase.getRecordFromIndex(mid);
             String pointedTag = pointedRecord.getBranoTag();
             if(pointedTag.equals(branoTag)) return pointedRecord;
             else if(branoTag.compareTo(pointedTag)<0) high = mid-1;
