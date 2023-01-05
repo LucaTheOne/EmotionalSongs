@@ -56,6 +56,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="idField">
       <Properties>
+        <Property name="text" type="java.lang.String" value="TheOne"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 25]"/>
         </Property>
@@ -71,10 +72,14 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Estarossa97!"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 25]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

@@ -59,10 +59,17 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
         });
         getContentPane().add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 339, -1, -1));
 
+        idField.setText("TheOne");
         idField.setPreferredSize(new java.awt.Dimension(150, 25));
         getContentPane().add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 253, -1, -1));
 
+        passwordField.setText("Estarossa97!");
         passwordField.setPreferredSize(new java.awt.Dimension(150, 25));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 296, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -127,6 +134,10 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments

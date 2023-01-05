@@ -166,10 +166,7 @@ public class voteForm extends javax.swing.JPanel {
 
         amazementPane.add(GeneralDescriptionPane, java.awt.BorderLayout.PAGE_START);
 
-        java.awt.GridBagLayout mainAmazementEmotionPaneLayout = new java.awt.GridBagLayout();
-        jPanel11Layout.columnWidths = new int[] {0, 10, 0};
-        jPanel11Layout.rowHeights = new int[] {0, 10, 0, 10, 0, 10, 0};
-        mainAmazementEmotionPane.setLayout(mainAmazementEmotionPaneLayout);
+        mainAmazementEmotionPane.setLayout(new java.awt.GridBagLayout());
 
         amazementTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         amazementTitle.setText(Emozioni.AMAZEMENT.getName());
@@ -933,8 +930,8 @@ public class voteForm extends javax.swing.JPanel {
         buttonPanel.setLayout(new java.awt.GridLayout(5, 1));
 
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        new java.awt.GridBagLayout().columnWidths = new int[] {0};
-        new java.awt.GridBagLayout().rowHeights = new int[] {0, 5, 0, 5, 0};
+        jPanel1Layout.columnWidths = new int[] {0};
+        jPanel1Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         jPanel1.setLayout(jPanel1Layout);
 
         CompleteOperation.setText("Registra votazione");
@@ -951,8 +948,7 @@ public class voteForm extends javax.swing.JPanel {
         AbortOperation.setText("Annulla");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.gridy = 8;
         jPanel1.add(AbortOperation, gridBagConstraints);
 
         buttonPanel.add(jPanel1);
@@ -1355,7 +1351,9 @@ public class voteForm extends javax.swing.JPanel {
                 marks[7],notes[7],//tension
                 marks[8],notes[8]//sadness
             ));
+            EMOTIONALSONGS.mainWindow.updateView();
             SwingUtilities.getWindowAncestor(this).dispose();
+            
         }
 
     }//GEN-LAST:event_CompleteOperationActionPerformed

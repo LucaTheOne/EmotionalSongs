@@ -144,4 +144,14 @@ public class EngineChecker {
         return false;
     }
     
+    public boolean checkIfCanVote(String userId,String songTag){
+        DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
+        if(dataBaseRecords.isEmpty()) return true;
+        for(int i = 0; i<dataBaseRecords.getSize();i++){
+            Record actualRecord = dataBaseRecords.getRecordFromIndex(i);
+            if(actualRecord.getBranoTag().equals(songTag)&&actualRecord.getUserIDRecord().equals(userId)) return false;
+        }
+        return true;
+    }
+    
 }

@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -10,9 +13,11 @@
 public class tryIt {
     public static void main(String[] args) {
       
-        int[] tryIt = new int[4];
-        for(int i = 0;i<4;i++){
-            System.out.println(tryIt[i]);
-        }
+        JFrame frame = new JFrame();
+        frame.setSize(100, 100);
+        frame.setVisible(true);
+        System.out.println(frame.isVisible());
+        frame.dispose();
+        System.out.println(frame.isVisible());
     }
 }

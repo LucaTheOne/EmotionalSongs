@@ -112,8 +112,8 @@ public class Song {
                 "+" + String.valueOf(year);
     }
     
-    public SongChartForPlaylist buildPlaylistPanel(Playlist propertPlaylist){
-        return new SongChartForPlaylist(this,propertPlaylist);
+    public SongChartForPlaylist buildPlaylistPanel(Playlist propertyPlaylist){
+        return new SongChartForPlaylist(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
     }
     
     public int compareTags(Song song) {

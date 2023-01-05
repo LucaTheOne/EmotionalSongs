@@ -45,4 +45,8 @@ public class EMOTIONALSONGS {
         mainWindow.setVisible(true);
     }
     
+    public static User getLoggedUser(){
+        return loggedUser;
+    }
+    
 }

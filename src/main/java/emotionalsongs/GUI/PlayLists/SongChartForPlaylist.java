@@ -5,10 +5,14 @@ import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.EngineChecker;
+import emotionalsongs.GUI.VotingSongs.voteForm;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -22,9 +26,14 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     Song representedSong;
     PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
     Playlist propertyPlaylist;
-    public SongChartForPlaylist(Song representedSong,Playlist playlistProperty) {
+    String userId;
+    boolean canBeVotedByUser;
+    public SongChartForPlaylist(String userId,Song representedSong,Playlist playlistProperty) {
         this.representedSong = representedSong;
         this.propertyPlaylist = playlistProperty;
+        this.userId = userId;
+        canBeVotedByUser = new EngineChecker().checkIfCanVote(userId, representedSong.getTag());
+        
         initComponents();
     }
 
@@ -122,7 +131,14 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
+        voteButton.setBackground(new java.awt.Color(153, 153, 255));
+        voteButton.setEnabled(canBeVotedByUser);
         voteButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        voteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voteButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
@@ -139,6 +155,8 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         buttonsLabel.add(chartButton, gridBagConstraints);
 
+        removeButton.setEnabled(false);
+        removeButton.setFocusable(false);
         removeButton.setPreferredSize(new java.awt.Dimension(50, 50));
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +203,16 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         playListsManager.deleteAsongFromAPlaylist(representedSong);
     }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void voteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteButtonActionPerformed
+        
+        JFrame voteFrame = new JFrame();
+        voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        voteFrame.setSize(1080, 720);
+        voteFrame.add(new voteForm(userId, representedSong.getTag()));
+        voteFrame.setVisible(canBeVotedByUser);
+        
+    }//GEN-LAST:event_voteButtonActionPerformed
 
             @Override
             protected void paintComponent(Graphics g){
