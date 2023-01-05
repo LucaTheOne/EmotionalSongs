@@ -19,14 +19,20 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainPage
      */
-    public MainFrame() {
+    private static MainFrame mainFrame = null;
+    private MainFrame() {
         
         initComponents();
         
         setLeftPanel(new GUIMenuLeftVoid(this));
         setUpperBar(new GUIMainUpperBarUnloggedPanel(this));
     }
-
+    
+    public static MainFrame getIstance(){
+        if(mainFrame==null)
+            mainFrame = new MainFrame();
+        return mainFrame;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

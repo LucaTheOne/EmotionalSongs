@@ -209,9 +209,8 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
-        voteFrame.add(new voteForm(userId, representedSong.getTag()));
+        voteFrame.add(new voteForm(userId, representedSong.getTag(),this));
         voteFrame.setVisible(canBeVotedByUser);
-        
     }//GEN-LAST:event_voteButtonActionPerformed
 
             @Override
@@ -235,4 +234,9 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     private javax.swing.JButton voteButton;
     private javax.swing.JButton ytButton;
     // End of variables declaration//GEN-END:variables
+
+    public void setVoteButton(boolean b) {
+        canBeVotedByUser = false;
+        voteButton.setEnabled(canBeVotedByUser);
+    }
 }

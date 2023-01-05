@@ -4,11 +4,13 @@
  */
 package emotionalsongs.GUI.VotingSongs;
 
-import emotionalsongs.BasicsStructure.Record;
+import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.ErrorMessage.ErrorPopUp;
+import emotionalsongs.GUI.PlayLists.SongChartForPlaylist;
 import javax.swing.*;
 
 /**
@@ -20,9 +22,10 @@ public class voteForm extends javax.swing.JPanel {
     /**
      * Creates new form voteForm
      */
-    public voteForm(String loggedUserId,String songToVoteTag) {
+    public voteForm(String loggedUserId,String songToVoteTag,SongChartForPlaylist callerComponent) {
         this.loggedUserId = loggedUserId;
         this.songToVoteTag = songToVoteTag;
+        this.callerComponent = callerComponent;
         EngineSearcher searcher = new EngineSearcher();
         songUnderVotation = searcher.searchBranoTag(EMOTIONALSONGS.REPOSITORY, songToVoteTag);
         initComponents();
@@ -1334,11 +1337,16 @@ public class voteForm extends javax.swing.JPanel {
             notes[8] = sadnessNotes.getText();
 
             for(int i=0;i<notes.length;i++) {
-                notes[i] = formatAndCleanString(notes[i]);
+                if(notes[i].length()<256)
+                    notes[i] = formatAndCleanString(notes[i]);
+                else {
+                    new ErrorPopUp("Lunghezza massima di un commento o nata di 255 caratteri superata!").setVisible(true);
+                    return;
+                }
             }
 
             DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
-            dataBaseRecords.addNewRecord(new Record(
+            dataBaseRecords.addNewRecord(new UserJudgement(
                 songToVoteTag,
                 loggedUserId,
                 marks[0],notes[0],//amazement
@@ -1351,7 +1359,9 @@ public class voteForm extends javax.swing.JPanel {
                 marks[7],notes[7],//tension
                 marks[8],notes[8]//sadness
             ));
-            EMOTIONALSONGS.mainWindow.updateView();
+            callerComponent.setVoteButton(false);
+            callerComponent.revalidate();
+            callerComponent.repaint();
             SwingUtilities.getWindowAncestor(this).dispose();
             
         }
@@ -1359,7 +1369,11 @@ public class voteForm extends javax.swing.JPanel {
     }//GEN-LAST:event_CompleteOperationActionPerformed
     //internal methods
     private boolean allEmotionsVoted(){
-        for(int i = 0;i<marks.length;i++) if(marks[i]==0) return false;
+        for(int i = 0;i<marks.length;i++) 
+            if(marks[i]==0) {
+                new ErrorPopUp("Tutte le emozioni devono essere votate!").setVisible(true);
+                return false;
+            }
         return true;
     }
     
@@ -1367,6 +1381,7 @@ public class voteForm extends javax.swing.JPanel {
         if(stringToFormat.equals("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.") || stringToFormat.equals("If you want, you can write here a comment about your perception of this emotion during the listening of the song.")){
             return " ";
         } else {
+            stringToFormat.replace(";", ",");
             stringToFormat.replace("\n", " ");
             stringToFormat.replace("\r", " ");
             stringToFormat.replace("\t", " ");
@@ -1505,4 +1520,5 @@ public class voteForm extends javax.swing.JPanel {
     private String songToVoteTag;
     private Song songUnderVotation;
     private java.awt.GridBagLayout jPanel11Layout = new java.awt.GridBagLayout();
+    private SongChartForPlaylist callerComponent;
 }

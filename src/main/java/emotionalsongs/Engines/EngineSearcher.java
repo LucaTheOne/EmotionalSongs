@@ -1,6 +1,6 @@
 package emotionalsongs.Engines;
 
-import emotionalsongs.BasicsStructure.Record;
+import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
@@ -206,7 +206,7 @@ public class EngineSearcher {
     }
     
     //metodi di ricerca records
-    public Record getRecordFromTag(DataBaseRecords dataBase, String branoTag){
+    public UserJudgement getRecordFromTag(DataBaseRecords dataBase, String branoTag){
         if(dataBase == null) return null;
         int size = dataBase.getSize();
         EngineSorter sorter = new EngineSorter();
@@ -216,7 +216,7 @@ public class EngineSearcher {
         int high = size-1;
         while(low<=high){
             int mid = low+high/2;
-            Record pointedRecord = dataBase.getRecordFromIndex(mid);
+            UserJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
             String pointedTag = pointedRecord.getBranoTag();
             if(pointedTag.equals(branoTag)) return pointedRecord;
             else if(branoTag.compareTo(pointedTag)<0) high = mid-1;

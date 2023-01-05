@@ -18,7 +18,7 @@ public class Song {
   /**
    * @hidden
    */
-  public Record datiEmozioniBrano;
+  public UserJudgement datiEmozioniBrano;
   
   
     //costruttore

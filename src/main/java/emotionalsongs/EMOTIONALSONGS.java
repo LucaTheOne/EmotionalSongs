@@ -41,7 +41,7 @@ public class EMOTIONALSONGS {
         dataBasePlaylists = new DataBasePlaylists();
         voteManager = new VoteManager();
         init.dispose();
-        mainWindow = new MainFrame();
+        mainWindow = MainFrame.getIstance();
         mainWindow.setVisible(true);
     }
     

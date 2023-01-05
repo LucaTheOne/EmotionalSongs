@@ -4,7 +4,7 @@
  */
 package emotionalsongs.Engines;
 
-import emotionalsongs.BasicsStructure.Record;
+import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import java.util.regex.*;
@@ -127,7 +127,7 @@ public class EngineChecker {
         if (dataSetEmozioni.isEmpty()) {
             return false;
         }
-        Record[] arrayRecords = dataSetEmozioni.getArray();
+        UserJudgement[] arrayRecords = dataSetEmozioni.getArray();
         for (int i = 0; i < arrayRecords.length; i++) {
             if(arrayRecords[i].getBranoTag().equals(brano.getTag())){
                 String userIDCurrentRecord = arrayRecords[i].getUserIDRecord();
@@ -148,7 +148,7 @@ public class EngineChecker {
         DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
         if(dataBaseRecords.isEmpty()) return true;
         for(int i = 0; i<dataBaseRecords.getSize();i++){
-            Record actualRecord = dataBaseRecords.getRecordFromIndex(i);
+            UserJudgement actualRecord = dataBaseRecords.getRecordFromIndex(i);
             if(actualRecord.getBranoTag().equals(songTag)&&actualRecord.getUserIDRecord().equals(userId)) return false;
         }
         return true;

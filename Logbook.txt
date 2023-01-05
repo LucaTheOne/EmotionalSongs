@@ -144,10 +144,19 @@
                 -Bolelli Luca-
 
 04/01/2023
-        Ristrutturato file Emozioni
+        Ristrutturato file Emozioni:
             - ora le linee del file rappresentano ogniuna un record, quest'ultimo rappresenta un giudizio da parte di un utente su una canzone.
             - notevolmente snellita ed efficentizzata la struttura di un record e del databaseRecords.
             - Ora la struttura dati per i records DatabaseRecords e strutturata sul pattern singleton, successivamente tutte le strutture dati verrano così impostate.
-            - creato un form funzionante per la votazione di un singolo brano.
+        Creato un form funzionante per la votazione di un singolo brano.
             
                 -Bolelli Luca-
+
+05/01/2023
+        Ora è possibile votare le emozioni di una canzone; il form è stato inserito nel contesto.
+        I record ora sono chiamati UserJudgement per non fare confusione con la classe record di java.
+        Creata una classe: ErrorPopUp la quale riceve una stringa come parametro, utilizzata per comunicare anomalie all' utente.
+        Creati sistemi di controllo e verifica dei dati del form per i giudizi dell' utente.
+        
+                -Bolelli Luca-
+        

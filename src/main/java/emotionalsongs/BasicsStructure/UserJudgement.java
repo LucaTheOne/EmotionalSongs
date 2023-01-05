@@ -5,7 +5,7 @@ package emotionalsongs.BasicsStructure;
  * La classe importa le emozioni per ogni brani.
  * @author 
  */
-public class Record {
+public class UserJudgement {
 
     Emozioni emotions;
     //DataBaseUsers userDatabase = EMOTIONALSONGS.userDataBase;
@@ -19,7 +19,7 @@ public class Record {
     private String amazementNotes, solemnityNotes, tendernessNotes, nostalgiaNotes, calmnessNotes, powerNotes, joyNotes, tensionNotes, sadnessNotes;
     //costruttori
     
-    public Record(String fileLine){
+    public UserJudgement(String fileLine){
         
         String[] fileLineSplitted = fileLine.split(";");
         
@@ -37,7 +37,7 @@ public class Record {
         sadnessMark = Integer.parseInt(fileLineSplitted[18]); sadnessNotes = fileLineSplitted[19];
     }
 
-    public Record(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
+    public UserJudgement(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
         
         this.branoTag = branoTag;
         this.userID = userID;
@@ -101,7 +101,7 @@ public class Record {
     }
     
     //comparing
-    public int compareTo(Record record) {
+    public int compareTo(UserJudgement record) {
         return this.branoTag.compareTo(record.getBranoTag());
     }
     

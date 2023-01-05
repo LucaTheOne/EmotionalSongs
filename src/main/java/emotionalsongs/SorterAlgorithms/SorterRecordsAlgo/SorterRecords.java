@@ -1,10 +1,10 @@
 
 package emotionalsongs.SorterAlgorithms.SorterRecordsAlgo;
 
-import emotionalsongs.BasicsStructure.Record;
+import emotionalsongs.BasicsStructure.UserJudgement;
 
 public class SorterRecords {
-    public void mergeSort(Record[] arrayRecordsToSort) {	
+    public void mergeSort(UserJudgement[] arrayRecordsToSort) {	
         int currentSize;
         int leftStartIndex;
         for (currentSize = 1; currentSize <= arrayRecordsToSort.length-1; currentSize = 2*currentSize) {
@@ -16,14 +16,14 @@ public class SorterRecords {
         }
     }
 	
-    private void merge(Record[] arrayRecordsToSort, int leftIndex, int midIndex, int rightIndex) {
+    private void merge(UserJudgement[] arrayRecordsToSort, int leftIndex, int midIndex, int rightIndex) {
         int i, j, k;
         int sizeLeftPart = midIndex - leftIndex + 1;
         int sizeRightPart = rightIndex - midIndex;
 	
         /* create temp arrays */
-        Record L[] = new Record[sizeLeftPart];
-        Record R[] = new Record[sizeRightPart];
+        UserJudgement L[] = new UserJudgement[sizeLeftPart];
+        UserJudgement R[] = new UserJudgement[sizeRightPart];
 	
         /* Copy data to temp arrays L[] and R[] */
         for (i = 0; i < sizeLeftPart; i++) L[i] = arrayRecordsToSort[leftIndex + i];

@@ -1,7 +1,7 @@
 
 package emotionalsongs.DataBases;
 
-import emotionalsongs.BasicsStructure.Record;
+import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.Engines.*;
 import emotionalsongs.*;
 import emotionalsongs.Engines.*;
@@ -15,7 +15,7 @@ import java.io.*;
 public class DataBaseRecords {
     
     //Campi
-    private Record[] dataBaseRecordsArray;
+    private UserJudgement[] dataBaseRecordsArray;
     private boolean empty = true;
     private static DataBaseRecords dataBaseRecords = null;
     //Costructor
@@ -40,9 +40,9 @@ public class DataBaseRecords {
             BufferedReader reader = new BufferedReader(new FileReader(new File(Utilities.pathToEmozioniDati)));
             int linesNumber = (int)Utilities.countLines(Utilities.pathToEmozioniDati);
             if(linesNumber==0) return;
-            dataBaseRecordsArray = new Record[linesNumber];
+            dataBaseRecordsArray = new UserJudgement[linesNumber];
             for(int i = 0; i<linesNumber;i++){
-                dataBaseRecordsArray[i] = new Record(reader.readLine());
+                dataBaseRecordsArray[i] = new UserJudgement(reader.readLine());
             }
             empty = false;
         } catch (FileNotFoundException ex) {
@@ -53,9 +53,9 @@ public class DataBaseRecords {
         
     }
         
-    public void addNewRecord(Record record){
+    public void addNewRecord(UserJudgement record){
         if(!empty){
-            Record[] newDataBase = new Record[dataBaseRecordsArray.length+1];
+            UserJudgement[] newDataBase = new UserJudgement[dataBaseRecordsArray.length+1];
             for (int i = 0; i < dataBaseRecordsArray.length; i++) {
                 newDataBase[i] = dataBaseRecordsArray[i];
             }
@@ -64,7 +64,7 @@ public class DataBaseRecords {
             sortByBranoTag();
         }
         else {
-            dataBaseRecordsArray = new Record[1];
+            dataBaseRecordsArray = new UserJudgement[1];
             dataBaseRecordsArray[0] = record;
         }
         save();
@@ -91,7 +91,7 @@ public class DataBaseRecords {
     }
     
     //getter methods
-    public Record[] getArray() {
+    public UserJudgement[] getArray() {
         return this.dataBaseRecordsArray;
     }
     
@@ -99,12 +99,12 @@ public class DataBaseRecords {
         return this.dataBaseRecordsArray.length;
     }
     
-    public Record getSongFromTag(String branoTag){
+    public UserJudgement getSongFromTag(String branoTag){
         EngineSearcher searcher = new EngineSearcher();
         return searcher.getRecordFromTag(this, branoTag);
     }
     
-    public Record getRecordFromIndex(int index){
+    public UserJudgement getRecordFromIndex(int index){
         return dataBaseRecordsArray[index];
     }
 
