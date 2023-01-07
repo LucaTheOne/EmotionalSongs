@@ -1,9 +1,7 @@
 package emotionalsongs.Engines;
 
-import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
-import emotionalsongs.*;
 import java.util.*;
 
 /**
@@ -19,7 +17,7 @@ import java.util.*;
 public class EngineSearcher {
 
     public ArrayList<Song> risultatiRicerca = new ArrayList<>();
-    public Repository repository = EMOTIONALSONGS.REPOSITORY;
+    public Repository repository = Repository.getInstance();
     
     //metodi di ricerca canzoni
     /**
@@ -206,7 +204,7 @@ public class EngineSearcher {
     }
     
     //metodi di ricerca records
-    public UserJudgement getRecordFromTag(DataBaseRecords dataBase, String branoTag){
+    public UserJudgement getRecordFromTag(DataBaseJudgements dataBase, String branoTag){
         if(dataBase == null) return null;
         int size = dataBase.getSize();
         EngineSorter sorter = new EngineSorter();
@@ -215,7 +213,7 @@ public class EngineSearcher {
         int low = 0;
         int high = size-1;
         while(low<=high){
-            int mid = low+high/2;
+            int mid = (low+high)/2;
             UserJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
             String pointedTag = pointedRecord.getBranoTag();
             if(pointedTag.equals(branoTag)) return pointedRecord;
@@ -274,6 +272,26 @@ public class EngineSearcher {
             EngineSorter sorter = new EngineSorter();
             sorter.sortTracksByTitles(tracks);
         }
+    }
+
+    public int getRecordIndexFromTag(DataBaseJudgements dataBase, String branoTag) {
+        if(!(dataBase == null)){
+            int size = dataBase.getSize();
+            EngineSorter sorter = new EngineSorter();
+            sorter.sortRecords(dataBase);
+        
+            int low = 0;
+            int high = size-1;
+            while(low<=high){
+                int mid = (low+high)/2;
+                UserJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
+                String pointedTag = pointedRecord.getBranoTag();
+                if(pointedTag.equals(branoTag)) return mid;
+                else if(branoTag.compareTo(pointedTag)<0) high = mid-1;
+                else low = mid+1;
+            }    
+        }
+        return -1;
     }
 
     

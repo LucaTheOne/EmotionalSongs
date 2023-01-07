@@ -1,10 +1,10 @@
 
 package emotionalsongs.GUI.Repository;
 
-import emotionalsongs.GUI.mainWindow.MainFrame;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.*;
 import java.awt.*;
 import java.io.*;
@@ -16,14 +16,14 @@ import javax.swing.*;
  */
 public class GUIRepositoryPanel extends javax.swing.JPanel {
     
-    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = MainFrame.getIstance();
     int tracksPerView = 100;
     int startIndex = 0;
     boolean firstPage = true;
     boolean lastPage = false;
     
-    Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
-    Song[] actualArrayWorking = repositoryCorrelato.getArray();
+    Repository repositoryCorrelated = Repository.getInstance();
+    Song[] actualArrayWorking = repositoryCorrelated.getArray();
 
     //Repository repo = new Repository();
     /**
@@ -215,7 +215,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelato.getArray();
+            actualArrayWorking = repositoryCorrelated.getArray();
             innerScroll.removeAll();
 
             for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
@@ -305,7 +305,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         searchBar.setText("");
-        actualArrayWorking = repositoryCorrelato.getArray();
+        actualArrayWorking = repositoryCorrelated.getArray();
         innerScroll.removeAll();
         for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
             innerScroll.add(actualArrayWorking[i].buildPanelView());   

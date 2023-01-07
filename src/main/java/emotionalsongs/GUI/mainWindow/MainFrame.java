@@ -19,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainPage
      */
-    private static MainFrame mainFrame = null;
+    private static MainFrame instance = null;
     private MainFrame() {
         
         initComponents();
@@ -29,9 +29,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     public static MainFrame getIstance(){
-        if(mainFrame==null)
-            mainFrame = new MainFrame();
-        return mainFrame;
+        if(instance==null) instance = new MainFrame();
+        return instance;
     }
     /**
      * This method is called from within the constructor to initialize the form.

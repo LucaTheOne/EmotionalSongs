@@ -123,7 +123,7 @@ public class EngineChecker {
         return cf != null && userDatabase.searchUserCf(cf) == null;
     }
 
-    public boolean checkIfVoted(String userId, Song brano, DataBaseRecords dataSetEmozioni) {
+    public boolean checkIfVoted(String userId, Song brano, DataBaseJudgements dataSetEmozioni) {
         if (dataSetEmozioni.isEmpty()) {
             return false;
         }
@@ -145,7 +145,7 @@ public class EngineChecker {
     }
     
     public boolean checkIfCanVote(String userId,String songTag){
-        DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
+        DataBaseJudgements dataBaseRecords = DataBaseJudgements.getInstance();
         if(dataBaseRecords.isEmpty()) return true;
         for(int i = 0; i<dataBaseRecords.getSize();i++){
             UserJudgement actualRecord = dataBaseRecords.getRecordFromIndex(i);

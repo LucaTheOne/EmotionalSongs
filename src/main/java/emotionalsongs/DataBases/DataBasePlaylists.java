@@ -3,8 +3,6 @@ package emotionalsongs.DataBases;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Engines.*;
 import java.io.*;
 import java.util.logging.*;
 
@@ -14,13 +12,18 @@ import java.util.logging.*;
  */
 public class DataBasePlaylists {
     
+    private static DataBasePlaylists instance = null;
     PlaylistSet[] dataBase = new PlaylistSet[0];
     boolean empty = true;
     
-    public DataBasePlaylists() {
+    private DataBasePlaylists() {
         importData();
     }
     
+    public static DataBasePlaylists getInstance(){
+        if(instance==null) instance = new DataBasePlaylists();
+        return instance;
+    }
     public void importData(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Utilities.pathToPlaylistDati));

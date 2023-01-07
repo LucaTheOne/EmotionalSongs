@@ -43,7 +43,7 @@ public class EngineSorter {
     }
     
     // records sort method
-    public void sortRecords(DataBaseRecords dataBaseEmozioni){
+    public void sortRecords(DataBaseJudgements dataBaseEmozioni){
         SorterRecords sorter = new SorterRecords();
         sorter.mergeSort(dataBaseEmozioni.getArray());
     }

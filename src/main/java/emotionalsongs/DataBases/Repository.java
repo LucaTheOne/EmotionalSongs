@@ -1,9 +1,9 @@
 
 package emotionalsongs.DataBases;
 
-import emotionalsongs.Engines.EngineSorter;
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.Utilities;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.*;
 import java.io.*;
 
 /**
@@ -13,7 +13,8 @@ import java.io.*;
  * @version 1.3
  */
 public class Repository {
-
+    
+    private static Repository instance;
     private Song[] repository;
 
     //Costruttore
@@ -25,7 +26,7 @@ public class Repository {
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public Repository() {
+    private Repository() {
         try {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream("../EMOTIONALSONGS/data/Canzoni.dati.txt")));
             repository = new Song[(int)Utilities.countLines(Utilities.pathToCanzoniDatiTxt)];
@@ -39,6 +40,11 @@ public class Repository {
             exception.getMessage();
         }
         
+    }
+    
+    public static Repository getInstance(){
+        if(instance== null) instance=new Repository();
+        return instance;
     }
     
     //modify methods

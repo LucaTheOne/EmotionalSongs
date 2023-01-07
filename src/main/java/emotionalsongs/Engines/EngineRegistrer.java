@@ -53,8 +53,8 @@ public class EngineRegistrer {
         System.out.println("utente creato");
         userDatabase.addNewUser(nuovo);
         System.out.println("utente aggiunto");
-        EMOTIONALSONGS.loggedUser = nuovo;
-        EMOTIONALSONGS.logged = true; 
+        EMOTIONALSONGS.setLoggedUser(nuovo);
+        EMOTIONALSONGS.setLogged (true); 
         WelcomeMailSender.sendMailToNewUser();
     }
 }

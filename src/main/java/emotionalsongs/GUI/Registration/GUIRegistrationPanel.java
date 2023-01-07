@@ -7,6 +7,8 @@ package emotionalsongs.GUI.Registration;
 import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
+import emotionalsongs.GUI.mainWindow.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -16,7 +18,7 @@ import javax.swing.*;
  */
 public class GUIRegistrationPanel extends javax.swing.JPanel {
     
-    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = MainFrame.getIstance();
     RegistrationManager manager;
     /**
      * Creates new form GUIRegistrationPanel

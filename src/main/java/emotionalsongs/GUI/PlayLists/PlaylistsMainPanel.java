@@ -17,7 +17,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
      */
     
     PlaylistSet userSet = EMOTIONALSONGS.userPlaylistSet;
-    PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
+    PlayListsManager playListsManager = PlayListsManager.getInstance();
     public PlaylistsMainPanel() {
         initComponents();
     }
@@ -81,7 +81,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EMOTIONALSONGS.playListsManager.openCreationFrame();
+        playListsManager.openCreationFrame();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     

@@ -1,6 +1,6 @@
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.PlayLists.*;
 import emotionalsongs.Managers.*;
@@ -24,7 +24,7 @@ public class Playlist {
     
     Song[] playlist;
     
-    PlayListsManager manager = EMOTIONALSONGS.playListsManager;
+    PlayListsManager manager = PlayListsManager.getInstance();
 
     //costruttore
     /**
@@ -126,7 +126,7 @@ public class Playlist {
     
     private Song searchFromTag(String songTag){
         EngineSearcher finder = new EngineSearcher();
-        return finder.searchBranoTag(EMOTIONALSONGS.REPOSITORY, songTag);
+        return finder.searchBranoTag(Repository.getInstance(), songTag);
     }
     
     public PlaylistSongsViewPanel buildPlaylistView(){

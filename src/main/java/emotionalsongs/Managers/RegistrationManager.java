@@ -4,7 +4,9 @@
  */
 package emotionalsongs.Managers;
 
+import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.Registration.*;
 import emotionalsongs.GUI.mainWindow.*;
@@ -15,6 +17,7 @@ import java.io.*;
  * @author big
  */
 public class RegistrationManager {
+    private static RegistrationManager instance = null;
     public GUIRegistrationPanel panel;
     public String userId;
     public String name;
@@ -25,23 +28,27 @@ public class RegistrationManager {
     public String password;
     public String passwordControl;
     public String birthDay;
-
-    public RegistrationManager() {
+    
+    public static RegistrationManager getInstance(){
+        if(instance== null) instance = new RegistrationManager();
+        return instance;
+    }
+    private RegistrationManager() {
         this.panel = new GUIRegistrationPanel(this);
     }
     
     public void startForm(){
-        EMOTIONALSONGS.mainWindow.setMainPanel(panel);
+        MainFrame.getIstance().setMainPanel(panel);
     }
     
     public void startRegistration(){
-        EngineRegistrer engine = new EngineRegistrer(EMOTIONALSONGS.userDataBase);
+        EngineRegistrer engine = new EngineRegistrer(DataBaseUsers.getInstance());
         panel.setAllCheckOff();
         boolean allDataValid = true;
         
         EngineChecker checker = new EngineChecker();
         if(checker.checkIdValidity(userId)){
-            if(!checker.checkIdNotTaken(EMOTIONALSONGS.userDataBase, userId)){
+            if(!checker.checkIdNotTaken(DataBaseUsers.getInstance(), userId)){
                 panel.idCheckLabel.setVisible(true);
                 panel.idCheckLabel.setText(EMOTIONALSONGS.dialoghi.userIdpresente());
                 allDataValid = false;
@@ -65,7 +72,7 @@ public class RegistrationManager {
         }
         
         if(checker.checkCfValidity(fiscalCode)){
-            if(!checker.checkCfNotPresent(EMOTIONALSONGS.userDataBase, fiscalCode)){
+            if(!checker.checkCfNotPresent(DataBaseUsers.getInstance(), fiscalCode)){
                 panel.cfCheckLabel.setVisible(true);
                 panel.cfCheckLabel.setText(EMOTIONALSONGS.dialoghi.cfpresente());
                 allDataValid = false;
@@ -114,9 +121,9 @@ public class RegistrationManager {
         
         try {
             engine.registraNuovoUtente(userId, name, secondName, fiscalCode, address, email, password, passwordControl, birthDay);
-            EMOTIONALSONGS.mainWindow.cleanUpMainPanel();
-            EMOTIONALSONGS.mainWindow.setUpperBar(new GUIMainUpperBarUnloggedPanel(EMOTIONALSONGS.mainWindow));
-            EMOTIONALSONGS.mainWindow.updateView();
+            MainFrame.getIstance().cleanUpMainPanel();
+            MainFrame.getIstance().setUpperBar(new GUIMainUpperBarUnloggedPanel(MainFrame.getIstance()));
+            MainFrame.getIstance().updateView();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }       

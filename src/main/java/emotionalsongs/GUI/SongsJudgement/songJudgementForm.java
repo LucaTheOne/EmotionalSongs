@@ -2,32 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUI.VotingSongs;
+package emotionalsongs.GUI.SongsJudgement;
 
-import emotionalsongs.BasicsStructure.UserJudgement;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
-import emotionalsongs.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.ErrorPopUp;
-import emotionalsongs.GUI.PlayLists.SongChartForPlaylist;
+import emotionalsongs.GUI.ErrorMessage.*;
+import emotionalsongs.GUI.PlayLists.*;
 import javax.swing.*;
 
 /**
  *
  * @author big
  */
-public class voteForm extends javax.swing.JPanel {
+public class songJudgementForm extends javax.swing.JPanel {
     
     /**
      * Creates new form voteForm
      */
-    public voteForm(String loggedUserId,String songToVoteTag,SongChartForPlaylist callerComponent) {
+    public songJudgementForm(String loggedUserId,String songToVoteTag,SongChartForPlaylist callerComponent) {
         this.loggedUserId = loggedUserId;
         this.songToVoteTag = songToVoteTag;
         this.callerComponent = callerComponent;
         EngineSearcher searcher = new EngineSearcher();
-        songUnderVotation = searcher.searchBranoTag(EMOTIONALSONGS.REPOSITORY, songToVoteTag);
+        songUnderVotation = searcher.searchBranoTag(Repository.getInstance(), songToVoteTag);
         initComponents();
     }
 
@@ -1345,8 +1343,8 @@ public class voteForm extends javax.swing.JPanel {
                 }
             }
 
-            DataBaseRecords dataBaseRecords = DataBaseRecords.getDatabase();
-            dataBaseRecords.addNewRecord(new UserJudgement(
+            DataBaseJudgements dataBaseRecords = DataBaseJudgements.getInstance();
+            dataBaseRecords.addNewUserJudgement(new UserJudgement(
                 songToVoteTag,
                 loggedUserId,
                 marks[0],notes[0],//amazement
@@ -1397,7 +1395,7 @@ public class voteForm extends javax.swing.JPanel {
         frame.setSize(800, 800);
         Repository repo = EMOTIONALSONGS.REPOSITORY;
         Song trySong = repo.getBrano(1527);
-        frame.add(new voteForm("userIdTryal",trySong.getTag()));
+        frame.add(new songJudgementForm("userIdTryal",trySong.getTag()));
         frame.setVisible(true);
     }
     */

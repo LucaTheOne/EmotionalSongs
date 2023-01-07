@@ -159,4 +159,12 @@
         Creati sistemi di controllo e verifica dei dati del form per i giudizi dell' utente.
         
                 -Bolelli Luca-
-        
+
+07/01/2023
+        Completato sistema di votazione delle emozioni delle canzoni ed iniziata a scrivere la gui che si occuperà di rappresentare i dati.
+        Convertiti i database a singleton.
+        Convertiti i managers a singleton.
+        Convertita a singleton anche l' interfaccia principale.
+        Prossimo obiettivo: applicare il design factory dove serve, tipo i engines e completare grfici.
+
+            -Bolelli Luca-

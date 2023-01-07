@@ -15,7 +15,7 @@ import java.io.*;
  */
 public class EngineLogger extends EMOTIONALSONGS{
     
-    DataBaseUsers database = EMOTIONALSONGS.userDataBase;
+    DataBaseUsers database = DataBaseUsers.getInstance();
     User user;
     public boolean idFounded = false;
     public boolean passwordMatches = false;
@@ -31,11 +31,11 @@ public class EngineLogger extends EMOTIONALSONGS{
         if(idFounded){
           passwordsMatch(Password);
             if(idFounded&&passwordMatches){
-                EMOTIONALSONGS.logged = true;
+                EMOTIONALSONGS.setLogged(idFounded);
                 EngineSearcher finder = new EngineSearcher();
-                EMOTIONALSONGS.loggedUser = finder.getUserFromId(database, UserId);
-                EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(loggedUser, dataBasePlaylists);
-                EMOTIONALSONGS.playListsManager = new PlayListsManager(dataBasePlaylists);
+                EMOTIONALSONGS.setLoggedUser(finder.getUserFromId(database, UserId));
+                EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance());
+                PlayListsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
 
             }  
         }
@@ -66,7 +66,7 @@ public class EngineLogger extends EMOTIONALSONGS{
     }
     
     public static void logout(){
-        EMOTIONALSONGS.logged = false;
-        EMOTIONALSONGS.loggedUser = null;
+        EMOTIONALSONGS.setLogged(false);
+        EMOTIONALSONGS.setLoggedUser(null);
     }
 }

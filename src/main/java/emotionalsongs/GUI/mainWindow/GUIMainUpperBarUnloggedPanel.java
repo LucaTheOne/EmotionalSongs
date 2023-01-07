@@ -4,8 +4,7 @@
  */
 package emotionalsongs.GUI.mainWindow;
 
-import emotionalsongs.Dialoghi.DialoghiEng;
-import emotionalsongs.Dialoghi.DialoghiIta;
+import emotionalsongs.Dialoghi.*;
 import emotionalsongs.GUI.Generics.*;
 import emotionalsongs.GUI.Login.*;
 import emotionalsongs.Managers.*;
@@ -16,12 +15,12 @@ import emotionalsongs.Managers.*;
  */
 public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
     
-    MainFrame mainPage;
+    MainFrame mainWindow;
     /**
      * Creates new form UnloggedToolBarPanel
      */
     public GUIMainUpperBarUnloggedPanel(MainFrame correlated) {
-        mainPage = correlated;
+        mainWindow = correlated;
         initComponents();
     }
 
@@ -173,30 +172,29 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
 
     private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
         if(menuButton.isSelected()){
-            mainPage.setLeftPanel(new GUIMainMenuLeftUnloggedExpanded(mainPage));
+            mainWindow.setLeftPanel(new GUIMainMenuLeftUnloggedExpanded(mainWindow));
         } else {
-            mainPage.setLeftPanel(new GUIMenuLeftVoid(mainPage));
+            mainWindow.setLeftPanel(new GUIMenuLeftVoid(mainWindow));
         }
     }//GEN-LAST:event_menuButtonStateChanged
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-            RegistrationManager manager = new RegistrationManager();
-            manager.startForm();
+            RegistrationManager.getInstance().startForm();
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
-        mainPage.setMainPanel(new GUICreditsPanel());
+        mainWindow.setMainPanel(new GUICreditsPanel());
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
         if(emotionalsongs.EMOTIONALSONGS.dialoghi instanceof DialoghiIta){
             emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiEng();
             LanguageButton.setText("English");
-            emotionalsongs.EMOTIONALSONGS.mainWindow.updateView();
+            mainWindow.updateView();
        } else {
            emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiIta();
             LanguageButton.setText("Italiano");
-            emotionalsongs.EMOTIONALSONGS.mainWindow.updateView();
+            mainWindow.updateView();
        }
     }//GEN-LAST:event_LanguageButtonActionPerformed
 

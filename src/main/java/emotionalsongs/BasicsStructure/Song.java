@@ -3,6 +3,7 @@ package emotionalsongs.BasicsStructure;
 import emotionalsongs.*;
 import emotionalsongs.GUI.PlayLists.*;
 import emotionalsongs.GUI.Repository.*;
+import emotionalsongs.Managers.*;
 import java.io.*;
 
 /**
@@ -102,7 +103,7 @@ public class Song {
     }
 
     public AddSongToPlaylistPanel buildPanelAddToPlaylist() {
-        return new AddSongToPlaylistPanel(this, EMOTIONALSONGS.playListsManager);
+        return new AddSongToPlaylistPanel(this, PlayListsManager.getInstance());
     }
     
     public String buildResearchQueryUrl(){

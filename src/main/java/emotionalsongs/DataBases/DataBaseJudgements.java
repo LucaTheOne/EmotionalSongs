@@ -1,10 +1,13 @@
 
 package emotionalsongs.DataBases;
 
-import emotionalsongs.BasicsStructure.UserJudgement;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.ErrorMessage.*;
 import java.io.*;
 
 /**
@@ -12,24 +15,24 @@ import java.io.*;
  * emozioni.
  * @author Bolelli Luca
  */
-public class DataBaseRecords {
+public class DataBaseJudgements {
     
     //Campi
     private UserJudgement[] dataBaseRecordsArray;
     private boolean empty = true;
-    private static DataBaseRecords dataBaseRecords = null;
+    private static DataBaseJudgements dataBaseRecords = null;
     //Costructor
     /**
      * Crea un oggetto che importFromFile i dati delle emozioni.
      */
-    private DataBaseRecords() {       
+    private DataBaseJudgements() {       
         importFromFile();
     }  
     
     //singleton instancer
-    public static DataBaseRecords getDatabase(){
+    public static DataBaseJudgements getInstance(){
         if (dataBaseRecords == null){
-            dataBaseRecords = new DataBaseRecords();
+            dataBaseRecords = new DataBaseJudgements();
             return dataBaseRecords;
         } else return dataBaseRecords;
     }
@@ -53,19 +56,19 @@ public class DataBaseRecords {
         
     }
         
-    public void addNewRecord(UserJudgement record){
+    public void addNewUserJudgement(UserJudgement userJudgement){
         if(!empty){
             UserJudgement[] newDataBase = new UserJudgement[dataBaseRecordsArray.length+1];
             for (int i = 0; i < dataBaseRecordsArray.length; i++) {
                 newDataBase[i] = dataBaseRecordsArray[i];
             }
-            newDataBase[newDataBase.length-1] = record;
+            newDataBase[newDataBase.length-1] = userJudgement;
             dataBaseRecordsArray = newDataBase;
             sortByBranoTag();
         }
         else {
             dataBaseRecordsArray = new UserJudgement[1];
-            dataBaseRecordsArray[0] = record;
+            dataBaseRecordsArray[0] = userJudgement;
         }
         save();
     }
@@ -99,9 +102,9 @@ public class DataBaseRecords {
         return this.dataBaseRecordsArray.length;
     }
     
-    public UserJudgement getSongFromTag(String branoTag){
+    private int getJudgementIndexFromTag(String branoTag){
         EngineSearcher searcher = new EngineSearcher();
-        return searcher.getRecordFromTag(this, branoTag);
+        return searcher.getRecordIndexFromTag(this, branoTag);
     }
     
     public UserJudgement getRecordFromIndex(int index){
@@ -112,12 +115,52 @@ public class DataBaseRecords {
         return empty;
     }
     
-    /* debugger Code*/
+    //searching methods
+    public UserJudgement[] searchJudgements(String songTag){
+        int firstIndexFound = getJudgementIndexFromTag(songTag);
+        if(firstIndexFound<0) return null;
+        UserJudgement[] founds = new UserJudgement[]{getRecordFromIndex(firstIndexFound)};
+        for(int i = firstIndexFound-1;i!=0;i--){
+            if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
+                founds = addTo(founds, dataBaseRecordsArray[i], 0);
+            else 
+                break;
+        }
+        for(int i = firstIndexFound+1;i<dataBaseRecordsArray.length;i++){
+            if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
+                founds = addTo(founds, dataBaseRecordsArray[i], 1);
+            else 
+                break;
+        }
+         return  founds;
+    }
     
+    private UserJudgement[] addTo(UserJudgement[] judgements, UserJudgement toAdd, int before_0_or_after_1){
+        UserJudgement[] newOne = new UserJudgement[judgements.length +1];
+        if(before_0_or_after_1 == 0){
+            for(int i = judgements.length;i>0;i--) newOne[i] = judgements[i];
+            newOne[0] = toAdd;
+        } else if(before_0_or_after_1 == 1){
+            for(int i = 0;i<judgements.length;i++) newOne[i] = judgements[i];
+            newOne[newOne.length-1] = toAdd;
+        } else {
+            new ErrorPopUp("errore, dato non valido");
+            newOne = judgements;
+        }
+        return newOne;
+    }
+    
+    /* debugger Code*/
+    /*
     public static void main(String[] args) {
         
-        DataBaseRecords data = DataBaseRecords.getDatabase();
-        System.out.println(data.getRecordFromIndex(1).getBranoTag());
+        DataBaseJudgements data = DataBaseJudgements.getInstance();
+        UserJudgement[] judgement = data.getArray();
+        UserJudgement jud = judgement[14];
+        UserJudgement[] searched = data.searchJudgements(jud.getBranoTag());
+        System.out.println(jud.getBranoTag());
+        System.out.println(searched.length);
+        System.out.println(searched[0].getUserIDRecord());
     }
-
+    */
 }

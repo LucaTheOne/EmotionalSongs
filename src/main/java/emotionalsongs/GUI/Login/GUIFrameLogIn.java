@@ -14,7 +14,7 @@ import java.awt.geom.*;
 public class GUIFrameLogIn extends javax.swing.JFrame {
     EngineLogger logger = new EngineLogger();
     Image bg = Utilities.logingBG.getImage();
-    MainFrame mainWindow = EMOTIONALSONGS.mainWindow;
+    MainFrame mainWindow = MainFrame.getIstance();
     /**
      * Creates new form LogFrame
      */
@@ -126,7 +126,6 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
             mainWindow.cleanUpMainPanel();
             mainWindow.setUpperBar(new GUIMainUpperBarLoggedPanel(mainWindow));
             mainWindow.setLeftPanel(new GUIMainMenuLeftLogged(mainWindow));
-            System.out.println(EMOTIONALSONGS.loggedUser.getUserId());
             dispose();
         }
     }//GEN-LAST:event_loginButtonActionPerformed

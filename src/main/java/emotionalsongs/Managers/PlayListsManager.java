@@ -7,8 +7,9 @@ import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
-import javax.swing.*;
+import emotionalsongs.GUI.mainWindow.*;
 
 
 /**
@@ -17,11 +18,12 @@ import javax.swing.*;
  */
 public class PlayListsManager {
     
+    private static PlayListsManager instance = null;
     PlaylistsMainPanel playlistPanel ;
     PlaylistCreationFrame creationFrame;
-    final DataBasePlaylists dataBasePlaylists;
+    final DataBasePlaylists dataBasePlaylists ;
         
-    User user = EMOTIONALSONGS.loggedUser;
+    User user = EMOTIONALSONGS.getLoggedUser();
     
     PlaylistSet userSet;
     int userSetDimension;
@@ -33,9 +35,16 @@ public class PlayListsManager {
     private Song[] songsToAdd = new Song[0];
     private int numberOfSongsSelected = 0;
     
+    public static PlayListsManager getInstanceFirstTime(DataBasePlaylists dataBasePlaylists){
+        if(instance==null) instance = new PlayListsManager(dataBasePlaylists);
+        return instance;
+    }
+    
+    public static PlayListsManager getInstance(){
+        return instance;
+    }
 
-
-    public PlayListsManager(DataBasePlaylists dataBasePlaylists) {
+    private PlayListsManager(DataBasePlaylists dataBasePlaylists) {
         EngineSearcher finder = new EngineSearcher();
         EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(user, dataBasePlaylists);
         userSet = EMOTIONALSONGS.userPlaylistSet;
@@ -63,7 +72,7 @@ public class PlayListsManager {
     //generator method
     public void registraPlaylist(){
         if(songsToAdd.length == 0){
-            JOptionPane.showMessageDialog(null, "Non si possono creare playlists vuote!");
+            new ErrorPopUp("Le playlist vuote non sono consentite!");
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
@@ -71,16 +80,15 @@ public class PlayListsManager {
         if(userSet == null){
             userSet = new PlaylistSet(user.getUserId(), newPlaylist);
             dataBasePlaylists.addNewSet(userSet);
-            EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
-            userSet = new EngineSearcher().searchUserSet(user, EMOTIONALSONGS.dataBasePlaylists);
+            userSet = new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance());
         } else {
             dataBasePlaylists.addToSet(newPlaylist);
-            EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
-            userSet = new EngineSearcher().searchUserSet(user, EMOTIONALSONGS.dataBasePlaylists);
+            //EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
+            userSet = new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance());
         } 
         
         playlistPanel.setLeftInnerPanel(userSet);
-        EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
+        MainFrame.getIstance().setMainPanel(playlistPanel);
         
     }
     
@@ -192,9 +200,9 @@ public class PlayListsManager {
 
     public void updatePlaylistsPanel() {
         playlistPanel = new PlaylistsMainPanel();
-        EMOTIONALSONGS.mainWindow.setMainPanel(playlistPanel);
-        EMOTIONALSONGS.mainWindow.revalidate();
-        EMOTIONALSONGS.mainWindow.repaint();
+        MainFrame.getIstance().setMainPanel(playlistPanel);
+        MainFrame.getIstance().revalidate();
+        MainFrame.getIstance().repaint();
     }
     
     public void addSongToPlaylist(Song songToAdd,Playlist playlistWhereToAddSong){

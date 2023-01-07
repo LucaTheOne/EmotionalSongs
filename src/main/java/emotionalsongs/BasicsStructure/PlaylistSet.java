@@ -1,6 +1,8 @@
 package emotionalsongs.BasicsStructure;
 
+import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 
 /**
@@ -108,7 +110,7 @@ public class PlaylistSet {
         }
         
         set = newSet;
-        EMOTIONALSONGS.dataBasePlaylists.save();
+        DataBasePlaylists.getInstance().save();
     }
 }
 

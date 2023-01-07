@@ -1,8 +1,7 @@
 
 package emotionalsongs.GUI.PlayLists;
 
-import emotionalsongs.BasicsStructure.Song;
-import emotionalsongs.EMOTIONALSONGS;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 
 /**
@@ -12,7 +11,7 @@ import emotionalsongs.Managers.*;
 public class AddSongToPlaylistPanel extends javax.swing.JPanel {
     
     Song song;
-    PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
+    PlayListsManager playListsManager = PlayListsManager.getInstance();
     
     /**
      * Creates new form GUIbranoViewPanel

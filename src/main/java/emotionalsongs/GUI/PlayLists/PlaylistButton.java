@@ -2,8 +2,10 @@
 package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 
@@ -18,7 +20,7 @@ public class PlaylistButton extends javax.swing.JPanel {
      */
     Playlist correlatedPlaylist;
     PlaylistSet originSet;
-    PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
+    PlayListsManager playListsManager = PlayListsManager.getInstance();
     public PlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
         correlatedPlaylist = playlist;
         this.originSet = EMOTIONALSONGS.userPlaylistSet;
@@ -68,7 +70,7 @@ public class PlaylistButton extends javax.swing.JPanel {
 
     private void deletePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePlaylistButtonActionPerformed
         EngineSearcher finder = new EngineSearcher();
-        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.loggedUser, EMOTIONALSONGS.dataBasePlaylists);
+        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance());
         EMOTIONALSONGS.userPlaylistSet.removePlaylist(correlatedPlaylist);
         playListsManager.updatePlaylistsPanel();
         playListsManager.reset();

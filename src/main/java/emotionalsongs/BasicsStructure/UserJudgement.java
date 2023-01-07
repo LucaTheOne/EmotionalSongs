@@ -105,5 +105,103 @@ public class UserJudgement {
         return this.branoTag.compareTo(record.getBranoTag());
     }
     
+    public int[] getMarksArray(){
+        int[] arrayMarks = new int[9];
+        arrayMarks[0] = amazementMark;
+        arrayMarks[1] = solemnityMark;
+        arrayMarks[2] = tendernessMark;
+        arrayMarks[3] = nostalgiaMark;
+        arrayMarks[4] = calmnessMark;
+        arrayMarks[5] = powerMark;
+        arrayMarks[6] = joyMark;
+        arrayMarks[7] = tensionMark;
+        arrayMarks[8] = sadnessMark;
+        return arrayMarks;
+    }
+    
+    public String[] getNotesArray(){
+        String[] arrayNotes = new String[9];
+        arrayNotes[0] = amazementNotes;
+        arrayNotes[1] = solemnityNotes;
+        arrayNotes[2] = tendernessNotes;
+        arrayNotes[3] = nostalgiaNotes;
+        arrayNotes[4] = calmnessNotes;
+        arrayNotes[5] = powerNotes;
+        arrayNotes[6] = joyNotes;
+        arrayNotes[7] = tendernessNotes;
+        arrayNotes[8] = sadnessNotes;
+        return arrayNotes;
+    }
+    //amazement getters
+    public int getAmazementMark(){
+        return amazementMark;
+    }
+    public String getAmazementNotes(){
+        return amazementNotes;
+    }
+    
+    //solemnity getters
+    public int getSolemnityMark(){
+        return solemnityMark;
+    }
+    public String getSolemnityNotes(){
+        return solemnityNotes;
+    }
+    
+    //tenderness Getters
+    public int getTendernessMark(){
+        return tendernessMark;
+    }
+    public String getTendernessNotes(){
+        return tendernessNotes;
+    }
+    
+    //nostalgia getters
+    public int getNostalgiaMark(){
+        return nostalgiaMark;
+    }
+    public String getNostalgiaNotes(){
+        return nostalgiaNotes;
+    }
+    
+    //calmness getters
+    public int getCalmnessMark(){
+        return calmnessMark;
+    }
+    public String getCalmnessNotes(){
+        return calmnessNotes;
+    }
+    
+    //power getters
+    public int getPowerMark(){
+        return powerMark;
+    }
+    public String getPowerNotes(){
+        return powerNotes;
+    }
+    
+    //joy getters
+    public int getJoyMark(){
+        return joyMark;
+    }
+    public String getJoyNotes(){
+        return joyNotes;
+    }
+    
+    //tension getters
+    public int getTensionMark(){
+        return tensionMark;
+    }
+    public String getTensionNotes(){
+        return tensionNotes;
+    }
+    
+    //sadness getters
+    public int getSadnessMark(){
+        return sadnessMark;
+    }
+    public String getSadnessNotes(){
+        return sadnessNotes;
+    }
     
 }

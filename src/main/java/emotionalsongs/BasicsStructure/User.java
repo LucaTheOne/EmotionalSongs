@@ -1,9 +1,10 @@
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.EMOTIONALSONGS;
-import emotionalsongs.Engines.EngineChecker;
-import emotionalsongs.Engines.EngineSearcher;
-import emotionalsongs.Utilities;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
 import java.io.*;
 import java.util.regex.*;
 
@@ -152,7 +153,7 @@ public class User {
     private void setNewUserID(String UserId) throws FileNotFoundException{
         EngineChecker checker = new EngineChecker();
         if(checker.checkIdValidity(UserId)){
-            if(checker.checkIdNotTaken(EMOTIONALSONGS.userDataBase, userId)){
+            if(checker.checkIdNotTaken(DataBaseUsers.getInstance(), userId)){
                 this.userId = userId;
             }
         }
@@ -237,7 +238,7 @@ public class User {
     
     public PlaylistSet getPlaylistSet(){
         EngineSearcher searcher = new EngineSearcher();
-        return searcher.searchUserSet(this, EMOTIONALSONGS.dataBasePlaylists);
+        return searcher.searchUserSet(this, DataBasePlaylists.getInstance());
     }
     
     //modifyng method

@@ -2,17 +2,16 @@
 package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.SongsJudgement.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Engines.EngineChecker;
-import emotionalsongs.GUI.VotingSongs.voteForm;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /**
  *
@@ -24,7 +23,7 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
      * Creates new form SongChartYTPanel
      */
     Song representedSong;
-    PlayListsManager playListsManager = EMOTIONALSONGS.playListsManager;
+    PlayListsManager playListsManager = PlayListsManager.getInstance();
     Playlist propertyPlaylist;
     String userId;
     boolean canBeVotedByUser;
@@ -209,7 +208,7 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
-        voteFrame.add(new voteForm(userId, representedSong.getTag(),this));
+        voteFrame.add(new songJudgementForm(userId, representedSong.getTag(),this));
         voteFrame.setVisible(canBeVotedByUser);
     }//GEN-LAST:event_voteButtonActionPerformed
 

@@ -6,10 +6,6 @@ import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
@@ -23,9 +19,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     /**
      * Creates new form PlaylistCreationFrame
      */
-    PlayListsManager playlistsManager = EMOTIONALSONGS.playListsManager;
-    Repository repositoryCorrelato = EMOTIONALSONGS.REPOSITORY;
-    Song[] actualArrayWorking = repositoryCorrelato.getArray();
+    PlayListsManager playlistsManager = PlayListsManager.getInstance();
+    Repository repositoryCorrelated = Repository.getInstance();
+    Song[] actualArrayWorking = repositoryCorrelated.getArray();
     
     int tracksPerView = 100;
     int startIndex = 0;
@@ -139,8 +135,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         selectedSongScrollViewPanel.setBackground(new Color(0,0,0,160));
         selectedSongScrollViewPanel.setOpaque(false);
-        selectedSongScrollViewPanel.setPreferredSize(new Dimension(jScrollPane1.getWidth(),30*EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd()));
-        selectedSongScrollViewPanel.setLayout(new java.awt.GridLayout(EMOTIONALSONGS.playListsManager.getNumberOfSongToAdd(), 1));
+        selectedSongScrollViewPanel.setPreferredSize(new Dimension(jScrollPane1.getWidth(),30*playlistsManager.getNumberOfSongToAdd()));
+        selectedSongScrollViewPanel.setLayout(new java.awt.GridLayout(playlistsManager.getNumberOfSongToAdd(), 1));
 
         searchPanel.setBackground(new java.awt.Color(51, 51, 51));
         searchPanel.setOpaque(false);
@@ -303,7 +299,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
         innerScroll.setLayout(new java.awt.GridLayout(100, 1));
         for(int i = 0;i<tracksPerView;i++){
-            innerScroll.add(repositoryCorrelato.getBrano(i).buildPanelAddToPlaylist());
+            innerScroll.add(repositoryCorrelated.getBrano(i).buildPanelAddToPlaylist());
         }
         scrollView.setViewportView(innerScroll);
 
@@ -334,15 +330,15 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_annullaButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        EMOTIONALSONGS.playListsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
-        EMOTIONALSONGS.playListsManager.registraPlaylist();
+        playlistsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
+        playlistsManager.registraPlaylist();
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelato.getArray();
+            actualArrayWorking = repositoryCorrelated.getArray();
             innerScroll.removeAll();
 
             for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
@@ -388,7 +384,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelato.getArray();
+            actualArrayWorking = repositoryCorrelated.getArray();
             innerScroll.removeAll();
 
             for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
@@ -504,8 +500,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     
     public void close() {
         this.dispose();
-        EMOTIONALSONGS.playListsManager.eraseSongToAdd();
-        EMOTIONALSONGS.playListsManager.eraseTitlePlaylist();
+        playlistsManager.eraseSongToAdd();
+        playlistsManager.eraseTitlePlaylist();
     }
     
     public void updateSongSelectedLabel(){

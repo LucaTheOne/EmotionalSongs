@@ -3,6 +3,7 @@ package emotionalsongs.welcomeEmailSender;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import java.io.*;
 import java.util.logging.*;
 
@@ -19,7 +20,7 @@ import java.util.logging.*;
  */
 class HTMLWelcomeBuilder {
     
-    User user = EMOTIONALSONGS.loggedUser;
+    User user = EMOTIONALSONGS.getLoggedUser();
     String message ="";
     String[] userdata = new String[8];
     String[] identifiers = {"%&0","%&1","%&2","%&3","%&4","%&5","%&6","%&7"};

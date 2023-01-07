@@ -12,10 +12,16 @@ import java.io.*;
  * @author big
  */
 public class DataBaseUsers {
+    private static DataBaseUsers instance = null;
     private User[] database;
     private String path = Utilities.pathToUserDatabase;
-    public DataBaseUsers(){
+    private DataBaseUsers(){
         importData();
+    }
+    
+    public static DataBaseUsers getInstance(){
+        if(instance==null) instance = new DataBaseUsers();
+        return instance;
     }
     
     private void importData() {
