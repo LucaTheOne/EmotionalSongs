@@ -168,3 +168,10 @@
         Prossimo obiettivo: applicare il design factory dove serve, tipo i engines e completare grfici.
 
             -Bolelli Luca-
+
+08/01/2023
+        Completata la classe ChartAndDataBuilder la quale si occupa di costruire grafici e stampare record relativi ai voti delle emozioni degli utenti riguardo una canzone.
+        Tutte le principali funzionalità del software richieste sono state completate.
+        Restano da trattare solo la parte grafica ed ultimare i sistemi di controllo.
+
+            -Bolelli Luca_

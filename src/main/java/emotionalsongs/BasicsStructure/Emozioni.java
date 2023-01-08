@@ -8,7 +8,7 @@ import emotionalsongs.*;
  * @author Bolelli Luca
  */
 public enum Emozioni {
-
+    
     /**
     * Meraviglia - Sensazione di stupore o felicità.
     */
@@ -51,6 +51,18 @@ public enum Emozioni {
     final private String descrizioneEmozione;
     private int[] grades;
     private String[] notes;
+    
+    //PUBLIC STATIC CONSTANTS
+    public static int 
+            AMAZEMENT_INDEX = 0,
+            SOLEMNITY_INDEX = 1,
+            TENDERNESS_INDEX = 2,
+            NOSTALGIA_INDEX = 3,
+            CALMNESS_INDEX = 4,
+            POWER_INDEX = 5,
+            JOY_INDEX = 6,
+            TENSION_INDEX = 7,
+            SADNESS_INDEX = 8;
 
 
     //costruttori
