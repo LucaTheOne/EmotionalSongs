@@ -1,11 +1,10 @@
-package emotionalsongs.dataRepresenter;
+package emotionalsongs.databuilder;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
 import java.awt.*;
-import javax.swing.*;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
@@ -21,19 +20,6 @@ public class ChartAndDataBuilder {
     private int[] amazementMarks,solemnityMarks,tendernessMarks,nostalgiaMarks,calmnessMarks,powerMarks,joyMarks,tensionMarks,sadnessMarks;
     private String amazementNotes = "",solemnityNotes ="",tendernessNotes = "",nostalgiaNotes = "",calmnessNotes = "",powerNotes = "",joyNotes = "",tensionNotes = "",sadnessNotes = "";
     JFreeChart[] arrayChartsEmotions;
-    
-    //emotion Index array
-    private int[] indexArray = {
-        Emozioni.AMAZEMENT_INDEX,
-        Emozioni.SOLEMNITY_INDEX,
-        Emozioni.TENDERNESS_INDEX,
-        Emozioni.NOSTALGIA_INDEX,
-        Emozioni.CALMNESS_INDEX,
-        Emozioni.POWER_INDEX,
-        Emozioni.JOY_INDEX,
-        Emozioni.TENSION_INDEX,
-        Emozioni.SADNESS_INDEX
-    };
     
     public ChartAndDataBuilder(String songTag) {
         buildData(songTag);
@@ -82,12 +68,14 @@ public class ChartAndDataBuilder {
     
     public String getSongDataReport(){
         String report = "REPORT DATI SUI GIUDIZI DELLE EMOZIONI PERCEPITE" + 
-                " DAGLI UTENTI NELL' ASCOLTO DELLA CANZONE:\n"+
-                "   TITOLO: " + analizingSong.getTitle().toUpperCase() +"\n"+
-                "   AUTORE: " + analizingSong.getAuthor().toUpperCase()+"\n"+
-                "   ANNO: "+ analizingSong.getYear()+"\n\n"+
+                " DAGLI UTENTI NELL' ASCOLTO DELLA CANZONE:\n\n"+
+                "   Titolo: " + analizingSong.getTitle() + ",\n"+
+                "   Autore: " + analizingSong.getAuthor() + ",\n"+
+                "   Anno: "+ analizingSong.getYear() + "\n\n"+
                 
-                "Numero di utenti che hanno espresso il loro parare: " + getNumberOfJudgements() + "\n\n"+   
+                "Numero di utenti che hanno espresso il loro parare: " + getNumberOfJudgements() + ".\n\n"+   
+                
+                "DATI RELATIVI AI GIUDIZI DEGLI UTENTI RIGUARDO ALLA PERCEZIONE DELLE RISPETTIVE EMOZIONI: " +"\n\n"+
                 
                 "Meraviglia:\n" +
                 "   media aritmetica: " + calculateAritmethicalMedium(amazementMarks) + "\n" + 
@@ -133,7 +121,6 @@ public class ChartAndDataBuilder {
                 "   media: " + calculateAritmethicalMedium(sadnessMarks) + "\n" + 
                 "   moda: " + findTrend(sadnessMarks) + "\n" + 
                 "   mediana: " + findMedian(sadnessMarks) + ".\n";
-        
         return report;
     }
     
@@ -164,7 +151,7 @@ public class ChartAndDataBuilder {
                 getEmotionNotes(Emozioni.TENSION_INDEX)+"\n\n"+
                 
                 "Tristezza:\n"+
-                getEmotionNotes(Emozioni.SADNESS_INDEX)+"\n\n";
+                getEmotionNotes(Emozioni.SADNESS_INDEX)+"\n";
         
         return report;
     }
@@ -386,6 +373,7 @@ public class ChartAndDataBuilder {
     }
     
     // debugger code
+    /*
     public static void main(String[] args) {
         ChartAndDataBuilder builder = new ChartAndDataBuilder("TRXWWGC12903CDDEA1");
         //System.out.println(builder.songUsersJudgements.length);
@@ -399,5 +387,5 @@ public class ChartAndDataBuilder {
         frame.add(new ChartPanel(builder.getMediansChart()));
         frame.setVisible(true);
         
-    }
+    }*/
 }
