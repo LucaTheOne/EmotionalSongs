@@ -6,6 +6,7 @@ import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
 import java.awt.*;
 import org.jfree.chart.*;
+import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
 
@@ -264,6 +265,10 @@ public class ChartAndDataBuilder {
         JFreeChart barChart = ChartFactory.createBarChart("Grafico delle medie dei voti delle emozioni", "emozioni", "medie dei voti", dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
+        NumberAxis yRange = new NumberAxis();
+        yRange.setRange(0, 5);
+        yRange.setTickUnit(new NumberTickUnit(0.2));
+        plot.setRangeAxis(yRange);
         return barChart;
     }
     
@@ -282,6 +287,10 @@ public class ChartAndDataBuilder {
         JFreeChart barChart = ChartFactory.createBarChart("Grafico dei trends dei voti delle emozioni", "emozioni", "trends dei voti", dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
+        NumberAxis yRange = new NumberAxis();
+        yRange.setRange(0, 5);
+        yRange.setTickUnit(new NumberTickUnit(0.2));
+        plot.setRangeAxis(yRange);
         return barChart;
     }
     
@@ -300,6 +309,10 @@ public class ChartAndDataBuilder {
         JFreeChart barChart = ChartFactory.createBarChart("Grafico delle mediane dei voti delle emozioni", "emozioni", "mediane dei voti", dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
+        NumberAxis yRange = new NumberAxis();
+        yRange.setRange(0, 5);
+        yRange.setTickUnit(new NumberTickUnit(0.2));
+        plot.setRangeAxis(yRange);
         return barChart;
     }
     
@@ -314,6 +327,11 @@ public class ChartAndDataBuilder {
         JFreeChart barChart = ChartFactory.createBarChart(typeOfEmotion, "Quanto un utente ha percepito l' emozione", "Numero di utenti", dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
+        NumberAxis yRange = new NumberAxis();
+        yRange.setRange(0, 5);
+        yRange.setTickUnit(new NumberTickUnit(1));
+        plot.setRangeAxis(yRange);
+        
         return barChart;
     }
     
