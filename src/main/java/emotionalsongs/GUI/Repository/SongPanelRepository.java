@@ -14,14 +14,14 @@ import java.net.*;
  *
  * @author big
  */
-public class SongChartYTPanel extends javax.swing.JPanel {
+public class SongPanelRepository extends javax.swing.JPanel {
 
     /**
-     * Creates new form SongChartYTPanel
+     * Creates new form SongPanelRepository
      */
     Song representedSong;
     
-    public SongChartYTPanel(Song representedSong) {
+    public SongPanelRepository(Song representedSong) {
         this.representedSong = representedSong;
         
         initComponents();
@@ -115,11 +115,13 @@ public class SongChartYTPanel extends javax.swing.JPanel {
         buttonsLabel.setOpaque(false);
         buttonsLabel.setPreferredSize(new java.awt.Dimension(150, 75));
         java.awt.GridBagLayout buttonsLabelLayout = new java.awt.GridBagLayout();
-        buttonsLabelLayout.columnWidths = new int[] {0, 20, 0};
-        buttonsLabelLayout.rowHeights = new int[] {0};
+        buttonsLabelLayout.columnWidths = new int[] {0};
+        buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        chartButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
+        chartButton.setOpaque(true);
+        chartButton.setPreferredSize(new java.awt.Dimension(125, 25));
         chartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chartButtonActionPerformed(evt);
@@ -130,15 +132,17 @@ public class SongChartYTPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         buttonsLabel.add(chartButton, gridBagConstraints);
 
-        ytButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        ytButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
+        ytButton.setOpaque(true);
+        ytButton.setPreferredSize(new java.awt.Dimension(125, 25));
         ytButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ytButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         buttonsLabel.add(ytButton, gridBagConstraints);
 
         add(buttonsLabel, java.awt.BorderLayout.EAST);

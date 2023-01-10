@@ -94,8 +94,8 @@ public class Song {
         return stringa;
     }
     
-    public SongChartYTPanel buildPanelView(){
-        return new SongChartYTPanel(this);
+    public SongPanelRepository buildPanelView(){
+        return new SongPanelRepository(this);
     }
     
     public void visualizzaEmozioneBrano(){
@@ -113,8 +113,8 @@ public class Song {
                 "+" + String.valueOf(year);
     }
     
-    public SongChartForPlaylist buildPlaylistPanel(Playlist propertyPlaylist){
-        return new SongChartForPlaylist(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
+    public SongPanel buildPlaylistPanel(Playlist propertyPlaylist){
+        return new SongPanel(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
     }
     
     public int compareTags(Song song) {

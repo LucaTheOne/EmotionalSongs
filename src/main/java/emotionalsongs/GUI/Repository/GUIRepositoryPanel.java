@@ -6,6 +6,10 @@ import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.mainWindow.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.mainWindow.*;
 import java.awt.*;
 import java.io.*;
 import javax.swing.*;
@@ -77,6 +81,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
         searchButton.setIcon(Utilities.searchIcon);
+        searchButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         searchButton.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -92,7 +97,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         X.setForeground(new java.awt.Color(255, 255, 255));
         X.setIcon(Utilities.closeButton);
         X.setAlignmentY(0.0F);
-        X.setBorder(null);
+        X.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 102), new java.awt.Color(255, 102, 102), new java.awt.Color(102, 0, 0), new java.awt.Color(153, 0, 0)));
         X.setPreferredSize(new java.awt.Dimension(50, 50));
         X.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +165,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +181,7 @@ public class GUIRepositoryPanel extends javax.swing.JPanel {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

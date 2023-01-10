@@ -144,7 +144,7 @@ public class DataBaseJudgements {
             for(int i = 0;i<judgements.length;i++) newOne[i] = judgements[i];
             newOne[newOne.length-1] = toAdd;
         } else {
-            new ErrorPopUp("errore, dato non valido");
+            new PopUpAllert("errore, dato non valido");
             newOne = judgements;
         }
         return newOne;

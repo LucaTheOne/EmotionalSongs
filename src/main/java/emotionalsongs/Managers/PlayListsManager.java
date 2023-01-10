@@ -72,7 +72,7 @@ public class PlayListsManager {
     //generator method
     public void registraPlaylist(){
         if(songsToAdd.length == 0){
-            new ErrorPopUp("Le playlist vuote non sono consentite!");
+            new PopUpAllert("Le playlist vuote non sono consentite!");
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
@@ -170,7 +170,7 @@ public class PlayListsManager {
        return new PlaylistsMainPanel();
     }
     
-    public void openCreationFrame(){
+    public void startCreation(){
         creationFrame = new PlaylistCreationFrame();
         creationFrame.setVisible(true);
     }

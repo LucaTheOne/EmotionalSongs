@@ -174,4 +174,12 @@
         Tutte le principali funzionalità del software richieste sono state completate.
         Restano da trattare solo la parte grafica ed ultimare i sistemi di controllo.
 
-            -Bolelli Luca_
+            -Bolelli Luca-
+
+10/01/2023
+        Effettuati ritocchi ad alcune componenti della gui.
+        Completata classe per la rappresentazione dei dati tramite grafici e testo.
+            -Ora è anche possibile esportare i dati in txt e png-
+        Da trattare, cambiare le scale dei grafici.
+        
+           -Bolelli Luca-

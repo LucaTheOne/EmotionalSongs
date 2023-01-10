@@ -5,9 +5,8 @@
 
 package emotionalsongs.GUI.mainWindow;
 
-import emotionalsongs.GUI.Repository.GUIRepositoryPanel;
+import emotionalsongs.GUI.Repository.*;
 import java.io.*;
-import emotionalsongs.*;
 
 /**
  *
@@ -35,7 +34,7 @@ public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(22,33,62, 160));
         setPreferredSize(new java.awt.Dimension(120, 600));
@@ -50,12 +49,12 @@ public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(230, 300));
         jPanel2.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        jButton2.setBackground(new java.awt.Color(15, 27, 54));
+        jButton2.setBackground(new java.awt.Color(15, 52, 96));
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Repository");
         jButton2.setToolTipText("");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton2.setBorder(null);
         jButton2.setOpaque(true);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,21 +65,21 @@ public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        jButton1.setText(EMOTIONALSONGS.dialoghi.chiudi());
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 50));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeButton.setBackground(new java.awt.Color(255, 0, 51));
+        closeButton.setForeground(new java.awt.Color(255, 255, 255));
+        closeButton.setText("Esci");
+        closeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, javax.swing.UIManager.getDefaults().getColor("Objects.Red"), javax.swing.UIManager.getDefaults().getColor("Component.custom.borderColor"), new java.awt.Color(102, 0, 0), new java.awt.Color(153, 0, 0)));
+        closeButton.setOpaque(true);
+        closeButton.setPreferredSize(new java.awt.Dimension(75, 50));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                closeButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, java.awt.BorderLayout.PAGE_END);
+        jPanel3.add(closeButton, java.awt.BorderLayout.PAGE_END);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainPage.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
@@ -89,11 +88,15 @@ public class GUIMainMenuLeftUnloggedExpanded extends javax.swing.JPanel {
             ex.getMessage();
         }    
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        mainPage.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton closeButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

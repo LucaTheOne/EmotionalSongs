@@ -3,6 +3,7 @@ package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 
@@ -34,7 +35,8 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         leftPanel = new javax.swing.JPanel();
         viewPlaylistSetPanel = new javax.swing.JScrollPane();
         innerPanelLeft = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        buttonPanel = new javax.swing.JPanel();
+        newPlaylistButton = new javax.swing.JButton();
         viewPlaylistScroll = new javax.swing.JScrollPane();
         innerPanelRight = new javax.swing.JPanel();
 
@@ -48,7 +50,8 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         viewPlaylistSetPanel.setBackground(new java.awt.Color(22,33,62,160));
         viewPlaylistSetPanel.setOpaque(false);
 
-        innerPanelLeft.setOpaque(false);
+        innerPanelLeft.setBackground(new java.awt.Color(22, 33, 62));
+        innerPanelLeft.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 204, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(0, 0, 102), new java.awt.Color(0, 0, 153)));
         innerPanelLeft.setPreferredSize(new Dimension(viewPlaylistScroll.getWidth(),50*playListsManager.getNumberOfPlaylists()));
         innerPanelLeft.setLayout(new java.awt.GridLayout(playListsManager.getNumberOfPlaylists()<20 ? 20 : playListsManager.getNumberOfPlaylists(), 1, 0, 5));
         if(userSet != null){
@@ -60,19 +63,29 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
 
         leftPanel.add(viewPlaylistSetPanel, java.awt.BorderLayout.CENTER);
 
-        jButton1.setText("Crea nuova playlist");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonPanel.setBackground(new java.awt.Color(255, 255, 255));
+        buttonPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204)));
+        buttonPanel.setPreferredSize(new java.awt.Dimension(100, 30));
+        buttonPanel.setLayout(new java.awt.BorderLayout());
+
+        newPlaylistButton.setBackground(new java.awt.Color(239, 239, 239));
+        newPlaylistButton.setText(" + Crea nuova playlist");
+        newPlaylistButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(102, 102, 102)));
+        newPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newPlaylistButtonActionPerformed(evt);
             }
         });
-        leftPanel.add(jButton1, java.awt.BorderLayout.SOUTH);
+        buttonPanel.add(newPlaylistButton, java.awt.BorderLayout.CENTER);
+
+        leftPanel.add(buttonPanel, java.awt.BorderLayout.SOUTH);
 
         add(leftPanel, java.awt.BorderLayout.LINE_START);
 
         viewPlaylistScroll.setOpaque(false);
 
         innerPanelRight.setBackground(new java.awt.Color(22, 33, 62));
+        innerPanelRight.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(51, 51, 255), new java.awt.Color(0, 0, 204), new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 102)));
         innerPanelRight.setPreferredSize(new java.awt.Dimension(viewPlaylistScroll.getWidth()<720 ? 720 : viewPlaylistScroll.getWidth(),viewPlaylistScroll.getHeight()<75*playListsManager.getNumberOfSongOfSelectedPlaylist()?75*playListsManager.getNumberOfSongOfSelectedPlaylist():viewPlaylistScroll.getHeight()));
         innerPanelRight.setLayout(new java.awt.BorderLayout());
         viewPlaylistScroll.setViewportView(innerPanelRight);
@@ -80,16 +93,17 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         add(viewPlaylistScroll, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        playListsManager.openCreationFrame();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void newPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlaylistButtonActionPerformed
+        playListsManager.startCreation();
+    }//GEN-LAST:event_newPlaylistButtonActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel innerPanelLeft;
     private javax.swing.JPanel innerPanelRight;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JButton newPlaylistButton;
     private javax.swing.JScrollPane viewPlaylistScroll;
     private javax.swing.JScrollPane viewPlaylistSetPanel;
     // End of variables declaration//GEN-END:variables

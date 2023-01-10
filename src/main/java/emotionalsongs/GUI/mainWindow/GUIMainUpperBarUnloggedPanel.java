@@ -62,6 +62,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
         menuButton.setAlignmentY(0.0F);
         menuButton.setBorder(null);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuButton.setOpaque(true);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         menuButton.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -86,6 +87,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
         RegisterButton.setAlignmentY(0.0F);
         RegisterButton.setBorder(null);
         RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RegisterButton.setOpaque(true);
         RegisterButton.setPreferredSize(new java.awt.Dimension(72, 18));
         RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +108,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
         CreditsButton.setAlignmentY(0.0F);
         CreditsButton.setBorder(null);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CreditsButton.setOpaque(true);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         CreditsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +129,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
         LanguageButton.setAlignmentY(0.0F);
         LanguageButton.setBorder(null);
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LanguageButton.setOpaque(true);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LanguageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +150,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
         LoginButton.setAlignmentY(0.0F);
         LoginButton.setBorder(null);
         LoginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LoginButton.setOpaque(true);
         LoginButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LoginButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {

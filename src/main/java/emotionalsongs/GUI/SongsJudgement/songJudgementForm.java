@@ -20,7 +20,7 @@ public class songJudgementForm extends javax.swing.JPanel {
     /**
      * Creates new form voteForm
      */
-    public songJudgementForm(String loggedUserId,String songToVoteTag,SongChartForPlaylist callerComponent) {
+    public songJudgementForm(String loggedUserId,String songToVoteTag,SongPanel callerComponent) {
         this.loggedUserId = loggedUserId;
         this.songToVoteTag = songToVoteTag;
         this.callerComponent = callerComponent;
@@ -1338,7 +1338,7 @@ public class songJudgementForm extends javax.swing.JPanel {
                 if(notes[i].length()<256)
                     notes[i] = formatAndCleanString(notes[i]);
                 else {
-                    new ErrorPopUp("Lunghezza massima di un commento o nata di 255 caratteri superata!").setVisible(true);
+                    new PopUpAllert("Lunghezza massima di un commento o nata di 255 caratteri superata!").setVisible(true);
                     return;
                 }
             }
@@ -1369,7 +1369,7 @@ public class songJudgementForm extends javax.swing.JPanel {
     private boolean allEmotionsVoted(){
         for(int i = 0;i<marks.length;i++) 
             if(marks[i]==0) {
-                new ErrorPopUp("Tutte le emozioni devono essere votate!").setVisible(true);
+                new PopUpAllert("Tutte le emozioni devono essere votate!").setVisible(true);
                 return false;
             }
         return true;
@@ -1518,5 +1518,5 @@ public class songJudgementForm extends javax.swing.JPanel {
     private String songToVoteTag;
     private Song songUnderVotation;
     private java.awt.GridBagLayout jPanel11Layout = new java.awt.GridBagLayout();
-    private SongChartForPlaylist callerComponent;
+    private SongPanel callerComponent;
 }

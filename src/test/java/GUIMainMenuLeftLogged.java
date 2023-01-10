@@ -1,9 +1,13 @@
-
 package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.GUI.Repository.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 
 /**
  *
@@ -30,38 +34,47 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        repositoryPanel = new javax.swing.JPanel();
+        repositoryButton = new javax.swing.JButton();
+        playlistPanel = new javax.swing.JPanel();
         playlistsButton = new javax.swing.JButton();
+        createPlaylistPanel = new javax.swing.JPanel();
         createButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(22,33,62, 160));
+        setBackground(new java.awt.Color(22,33,62,160));
         setPreferredSize(new java.awt.Dimension(120, 600));
         setLayout(new java.awt.BorderLayout(0, 5));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0,45));
         jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(120, 300));
+        jPanel3.setPreferredSize(new java.awt.Dimension(80, 300));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(230, 300));
         jPanel2.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        jButton2.setBackground(new java.awt.Color(15, 52, 96));
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Repository");
-        jButton2.setToolTipText("");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(true);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        repositoryPanel.setBackground(new java.awt.Color(0, 0, 0));
+        repositoryPanel.setLayout(new java.awt.BorderLayout());
+
+        repositoryButton.setBackground(new java.awt.Color(15, 52, 96));
+        repositoryButton.setForeground(new java.awt.Color(255, 255, 255));
+        repositoryButton.setText("Repository");
+        repositoryButton.setToolTipText("");
+        repositoryButton.setBorder(null);
+        repositoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                repositoryButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
+        repositoryPanel.add(repositoryButton, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(repositoryPanel);
+
+        playlistPanel.setBackground(new java.awt.Color(0, 0, 0));
+        playlistPanel.setLayout(new java.awt.BorderLayout());
 
         playlistsButton.setBackground(new java.awt.Color(15, 52, 96));
         playlistsButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,7 +86,12 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
                 playlistsButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(playlistsButton);
+        playlistPanel.add(playlistsButton, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(playlistPanel);
+
+        createPlaylistPanel.setBackground(new java.awt.Color(0, 0, 0));
+        createPlaylistPanel.setLayout(new java.awt.BorderLayout());
 
         createButton.setBackground(new java.awt.Color(15, 52, 96));
         createButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +103,9 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
                 createButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(createButton);
+        createPlaylistPanel.add(createButton, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(createPlaylistPanel);
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
@@ -119,40 +139,40 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        mainPage.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void repositoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repositoryButtonActionPerformed
         try {
             mainPage.setMainPanel(new GUIRepositoryPanel());
         } catch (IOException ex) {
             ex.getMessage();
-        }    
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        mainPage.dispose();
-    }//GEN-LAST:event_closeButtonActionPerformed
+        } 
+    }//GEN-LAST:event_repositoryButtonActionPerformed
 
     private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
         PlayListsManager.getInstance().updatePlaylistsPanel();
     }//GEN-LAST:event_playlistsButtonActionPerformed
 
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createButtonActionPerformed
-
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_profileButtonActionPerformed
-    
-    
 
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt){
+        PlayListsManager.getInstance().startCreation();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JButton createButton;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel createPlaylistPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel playlistPanel;
     private javax.swing.JButton playlistsButton;
     private javax.swing.JButton profileButton;
+    private javax.swing.JButton repositoryButton;
+    private javax.swing.JPanel repositoryPanel;
     // End of variables declaration//GEN-END:variables
 
 }

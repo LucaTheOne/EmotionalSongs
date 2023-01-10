@@ -1,7 +1,5 @@
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.*;
-
 
 /**
  * Le costanti rappresentano delle emozioni da attribuire al brano.
@@ -12,7 +10,7 @@ public enum Emozioni {
     /**
     * Meraviglia - Sensazione di stupore o felicità.
     */
-    AMAZEMENT(EMOTIONALSONGS.dialoghi.amazementNome(),"Sensazione di stupore o felicità."),
+    AMAZEMENT("Meraviglia","Sensazione di stupore o felicità."),
     /**
      * Solennità - Sensazione di trascendenza, ispirazione. Brividi.
      */

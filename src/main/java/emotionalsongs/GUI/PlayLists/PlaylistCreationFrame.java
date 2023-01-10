@@ -7,7 +7,6 @@ import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
 import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 /**
@@ -29,9 +28,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     boolean lastPage = false;
     
     public PlaylistCreationFrame() {
-        setUndecorated(true);
-        setShape(new RoundRectangle2D.Double(0, 0, 800, 650, 20, 20));
         initComponents();
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -90,7 +88,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 650));
 
         mainPanel.setOpaque(true);
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -102,7 +100,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         createButtonPanelLayout.rowHeights = new int[] {0};
         createButtonPanel.setLayout(createButtonPanelLayout);
 
-        createButton.setText(EMOTIONALSONGS.dialoghi.creaNuovaPlaylist());
+        createButton.setText("Crea nuova playlist");
+        createButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createButton.setPreferredSize(new java.awt.Dimension(150, 40));
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +113,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         createButtonPanel.add(createButton, gridBagConstraints);
 
-        annullaButton.setText(EMOTIONALSONGS.dialoghi.annulla());
+        annullaButton.setText("Annulla");
+        annullaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         annullaButton.setPreferredSize(new java.awt.Dimension(120, 40));
         annullaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +148,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
         searchButton.setIcon(Utilities.searchIcon);
+        searchButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         searchButton.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -184,6 +185,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +201,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,21 +214,31 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         selectPlaylistNamePanel.setBackground(new java.awt.Color(85, 124, 147));
         selectPlaylistNamePanel.setPreferredSize(new java.awt.Dimension(700, 50));
-        selectPlaylistNamePanel.setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout selectPlaylistNamePanelLayout = new java.awt.GridBagLayout();
+        selectPlaylistNamePanelLayout.columnWidths = new int[] {0, 15, 0};
+        selectPlaylistNamePanelLayout.rowHeights = new int[] {0};
+        selectPlaylistNamePanel.setLayout(selectPlaylistNamePanelLayout);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText(EMOTIONALSONGS.dialoghi.nuovaPlaylist());
-        selectPlaylistNamePanel.add(jLabel1, new java.awt.GridBagConstraints());
+        jLabel1.setText("Nome nuova playlist");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        selectPlaylistNamePanel.add(jLabel1, gridBagConstraints);
 
-        playlistNameTextField.setText("newPlaylist");
+        playlistNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        playlistNameTextField.setText("<new playlist>");
         playlistNameTextField.setPreferredSize(new java.awt.Dimension(250, 30));
         playlistNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playlistNameTextFieldActionPerformed(evt);
             }
         });
-        selectPlaylistNamePanel.add(playlistNameTextField, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        selectPlaylistNamePanel.add(playlistNameTextField, gridBagConstraints);
 
         TitlePanel.add(selectPlaylistNamePanel, java.awt.BorderLayout.CENTER);
 
@@ -253,7 +266,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(EMOTIONALSONGS.dialoghi.titolo());
+        titleLabel1.setText("Titolo");
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -264,7 +277,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(EMOTIONALSONGS.dialoghi.autore());
+        authorLabel1.setText("Autore");
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -275,7 +288,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(EMOTIONALSONGS.dialoghi.anno());
+        yearLabel1.setText("Anno");
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);
@@ -296,7 +309,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
         innerScroll.setOpaque(false);
-        innerScroll.setPreferredSize(new java.awt.Dimension(800, 3000));
+        innerScroll.setPreferredSize(new java.awt.Dimension(810, 3200));
         innerScroll.setLayout(new java.awt.GridLayout(100, 1));
         for(int i = 0;i<tracksPerView;i++){
             innerScroll.add(repositoryCorrelated.getBrano(i).buildPanelAddToPlaylist());

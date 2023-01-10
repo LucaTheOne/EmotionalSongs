@@ -2,11 +2,8 @@
 package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 
 /**
@@ -38,14 +35,17 @@ public class PlaylistButton extends javax.swing.JPanel {
     private void initComponents() {
 
         playListButton = new javax.swing.JButton();
-        deletePlaylistButton = new javax.swing.JButton();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(300, 60));
         setLayout(new java.awt.BorderLayout());
 
+        playListButton.setBackground(new java.awt.Color(56, 98, 139));
         playListButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        playListButton.setForeground(new java.awt.Color(255, 255, 255));
         playListButton.setText(correlatedPlaylist.getName());
+        playListButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), java.awt.Color.darkGray, java.awt.Color.gray));
+        playListButton.setOpaque(true);
         playListButton.setPreferredSize(new java.awt.Dimension(300, 60));
         playListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,14 +53,6 @@ public class PlaylistButton extends javax.swing.JPanel {
             }
         });
         add(playListButton, java.awt.BorderLayout.CENTER);
-
-        deletePlaylistButton.setPreferredSize(new java.awt.Dimension(40, 40));
-        deletePlaylistButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletePlaylistButtonActionPerformed(evt);
-            }
-        });
-        add(deletePlaylistButton, java.awt.BorderLayout.EAST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
@@ -68,17 +60,8 @@ public class PlaylistButton extends javax.swing.JPanel {
         playListsManager.setSelectedPlaylist(correlatedPlaylist);
     }//GEN-LAST:event_playListButtonActionPerformed
 
-    private void deletePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePlaylistButtonActionPerformed
-        EngineSearcher finder = new EngineSearcher();
-        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance());
-        EMOTIONALSONGS.userPlaylistSet.removePlaylist(correlatedPlaylist);
-        playListsManager.updatePlaylistsPanel();
-        playListsManager.reset();
-    }//GEN-LAST:event_deletePlaylistButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deletePlaylistButton;
     private javax.swing.JButton playListButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,13 +8,13 @@ package emotionalsongs.GUI.ErrorMessage;
  *
  * @author Megaport
  */
-public class ErrorPopUp extends javax.swing.JFrame {
+public class PopUpAllert extends javax.swing.JFrame {
 
     /**
-     * Creates new form ErrorPopUp
+     * Creates new form PopUpAllert
      */
     private String errorMessage;
-    public ErrorPopUp(String errorMessage) {
+    public PopUpAllert(String errorMessage) {
         this.errorMessage=errorMessage;
         initComponents();
     }
@@ -35,10 +35,9 @@ public class ErrorPopUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(300, 200));
         setResizable(false);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

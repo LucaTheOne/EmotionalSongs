@@ -156,12 +156,16 @@ public class ChartAndDataBuilder {
         return report;
     }
     
+    public String buildDataFolderName(){
+        return "Report_"+analizingSong.getTitle()+"_"+analizingSong.getAuthor()+"_"+analizingSong.getYear()+"_"+analizingSong.getTag();
+    }
+    
     // private internal methods
     private void buildData(String songTag){
         analizingSong=new EngineSearcher().searchBranoTag(Repository.getInstance(), songTag);
         songUsersJudgements = DataBaseJudgements.getInstance().searchJudgements(songTag);
         if(songUsersJudgements == null){
-            new ErrorPopUp(
+            new PopUpAllert(
                     "Non sono disponibili informazioni per questa canzone: \n" + 
                     "Titolo: " + analizingSong.getTitle() + "\n" +
                     "Autore: " + analizingSong.getAuthor() + "\n"+

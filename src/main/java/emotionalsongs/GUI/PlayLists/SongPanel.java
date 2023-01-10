@@ -4,10 +4,9 @@ package emotionalsongs.GUI.PlayLists;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.SongsJudgement.*;
+import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -17,7 +16,7 @@ import javax.swing.*;
  *
  * @author big
  */
-public class SongChartForPlaylist extends javax.swing.JPanel {
+public class SongPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SongChartYTPanel
@@ -27,7 +26,7 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     Playlist propertyPlaylist;
     String userId;
     boolean canBeVotedByUser;
-    public SongChartForPlaylist(String userId,Song representedSong,Playlist playlistProperty) {
+    public SongPanel(String userId,Song representedSong,Playlist playlistProperty) {
         this.representedSong = representedSong;
         this.propertyPlaylist = playlistProperty;
         this.userId = userId;
@@ -126,24 +125,29 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         buttonsLabel.setOpaque(false);
         buttonsLabel.setPreferredSize(new java.awt.Dimension(300, 75));
         java.awt.GridBagLayout buttonsLabelLayout = new java.awt.GridBagLayout();
-        buttonsLabelLayout.columnWidths = new int[] {0, 20, 0, 20, 0, 20, 0};
-        buttonsLabelLayout.rowHeights = new int[] {0};
+        buttonsLabelLayout.columnWidths = new int[] {0, 21, 0};
+        buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        voteButton.setBackground(new java.awt.Color(153, 153, 255));
+        voteButton.setText("Vota");
+        voteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         voteButton.setEnabled(canBeVotedByUser);
-        voteButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        voteButton.setOpaque(true);
+        voteButton.setPreferredSize(new java.awt.Dimension(125, 25));
         voteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voteButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
         buttonsLabel.add(voteButton, gridBagConstraints);
 
-        chartButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        chartButton.setText("Dati canzone");
+        chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        chartButton.setOpaque(true);
+        chartButton.setPreferredSize(new java.awt.Dimension(125, 25));
         chartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chartButtonActionPerformed(evt);
@@ -154,20 +158,26 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         buttonsLabel.add(chartButton, gridBagConstraints);
 
+        removeButton.setText("Rimuovi");
+        removeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         removeButton.setEnabled(false);
         removeButton.setFocusable(false);
-        removeButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        removeButton.setOpaque(true);
+        removeButton.setPreferredSize(new java.awt.Dimension(125, 25));
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         buttonsLabel.add(removeButton, gridBagConstraints);
 
-        ytButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        ytButton.setText("YT");
+        ytButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ytButton.setOpaque(true);
+        ytButton.setPreferredSize(new java.awt.Dimension(125, 25));
         ytButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ytButtonActionPerformed(evt);
@@ -182,7 +192,12 @@ public class SongChartForPlaylist extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
-        // TODO add your handling code here:
+        //JFrame chartFrame = new JFrame("Dati canzone");
+        //chartFrame.setSize(1050, 680);
+        //chartFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //chartFrame.add(new DataVisualizationForm(representedSong.getTag()));
+        //chartFrame.setVisible(true);
+        new DataVisualizationForm(representedSong.getTag()).setVisible(true);
     }//GEN-LAST:event_chartButtonActionPerformed
 
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed

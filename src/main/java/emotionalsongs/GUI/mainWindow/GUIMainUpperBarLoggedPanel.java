@@ -2,7 +2,6 @@ package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.Dialoghi.*;
 import emotionalsongs.*;
-import emotionalsongs.Dialoghi.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.Generics.*;
 
@@ -65,6 +64,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         menuButton.setAlignmentY(0.0F);
         menuButton.setBorder(null);
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuButton.setOpaque(true);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
         menuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         menuButton.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -87,7 +87,9 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         ProfileButton.setText(EMOTIONALSONGS.dialoghi.profile());
         ProfileButton.setAlignmentY(0.0F);
+        ProfileButton.setBorder(null);
         ProfileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ProfileButton.setOpaque(true);
         ProfileButton.setPreferredSize(new java.awt.Dimension(72, 18));
         ProfileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         ProfileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,9 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
         CreditsButton.setText(EMOTIONALSONGS.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
+        CreditsButton.setBorder(null);
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CreditsButton.setOpaque(true);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
         CreditsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         CreditsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +131,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         LanguageButton.setAlignmentY(0.0F);
         LanguageButton.setBorder(null);
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LanguageButton.setOpaque(true);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LanguageButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LanguageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +152,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         LogOutButton.setAlignmentY(0.0F);
         LogOutButton.setBorder(null);
         LogOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LogOutButton.setOpaque(true);
         LogOutButton.setPreferredSize(new java.awt.Dimension(72, 18));
         LogOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {

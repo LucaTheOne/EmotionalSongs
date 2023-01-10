@@ -50,7 +50,7 @@ public class AddSongToPlaylistPanel extends javax.swing.JPanel {
         buttonsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         addButton.setText("+");
-        addButton.setBorder(null);
+        addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         addButton.setEnabled(!playListsManager.containInSongsToAdd(song));
         addButton.setOpaque(true);
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +62,7 @@ public class AddSongToPlaylistPanel extends javax.swing.JPanel {
 
         removeButton.setBackground(new java.awt.Color(204, 0, 51));
         removeButton.setText("-");
-        removeButton.setBorder(null);
+        removeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 51), new java.awt.Color(255, 102, 102), new java.awt.Color(153, 51, 0), new java.awt.Color(153, 51, 0)));
         removeButton.setEnabled(playListsManager.containInSongsToAdd(song));
         removeButton.setOpaque(true);
         removeButton.addActionListener(new java.awt.event.ActionListener() {
