@@ -108,6 +108,10 @@ public class User {
         return password;
     }
     
+    /**
+     * Il metodo ritorna l'insieme delle Playlist associate all'utente.
+     * @return PlaylistSet.
+     */
     public PlaylistSet getPlaylistSet(){
         EngineSearcher searcher = new EngineSearcher();
         return searcher.searchUserSet(this, DataBasePlaylists.getInstance());
@@ -251,10 +255,32 @@ public class User {
     }
     
     //metodi di comparazione
+    /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se l'id utente che chiama il metodo
+     * è lessicograficamente precedente l'id utente passato come argomento.</li>
+     * <li>Un intero positivo se lessicograficamente seguente l'id utente passato come argomento. </li>
+     * <li>Zero se sono uguali. </li>
+     * </ul>
+     * @param user Utente.
+     * @return Un numero intero.
+     */
     public int compareId(User user) {
         return this.userId.compareToIgnoreCase(user.getUserId());
     }
     
+    /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se il codice fiscale dell'utente che chiama il metodo
+     * è lessicograficamente precedente al codice fisicale dell'utente passato come argomento.</li>
+     * <li>Un intero positivo se lessicograficamente seguente al codice fiscale dell'utente passato come argomento. </li>
+     * <li>Zero se sono uguali. </li>
+     * </ul>
+     * @param user Utente
+     * @return Un numero intero.
+     */
     public int compareCf(User user) {
         return this.cf.compareToIgnoreCase(user.getCF());
     }

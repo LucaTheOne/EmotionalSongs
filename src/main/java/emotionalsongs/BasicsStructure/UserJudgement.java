@@ -6,7 +6,7 @@
 package emotionalsongs.BasicsStructure;
 
 /**
- * La classe importa le emozioni per ogni brani.
+ * La classe importa le emozioni per ogni brano.
  * @author 
  */
 public class UserJudgement {
@@ -74,19 +74,43 @@ public class UserJudgement {
     }
 
     //getters
+    /**
+     * 
+     * @return 
+     */
     public String getBranoTag() {
         return this.branoTag;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getUserIDRecord() {
         return this.userID;
     }
     
     //comparing
+    
+    /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se il tag della canzone che chiama il metodo
+     * è lessicograficamente precedente al tag della canzone che l'utente a passata come argomento.</li>
+     * <li>Un intero positivo se lessicograficamente seguente al tag della canzone passata come argomento. </li>
+     * <li>Zero se sono uguali. </li>
+     * </ul>
+     * @param record
+     * @return Un numero intero.
+     */
     public int compareTo(UserJudgement record) {
         return this.branoTag.compareTo(record.getBranoTag());
     }
     
+    /**
+     * Il metodo restituisce un array di interi contenente tutti i voti.
+     * @return Array di interi.
+     */
     public int[] getMarksArray(){
         int[] arrayMarks = new int[9];
         arrayMarks[0] = amazementMark;
@@ -101,6 +125,10 @@ public class UserJudgement {
         return arrayMarks;
     }
     
+    /**
+     * Il metodo restituisce un array di stringhe contenente tutti i commenti.
+     * @return Array di stringhe.
+     */
     public String[] getNotesArray(){
         String[] arrayNotes = new String[9];
         arrayNotes[0] = amazementNotes;
@@ -115,73 +143,154 @@ public class UserJudgement {
         return arrayNotes;
     }
     //amazement getters
+    /**
+     * Il metodo restituisce il voto dell'emozione Meraviglia.
+     * @return Il voto dell'emozione Meraviglia.
+     */
     public int getAmazementMark(){
         return amazementMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Meraviglia.
+     * @return Il commento all'emozione Meraviglia.
+     */
     public String getAmazementNotes(){
         return amazementNotes;
     }
     
     //solemnity getters
+    /**
+     * Il metodo restituisce il voto dell'emozione Solennità.
+     * @return Il voto dell'emozione Solennità.
+     */
     public int getSolemnityMark(){
         return solemnityMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Solennità.
+     * @return Il commento all'emozione Solennità.
+     */
     public String getSolemnityNotes(){
         return solemnityNotes;
     }
     
     //tenderness Getters
+    /**
+     * Il metodo restituisce il voto dell'emozione Tenerezza.
+     * @return Il voto dell'emozione Tenerezza.
+     */
     public int getTendernessMark(){
         return tendernessMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Tenerezza.
+     * @return Il commento all'emozione Tenerezza.
+     */
     public String getTendernessNotes(){
         return tendernessNotes;
     }
     
     //nostalgia getters
+     /**
+     * Il metodo restituisce il voto dell'emozione Nostalgia.
+     * @return Il voto dell'emozione Nostalgia.
+     */
     public int getNostalgiaMark(){
         return nostalgiaMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Nostalgia.
+     * @return Il commento all'emozione Nostalgia.
+     */
     public String getNostalgiaNotes(){
         return nostalgiaNotes;
     }
     
     //calmness getters
+     /**
+     * Il metodo restituisce il voto dell'emozione Pacatezza.
+     * @return Il voto dell'emozione Pacatezza.
+     */
     public int getCalmnessMark(){
         return calmnessMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Pacatezza.
+     * @return Il commento all'emozione Pacatezza.
+     */
     public String getCalmnessNotes(){
         return calmnessNotes;
     }
     
     //power getters
+     /**
+     * Il metodo restituisce il voto dell'emozione Potere.
+     * @return Il voto dell'emozione Potere.
+     */
     public int getPowerMark(){
         return powerMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Potere.
+     * @return Il commento all'emozione Potere.
+     */
     public String getPowerNotes(){
         return powerNotes;
     }
     
     //joy getters
+     /**
+     * Il metodo restituisce il voto dell'emozione Gioia.
+     * @return Il voto dell'emozione Gioia.
+     */
     public int getJoyMark(){
         return joyMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Gioia.
+     * @return Il commento all'emozione Gioia.
+     */
     public String getJoyNotes(){
         return joyNotes;
     }
     
     //tension getters
+     /**
+     * Il metodo restituisce il voto dell'emozione Tensione.
+     * @return Il voto dell'emozione Tensione.
+     */
     public int getTensionMark(){
         return tensionMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Tensione.
+     * @return Il commento all'emozione Tensione.
+     */
     public String getTensionNotes(){
         return tensionNotes;
     }
     
     //sadness getters
+    /**
+     * Il metodo restituisce il voto dell'emozione Tristezza.
+     * @return Il voto dell'emozione Tristezza.
+     */
     public int getSadnessMark(){
         return sadnessMark;
     }
+    
+    /**
+     * Il metodo restituisce il commento all'emozione Tristezza.
+     * @return Il commento all'emozione Tristezza.
+     */
     public String getSadnessNotes(){
         return sadnessNotes;
     }

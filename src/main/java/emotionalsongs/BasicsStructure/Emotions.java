@@ -22,7 +22,7 @@ public enum Emotions {
     /**
      * Tenereza - Sensualità, affetto, sentimento di amore.
      */
-    TENDERNESS("Tenereza","Sensualità, affetto, sentimento di amore."),
+    TENDERNESS("Tenerezza","Sensualità, affetto, sentimento di amore."),
     /**
      * Nostalgia - Sognante, malinconia, sentimento di emotività.
      */

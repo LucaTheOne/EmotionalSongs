@@ -95,7 +95,7 @@ public class Song {
     }
     
     /**
-     * 
+     * Il metodo apre una finestra contenente il report riassuntivo delle emozioni.
      */
     public void visualizzaEmozioneBrano(){
         new DataVisualizationForm(tag).setVisible(true);
@@ -103,16 +103,16 @@ public class Song {
     
     //metodi di costruzione
     /**
-     * 
-     * @return 
+     * Il metodo crea il pannello della repository. 
+     * @return Il pannello.
      */
     public SongPanelRepository buildPanelView(){
         return new SongPanelRepository(this);
     }
     
     /**
-     * 
-     * @return 
+     * Il metodo crea il pannello che visualizza le canzoni del repository e permette di aggiungerle nella playlist.
+     * @return Il pannello.
      */
     public AddSongToPlaylistPanel buildPanelAddToPlaylist() {
         return new AddSongToPlaylistPanel(this, PlayListsManager.getInstance());
