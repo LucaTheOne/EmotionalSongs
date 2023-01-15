@@ -8,8 +8,8 @@ import emotionalsongs.*;
 import emotionalsongs.Engines.*;
 
 /**
- *
- * @author alexandruboitor
+ * La classe si occupa di gestire i dati associati a ciascuna Playlist.
+ * @author Luca
  */
 public class PlaylistSet {
    
@@ -17,8 +17,10 @@ public class PlaylistSet {
     private Playlist[] set;
     private String idOwner;
     //costructors
+   
     /**
      * 
+     * @param stringFromFile 
      */
     public PlaylistSet(String stringFromFile){
         String[] str = stringFromFile.split(";"); 
@@ -46,6 +48,7 @@ public class PlaylistSet {
     public Playlist[] getArray(){
         return this.set;
     }
+    
     
     public int getSize(){
         return set.length;
@@ -98,21 +101,6 @@ public class PlaylistSet {
         this.set = newSet;
         
     }  
-    /*
-    public void removePlaylist(Playlist playlistToDelete) {
-        int counter = 0;
-        Playlist[] newSet = new Playlist[set.length-1];
-        for (int i = 0; i < set.length; i++) {
-            if(set[i].equals(playlistToDelete)) set[i] = null;    
-        }
-        
-        for (int i = 0; i < set.length; i++) {
-            if(set[i] == null) continue;
-            newSet[counter++] = set[i];
-        }
-        
-        set = newSet;
-        DataBasePlaylists.getInstance().save();
-    }*/
+   
 }
 

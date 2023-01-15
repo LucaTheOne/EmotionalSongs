@@ -95,7 +95,7 @@ public enum Emotions {
 
     /**
      * Il metodo restituisce l'emozione richiesta.
-     * @return 
+     * @return L'emozione.
      */
     public Emotions getEmotion(){
         return this;

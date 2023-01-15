@@ -93,19 +93,35 @@ public class Song {
         String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
         return stringa;
     }
+    
+    /**
+     * 
+     */
     public void visualizzaEmozioneBrano(){
         new DataVisualizationForm(tag).setVisible(true);
     }
-    //metodi di costruzione
     
+    //metodi di costruzione
+    /**
+     * 
+     * @return 
+     */
     public SongPanelRepository buildPanelView(){
         return new SongPanelRepository(this);
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public AddSongToPlaylistPanel buildPanelAddToPlaylist() {
         return new AddSongToPlaylistPanel(this, PlayListsManager.getInstance());
     }
     
+    /**
+     * Il metodo costruisce il link di ricerca della canzone su youtube.
+     * @return L'url di ricerca della canzone.
+     */
     public String buildResearchQueryUrl(){
         return "https://www.youtube.com/results?search_query=" + 
                 title.replaceAll(" ", "+") +
@@ -113,23 +129,72 @@ public class Song {
                 "+" + String.valueOf(year);
     }
     
+    /**
+     * Il metodo crea il pannello che contiene la Playlist.
+     * @param propertyPlaylist
+     * @return Il pannello con la Playlist.
+     */
     public SongPanel buildPanelForPlaylist(Playlist propertyPlaylist){
         return new SongPanel(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
     }
     
     //metodi di confronto
+    /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se il tag della canzone che chiama il metodo
+     * è lessicograficamente precedente al tag della canzone passata come argomento </li>
+     * <li>Un intero positivo se lessicograficamente seguente al tag della canzone passata come argomento </li>
+     * <li>Zero se sono uguali </li>
+     * </ul>
+     * @param song Canzone.
+     * @return Ritorna un numero intero.
+     */
     public int compareTags(Song song) {
         return this.tag.compareTo(song.getTag());
     }
-
+    
+     /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se il titolo della canzone che chiama il metodo
+     * è lessicograficamente precedente al titolo della canzone passata come argomento </li>
+     * <li>Un intero positivo se lessicograficamente seguente al titolo della canzone passata come argomento </li>
+     * <li>Zero se sono uguali </li>
+     * </ul>
+     * @param song Canzone.
+     * @return Ritorna un numero intero.
+     */
     public int compareTitles(Song song) {
         return this.title.compareTo(song.getTitle());
     }
     
+      /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se l'autore della canzone che chiama il metodo
+     * è lessicograficamente precedente all'autore della canzone passata come argomento. </li>
+     * <li>Un intero positivo se lessicograficamente seguente all'autore della canzone passata come argomento. </li>
+     * <li>Zero se sono uguali. </li>
+     * </ul>
+     * @param song Canzone.
+     * @return Ritorna un numero intero.
+     */
     public int compareAuthors(Song song) {
         return this.author.compareTo(song.getAuthor());
     }
     
+      /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se l'anno della canzone che chiama il metodo
+     * è lessicograficamente precedente all'anno della canzone passata come argomento.</li>
+     * <li>Un intero positivo se lessicograficamente seguente all'anno della canzone passata come argomento. </li>
+     * <li>Zero se sono uguali. </li>
+     * </ul>
+     * @param song Canzone.
+     * @return Ritorna un numero intero.
+     */
     public int compareYear(Song song) {
         return this.year-song.getYear();
     }

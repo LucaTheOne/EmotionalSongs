@@ -19,15 +19,10 @@ import java.io.*;
 public class Playlist {
 
     //CAMPI 
-    /**
-     * Nome playlist.
-     */
+  
     private String playlistName;//no special characters ;
-
     private String[] songsTags;
-    
-    private Song[] playlist;
-    
+    private Song[] playlist; 
     private PlayListsManager manager = PlayListsManager.getInstance();
 
     /**
@@ -46,17 +41,18 @@ public class Playlist {
     }
     
     /**
-     * Crea l'oggetto Playlist 
-     * @param stringFromFile 
+     * Costruttore che costruisce una playlist usando le righie di un file. 
+     * @param stringFromFile Righe del file rappresentanti le canzoni. 
      */
     public Playlist(String stringFromFile){
         this(stringFromFile.split(":")[0], stringFromFile.split(":")[1]);
     }
     
     /**
-     * 
-     * @param playlistName
-     * @param selectedSongs 
+     * Costruisce un oggetto Playlist prendendo come argomenti nome della Playlist e un array di canzoni
+     * quali la rappresentano.
+     * @param playlistName Nome Playlist.
+     * @param selectedSongs Array di canzoni.
      */
     public Playlist(String playlistName,Song[] selectedSongs){
         this.playlistName = playlistName;
@@ -86,26 +82,26 @@ public class Playlist {
     }
     
     /**
-     * Il metodo metodo prenede come argomento una posizione nella playlist e 
-     * restituisce la canazone. 
-     * @param index Posizione canzone.
-     * @return 
+     * Il metodo metodo prende come argomento un intero che rappresenta l'indice della canzione ricercata
+     * e ne restituisce il tag. 
+     * @param index Indice della canzone.
+     * @return Tag della canzone in posizione index.
      */
     public String getSongByIndex(int index){
         return songsTags[index];
     }
     
     /**
-     * Il metodo restituisce la playlist.
-     * @return  playlist.
+     * Il metodo restituisce il tag delle canzoni.
+     * @return  Tag delle canzoni.
      */
     public String[] getArrayTags() {
         return songsTags;
     }
     
     /**
-     * Il metodo restituisce un'array della playlist.
-     * @return 
+     * Il metodo restituisce un array di canzoni.
+     * @return Array di canzoni.
      */
     public Song[] getArraySongs() {
         return playlist;
@@ -114,8 +110,8 @@ public class Playlist {
     //methods modifier
     
     /**
-     * 
-     * @param newSong 
+     * Il metodo prende come argomento una canzone e l'aggiunge alla playlist.
+     * @param newSong Nuova canzone.
      */
     public void addSong(Song newSong){
         Song[] newPlaylist = new Song[playlist.length+1];
@@ -126,20 +122,43 @@ public class Playlist {
         sortByTitles();
     }
     //compare method
+    /**
+     * Il metodo restituisce:
+     * <ul>
+     * <li>Un numero negativo se il nome della playlist che chiama il metodo
+     * è lessicograficamente precedente al nome della playlist passata come argomento </li>
+     * <li>Un intero positivo se lessicograficamente seguente al nome della playlist passata come argomento </li>
+     * <li>Zero se sono uguali </li>
+     * </ul>
+     * @param playlist Playlist.
+     * @return Ritorna un numero intero.
+     */
     public int compareTo(Playlist playlist) {
         return this.playlistName.compareToIgnoreCase(playlist.getName());
     }
     
     //building methods
-    
+    /**
+     * Il metodo costruisce il pannello della Playlist.
+     * @return Il pannello.
+     */
     public PlaylistSongsViewPanel buildPlaylistView(){
         return new PlaylistSongsViewPanel(this);
     }
     
+    /**
+     * Il metodo costruisce il pulsante per creare una Playlist.
+     * @return Il pulsante.
+     */
     public PlaylistButton buildPlaylistButton(){
         return new PlaylistButton(this);
     }
     
+    /**
+     * Il metodo compone la stringa con il nome della playlist e i tag
+     * delle canzoni che contiene.
+     * @return La stringa corrispondente alla playlist.
+     */
     public String composeString(){
         sortByTags();
         String stringa = playlistName+":"; 
@@ -150,6 +169,7 @@ public class Playlist {
     }
     
     //internal methods
+   
     private Song searchFromTag(String songTag){
         EngineSearcher finder = new EngineSearcher();
         return finder.searchByBranoTag(Repository.getInstance(), songTag);
@@ -164,18 +184,7 @@ public class Playlist {
         EngineSorter sorter = new EngineSorter();
         sorter.sortTracksByAuthors(playlist);
     }
-    
-    /*
-    public void removeSong(Song songToRemove) {
-        Song[] newPlaylist = new Song[playlist.length-1];
-        int counter = 0;
-        for(int i = 0; i<playlist.length;i++){
-            if(!playlist[i].equalsTo(songToRemove)){
-                newPlaylist[counter++] = playlist[i];
-            }
-        }
-        playlist = newPlaylist;
-    }
-    */
+  
 }
+ 
  
