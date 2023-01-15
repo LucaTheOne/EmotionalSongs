@@ -18,7 +18,7 @@ import java.io.*;
  */
 public class Playlist {
 
-    //campi
+    //CAMPI 
     /**
      * Nome playlist.
      */
@@ -45,10 +45,19 @@ public class Playlist {
         sortByTitles();
     }
     
+    /**
+     * Crea l'oggetto Playlist 
+     * @param stringFromFile 
+     */
     public Playlist(String stringFromFile){
         this(stringFromFile.split(":")[0], stringFromFile.split(":")[1]);
     }
     
+    /**
+     * 
+     * @param playlistName
+     * @param selectedSongs 
+     */
     public Playlist(String playlistName,Song[] selectedSongs){
         this.playlistName = playlistName;
         this.songsTags = new String[selectedSongs.length];
@@ -68,10 +77,20 @@ public class Playlist {
         return this.playlistName;
     }
     
+    /**
+     * Il metodo restituisce la dimensione della playlist.
+     * @return Dimensione playlist.
+     */
     public int getSize(){
         return playlist.length;
     }
     
+    /**
+     * Il metodo metodo prenede come argomento una posizione nella playlist e 
+     * restituisce la canazone. 
+     * @param index Posizione canzone.
+     * @return 
+     */
     public String getSongByIndex(int index){
         return songsTags[index];
     }
@@ -84,12 +103,20 @@ public class Playlist {
         return songsTags;
     }
     
+    /**
+     * Il metodo restituisce un'array della playlist.
+     * @return 
+     */
     public Song[] getArraySongs() {
         return playlist;
     }
     
     //methods modifier
     
+    /**
+     * 
+     * @param newSong 
+     */
     public void addSong(Song newSong){
         Song[] newPlaylist = new Song[playlist.length+1];
         for (int i = 0; i < playlist.length; i++) {

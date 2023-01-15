@@ -78,7 +78,7 @@ public enum Emotions {
 
     //metodi getter
      /**
-     * Restituisce una stringa con il nome dell'emozione.
+     * Il metodo restituisce una stringa con il nome dell'emozione.
      * @return Il nome dell'emozione.
      */
     public String getName(){
@@ -86,13 +86,17 @@ public enum Emotions {
     }
 
     /**
-     * Restituisce una stringa con la descrizione dell'emozione.
+     * Il metodo restituisce una stringa con la descrizione dell'emozione.
      * @return La descrizione dell'emozione.
      */
     public String getDescription(){
         return this.descrizioneEmozione;
     }
 
+    /**
+     * Il metodo restituisce l'emozione richiesta.
+     * @return 
+     */
     public Emotions getEmotion(){
         return this;
     }

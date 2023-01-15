@@ -170,9 +170,30 @@ public abstract class Dialoghi {
     
     public abstract String songsJudge();
     
-    //GUI MAIN WINDOW
+    /// CHART AND DATA BUILDER
     
+    public abstract String graficEx();
     
+    public abstract String emozioni();
+
+    public abstract String trendsV();
     
+    public abstract String mediaVoti();
+    
+    public abstract String quantoHaPercepito();
+    
+    public abstract String numeroUtenti();
+    
+    public abstract String report1();
+    
+    public abstract String espressoVoto();
+    
+    public abstract String datiRelativi();
+    
+    public abstract String mediaArit();
+    
+    public abstract String moda();
+    
+    public abstract String mediana();
     
 }

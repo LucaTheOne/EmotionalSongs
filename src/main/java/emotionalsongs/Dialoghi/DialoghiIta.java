@@ -289,8 +289,56 @@ public class DialoghiIta extends Dialoghi{
     }
     
     public String songsJudge(){
-        return "Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.";
+        return "Se vuole inserisca qui una nota o commento riguardo "
+                + "la percezione di questa emozione nell' ascolto del brano.";
+    }
+
+    public String graficEx() {
+        return "Grafico dei trends dei voti delle emozioni";
     }
     
+    public String emozioni(){
+        return "Emotioni";
+    }
     
+    public String trendsV(){
+        return "Trends dei voti";
+    }
+    
+    public String mediaVoti(){
+        return "media dei voti";
+    }
+    
+    public String quantoHaPercepito(){
+        return "Quanto un utente ha percepito l' emozione";
+    }
+    
+    public String numeroUtenti(){
+        return "Numeri di utenti";
+    }
+
+     public String report1(){
+        return "REPORT DATI SUI GIUDIZI DELLE EMOZIONI PERCEPITE " + 
+                " DAGLI UTENTI NELL' ASCOLTO DELLA CANZONE:\n\n";
+    }
+   
+    public String espressoVoto(){
+        return "Numero di utenti che hanno espresso il loro parare: ";
+    }
+    
+    public String datiRelativi(){
+        return "DATI RELATIVI AI GIUDIZI DEGLI UTENTI RIGUARDO ALLA PERCEZIONE DELLE RISPETTIVE EMOZIONI: ";
+    }
+    
+    public String mediaArit(){
+        return "   media aritmetica: ";
+    }
+    
+    public String moda(){
+        return "   moda: ";
+    }
+    
+    public String mediana(){
+        return "   mediana: ";
+    }
 }

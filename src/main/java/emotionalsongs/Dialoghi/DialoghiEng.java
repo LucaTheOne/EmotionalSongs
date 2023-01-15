@@ -292,6 +292,54 @@ public class DialoghiEng extends Dialoghi{
    public String songsJudge(){
        return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
    }
+
+    public String graficEx() {
+        return "Trend graph of emotion ratings";
+    }
+    
+    public String emozioni(){
+        return "Emotion";
+    }
+    
+    public String trendsV(){
+        return "Trends of vote";
+    }
+    
+    public String mediaVoti(){
+        return "Grade point averages";
+    }
+    
+    public String quantoHaPercepito(){
+        return "How much a user perceived the emotion";
+    }
+  
+    public String numeroUtenti(){
+        return "Numbers of users";
+    }
    
-   
+    public String report1(){
+       return "DATA REPORT ON JUDGMENTS OF PERCEIVED EMOTIONS " + 
+                " FROM USERS LISTENING TO THE SONG:\n\n";
+    }
+    
+    public String espressoVoto(){
+        return "Number of users who have expressed their opinion: ";
+    }
+    
+    public String datiRelativi(){
+        return "DATA RELATING TO USER JUDGMENTS ABOUT THE PERCEPTION OF THEIR RESPECTIVE EMOTIONS: ";
+    }
+    
+    public String mediaArit(){
+       return "   arithmetic average: ";
+    }
+    
+    public String moda(){
+        return "   trend: ";
+    }
+    
+    public String mediana(){
+        return "   median: ";
+}
+    
 }
