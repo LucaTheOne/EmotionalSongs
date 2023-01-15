@@ -52,6 +52,7 @@ public class PlayListsManager {
         userSet = getUserSet();
         userSetDimension = userSet==null ? 0 : userSet.getSize();
         this.dataBasePlaylists = dataBasePlaylists;
+        //playlistPanel = new PlaylistsMainPanel(userSet);
     }
     
     //getter method
@@ -88,8 +89,7 @@ public class PlayListsManager {
             dataBasePlaylists.save();
             EMOTIONALSONGS.setUserSet(new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
         } 
-        
-        playlistPanel.setLeftInnerPanel(userSet);
+        playlistPanel = new PlaylistsMainPanel(userSet);
         MainFrame.getIstance().setMainPanel(playlistPanel);
         
     }

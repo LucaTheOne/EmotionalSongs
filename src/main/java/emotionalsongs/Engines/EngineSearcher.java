@@ -20,7 +20,6 @@ import java.util.*;
  */
 public class EngineSearcher {
 
-    //public ArrayList<Song> risultatiRicerca = new ArrayList<>();
     private Repository repository = Repository.getInstance();
     
     //metodi di ricerca canzoni
@@ -84,7 +83,7 @@ public class EngineSearcher {
         for(int i = 0;i<repository.getSize();i++){
             Song current = repository.getBrano(i);
             String currentAuthor = current.getAuthor().toLowerCase();
-            if (currentAuthor.contains(autore.toLowerCase()) && current.getYear()==Integer.parseInt(anno)){
+            if (currentAuthor.toLowerCase().contains(autore.toLowerCase()) && current.getYear()==Integer.parseInt(anno)){
                 resultsList.add(current);
             }
         }

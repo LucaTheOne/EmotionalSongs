@@ -88,7 +88,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
 
+        mainPanel.setMinimumSize(new java.awt.Dimension(1000, 660));
         mainPanel.setOpaque(true);
+        mainPanel.setPreferredSize(new java.awt.Dimension(1000, 660));
         mainPanel.setLayout(new java.awt.BorderLayout());
 
         buttonPanel.setOpaque(false);
@@ -325,6 +327,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         playlistsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
         playlistsManager.registraPlaylist();
+        
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 

@@ -181,7 +181,7 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
 
     private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
         if(menuButton.isSelected()){
-            mainWindow.setLeftPanel(new GUIMainMenuLeftUnloggedExpanded(mainWindow));
+            mainWindow.setLeftPanel(new GUIMainMenuLeftUnlogged(mainWindow));
         } else {
             mainWindow.setLeftPanel(new GUIMenuLeftVoid(mainWindow));
         }
