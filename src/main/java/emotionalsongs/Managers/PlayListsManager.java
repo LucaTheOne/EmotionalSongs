@@ -8,8 +8,6 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
@@ -225,6 +223,10 @@ public class PlayListsManager {
         selectedPlaylist = null;
         numberOfSongSelectedPlaylist = 0;
         songsToAdd = new Song[0];
+        numberOfSongsSelected = 0;
+    }
+
+    public void eraseNumberOfSelectedSong() {
         numberOfSongsSelected = 0;
     }
 

@@ -10,10 +10,6 @@ import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.Managers.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -55,11 +51,14 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         createButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
         selectedSongsPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        selectedSongScrollViewPanel = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JToggleButton();
         numberSelectedSongLabel = new javax.swing.JLabel();
         searchBar = new javax.swing.JTextField();
-        intestationPanel = new javax.swing.JPanel();
+        TitlePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         BackButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -129,6 +128,18 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         selectedSongsPanel.setOpaque(false);
         selectedSongsPanel.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane1.setOpaque(false);
+
+        selectedSongScrollViewPanel.setBackground(new Color(0,0,0,160));
+        selectedSongScrollViewPanel.setOpaque(false);
+        selectedSongScrollViewPanel.setPreferredSize(new Dimension(jScrollPane1.getWidth(),30*playlistsManager.getNumberOfSongToAdd()));
+        selectedSongScrollViewPanel.setLayout(new java.awt.GridLayout(playlistsManager.getNumberOfSongToAdd(), 1));
+
+        searchPanel.setBackground(new java.awt.Color(51, 51, 51));
+        searchPanel.setOpaque(false);
+        searchPanel.setPreferredSize(new java.awt.Dimension(900, 700));
+        searchPanel.setLayout(new java.awt.BorderLayout());
+
         SearchPanel.setBackground(new java.awt.Color(85, 124, 147));
         SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
         SearchPanel.setLayout(new java.awt.BorderLayout());
@@ -160,11 +171,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         });
         SearchPanel.add(searchBar, java.awt.BorderLayout.CENTER);
 
-        selectedSongsPanel.add(SearchPanel, java.awt.BorderLayout.SOUTH);
+        searchPanel.add(SearchPanel, java.awt.BorderLayout.SOUTH);
 
-        intestationPanel.setMinimumSize(new java.awt.Dimension(379, 50));
-        intestationPanel.setPreferredSize(new java.awt.Dimension(10, 50));
-        intestationPanel.setLayout(new java.awt.BorderLayout());
+        TitlePanel.setMinimumSize(new java.awt.Dimension(379, 50));
+        TitlePanel.setPreferredSize(new java.awt.Dimension(10, 50));
+        TitlePanel.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(133, 37, 240));
         jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
@@ -180,7 +191,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         });
         jPanel2.add(BackButton, java.awt.BorderLayout.CENTER);
 
-        intestationPanel.add(jPanel2, java.awt.BorderLayout.LINE_START);
+        TitlePanel.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel3.setBackground(new java.awt.Color(133, 37, 240));
         jPanel3.setPreferredSize(new java.awt.Dimension(50, 100));
@@ -196,7 +207,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         });
         jPanel3.add(nextButton, java.awt.BorderLayout.CENTER);
 
-        intestationPanel.add(jPanel3, java.awt.BorderLayout.LINE_END);
+        TitlePanel.add(jPanel3, java.awt.BorderLayout.LINE_END);
 
         selectPlaylistNamePanel.setBackground(new java.awt.Color(85, 124, 147));
         selectPlaylistNamePanel.setPreferredSize(new java.awt.Dimension(700, 50));
@@ -226,9 +237,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         selectPlaylistNamePanel.add(playlistNameTextField, gridBagConstraints);
 
-        intestationPanel.add(selectPlaylistNamePanel, java.awt.BorderLayout.CENTER);
+        TitlePanel.add(selectPlaylistNamePanel, java.awt.BorderLayout.CENTER);
 
-        selectedSongsPanel.add(intestationPanel, java.awt.BorderLayout.NORTH);
+        searchPanel.add(TitlePanel, java.awt.BorderLayout.PAGE_START);
 
         mainPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -304,7 +315,13 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         mainPanel1.add(scrollView, java.awt.BorderLayout.CENTER);
 
-        selectedSongsPanel.add(mainPanel1, java.awt.BorderLayout.CENTER);
+        searchPanel.add(mainPanel1, java.awt.BorderLayout.CENTER);
+
+        selectedSongScrollViewPanel.add(searchPanel);
+
+        jScrollPane1.setViewportView(selectedSongScrollViewPanel);
+
+        selectedSongsPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         mainPanel.add(selectedSongsPanel, java.awt.BorderLayout.CENTER);
 
@@ -482,12 +499,6 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -501,7 +512,6 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         this.dispose();
         playlistsManager.eraseSongToAdd();
         playlistsManager.eraseTitlePlaylist();
-        playlistsManager.eraseNumberOfSelectedSong();
     }
     
     public void updateSongSelectedLabel(){
@@ -512,18 +522,19 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;
+    private javax.swing.JPanel TitlePanel;
     private javax.swing.JButton annullaButton;
     private javax.swing.JLabel authorLabel1;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton createButton;
     private javax.swing.JPanel innerScroll;
-    private javax.swing.JPanel intestationPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainPanel1;
     private javax.swing.JButton nextButton;
@@ -532,7 +543,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollView;
     private javax.swing.JTextField searchBar;
     private javax.swing.JToggleButton searchButton;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JPanel selectPlaylistNamePanel;
+    private javax.swing.JPanel selectedSongScrollViewPanel;
     private javax.swing.JPanel selectedSongsPanel;
     private javax.swing.JLabel titleLabel1;
     private javax.swing.JPanel titlesPanel;
