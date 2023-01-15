@@ -137,7 +137,7 @@ public class SongPanel extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        voteButton.setText("Vota");
+        voteButton.setText(EMOTIONALSONGS.dialoghi.vota());
         voteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         voteButton.setEnabled(canBeVotedByUser);
         voteButton.setOpaque(true);
@@ -152,7 +152,7 @@ public class SongPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         buttonsLabel.add(voteButton, gridBagConstraints);
 
-        chartButton.setText("Dati canzone");
+        chartButton.setText(EMOTIONALSONGS.dialoghi.datiCanzoni());
         chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chartButton.setOpaque(true);
         chartButton.setPreferredSize(new java.awt.Dimension(125, 25));

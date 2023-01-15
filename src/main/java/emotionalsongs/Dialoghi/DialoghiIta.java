@@ -276,7 +276,21 @@ public class DialoghiIta extends Dialoghi{
         return "Nome nuova playlist";
     }
    
+    public String creaNuovaPlaylistpiu(){
+        return "+ Crea nuova playlist";
+    }
     
+    public String datiCanzoni(){
+        return "Dati canzone";
+    }
+    
+    public String vota(){
+        return "Vota";
+    }
+    
+    public String songsJudge(){
+        return "Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.";
+    }
     
     
 }

@@ -156,7 +156,23 @@ public abstract class Dialoghi {
     
     public abstract String menu();
     
-   
+    //GUI PLAYLISTS
+    
     public abstract String newPlaylist();
+    
+    public abstract String creaNuovaPlaylistpiu();
+    
+    public abstract String datiCanzoni();
+    
+    public abstract String vota();
+    
+    //GUI Songs Judgement
+    
+    public abstract String songsJudge();
+    
+    //GUI MAIN WINDOW
+    
+   
+    
     
 }

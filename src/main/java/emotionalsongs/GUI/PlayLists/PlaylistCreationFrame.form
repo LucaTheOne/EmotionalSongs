@@ -58,7 +58,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="createButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crea nuova playlist"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="EMOTIONALSONGS.dialoghi.creaNuovaPlaylist()" type="code"/>
+                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
@@ -79,7 +81,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="annullaButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Annulla"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="EMOTIONALSONGS.dialoghi.annulla()" type="code"/>
+                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
@@ -835,7 +839,9 @@
                                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                             </Property>
                                             <Property name="horizontalAlignment" type="int" value="0"/>
-                                            <Property name="text" type="java.lang.String" value="Titolo"/>
+                                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                              <Connection code="EMOTIONALSONGS.dialoghi.titolo()" type="code"/>
+                                            </Property>
                                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                                 <LineBorder>
@@ -862,7 +868,9 @@
                                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                             </Property>
                                             <Property name="horizontalAlignment" type="int" value="0"/>
-                                            <Property name="text" type="java.lang.String" value="Autore"/>
+                                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                              <Connection code="EMOTIONALSONGS.dialoghi.autore()" type="code"/>
+                                            </Property>
                                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                                 <LineBorder>
@@ -889,7 +897,9 @@
                                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                             </Property>
                                             <Property name="horizontalAlignment" type="int" value="0"/>
-                                            <Property name="text" type="java.lang.String" value="Anno"/>
+                                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                              <Connection code="EMOTIONALSONGS.dialoghi.anno()" type="code"/>
+                                            </Property>
                                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                                 <LineBorder>

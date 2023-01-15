@@ -8,6 +8,7 @@ package emotionalsongs.GUI.mainWindow;
 import emotionalsongs.GUI.Repository.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
+import emotionalsongs.*;
 
 /**
  *
@@ -35,10 +36,9 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        playlistsButton = new javax.swing.JButton();
-        createButton = new javax.swing.JButton();
+        PlayListButton = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
-        profileButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(22,33,62, 160));
         setPreferredSize(new java.awt.Dimension(120, 600));
@@ -67,29 +67,33 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         });
         jPanel2.add(jButton2);
 
-        playlistsButton.setBackground(new java.awt.Color(15, 52, 96));
-        playlistsButton.setForeground(new java.awt.Color(255, 255, 255));
-        playlistsButton.setText("Playlist utente");
-        playlistsButton.setToolTipText("");
-        playlistsButton.setBorder(null);
-        playlistsButton.addActionListener(new java.awt.event.ActionListener() {
+        PlayListButton.setBackground(new java.awt.Color(15, 52, 96));
+        PlayListButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        PlayListButton.setForeground(new java.awt.Color(255, 255, 255));
+        PlayListButton.setText("PlayList Utente");
+        PlayListButton.setToolTipText("");
+        PlayListButton.setBorder(null);
+        PlayListButton.setOpaque(true);
+        PlayListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playlistsButtonActionPerformed(evt);
+                PlayListButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(playlistsButton);
+        jPanel2.add(PlayListButton);
 
-        createButton.setBackground(new java.awt.Color(15, 52, 96));
-        createButton.setForeground(new java.awt.Color(255, 255, 255));
-        createButton.setText("Nuova playlist");
-        createButton.setToolTipText("");
-        createButton.setBorder(null);
-        createButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setBackground(new java.awt.Color(15, 52, 96));
+        jButton4.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Crea Nuova Playlist");
+        jButton4.setToolTipText("");
+        jButton4.setBorder(null);
+        jButton4.setOpaque(true);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(createButton);
+        jPanel2.add(jButton4);
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.NORTH);
 
@@ -106,20 +110,6 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         });
         jPanel3.add(closeButton, java.awt.BorderLayout.PAGE_END);
 
-        profileButton.setBackground(new java.awt.Color(15, 52, 96));
-        profileButton.setForeground(new java.awt.Color(255, 255, 255));
-        profileButton.setText("Profilo");
-        profileButton.setToolTipText("");
-        profileButton.setBorder(null);
-        profileButton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        profileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        profileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profileButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(profileButton, java.awt.BorderLayout.CENTER);
-
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,28 +125,23 @@ public class GUIMainMenuLeftLogged extends javax.swing.JPanel {
         mainPage.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void playlistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistsButtonActionPerformed
+    private void PlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayListButtonActionPerformed
         PlayListsManager.getInstance().updatePlaylistsPanel();
-    }//GEN-LAST:event_playlistsButtonActionPerformed
+    }//GEN-LAST:event_PlayListButtonActionPerformed
 
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createButtonActionPerformed
-
-    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_profileButtonActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        PlayListsManager.getInstance().startCreation();
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PlayListButton;
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton createButton;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton playlistsButton;
-    private javax.swing.JButton profileButton;
     // End of variables declaration//GEN-END:variables
 
 }

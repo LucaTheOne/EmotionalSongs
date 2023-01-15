@@ -276,4 +276,22 @@ public class DialoghiEng extends Dialoghi{
     public String newPlaylist(){
         return "New playlist name";
     }
+    
+    public String creaNuovaPlaylistpiu(){
+        return "+ Create new playlist";
+    }
+    
+    public String datiCanzoni(){
+        return "CHART ";
+    }
+    
+    public String vota(){
+        return "Vote";
+    }
+    
+   public String songsJudge(){
+       return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
+   }
+   
+   
 }
