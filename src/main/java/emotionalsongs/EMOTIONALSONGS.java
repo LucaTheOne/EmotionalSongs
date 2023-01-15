@@ -23,14 +23,14 @@ public class EMOTIONALSONGS {
     private static boolean logged = false;
     public static Dialoghi dialoghi = new DialoghiIta();
     public static int lenguage = 1;
-    public static PlaylistSet userPlaylistSet;
+    private static PlaylistSet userPlaylistSet;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
         software.initialize();    
     }
 
-    public static void setNewUserSet(PlaylistSet newUserSet) {
+    public static void setUserSet(PlaylistSet newUserSet) {
         userPlaylistSet = newUserSet;
     }
     

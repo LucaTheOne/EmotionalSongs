@@ -65,7 +65,7 @@ public class PlaylistSet {
             newOne[i] = set[i];
         }
         newOne[newOne.length-1] = playlist;
-        EMOTIONALSONGS.userPlaylistSet.updateSet(newOne);
+        EMOTIONALSONGS.getUserSet().updateSet(newOne);
         if(set.length >1){
             sort();
         }

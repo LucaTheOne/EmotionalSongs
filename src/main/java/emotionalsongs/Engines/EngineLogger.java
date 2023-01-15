@@ -8,6 +8,8 @@ package emotionalsongs.Engines;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
 
@@ -37,7 +39,7 @@ public class EngineLogger extends EMOTIONALSONGS{
                 EMOTIONALSONGS.setLogged(idFounded);
                 EngineSearcher finder = new EngineSearcher();
                 EMOTIONALSONGS.setLoggedUser(finder.getUserFromId(database, UserId));
-                EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance());
+                EMOTIONALSONGS.setUserSet(finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance()));
                 PlayListsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
 
             }  

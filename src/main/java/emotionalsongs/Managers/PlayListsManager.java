@@ -50,15 +50,15 @@ public class PlayListsManager {
 
     private PlayListsManager(DataBasePlaylists dataBasePlaylists) {
         EngineSearcher finder = new EngineSearcher();
-        EMOTIONALSONGS.userPlaylistSet = finder.searchUserSet(user, dataBasePlaylists);
-        userSet = EMOTIONALSONGS.userPlaylistSet;
+        EMOTIONALSONGS.setUserSet(finder.searchUserSet(user, dataBasePlaylists));
+        userSet = getUserSet();
         userSetDimension = userSet==null ? 0 : userSet.getSize();
         this.dataBasePlaylists = dataBasePlaylists;
     }
     
     //getter method
     public PlaylistSet getUserSet(){
-        return EMOTIONALSONGS.userPlaylistSet;
+        return EMOTIONALSONGS.getUserSet();
     }
     
     public int getNumberOfSongToAdd() {
@@ -80,7 +80,7 @@ public class PlayListsManager {
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
-        userSet = EMOTIONALSONGS.userPlaylistSet;
+        userSet = getUserSet();
         if(userSet == null){
             userSet = new PlaylistSet(user.getUserId(), newPlaylist);
             dataBasePlaylists.addNewSet(userSet);
@@ -88,7 +88,7 @@ public class PlayListsManager {
         } else {
             dataBasePlaylists.getUserSet(user).addPlaylist(newPlaylist);
             dataBasePlaylists.save();
-            EMOTIONALSONGS.setNewUserSet(new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
+            EMOTIONALSONGS.setUserSet(new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
         } 
         
         playlistPanel.setLeftInnerPanel(userSet);
