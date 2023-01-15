@@ -272,4 +272,8 @@ public class DialoghiEng extends Dialoghi{
     public String menu() {
         return "Menu";
     }
+    
+    public String newPlaylist(){
+        return "New playlist name";
+    }
 }

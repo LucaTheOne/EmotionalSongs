@@ -272,7 +272,9 @@ public class DialoghiIta extends Dialoghi{
         return "Menu";
     }
 
-   
+    public String newPlaylist(){
+        return "Nome nuova playlist";
+    }
    
     
     

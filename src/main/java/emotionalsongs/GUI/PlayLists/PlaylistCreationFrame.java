@@ -92,7 +92,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 650));
+        setMinimumSize(new java.awt.Dimension(1000, 660));
 
         mainPanel.setOpaque(true);
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -225,7 +225,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nome nuova playlist");
+        jLabel1.setText(EMOTIONALSONGS.dialoghi.newPlaylist());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

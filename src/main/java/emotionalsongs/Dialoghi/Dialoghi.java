@@ -157,6 +157,6 @@ public abstract class Dialoghi {
     public abstract String menu();
     
    
-    
+    public abstract String newPlaylist();
     
 }
