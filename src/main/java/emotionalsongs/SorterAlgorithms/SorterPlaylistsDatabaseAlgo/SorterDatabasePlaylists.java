@@ -12,7 +12,7 @@ import emotionalsongs.BasicsStructure.*;
  * @author big
  */
 public class SorterDatabasePlaylists {
-    public void mergeSort(PlaylistSet[] arraySetsToSort) {	
+    public void sort(PlaylistSet[] arraySetsToSort) {	
         int currentSize;
         int leftStartIndex;
         for (currentSize = 1; currentSize <= arraySetsToSort.length-1; currentSize = 2*currentSize) {

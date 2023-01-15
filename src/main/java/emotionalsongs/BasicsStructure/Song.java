@@ -20,11 +20,6 @@ public class Song {
 //campi
   private String title,author,tag;
   private int year;
-  /**
-   * @hidden
-   */
-  public UserJudgement datiEmozioniBrano;
-  
   
     //costruttore
     /**
@@ -79,7 +74,7 @@ public class Song {
     //metodi di confronto
     /**
     * Il metodo restituisce true se il Song rappresentato dall'oggetto che esegue il metodo
- e uguale a quello specificato tramite l'agomento, altrimenti false.
+    * è uguale a quello specificato tramite l'agomento, altrimenti false.
     * @param brano - argomento Song.
     * @return true - se i brani sono uguali, altrimenti false.
     **/
@@ -98,12 +93,10 @@ public class Song {
         return stringa;
     }
     
+    //metodi di costruzione
+    
     public SongPanelRepository buildPanelView(){
         return new SongPanelRepository(this);
-    }
-    
-    public void visualizzaEmozioneBrano(){
-        //da implementare
     }
 
     public AddSongToPlaylistPanel buildPanelAddToPlaylist() {
@@ -117,10 +110,11 @@ public class Song {
                 "+" + String.valueOf(year);
     }
     
-    public SongPanel buildPlaylistPanel(Playlist propertyPlaylist){
+    public SongPanel buildPanelForPlaylist(Playlist propertyPlaylist){
         return new SongPanel(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
     }
     
+    //metodi di confronto
     public int compareTags(Song song) {
         return this.tag.compareTo(song.getTag());
     }

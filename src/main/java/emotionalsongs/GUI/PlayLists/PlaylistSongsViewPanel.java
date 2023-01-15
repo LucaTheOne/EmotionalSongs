@@ -45,7 +45,7 @@ public class PlaylistSongsViewPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(22, 33, 62));
         jPanel1.setPreferredSize(new Dimension(jScrollPane1.getWidth(),playlist.getSize()>7?75*playlist.getSize():7*75));
         for(int i = 0; i<playlist.getSize();i++){
-            jPanel1.add(playlist.getArraySongs()[i].buildPlaylistPanel(playlist));
+            jPanel1.add(playlist.getArraySongs()[i].buildPanelForPlaylist(playlist));
         }
         jPanel1.setLayout(new java.awt.GridLayout(playlist.getSize()>7?playlist.getSize():7, 1));
         jScrollPane1.setViewportView(jPanel1);

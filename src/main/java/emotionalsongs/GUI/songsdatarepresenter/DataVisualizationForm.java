@@ -150,31 +150,31 @@ public class DataVisualizationForm extends javax.swing.JFrame {
                 writer.close();
                 //saving single emotions chart
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Amazement_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.AMAZEMENT_INDEX),
+                        dataBuilder.getChart(Emotions.AMAZEMENT_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.SOLEMNITY_INDEX),
+                        dataBuilder.getChart(Emotions.SOLEMNITY_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.TENDERNESS_INDEX),
+                        dataBuilder.getChart(Emotions.TENDERNESS_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.NOSTALGIA_INDEX),
+                        dataBuilder.getChart(Emotions.NOSTALGIA_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Calmness_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.CALMNESS_INDEX),
+                        dataBuilder.getChart(Emotions.CALMNESS_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Power_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.POWER_INDEX),
+                        dataBuilder.getChart(Emotions.POWER_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Joy_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.JOY_INDEX),
+                        dataBuilder.getChart(Emotions.JOY_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tension_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.TENSION_INDEX),
+                        dataBuilder.getChart(Emotions.TENSION_INDEX),
                         1000, 1000);
                 ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Sadness_chart"+".png"),
-                        dataBuilder.getChart(Emozioni.SADNESS_INDEX),
+                        dataBuilder.getChart(Emotions.SADNESS_INDEX),
                         1000, 1000);
                 
                 //saving aggregated data charts

@@ -6,7 +6,7 @@ package emotionalsongs.SorterAlgorithms.generalSortingAlgos;
 
 public class SortInt {
     
-    public void mergeSort(int[] arrayToSort) {	
+    public void sort(int[] arrayToSort) {	
 	int currentSize;
 	int leftStartIndex;
 	for (currentSize = 1; currentSize <= arrayToSort.length-1; currentSize = 2*currentSize) {

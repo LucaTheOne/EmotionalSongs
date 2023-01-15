@@ -132,31 +132,31 @@ public class ChartAndDataBuilder {
     public String getSongNotesReport(){
         String report = "COMMENTI ESPRESSI DAGLI UTENTI RIGUARDO OGNI EMOZIONE:\n\n"+
                 "Meraviglia:\n"+
-                getEmotionNotes(Emozioni.AMAZEMENT_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.AMAZEMENT_INDEX)+"\n\n"+
                 
                 "Solennità:\n"+
-                getEmotionNotes(Emozioni.SOLEMNITY_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.SOLEMNITY_INDEX)+"\n\n"+
                 
                 "Tenerezza:\n"+
-                getEmotionNotes(Emozioni.TENDERNESS_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.TENDERNESS_INDEX)+"\n\n"+
                 
                 "Nostalgia:\n"+
-                getEmotionNotes(Emozioni.NOSTALGIA_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.NOSTALGIA_INDEX)+"\n\n"+
                 
                 "Calma:\n"+
-                getEmotionNotes(Emozioni.CALMNESS_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.CALMNESS_INDEX)+"\n\n"+
                 
                 "Potere:\n"+
-                getEmotionNotes(Emozioni.POWER_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.POWER_INDEX)+"\n\n"+
                 
                 "Gioia:\n"+
-                getEmotionNotes(Emozioni.JOY_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.JOY_INDEX)+"\n\n"+
                 
                 "Tensione:\n"+
-                getEmotionNotes(Emozioni.TENSION_INDEX)+"\n\n"+
+                getEmotionNotes(Emotions.TENSION_INDEX)+"\n\n"+
                 
                 "Tristezza:\n"+
-                getEmotionNotes(Emozioni.SADNESS_INDEX)+"\n";
+                getEmotionNotes(Emotions.SADNESS_INDEX)+"\n";
         
         return report;
     }
@@ -167,7 +167,7 @@ public class ChartAndDataBuilder {
     
     // private internal methods
     private void buildData(String songTag){
-        analizingSong=new EngineSearcher().searchBranoTag(Repository.getInstance(), songTag);
+        analizingSong=new EngineSearcher().searchByBranoTag(Repository.getInstance(), songTag);
         songUsersJudgements = DataBaseJudgements.getInstance().searchJudgements(songTag);
         if(songUsersJudgements == null){
             new PopUpAllert(

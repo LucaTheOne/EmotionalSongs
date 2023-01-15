@@ -10,9 +10,6 @@ package emotionalsongs.BasicsStructure;
  * @author 
  */
 public class UserJudgement {
-
-    Emozioni emotions;
-    //DataBaseUsers userDatabase = EMOTIONALSONGS.userDataBase;
     
     private String branoTag;
     
@@ -75,25 +72,6 @@ public class UserJudgement {
                 tensionMark+";"+ tensionNotes +";"+
                 sadnessMark+";"+ sadnessNotes +";";
     }
-    /*
-    //Utente
-    public void aggiornaListaUtentiVotato(User user){
-        String[] newArray = new String[usersIds.length+1];
-        for(int i = 0;i<usersIds.length;i++){
-           newArray[i] = usersIds[i];
-        }
-        newArray[newArray.length-1] = user.getUserId();
-        usersIds=newArray;
-    }
-    
-    private String stringaUtenti(){
-        String stringa = usersIds[0];
-        for (int i = 1; i < usersIds.length;i++){
-            stringa += "," + usersIds[i];
-        }
-        return stringa+";";
-    }
-    */
 
     //getters
     public String getBranoTag() {

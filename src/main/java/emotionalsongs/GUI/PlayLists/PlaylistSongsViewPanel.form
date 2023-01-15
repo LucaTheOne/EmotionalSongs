@@ -41,7 +41,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for(int i = 0; i&lt;playlist.getSize();i++){&#xa;    jPanel1.add(playlist.getArraySongs()[i].buildPlaylistPanel(playlist));&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for(int i = 0; i&lt;playlist.getSize();i++){&#xa;    jPanel1.add(playlist.getArraySongs()[i].buildPanelForPlaylist(playlist));&#xa;}"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">

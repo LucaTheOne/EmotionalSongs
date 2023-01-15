@@ -20,8 +20,8 @@ import java.util.*;
  */
 public class EngineSearcher {
 
-    public ArrayList<Song> risultatiRicerca = new ArrayList<>();
-    public Repository repository = Repository.getInstance();
+    //public ArrayList<Song> risultatiRicerca = new ArrayList<>();
+    private Repository repository = Repository.getInstance();
     
     //metodi di ricerca canzoni
     /**
@@ -98,7 +98,7 @@ public class EngineSearcher {
         return results;
     }
     
-    public Song searchBranoTag(Repository repository,String songTag) {
+    public Song searchByBranoTag(Repository repository,String songTag) {
         //repository.sortByTags();
         int size = repository.getSize();
         for (int i = 0; i < size; i++) {
@@ -208,11 +208,11 @@ public class EngineSearcher {
     }
     
     //metodi di ricerca records
-    public UserJudgement getRecordFromTag(DataBaseJudgements dataBase, String branoTag){
+    public UserJudgement getJudgementFromSongTag(DataBaseJudgements dataBase, String branoTag){
         if(dataBase == null) return null;
         int size = dataBase.getSize();
         EngineSorter sorter = new EngineSorter();
-        sorter.sortRecords(dataBase);
+        sorter.sortJudgements(dataBase);
         
         int low = 0;
         int high = size-1;
@@ -231,9 +231,10 @@ public class EngineSearcher {
     public PlaylistSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
         PlaylistSet[] sets = dataBasePlaylists.getArray();
         if(sets == null) return null;        
-        //EngineSorter sorter = new EngineSorter();
-        //if(sets.length >1) sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
         int size = dataBasePlaylists.getSize();
+        
         for (int i = 0; i < size; i++) {
             if(dataBasePlaylists.getSet(i).getOwnerId().equals(user.getUserId())) return dataBasePlaylists.getSet(i);
         }
@@ -252,17 +253,6 @@ public class EngineSearcher {
     }
     
     //supportMethods
-    private void addTo(Song[] array,Song track){
-        if(array.length == 1) array[0] = track;
-        else {
-            Song[] newOne = new Song[array.length+1];
-            for (int i = 0; i < array.length; i++) {
-                newOne[i] = array[i];
-            }
-            newOne[array.length] = track;
-            array=newOne;
-        }    
-    }
     
     private void sortByAuthor(Song[] tracks){
         if(tracks[0] != null && tracks.length > 1){
@@ -278,11 +268,11 @@ public class EngineSearcher {
         }
     }
 
-    public int getRecordIndexFromTag(DataBaseJudgements dataBase, String branoTag) {
+    public int getJudgementIndexFromSongTag(DataBaseJudgements dataBase, String branoTag) {
         if(!(dataBase == null)){
             int size = dataBase.getSize();
             EngineSorter sorter = new EngineSorter();
-            sorter.sortRecords(dataBase);
+            sorter.sortJudgements(dataBase);
         
             int low = 0;
             int high = size-1;

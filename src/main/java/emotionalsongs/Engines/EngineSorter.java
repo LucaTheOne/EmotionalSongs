@@ -47,9 +47,9 @@ public class EngineSorter {
     }
     
     // records sort method
-    public void sortRecords(DataBaseJudgements dataBaseEmozioni){
-        SorterRecords sorter = new SorterRecords();
-        sorter.mergeSort(dataBaseEmozioni.getArray());
+    public void sortJudgements(DataBaseJudgements dataBaseEmozioni){
+        SorterJudgements sorter = new SorterJudgements();
+        sorter.sort(dataBaseEmozioni.getArray());
     }
     
     //Playlist sort methods
@@ -61,18 +61,18 @@ public class EngineSorter {
     
     public void sortDataBaseOfPlaylistSet(DataBasePlaylists dataBase){
         SorterDatabasePlaylists sorter = new SorterDatabasePlaylists();
-        sorter.mergeSort(dataBase.getArray());
+        sorter.sort(dataBase.getArray());
     }
     
     //General sort methods
     public void sortIntArray(int[] arrayInt) {
         SortInt sorter = new SortInt();
-        sorter.mergeSort(arrayInt);
+        sorter.sort(arrayInt);
     }
     
     public void sortStringsArray(String[] arrayString, boolean caseSensitive){
-        HeapSortString sorter = new HeapSortString(caseSensitive);
-        sorter.sort(arrayString);
+        SortString sorter = new SortString();
+        sorter.sort(arrayString,caseSensitive);
     }
 }
 

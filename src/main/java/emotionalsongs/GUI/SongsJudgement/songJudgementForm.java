@@ -29,7 +29,7 @@ public class songJudgementForm extends javax.swing.JPanel {
         this.songToVoteTag = songToVoteTag;
         this.callerComponent = callerComponent;
         EngineSearcher searcher = new EngineSearcher();
-        songUnderVotation = searcher.searchBranoTag(Repository.getInstance(), songToVoteTag);
+        songUnderVotation = searcher.searchByBranoTag(Repository.getInstance(), songToVoteTag);
         initComponents();
     }
 
@@ -174,14 +174,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         mainAmazementEmotionPane.setLayout(new java.awt.GridBagLayout());
 
         amazementTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        amazementTitle.setText(Emozioni.AMAZEMENT.getName());
+        amazementTitle.setText(Emotions.AMAZEMENT.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         mainAmazementEmotionPane.add(amazementTitle, gridBagConstraints);
 
         amazementDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        amazementDescription.setText(Emozioni.AMAZEMENT.getDescription());
+        amazementDescription.setText(Emotions.AMAZEMENT.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -263,14 +263,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         solemnityPane.setLayout(solemnityPaneLayout);
 
         solemnityTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        solemnityTitle.setText(Emozioni.SOLEMNITY.getName());
+        solemnityTitle.setText(Emotions.SOLEMNITY.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         solemnityPane.add(solemnityTitle, gridBagConstraints);
 
         solemnityDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        solemnityDescription.setText(Emozioni.SOLEMNITY.getDescription());
+        solemnityDescription.setText(Emotions.SOLEMNITY.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -347,14 +347,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         tendernessPane.setLayout(new java.awt.GridBagLayout());
 
         tendernessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        tendernessTitle.setText(Emozioni.TENDERNESS.getName());
+        tendernessTitle.setText(Emotions.TENDERNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         tendernessPane.add(tendernessTitle, gridBagConstraints);
 
         tendernessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        tendernessDescription.setText(Emozioni.TENDERNESS.getDescription());
+        tendernessDescription.setText(Emotions.TENDERNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -431,14 +431,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         nostalgiaPane.setLayout(new java.awt.GridBagLayout());
 
         nostalgiaTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        nostalgiaTitle.setText(Emozioni.NOSTALGIA.getName());
+        nostalgiaTitle.setText(Emotions.NOSTALGIA.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         nostalgiaPane.add(nostalgiaTitle, gridBagConstraints);
 
         nostalgiaDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        nostalgiaDescription.setText(Emozioni.NOSTALGIA.getDescription());
+        nostalgiaDescription.setText(Emotions.NOSTALGIA.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -515,14 +515,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         calmnessPane.setLayout(new java.awt.GridBagLayout());
 
         calmnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        calmnessTitle.setText(Emozioni.CALMNESS.getName());
+        calmnessTitle.setText(Emotions.CALMNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         calmnessPane.add(calmnessTitle, gridBagConstraints);
 
         calmnessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        calmnessDescription.setText(Emozioni.CALMNESS.getDescription());
+        calmnessDescription.setText(Emotions.CALMNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -599,14 +599,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         powerPane.setLayout(new java.awt.GridBagLayout());
 
         powerTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        powerTitle.setText(Emozioni.POWER.getName());
+        powerTitle.setText(Emotions.POWER.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         powerPane.add(powerTitle, gridBagConstraints);
 
         powerDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        powerDescription.setText(Emozioni.POWER.getDescription());
+        powerDescription.setText(Emotions.POWER.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -683,14 +683,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         joyPane.setLayout(new java.awt.GridBagLayout());
 
         joyTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        joyTitle.setText(Emozioni.JOY.getName());
+        joyTitle.setText(Emotions.JOY.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         joyPane.add(joyTitle, gridBagConstraints);
 
         joyDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        joyDescription.setText(Emozioni.JOY.getDescription());
+        joyDescription.setText(Emotions.JOY.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -767,14 +767,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         tensionPane.setLayout(new java.awt.GridBagLayout());
 
         tensionTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        tensionTitle.setText(Emozioni.TENSION.getName());
+        tensionTitle.setText(Emotions.TENSION.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         tensionPane.add(tensionTitle, gridBagConstraints);
 
         tensionDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        tensionDescription.setText(Emozioni.TENSION.getDescription());
+        tensionDescription.setText(Emotions.TENSION.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -851,14 +851,14 @@ public class songJudgementForm extends javax.swing.JPanel {
         sadnessPane.setLayout(new java.awt.GridBagLayout());
 
         sadnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        sadnessTitle.setText(Emozioni.SADNESS.getName());
+        sadnessTitle.setText(Emotions.SADNESS.getName());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         sadnessPane.add(sadnessTitle, gridBagConstraints);
 
         sadnessDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        sadnessDescription.setText(Emozioni.SADNESS.getDescription());
+        sadnessDescription.setText(Emotions.SADNESS.getDescription());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

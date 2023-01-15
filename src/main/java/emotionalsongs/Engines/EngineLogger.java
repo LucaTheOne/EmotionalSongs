@@ -8,8 +8,6 @@ package emotionalsongs.Engines;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
 
@@ -19,10 +17,11 @@ import java.io.*;
  */
 public class EngineLogger extends EMOTIONALSONGS{
     
-    DataBaseUsers database = DataBaseUsers.getInstance();
-    User user;
+    private DataBaseUsers database = DataBaseUsers.getInstance();
+    private User user;
     public boolean idFounded = false;
     public boolean passwordMatches = false;
+    
     /**
      * 
      */

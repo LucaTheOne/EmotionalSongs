@@ -4,9 +4,7 @@
 
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 
 /**
@@ -83,7 +81,7 @@ public class PlaylistSet {
     public String componiStringa(){
         String stringa = idOwner+";";
         for (int i = 0; i < set.length; i++) {
-            stringa += set[i].componiStringa();
+            stringa += set[i].composeString();
         }
         return stringa+"\n";
     }
@@ -100,7 +98,7 @@ public class PlaylistSet {
         this.set = newSet;
         
     }  
-
+    /*
     public void removePlaylist(Playlist playlistToDelete) {
         int counter = 0;
         Playlist[] newSet = new Playlist[set.length-1];
@@ -115,6 +113,6 @@ public class PlaylistSet {
         
         set = newSet;
         DataBasePlaylists.getInstance().save();
-    }
+    }*/
 }
 

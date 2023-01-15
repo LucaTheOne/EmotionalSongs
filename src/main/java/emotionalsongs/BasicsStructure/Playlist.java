@@ -22,15 +22,14 @@ public class Playlist {
     /**
      * Nome playlist.
      */
-    String playlistName;//no special characters ;
+    private String playlistName;//no special characters ;
 
-    String[] songsTags;
+    private String[] songsTags;
     
-    Song[] playlist;
+    private Song[] playlist;
     
-    PlayListsManager manager = PlayListsManager.getInstance();
+    private PlayListsManager manager = PlayListsManager.getInstance();
 
-    //costruttore
     /**
      * Crea l'oggetto Playlist prendendo come argomenti un oggetto owner di tipo User,
         un oggetto playlistName di tipo String e un oggetto playlist di tipo ArrayList<Brano>.
@@ -43,7 +42,7 @@ public class Playlist {
         for (int i = 0; i < songsTags.length; i++) {
             playlist[i] = searchFromTag(songsTags[i]);
         }
-        //sort();
+        sortByTitles();
     }
     
     public Playlist(String stringFromFile){
@@ -56,8 +55,9 @@ public class Playlist {
         for(int i = 0; i<selectedSongs.length;i++){
             songsTags[i] = selectedSongs[i].getTag();
         }
-        //sort();
+        sortByTitles();
     }
+    
     //Getter methods
     /**
      * Il metodo restituisce una Stringa con il nome della playlist.
@@ -71,31 +71,8 @@ public class Playlist {
         return playlist.length;
     }
     
-    public String get(int index){
+    public String getSongByIndex(int index){
         return songsTags[index];
-    }
-    
-    /**
-     * Il metodo preleva il songTag e lo aggiunge alla playlist.
-     * @throws FileNotFoundException
-     * @throws IOException 
-     */
-    public void addSongTag(String songTag) {
-        String[] newOne = new String[songsTags.length+1];
-        for(int i = 0;i<songsTags.length;i++){
-            newOne[i] = songsTags[i];
-        }
-        newOne[newOne.length-1] = songTag;
-        //sort();
-    }
-    
-    public void addSong(Song newSong){
-        Song[] newPlaylist = new Song[playlist.length+1];
-        for (int i = 0; i < playlist.length; i++) {
-            newPlaylist[i] = playlist[i];
-        }
-        newPlaylist[newPlaylist.length-1] = newSong;
-        //sort
     }
     
     /**
@@ -110,28 +87,22 @@ public class Playlist {
         return playlist;
     }
     
-    public String componiStringa(){
-        sort();
-        String stringa = playlistName+":"; 
-        for (int i = 0; i < songsTags.length; i++) {
-            stringa += i>0 ? "," + songsTags[i] : songsTags[i];
-        }
-        return stringa + ";";
-    }
+    //methods modifier
     
-    public void sort(){
-        EngineSorter sorter = new EngineSorter();
-        //sorter.sortStringsArray(songsTags,false); capire perchè non funge!
+    public void addSong(Song newSong){
+        Song[] newPlaylist = new Song[playlist.length+1];
+        for (int i = 0; i < playlist.length; i++) {
+            newPlaylist[i] = playlist[i];
+        }
+        newPlaylist[newPlaylist.length-1] = newSong;
+        sortByTitles();
     }
-
+    //compare method
     public int compareTo(Playlist playlist) {
         return this.playlistName.compareToIgnoreCase(playlist.getName());
     }
     
-    private Song searchFromTag(String songTag){
-        EngineSearcher finder = new EngineSearcher();
-        return finder.searchBranoTag(Repository.getInstance(), songTag);
-    }
+    //building methods
     
     public PlaylistSongsViewPanel buildPlaylistView(){
         return new PlaylistSongsViewPanel(this);
@@ -140,7 +111,33 @@ public class Playlist {
     public PlaylistButton buildPlaylistButton(){
         return new PlaylistButton(this, manager);
     }
-
+    
+    public String composeString(){
+        sortByTags();
+        String stringa = playlistName+":"; 
+        for (int i = 0; i < songsTags.length; i++) {
+            stringa += i>0 ? "," + songsTags[i] : songsTags[i];
+        }
+        return stringa + ";";
+    }
+    
+    //internal methods
+    private Song searchFromTag(String songTag){
+        EngineSearcher finder = new EngineSearcher();
+        return finder.searchByBranoTag(Repository.getInstance(), songTag);
+    }
+    
+    private void sortByTags(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortStringsArray(songsTags,false); 
+    }
+    
+    private void sortByTitles(){
+        EngineSorter sorter = new EngineSorter();
+        sorter.sortTracksByAuthors(playlist);
+    }
+    
+    /*
     public void removeSong(Song songToRemove) {
         Song[] newPlaylist = new Song[playlist.length-1];
         int counter = 0;
@@ -151,9 +148,6 @@ public class Playlist {
         }
         playlist = newPlaylist;
     }
-    
-    public boolean equalsTo(Playlist playlistToDelete) {
-        return this.getName().equals(playlistToDelete.getName());
-    }
+    */
 }
  

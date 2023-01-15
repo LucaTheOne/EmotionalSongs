@@ -11,6 +11,11 @@ import emotionalsongs.GUI.SongsJudgement.*;
 import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.SongsJudgement.*;
+import emotionalsongs.GUI.songsdatarepresenter.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -59,7 +64,6 @@ public class SongPanel extends javax.swing.JPanel {
         buttonsLabel = new javax.swing.JPanel();
         voteButton = new javax.swing.JButton();
         chartButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
         ytButton = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(720, 75));
@@ -162,22 +166,6 @@ public class SongPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         buttonsLabel.add(chartButton, gridBagConstraints);
 
-        removeButton.setText("Rimuovi");
-        removeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        removeButton.setEnabled(false);
-        removeButton.setFocusable(false);
-        removeButton.setOpaque(true);
-        removeButton.setPreferredSize(new java.awt.Dimension(125, 25));
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        buttonsLabel.add(removeButton, gridBagConstraints);
-
         ytButton.setText("YT");
         ytButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ytButton.setOpaque(true);
@@ -218,10 +206,6 @@ public class SongPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_ytButtonActionPerformed
 
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        playListsManager.deleteAsongFromAPlaylist(representedSong);
-    }//GEN-LAST:event_removeButtonActionPerformed
-
     private void voteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteButtonActionPerformed
         
         JFrame voteFrame = new JFrame();
@@ -246,7 +230,6 @@ public class SongPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel labelPanel;
-    private javax.swing.JButton removeButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JButton voteButton;

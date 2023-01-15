@@ -8,8 +8,6 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
@@ -209,20 +207,18 @@ public class PlayListsManager {
         MainFrame.getIstance().repaint();
     }
     
-    public void addSongToPlaylist(Song songToAdd,Playlist playlistWhereToAddSong){
-        //da implementare insieme a GUI per aggiungere una canzone alla playlist.
-    }
-    
+    /*
     public void deleteAsongFromAPlaylist(Song songToDelete){
         selectedPlaylist.removeSong(songToDelete);
         dataBasePlaylists.save();
         setRightPane(new PlaylistSongsViewPanel(selectedPlaylist));
     }
-    
+    */
     public void setSelectedPlaylist(Playlist selectedPlaylist){
         this.selectedPlaylist = selectedPlaylist;
     }
-
+    
+    
     public void reset() {
         selectedPlaylist = null;
         numberOfSongSelectedPlaylist = 0;

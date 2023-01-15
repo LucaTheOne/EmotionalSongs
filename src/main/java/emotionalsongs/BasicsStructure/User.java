@@ -6,9 +6,6 @@ package emotionalsongs.BasicsStructure;
 
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
 import java.io.*;
 import java.util.regex.*;
 
@@ -45,7 +42,79 @@ public class User {
         this.password = password;
         this.dataNascita = dataNascita;    
     }
+    
+    //metodi getter
+    /**
+     * Il metodo restituisce l'userID dell'utente.
+     * @return userId - userID dell'utente.
+     */
+    public String getUserId(){
+        return userId;
+    }
+    
+    /**
+     * Il metodo restiuisce il nome dell'utente.
+     * @return  nome - nome dell'utente.
+     */
+    public String getNome(){
+        return nome;
+    }
+    
+    /**
+     * Il metodo restituisce il cognome dell'utente.
+     * @return cognome -  cognome dell'utente.
+     */
+    public String getCognome(){
+        return cognome;
+    }
 
+    /**
+     * Il metodo restituisce il codice fiscale dell'utente.
+     * @return cf - codice fiscale dell'utente.
+     */
+    public String getCF(){
+        return cf;
+    }
+    
+    /**
+     * Il metodo restituisce l'indirizzo dell'utente.
+     * @return indirizzo - indirizzo dell'utente.
+     */
+    public String getIndirizzo(){
+        return indirizzo;
+    }
+    
+    /**
+     * Il metodo restituisce l'email dell'utente.
+     * @return email - l'email dell'utente.
+     */
+    public String getEmail(){
+        return email;
+    }
+    
+    /**
+     * Il metodo restituisce la data di nascita dell'utente.
+     * @return dataNascita - la data di nascita dell'utente.
+     */
+    public String getDataDiNascita(){
+        return dataNascita;
+    }
+    
+    /**
+     * Il metodo restituisce la password dell'utente.
+     * @return password - password dell'utente.
+     */
+    public String getPassword() {
+        return password;
+    }
+    
+    public PlaylistSet getPlaylistSet(){
+        EngineSearcher searcher = new EngineSearcher();
+        return searcher.searchUserSet(this, DataBasePlaylists.getInstance());
+    }
+    
+    //modifyng method    
+    
     /**
       * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome; succesivamente
       * effettua un controllo. Il nome non deve : 
@@ -163,101 +232,7 @@ public class User {
         }
     }
     
-    /**
-     * Il meteodo si occupa di creare la PlaylistSet vuota.
-     * @param userId - userID dell'utente.
-     * @throws IOException 
-     */
-    static private void creaPlaylistSetVuoto(String userId) throws IOException{
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati,true));
-        bufferedWriter.write("Proprietario: "+ userId + "/n"+"_.-._.-._.-._.-._.-._.-._\n");
-        bufferedWriter.close();
-        System.out.println("Spazio generato con successo");
-    }
-    
-    //metodi getter
-    /**
-     * Il metodo restituisce l'userID dell'utente.
-     * @return userId - userID dell'utente.
-     */
-    public String getUserId(){
-        return userId;
-    }
-    
-    /**
-     * Il metodo restiuisce il nome dell'utente.
-     * @return  nome - nome dell'utente.
-     */
-    public String getNome(){
-        return nome;
-    }
-    
-    /**
-     * Il metodo restituisce il cognome dell'utente.
-     * @return cognome -  cognome dell'utente.
-     */
-    public String getCognome(){
-        return cognome;
-    }
-
-    /**
-     * Il metodo restituisce il codice fiscale dell'utente.
-     * @return cf - codice fiscale dell'utente.
-     */
-    public String getCF(){
-        return cf;
-    }
-    
-    /**
-     * Il metodo restituisce l'indirizzo dell'utente.
-     * @return indirizzo - indirizzo dell'utente.
-     */
-    public String getIndirizzo(){
-        return indirizzo;
-    }
-    
-    /**
-     * Il metodo restituisce l'email dell'utente.
-     * @return email - l'email dell'utente.
-     */
-    public String getEmail(){
-        return email;
-    }
-    
-    /**
-     * Il metodo restituisce la data di nascita dell'utente.
-     * @return dataNascita - la data di nascita dell'utente.
-     */
-    public String getDataDiNascita(){
-        return dataNascita;
-    }
-    
-    /**
-     * Il metodo restituisce la password dell'utente.
-     * @return password - password dell'utente.
-     */
-    public String getPassword() {
-        return password;
-    }
-    
-    public PlaylistSet getPlaylistSet(){
-        EngineSearcher searcher = new EngineSearcher();
-        return searcher.searchUserSet(this, DataBasePlaylists.getInstance());
-    }
-    
-    //modifyng method
-    
-    
-     /**
-     * Il metodo aggiunge una nuova playlist.
-     * @param addplay
-     */
-    public void addToPlaylistSet(Playlist addplay){
-        playlistSet.addPlaylist(addplay);
-    }
-    
-    
-    
+    //metodi di composizione
     /**
      * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, nome, cognome,
      * data di Nascita, email, indirizzio, su un'unica riga separati dal simbolo ";".
@@ -274,7 +249,8 @@ public class User {
     public String componiStringa() {
         return userId +";"+ password +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
     }
-
+    
+    //metodi di comparazione
     public int compareId(User user) {
         return this.userId.compareToIgnoreCase(user.getUserId());
     }

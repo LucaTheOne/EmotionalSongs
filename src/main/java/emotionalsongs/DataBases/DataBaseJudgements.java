@@ -8,7 +8,7 @@ package emotionalsongs.DataBases;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
-import emotionalsongs.*;
+import emotionalsongs.*; 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
@@ -94,7 +94,7 @@ public class DataBaseJudgements {
     //sorting method (internal)
     private void sortByBranoTag(){
         EngineSorter sorter = new EngineSorter();
-        sorter.sortRecords(this);   
+        sorter.sortJudgements(this);   
     }
     
     //getter methods
@@ -108,7 +108,7 @@ public class DataBaseJudgements {
     
     private int getJudgementIndexFromTag(String branoTag){
         EngineSearcher searcher = new EngineSearcher();
-        return searcher.getRecordIndexFromTag(this, branoTag);
+        return searcher.getJudgementIndexFromSongTag(this, branoTag);
     }
     
     public UserJudgement getRecordFromIndex(int index){
