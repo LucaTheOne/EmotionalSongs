@@ -20,7 +20,6 @@ public class EMOTIONALSONGS {
     
     
     private static User loggedUser = null;
-    private static boolean logged = false;
     public static Dialoghi dialoghi = new DialoghiIta();
     public static int lenguage = 1;
     private static PlaylistSet userPlaylistSet;
@@ -51,12 +50,12 @@ public class EMOTIONALSONGS {
         EMOTIONALSONGS.loggedUser = loggedUser;
     }
     
-    public static void setLogged(boolean bool){
-        EMOTIONALSONGS.logged=bool;
-    }
-    
     public static PlaylistSet getUserSet(){
         return userPlaylistSet;
+    }
+    
+    public static boolean isLogged(){
+        return loggedUser != null;
     }
     
 }

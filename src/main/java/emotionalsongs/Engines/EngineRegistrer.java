@@ -8,6 +8,8 @@ package emotionalsongs.Engines;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.welcomeEmailSender.*;
 import java.io.*;
 
@@ -58,7 +60,6 @@ public class EngineRegistrer {
         userDatabase.addNewUser(nuovo);
         System.out.println("utente aggiunto");
         EMOTIONALSONGS.setLoggedUser(nuovo);
-        EMOTIONALSONGS.setLogged (true); 
         WelcomeMailSender.sendMailToNewUser();
     }
 }

@@ -36,7 +36,6 @@ public class EngineLogger extends EMOTIONALSONGS{
         if(idFounded){
           passwordsMatch(Password);
             if(idFounded&&passwordMatches){
-                EMOTIONALSONGS.setLogged(idFounded);
                 EngineSearcher finder = new EngineSearcher();
                 EMOTIONALSONGS.setLoggedUser(finder.getUserFromId(database, UserId));
                 EMOTIONALSONGS.setUserSet(finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance()));
@@ -71,7 +70,6 @@ public class EngineLogger extends EMOTIONALSONGS{
     }
     
     public static void logout(){
-        EMOTIONALSONGS.setLogged(false);
         EMOTIONALSONGS.setLoggedUser(null);
     }
 }
