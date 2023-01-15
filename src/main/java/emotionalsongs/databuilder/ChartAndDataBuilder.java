@@ -171,11 +171,11 @@ public class ChartAndDataBuilder {
         songUsersJudgements = DataBaseJudgements.getInstance().searchJudgements(songTag);
         if(songUsersJudgements == null){
             new PopUpAllert(
-                    "Non sono disponibili informazioni per questa canzone: \n" + 
-                    "Titolo: " + analizingSong.getTitle() + "\n" +
-                    "Autore: " + analizingSong.getAuthor() + "\n"+
+                    "Non sono disponibili informazioni per questa canzone: " + 
+                    "Titolo: " + analizingSong.getTitle() + ", " +
+                    "Autore: " + analizingSong.getAuthor() + ", "+
                     "Anno: " + analizingSong.getYear() + "."
-            );
+            ).setVisible(true);
             return;
         }
         
