@@ -6,6 +6,7 @@ package emotionalsongs.GUI.mainWindow;
 
 import emotionalsongs.Dialoghi.*;
 import emotionalsongs.*;
+import emotionalsongs.Dialoghi.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.Generics.*;
 
@@ -66,7 +67,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         menuButton.setForeground(new java.awt.Color(255, 255, 255));
         menuButton.setText("Menu");
         menuButton.setAlignmentY(0.0F);
-        menuButton.setBorder(null);
+        menuButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         menuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menuButton.setOpaque(true);
         menuButton.setPreferredSize(new java.awt.Dimension(72, 18));
@@ -91,7 +92,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         ProfileButton.setText(EMOTIONALSONGS.dialoghi.profile());
         ProfileButton.setAlignmentY(0.0F);
-        ProfileButton.setBorder(null);
+        ProfileButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         ProfileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ProfileButton.setOpaque(true);
         ProfileButton.setPreferredSize(new java.awt.Dimension(72, 18));
@@ -112,7 +113,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
         CreditsButton.setText(EMOTIONALSONGS.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
-        CreditsButton.setBorder(null);
+        CreditsButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CreditsButton.setOpaque(true);
         CreditsButton.setPreferredSize(new java.awt.Dimension(72, 18));
@@ -133,7 +134,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
         LanguageButton.setText("English");
         LanguageButton.setAlignmentY(0.0F);
-        LanguageButton.setBorder(null);
+        LanguageButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LanguageButton.setOpaque(true);
         LanguageButton.setPreferredSize(new java.awt.Dimension(72, 18));
@@ -154,7 +155,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         LogOutButton.setForeground(new java.awt.Color(255, 255, 255));
         LogOutButton.setText("LogOut");
         LogOutButton.setAlignmentY(0.0F);
-        LogOutButton.setBorder(null);
+        LogOutButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LogOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LogOutButton.setOpaque(true);
         LogOutButton.setPreferredSize(new java.awt.Dimension(72, 18));
