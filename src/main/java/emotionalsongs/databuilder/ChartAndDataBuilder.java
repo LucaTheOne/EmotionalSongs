@@ -331,11 +331,6 @@ public class ChartAndDataBuilder {
         JFreeChart barChart = ChartFactory.createBarChart(typeOfEmotion, "Quanto un utente ha percepito l' emozione", "Numero di utenti", dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
-        NumberAxis yRange = new NumberAxis();
-        yRange.setRange(0, 5);
-        yRange.setTickUnit(new NumberTickUnit(1));
-        plot.setRangeAxis(yRange);
-        
         return barChart;
     }
     

@@ -33,7 +33,7 @@ public class PopUpAllert extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        ErrorTextField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -41,13 +41,14 @@ public class PopUpAllert extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText(errorMessage);
-        jPanel1.add(jTextField1);
+        ErrorTextField.setEditable(false);
+        ErrorTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ErrorTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ErrorTextField.setText(errorMessage);
+        ErrorTextField.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102)));
+        jPanel1.add(ErrorTextField, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -61,7 +62,7 @@ public class PopUpAllert extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 160, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 160, 30));
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -75,9 +76,9 @@ public class PopUpAllert extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ErrorTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

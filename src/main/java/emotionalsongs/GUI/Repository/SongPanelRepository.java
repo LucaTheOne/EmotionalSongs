@@ -13,8 +13,10 @@
 package emotionalsongs.GUI.Repository;
 
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.GUI.songsdatarepresenter.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -160,7 +162,7 @@ public class SongPanelRepository extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
-        // TODO add your handling code here:
+        new DataVisualizationForm(representedSong.getTag()).setVisible(true);
     }//GEN-LAST:event_chartButtonActionPerformed
 
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed
