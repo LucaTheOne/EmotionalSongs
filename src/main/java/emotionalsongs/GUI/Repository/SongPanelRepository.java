@@ -4,11 +4,10 @@
 
 package emotionalsongs.GUI.Repository;
 
+import emotionalsongs.GUI.datavisualizer.DataVisualizationForm;
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.GUI.songsdatarepresenter.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;

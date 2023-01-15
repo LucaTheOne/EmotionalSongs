@@ -8,13 +8,11 @@ package emotionalsongs.GUI.PlayLists;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.SongsJudgement.*;
-import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.Managers.*;
 import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.SongsJudgement.*;
-import emotionalsongs.GUI.songsdatarepresenter.*;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 import java.io.*;
@@ -184,12 +182,7 @@ public class SongPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
-        //JFrame chartFrame = new JFrame("Dati canzone");
-        //chartFrame.setSize(1050, 680);
-        //chartFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //chartFrame.add(new DataVisualizationForm(representedSong.getTag()));
-        //chartFrame.setVisible(true);
-        new DataVisualizationForm(representedSong.getTag()).setVisible(true);
+        representedSong.visualizzaEmozioneBrano();
     }//GEN-LAST:event_chartButtonActionPerformed
 
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed

@@ -7,6 +7,7 @@ package emotionalsongs.BasicsStructure;
 import emotionalsongs.*;
 import emotionalsongs.GUI.PlayLists.*;
 import emotionalsongs.GUI.Repository.*;
+import emotionalsongs.GUI.datavisualizer.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
 
@@ -92,7 +93,9 @@ public class Song {
         String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
         return stringa;
     }
-    
+    public void visualizzaEmozioneBrano(){
+        new DataVisualizationForm(tag).setVisible(true);
+    }
     //metodi di costruzione
     
     public SongPanelRepository buildPanelView(){

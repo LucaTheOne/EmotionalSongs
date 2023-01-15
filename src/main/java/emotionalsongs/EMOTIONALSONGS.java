@@ -21,7 +21,6 @@ public class EMOTIONALSONGS {
     
     private static User loggedUser = null;
     public static Dialoghi dialoghi = new DialoghiIta();
-    public static int lenguage = 1;
     private static PlaylistSet userPlaylistSet;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -35,9 +34,9 @@ public class EMOTIONALSONGS {
     
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
-        /*REPOSITORY =*/ Repository.getInstance();
-        /*userDataBase = */DataBaseUsers.getInstance();
-        /*dataBasePlaylists =*/ DataBasePlaylists.getInstance();
+        Repository.getInstance();
+        DataBaseUsers.getInstance();
+        DataBasePlaylists.getInstance();
         init.dispose();
         MainFrame.getIstance().setVisible(true);
     }
@@ -52,10 +51,6 @@ public class EMOTIONALSONGS {
     
     public static PlaylistSet getUserSet(){
         return userPlaylistSet;
-    }
-    
-    public static boolean isLogged(){
-        return loggedUser != null;
     }
     
 }

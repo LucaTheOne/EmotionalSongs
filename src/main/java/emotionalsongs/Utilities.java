@@ -41,12 +41,6 @@ public class Utilities {
     public static ImageIcon RepoBgIcon = new ImageIcon("../EmotionalSongs/Risorse/RepoBG.png");
     public static ImageIcon CreditsIcon = new ImageIcon("../EmotionalSongs/Risorse/CREDITS.jpg");
     
-//Stringhe ricorrenti
-    public static String comma = ",";
-    public static String commaSpace = ", ";
-    public static String semiColon = ";";
-    public static String separatorRepository = "<SEP>";
-    
 // metodi
     public static String capitalize(String str){
         if(str == null || str.length()<=1) return str;

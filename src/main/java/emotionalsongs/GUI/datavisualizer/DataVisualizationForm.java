@@ -2,7 +2,7 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-package emotionalsongs.GUI.songsdatarepresenter;
+package emotionalsongs.GUI.datavisualizer;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.GUI.ErrorMessage.*;
@@ -51,7 +51,6 @@ public class DataVisualizationForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
-        setPreferredSize(new java.awt.Dimension(1080, 720));
 
         mainPanel.setPreferredSize(new java.awt.Dimension(1000, 3200));
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -60,7 +59,6 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         LabelAndTextPanel.setLayout(new java.awt.BorderLayout());
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(1
         );
         jTextArea1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
