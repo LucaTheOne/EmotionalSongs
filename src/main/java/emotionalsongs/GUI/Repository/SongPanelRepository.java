@@ -2,14 +2,6 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-//Luca Bolelli - 749137 - VA
-//Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package emotionalsongs.GUI.Repository;
 
 import emotionalsongs.BasicsStructure.*;

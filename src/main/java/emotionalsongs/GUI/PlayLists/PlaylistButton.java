@@ -6,8 +6,6 @@
 package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 
 /**
@@ -20,12 +18,9 @@ public class PlaylistButton extends javax.swing.JPanel {
      * Creates new form PlaylistButton
      */
     Playlist correlatedPlaylist;
-    PlaylistSet originSet;
     PlayListsManager playListsManager = PlayListsManager.getInstance();
-    public PlaylistButton(Playlist playlist,PlayListsManager playListsManager) {
+    public PlaylistButton(Playlist playlist) {
         correlatedPlaylist = playlist;
-        this.originSet = EMOTIONALSONGS.userPlaylistSet;
-        //this.playListsManager = playListsManager;
         initComponents();
     }
 

@@ -52,6 +52,7 @@ public class Playlist {
     public Playlist(String playlistName,Song[] selectedSongs){
         this.playlistName = playlistName;
         this.songsTags = new String[selectedSongs.length];
+        this.playlist = selectedSongs;
         for(int i = 0; i<selectedSongs.length;i++){
             songsTags[i] = selectedSongs[i].getTag();
         }
@@ -109,7 +110,7 @@ public class Playlist {
     }
     
     public PlaylistButton buildPlaylistButton(){
-        return new PlaylistButton(this, manager);
+        return new PlaylistButton(this);
     }
     
     public String composeString(){

@@ -8,7 +8,6 @@ package emotionalsongs.GUI.mainWindow;
 import emotionalsongs.GUI.Repository.*;
 import emotionalsongs.Managers.*;
 import java.io.*;
-import emotionalsongs.*;
 
 /**
  *

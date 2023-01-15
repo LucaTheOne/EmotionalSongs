@@ -7,7 +7,6 @@ package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Managers.*;
 import java.awt.*;
 
@@ -21,9 +20,10 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
      * Creates new form PlaylistsMainPanel
      */
     
-    PlaylistSet userSet = EMOTIONALSONGS.userPlaylistSet;
+    PlaylistSet userSet;
     PlayListsManager playListsManager = PlayListsManager.getInstance();
-    public PlaylistsMainPanel() {
+    public PlaylistsMainPanel(PlaylistSet userSet) {
+        this.userSet = userSet;
         initComponents();
     }
 
@@ -115,7 +115,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     public void setLeftInnerPanel(PlaylistSet userSet) {
         innerPanelLeft.removeAll();
         for(int i = 0; i<userSet.getSize();i++){
-            innerPanelLeft.add(new PlaylistButton(userSet.getArray()[i],playListsManager));
+            innerPanelLeft.add(new PlaylistButton(userSet.getArray()[i]));
         }
         innerPanelLeft.revalidate();
         innerPanelLeft.repaint();

@@ -8,6 +8,8 @@ package emotionalsongs.Managers;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
@@ -84,9 +86,9 @@ public class PlayListsManager {
             dataBasePlaylists.addNewSet(userSet);
             userSet = new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance());
         } else {
-            dataBasePlaylists.addToSet(newPlaylist);
-            //EMOTIONALSONGS.dataBasePlaylists = new DataBasePlaylists();
-            userSet = new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance());
+            dataBasePlaylists.getUserSet(user).addPlaylist(newPlaylist);
+            dataBasePlaylists.save();
+            EMOTIONALSONGS.setNewUserSet(new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
         } 
         
         playlistPanel.setLeftInnerPanel(userSet);
@@ -169,7 +171,7 @@ public class PlayListsManager {
     }
     
     private PlaylistsMainPanel buildUserPlaylistsPanel(){
-       return new PlaylistsMainPanel();
+       return new PlaylistsMainPanel(getUserSet());
     }
     
     public void startCreation(){
@@ -201,7 +203,7 @@ public class PlayListsManager {
     }
 
     public void updatePlaylistsPanel() {
-        playlistPanel = new PlaylistsMainPanel();
+        playlistPanel = new PlaylistsMainPanel(userSet);
         MainFrame.getIstance().setMainPanel(playlistPanel);
         MainFrame.getIstance().revalidate();
         MainFrame.getIstance().repaint();

@@ -29,6 +29,10 @@ public class EMOTIONALSONGS {
         EMOTIONALSONGS software = new EMOTIONALSONGS();
         software.initialize();    
     }
+
+    public static void setNewUserSet(PlaylistSet newUserSet) {
+        userPlaylistSet = newUserSet;
+    }
     
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
@@ -49,6 +53,10 @@ public class EMOTIONALSONGS {
     
     public static void setLogged(boolean bool){
         EMOTIONALSONGS.logged=bool;
+    }
+    
+    public static PlaylistSet getUserSet(){
+        return userPlaylistSet;
     }
     
 }
