@@ -4,8 +4,8 @@
 
 package emotionalsongs.GUI.datavisualizer;
 
+import emotionalsongs.GUI.comunicator.PopUpAllert;
 import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.databuilder.*;
 import java.io.*;
 import javax.swing.*;

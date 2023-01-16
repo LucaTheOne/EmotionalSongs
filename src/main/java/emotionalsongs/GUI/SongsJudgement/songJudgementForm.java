@@ -8,10 +8,10 @@
  */
 package emotionalsongs.GUI.SongsJudgement;
 
+import emotionalsongs.GUI.comunicator.PopUpAllert;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
 import javax.swing.*;
 import emotionalsongs.*;

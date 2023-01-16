@@ -14,13 +14,15 @@ import javax.swing.*;
  * @author Megaport
  */
 public class Utilities {
+    //campi inetrni privati
+    
     //campi statici
     
     //Path verso files
-    public static String pathToCanzoniDatiTxt = "../EMOTIONALSONGS/data/Canzoni.dati.txt";
-    public static String pathToEmozioniDati = "../EMOTIONALSONGS/data/Emozioni.dati.txt";
-    public static String pathToPlaylistDati = "../EMOTIONALSONGS/data/Playlist.dati.txt";
-    public static String pathToUserDatabase = "../EMOTIONALSONGS/data/UtentiRegistrati.dati.txt";
+    public static String pathToCanzoniDatiTxt = "../EmotionalSongs/data/Canzoni.dati.txt";
+    public static String pathToEmozioniDati = "../EmotionalSongs/data/Emozioni.dati.txt";
+    public static String pathToPlaylistDati = "../EmotionalSongs/data/Playlist.dati.txt";
+    public static String pathToUserDatabase = "../EmotionalSongs/data/UtentiRegistrati.dati.txt";
     
     //immagini
     public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
@@ -61,5 +63,11 @@ public class Utilities {
         return lines;
         
     }
+    
+    public static void main(String[] args) {
+
+    }
+    
+    
     
 }

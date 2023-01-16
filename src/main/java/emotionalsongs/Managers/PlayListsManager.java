@@ -5,11 +5,11 @@
 
 package emotionalsongs.Managers;
 
+import emotionalsongs.GUI.comunicator.PopUpAllert;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.GUI.PlayLists.*;
 import emotionalsongs.GUI.mainWindow.*;
 

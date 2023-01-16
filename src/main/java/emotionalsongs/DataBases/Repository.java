@@ -7,7 +7,11 @@ package emotionalsongs.DataBases;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.comunicator.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.GUI.comunicator.*;
 import java.io.*;
 
 /**
@@ -39,7 +43,7 @@ public class Repository {
                 repository[i] = new Song(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
             }            
         } catch (FileNotFoundException exception) {
-            exception.getMessage();
+            new PopUpAllert("Il file sorgente non è stato trovato").setVisible(true);
         } catch (IOException exception){
             exception.getMessage();
         }

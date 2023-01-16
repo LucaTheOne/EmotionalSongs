@@ -6,14 +6,14 @@ package emotionalsongs.databuilder;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
+import emotionalsongs.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.*;
+import emotionalsongs.GUI.comunicator.*;
 import java.awt.*;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
-import emotionalsongs.*;
 
 /**
  *
@@ -171,9 +171,9 @@ public class ChartAndDataBuilder {
         songUsersJudgements = DataBaseJudgements.getInstance().searchJudgements(songTag);
         if(songUsersJudgements == null){
             new PopUpAllert(
-                    "Non sono disponibili informazioni per questa canzone: " + 
-                    "Titolo: " + analizingSong.getTitle() + ", " +
-                    "Autore: " + analizingSong.getAuthor() + ", "+
+                    "Non sono disponibili informazioni\nper la seguente canzone: \n" + 
+                    "Titolo: " + analizingSong.getTitle() + ",\n " +
+                    "Autore: " + analizingSong.getAuthor() + ",\n "+
                     "Anno: " + analizingSong.getYear() + "."
             ).setVisible(true);
             return;

@@ -5,13 +5,12 @@
 
 package emotionalsongs.DataBases;
 
+import emotionalsongs.GUI.comunicator.PopUpAllert;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.*;
 import emotionalsongs.*; 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.ErrorMessage.*;
 import java.io.*;
 
 /**
