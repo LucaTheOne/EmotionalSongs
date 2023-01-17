@@ -21,17 +21,11 @@ public class EmotionalSongs {
     
     private static User loggedUser = null;
     public static Dialoghi dialoghi = new DialoghiIta();
-    private static PlaylistSet userPlaylistSet;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EmotionalSongs software = new EmotionalSongs();
         software.initialize();    
     }
-
-    public static void setUserSet(PlaylistSet newUserSet) {
-        userPlaylistSet = newUserSet;
-    }
-    
     private void initialize() throws IOException{
         GUIInitializationFrame init = new GUIInitializationFrame();
         Repository.getInstance();
@@ -47,10 +41,6 @@ public class EmotionalSongs {
     
     public static void setLoggedUser(User loggedUser){
         EmotionalSongs.loggedUser = loggedUser;
-    }
-    
-    public static PlaylistSet getUserSet(){
-        return userPlaylistSet;
     }
     
 }

@@ -43,6 +43,8 @@ public class Utilities {
     public static ImageIcon RepoBgIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RepoBG.png");
     public static ImageIcon CreditsIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CREDITS.jpg");
     
+    //HTML
+    public static String HtmlPath = basePath+ osFileSeparator+"Risorse"+osFileSeparator+"email-registration-confirm-def"+osFileSeparator+"registration-confirm.html";
 // metodi
     public static String capitalize(String str){
         if(str == null || str.length()<=1) return str;

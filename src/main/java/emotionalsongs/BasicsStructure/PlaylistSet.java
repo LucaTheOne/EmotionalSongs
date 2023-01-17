@@ -4,7 +4,6 @@
 
 package emotionalsongs.BasicsStructure;
 
-import emotionalsongs.*;
 import emotionalsongs.Engines.*;
 
 /**
@@ -68,7 +67,8 @@ public class PlaylistSet {
             newOne[i] = set[i];
         }
         newOne[newOne.length-1] = playlist;
-        EmotionalSongs.getUserSet().updateSet(newOne);
+        this.set=newOne;
+        //PlayListsManager.getInstance().getUserSet().updateSet(newOne);
         if(set.length >1){
             sort();
         }

@@ -5,12 +5,12 @@
 
 package emotionalsongs.Managers;
 
-import emotionalsongs.GUI.comunicator.PopUpAllert;
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
 import emotionalsongs.Engines.*;
 import emotionalsongs.GUI.PlayLists.*;
+import emotionalsongs.GUI.comunicator.*;
 import emotionalsongs.GUI.mainWindow.*;
 
 
@@ -45,19 +45,21 @@ public class PlayListsManager {
     public static PlayListsManager getInstance(){
         return instance;
     }
+    
+    public static void eraseInstance(){
+        if(instance != null) instance=null;
+    }
 
     private PlayListsManager(DataBasePlaylists dataBasePlaylists) {
         EngineSearcher finder = new EngineSearcher();
-        EmotionalSongs.setUserSet(finder.searchUserSet(user, dataBasePlaylists));
-        userSet = getUserSet();
+        userSet = finder.searchUserSet(user, dataBasePlaylists);
         userSetDimension = userSet==null ? 0 : userSet.getSize();
         this.dataBasePlaylists = dataBasePlaylists;
-        //playlistPanel = new PlaylistsMainPanel(userSet);
     }
     
     //getter method
     public PlaylistSet getUserSet(){
-        return EmotionalSongs.getUserSet();
+        return userSet;
     }
     
     public int getNumberOfSongToAdd() {
@@ -87,7 +89,7 @@ public class PlayListsManager {
         } else {
             dataBasePlaylists.getUserSet(user).addPlaylist(newPlaylist);
             dataBasePlaylists.save();
-            EmotionalSongs.setUserSet(new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
+            userSet = (new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance())) ;
         } 
         playlistPanel = new PlaylistsMainPanel(userSet);
         MainFrame.getIstance().setMainPanel(playlistPanel);

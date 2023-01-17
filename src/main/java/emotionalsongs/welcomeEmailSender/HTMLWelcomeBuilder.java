@@ -10,24 +10,16 @@ import emotionalsongs.*;
 import emotionalsongs.BasicsStructure.*;
 import java.io.*;
 import java.util.logging.*;
-
-
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author big
  */
 class HTMLWelcomeBuilder {
     
-    User user = EmotionalSongs.getLoggedUser();
-    String message ="";
-    String[] userdata = new String[8];
-    String[] identifiers = {"%&0","%&1","%&2","%&3","%&4","%&5","%&6","%&7"};
+    private User user = EmotionalSongs.getLoggedUser();
+    private String message ="";
+    private String[] userdata = new String[8];
+    private String[] identifiers = {"%&0","%&1","%&2","%&3","%&4","%&5","%&6","%&7"};
     
     public HTMLWelcomeBuilder() {
         userdata[0] = user.getNome();
@@ -40,7 +32,7 @@ class HTMLWelcomeBuilder {
         userdata[7] = user.getPassword();
         
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("../EMOTIONALSONGS/Risorse/email-registration-confirm-def/registration-confirm.html")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(Utilities.HtmlPath)));
             String current = "";
             while((current = reader.readLine()) != null){
                 message += current;

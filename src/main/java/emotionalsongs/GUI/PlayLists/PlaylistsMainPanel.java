@@ -23,7 +23,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     PlaylistSet userSet;
     PlayListsManager playListsManager = PlayListsManager.getInstance();
     public PlaylistsMainPanel(PlaylistSet userSet) {
-        this.userSet = userSet;
+        this.userSet = playListsManager.getUserSet();
         initComponents();
     }
 

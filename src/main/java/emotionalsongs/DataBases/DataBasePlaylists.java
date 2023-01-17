@@ -6,7 +6,11 @@ package emotionalsongs.DataBases;
 
 import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.Engines.*;
+import emotionalsongs.Managers.*;
 import emotionalsongs.*;
+import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.Managers.*;
 import java.io.*;
 import java.util.logging.*;
 
@@ -58,8 +62,8 @@ public class DataBasePlaylists {
         save();
     }
     
-    public void addToSet(Playlist playlist){
-        EmotionalSongs.getUserSet().addPlaylist(playlist);
+    public void addToLoggedUserSet(Playlist playlist){
+        PlayListsManager.getInstance().getUserSet().addPlaylist(playlist);
         save();
     }
     
