@@ -90,13 +90,13 @@ cd .. || exit 12
 AppPackageRoot=$(pwd)
 
 # set Apple's Java folder
-AppleJavaFolder="${AppPackageFolder}"/Contents/Resources/Java
+AppleJavaFolder="${AppPackageFolder}"/Contents/Resources/Java/EmotionalSongs
 
 # set Apple's Resources folder
 AppleResourcesFolder="${AppPackageFolder}"/Contents/Resources
 
 # set Oracle's Java folder
-OracleJavaFolder="${AppPackageFolder}"/Contents/Java
+OracleJavaFolder="${AppPackageFolder}"/Contents/Java/EmotionalSongs
 
 # set Oracle's Resources folder
 OracleResourcesFolder="${AppPackageFolder}"/Contents/Resources
