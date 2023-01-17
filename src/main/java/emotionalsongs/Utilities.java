@@ -15,35 +15,33 @@ import javax.swing.*;
  */
 public class Utilities {
     //campi inetrni privati
-
+    private static String osFileSeparator = FileSystems.getDefault().getSeparator();
     private static String basePath = generateBasePath();
-    
+    //private static String osFileSeparator = FileSystems.getDefault().getSeparator();
     //campi statici
     
     //Path verso files
 
-    public static String pathToCanzoniDatiTxt =basePath +  "/data/Canzoni.dati.txt";
-    public static String pathToEmozioniDati = basePath + "/data/Emozioni.dati.txt";
-    public static String pathToPlaylistDati = basePath + "/data/Playlist.dati.txt";
-    public static String pathToUserDatabase = basePath + "/data/UtentiRegistrati.dati.txt";
+    public static String pathToCanzoniDatiTxt =basePath +  osFileSeparator+"data"+osFileSeparator+"Canzoni.dati.txt";
+    public static String pathToEmozioniDati = basePath + osFileSeparator +"data" +osFileSeparator+"Emozioni.dati.txt";
+    public static String pathToPlaylistDati = basePath + osFileSeparator +"data" +osFileSeparator+"Playlist.dati.txt";
+    public static String pathToUserDatabase = basePath + osFileSeparator +"data" +osFileSeparator+"UtentiRegistrati.dati.txt";
     
     //immagini
-    public static ImageIcon logo = new ImageIcon(basePath+"/Risorse/EmotionalSongsLogo.png");
-    public static ImageIcon loadingFrame = new ImageIcon(basePath+"/Risorse/LoadingFrameWhite.png");
-    public static ImageIcon mainBackGround = new ImageIcon(basePath+"/Risorse/mainBackground.png");
-    public static ImageIcon searchIcon = new ImageIcon(basePath+"/Risorse/IconaRicerca.png");
-    public static ImageIcon backButtonIcon = new ImageIcon(basePath+"/Risorse/BackButton.png");
-    public static ImageIcon nextButtonIcon = new ImageIcon(basePath+"/Risorse/NextButton.png");  
-    public static ImageIcon spaceImage = new ImageIcon(basePath+"/Risorse/space.png");
-    public static ImageIcon logingBG = new ImageIcon(basePath+"/Risorse/LoginBG.png");
-    public static ImageIcon regBG = new ImageIcon(basePath+"/Risorse/RegBg.png");
-    public static ImageIcon chartButtonIcon = new ImageIcon(basePath+"/Risorse/chartButton.png");
-    public static ImageIcon regIcon = new ImageIcon(basePath+"/Risorse/RegIcon.png");
-    public static ImageIcon clearButtonIcon = new ImageIcon(basePath+"/Risorse/ClearButtonIcon.png");
-    public static ImageIcon closeButton = new ImageIcon(basePath+"/Risorse/CloseButton.png");
-    public static ImageIcon SongViewIcon = new ImageIcon(basePath+"/Risorse/SongViewBorder.png");
-    public static ImageIcon RepoBgIcon = new ImageIcon(basePath+"/Risorse/RepoBG.png");
-    public static ImageIcon CreditsIcon = new ImageIcon(basePath+"/Risorse/CREDITS.jpg");
+    public static ImageIcon logo = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"EmotionalSongsLogo.png");
+    public static ImageIcon loadingFrame = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoadingFrameWhite.png");
+    public static ImageIcon mainBackGround = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"mainBackground.png");
+    public static ImageIcon searchIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"IconaRicerca.png");
+    public static ImageIcon backButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"BackButton.png");
+    public static ImageIcon nextButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"NextButton.png");  
+    public static ImageIcon logingBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoginBG.png");
+    public static ImageIcon regBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegBg.png");
+    public static ImageIcon regIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegIcon.png");
+    public static ImageIcon clearButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"ClearButtonIcon.png");
+    public static ImageIcon closeButton = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CloseButton.png");
+    public static ImageIcon SongViewIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"SongViewBorder.png");
+    public static ImageIcon RepoBgIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RepoBG.png");
+    public static ImageIcon CreditsIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CREDITS.jpg");
     
 // metodi
     public static String capitalize(String str){
@@ -53,7 +51,7 @@ public class Utilities {
     
     private static String generateBasePath(){
         String stringPath = new File(System.getProperty("user.dir")).getParent();
-        stringPath += stringPath.endsWith("/EmotionalSongs")?"":"/EmotionalSongs";
+        stringPath += stringPath.endsWith((osFileSeparator+"EmotionalSongs")) ? "" : (osFileSeparator+"EmotionalSongs");
         
         return stringPath;
     }
