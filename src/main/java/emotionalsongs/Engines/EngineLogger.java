@@ -17,7 +17,7 @@ import java.io.*;
  *@hidden
  * @author luca
  */
-public class EngineLogger extends EMOTIONALSONGS{
+public class EngineLogger extends EmotionalSongs{
     
     private DataBaseUsers database = DataBaseUsers.getInstance();
     private User user;
@@ -37,8 +37,8 @@ public class EngineLogger extends EMOTIONALSONGS{
           passwordsMatch(Password);
             if(idFounded&&passwordMatches){
                 EngineSearcher finder = new EngineSearcher();
-                EMOTIONALSONGS.setLoggedUser(finder.getUserFromId(database, UserId));
-                EMOTIONALSONGS.setUserSet(finder.searchUserSet(EMOTIONALSONGS.getLoggedUser(), DataBasePlaylists.getInstance()));
+                EmotionalSongs.setLoggedUser(finder.getUserFromId(database, UserId));
+                EmotionalSongs.setUserSet(finder.searchUserSet(EmotionalSongs.getLoggedUser(), DataBasePlaylists.getInstance()));
                 PlayListsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
 
             }  
@@ -70,6 +70,6 @@ public class EngineLogger extends EMOTIONALSONGS{
     }
     
     public static void logout(){
-        EMOTIONALSONGS.setLoggedUser(null);
+        EmotionalSongs.setLoggedUser(null);
     }
 }

@@ -16,7 +16,7 @@ import java.io.*;
  *@hidden
  * @author Luca
  */
-public class EMOTIONALSONGS {
+public class EmotionalSongs {
     
     
     private static User loggedUser = null;
@@ -24,7 +24,7 @@ public class EMOTIONALSONGS {
     private static PlaylistSet userPlaylistSet;
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        EMOTIONALSONGS software = new EMOTIONALSONGS();
+        EmotionalSongs software = new EmotionalSongs();
         software.initialize();    
     }
 
@@ -46,7 +46,7 @@ public class EMOTIONALSONGS {
     }
     
     public static void setLoggedUser(User loggedUser){
-        EMOTIONALSONGS.loggedUser = loggedUser;
+        EmotionalSongs.loggedUser = loggedUser;
     }
     
     public static PlaylistSet getUserSet(){

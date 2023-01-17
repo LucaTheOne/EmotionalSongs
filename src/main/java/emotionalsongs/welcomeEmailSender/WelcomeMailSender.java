@@ -16,7 +16,7 @@ public class WelcomeMailSender {
     public static void sendMailToNewUser() {
 
         // Recipient's email ID needs to be mentioned.
-        String to = EMOTIONALSONGS.getLoggedUser().getEmail();
+        String to = EmotionalSongs.getLoggedUser().getEmail();
 
         // Sender's email ID needs to be mentioned
         String from = "bigs.development.studio@gmail.com";

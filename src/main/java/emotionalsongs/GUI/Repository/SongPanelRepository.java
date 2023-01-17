@@ -121,7 +121,7 @@ public class SongPanelRepository extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        chartButton.setText(EMOTIONALSONGS.dialoghi.datiCanzoni());
+        chartButton.setText(EmotionalSongs.dialoghi.datiCanzoni());
         chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         chartButton.setOpaque(true);
         chartButton.setPreferredSize(new java.awt.Dimension(125, 25));

@@ -39,7 +39,7 @@
     <Component class="javax.swing.JButton" name="loginButton">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="EMOTIONALSONGS.dialoghi.log()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.log()" type="code"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[100, 40]"/>
@@ -98,7 +98,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="EMOTIONALSONGS.dialoghi.idUtente()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.idUtente()" type="code"/>
         </Property>
       </Properties>
       <Constraints>
@@ -132,7 +132,7 @@
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="EMOTIONALSONGS.dialoghi.idUtenteInes()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.idUtenteInes()" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -154,7 +154,7 @@
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="EMOTIONALSONGS.dialoghi.passwordErr()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.passwordErr()" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -170,7 +170,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="EMOTIONALSONGS.dialoghi.exit()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.exit()" type="code"/>
         </Property>
       </Properties>
       <Events>

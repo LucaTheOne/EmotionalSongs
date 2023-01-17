@@ -100,7 +100,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         createButtonPanelLayout.rowHeights = new int[] {0};
         buttonPanel.setLayout(createButtonPanelLayout);
 
-        createButton.setText(EMOTIONALSONGS.dialoghi.creaNuovaPlaylist());
+        createButton.setText(EmotionalSongs.dialoghi.creaNuovaPlaylist());
         createButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createButton.setPreferredSize(new java.awt.Dimension(150, 40));
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         buttonPanel.add(createButton, gridBagConstraints);
 
-        annullaButton.setText(EMOTIONALSONGS.dialoghi.annulla());
+        annullaButton.setText(EmotionalSongs.dialoghi.annulla());
         annullaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         annullaButton.setPreferredSize(new java.awt.Dimension(120, 40));
         annullaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +209,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText(EMOTIONALSONGS.dialoghi.newPlaylist());
+        jLabel1.setText(EmotionalSongs.dialoghi.newPlaylist());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -254,7 +254,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(EMOTIONALSONGS.dialoghi.titolo());
+        titleLabel1.setText(EmotionalSongs.dialoghi.titolo());
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -265,7 +265,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(EMOTIONALSONGS.dialoghi.autore());
+        authorLabel1.setText(EmotionalSongs.dialoghi.autore());
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -276,7 +276,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(EMOTIONALSONGS.dialoghi.anno());
+        yearLabel1.setText(EmotionalSongs.dialoghi.anno());
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);

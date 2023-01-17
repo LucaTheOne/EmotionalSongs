@@ -56,7 +56,7 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginButton.setText(EMOTIONALSONGS.dialoghi.log());
+        loginButton.setText(EmotionalSongs.dialoghi.log());
         loginButton.setPreferredSize(new java.awt.Dimension(100, 40));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +80,7 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText(EMOTIONALSONGS.dialoghi.idUtente());
+        jLabel1.setText(EmotionalSongs.dialoghi.idUtente());
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 255, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -90,17 +90,17 @@ public class GUIFrameLogIn extends javax.swing.JFrame {
 
         wrongId.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
         wrongId.setForeground(new java.awt.Color(255, 51, 51));
-        wrongId.setText(EMOTIONALSONGS.dialoghi.idUtenteInes());
+        wrongId.setText(EmotionalSongs.dialoghi.idUtenteInes());
         wrongId.setVisible(false);
         getContentPane().add(wrongId, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 263, -1, -1));
 
         wrongPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
         wrongPassword.setForeground(new java.awt.Color(255, 51, 51));
-        wrongPassword.setText(EMOTIONALSONGS.dialoghi.passwordErr());
+        wrongPassword.setText(EmotionalSongs.dialoghi.passwordErr());
         wrongPassword.setVisible(false);
         getContentPane().add(wrongPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 301, -1, -1));
 
-        jButton1.setText(EMOTIONALSONGS.dialoghi.exit());
+        jButton1.setText(EmotionalSongs.dialoghi.exit());
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

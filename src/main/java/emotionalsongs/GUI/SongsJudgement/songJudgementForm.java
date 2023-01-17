@@ -245,7 +245,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         amazementNotes.setColumns(20);
         amazementNotes.setRows(5);
-        amazementNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        amazementNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         amazementNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane2.setViewportView(amazementNotes);
 
@@ -334,7 +334,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         solemnityNotes.setColumns(20);
         solemnityNotes.setRows(5);
-        solemnityNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        solemnityNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         solemnityNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane11.setViewportView(solemnityNotes);
 
@@ -418,7 +418,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         tendernessNotes.setColumns(20);
         tendernessNotes.setRows(5);
-        tendernessNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        tendernessNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         tendernessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane12.setViewportView(tendernessNotes);
 
@@ -502,7 +502,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         nostalgiaNotes.setColumns(20);
         nostalgiaNotes.setRows(5);
-        nostalgiaNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        nostalgiaNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         nostalgiaNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane13.setViewportView(nostalgiaNotes);
 
@@ -586,7 +586,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         calmnessNotes.setColumns(20);
         calmnessNotes.setRows(5);
-        calmnessNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        calmnessNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         calmnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane14.setViewportView(calmnessNotes);
 
@@ -670,7 +670,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         powerNotes.setColumns(20);
         powerNotes.setRows(5);
-        powerNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        powerNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         powerNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane15.setViewportView(powerNotes);
 
@@ -754,7 +754,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         joyNotes.setColumns(20);
         joyNotes.setRows(5);
-        joyNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        joyNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         joyNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane16.setViewportView(joyNotes);
 
@@ -838,7 +838,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         tensionNotes.setColumns(20);
         tensionNotes.setRows(5);
-        tensionNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        tensionNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         tensionNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane17.setViewportView(tensionNotes);
 
@@ -922,7 +922,7 @@ public class songJudgementForm extends javax.swing.JPanel {
 
         sadnessNotes.setColumns(20);
         sadnessNotes.setRows(5);
-        sadnessNotes.setText(EMOTIONALSONGS.dialoghi.songsJudge());
+        sadnessNotes.setText(EmotionalSongs.dialoghi.songsJudge());
         sadnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
         jScrollPane18.setViewportView(sadnessNotes);
 
@@ -1398,7 +1398,7 @@ public class songJudgementForm extends javax.swing.JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(800, 800);
-        Repository repo = EMOTIONALSONGS.REPOSITORY;
+        Repository repo = EmotionalSongs.REPOSITORY;
         Song trySong = repo.getBrano(1527);
         frame.add(new songJudgementForm("userIdTryal",trySong.getTag()));
         frame.setVisible(true);

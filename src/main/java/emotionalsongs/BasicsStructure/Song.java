@@ -135,7 +135,7 @@ public class Song {
      * @return Il pannello con la Playlist.
      */
     public SongPanel buildPanelForPlaylist(Playlist propertyPlaylist){
-        return new SongPanel(EMOTIONALSONGS.getLoggedUser().getUserId(),this,propertyPlaylist);
+        return new SongPanel(EmotionalSongs.getLoggedUser().getUserId(),this,propertyPlaylist);
     }
     
     //metodi di confronto

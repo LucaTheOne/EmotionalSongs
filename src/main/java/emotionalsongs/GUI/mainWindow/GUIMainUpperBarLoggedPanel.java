@@ -89,7 +89,7 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreditsButton.setText(EMOTIONALSONGS.dialoghi.credits());
+        CreditsButton.setText(EmotionalSongs.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
         CreditsButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -176,12 +176,12 @@ public class GUIMainUpperBarLoggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
-       if(emotionalsongs.EMOTIONALSONGS.dialoghi instanceof DialoghiIta){
-            emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiEng();
+       if(emotionalsongs.EmotionalSongs.dialoghi instanceof DialoghiIta){
+            emotionalsongs.EmotionalSongs.dialoghi = new DialoghiEng();
             LanguageButton.setText("English");
             mainWindow.updateView();
        } else {
-           emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiIta();
+           emotionalsongs.EmotionalSongs.dialoghi = new DialoghiIta();
             LanguageButton.setText("Italiano");
             mainWindow.updateView();
        }

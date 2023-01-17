@@ -2,7 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>emotionalsongs</groupId>
+<<<<<<< Updated upstream
     <artifactId>EMOTIONALSONGS</artifactId>
+=======
+    <artifactId>EmotionalSongs</artifactId>
+>>>>>>> Stashed changes
     <version>1.0</version>
     <packaging>jar</packaging>
     <dependencies>
@@ -32,7 +36,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
-        <exec.mainClass>emotionalsongs.EMOTIONALSONGS</exec.mainClass>
+        <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
     </properties>
     <build>
     <plugins>
@@ -45,7 +49,11 @@
                 </descriptorRefs>
                 <archive>
                     <manifest>
+<<<<<<< Updated upstream
                         <mainClass>emotionalsongs.EMOTIONALSONGS</mainClass>
+=======
+                        <mainClass>emotionalsongs.EmotionalSongs</mainClass>
+>>>>>>> Stashed changes
                     </manifest>
                 </archive>
             </configuration>
@@ -61,5 +69,9 @@
         </plugin>
     </plugins>
 </build>
+<<<<<<< Updated upstream
     
+=======
+    <name>EmotionalSongs</name>
+>>>>>>> Stashed changes
 </project>

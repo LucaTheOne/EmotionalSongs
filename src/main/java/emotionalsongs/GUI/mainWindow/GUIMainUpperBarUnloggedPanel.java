@@ -196,12 +196,12 @@ public class GUIMainUpperBarUnloggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
-        if(emotionalsongs.EMOTIONALSONGS.dialoghi instanceof DialoghiIta){
-            emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiEng();
+        if(emotionalsongs.EmotionalSongs.dialoghi instanceof DialoghiIta){
+            emotionalsongs.EmotionalSongs.dialoghi = new DialoghiEng();
             LanguageButton.setText("English");
             mainWindow.updateView();
        } else {
-           emotionalsongs.EMOTIONALSONGS.dialoghi = new DialoghiIta();
+           emotionalsongs.EmotionalSongs.dialoghi = new DialoghiIta();
             LanguageButton.setText("Italiano");
             mainWindow.updateView();
        }

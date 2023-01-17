@@ -59,7 +59,7 @@ public class DataBasePlaylists {
     }
     
     public void addToSet(Playlist playlist){
-        EMOTIONALSONGS.getUserSet().addPlaylist(playlist);
+        EmotionalSongs.getUserSet().addPlaylist(playlist);
         save();
     }
     

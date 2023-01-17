@@ -14,6 +14,7 @@ import javax.swing.*;
  * @author Megaport
  */
 public class Utilities {
+<<<<<<< Updated upstream
     //campi inetrni privati
     
     //campi statici
@@ -23,25 +24,35 @@ public class Utilities {
     public static String pathToEmozioniDati = "../EmotionalSongs/data/Emozioni.dati.txt";
     public static String pathToPlaylistDati = "../EmotionalSongs/data/Playlist.dati.txt";
     public static String pathToUserDatabase = "../EmotionalSongs/data/UtentiRegistrati.dati.txt";
+=======
+    private static String basePath = System.getProperty("user.dir");
+    //campi statici
+    
+    //Path verso files
+    public static String pathToCanzoniDatiTxt = basePath + "/data/Canzoni.dati.txt";
+    public static String pathToEmozioniDati = basePath + "/data/Emozioni.dati.txt";
+    public static String pathToPlaylistDati = basePath + "/data/Playlist.dati.txt";
+    public static String pathToUserDatabase = basePath + "/data/UtentiRegistrati.dati.txt";
+>>>>>>> Stashed changes
     
     //immagini
-    public static ImageIcon logo = new ImageIcon("../EmotionalSongs/Risorse/EmotionalSongsLogo.png");
-    public static ImageIcon loadingImageIcon = new ImageIcon("../EmotionalSongs/Risorse/LoadingPage.png");
-    public static ImageIcon loadingImageIconInsubria = new ImageIcon("../EmotionalSongs/Risorse/LoadingPageInsubriaLogo.png");
-    public static ImageIcon mainBackGround = new ImageIcon("../EmotionalSongs/Risorse/mainBackground.png");
-    public static ImageIcon searchIcon = new ImageIcon("../EmotionalSongs/Risorse/IconaRicerca.png");
-    public static ImageIcon backButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/BackButton.png");
-    public static ImageIcon nextButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/NextButton.png");  
-    public static ImageIcon spaceImage = new ImageIcon("../EmotionalSongs/Risorse/space.png");
-    public static ImageIcon logingBG = new ImageIcon("../EmotionalSongs/Risorse/LoginBG.png");
-    public static ImageIcon regBG = new ImageIcon("../EmotionalSongs/Risorse/RegBg.png");
-    public static ImageIcon chartButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/chartButton.png");
-    public static ImageIcon regIcon = new ImageIcon("../EmotionalSongs/Risorse/RegIcon.png");
-    public static ImageIcon clearButtonIcon = new ImageIcon("../EmotionalSongs/Risorse/ClearButtonIcon.png");
-    public static ImageIcon closeButton = new ImageIcon("../EmotionalSongs/Risorse/CloseButton.png");
-    public static ImageIcon SongViewIcon = new ImageIcon("../EmotionalSongs/Risorse/SongViewBorder.png");
-    public static ImageIcon RepoBgIcon = new ImageIcon("../EmotionalSongs/Risorse/RepoBG.png");
-    public static ImageIcon CreditsIcon = new ImageIcon("../EmotionalSongs/Risorse/CREDITS.jpg");
+    public static ImageIcon logo = new ImageIcon(basePath+"/Risorse/EmotionalSongsLogo.png");
+    public static ImageIcon loadingImageIcon = new ImageIcon(basePath+"/Risorse/LoadingFrameWhite.png");
+    public static ImageIcon loadingImageIconInsubria = new ImageIcon(basePath+"/Risorse/LoadingFrameWhite.png");
+    public static ImageIcon mainBackGround = new ImageIcon(basePath+"/Risorse/mainBackground.png");
+    public static ImageIcon searchIcon = new ImageIcon(basePath+"/Risorse/IconaRicerca.png");
+    public static ImageIcon backButtonIcon = new ImageIcon(basePath+"/Risorse/BackButton.png");
+    public static ImageIcon nextButtonIcon = new ImageIcon(basePath+"/Risorse/NextButton.png");  
+    public static ImageIcon spaceImage = new ImageIcon(basePath+"/Risorse/space.png");
+    public static ImageIcon logingBG = new ImageIcon(basePath+"/Risorse/LoginBG.png");
+    public static ImageIcon regBG = new ImageIcon(basePath+"/Risorse/RegBg.png");
+    public static ImageIcon chartButtonIcon = new ImageIcon(basePath+"/Risorse/chartButton.png");
+    public static ImageIcon regIcon = new ImageIcon(basePath+"/Risorse/RegIcon.png");
+    public static ImageIcon clearButtonIcon = new ImageIcon(basePath+"/Risorse/ClearButtonIcon.png");
+    public static ImageIcon closeButton = new ImageIcon(basePath+"/Risorse/CloseButton.png");
+    public static ImageIcon SongViewIcon = new ImageIcon(basePath+"/Risorse/SongViewBorder.png");
+    public static ImageIcon RepoBgIcon = new ImageIcon(basePath+"/Risorse/RepoBG.png");
+    public static ImageIcon CreditsIcon = new ImageIcon(basePath+"/Risorse/CREDITS.jpg");
     
 // metodi
     public static String capitalize(String str){

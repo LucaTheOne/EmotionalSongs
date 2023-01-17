@@ -59,7 +59,7 @@ public class EngineRegistrer {
         System.out.println("utente creato");
         userDatabase.addNewUser(nuovo);
         System.out.println("utente aggiunto");
-        EMOTIONALSONGS.setLoggedUser(nuovo);
+        EmotionalSongs.setLoggedUser(nuovo);
         WelcomeMailSender.sendMailToNewUser();
     }
 }
