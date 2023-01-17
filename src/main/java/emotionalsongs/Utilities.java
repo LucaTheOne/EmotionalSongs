@@ -16,12 +16,13 @@ import javax.swing.*;
 public class Utilities {
     //campi inetrni privati
 
-    private static String basePath = System.getProperty("user.dir");
+    private static String basePath = generateBasePath();//System.getProperty("user.dir");
+    
     //campi statici
     
     //Path verso files
 
-    public static String pathToCanzoniDatiTxt = basePath + "/data/Canzoni.dati.txt";
+    public static String pathToCanzoniDatiTxt =basePath +  "/data/Canzoni.dati.txt";
     public static String pathToEmozioniDati = basePath + "/data/Emozioni.dati.txt";
     public static String pathToPlaylistDati = basePath + "/data/Playlist.dati.txt";
     public static String pathToUserDatabase = basePath + "/data/UtentiRegistrati.dati.txt";
@@ -51,6 +52,11 @@ public class Utilities {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
     
+    private static String generateBasePath(){
+        String stringPath = new File(System.getProperty("user.dir")).getParent();
+        stringPath += stringPath.contains("/EmotionalSongs")?"":"/EmotionalSongs";
+        return stringPath;
+    }
     public static long countLines(String fileName) {
         
       Path path = Paths.get(fileName);
@@ -64,12 +70,5 @@ public class Utilities {
 
         return lines;
         
-    }
-    
-    public static void main(String[] args) {
-
-    }
-    
-    
-    
+    }    
 }
