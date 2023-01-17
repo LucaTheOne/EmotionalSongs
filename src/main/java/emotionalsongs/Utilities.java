@@ -14,36 +14,17 @@ import javax.swing.*;
  * @author Megaport
  */
 public class Utilities {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     //campi inetrni privati
-    
-    //campi statici
-    
-    //Path verso files
-    public static String pathToCanzoniDatiTxt = "../EmotionalSongs/data/Canzoni.dati.txt";
-    public static String pathToEmozioniDati = "../EmotionalSongs/data/Emozioni.dati.txt";
-    public static String pathToPlaylistDati = "../EmotionalSongs/data/Playlist.dati.txt";
-    public static String pathToUserDatabase = "../EmotionalSongs/data/UtentiRegistrati.dati.txt";
-=======
+
     private static String basePath = System.getProperty("user.dir");
     //campi statici
     
     //Path verso files
-=======
-    private static String basePath = System.getProperty("user.dir");
-    //campi statici
-    
-    //Path verso files
->>>>>>> Stashed changes
+
     public static String pathToCanzoniDatiTxt = basePath + "/data/Canzoni.dati.txt";
     public static String pathToEmozioniDati = basePath + "/data/Emozioni.dati.txt";
     public static String pathToPlaylistDati = basePath + "/data/Playlist.dati.txt";
     public static String pathToUserDatabase = basePath + "/data/UtentiRegistrati.dati.txt";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     
     //immagini
     public static ImageIcon logo = new ImageIcon(basePath+"/Risorse/EmotionalSongsLogo.png");
