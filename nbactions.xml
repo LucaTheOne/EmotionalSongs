@@ -14,9 +14,14 @@
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs></exec.appArgs>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <exec.mainClass>emotionalsongs.EMOTIONALSONGS</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <exec.workingdir>/Users/big/CodingProjects/javaDevelopment/GitHub/CordisFit/EmotionalSongs</exec.workingdir>
+=======
+                <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
+                <exec.executable>java</exec.executable>
+>>>>>>> Stashed changes
 =======
                 <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
                 <exec.executable>java</exec.executable>
@@ -37,10 +42,16 @@
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs></exec.appArgs>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <exec.mainClass>emotionalsongs.EMOTIONALSONGS</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
                 <exec.workingdir>/Users/big/CodingProjects/javaDevelopment/GitHub/CordisFit/EmotionalSongs</exec.workingdir>
+=======
+                <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+>>>>>>> Stashed changes
 =======
                 <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
                 <exec.executable>java</exec.executable>
@@ -61,10 +72,16 @@
                 <exec.vmArgs></exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <exec.mainClass>emotionalsongs.EMOTIONALSONGS</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <exec.appArgs></exec.appArgs>
                 <exec.workingdir>/Users/big/CodingProjects/javaDevelopment/GitHub/CordisFit/EmotionalSongs</exec.workingdir>
+=======
+                <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.appArgs></exec.appArgs>
+>>>>>>> Stashed changes
 =======
                 <exec.mainClass>emotionalsongs.EmotionalSongs</exec.mainClass>
                 <exec.executable>java</exec.executable>

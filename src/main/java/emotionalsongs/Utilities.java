@@ -15,6 +15,7 @@ import javax.swing.*;
  */
 public class Utilities {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //campi inetrni privati
     
     //campi statici
@@ -29,10 +30,19 @@ public class Utilities {
     //campi statici
     
     //Path verso files
+=======
+    private static String basePath = System.getProperty("user.dir");
+    //campi statici
+    
+    //Path verso files
+>>>>>>> Stashed changes
     public static String pathToCanzoniDatiTxt = basePath + "/data/Canzoni.dati.txt";
     public static String pathToEmozioniDati = basePath + "/data/Emozioni.dati.txt";
     public static String pathToPlaylistDati = basePath + "/data/Playlist.dati.txt";
     public static String pathToUserDatabase = basePath + "/data/UtentiRegistrati.dati.txt";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     
     //immagini

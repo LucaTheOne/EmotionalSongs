@@ -3,7 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>emotionalsongs</groupId>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <artifactId>EMOTIONALSONGS</artifactId>
+=======
+    <artifactId>EmotionalSongs</artifactId>
+>>>>>>> Stashed changes
 =======
     <artifactId>EmotionalSongs</artifactId>
 >>>>>>> Stashed changes
@@ -50,7 +54,11 @@
                 <archive>
                     <manifest>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         <mainClass>emotionalsongs.EMOTIONALSONGS</mainClass>
+=======
+                        <mainClass>emotionalsongs.EmotionalSongs</mainClass>
+>>>>>>> Stashed changes
 =======
                         <mainClass>emotionalsongs.EmotionalSongs</mainClass>
 >>>>>>> Stashed changes
@@ -70,7 +78,11 @@
     </plugins>
 </build>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
+=======
+    <name>EmotionalSongs</name>
+>>>>>>> Stashed changes
 =======
     <name>EmotionalSongs</name>
 >>>>>>> Stashed changes
