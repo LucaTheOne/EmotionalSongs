@@ -97,6 +97,12 @@ public class EngineSearcher {
         return results;
     }
     
+    /**
+     * Il metodo prende come parametri la repository e songTag ed effettua la ricerca.
+     * @param repository 
+     * @param songTag
+     * 
+     */
     public Song searchByBranoTag(Repository repository,String songTag) {
         //repository.sortByTags();
         int size = repository.getSize();
@@ -118,7 +124,13 @@ public class EngineSearcher {
     }
     
     //metodi ricerca utenti nel database
-    
+    /**
+     * Il metodo prende come parametri il codice fiscale e database ed
+     * effettua una ricerca nella databse dell'userID.
+     * @param database DataBaseUser.
+     * @param cf Codice Fiscale. 
+     * @return userID.
+     */
     public User getUserFromCf(DataBaseUsers database,String cf) {
         
         int size = database.getSize();
@@ -147,7 +159,13 @@ public class EngineSearcher {
         return null;
 
     }
-
+    
+    /**
+     * 
+     * @param dataBaseUtenti
+     * @param id
+     * @return 
+     */
     public User getUserFromId(DataBaseUsers dataBaseUtenti,String id) {
         
         int size = dataBaseUtenti.getSize();
@@ -179,6 +197,12 @@ public class EngineSearcher {
         return null;
     }
 
+    /**
+     * 
+     * @param userDataBase
+     * @param stringaIds
+     * @return 
+     */
     public User[] getUsersFromId(DataBaseUsers userDataBase, String stringaIds) {
         String[] splittedString = stringaIds.split(",");
         User[] utenti = new User[splittedString.length];
@@ -207,6 +231,12 @@ public class EngineSearcher {
     }
     
     //metodi di ricerca records
+    /**
+     * 
+     * @param dataBase
+     * @param branoTag
+     * @return 
+     */
     public UserJudgement getJudgementFromSongTag(DataBaseJudgements dataBase, String branoTag){
         if(dataBase == null) return null;
         int size = dataBase.getSize();
@@ -227,6 +257,12 @@ public class EngineSearcher {
     }
     
     //metodi di ricerca playlist
+    /**
+     * 
+     * @param user
+     * @param dataBasePlaylists
+     * @return 
+     */
     public PlaylistSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
         PlaylistSet[] sets = dataBasePlaylists.getArray();
         if(sets == null) return null;        
@@ -266,7 +302,13 @@ public class EngineSearcher {
             sorter.sortTracksByTitles(tracks);
         }
     }
-
+    
+    /**
+     * 
+     * @param dataBase
+     * @param branoTag
+     * @return 
+     */
     public int getJudgementIndexFromSongTag(DataBaseJudgements dataBase, String branoTag) {
         if(!(dataBase == null)){
             int size = dataBase.getSize();

@@ -14,7 +14,7 @@ import emotionalsongs.Managers.*;
 import java.io.*;
 
 /**
- *@hidden
+ * La classe implementa dei metodi per il controllo della userID e password. 
  * @author luca
  */
 public class EngineLogger extends EmotionalSongs{
@@ -25,12 +25,17 @@ public class EngineLogger extends EmotionalSongs{
     public boolean passwordMatches = false;
     
     /**
-     * 
+     * Crea un oggetto vuoto.
      */
-
     public EngineLogger() {
     }
     
+    /**
+     * Il metodo prende come parametro il userID e password e controlla nel database 
+     * che siano presenti.
+     * @param UserId UserID.
+     * @param Password Password.
+     */
     public void login(String UserId, String Password){
         foundsId(UserId);
         if(idFounded){
@@ -45,11 +50,8 @@ public class EngineLogger extends EmotionalSongs{
     }
     
     /**
-     * 
-     * @param userId
-     * @return
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * Il metodo prende come parametro il userID e controlla che sia presente in database.
+     * @param userId UuserID.
      */
     public void foundsId(String userId) {
             EngineSearcher engineSearch = new EngineSearcher();
@@ -57,17 +59,19 @@ public class EngineLogger extends EmotionalSongs{
             idFounded = user != null; 
     }
     
+   
     /**
-     * 
-     * @param userid
-     * @param password
-     * @return
-     * @throws IOException 
+     * Il metodo prende come argomento la password e controlla che sia uguale
+     * a quella assegnata durante la registrazione.
+     * @param password 
      */
     public void passwordsMatch(String password) {
             passwordMatches = user.getPassword().equals(password);
     }
     
+    /**
+     * Il metodo effettua il logout dell'utente.
+     */
     public static void logout(){
         EmotionalSongs.setLoggedUser(null);
         //EmotionalSongs.setUserSet(null);

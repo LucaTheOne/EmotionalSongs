@@ -33,6 +33,10 @@ public class DataBaseJudgements {
     }  
     
     //singleton instancer
+    /**
+     * 
+     * @return 
+     */
     public static DataBaseJudgements getInstance(){
         if (dataBaseRecords == null){
             dataBaseRecords = new DataBaseJudgements();
@@ -97,10 +101,18 @@ public class DataBaseJudgements {
     }
     
     //getter methods
+    /**
+     * Il metodo restituisce un array con le votazioni assegnate ad ogni emozione.
+     * 
+     */
     public UserJudgement[] getArray() {
         return this.dataBaseRecordsArray;
     }
     
+    /**
+     * Il metodo restituisce la dimensione dell'array.
+     * @return Dimensione array.
+     */
     public int getSize() {
         return this.dataBaseRecordsArray.length;
     }
@@ -110,6 +122,11 @@ public class DataBaseJudgements {
         return searcher.getJudgementIndexFromSongTag(this, branoTag);
     }
     
+    /**
+     * 
+     * @param index
+     * @return 
+     */
     public UserJudgement getRecordFromIndex(int index){
         return dataBaseRecordsArray[index];
     }
@@ -119,6 +136,11 @@ public class DataBaseJudgements {
     }
     
     //searching methods
+    /**
+     * 
+     * @param songTag
+     * @return Il tag.
+     */
     public UserJudgement[] searchJudgements(String songTag){
         int firstIndexFound = getJudgementIndexFromTag(songTag);
         if(firstIndexFound<0) return null;

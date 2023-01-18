@@ -20,6 +20,10 @@ import emotionalsongs.SorterAlgorithms.generalSortingAlgos.*;
 public class EngineSorter {
     
     //User sort methods
+    /**
+     * Il metodo prende come parametro il Database di UserID e gli mette in ordine alfabetico.
+     * @param dataBaseUsers 
+     */
     public void sortUsersById(DataBaseUsers dataBaseUsers){
         SorterUserById sorter = new SorterUserById();
         sorter.mergeSort(dataBaseUsers.getArray());

@@ -51,6 +51,10 @@ public class Repository {
         
     }
     
+    /**
+     * 
+     * @return 
+     */
     public static Repository getInstance(){
         if(instance== null) instance=new Repository();
         return instance;
@@ -67,16 +71,25 @@ public class Repository {
         
     }
     
+    /**
+     * 
+     */
     public void sortByTags(){
         EngineSorter sorter = new EngineSorter();
         sorter.sortTracksByTags(repository);
     }
     
+    /**
+     * 
+     */
     public void sortByTitles(){
         EngineSorter sorter = new EngineSorter();
         sorter.sortTracksByTitles(repository);
     }
     
+    /**
+     * 
+     */
     public void sortByAuthor(){
         EngineSorter sorter = new EngineSorter();
         sorter.sortTracksByAuthors(repository);
@@ -101,6 +114,10 @@ public class Repository {
         return repository[index];
     }
     
+    /**
+     * 
+     * @return 
+     */
     public Song[] getArray(){
         return repository;
     }

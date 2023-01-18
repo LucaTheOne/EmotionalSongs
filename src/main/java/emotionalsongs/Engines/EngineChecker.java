@@ -9,12 +9,25 @@ import emotionalsongs.DataBases.*;
 import java.util.regex.*;
 
 /**
- *
+ * La classe si occupa di controllare i dati inseriti durante la registrazione.
  * @author big
  */
 public class EngineChecker {
     
     //Methods checking data validity
+    /**
+     * Il metodo confronta la stringa nome che esegue il metodo con quella fornita 
+     * come argomento e restituisce false se:
+     * <ul>
+     * <li>Se non e stato inserito nessun carattere.</li>
+     * <li>Se i caratteri >20.</li>
+     * <li>Se i caratteri <3.</li>
+     * <li>Se contiene caratteri speciali. </li>
+     * </ul>
+     * Altrimeti restituisce true.
+     * @param nome Nome dell'utente.
+     * @return True o False.
+     */
     public boolean checkNameValidity(String nome){
         if(nome == null) return false;
         if (nome.isBlank()||nome.length()>20||nome.length()<3||nome.matches(".*\\d.*")) {
@@ -23,6 +36,19 @@ public class EngineChecker {
         return true;
     }
     
+    /**
+     * Il metodo confronta la stringa cognome che esegue il metodo con quella fornita 
+     * come argomento e restituisce false se:
+     * <ul>
+     * <li>Se non e stato inserito nessun carattere.</li>
+     * <li>Se i caratteri >20.</li>
+     * <li>Se i caratteri <3.</li>
+     * <li>Se contiene caratteri speciali. </li>
+     * </ul>
+     * Altrimeti restituisce true.
+     * @param cognome
+     * @return True o False.
+     */
     public boolean checkCognomeValidity(String cognome){
         if(cognome == null) return false;
         if (cognome == null && cognome.length()>20||cognome.length()<3||cognome.isBlank()||cognome.matches(".*\\d.*")) {
@@ -31,6 +57,12 @@ public class EngineChecker {
         return true;
     }
     
+    /**
+     * Il metodo confronta la stringa indirizzo che esegue il metodo con quella fornita 
+     * come argomento e restituisce false se e vuota, altrimenti true.
+     * @param cognome
+     * @return True o False.
+     */    
     public boolean checkAddresValidity(String indirizzo){
         if(indirizzo == null) return false;
         if(indirizzo.isBlank()){
@@ -39,10 +71,9 @@ public class EngineChecker {
         return true;
     }
     
-    public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
-        if(password == null) return false;
     /**
-    * Stringa contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
+     * Il metodo controlla la validità della password.
+    * La Stringa regex contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
     * di almeno uno per tipologia:
     * <ul>
     * <li>(?=.*[0-9]) -> almeno un numero tra 0 e 9,
@@ -53,6 +84,9 @@ public class EngineChecker {
     * <li>{8,20} -> minimo 8, massimo 20 caratteri.
     * </ul>
     **/
+    public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
+        if(password == null) return false;
+    
         String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}";
     /** Compila il pattern precedente. **/
         Pattern p = Pattern.compile(regex);
@@ -65,6 +99,12 @@ public class EngineChecker {
         return m.matches();
     }
     
+    /**
+     * 
+     * @param password
+     * @param controllo
+     * @return 
+     */
     public boolean passwordsMatch(String password,String controllo){
         if(controllo == null) return false;
         return password.equals(controllo);

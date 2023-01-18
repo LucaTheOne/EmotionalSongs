@@ -75,16 +75,16 @@ public class UserJudgement {
 
     //getters
     /**
-     * 
-     * @return 
+     * Il metodo restituisce il tag del brano.
+     * @return Tag del brano.
      */
     public String getBranoTag() {
         return this.branoTag;
     }
 
     /**
-     * 
-     * @return 
+     * Il metodo restituisce il userID.
+     * @return il userID
      */
     public String getUserIDRecord() {
         return this.userID;
