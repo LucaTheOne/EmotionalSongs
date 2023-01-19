@@ -2,10 +2,13 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-package emotionalsongs.Engines;
+package emotionalsongs.engines;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
+import emotionalsongs.basic_structures.Song;
+import emotionalsongs.basic_structures.UserJudgement;
+import emotionalsongs.data_structures.DataBaseJudgements;
+import emotionalsongs.data_structures.DataBaseUsers;
+
 import java.util.regex.*;
 
 /**

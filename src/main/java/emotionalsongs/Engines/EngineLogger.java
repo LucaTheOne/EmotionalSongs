@@ -3,15 +3,12 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.Engines;
+package emotionalsongs.engines;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Managers.*;
-import java.io.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
+import emotionalsongs.managers.*;
 
 /**
  * La classe implementa dei metodi per il controllo della userID e password. 
@@ -43,8 +40,8 @@ public class EngineLogger extends EmotionalSongs{
             if(idFounded&&passwordMatches){
                 EngineSearcher finder = new EngineSearcher();
                 EmotionalSongs.setLoggedUser(finder.getUserFromId(database, UserId));
-                PlayListsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
-
+                PlaylistsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
+                
             }  
         }
     }
@@ -75,6 +72,6 @@ public class EngineLogger extends EmotionalSongs{
     public static void logout(){
         EmotionalSongs.setLoggedUser(null);
         //EmotionalSongs.setUserSet(null);
-        PlayListsManager.eraseInstance();
+        PlaylistsManager.eraseInstance();
     }
 }

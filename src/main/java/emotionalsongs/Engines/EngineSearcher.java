@@ -2,10 +2,10 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-package emotionalsongs.Engines;
+package emotionalsongs.engines;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
 import java.util.*;
 
 /**
@@ -41,12 +41,13 @@ public class EngineSearcher {
     }   
     
     /**
-     * Il metodo effettua la ricerca per titolo nella repository di brani e li 
-     * salva in un array di brani.
-     * @param titolo - del brano.
+     * Il metodo effettua la ricerca per title nella repository di brani e li 
+ salva in un array di brani.
+     * @param title - del brano.
      * @return il brano ricercato.
      */
-    private Song[] ricercaPerTitolo(String titolo){
+    private Song[] ricercaPerTitolo(String title){
+        
         
         ArrayList<Song> resultsList = new ArrayList<>();
         Song[] resultsArray;
@@ -54,7 +55,7 @@ public class EngineSearcher {
         for(int i = 0;i<repository.getSize();i++){
             Song current = repository.getBrano(i);
             String currentTitle = current.getTitle().toLowerCase();
-            if (currentTitle.contains(titolo.toLowerCase())){
+            if (currentTitle.contains(title.toLowerCase())){
                 resultsList.add(current);
             }
         }
@@ -66,6 +67,7 @@ public class EngineSearcher {
         sortByTitle(resultsArray);
         
         return resultsArray;
+        
     }
     
     /**
@@ -103,23 +105,12 @@ public class EngineSearcher {
      * @param songTag
      * 
      */
-    public Song searchByBranoTag(Repository repository,String songTag) {
-        //repository.sortByTags();
+    public Song searchBySongTag(Repository repository,String songTag) {
+        
         int size = repository.getSize();
         for (int i = 0; i < size; i++) {
             if(repository.getBrano(i).getTag().equals(songTag)) return repository.getBrano(i);
         }
-        /*
-        int low = 0;
-        int high = size-1;
-        while(low<=high){
-            int mid = low+high/2;
-            Song pointedBrano = repository.getBrano(mid);
-            String pointedBranoTag = pointedBrano.getTag();
-            if(pointedBrano.equals(songTag)) return pointedBrano;
-            else if(songTag.compareTo(pointedBranoTag)<0) high = mid-1;
-            else low = mid+1;
-        }*/
         return null;
     }
     
@@ -131,25 +122,15 @@ public class EngineSearcher {
      * @param cf Codice Fiscale. 
      * @return userID.
      */
-    public User getUserFromCf(DataBaseUsers database,String cf) {
+    public User searchUserFromCF(DataBaseUsers database,String cf) {
         
+        new EngineSorter().sortUserByCf(database);
         int size = database.getSize();
-        
-        if(size<1000){
-            for (int i = 0; i < size; i++) {
-                User user = database.getUser(i);
-                if(user.getCF().equalsIgnoreCase(cf)){
-                    return user;
-                }
-            }
-            
-            return null;
-        }
         
         int low = 0;
         int high = size-1;
         while(low<=high){
-            int mid = low+high/2;
+            int mid = (low+high)/2;
             User pointedUser = database.getUser(mid);
             String userPointedCf = pointedUser.getCF();
             if(userPointedCf.equalsIgnoreCase(cf)) return pointedUser;
@@ -162,72 +143,31 @@ public class EngineSearcher {
     
     /**
      * 
-     * @param dataBaseUtenti
+     * @param dataBaseUsers
      * @param id
      * @return 
      */
-    public User getUserFromId(DataBaseUsers dataBaseUtenti,String id) {
+    public User getUserFromId(DataBaseUsers dataBaseUsers,String id) {
         
-        int size = dataBaseUtenti.getSize();
+        int size = dataBaseUsers.getSize();
         
-        if(size<1000){
-            for (int i = 0; i < size; i++) {
-                User user = dataBaseUtenti.getUser(i);
-                if(user.getUserId().equalsIgnoreCase(id)){
-                    return user;
-                }
-            }
-            
-            return null;
+        for(int i = 0; i<size;i++){
+            if(dataBaseUsers.getUser(i).getUserId().equalsIgnoreCase(id)) return dataBaseUsers.getUser(i);
         }
-        
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortUsersById(dataBaseUtenti);
+        /*
+        new EngineSorter().sortUsersById(dataBaseUsers);
         
         int low = 0;
         int high = size-1;
         while(low<=high){
-            int mid = low+high/2;
-            User pointedUser = dataBaseUtenti.getUser(mid);
+            int mid = (low+high)/2;
+            User pointedUser = dataBaseUsers.getUser(mid);
             String userPointedId = pointedUser.getUserId();
             if(userPointedId.equalsIgnoreCase(id)) return pointedUser;
             else if(id.compareToIgnoreCase(userPointedId)<0) high = mid-1;
             else low = mid+1;
-        }
+        }*/
         return null;
-    }
-
-    /**
-     * 
-     * @param userDataBase
-     * @param stringaIds
-     * @return 
-     */
-    public User[] getUsersFromId(DataBaseUsers userDataBase, String stringaIds) {
-        String[] splittedString = stringaIds.split(",");
-        User[] utenti = new User[splittedString.length];
-        int posCounter = 0;
-        
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortUsersById(userDataBase);
-        int size = userDataBase.getSize();
-        for (int i = 0; i < utenti.length; i++) {
-            String id = splittedString[i];
-            int low = 0;
-            int high = size-1;
-            while(low<=high){
-                int mid = low+high/2;
-                User pointedUser = userDataBase.getUser(mid);
-                String userPointedId = pointedUser.getUserId();
-                if(userPointedId.equalsIgnoreCase(id)) {
-                    utenti[posCounter++]=pointedUser;
-                    break;
-                }
-                else if(id.compareToIgnoreCase(userPointedId)<0) high = mid-1;
-                else low = mid+1;
-            }
-        }
-        return utenti;
     }
     
     //metodi di ricerca records
@@ -263,44 +203,28 @@ public class EngineSearcher {
      * @param dataBasePlaylists
      * @return 
      */
-    public PlaylistSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
-        PlaylistSet[] sets = dataBasePlaylists.getArray();
+    public PlaylistsSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
+        
+        PlaylistsSet[] sets = dataBasePlaylists.getArray();
         if(sets == null) return null;        
-        EngineSorter sorter = new EngineSorter();
-        sorter.sortDataBaseOfPlaylistSet(dataBasePlaylists);
+        new EngineSorter().sortDataBaseOfPlaylistSet(dataBasePlaylists);
         int size = dataBasePlaylists.getSize();
         
         for (int i = 0; i < size; i++) {
             if(dataBasePlaylists.getSet(i).getOwnerId().equals(user.getUserId())) return dataBasePlaylists.getSet(i);
         }
-        /*
+        
         int low = 0;
         int high = size-1;
         while(low<=high){
-            int mid = low+high/2;
-            PlaylistSet pointedSet = dataBasePlaylists.getSet(mid);
+            int mid = (low+high)/2;
+            PlaylistsSet pointedSet = dataBasePlaylists.getSet(mid);
             String pointedSetUser = pointedSet.getOwnerId();
             if(pointedSetUser.equals(user.getUserId())) return pointedSet;
             else if(pointedSetUser.compareTo(user.getUserId())<0) high = mid-1;
             else low = mid+1;
-        }*/
+        }
         return null;
-    }
-    
-    //supportMethods
-    
-    private void sortByAuthor(Song[] tracks){
-        if(tracks[0] != null && tracks.length > 1){
-            EngineSorter sorter = new EngineSorter();
-            sorter.sortTracksByAuthors(tracks);
-        }
-    }
-    
-    private void sortByTitle(Song[] tracks){
-        if(tracks[0] != null && tracks.length > 1){
-            EngineSorter sorter = new EngineSorter();
-            sorter.sortTracksByTitles(tracks);
-        }
     }
     
     /**
@@ -309,7 +233,7 @@ public class EngineSearcher {
      * @param branoTag
      * @return 
      */
-    public int getJudgementIndexFromSongTag(DataBaseJudgements dataBase, String branoTag) {
+    public int searchJudgementIndexBySongTag(DataBaseJudgements dataBase, String branoTag) {
         if(!(dataBase == null)){
             int size = dataBase.getSize();
             EngineSorter sorter = new EngineSorter();
@@ -328,6 +252,21 @@ public class EngineSearcher {
         }
         return -1;
     }
-
+    
+    //supportMethods
+    
+    private void sortByAuthor(Song[] tracks){
+        if(tracks[0] != null && tracks.length > 1){
+            EngineSorter sorter = new EngineSorter();
+            sorter.sortTracksByAuthors(tracks);
+        }
+    }
+    
+    private void sortByTitle(Song[] tracks){
+        if(tracks[0] != null && tracks.length > 1){
+            EngineSorter sorter = new EngineSorter();
+            sorter.sortTracksByTitles(tracks);
+        }
+    }
     
 }

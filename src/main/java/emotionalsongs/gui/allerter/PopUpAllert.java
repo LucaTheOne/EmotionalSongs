@@ -2,11 +2,7 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package emotionalsongs.GUI.comunicator;
+package emotionalsongs.gui.allerter;
 
 /**
  *
@@ -20,6 +16,7 @@ public class PopUpAllert extends javax.swing.JFrame {
     private String errorMessage;
     public PopUpAllert(String errorMessage) {
         this.errorMessage=errorMessage;
+        setAlwaysOnTop(true);
         initComponents();
     }
 
@@ -39,8 +36,6 @@ public class PopUpAllert extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());

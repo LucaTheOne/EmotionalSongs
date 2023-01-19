@@ -2,12 +2,12 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-package emotionalsongs.GUI.Repository;
+package emotionalsongs.gui.repository;
 
-import emotionalsongs.GUI.datavisualizer.DataVisualizationForm;
-import emotionalsongs.BasicsStructure.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.gui.data_visualizer.*;
+
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -16,14 +16,14 @@ import java.net.*;
  *
  * @author big
  */
-public class SongPanelRepository extends javax.swing.JPanel {
+public class SongPanelForRepositoryView extends javax.swing.JPanel {
 
     /**
-     * Creates new form SongPanelRepository
+     * Creates new form SongPanelForRepositoryView
      */
     Song representedSong;
     
-    public SongPanelRepository(Song representedSong) {
+    public SongPanelForRepositoryView(Song representedSong) {
         this.representedSong = representedSong;
         
         initComponents();
@@ -121,7 +121,7 @@ public class SongPanelRepository extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        chartButton.setText(EmotionalSongs.dialoghi.datiCanzoni());
+        chartButton.setText(emotionalsongs.EmotionalSongs.dialoghi.datiCanzoni());
         chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         chartButton.setOpaque(true);
         chartButton.setPreferredSize(new java.awt.Dimension(125, 25));

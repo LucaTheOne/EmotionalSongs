@@ -3,24 +3,24 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Managers.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.managers.*;
 
 /**
  *
  * @author big
  */
-public class AddSongToPlaylistPanel extends javax.swing.JPanel {
+public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
     Song song;
-    PlayListsManager playListsManager = PlayListsManager.getInstance();
+    PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     
     /**
      * Creates new form GUIbranoViewPanel
      */
-    public AddSongToPlaylistPanel(Song brano,PlayListsManager playListsManager) {
+    public SongToAddToAPlaylistPanel(Song brano,PlaylistsManager playListsManager) {
         //this.playListsManager = playListsManager;
         this.song = brano;
         initComponents();

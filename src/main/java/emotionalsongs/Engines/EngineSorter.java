@@ -2,16 +2,19 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-package emotionalsongs.Engines;
+package emotionalsongs.engines;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.SorterAlgorithms.SorterPlaylistsDatabaseAlgo.*;
-import emotionalsongs.SorterAlgorithms.SorterPlaylistsSetAlgo.*;
-import emotionalsongs.SorterAlgorithms.SorterRecordsAlgo.*;
-import emotionalsongs.SorterAlgorithms.SorterSongsAlgos.*;
-import emotionalsongs.SorterAlgorithms.UserSortingAlgos.*;
-import emotionalsongs.SorterAlgorithms.generalSortingAlgos.*;
+import emotionalsongs.basic_structures.PlaylistsSet;
+import emotionalsongs.basic_structures.Song;
+import emotionalsongs.data_structures.DataBaseJudgements;
+import emotionalsongs.data_structures.DataBasePlaylists;
+import emotionalsongs.data_structures.DataBaseUsers;
+import emotionalsongs.sorting_algos.general_sorting_algos.*;
+import emotionalsongs.sorting_algos.judgements_sorting_algo.SorterJudgements;
+import emotionalsongs.sorting_algos.playlists_database_sorting_algo.*;
+import emotionalsongs.sorting_algos.playlists_set_sorting_algo.*;
+import emotionalsongs.sorting_algos.songs_sorting_algos.*;
+import emotionalsongs.sorting_algos.users_sorting_algos.*;
 
 /**
  *
@@ -57,7 +60,7 @@ public class EngineSorter {
     }
     
     //Playlist sort methods
-    public void sortSetOfPlaylists(PlaylistSet playlistSet){
+    public void sortSetOfPlaylists(PlaylistsSet playlistSet){
         SorterPlaylistSet sorter = new SorterPlaylistSet();
         sorter.mergeSort(playlistSet.getArray());
     }
@@ -70,12 +73,12 @@ public class EngineSorter {
     
     //General sort methods
     public void sortIntArray(int[] arrayInt) {
-        SortInt sorter = new SortInt();
+        SorterInt sorter = new SorterInt();
         sorter.sort(arrayInt);
     }
     
     public void sortStringsArray(String[] arrayString, boolean caseSensitive){
-        SortString sorter = new SortString();
+        SorterString sorter = new SorterString();
         sorter.sort(arrayString,caseSensitive);
     }
 }

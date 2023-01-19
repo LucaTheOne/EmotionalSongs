@@ -3,13 +3,13 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.Dialoghi;
+package emotionalsongs.dialogs;
 
 /**
  *
  * @author alexandruboitor
  */
-public abstract class Dialoghi {
+public abstract class dialogs {
     
     //BASICS STRUCTURE: EMOZIONI
     

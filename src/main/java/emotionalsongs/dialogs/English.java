@@ -2,42 +2,39 @@
 //Natanail Danailov Danailov - 739887 - VA
 //Alexandru Boitor - 749004 - VA
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package emotionalsongs.Dialoghi;
+
+package emotionalsongs.dialogs;
 
 /**
  *
  * @author alexandruboitor
  */
-public class DialoghiIta extends Dialoghi{
+public class English extends dialogs{
     
-   //BASICS STRUCTURE: EMOZIONI
+    //BASICS STRUCTURE: EMOZIONI
 
      public String amazementNome() {
-         return "Meraviglia";
+         return "Amazement";
     }
 
     public String amazementESpiegazione() {
-        return "Sensazione di stupore o felicità.";
+        return "Feeling of wonder or happiness.";
     }
 
     public String solemnityNome() {
-        return "Solennità";
+        return "Solemnity";
     }
 
     public String solemnitySpiegazione() {
-        return "Sensazione di trascendenza, ispirazione.Brividi.";
+        return "Feeling of transcendence, inspiration. Thrills.";
     }
 
     public String tendernessNome() {
-        return "Tenereza";
+        return "Tenderness";
     }
 
     public String tendernessSpiegazione() {
-        return "Sensualità, affetto, sentimento di emotività.";
+        return "Sensuality, affect, feeling of love.";
     }
 
     public String nostalgiaNome() {
@@ -45,47 +42,47 @@ public class DialoghiIta extends Dialoghi{
     }
 
     public String nostalgiaSpiegazione() {
-        return "Sognante, malinconia, sentimento di emotività.";
+        return "Dreamy, melancholic, sentimental feelings.";
     }
 
     public String calmnessNome() {
-        return "Pacatezza";
+        return "Calmness";
     }
 
     public String calmnessSpiegazione() {
-        return "Rilassamento, serenità, meditatività.";
+        return "Relaxation, serenity, meditativeness";
     }
 
     public String powerNome() {
-        return "Potere";
+        return "Power";
     }
 
     public String powerSpiegazione() {
-        return "Sentirsi forte, eroici , trionfanti, energetici.";
+        return "Feeling strong, heroic, triumphant, energetic.";
     }
 
     public String joyNome() {
-        return "Gioia";
+        return "Joy";
     }
 
     public String joySpiegazione() {
-        return "Sentirsi come danzanti, raggianti, animati, divertiti.";
+        return "Feels like dancing, bouncy feeling, animated, amused.";
     }
 
     public String tensionNome() {
-        return "Tensione";
+        return "Tension";
     }
   
     public String tensioneSpiegazione() {
-        return "Sentire nervosismo, impazienza, irritazione.";
+        return "Feeling Nervous, impatient, irritated.";
     }
 
     public String sadnessNome() {
-        return "Tristezza";
+        return "Sadness";
     }
 
     public String sadnessSpiegazione() {
-        return "Sentirsi depressi, scarichi, dispiaciuti.";
+        return "Feeling Depressed, sorrowful.";
     }
     
     //BASIC STRUCTURE : USER
@@ -99,28 +96,30 @@ public class DialoghiIta extends Dialoghi{
     }
     
     //BASICS DATABASES: DATABASEPLAYLISTS
-    
+
     public String isVoid(){
-        return "Il basa dati e vuoto!";
+        return "Database is void";
     }
     
     // ENGINES : EngineRegister
     
     public String utenteCreato(){
-        return "Utente creato";
+        return "";
     }
     
     public String utenteAggiunto(){
-        return "Utente aggiunto";
+        return "";
     }
     
 
+    //GUI FRAME LOGIN 
+  
     public String idUtente() {
-        return "ID Utente: ";
+        return "ID User: ";
     }
 
     public String idUtenteInes() {
-        return "ID Utente inesistente!";
+        return "ID User doesn't exist!";
     }
 
     public String password() {
@@ -128,217 +127,219 @@ public class DialoghiIta extends Dialoghi{
     }
 
     public String passwordErr() {
-        return "Password errata!";
-    }
-    
-    public String passwordNonCoincidono(){
-        return "Password non coincidono!";
+        return "Wrong password!";
     }
 
     public String log() {
-        return "Accedi";
+        return "Login";
     }
-
+    
     public String exit() {
-        return "Esci";
+        return "Exit";
     }
+    
+    //GUI REGISTRATION PANEL
 
     public String name() {
-        return "NOME: ";
+        return "FIRST NAME: ";
     }
 
     public String nomeNon() {
-        return "Nome non valido! ";
+        return "First name not valid!";
     }
 
     public String cognome() {
-        return "COGNOME: ";
+        return "LAST NAME: ";
     }
 
     public String cognomeNon() {
-        return "Cognome non valioa!";
+        return "Last name not valid!";
     }
 
     public String indirizzo() {
-        return "INDIRIZZO: ";
+        return "ADDRESS: ";
     }
 
     public String indirizzoNon() {
-        return "Questo campo non può essere vuoto!";
+        return "This field cannot be empty!";
     }
 
     public String dataNascita() {
-        return "DATA DI NASCITA: ";
+       return "DATE OF BIRTH:";
     }
 
     public String dataNasciataNon() {
-        return "Formato data non valido!";
+        return "Format data not valid!";
     }
 
     public String cf() {
-        return "CODICE FISCALE: ";
+        return "FISCAL CODE: ";
+    }
+
+    public String cfNon() {
+       return "Format data not valid!";
     }
     
     public String cfpresente(){
-        return "Codice fiscale già presente nel sistema!";
-    }
-
-
-    public String cfNon() {
-        return "Formato data non valido!";
+        return "Fiscal code already used";
     }
 
     public String email() {
-        return "INDIRIZZO E-MAIL";
+        return "E-MAIL ADDRESS: ";
     }
 
     public String emailNon() {
-        return "Indirizzo non valido!";
+        return "Address not valid!";
     }
-  
+
     public String userid() {
         return "USER ID: ";
     }
     
     public String userIdpresente(){
-        return "ID già presente";
+        return "ID used";
     }
 
     public String useridNon() {
-        return "User id non valido!";
+        return "User ID not valid!";
     }
-
+    
     public String passswordR(){
         return "PASSWORD";
     }
-    
+
     public String passwordCheck() {
-        return "VERIFICA PASSWORD";
+        return "PASSWORD";
     }
-    
+
     public String passwordNon(){
-        return "Password non valido!";
+        return "Password not valid!";
     }
     
+    public String passwordNonCoincidono(){
+        return "Password non coincidono!";
+    }
+   
     public String registrati() {
-        return "Registrati";
+        return "Registration";
     }
 
     public String chiudi() {
-        return "Chiudi";
+        return "Close";
     }
-
+    
     //GUI PLATYLIST CREATION FRAME
     
     public String nuovaPlaylist() {
-        return "Nome della nuova playlist: ";
+        return "Nome of the new playlist: ";
     }
 
     public String titolo() {
-        return "Titolo";
+        return "Title";
     }
 
     public String autore() {
-        return "Autore";
+        return "Autor";
     }
 
     public String anno() {
-        return "Anno";
+        return "Year";
     }
 
     public String creaNuovaPlaylist() {
-        return "Crea nuova playlist";
+        return "Create new playlist";
     }
 
     public String annulla() {
-        return "Annulla";
+        return "Delete";
     }
     
-   //GUI MAIN MENU LEFT LOGGED
+    //GUI MAIN MENU LEFT LOGGED
     
     public String creaPlaylist(){
-        return "Crea Playlist";
+        return "Create Playlist";
     }
 
+    
     public String profile() {
-        return "Profilo";
+        return "Profile";
     }
 
     public String credits() {
-        return "Crediti";
+        return "Credits";
     }
-
+    
     public String menu() {
         return "Menu";
     }
-
+    
     public String newPlaylist(){
-        return "Nome nuova playlist";
+        return "New playlist name";
     }
-   
+    
     public String creaNuovaPlaylistpiu(){
-        return "+ Crea nuova playlist";
+        return "+ Create new playlist";
     }
     
     public String datiCanzoni(){
-        return "Dati canzone";
+        return "CHART ";
     }
     
     public String vota(){
-        return "Vota";
+        return "Vote";
     }
     
-    public String songsJudge(){
-        return "Se vuole inserisca qui una nota o commento riguardo "
-                + "la percezione di questa emozione nell' ascolto del brano.";
-    }
+   public String songsJudge(){
+       return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
+   }
 
     public String graficEx() {
-        return "Grafico dei trends dei voti delle emozioni";
+        return "Trend graph of emotion ratings";
     }
     
     public String emozioni(){
-        return "Emotioni";
+        return "Emotion";
     }
     
     public String trendsV(){
-        return "Trends dei voti";
+        return "Trends of vote";
     }
     
     public String mediaVoti(){
-        return "media dei voti";
+        return "Grade point averages";
     }
     
     public String quantoHaPercepito(){
-        return "Quanto un utente ha percepito l' emozione";
+        return "How much a user perceived the emotion";
     }
-    
+  
     public String numeroUtenti(){
-        return "Numeri di utenti";
-    }
-
-     public String report1(){
-        return "REPORT DATI SUI GIUDIZI DELLE EMOZIONI PERCEPITE " + 
-                " DAGLI UTENTI NELL' ASCOLTO DELLA CANZONE:\n\n";
+        return "Numbers of users";
     }
    
+    public String report1(){
+       return "DATA REPORT ON JUDGMENTS OF PERCEIVED EMOTIONS " + 
+                " FROM USERS LISTENING TO THE SONG:\n\n";
+    }
+    
     public String espressoVoto(){
-        return "Numero di utenti che hanno espresso il loro parare: ";
+        return "Number of users who have expressed their opinion: ";
     }
     
     public String datiRelativi(){
-        return "DATI RELATIVI AI GIUDIZI DEGLI UTENTI RIGUARDO ALLA PERCEZIONE DELLE RISPETTIVE EMOZIONI: ";
+        return "DATA RELATING TO USER JUDGMENTS ABOUT THE PERCEPTION OF THEIR RESPECTIVE EMOTIONS: ";
     }
     
     public String mediaArit(){
-        return "   media aritmetica: ";
+       return "   arithmetic average: ";
     }
     
     public String moda(){
-        return "   moda: ";
+        return "   trend: ";
     }
     
     public String mediana(){
-        return "   mediana: ";
-    }
+        return "   median: ";
+}
+    
 }

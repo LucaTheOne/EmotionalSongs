@@ -3,14 +3,13 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.Engines;
+package emotionalsongs.engines;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.welcomeEmailSender.*;
+import emotionalsongs.basic_structures.User;
+import emotionalsongs.data_structures.DataBaseUsers;
+import emotionalsongs.welcome_email.*;
+
 import java.io.*;
 
 /**
@@ -35,14 +34,14 @@ import java.io.*;
 * denominato utentiRegistrati.dati.txt .
 * nb v1.0 non vi è forma di controllo sull' indirizzo.
 **/
-public class EngineRegistrer {
+public class EngineRegister {
 
     private DataBaseUsers userDatabase;
     
     /**
      * Costruisce un oggetto vuoto.
      */
-    public EngineRegistrer(DataBaseUsers database) { 
+    public EngineRegister(DataBaseUsers database) { 
         userDatabase = database;
     }
     
