@@ -1378,7 +1378,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     
     private String formatAndCleanString(String stringToFormat){
         if(stringToFormat.equals("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.") || stringToFormat.equals("If you want, you can write here a comment about your perception of this emotion during the listening of the song.")){
-            return " ";
+            return "";
         } else {
             stringToFormat.replace(";", ",");
             stringToFormat.replace("\n", " ");

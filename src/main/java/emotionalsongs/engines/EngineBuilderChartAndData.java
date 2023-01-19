@@ -4,12 +4,10 @@
 
 package emotionalsongs.engines;
 
-import emotionalsongs.gui.allerter.PopUpAllert;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.data_structures.DataBaseJudgements;
-import emotionalsongs.data_structures.Repository;
-
+import emotionalsongs.data_structures.*;
+import emotionalsongs.gui.allerter.*;
 import java.awt.*;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.*;

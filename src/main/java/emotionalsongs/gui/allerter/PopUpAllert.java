@@ -36,7 +36,7 @@ public class PopUpAllert extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

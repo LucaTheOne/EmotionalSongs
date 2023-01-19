@@ -63,7 +63,6 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         getContentPane().add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 339, -1, -1));
 
-        idField.setText("TheOne");
         idField.setPreferredSize(new java.awt.Dimension(150, 25));
         getContentPane().add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 253, -1, -1));
 

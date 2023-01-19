@@ -8,10 +8,9 @@
  */
 package emotionalsongs.gui.registration;
 
-import emotionalsongs.managers.RegistrationManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
-
+import emotionalsongs.managers.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -120,49 +119,49 @@ public class RegistrationPanel extends javax.swing.JPanel {
         nomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         nomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        nomeLabel.setText(EmotionalSongs.dialoghi.name());
+        nomeLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.name());
         nomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(nomeLabel);
 
         cognomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         cognomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         cognomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cognomeLabel.setText(EmotionalSongs.dialoghi.cognome());
+        cognomeLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cognome());
         cognomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cognomeLabel);
 
         indirizzoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         indirizzoLabel.setForeground(new java.awt.Color(255, 255, 255));
         indirizzoLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        indirizzoLabel.setText(EmotionalSongs.dialoghi.indirizzo());
+        indirizzoLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.indirizzo());
         indirizzoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(indirizzoLabel);
 
         dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dataDiNascitaLabel.setForeground(new java.awt.Color(255, 255, 255));
         dataDiNascitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        dataDiNascitaLabel.setText(EmotionalSongs.dialoghi.dataNascita());
+        dataDiNascitaLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.dataNascita());
         dataDiNascitaLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(dataDiNascitaLabel);
 
         cfLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         cfLabel.setForeground(new java.awt.Color(255, 255, 255));
         cfLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cfLabel.setText(EmotionalSongs.dialoghi.cf());
+        cfLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cf());
         cfLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cfLabel);
 
         mailLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         mailLabel.setForeground(new java.awt.Color(255, 255, 255));
         mailLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        mailLabel.setText(EmotionalSongs.dialoghi.email());
+        mailLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.email());
         mailLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(mailLabel);
 
         idLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        idLabel.setText(EmotionalSongs.dialoghi.userid());
+        idLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.userid());
         idLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(idLabel);
 
@@ -205,43 +204,43 @@ public class RegistrationPanel extends javax.swing.JPanel {
         nomeCheckLabel.setVisible(false);
         nomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         nomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        nomeCheckLabel.setText(EmotionalSongs.dialoghi.nomeNon());
+        nomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.nomeNon());
         warningLabelsPanel.add(nomeCheckLabel);
 
         cognomeCheckLabel.setVisible(false);
         cognomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cognomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cognomeCheckLabel.setText(EmotionalSongs.dialoghi.cognomeNon());
+        cognomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cognomeNon());
         warningLabelsPanel.add(cognomeCheckLabel);
 
         indirizzoCheckLabel.setVisible(false);
         indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        indirizzoCheckLabel.setText(EmotionalSongs.dialoghi.indirizzoNon());
+        indirizzoCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.indirizzoNon());
         warningLabelsPanel.add(indirizzoCheckLabel);
 
         dataDiNascitaCheckLabel.setVisible(false);
         dataDiNascitaCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         dataDiNascitaCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        dataDiNascitaCheckLabel.setText(EmotionalSongs.dialoghi.dataNasciataNon());
+        dataDiNascitaCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.dataNasciataNon());
         warningLabelsPanel.add(dataDiNascitaCheckLabel);
 
         cfCheckLabel.setVisible(false);
         cfCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cfCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cfCheckLabel.setText(EmotionalSongs.dialoghi.cfNon());
+        cfCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cfNon());
         warningLabelsPanel.add(cfCheckLabel);
 
         mailCheckLabel.setVisible(false);
         mailCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         mailCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        mailCheckLabel.setText(EmotionalSongs.dialoghi.emailNon());
+        mailCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.emailNon());
         warningLabelsPanel.add(mailCheckLabel);
 
         idCheckLabel.setVisible(false);
         idCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         idCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        idCheckLabel.setText(EmotionalSongs.dialoghi.useridNon());
+        idCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.useridNon());
         warningLabelsPanel.add(idCheckLabel);
 
         mainGridPanel.add(warningLabelsPanel);
@@ -260,17 +259,16 @@ public class RegistrationPanel extends javax.swing.JPanel {
         passwordLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        passwordLabel.setText(EmotionalSongs.dialoghi.passswordR());
+        passwordLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passswordR());
         passwordPanel.add(passwordLabel);
 
-        passwordTextField.setText("jPasswordField1");
         passwordTextField.setPreferredSize(new java.awt.Dimension(180, 30));
         passwordPanel.add(passwordTextField);
 
         controlloLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         controlloLabel.setForeground(new java.awt.Color(255, 255, 255));
         controlloLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        controlloLabel.setText(EmotionalSongs.dialoghi.passwordCheck());
+        controlloLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passwordCheck());
         passwordPanel.add(controlloLabel);
 
         controlloTextField.setText("jPasswordField2");
@@ -280,7 +278,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         passwordCheckLabel.setVisible(false);
         passwordCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         passwordCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordNon());
+        passwordCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passwordNon());
         passwordPanel.add(passwordCheckLabel);
 
         lowPanel.add(passwordPanel, java.awt.BorderLayout.NORTH);
@@ -289,7 +287,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 120));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
-        registratiButton.setText(EmotionalSongs.dialoghi.registrati());
+        registratiButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrati());
         registratiButton.setPreferredSize(new java.awt.Dimension(180, 60));
         registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +299,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 28, 0, 28);
         buttonsPanel.add(registratiButton, gridBagConstraints);
 
-        closeButton.setText(EmotionalSongs.dialoghi.chiudi());
+        closeButton.setText(emotionalsongs.EmotionalSongs.dialoghi.chiudi());
         closeButton.setPreferredSize(new java.awt.Dimension(180, 60));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

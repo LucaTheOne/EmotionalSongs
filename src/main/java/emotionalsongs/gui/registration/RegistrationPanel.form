@@ -457,7 +457,6 @@
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="passwordTextField">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jPasswordField1"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[180, 30]"/>
                     </Property>
