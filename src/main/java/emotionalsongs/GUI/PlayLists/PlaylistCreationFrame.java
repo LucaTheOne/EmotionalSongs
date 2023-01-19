@@ -3,17 +3,13 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.Managers.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
+import emotionalsongs.engines.*;
+import emotionalsongs.managers.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -26,7 +22,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     /**
      * Creates new form PlaylistCreationFrame
      */
-    PlayListsManager playlistsManager = PlayListsManager.getInstance();
+    PlaylistsManager playlistsManager = PlaylistsManager.getInstance();
     Repository repositoryCorrelated = Repository.getInstance();
     Song[] actualArrayWorking = repositoryCorrelated.getArray();
     
@@ -38,6 +34,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     public PlaylistCreationFrame() {
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
     }
 
     /**
@@ -93,14 +90,14 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(1000, 660));
         mainPanel.setLayout(new java.awt.BorderLayout());
 
-        buttonPanel.setOpaque(false);
-        buttonPanel.setPreferredSize(new java.awt.Dimension(120, 40));
+        buttonPanel.setBackground(new java.awt.Color(85, 124, 147));
+        buttonPanel.setPreferredSize(new java.awt.Dimension(120, 46));
         java.awt.GridBagLayout createButtonPanelLayout = new java.awt.GridBagLayout();
         createButtonPanelLayout.columnWidths = new int[] {0, 60, 0};
         createButtonPanelLayout.rowHeights = new int[] {0};
         buttonPanel.setLayout(createButtonPanelLayout);
 
-        createButton.setText(EmotionalSongs.dialoghi.creaNuovaPlaylist());
+        createButton.setText(emotionalsongs.EmotionalSongs.dialoghi.creaNuovaPlaylist());
         createButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createButton.setPreferredSize(new java.awt.Dimension(150, 40));
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +110,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         buttonPanel.add(createButton, gridBagConstraints);
 
-        annullaButton.setText(EmotionalSongs.dialoghi.annulla());
+        annullaButton.setBackground(new java.awt.Color(255, 0, 51));
+        annullaButton.setForeground(new java.awt.Color(255, 255, 255));
+        annullaButton.setText(emotionalsongs.EmotionalSongs.dialoghi.annulla());
         annullaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         annullaButton.setPreferredSize(new java.awt.Dimension(120, 40));
         annullaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -150,10 +149,10 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         numberSelectedSongLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberSelectedSongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numberSelectedSongLabel.setText(playlistsManager.getNumberOfSongToAdd() + " brani selezionati!");
-        numberSelectedSongLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         numberSelectedSongLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
 
+        searchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         searchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +208,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText(EmotionalSongs.dialoghi.newPlaylist());
+        jLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.newPlaylist());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -254,7 +253,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(EmotionalSongs.dialoghi.titolo());
+        titleLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.titolo());
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -265,7 +264,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(EmotionalSongs.dialoghi.autore());
+        authorLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.autore());
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -276,7 +275,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(EmotionalSongs.dialoghi.anno());
+        yearLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.anno());
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);

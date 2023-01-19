@@ -3,10 +3,10 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Managers.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.managers.*;
 
 /**
  *
@@ -18,7 +18,7 @@ public class PlaylistButton extends javax.swing.JPanel {
      * Creates new form PlaylistButton
      */
     Playlist correlatedPlaylist;
-    PlayListsManager playListsManager = PlayListsManager.getInstance();
+    PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     public PlaylistButton(Playlist playlist) {
         correlatedPlaylist = playlist;
         initComponents();
@@ -45,7 +45,7 @@ public class PlaylistButton extends javax.swing.JPanel {
         playListButton.setText(correlatedPlaylist.getName());
         playListButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), java.awt.Color.darkGray, java.awt.Color.gray));
         playListButton.setOpaque(true);
-        playListButton.setPreferredSize(new java.awt.Dimension(300, 60));
+        playListButton.setPreferredSize(new java.awt.Dimension(280, 60));
         playListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playListButtonActionPerformed(evt);

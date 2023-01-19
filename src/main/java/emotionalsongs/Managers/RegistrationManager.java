@@ -6,14 +6,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package emotionalsongs.Managers;
+package emotionalsongs.managers;
 
-import emotionalsongs.DataBases.*;
+import emotionalsongs.engines.EngineChecker;
+import emotionalsongs.engines.EngineRegister;
+import emotionalsongs.gui.main_window.*;
+import emotionalsongs.gui.registration.*;
 import emotionalsongs.*;
-import emotionalsongs.DataBases.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.Registration.*;
-import emotionalsongs.GUI.mainWindow.*;
+import emotionalsongs.data_structures.DataBaseUsers;
+
 import java.io.*;
 
 /**
@@ -22,7 +23,7 @@ import java.io.*;
  */
 public class RegistrationManager {
     private static RegistrationManager instance = null;
-    public GUIRegistrationPanel panel;
+    public RegistrationPanel panel;
     public String userId;
     public String name;
     public String secondName;
@@ -38,7 +39,7 @@ public class RegistrationManager {
         return instance;
     }
     private RegistrationManager() {
-        this.panel = new GUIRegistrationPanel(this);
+        this.panel = new RegistrationPanel(this);
     }
     
     public void startForm(){
@@ -46,7 +47,7 @@ public class RegistrationManager {
     }
     
     public void startRegistration(){
-        EngineRegistrer engine = new EngineRegistrer(DataBaseUsers.getInstance());
+        EngineRegister engine = new EngineRegister(DataBaseUsers.getInstance());
         panel.setAllCheckOff();
         boolean allDataValid = true;
         
@@ -126,7 +127,7 @@ public class RegistrationManager {
         try {
             engine.registraNuovoUtente(userId, name, secondName, fiscalCode, address, email, password, passwordControl, birthDay);
             MainFrame.getIstance().cleanUpMainPanel();
-            MainFrame.getIstance().setUpperBar(new GUIMainUpperBarUnloggedPanel(MainFrame.getIstance()));
+            MainFrame.getIstance().setUpperBar(new UpperBarUnloggedPanel(MainFrame.getIstance()));
             MainFrame.getIstance().updateView();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

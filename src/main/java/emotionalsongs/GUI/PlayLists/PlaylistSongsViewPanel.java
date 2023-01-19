@@ -6,10 +6,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
-import emotionalsongs.BasicsStructure.*;
 import java.awt.*;
+
+import emotionalsongs.basic_structures.Playlist;
 
 /**
  *

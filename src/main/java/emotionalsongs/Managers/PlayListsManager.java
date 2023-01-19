@@ -3,31 +3,31 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.Managers;
+package emotionalsongs.managers;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.DataBases.*;
 import emotionalsongs.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.PlayLists.*;
-import emotionalsongs.GUI.comunicator.*;
-import emotionalsongs.GUI.mainWindow.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
+import emotionalsongs.engines.*;
+import emotionalsongs.gui.allerter.*;
+import emotionalsongs.gui.main_window.*;
+import emotionalsongs.gui.playlists.*;
 
 
 /**
  *
  * @author big
  */
-public class PlayListsManager {
+public class PlaylistsManager {
     
-    private static PlayListsManager instance = null;
+    private static PlaylistsManager instance = null;
     PlaylistsMainPanel playlistPanel ;
     PlaylistCreationFrame creationFrame;
     final DataBasePlaylists dataBasePlaylists ;
         
     User user = EmotionalSongs.getLoggedUser();
     
-    PlaylistSet userSet;
+    PlaylistsSet userSet;
     int userSetDimension;
     
     Playlist selectedPlaylist;
@@ -37,12 +37,12 @@ public class PlayListsManager {
     private Song[] songsToAdd = new Song[0];
     private int numberOfSongsSelected = 0;
     
-    public static PlayListsManager getInstanceFirstTime(DataBasePlaylists dataBasePlaylists){
-        if(instance==null) instance = new PlayListsManager(dataBasePlaylists);
+    public static PlaylistsManager getInstanceFirstTime(DataBasePlaylists dataBasePlaylists){
+        if(instance==null) instance = new PlaylistsManager(dataBasePlaylists);
         return instance;
     }
     
-    public static PlayListsManager getInstance(){
+    public static PlaylistsManager getInstance(){
         return instance;
     }
     
@@ -50,7 +50,7 @@ public class PlayListsManager {
         if(instance != null) instance=null;
     }
 
-    private PlayListsManager(DataBasePlaylists dataBasePlaylists) {
+    private PlaylistsManager(DataBasePlaylists dataBasePlaylists) {
         EngineSearcher finder = new EngineSearcher();
         userSet = finder.searchUserSet(user, dataBasePlaylists);
         userSetDimension = userSet==null ? 0 : userSet.getSize();
@@ -58,7 +58,7 @@ public class PlayListsManager {
     }
     
     //getter method
-    public PlaylistSet getUserSet(){
+    public PlaylistsSet getUserSet(){
         return userSet;
     }
     
@@ -83,7 +83,7 @@ public class PlayListsManager {
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);
         userSet = getUserSet();
         if(userSet == null){
-            userSet = new PlaylistSet(user.getUserId(), newPlaylist);
+            userSet = new PlaylistsSet(user.getUserId(), newPlaylist);
             dataBasePlaylists.addNewSet(userSet);
             userSet = new EngineSearcher().searchUserSet(user, DataBasePlaylists.getInstance());
         } else {
@@ -168,10 +168,6 @@ public class PlayListsManager {
         if(songsToAdd.length == 0) return false;
         EngineChecker checker = new EngineChecker();
         return checker.checkIfContains(songsToAdd,song.getTag());    
-    }
-    
-    private PlaylistsMainPanel buildUserPlaylistsPanel(){
-       return new PlaylistsMainPanel(getUserSet());
     }
     
     public void startCreation(){

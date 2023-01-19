@@ -3,17 +3,14 @@
 //Alexandru Boitor - 749004 - VA
 
 
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.SongsJudgement.*;
-import emotionalsongs.Managers.*;
 import emotionalsongs.*;
-import emotionalsongs.BasicsStructure.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.GUI.SongsJudgement.*;
-import emotionalsongs.Managers.*;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.engines.*;
+import emotionalsongs.gui.songs_judgements.*;
+import emotionalsongs.managers.*;
+
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -29,7 +26,7 @@ public class SongPanel extends javax.swing.JPanel {
      * Creates new form SongChartYTPanel
      */
     Song representedSong;
-    PlayListsManager playListsManager = PlayListsManager.getInstance();
+    PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     Playlist propertyPlaylist;
     String userId;
     boolean canBeVotedByUser;
@@ -204,7 +201,7 @@ public class SongPanel extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
-        voteFrame.add(new songJudgementForm(userId, representedSong.getTag(),this));
+        voteFrame.add(new SongJudgementForm(userId, representedSong.getTag(),this));
         voteFrame.setVisible(canBeVotedByUser);
     }//GEN-LAST:event_voteButtonActionPerformed
 
