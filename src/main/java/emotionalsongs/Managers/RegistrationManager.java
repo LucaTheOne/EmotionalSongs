@@ -1,29 +1,22 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package emotionalsongs.managers;
 
-import emotionalsongs.engines.EngineChecker;
-import emotionalsongs.engines.EngineRegister;
+import emotionalsongs.*;
+import emotionalsongs.data_structures.*;
+import emotionalsongs.engines.*;
 import emotionalsongs.gui.main_window.*;
 import emotionalsongs.gui.registration.*;
-import emotionalsongs.*;
-import emotionalsongs.data_structures.DataBaseUsers;
-
 import java.io.*;
 
 /**
- *
- * @author big
+ * Classe che si occupa di gestire il processo di registrazione di un nuovo utente ed aggiornarne il database Utenti.
  */
 public class RegistrationManager {
     private static RegistrationManager instance = null;
-    public RegistrationPanel panel;
+    private RegistrationPanel panel;
     public String userId;
     public String name;
     public String secondName;
@@ -34,6 +27,10 @@ public class RegistrationManager {
     public String passwordControl;
     public String birthDay;
     
+    /**
+     * Metodo per accedere alla istanza del Registration Manager.
+     * @return 
+     */
     public static RegistrationManager getInstance(){
         if(instance== null) instance = new RegistrationManager();
         return instance;
@@ -41,11 +38,19 @@ public class RegistrationManager {
     private RegistrationManager() {
         this.panel = new RegistrationPanel(this);
     }
-    
+    /**
+     * Metodo che avvia il form di registrazione di un nuovo utente.
+     */
     public void startForm(){
         MainFrame.getIstance().setMainPanel(panel);
     }
-    
+    /**
+     * Metodo che effettua la registrazione effettiva del nuovo utente, utilizzando i dati che questo ha 
+     * fornito tramite il form, dopo averli convalidati.
+     * Si occupa di comunicare al utente quali campi non siano stati reputati idonei.
+     * Qual' ora siano tutti quanti idonei aggiorna il database inserendo i dati del nuovo utente ed aggiorna 
+     * l' interfaccia grafica.
+     */
     public void startRegistration(){
         EngineRegister engine = new EngineRegister(DataBaseUsers.getInstance());
         panel.setAllCheckOff();
@@ -70,7 +75,7 @@ public class RegistrationManager {
             allDataValid = false;
         }
         
-        if(!checker.checkCognomeValidity(secondName)){
+        if(!checker.checkSurnameValidity(secondName)){
             panel.cognomeCheckLabel.setVisible(true);
             panel.cognomeCheckLabel.setText(EmotionalSongs.dialoghi.cognomeNon());
             allDataValid = false;

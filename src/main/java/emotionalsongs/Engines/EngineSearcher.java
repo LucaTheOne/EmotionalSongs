@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.engines;
 
@@ -9,14 +9,7 @@ import emotionalsongs.data_structures.*;
 import java.util.*;
 
 /**
- * Classe adibita alla ricerca di canzoni all' interno del repository di canzoni
- * tramite due tipologie di ricerca:
- * <ul>
- * <li>Ricerca per autore ed anno
- * <li>Ricerca per titolo.
- * </ul>
- * @author Luca
- * @version 1.2
+ * Classe le cui istanze offrono metodi per effetture ricerche di dati all' interno del database delle valutazioni emozionali.
  */
 public class EngineSearcher {
 
@@ -24,10 +17,12 @@ public class EngineSearcher {
     
     //metodi di ricerca canzoni
     /**
-     * Il metodo permette di selezionare la modalita di ricerca per autore ed anno opppure
-     * per titolo.
-     * @param stringaCercata 
-     * @return il brano, in base alla tipologia di ricerca scelta, per autore ed anno o per titolo.
+     * Il metodo permette effettuare la ricerca di una canzone per:
+     * <ul>
+     * <li>Titolo, se nell' argomento passato alla funzione non ci sono ;</li>
+     * <li>Autore ed anno se se nell' argomento passato alla funzione ci sono ;</li>
+     * @param stringaCercata criterio di ricerca.
+     * @return Un array di brani che corrispondono ai criteri di ricerca passati come argomento.
      */
     public Song[] cercaBranoMusicale(String stringaCercata){
         
@@ -41,10 +36,9 @@ public class EngineSearcher {
     }   
     
     /**
-     * Il metodo effettua la ricerca per title nella repository di brani e li 
- salva in un array di brani.
-     * @param title - del brano.
-     * @return il brano ricercato.
+     * Il metodo effettua la ricerca per titolo nel repository di brani e li salva in un array di brani.
+     * @param title titolo del brano da cercare.
+     * @return Un array contenente tutti i brani che nel titolo anno la parola cercata.
      */
     private Song[] ricercaPerTitolo(String title){
         
@@ -71,11 +65,11 @@ public class EngineSearcher {
     }
     
     /**
-     * Il metodo effettua la ricerca per autore ed anno e salva low risultati 
-     * di ricerca in un arraylist di brani.
-     * @param autore - del brano.
-     * @param anno - del brano.
-     * @return il brano ricercato.
+     * Il metodo effettua la ricerca per autore ed anno e ne restituisce i risultati 
+     * in un array di brani.
+     * @param autore - nome del autore del brano.
+     * @param anno - anno di publicazione del brano.
+     * @return Array di canzoni aventi come autore ed anno quelli ricercati.
      */
     private Song[] ricercaPerAutoreEdAnno(String autore, String anno){
         
@@ -100,9 +94,9 @@ public class EngineSearcher {
     }
     
     /**
-     * Il metodo prende come parametri la repository e songTag ed effettua la ricerca.
-     * @param repository 
-     * @param songTag
+     * Il metodo prende come parametri un repository di canzoni ed un songTag, e ne effettua la ricerca del brano associato.
+     * @param repository Repository in cui cercare.
+     * @param songTag Tag della canzone da cercare.
      * 
      */
     public Song searchBySongTag(Repository repository,String songTag) {
@@ -116,11 +110,11 @@ public class EngineSearcher {
     
     //metodi ricerca utenti nel database
     /**
-     * Il metodo prende come parametri il codice fiscale e database ed
-     * effettua una ricerca nella databse dell'userID.
+     * Il metodo prende come parametri il codice fiscale e il database utenti ed
+     * effettua una ricerca nel databse dell'utente a cui i dati sono associati.
      * @param database DataBaseUser.
      * @param cf Codice Fiscale. 
-     * @return userID.
+     * @return Utente il cui CF coincide con quello passato come argomento.
      */
     public User searchUserFromCF(DataBaseUsers database,String cf) {
         
@@ -142,19 +136,20 @@ public class EngineSearcher {
     }
     
     /**
-     * 
-     * @param dataBaseUsers
-     * @param id
-     * @return 
+     * Il metodo prende come parametri un id utente e il database utenti ed
+     * effettua una ricerca nel databse dell'utente associato ai dati.
+     * @param database DataBaseUser.
+     * @param id id utente da cercare. 
+     * @return Utente il cui Id coincide con quello passato come argomento.
      */
     public User getUserFromId(DataBaseUsers dataBaseUsers,String id) {
         
         int size = dataBaseUsers.getSize();
-        
+        /*
         for(int i = 0; i<size;i++){
             if(dataBaseUsers.getUser(i).getUserId().equalsIgnoreCase(id)) return dataBaseUsers.getUser(i);
         }
-        /*
+        */
         new EngineSorter().sortUsersById(dataBaseUsers);
         
         int low = 0;
@@ -166,18 +161,18 @@ public class EngineSearcher {
             if(userPointedId.equalsIgnoreCase(id)) return pointedUser;
             else if(id.compareToIgnoreCase(userPointedId)<0) high = mid-1;
             else low = mid+1;
-        }*/
+        }
         return null;
     }
     
     //metodi di ricerca records
     /**
-     * 
-     * @param dataBase
-     * @param branoTag
-     * @return 
+     * Metodo che ritorna un giudizio emozionale relativo al brano rappresentato dal tag passato come argomento, nel database, anche questo passato come argomento.
+     * @param dataBase Database in cui effettuare la ricerca.
+     * @param branoTag Tag del brano di cui cercarne i giudizi emozionali.
+     * @return il giudizio emozionale del brano rappresentato dal tag.
      */
-    public UserJudgement getJudgementFromSongTag(DataBaseJudgements dataBase, String branoTag){
+    public EmotionalJudgement getJudgementFromSongTag(DataBaseJudgements dataBase, String branoTag){
         if(dataBase == null) return null;
         int size = dataBase.getSize();
         EngineSorter sorter = new EngineSorter();
@@ -187,7 +182,7 @@ public class EngineSearcher {
         int high = size-1;
         while(low<=high){
             int mid = (low+high)/2;
-            UserJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
+            EmotionalJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
             String pointedTag = pointedRecord.getBranoTag();
             if(pointedTag.equals(branoTag)) return pointedRecord;
             else if(branoTag.compareTo(pointedTag)<0) high = mid-1;
@@ -198,10 +193,10 @@ public class EngineSearcher {
     
     //metodi di ricerca playlist
     /**
-     * 
-     * @param user
-     * @param dataBasePlaylists
-     * @return 
+     * Metodo che ricerca il playlist set dell' utente passato come argomento, nel database anch' esso passato come argomento.
+     * @param user Utente da ricercare.
+     * @param dataBasePlaylists Database in cui effettuare la ricerca.
+     * @return Il PlaylistSet del utente.
      */
     public PlaylistsSet searchUserSet(User user,DataBasePlaylists dataBasePlaylists) {
         
@@ -228,10 +223,11 @@ public class EngineSearcher {
     }
     
     /**
-     * 
-     * @param dataBase
-     * @param branoTag
-     * @return 
+     * Metodo che ritorna la posizione del giudizio emozionale relativo al brano rappresentato dal tag 
+     * passato come argomento, nel database passato anc' esso come argomento.
+     * @param dataBase Database in cui cercare.
+     * @param branoTag Tag del brano di cui cercare il giudizio emozionale.
+     * @return Posizione del giudizio emozionale del brano corrispondente al tag, all' interno del database.
      */
     public int searchJudgementIndexBySongTag(DataBaseJudgements dataBase, String branoTag) {
         if(!(dataBase == null)){
@@ -243,7 +239,7 @@ public class EngineSearcher {
             int high = size-1;
             while(low<=high){
                 int mid = (low+high)/2;
-                UserJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
+                EmotionalJudgement pointedRecord = dataBase.getRecordFromIndex(mid);
                 String pointedTag = pointedRecord.getBranoTag();
                 if(pointedTag.equals(branoTag)) return mid;
                 else if(branoTag.compareTo(pointedTag)<0) high = mid-1;
@@ -258,14 +254,14 @@ public class EngineSearcher {
     private void sortByAuthor(Song[] tracks){
         if(tracks[0] != null && tracks.length > 1){
             EngineSorter sorter = new EngineSorter();
-            sorter.sortTracksByAuthors(tracks);
+            sorter.sortSongsByAuthors(tracks);
         }
     }
     
     private void sortByTitle(Song[] tracks){
         if(tracks[0] != null && tracks.length > 1){
             EngineSorter sorter = new EngineSorter();
-            sorter.sortTracksByTitles(tracks);
+            sorter.sortSongsByTitles(tracks);
         }
     }
     

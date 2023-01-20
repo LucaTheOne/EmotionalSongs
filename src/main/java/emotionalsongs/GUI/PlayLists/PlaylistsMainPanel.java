@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.gui.playlists;
@@ -10,13 +10,20 @@ import emotionalsongs.managers.*;
 import java.awt.*;
 
 /**
- *
- * @author big
+ *Classe le cui istanze sono pannelli per la visulizzazione di pulsanti delle playlist ed il loro contenuto.
  */
 public class PlaylistsMainPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form PlaylistsMainPanel
+     * Crea il form generale per l' ispezione del playlist set dell' utente passato come argomento e delle 
+     * canzoni contenute nelle playlist.
+     * In questo form ci sono pulsanti che permettono:
+     * <ul>
+     * <li> Esprimere giudizi emozionali per ogni canzone di ogni playlist del utente</li>
+     * <li> Aprire il report dei giudizi per ogni canzone </li>
+     * <li> Ricercare le canzoni su youtube</li>
+     * <li> Creare una nuova playlist</li>
+     * <ul>
      */
     
     PlaylistsSet userSet;

@@ -1,20 +1,25 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.sorting_algos.general_sorting_algos;
 
 /**
- *
- * @author big
+ * Classe il cui unico metodo riordina array di stringhe.
  */
 public class SorterString {
     
-    public SorterString() {
-        
-    }
-    
+    /**
+     * Metodo per riordinare un array di stringhe, sia in maniera case-sensitive che non sulla
+     * base del valore booleano passato come argomento;
+     * <ul>
+     * <li> true -> tiene conto delle maiuscole</li>
+     * <li> false -> non tiene conto delle maiuscole</li>
+     * </ul>
+     * @param arrayToSort array di stringhe da ordinare.
+     * @param caseSensitive valore booleano.
+     */
     public void sort(String[] arrayToSort,boolean caseSensitive) {	
             int currentSize;
             int leftStartIndex;

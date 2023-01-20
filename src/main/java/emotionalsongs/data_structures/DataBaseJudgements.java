@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.data_structures;
@@ -12,19 +12,20 @@ import emotionalsongs.gui.allerter.*;
 import java.io.*;
 
 /**
- * La classe DataSetEmozioni si occupa di importare ed esportare i dati delle 
- * emozioni.
- * @author Bolelli Luca
+ * <h3>Descrizione</h3>
+ * Classe che rappresenta il contenitore di tutti i giudizi emozionali contenuti nel file Emozioni.dati.txt.
+ * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
+ * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
  */
 public class DataBaseJudgements {
     
     //Campi
-    private UserJudgement[] dataBaseRecordsArray;
+    private EmotionalJudgement[] dataBaseRecordsArray;
     private boolean empty = true;
     private static DataBaseJudgements dataBaseRecords = null;
     //Costructor
     /**
-     * Crea un oggetto che importFromFile i dati delle emozioni.
+     * Costruttore privato del database
      */
     private DataBaseJudgements() {       
         importFromFile();
@@ -32,8 +33,8 @@ public class DataBaseJudgements {
     
     //singleton instancer
     /**
-     * 
-     * @return 
+     * Metodo che permette di accedere al database dei giudizi emozionali.
+     * @return Istanza del database.
      */
     public static DataBaseJudgements getInstance(){
         if (dataBaseRecords == null){
@@ -48,9 +49,9 @@ public class DataBaseJudgements {
             BufferedReader reader = new BufferedReader(new FileReader(new File(Utilities.pathToEmozioniDati)));
             int linesNumber = (int)Utilities.countLines(Utilities.pathToEmozioniDati);
             if(linesNumber==0) return;
-            dataBaseRecordsArray = new UserJudgement[linesNumber];
+            dataBaseRecordsArray = new EmotionalJudgement[linesNumber];
             for(int i = 0; i<linesNumber;i++){
-                dataBaseRecordsArray[i] = new UserJudgement(reader.readLine());
+                dataBaseRecordsArray[i] = new EmotionalJudgement(reader.readLine());
             }
             empty = false;
         } catch (FileNotFoundException ex) {
@@ -60,10 +61,15 @@ public class DataBaseJudgements {
         }
         
     }
-        
-    public void addNewUserJudgement(UserJudgement userJudgement){
+    /**
+     * Metodo che permette di aggiornare il database aggiungendo un nuovo giudizio emozionale ed automaticamente
+     * rendere il nuovo dato accessibile e consistente.
+     * Riordina il database dopo averlo aggiornatao, ma prima di salvarlo su file sorgente.
+     * @param userJudgement giudizio emozionale da aggiungere.
+     */    
+    public void addNewUserJudgement(EmotionalJudgement userJudgement){
         if(!empty){
-            UserJudgement[] newDataBase = new UserJudgement[dataBaseRecordsArray.length+1];
+            EmotionalJudgement[] newDataBase = new EmotionalJudgement[dataBaseRecordsArray.length+1];
             for (int i = 0; i < dataBaseRecordsArray.length; i++) {
                 newDataBase[i] = dataBaseRecordsArray[i];
             }
@@ -72,7 +78,7 @@ public class DataBaseJudgements {
             sortByBranoTag();
         }
         else {
-            dataBaseRecordsArray = new UserJudgement[1];
+            dataBaseRecordsArray = new EmotionalJudgement[1];
             dataBaseRecordsArray[0] = userJudgement;
         }
         save();
@@ -100,49 +106,58 @@ public class DataBaseJudgements {
     
     //getter methods
     /**
-     * Il metodo restituisce un array con le votazioni assegnate ad ogni emozione.
-     * 
+     * Il metodo restituisce l' array alla base del database contenente tutti i giudizi emozionali. 
      */
-    public UserJudgement[] getArray() {
+    public EmotionalJudgement[] getArray() {
         return this.dataBaseRecordsArray;
     }
     
     /**
-     * Il metodo restituisce la dimensione dell'array.
-     * @return Dimensione array.
+     * Il metodo restituisce la dimensione del database in termini di numero di giudizi contenuti.
+     * @return Dimensione Database.
      */
     public int getSize() {
         return this.dataBaseRecordsArray.length;
     }
-    
+    /**
+     * Il metodo ritorna un intero rappresentante la posizione del giudizio sul brano con tag uguale a quello passato come argomento.
+     * @param branoTag tag del brano di cui si cerca la posizione del giudizio nel database.
+     * @return 
+     */
     private int getJudgementIndexFromTag(String branoTag){
         EngineSearcher searcher = new EngineSearcher();
         return searcher.searchJudgementIndexBySongTag(this, branoTag);
     }
     
     /**
-     * 
-     * @param index
+     * Ritorna il giudizio emozionale di posizione index nel database
+     * @param index posizione del database da esaminare.
      * @return 
      */
-    public UserJudgement getRecordFromIndex(int index){
+    public EmotionalJudgement getRecordFromIndex(int index){
         return dataBaseRecordsArray[index];
     }
-
+    
+    /**
+     * 
+     * @return <ul>
+     * <li> true -> il database è vuoto.</li>
+     * <li> false -> il database posside almeno un giudizio emozionale.</li>
+     */
     public boolean isEmpty() {
         return empty;
     }
     
     //searching methods
     /**
-     * 
-     * @param songTag
-     * @return Il tag.
+     * Metodo utilizzato per cercare tutti i giudizi sul brano rappresentato dal tag passato come argomento.
+     * @param songTag tag della canzone di cui cercare i giudizi emozionali.
+     * @return Un arrai con tutti i giudizi della canzone cercata.
      */
-    public UserJudgement[] searchJudgements(String songTag){
+    public EmotionalJudgement[] searchJudgements(String songTag){
         int firstIndexFound = getJudgementIndexFromTag(songTag);
         if(firstIndexFound<0) return null;
-        UserJudgement[] founds = new UserJudgement[]{getRecordFromIndex(firstIndexFound)};
+        EmotionalJudgement[] founds = new EmotionalJudgement[]{getRecordFromIndex(firstIndexFound)};
         for(int i = firstIndexFound-1;i!=0;i--){
             if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
                 founds = addTo(founds, dataBaseRecordsArray[i], 0);
@@ -158,8 +173,8 @@ public class DataBaseJudgements {
          return  founds;
     }
     
-    private UserJudgement[] addTo(UserJudgement[] judgements, UserJudgement toAdd, int before_0_or_after_1){
-        UserJudgement[] newOne = new UserJudgement[judgements.length +1];
+    private EmotionalJudgement[] addTo(EmotionalJudgement[] judgements, EmotionalJudgement toAdd, int before_0_or_after_1){
+        EmotionalJudgement[] newOne = new EmotionalJudgement[judgements.length +1];
         if(before_0_or_after_1 == 0){
             for(int i = judgements.length;i>0;i--) newOne[i] = judgements[i];
             newOne[0] = toAdd;
@@ -172,18 +187,4 @@ public class DataBaseJudgements {
         }
         return newOne;
     }
-    
-    /* debugger Code*/
-    /*
-    public static void main(String[] args) {
-        
-        DataBaseJudgements data = DataBaseJudgements.getInstance();
-        UserJudgement[] judgement = data.getArray();
-        UserJudgement jud = judgement[14];
-        UserJudgement[] searched = data.searchJudgements(jud.getBranoTag());
-        System.out.println(jud.getBranoTag());
-        System.out.println(searched.length);
-        System.out.println(searched[0].getUserIDRecord());
-    }
-    */
 }

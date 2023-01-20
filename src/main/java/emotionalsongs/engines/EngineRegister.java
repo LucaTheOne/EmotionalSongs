@@ -1,19 +1,18 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.engines;
 
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.User;
-import emotionalsongs.data_structures.DataBaseUsers;
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
 import emotionalsongs.welcome_email.*;
-
 import java.io.*;
 
 /**
-* La classe si occupa di fornire all'utente i metodi necessari per registrarsi inserendo dati come:
+* La classe le cui istanze si occupano di fornire all'utente i metodi necessari per registrarsi inserendo i seguenti dati:
 * <ul>
 * <li>UserID.
 * <li>Codice fiscale(formato italiano).
@@ -30,34 +29,31 @@ import java.io.*;
 * <li>Che l' utente non vi sia già registrato.
 * <li>Che l' utente sappia quale password ha scelto.
 * </ul>
-* Oltreciò si occupa anche di salvarne i dati su un file .txt con una precisa impostazione,
+* Oltreciò si occupa anche di salvarne i dati su un file .txt, con una precisa impostazione,
 * denominato utentiRegistrati.dati.txt .
-* nb v1.0 non vi è forma di controllo sull' indirizzo.
 **/
 public class EngineRegister {
 
     private DataBaseUsers userDatabase;
     
     /**
-     * Costruisce un oggetto vuoto.
+     * Costruisce della classe a cui si passa il database Utenti di appoggio.
      */
     public EngineRegister(DataBaseUsers database) { 
         userDatabase = database;
     }
     
     /**
-    * Il metodo chiede all'utente di inserire l'userID, nome, 
-    * cognome, codice fiscale, indirizzo, indirizzo email, password, data di nascita.
-    * Dopodichè viene eseguito un controllo del codice fiscale: se il codice fiscale è stato già utilizzato 
-    * l'utente verrà avvisato, se non è stato utilizzato si procederà alla registrazione dell'utente su file.
-    * @throws IOException 
+    * Il metodo riceve i dati userID, nome, 
+    * cognome, codice fiscale, indirizzo, indirizzo email, password, data di nascita per costruire una nuova istanza di User da inserire nel database.
+    * Effettua verifiche per ogni dato assicurandosi che esso sia valido.
+    * Qualora lo siano completa la registrazione dell' utente spedendogli una mail di benvenuto.
+    * @throws IOException
     */ 
-    public void registraNuovoUtente(String userId,String nome,String cognome,String cf,String indirizzo,String email,String pswd,String contrPswd,String dataNascita) throws IOException{
+    public void registraNuovoUtente(String userId,String name,String surname,String cf,String address,String email,String pswd,String contrPswd,String birthDate) throws IOException{
         User nuovo;
-        nuovo = new User(userId, pswd, cf, nome, cognome, dataNascita, email, indirizzo); 
-        System.out.println("utente creato");
+        nuovo = new User(userId, pswd, cf, name, surname, birthDate, email, address); 
         userDatabase.addNewUser(nuovo);
-        System.out.println("utente aggiunto");
         EmotionalSongs.setLoggedUser(nuovo);
         WelcomeMailSender.sendMailToNewUser();
     }

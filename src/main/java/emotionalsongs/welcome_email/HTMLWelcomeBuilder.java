@@ -1,18 +1,16 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.welcome_email;
 
 
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.User;
-
+import emotionalsongs.basic_structures.*;
 import java.io.*;
 import java.util.logging.*;
 /**
- *
- * @author big
+ * Classe che si occupa di fornire metodi per la compilazione del form html di benvenuto.
  */
 class HTMLWelcomeBuilder {
     
@@ -21,12 +19,15 @@ class HTMLWelcomeBuilder {
     private String[] userdata = new String[8];
     private String[] identifiers = {"%&0","%&1","%&2","%&3","%&4","%&5","%&6","%&7"};
     
+    /**
+     * Costruttore della classe che si occupa di compilare il form html di benvenuto sulla base dei dati dell' utente appena registrato.
+     */
     public HTMLWelcomeBuilder() {
-        userdata[0] = user.getNome();
-        userdata[1] = user.getCognome();
-        userdata[2] = user.getDataDiNascita();
+        userdata[0] = user.getName();
+        userdata[1] = user.getSurname();
+        userdata[2] = user.getBirthDate();
         userdata[3] = user.getCF();
-        userdata[4] = user.getIndirizzo();
+        userdata[4] = user.getAddress();
         userdata[5] = user.getEmail();
         userdata[6] = user.getUserId();
         userdata[7] = user.getPassword();
@@ -46,8 +47,11 @@ class HTMLWelcomeBuilder {
             Logger.getLogger(HTMLWelcomeBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String buildMessage(){
+    /**
+     * Restituisce il form compilato sotto forma di stringa.
+     * @return stringa rappresentante il form compilato.
+     */
+    public String getwelcomeMessage(){
         return message;
     }
      

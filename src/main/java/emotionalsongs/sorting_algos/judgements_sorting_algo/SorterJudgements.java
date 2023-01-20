@@ -1,14 +1,21 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.sorting_algos.judgements_sorting_algo;
 
-import emotionalsongs.basic_structures.UserJudgement;
-
+import emotionalsongs.basic_structures.*;
+/**
+ * Classe per riordinare un array di giudizi emotivi
+ */
 public class SorterJudgements {
-    public void sort(UserJudgement[] arrayJudgementsToSort) {	
+    /**
+     * Metodo per riordinare un array di giudizi emotivi, alfabeticalmente, sulla base del
+     * tag della canzone di cui ne rappresentano un record.
+     * @param arrayJudgementsToSort Array di giudizi emotivi da riordinare.
+     */
+    public void sort(EmotionalJudgement[] arrayJudgementsToSort) {	
         int currentSize;
         int leftStartIndex;
         for (currentSize = 1; currentSize <= arrayJudgementsToSort.length-1; currentSize = 2*currentSize) {
@@ -20,14 +27,14 @@ public class SorterJudgements {
         }
     }
 	
-    private void merge(UserJudgement[] arrayJudgementsToSort, int leftIndex, int midIndex, int rightIndex) {
+    private void merge(EmotionalJudgement[] arrayJudgementsToSort, int leftIndex, int midIndex, int rightIndex) {
         int i, j, k;
         int sizeLeftPart = midIndex - leftIndex + 1;
         int sizeRightPart = rightIndex - midIndex;
 	
         /* create temp arrays */
-        UserJudgement L[] = new UserJudgement[sizeLeftPart];
-        UserJudgement R[] = new UserJudgement[sizeRightPart];
+        EmotionalJudgement L[] = new EmotionalJudgement[sizeLeftPart];
+        EmotionalJudgement R[] = new EmotionalJudgement[sizeRightPart];
 	
         /* Copy data to temp arrays L[] and R[] */
         for (i = 0; i < sizeLeftPart; i++) L[i] = arrayJudgementsToSort[leftIndex + i];

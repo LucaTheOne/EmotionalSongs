@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.gui.songs_judgements;
@@ -13,13 +13,16 @@ import emotionalsongs.gui.playlists.*;
 import javax.swing.*;
 
 /**
- *
- * @author big
+ * Classi le cui istanze permettono di esprimere giudizi emozionali.
  */
 public class SongJudgementForm extends javax.swing.JPanel {
     
     /**
-     * Creates new form voteForm
+     * Crea il form per creare un giudizio emozionale relativo alla canzone rappresentata dal tag passato
+     * come argomento ed al utente rappresentato dal id passato come argomento.
+     * @param loggedUserId Id del utente che effettua il giudizio emozionale.
+     * @param songToVoteTag Tag della canzone giudicata.
+     * @param callerComponent Pannello da cui la funzione è stata chiamata.
      */
     public SongJudgementForm(String loggedUserId,String songToVoteTag,SongPanel callerComponent) {
         this.loggedUserId = loggedUserId;
@@ -1345,7 +1348,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
             }
 
             DataBaseJudgements dataBaseRecords = DataBaseJudgements.getInstance();
-            dataBaseRecords.addNewUserJudgement(new UserJudgement(
+            dataBaseRecords.addNewUserJudgement(new EmotionalJudgement(
                 songToVoteTag,
                 loggedUserId,
                 marks[0],notes[0],//amazement

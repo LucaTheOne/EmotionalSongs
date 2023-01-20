@@ -1,46 +1,40 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.basic_structures;
 
-import emotionalsongs.data_structures.DataBasePlaylists;
-//import emotionalsongs.data_structures.DataBaseUsers;
-//import emotionalsongs.engines.EngineChecker;
-import emotionalsongs.engines.EngineSearcher;
-//import java.io.*;
-//import java.util.regex.*;
+import emotionalsongs.data_structures.*;
+import emotionalsongs.engines.*;
+
 
 /**
- * La classe si occupa di creare l'oggetto User con i suoi parametri, 
- ed implementa i metodi di registrazione e controllo dei parametri dell'oggetto User.
- * @author Luca
- * @version 1.2.
+ * <h3> Descrizione: </h3>
+ * Classe le cui istanze rappresentano un utente.
  */
 public class User {
     //campi
-    //boolean autenticated = false;
-    private String userId,nome,cognome,cf,indirizzo,email,password,dataNascita;
+    private String userId,name,surname,cf,address,email,password,birthDate;
     /**
-     * Costruice l'oggetto Utente.
+     * Costruice un istanza di Utente.
      * @param userId - userId dell'utente.
      * @param password - password dell'utente.
      * @param cf - codice fiscale dell'utente.
-     * @param nome - il primo nome dell'utente.
-     * @param cognome - il primo cognome dell'utente.
-     * @param dataNascita - la data di nascita dell'utente.
+     * @param name - il primo name dell'utente.
+     * @param surname - il primo surname dell'utente.
+     * @param birthDate - la data di nascita dell'utente.
      * @param email - l'email dell'utente.
-     * @param indirizzo  - indirizzio dell'utente.
+     * @param address  - indirizzio dell'utente.
      */
-    public User(String userId, String password,String cf,String nome,String cognome,String dataNascita,String email,String indirizzo){
+    public User(String userId, String password,String cf,String name,String surname,String birthDate,String email,String address){
         this.userId = userId;
-        this.nome = nome;
-        this.cognome = cognome;
+        this.name = name;
+        this.surname = surname;
         this.cf = cf;
-        this.indirizzo = indirizzo;
+        this.address = address;
         this.email = email;
         this.password = password;
-        this.dataNascita = dataNascita;    
+        this.birthDate = birthDate;    
     }
     
     //metodi getter
@@ -53,19 +47,19 @@ public class User {
     }
     
     /**
-     * Il metodo restiuisce il nome dell'utente.
-     * @return  nome - nome dell'utente.
+     * Il metodo restiuisce il name dell'utente.
+     * @return  name - name dell'utente.
      */
-    public String getNome(){
-        return nome;
+    public String getName(){
+        return name;
     }
     
     /**
-     * Il metodo restituisce il cognome dell'utente.
-     * @return cognome -  cognome dell'utente.
+     * Il metodo restituisce il surname dell'utente.
+     * @return surname -  surname dell'utente.
      */
-    public String getCognome(){
-        return cognome;
+    public String getSurname(){
+        return surname;
     }
 
     /**
@@ -77,11 +71,11 @@ public class User {
     }
     
     /**
-     * Il metodo restituisce l'indirizzo dell'utente.
-     * @return indirizzo - indirizzo dell'utente.
+     * Il metodo restituisce l'address dell'utente.
+     * @return address - address dell'utente.
      */
-    public String getIndirizzo(){
-        return indirizzo;
+    public String getAddress(){
+        return address;
     }
     
     /**
@@ -94,10 +88,10 @@ public class User {
     
     /**
      * Il metodo restituisce la data di nascita dell'utente.
-     * @return dataNascita - la data di nascita dell'utente.
+     * @return birthDate - la data di nascita dell'utente.
      */
-    public String getDataDiNascita(){
-        return dataNascita;
+    public String getBirthDate(){
+        return birthDate;
     }
     
     /**
@@ -109,8 +103,8 @@ public class User {
     }
     
     /**
-     * Il metodo ritorna l'insieme delle Playlist associate all'utente.
-     * @return PlaylistSet.
+     * Il metodo ritorna l'istanza di PlaylistSet contenente l' insieme di istanze di Playlist associate all' istanza di user che ne richiama il metodo.
+     * @return PlaylistSet del utente.
      */
     public PlaylistsSet getPlaylistSet(){
         EngineSearcher searcher = new EngineSearcher();
@@ -120,8 +114,8 @@ public class User {
     //modifyng method for a future service's implementation   
     
     /*
-      * Il metodo si occupa di chiedere all'utente di inserire il suo primo nome; succesivamente
-      * effettua un controllo. Il nome non deve : 
+      * Il metodo si occupa di chiedere all'utente di inserire il suo primo name; succesivamente
+      * effettua un controllo. Il name non deve : 
       * <ul>
       * <li>superare 20 caratteri.
       * <li>avere meno di 3 caratteri.
@@ -129,19 +123,19 @@ public class User {
       * <li>contenere caratteri (.*\\d.*).
       * </ul>
       * Se rispetta le 4 condizioni il boolean creato all'inizio
-      * del metodo tornerà true e il nome dell'utente verrà assegnato alla stringa.
-      * @return il nome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
+      * del metodo tornerà true e il name dell'utente verrà assegnato alla stringa.
+      * @return il name dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
       */
     /* 
-    private void setNewNome(String nome){
-        if(!nome.isBlank()){
-            this.nome = nome;
+    private void setNewNome(String name){
+        if(!name.isBlank()){
+            this.name = name;
         }
     }
     */
     /*
-      * Il metodo si occupa di chiedere all'utente di inserire il primo cognome; succesivamente
-      * effettua un controllo. Il cognome non deve : 
+      * Il metodo si occupa di chiedere all'utente di inserire il primo surname; succesivamente
+      * effettua un controllo. Il surname non deve : 
       * <ul>
       * <li>superare 20 caratteri.
       * <li>avere meno di 3 caratteri.
@@ -149,13 +143,13 @@ public class User {
       * <li>contenere caratteri (.*\\d.*).
       * </ul>
       * Se rispetta le 4 condizioni il boolean creato all'inizio
-      * del metodo tornerà true e il cognome dell'utente verrà assegnato alla stringa.
+      * del metodo tornerà true e il surname dell'utente verrà assegnato alla stringa.
       * @return il Cognome dell'utente con la prima lettera in maiuscolo e le successive in minuscolo.
     */
     /*
-    private void setNewCognome(String cognome){
-        if(!cognome.isBlank()){
-            this.cognome = cognome;
+    private void setNewCognome(String surname){
+        if(!surname.isBlank()){
+            this.surname = surname;
         }
     }
     */
@@ -165,9 +159,9 @@ public class User {
      * @return l'indirizzio dell'utente scritto in minuscolo.
      */
     /* 
-    private void setNewInd(String indirizzo){
-        if(!indirizzo.isBlank()){
-            this.indirizzo = indirizzo;
+    private void setNewInd(String address){
+        if(!address.isBlank()){
+            this.address = address;
         }
     }
     */
@@ -218,20 +212,17 @@ public class User {
     private void setNewBirthDate(String birthdate) throws PatternSyntaxException {
         EngineChecker checker = new EngineChecker();
         if(checker.checkBirthDayValidity(birthdate)){
-            dataNascita = birthdate;
+            birthDate = birthdate;
         }
     }
     */
    /**
-   * Il metodo si occupa di chiedere all'utente di inserire l'userID. 
-   * L'userID inserito non deve: 
-   * <ul>
-   * <li>essere composto da meno di 3 caratteri o da più di 10 caratteri,
-   * <li>non deve contenere spazi.
-   * </ul>
+   * Il metodo si occupa di chiedere all'utente di inserire l'userID.L'userID inserito non deve: 
+    <ul>
+    <li>essere composto da meno di 3 caratteri o da più di 10 caratteri,
+    <li>non deve contenere spazi. </ul>
    * Se rispetta queste tre condizioni, l'userID sarà registrato.
-   * @return - userID dell'utente.
-   * @throws FileNotFoundException 
+   * @return - userID dell'utente. 
    */
   /* 
     private void setNewUserID(String userId) throws FileNotFoundException{
@@ -245,48 +236,45 @@ public class User {
     */
     //metodi di composizione
     /*
-     * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, nome, cognome,
+     * Il metodo restituisce una stringa formata dall'userId, password, codice fiscale, name, surname,
      * data di Nascita, email, indirizzio, su un'unica riga separati dal simbolo ";".
+     * Questo è il formato in cui gli utenti vengono salvati sul file Utenti.dati.txt.
      * @param cf Il codice fiscale dell'utente.
-     * @param nome Il nome dell'utente.
-     * @param cognome Il cognome dell'utente.
-     * @param dataNascita La data di nascita dell'utente.
-     * @param indirizzo L'indirizzo dell'utente.
+     * @param name Il nome dell'utente.
+     * @param surname Il cognome dell'utente.
+     * @param birthDate La data di nascita dell'utente.
+     * @param address L'indirizzo di residenza dell'utente.
      * @param userId L'userid dell'utente.
      * @param email L'email dell'utente.
      * @param pswd La password dell'utente.
-     * @return Una stringa formata dai parametri.
+     * @return Una stringa formattata per il file UtentiRegistrati.dati.txt.
      */
     public String componiStringa() {
-        return userId +";"+ password +";"+ cf +";"+ nome +";"+ cognome +";"+ dataNascita +";"+ email +";"+ indirizzo + ";"+"\r";
+        return userId +";"+ password +";"+ cf +";"+ name +";"+ surname +";"+ birthDate +";"+ email +";"+ address + ";"+"\r";
     }
     
     //metodi di comparazione
-    /*
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se l'id utente che chiama il metodo
-     * è lessicograficamente precedente l'id utente passato come argomento.</li>
-     * <li>Un intero positivo se lessicograficamente seguente l'id utente passato come argomento. </li>
+    /**
+     * 
+     * @param user Istanza di User.
+     * @return <ul>
+     * <li><b>Un intero negativo</b> se l'id dell' istanza di User che chiama il metodo è <b>lessicograficamente precedente</b> l'id dell' istanza di User passata come argomento.</li>
+     * <li><b>Un intero positivo</b> se l'id dell' istanza di User che chiama il metodo è <b>lessicograficamente seguente</b> l'id dell' istanza di User passata come argomento.</li>
      * <li>Zero se sono uguali. </li>
      * </ul>
-     * @param user Utente.
-     * @return Un numero intero.
      */
     public int compareId(User user) {
         return this.userId.compareToIgnoreCase(user.getUserId());
     }
     
-    /*
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se il codice fiscale dell'utente che chiama il metodo
-     * è lessicograficamente precedente al codice fisicale dell'utente passato come argomento.</li>
-     * <li>Un intero positivo se lessicograficamente seguente al codice fiscale dell'utente passato come argomento. </li>
+    /**
+     * 
+     * @param user Istanza di User
+     * @return <ul>
+     * <li><b>Un intero negativo</b> se l'id dell' istanza di User che chiama il metodo è <b>lessicograficamente precedente</b> l'id dell' istanza di User passata come argomento.</li>
+     * <li><b>Un intero positivo</b> se l'id dell' istanza di User che chiama il metodo è <b>lessicograficamente seguente</b> l'id dell' istanza di User passata come argomento.</li>
      * <li>Zero se sono uguali. </li>
      * </ul>
-     * @param user Utente
-     * @return Un numero intero.
      */
     public int compareCf(User user) {
         return this.cf.compareToIgnoreCase(user.getCF());

@@ -1,16 +1,17 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package emotionalsongs.sorting_algos.songs_sorting_algos;
 
-import emotionalsongs.basic_structures.Song;
-
+import emotionalsongs.basic_structures.*;
+/**
+ * Classe contenente metodi per riordinare una array di canzoni, alfabeticalmente, in base al nome dei loro autori.
+ */
 public class SorterSongsByAuthor {
+    /**
+     * Metodo per riordinare, alfabeticalmente, aun array di canzoni in base nome dei loro autori.
+     * @param arraySongsToSort Array di canzoni da riordinare.
+     */
     public void mergeSort(Song[] arraySongsToSort) {	
         int currentSize;
         int leftStartIndex;

@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.data_structures;
 
@@ -13,8 +13,10 @@ import java.io.*;
 import java.util.logging.*;
 
 /**
- *
- * @author big
+ * <h3>Descrizione</h3>
+ * Classe che rappresenta il contenitore di tutti i PlaylistSet contenuti nel file Playlist.dati.txt.
+ * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
+ * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
  */
 public class DataBasePlaylists {
     
@@ -25,12 +27,16 @@ public class DataBasePlaylists {
     private DataBasePlaylists() {
         importData();
     }
-    
+    /**
+     * Metodo che permette di accedere al database dei PlaylistSet.
+     * @return Istanza del database.
+     */
     public static DataBasePlaylists getInstance(){
         if(instance==null) instance = new DataBasePlaylists();
         return instance;
     }
-    public void importData(){
+    
+    private void importData(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Utilities.pathToPlaylistDati));
             int n = (int)Utilities.countLines(Utilities.pathToPlaylistDati);
@@ -50,6 +56,12 @@ public class DataBasePlaylists {
     }
     
     //updating methods
+    /**
+     * Metodo che permette di aggiornare il database aggiungendo un nuovo PlaylistSet ed automaticamente
+     * rendere il nuovo dato accessibile e consistente.
+     * Riordina il database dopo averlo aggiornatao, ma prima di salvarlo su file sorgente.
+     * @param set PlaylistSet da aggiungere.
+     */ 
     public void addNewSet(PlaylistsSet set){
         PlaylistsSet[] newOne = new PlaylistsSet[dataBase.length+1];
         for (int i = 0; i < dataBase.length; i++) {
@@ -61,12 +73,19 @@ public class DataBasePlaylists {
         save();
     }
     
+    /**
+     * Metodo che permette di aggiungere al playlist set del utente loggato una nuova playlist.
+     * @param playlist 
+     */
     public void addToLoggedUserSet(Playlist playlist){
         PlaylistsManager.getInstance().getUserSet().addPlaylist(playlist);
         save();
     }
     
     //saving method
+    /**
+     * Rende i dati permanenti salvandoli sul file sorgente Playlist.dati.txt
+     */
     public void save(){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(Utilities.pathToPlaylistDati));
@@ -86,18 +105,35 @@ public class DataBasePlaylists {
     }
     
     //getter methods
+    /**
+     * 
+     * @return numero di set nel database
+     */
     public int getSize(){
         return dataBase.length;
     }
     
+    /**
+     * @return L' arrai di Istanze di PlaylistSet che compone il database.
+     */
     public PlaylistsSet[] getArray(){
         return dataBase;
     }
     
+    /**
+     * 
+     * @param index int
+     * @return Set in posizione index nel database.
+     */
     public PlaylistsSet getSet(int index) {
         return dataBase[index];
     }
     
+    /**
+     * 
+     * @param user Istanza di User di cui si vuole cercare il Playlist set associato.
+     * @return PlaylistSet associato al utente passato come argomento.
+     */
     public PlaylistsSet getUserSet(User user){
         if(empty) return null;
         EngineSearcher finder = new EngineSearcher();
@@ -106,7 +142,7 @@ public class DataBasePlaylists {
     
     
     //sort method
-    public void sort(){
+    private void sort(){
         EngineSorter sorter = new EngineSorter();
         sorter.sortDataBaseOfPlaylistSet(this);
     }

@@ -1,11 +1,16 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.sorting_algos.general_sorting_algos;
-
+/**
+ * Classe il cui unico metodo riordina array di interi.
+ */
 public class SorterInt {
-    
+    /**
+     * Metodo per riordinare un array di interi.
+     * @param arrayToSort Array da riordinare.
+     */
     public void sort(int[] arrayToSort) {	
 	int currentSize;
 	int leftStartIndex;

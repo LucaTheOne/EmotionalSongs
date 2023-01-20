@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.basic_structures;
 
@@ -9,13 +9,18 @@ import emotionalsongs.gui.data_visualizer.*;
 import emotionalsongs.gui.playlists.*;
 import emotionalsongs.gui.repository.*;
 import emotionalsongs.managers.*;
-
 import java.io.*;
 
 /**
-*La classe Song si occupa di creare oggetti di tipo Song.
-*@authore Bolelli Luca
-*@version 1.3
+* <h3>Descrizione:</h3>
+* Classe le cui stanze rappresentano una canzone.
+* Le sue istanze sono composte da tre stringhe:
+* <ul>
+*   <li> Titolo della canzone</li>
+*   <li> Autore della canzone</li>
+*   <li> Anno di pubblicazione della canzone</li>
+* </ul>
+*
 */
 public class Song {
 
@@ -25,11 +30,11 @@ public class Song {
   
     //costruttore
     /**
-    * Costruisce l'oggetto Brano.
+    * Costruisce Le istanze di Song le quali rappresentano una canzone.
     * @param title - Titolo del brano.
     * @param author - Autore del brano.
     * @param year - Anno del brano.
-    * @param tag - Tag del brano.
+    * @param tag - Tag Univoco del brano.
     * @throws IOException 
     */
     public Song(String title, String author,String year,String tag) throws IOException{
@@ -37,12 +42,11 @@ public class Song {
         this.author = author;
         this.year = Integer.parseInt(year);
         this.tag = tag;
-        //datiEmozioniBrano=importaVotiBrano(tag); da implementare   
     }
 
     //metodi getter
     /**
-    * Il metodo restiuisce una stringa con il titolo del brano.
+    * Il metodo restiuisce una stringa contenente il titolo del brano.
     * @return titolo del brano. 
     */
     public String getTitle(){
@@ -50,7 +54,7 @@ public class Song {
     }
 
     /**
-    * Il metodo restiuisce una stringa con l'autore del brano.
+    * Il metodo restiuisce una stringa contenente l'autore del brano.
     * @return autore del brano.
     */
     public String getAuthor(){
@@ -58,7 +62,7 @@ public class Song {
     }
 
     /**
-    * Il metodo restiuisce una stringa con l'anno del brano.
+    * Il metodo restiuisce una stringa contenente l'anno di pubblicazione del brano.
     * @return anno del brano.
     */  
     public int getYear(){
@@ -66,7 +70,7 @@ public class Song {
     }
 
     /**
-    * Il metodo restiuisce il tag del brano.
+    * Il metodo restiuisce la stringa contenente il tag del brano.
     * @return tag del brano.
     */  
     public String getTag(){
@@ -75,10 +79,11 @@ public class Song {
 
     //metodi di confronto
     /**
-    * Il metodo restituisce true se il Song rappresentato dall'oggetto che esegue il metodo
-    * è uguale a quello specificato tramite l'agomento, altrimenti false.
+    * Il metodo restituisce true se il tag del' istanza di Song che esegue il metodo
+    * è uguale a quello dell' istanza di Song specificata tramite l'agomento, altrimenti false.
+    * Nota: Essendo il tag univoco, tag diversi indiano canzoni diversi
     * @param brano - argomento Song.
-    * @return true - se i brani sono uguali, altrimenti false.
+    * @return <ul><li>true -> se i tag dei brani sono uguali.</li><li>false -> se i tag dei brani non sono uguali.</li></ul>
     **/
     public boolean equalsTo(Song brano) {
         return this.tag.equals(brano.tag);
@@ -86,9 +91,9 @@ public class Song {
     
     //metodi di esposizione
     /**
-    * Il metodo si occupa di restituire una stringa con :
-    * <p> Titolo: ~ Autore: ~ Anno di pubblicazione: . 
-    * @return una stringa ordinata con i dati del brano.
+    * Il metodo restituisce una stringa con nel formato:
+    * Titolo ~ Autore ~ Anno di pubblicazione: . 
+    * @return una stringa ordinata con i dati del brano divisi da ~.
     **/
     public String toStringOrdinato(){
         String stringa = this.getTitle() +" ~ " + this.getAuthor() + " ~ " +this.year;
@@ -96,7 +101,9 @@ public class Song {
     }
     
     /**
-     * Il metodo apre una finestra contenente il report riassuntivo delle emozioni.
+     * Questo metodo costruisce e poi mostra un istanza di DataVisualizationForm relativa alla canzone rappresentata.
+     * Il frame che così appare contiene grafici con i dati relativi ai giudizi emozionali relativi alla Istanza di Song che chiama il metodo,
+     * un report testuale e dei metodi per esportare tali dati.
      */
     public void visualizzaEmozioneBrano(){
         new DataVisualizationForm(tag).setVisible(true);
@@ -104,23 +111,26 @@ public class Song {
     
     //metodi di costruzione
     /**
-     * Il metodo crea il pannello della repository. 
-     * @return Il pannello.
+     * Il metodo crea un istanza di SongPanelForRepositoryView consistente in un Pannello (Estenzione di JPanel)
+     * esponente i campi rappresentanti dell ' istanza di Song che chiama questo metodo.
+     * @return Pannello rappresentativo della canzone durante l' ispezione del repository.
      */
     public SongPanelForRepositoryView buildPanelView(){
         return new SongPanelForRepositoryView(this);
     }
     
     /**
-     * Il metodo crea il pannello che visualizza le canzoni del repository e permette di aggiungerle nella playlist.
-     * @return Il pannello.
+     * Il metodo crea in istanza di SongToAddToAPlaylistPanel consistente in un Pannello (Estenzione di JPanel)
+     * esponente i campi rappresentanti dell ' istanza di Song e che permette di aggiungere la canzone rappresentata dell' istanza che chiama il metodo ad una playlist
+     * durante il form di creazione.
+     * @return Pannello rappresentativo della canzone durante la creazione di una playlist.
      */
     public SongToAddToAPlaylistPanel buildPanelAddToPlaylist() {
         return new SongToAddToAPlaylistPanel(this, PlaylistsManager.getInstance());
     }
     
     /**
-     * Il metodo costruisce il link di ricerca della canzone su youtube.
+     * Il metodo ritorna una stringa con il link di ricerca della canzone, rappresentata dall' istanza che ne chiama il metodo, su youtube.
      * @return L'url di ricerca della canzone.
      */
     public String buildResearchQueryUrl(){
@@ -131,8 +141,9 @@ public class Song {
     }
     
     /**
-     * Il metodo crea il pannello che contiene la Playlist.
-     * @param propertyPlaylist
+     * Il metodo ritorna un istanza di SongPanel, estensione di JPanel, la quale rappresenta graficamente l' istanza di Song che richiama il metodo
+     * come parte di una playlist.
+     * @param propertyPlaylist la Playlist in cui il brano è contenuto.
      * @return Il pannello con la Playlist.
      */
     public SongPanel buildPanelForPlaylist(Playlist propertyPlaylist){
@@ -141,60 +152,52 @@ public class Song {
     
     //metodi di confronto
     /**
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se il tag della canzone che chiama il metodo
-     * è lessicograficamente precedente al tag della canzone passata come argomento </li>
-     * <li>Un intero positivo se lessicograficamente seguente al tag della canzone passata come argomento </li>
-     * <li>Zero se sono uguali </li>
+     * @param song Istanza di Song con cui confrontare l' istanza che chiama il metodo.
+     * @return <ul>
+     * <li><b>Un numero negativo</b> se il tag della istanza di Song che chiama il metodo
+     * è <b>lessicograficamente precedente</b> al tag della istanza di Song passata come argomento.</li> 
+     * <li><b>Un intero positivo</b> se lessicograficamente seguente al tag della canzone passata come argomento </li>
+     * <li>Zero altrimenti. </li>
      * </ul>
-     * @param song Canzone.
-     * @return Ritorna un numero intero.
      */
     public int compareTags(Song song) {
         return this.tag.compareTo(song.getTag());
     }
     
      /**
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se il titolo della canzone che chiama il metodo
-     * è lessicograficamente precedente al titolo della canzone passata come argomento </li>
-     * <li>Un intero positivo se lessicograficamente seguente al titolo della canzone passata come argomento </li>
-     * <li>Zero se sono uguali </li>
+     * @param song Istanza di Song con cui confrontare l' istanza che chiama il metodo.
+     * @return <ul>
+     * <li><b>Un numero negativo</b> se il titolo della istanza di Song che chiama il metodo è <b>lessicograficamente precedente</b> al titolo della canzone passata come argomento </li>
+     * <li><b>Un intero positivo</b> se il titolo della istanza di Song che chiama il metodo è <b>lessicograficamente seguente</b> al titolo della canzone passata come argomento </li>
+     * <li>Zero altrimenti. </li>
      * </ul>
-     * @param song Canzone.
-     * @return Ritorna un numero intero.
      */
     public int compareTitles(Song song) {
         return this.title.compareTo(song.getTitle());
     }
     
-      /**
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se l'autore della canzone che chiama il metodo
-     * è lessicograficamente precedente all'autore della canzone passata come argomento. </li>
-     * <li>Un intero positivo se lessicograficamente seguente all'autore della canzone passata come argomento. </li>
-     * <li>Zero se sono uguali. </li>
+    /**
+     * 
+     * @param song Istanza di Song con cui confrontare l' istanza che chiama il metodo.
+     * @return <ul>
+     * <li><b>Un numero negativo</b> se l' autore della istanza di Song che chiama il metodo è <b>lessicograficamente precedente</b> al autore della canzone passata come argomento </li>
+     * <li><b>Un intero positivo</b> se l' autore della istanza di Song che chiama il metodo è <b>lessicograficamente seguente</b> al autore della canzone passata come argomento </li>
+     * <li>Zero altrimenti. </li>
      * </ul>
-     * @param song Canzone.
-     * @return Ritorna un numero intero.
      */
     public int compareAuthors(Song song) {
         return this.author.compareTo(song.getAuthor());
+        
     }
     
-      /**
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se l'anno della canzone che chiama il metodo
-     * è lessicograficamente precedente all'anno della canzone passata come argomento.</li>
-     * <li>Un intero positivo se lessicograficamente seguente all'anno della canzone passata come argomento. </li>
-     * <li>Zero se sono uguali. </li>
-     * </ul>
+    /**
+     * 
      * @param song Canzone.
-     * @return Ritorna un numero intero.
+     * @return <ul>
+     * <li><b>Un numero negativo</b> se l' anno della istanza di Song che chiama il metodo è <b>lessicograficamente precedente</b> l' anno della canzone passata come argomento </li>
+     * <li><b>Un intero positivo</b> se l' anno della istanza di Song che chiama il metodo è <b>lessicograficamente seguente</b> l' anno della canzone passata come argomento </li>
+     * <li>Zero altrimenti. </li>
+     * </ul>
      */
     public int compareYear(Song song) {
         return this.year-song.getYear();

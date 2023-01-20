@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.engines;
 
@@ -16,43 +16,75 @@ import org.jfree.data.category.*;
 
 /**
  *
- * @author big
+ * Classe il cui ruolo è quello di fornire metodi per la costruzione, rappresentazione ed esposizione dei dati
+ * estratti dalle classi del package emotionalsongs.data_structure.
  */
 public class EngineBuilderChartAndData {
     
     private Song analizingSong;
-    private UserJudgement[] songUsersJudgements;
+    private EmotionalJudgement[] songUsersJudgements;
     private int[] amazementMarks,solemnityMarks,tendernessMarks,nostalgiaMarks,calmnessMarks,powerMarks,joyMarks,tensionMarks,sadnessMarks;
     private String amazementNotes = "",solemnityNotes ="",tendernessNotes = "",nostalgiaNotes = "",calmnessNotes = "",powerNotes = "",joyNotes = "",tensionNotes = "",sadnessNotes = "";
-    JFreeChart[] arrayChartsEmotions;
+    private JFreeChart[] arrayChartsEmotions;
     
+    /**
+     * Costruttore che riceve come argomento il tag di un brano e ne ricava e costruisce i dati.
+     * @param songTag tag della canzone di cui costruire i dati.
+     */
     public EngineBuilderChartAndData(String songTag) {
         buildData(songTag);
         arrayChartsEmotions = buildAllEmotionsChart();     
     }
     
     // chart getter methods
+    /**
+     * 
+     * @return Un array di grafici rappresentanti ogniuno i dati di ogni emozione relativa ai giudizi emozionali
+     * espressi per la canzone di cui la classe costruisce i dati.
+     */
     public JFreeChart[] getArrayCharts(){
         return arrayChartsEmotions;
     }
-    
+    /**
+     * 
+     * @param emotion tipo di emozione di cui si vuole avere il grafico delle valutazioni degli utenti.
+     * @return Il Grafico relativo al emozione passata come argomento.
+     */
     public JFreeChart getChart(int emotion){
         return arrayChartsEmotions[emotion];
     }
-    
+    /**
+     * 
+     * @return Il grafico che esprime la media dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * espressi sul brano rappresentato da più utenti.
+     */
     public JFreeChart getMediumsChart(){
         return buildBarMediumsChart();
     }
-    
+    /**
+     * 
+     * @return Il grafico che esprime la moda dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * espressi sul brano rappresentato da più utenti.
+     */
     public JFreeChart getTrendsChart(){
         return buildBarTrendsChart();
     }
-    
+    /**
+     * 
+     * @return Il grafico che esprime la mediana dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * espressi sul brano rappresentato da più utenti.
+     */
     public JFreeChart getMediansChart(){
         return buildBarMediansChart();
     }
     
     //String data getters
+    /**
+     * Metodo che costruisceun array di stringhe di 9 posizioni,una per ogni emozione.
+     * Ogni posizione dell' array contiene tutti i giudizi espressi da tutti gli utenti relativamente alla percezione
+     * di una precisa emozione.
+     * @return Array con tutte le note emozionali.
+     */
     public String[] getArrayNotes(){
         String[] arrayNotes = new String[9];
         arrayNotes[0] = amazementNotes;
@@ -66,11 +98,19 @@ public class EngineBuilderChartAndData {
         arrayNotes[8] = sadnessNotes;
         return arrayNotes;
     }
-    
+    /**
+     * Metodo che prende come argomento una emozione e ne restituisce tutte le note associate relativamente al giudizio del brano trattato.
+     * @param emotion emozione di cui si vogliono ricevere le note emozionali.
+     * @return Stringa contenente tutte le note emozionali relative all' emozione passata come argomento, relativamente
+     * al brano rappresentato.
+     */
     public String getEmotionNotes(int emotion){
         return getArrayNotes()[emotion];
     }
-    
+    /**
+     * 
+     * @return Il report testuale dell' analisi dei dati immessi dagli utenti riguardo la valutazione emozionale del brano trattato.
+     */
     public String getSongDataReport(){
         String report = EmotionalSongs.dialoghi.report1() +
                 "   " + EmotionalSongs.dialoghi.titolo() + ":" + analizingSong.getTitle() + ",\n"+
@@ -127,7 +167,10 @@ public class EngineBuilderChartAndData {
                 EmotionalSongs.dialoghi.mediana() + findMedian(sadnessMarks) + ".\n";
         return report;
     }
-    
+    /**
+     * 
+     * @return Il report contenente tutte le note emozionali rilasciati dagli utenti, relativamente al brano trattato.
+     */
     public String getSongNotesReport(){
         String report = "COMMENTI ESPRESSI DAGLI UTENTI RIGUARDO OGNI EMOZIONE:\n\n"+
                 "Meraviglia:\n"+
@@ -159,7 +202,10 @@ public class EngineBuilderChartAndData {
         
         return report;
     }
-    
+    /**
+     * 
+     * @return Il nome che verrà assegnato alla cartella che conterrà il report esportato, relativo al brano rappresentato.
+     */
     public String buildDataFolderName(){
         return "Report_"+analizingSong.getTitle()+"_"+analizingSong.getAuthor()+"_"+analizingSong.getYear()+"_"+analizingSong.getTag();
     }
@@ -391,21 +437,4 @@ public class EngineBuilderChartAndData {
     private int getNumberOfJudgements(){
         return songUsersJudgements.length;
     }
-    
-    // debugger code
-    /*
-    public static void main(String[] args) {
-        EngineBuilderChartAndData builder = new EngineBuilderChartAndData("TRXWWGC12903CDDEA1");
-        //System.out.println(builder.songUsersJudgements.length);
-        //System.out.println(builder.amazementNotes);
-        //JFreeChart chart = builder.arrayChartsEmotions[0];
-        System.out.println(builder.getSongDataReport());
-        System.out.println(builder.getSongNotesReport());
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
-        frame.add(new ChartPanel(builder.getMediansChart()));
-        frame.setVisible(true);
-        
-    }*/
 }

@@ -1,12 +1,17 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
 
 package emotionalsongs.sorting_algos.songs_sorting_algos;
 
-import emotionalsongs.basic_structures.Song;
-
+import emotionalsongs.basic_structures.*;
+/**
+ * Classe contenente metodi per riordinare una array di canzoni, alfabeticalmente, in base ai loro titoli.
+ */
 public class SorterSongsByTitle {
+    /**
+     * Metodo per riordinare, alfabeticalmente, aun array di canzoni in base nome dei loro titoli.
+     * @param arraySongsToSort Array di canzoni da riordinare.
+     */
     public void mergeSort(Song[] arraySongsToSort) {	
         int currentSize;
         int leftStartIndex;

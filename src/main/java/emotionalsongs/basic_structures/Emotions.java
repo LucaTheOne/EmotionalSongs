@@ -1,13 +1,19 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.basic_structures;
 
 
 /**
- * Le costanti rappresentano delle emozioni da attribuire al brano.
- * @author Bolelli Luca
+ * <h3>Descrizione</h3>
+ * Tipo enumerativo le cui costanti rappresentano emozioni attribuibili ad ogni brano.
+ * Ogni Emozione è composta di due campi:
+ * <ul>
+ * <li>@param <i>name</i> che contiene il nome del' emozione.</li>
+ * <li>@param <i>explanation</i> che contiene la descrizione ufficiale dell' emozione.</li>
+ * </ul>
+ * 
  */
 public enum Emotions {
     
@@ -53,23 +59,50 @@ public enum Emotions {
     final private String descrizioneEmozione;
     
     //PUBLIC STATIC CONSTANTS
-    public static int 
-            AMAZEMENT_INDEX = 0,
-            SOLEMNITY_INDEX = 1,
-            TENDERNESS_INDEX = 2,
-            NOSTALGIA_INDEX = 3,
-            CALMNESS_INDEX = 4,
-            POWER_INDEX = 5,
-            JOY_INDEX = 6,
-            TENSION_INDEX = 7,
-            SADNESS_INDEX = 8;
-
-
-    //costruttori
     /**
-    * Costruisce l'oggetto con l'emozione e relativa descrizione.
-    * @param name - Nome dell'emozione.
-    * @param explanation - Descrizione dell'emozione.
+     * Intero rappresentante l' indice della posizione dell' emozione <i>Meraviglia</i>.
+     */
+    public static int AMAZEMENT_INDEX = 0;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Solennità</i>.
+             */
+    public static int SOLEMNITY_INDEX = 1;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Tenerezza</i>.
+             */
+    public static int TENDERNESS_INDEX = 2;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Nostalgia</i>.
+             */
+    public static int NOSTALGIA_INDEX = 3;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Calma</i>.
+             */
+    public static int CALMNESS_INDEX = 4;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Potere</i>.
+             */
+    public static int POWER_INDEX = 5;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Gioia</i>.
+             */
+    public static int JOY_INDEX = 6;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Tensione</i>.
+             */
+    public static int TENSION_INDEX = 7;
+            /**
+             * Intero rappresentante l' indice della posizione dell' emozione <i>Tristezza</i>.
+             */
+    public static int SADNESS_INDEX = 8;
+
+
+    //costruttore
+    /**
+    * Costruisce l'oggetto Emozione ricevendo come argomento due stringhe:
+    * <ul>
+    * <li>@param name - Nome dell'emozione.</li>
+    * <li>@param explanation - Descrizione dell'emozione.</li>
     */
     Emotions(String name,String explanation){
         this.nomeEmozione = name;
@@ -78,7 +111,7 @@ public enum Emotions {
 
     //metodi getter
      /**
-     * Il metodo restituisce una stringa con il nome dell'emozione.
+     * Il metodo restituisce la stringa contenente il nome dell'emozione che ne richiama il metodo.
      * @return Il nome dell'emozione.
      */
     public String getName(){
@@ -86,7 +119,7 @@ public enum Emotions {
     }
 
     /**
-     * Il metodo restituisce una stringa con la descrizione dell'emozione.
+     * Il metodo restituisce la stringa contenente la descrizione dell'emozione che ne richiama il metodo.
      * @return La descrizione dell'emozione.
      */
     public String getDescription(){
@@ -94,8 +127,7 @@ public enum Emotions {
     }
 
     /**
-     * Il metodo restituisce l'emozione richiesta.
-     * @return L'emozione.
+     * @return L' istanza dell' emozione che ne richiama il metodo.
      */
     public Emotions getEmotion(){
         return this;

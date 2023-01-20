@@ -1,17 +1,20 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.sorting_algos.playlists_database_sorting_algo;
 
-import emotionalsongs.basic_structures.PlaylistsSet;
+import emotionalsongs.basic_structures.*;
 
 /**
- *
- * @author big
+ * Classe contenente metodi per ordinare un array di playlistSet.
  */
 public class SorterDatabasePlaylists {
+    /**
+     * Metodo per riordinare un array di playlistSet in base al id degli utenti proprietari.
+     * @param arraySetsToSort Array di playlist set da ordinare.
+     */
     public void sort(PlaylistsSet[] arraySetsToSort) {	
         int currentSize;
         int leftStartIndex;

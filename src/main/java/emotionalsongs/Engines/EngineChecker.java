@@ -1,74 +1,70 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.engines;
 
-import emotionalsongs.basic_structures.Song;
-import emotionalsongs.basic_structures.UserJudgement;
-import emotionalsongs.data_structures.DataBaseJudgements;
-import emotionalsongs.data_structures.DataBaseUsers;
-
+import emotionalsongs.basic_structures.*;
+import emotionalsongs.data_structures.*;
 import java.util.regex.*;
 
 /**
- * La classe si occupa di controllare i dati inseriti durante la registrazione.
- * @author big
+ * Classe le cui istanze si occupano di validare dati.
+ * 
  */
 public class EngineChecker {
     
     //Methods checking data validity
     /**
-     * Il metodo confronta la stringa nome che esegue il metodo con quella fornita 
-     * come argomento e restituisce false se:
+     * Il metodo convalida la stringa name passata come argomento
+     * e restituisce false se:
      * <ul>
-     * <li>Se non e stato inserito nessun carattere.</li>
-     * <li>Se i caratteri >20.</li>
-     * <li>Se i caratteri <3.</li>
-     * <li>Se contiene caratteri speciali. </li>
+     *  <li>Se non e stato inserito nessun carattere.</li>
+     *  <li>Se il numero di caratteri e maggiore di 20.</li>
+     *  <li>Se il numero di caratteri è minore di 3.</li>
+     *  <li>Se contiene caratteri speciali. </li>
      * </ul>
      * Altrimeti restituisce true.
-     * @param nome Nome dell'utente.
+     * @param name Nome dell'utente da validare.
      * @return True o False.
      */
-    public boolean checkNameValidity(String nome){
-        if(nome == null) return false;
-        if (nome.isBlank()||nome.length()>20||nome.length()<3||nome.matches(".*\\d.*")) {
+    public boolean checkNameValidity(String name){
+        if(name == null) return false;
+        if (name.isBlank()||name.length()>20||name.length()<3||name.matches(".*\\d.*")) {
             return false;   
         }
         return true;
     }
     
     /**
-     * Il metodo confronta la stringa cognome che esegue il metodo con quella fornita 
-     * come argomento e restituisce false se:
+     * Il metodo convalida la stringa surname passata come argomento restituisce false se:
      * <ul>
      * <li>Se non e stato inserito nessun carattere.</li>
-     * <li>Se i caratteri >20.</li>
-     * <li>Se i caratteri <3.</li>
+     * <li>Se i caratteri sono più di 20.</li>
+     * <li>Se i caratteri sono meno di 3.</li>
      * <li>Se contiene caratteri speciali. </li>
      * </ul>
      * Altrimeti restituisce true.
-     * @param cognome
+     * @param surname cognome da convalidare.
      * @return True o False.
      */
-    public boolean checkCognomeValidity(String cognome){
-        if(cognome == null) return false;
-        if (cognome == null && cognome.length()>20||cognome.length()<3||cognome.isBlank()||cognome.matches(".*\\d.*")) {
+    public boolean checkSurnameValidity(String surname){
+        if(surname == null) return false;
+        if (surname == null && surname.length()>20||surname.length()<3||surname.isBlank()||surname.matches(".*\\d.*")) {
             return false;
         }
         return true;
     }
     
     /**
-     * Il metodo confronta la stringa indirizzo che esegue il metodo con quella fornita 
-     * come argomento e restituisce false se e vuota, altrimenti true.
-     * @param cognome
+     * Il metodo convalida la stringa address passata come argomento
+     * e restituisce false se è nulla opppure bianca.
+     * @param address Indirizzo da validare.
      * @return True o False.
      */    
-    public boolean checkAddresValidity(String indirizzo){
-        if(indirizzo == null) return false;
-        if(indirizzo.isBlank()){
+    public boolean checkAddresValidity(String address){
+        if(address == null) return false;
+        if(address.isBlank()){
             return false;
         }
         return true;
@@ -76,8 +72,9 @@ public class EngineChecker {
     
     /**
      * Il metodo controlla la validità della password.
-    * La Stringa regex contenente i tipi di caratteri accettati; viene effettuato un controllo sulla presenza
-    * di almeno uno per tipologia:
+     * Per fare ciò sfrutta le regular expressions (regex),
+    *  tramite il quale viene effettuato un controllo sulla presenza
+    * di almeno una occorrenza, nella password analizzata, di:
     * <ul>
     * <li>(?=.*[0-9]) -> almeno un numero tra 0 e 9,
     * <li>(?=.*[a-z]) -> Almeno una lettera minuscola,
@@ -86,6 +83,9 @@ public class EngineChecker {
     * <li>(?=\\S+$) -> spazi bianchi non ammessi,
     * <li>{8,20} -> minimo 8, massimo 20 caratteri.
     * </ul>
+    * @param password password da validare
+    * @return True se la password rispetta tutti i criteri, altrimenti false.
+    * @throws PatternSyntaxException.
     **/
     public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
         if(password == null) return false;
@@ -103,16 +103,22 @@ public class EngineChecker {
     }
     
     /**
-     * 
-     * @param password
-     * @param controllo
-     * @return 
+     * Metodo che verifica che entrambi le passwords immesse dal utente coincidano.
+     * Ritorna true qualora coincidano
+     * @param password password da validare
+     * @param controllo password da validare
+     * @return true qualora coincidano, altrimenti false.
      */
     public boolean passwordsMatch(String password,String controllo){
         if(controllo == null) return false;
         return password.equals(controllo);
     }
-    
+    /**
+     * Verifica la validità dell' indirizzo mail.
+     * @param email da validare
+     * @return true se valida, altrimenti false.
+     * @throws PatternSyntaxException 
+     */
     public boolean checkMailValidity(String email) throws PatternSyntaxException{
         if(email == null) return false;
         // Regex to check valid password.
@@ -125,7 +131,12 @@ public class EngineChecker {
       
         return m.matches();
     }
-    
+    /**
+     * Metodo che valida il CF immesso dal nuovo utente, tramite Regular Expressions (regex).
+     * @param cf da validare
+     * @return true se valido, false altrimenti.
+     * @throws PatternSyntaxException 
+     */
     public boolean checkCfValidity(String cf) throws PatternSyntaxException {
         if(cf == null) return false;
         String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
@@ -139,7 +150,12 @@ public class EngineChecker {
         **/
         return m.matches();
     }
-    
+    /**
+     * Metodo che convalida che la data inserita sia nel formato corretto: dd/mm/yyyy.
+     * @param birthDay data di nascita da validare.
+     * @return true se valida, false altrimenti.
+     * @throws PatternSyntaxException 
+     */
     public boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
         if(birthDay == null) return false;
         String regex = "^([0-9]{2}[/][0-9]{2}[/][0-9]{4})$";
@@ -150,47 +166,81 @@ public class EngineChecker {
 
         return m.matches();
     }
-    
+    /**
+     * Metodo che verifica che l' id scelto dal nuovo utente rispetti determinati requisiti:
+     * <ul>
+     * <li>Non nullo</li>
+     * <li>Almeno tre caratteri e non più di 19</li>
+     * <li>Non sia una stringa vuota</li>
+     * @param userId Id da validare.
+     * @return true se rispetta i requisiti, false altrimenti.
+     */
     public boolean checkIdValidity(String userId) {
         return userId != null && userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
-    
+    /**
+     * Metodo che verifica che l' id scelto dal utente non sia già stato scelto da un altro.
+     * @param userId id la cui unicità va verificata.
+     * @return true se unico, false altrimenti.
+     */
     public boolean checkIdNotTaken(DataBaseUsers userDatabase,String id) {
         if(id == null) return false;
-        return userDatabase.searchUserId(id) == null;
+        return userDatabase.searchUserById(id) == null;
     }
     
-    //
+    /**
+     * Metodo che verifica che nel database utenti non vi sia già presente il CF fornito dal nuovo utente.
+     * @param userDatabase database utenti in cui effettuare la ricerca.
+     * @param cf CF da validare
+     * @return true se non è già presente nel database passato come argomento, false altrimenti.
+     */
     public boolean checkCfNotPresent(DataBaseUsers userDatabase,String cf) {
-        return cf != null && userDatabase.searchUserCf(cf) == null;
+        return cf != null && userDatabase.searchByUserCf(cf) == null;
     }
-
-    public boolean checkIfVoted(String userId, Song brano, DataBaseJudgements dataSetEmozioni) {
-        if (dataSetEmozioni.isEmpty()) {
+    
+    /**
+     * Metodo che verifica se un utente ha già espresso un giudizio emozionale per una determinata canzone, ricercandola nel database passato come argomento.
+     * @param userId id del utente su cui si vuole effettuare la verifica.
+     * @param song canzone di cui si vuole effettuare la verifica.
+     * @param databaseJudgements database su cui effettuare la ricerca.
+     * @return true se l' utente non ha ancora valutato la canzone, false altrimenti.
+     */
+    public boolean checkIfVoted(String userId, Song song, DataBaseJudgements databaseJudgements) {
+        if (databaseJudgements.isEmpty()) {
             return false;
         }
-        UserJudgement[] arrayRecords = dataSetEmozioni.getArray();
+        EmotionalJudgement[] arrayRecords = databaseJudgements.getArray();
         for (int i = 0; i < arrayRecords.length; i++) {
-            if(arrayRecords[i].getBranoTag().equals(brano.getTag())){
+            if(arrayRecords[i].getBranoTag().equals(song.getTag())){
                 String userIDCurrentRecord = arrayRecords[i].getUserIDRecord();
                 if(userIDCurrentRecord.equals(userId)) return true;
             }
         }
         return false;
     }    
-
+    /**
+     * Verifica se un array di canzoni ne contiene una associata al tag passato come argomento.
+     * @param songs array di canzoni
+     * @param songtag tag della canzone di cui se ne vuole verificare la presenza.
+     * @return true se presente, false altrimenti.
+     */
     public boolean checkIfContains(Song[] songs,String songtag) {
         for (int i = 0; i < songs.length; i++) {
             if(songs[i].getTag().equals(songtag)) return true;
         }
         return false;
     }
-    
+    /**
+     * Metodo che verifica se un utente può esprimere giudizi su una determinata canzone.
+     * @param userId id del utente
+     * @param songTag tag della canzone
+     * @return true se non ha già espresso giudizi, false altrimenti.
+     */
     public boolean checkIfCanVote(String userId,String songTag){
         DataBaseJudgements dataBaseRecords = DataBaseJudgements.getInstance();
         if(dataBaseRecords.isEmpty()) return true;
         for(int i = 0; i<dataBaseRecords.getSize();i++){
-            UserJudgement actualRecord = dataBaseRecords.getRecordFromIndex(i);
+            EmotionalJudgement actualRecord = dataBaseRecords.getRecordFromIndex(i);
             if(actualRecord.getBranoTag().equals(songTag)&&actualRecord.getUserIDRecord().equals(userId)) return false;
         }
         return true;

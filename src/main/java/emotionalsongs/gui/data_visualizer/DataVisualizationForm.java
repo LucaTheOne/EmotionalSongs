@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.gui.data_visualizer;
 
@@ -12,14 +12,18 @@ import javax.swing.*;
 import org.jfree.chart.*;
 
 /**
- *
- * @author big
+ * Classe le cui istanze mostrano, visualmente, un report relativo ai giudizi emozionali della canzone rappresentata dal tag passato
+ * come argomento al costruttore, tramite grafici ed un report testuale.
+ * Offre anche la possibilità di esportare tale report.
  */
 public class DataVisualizationForm extends javax.swing.JFrame {
     
     private EngineBuilderChartAndData dataBuilder;
     /**
-     * Creates new form DataVisualizationForm
+     * Crea il form per la visualizazzione del brano rappresentato dal tag passato
+     * come argomento.
+     * @param songToRepresentTag tag della canzone di cui mostrarne i giudizi emozionali in forma aggregata.
+     * @return Form di visulizzazione dei giudizi emozionali in forma aggregata.
      */
     
     public DataVisualizationForm(String songToRepresentTag) {

@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.engines;
@@ -11,8 +11,7 @@ import emotionalsongs.data_structures.*;
 import emotionalsongs.managers.*;
 
 /**
- * La classe implementa dei metodi per il controllo della userID e password. 
- * @author luca
+ * La classe le cui istanze offrono dei metodi per effettuare il login al software. 
  */
 public class EngineLogger extends EmotionalSongs{
     
@@ -20,16 +19,14 @@ public class EngineLogger extends EmotionalSongs{
     private User user;
     public boolean idFounded = false;
     public boolean passwordMatches = false;
-    
-    /**
-     * Crea un oggetto vuoto.
-     */
+
     public EngineLogger() {
     }
     
     /**
-     * Il metodo prende come parametro il userID e password e controlla nel database 
-     * che siano presenti.
+     * Il metodo prende come parametro un userID e una password e controlla nel database 
+     * che siano presenti e corrispondenti.
+     * Nel caso lo siano modifica il campo della classe principale EmotionalSongs loggedUser.
      * @param UserId UserID.
      * @param Password Password.
      */
@@ -47,7 +44,7 @@ public class EngineLogger extends EmotionalSongs{
     }
     
     /**
-     * Il metodo prende come parametro il userID e controlla che sia presente in database.
+     * Il metodo prende come parametro un userID e controlla che sia presente nel database.
      * @param userId UuserID.
      */
     public void foundsId(String userId) {
@@ -60,18 +57,18 @@ public class EngineLogger extends EmotionalSongs{
     /**
      * Il metodo prende come argomento la password e controlla che sia uguale
      * a quella assegnata durante la registrazione.
-     * @param password 
+     * @param password password da controllare che combaci con quella del user id associato
      */
     public void passwordsMatch(String password) {
             passwordMatches = user.getPassword().equals(password);
     }
     
     /**
-     * Il metodo effettua il logout dell'utente.
+     * Il metodo effettua il logout dell'utente, settando a null il campo loggedUser della classe principale del software EmotionalSongs.
+     * Inoltre resetta anche il manager delle playlist.
      */
     public static void logout(){
         EmotionalSongs.setLoggedUser(null);
-        //EmotionalSongs.setUserSet(null);
         PlaylistsManager.eraseInstance();
     }
 }

@@ -1,15 +1,22 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.basic_structures;
 
 /**
- * La classe importa le emozioni per ogni brano.
- * @author 
+ * <h3> Descrizione </h3>
+ * Classe le cui istanze rappresentano una valutazione emozionale:
+ * <ul>
+ * <li> Riguardo una singola canzone.</li>
+ * <li> Da parte di un singolo utente.</li>
+ * <li> Sulla base di nove emozioni</li>
+ * </ul>
+ * Tali valutazioni contengono sia note che valutazioni da 1 a 5 per ogni emozione, dove
+ * 1 indica per nulla, 5 appieno;
  */
-public class UserJudgement {
+public class EmotionalJudgement {
     
     private String branoTag;
     
@@ -20,7 +27,12 @@ public class UserJudgement {
     private String amazementNotes, solemnityNotes, tendernessNotes, nostalgiaNotes, calmnessNotes, powerNotes, joyNotes, tensionNotes, sadnessNotes;
     //costruttori
     
-    public UserJudgement(String fileLine){
+    /**
+     * Costruttore che prendendo come argomento una singola line del file Emozioni.dati.txt vi ci costruisce
+     * un istanza della classe.
+     * @param fileLine Stringa estratta da una riga del file Emozioni.dati.txt.
+     */
+    public EmotionalJudgement(String fileLine){
         
         String[] fileLineSplitted = fileLine.split(";");
         
@@ -37,8 +49,30 @@ public class UserJudgement {
         tensionMark = Integer.parseInt(fileLineSplitted[16]); tensionNotes = fileLineSplitted[17];
         sadnessMark = Integer.parseInt(fileLineSplitted[18]); sadnessNotes = fileLineSplitted[19];
     }
-
-    public UserJudgement(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
+    /**
+     * Costruttore che costruisce un istanza della classe passando come argomenti cio che la compone.
+     * @param branoTag Tag della istanza di Song che rappresenta la canzone giudicata.
+     * @param userID    ID dell' istaza di User che ha effettuato il giudizio emozionale.
+     * @param amazementMarks Intero rappresentante il voto relativo all' emozione Meraviglia.
+     * @param amazementNotes Nota espressa dall' utente riguardo l' emozione Meraviglia.
+     * @param solemnityMarks Intero rappresentante il voto relativo all' emozione Solennità.
+     * @param solemnityNotes Nota espressa dall' utente riguardo l' emozione Solennità.
+     * @param tendernessMarks Intero rappresentante il voto relativo all' emozione tenerezza.
+     * @param tendernessNotes Nota espressa dall' utente riguardo l' emozione Tenerezza.
+     * @param nostalgiaMarks Intero rappresentante il voto relativo all' emozione Nostalgia.
+     * @param nostalgiaNotes Nota espressa dall' utente riguardo l' emozione Nostalgia.
+     * @param calmnessMarks Intero rappresentante il voto relativo all' emozione Calma.
+     * @param calmnessNotes Nota espressa dall' utente riguardo l' emozione Calma.
+     * @param powerMarks Intero rappresentante il voto relativo all' emozione Potere.
+     * @param powerNotes Nota espressa dall' utente riguardo l' emozione Potere.
+     * @param joyMarks Intero rappresentante il voto relativo all' emozione Gioia.
+     * @param joyNotes Nota espressa dall' utente riguardo l' emozione Gioia.
+     * @param tensionMarks Intero rappresentante il voto relativo all' emozione Tensione.
+     * @param tensionNotes Nota espressa dall' utente riguardo l' emozione Tensione.
+     * @param sadnessMarks Intero rappresentante il voto relativo all' emozione Tristezza.
+     * @param sadnessNotes Nota espressa dall' utente riguardo l' emozione Tristezza.
+     */
+    public EmotionalJudgement(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
         
         this.branoTag = branoTag;
         this.userID = userID;
@@ -55,9 +89,9 @@ public class UserJudgement {
     }
 
     /**
-     * Il metodo crea una stringa con il titolo del brano, autore, anno e tag,
-     * e una riga nuova con ogni emozione, voto e commento. 
-     * @return una stringa con il brano, emozioni e commenti.
+     * Il metodo crea una stringa, rappresentante il singolo giudizio emozione di un utente per una canzone, formattata
+     * nel formato del file Emozioni.dati.txt.
+     * @return Stringa per il formato del file Emozioni.dati.txt.
      */
     public String stringaRecord() {
         return branoTag +";"+
@@ -83,7 +117,7 @@ public class UserJudgement {
     }
 
     /**
-     * Il metodo restituisce il userID.
+     * Il metodo restituisce l' userID.
      * @return il userID
      */
     public String getUserIDRecord() {
@@ -93,53 +127,51 @@ public class UserJudgement {
     //comparing
     
     /**
-     * Il metodo restituisce:
-     * <ul>
-     * <li>Un numero negativo se il tag della canzone che chiama il metodo
-     * è lessicograficamente precedente al tag della canzone che l'utente a passata come argomento.</li>
-     * <li>Un intero positivo se lessicograficamente seguente al tag della canzone passata come argomento. </li>
+     * 
+     * @param record
+     * @return <ul>
+     * <li><b>Un intero negativo</b> se il tag della canzone giudicata nel giudizio emozionale che chiama il metodo è <b>lessicograficamente precedente</b> al tag della canzone giudicata nel giudizio emozionale della canzone passata come argomento.</li>
+     * <li><b>Un intero positivo</b> se il tag della canzone giudicata nel giudizio emozionale che chiama il metodo è <b>lessicograficamente seguente</b> al tag della canzone giudicata nel giudizio emozionale della canzone passata come argomento.</li>
      * <li>Zero se sono uguali. </li>
      * </ul>
-     * @param record
-     * @return Un numero intero.
      */
-    public int compareTo(UserJudgement record) {
+    public int compareTo(EmotionalJudgement record) {
         return this.branoTag.compareTo(record.getBranoTag());
     }
     
     /**
-     * Il metodo restituisce un array di interi contenente tutti i voti.
+     * Il metodo restituisce un array di interi contenente i voti di tutte le emozioni.
      * @return Array di interi.
      */
     public int[] getMarksArray(){
         int[] arrayMarks = new int[9];
-        arrayMarks[0] = amazementMark;
-        arrayMarks[1] = solemnityMark;
-        arrayMarks[2] = tendernessMark;
-        arrayMarks[3] = nostalgiaMark;
-        arrayMarks[4] = calmnessMark;
-        arrayMarks[5] = powerMark;
-        arrayMarks[6] = joyMark;
-        arrayMarks[7] = tensionMark;
-        arrayMarks[8] = sadnessMark;
+        arrayMarks[Emotions.AMAZEMENT_INDEX] = amazementMark;
+        arrayMarks[Emotions.SOLEMNITY_INDEX] = solemnityMark;
+        arrayMarks[Emotions.TENDERNESS_INDEX] = tendernessMark;
+        arrayMarks[Emotions.NOSTALGIA_INDEX] = nostalgiaMark;
+        arrayMarks[Emotions.CALMNESS_INDEX] = calmnessMark;
+        arrayMarks[Emotions.POWER_INDEX] = powerMark;
+        arrayMarks[Emotions.JOY_INDEX] = joyMark;
+        arrayMarks[Emotions.TENSION_INDEX] = tensionMark;
+        arrayMarks[Emotions.SADNESS_INDEX] = sadnessMark;
         return arrayMarks;
     }
     
     /**
-     * Il metodo restituisce un array di stringhe contenente tutti i commenti.
+     * Il metodo restituisce un array di stringhe contenente i commenti riguardo a tutte le emozioni.
      * @return Array di stringhe.
      */
     public String[] getNotesArray(){
         String[] arrayNotes = new String[9];
-        arrayNotes[0] = amazementNotes;
-        arrayNotes[1] = solemnityNotes;
-        arrayNotes[2] = tendernessNotes;
-        arrayNotes[3] = nostalgiaNotes;
-        arrayNotes[4] = calmnessNotes;
-        arrayNotes[5] = powerNotes;
-        arrayNotes[6] = joyNotes;
-        arrayNotes[7] = tendernessNotes;
-        arrayNotes[8] = sadnessNotes;
+        arrayNotes[Emotions.AMAZEMENT_INDEX] = amazementNotes;
+        arrayNotes[Emotions.SOLEMNITY_INDEX] = solemnityNotes;
+        arrayNotes[Emotions.TENDERNESS_INDEX] = tendernessNotes;
+        arrayNotes[Emotions.NOSTALGIA_INDEX] = nostalgiaNotes;
+        arrayNotes[Emotions.CALMNESS_INDEX] = calmnessNotes;
+        arrayNotes[Emotions.POWER_INDEX] = powerNotes;
+        arrayNotes[Emotions.JOY_INDEX] = joyNotes;
+        arrayNotes[Emotions.TENDERNESS_INDEX] = tendernessNotes;
+        arrayNotes[Emotions.SADNESS_INDEX] = sadnessNotes;
         return arrayNotes;
     }
     //amazement getters

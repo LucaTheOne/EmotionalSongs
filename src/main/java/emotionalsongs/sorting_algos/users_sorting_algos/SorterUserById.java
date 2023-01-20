@@ -1,12 +1,18 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.sorting_algos.users_sorting_algos;
 
-import emotionalsongs.basic_structures.User;
-
+import emotionalsongs.basic_structures.*;
+/**
+ * Classe contenente metodi per riordinare una array di utenti, alfabeticalmente, in base ai loro id.
+ */
 public class SorterUserById {
+    /**
+     * Metodo per riordinare, alfabeticalmente, aun array di utenti in base ai loro idUtente.
+     * @param arrayUsersToSort Array di utenti da riordinare.
+     */
     public void mergeSort(User[] arrayUsersToSort) {	
         int currentSize;
         int leftStartIndex;

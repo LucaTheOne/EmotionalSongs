@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 
 package emotionalsongs.gui.playlists;
@@ -10,20 +10,24 @@ import emotionalsongs.managers.*;
 import java.awt.*;
 
 /**
- *
- * @author big
+ * Classe le cui istanze rappresentano canzoni duranre il processo
+ * di creazione di una nuova playlist.
  */
 public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
-    Song song;
-    PlaylistsManager playListsManager = PlaylistsManager.getInstance();
+    private Song song;
+    private PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     
     /**
-     * Creates new form GUIbranoViewPanel
+     * Crea il pannello utilizzato per rappresentare le canzoni passate come argomento
+     * durante il form di creazione della playlis.
+     * Comunica fortemente con il playlist manager ed offre le funzioni
+     * per comunicare con esso e notificarli se aggiungere o togliere la anzone rappresentata
+     * al buffer delle canzoni in attesa di essere aggiunte ad una nuova playlist.
+     * @param representedSong canzone rappresentata.
      */
-    public SongToAddToAPlaylistPanel(Song brano,PlaylistsManager playListsManager) {
-        //this.playListsManager = playListsManager;
-        this.song = brano;
+    public SongToAddToAPlaylistPanel(Song representedSong,PlaylistsManager playListsManager) {
+        this.song = representedSong;
         initComponents();
     }
 

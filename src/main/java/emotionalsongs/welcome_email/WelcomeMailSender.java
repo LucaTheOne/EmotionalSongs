@@ -1,6 +1,6 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.welcome_email;
 
@@ -10,9 +10,14 @@ import emotionalsongs.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-
+/**
+ * Classe statica il cui unico metodo si occupa di mandare il form di benvenuto ad un indirizzo email.
+ * La classe sfrutta l' api offerto da google mail service.
+ */
 public class WelcomeMailSender {
-
+    /**
+     * Metodo che spedisce la mail di benvenuto.
+     */
     public static void sendMailToNewUser() {
 
         // Recipient's email ID needs to be mentioned.
@@ -62,7 +67,7 @@ public class WelcomeMailSender {
             
             HTMLWelcomeBuilder b = new HTMLWelcomeBuilder();
             // Now set the actual message
-             message.setContent(b.buildMessage(),"text/html");
+             message.setContent(b.getwelcomeMessage(),"text/html");
 
             // Send message
             Transport.send(message);

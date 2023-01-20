@@ -1,18 +1,23 @@
 //Luca Bolelli - 749137 - VA
 //Natanail Danailov Danailov - 739887 - VA
-//Alexandru Boitor - 749004 - VA
+
 
 package emotionalsongs.basic_structures;
 
 import emotionalsongs.data_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.gui.playlists.*;
-import java.io.*;
 
 /**
- *  La classe si occupa di creare e di registrare la Playlist.
- * @author Luca
- * @version 1.4
+ * <h3>Descrizione</h3>
+ * Classe le cui istanze rappresentano una playlist, cioè un insieme di canzoni (Istanze di Song).
+ * La classe si compone di:
+ * <ul>
+ *  <li>Un nome rappresentato da una stringa.</li>
+ *  <li>Un arrai di stringhe contenente tutti i tag che rappresentano le canzoni che contine.</li>
+ *  <li>Un array di istanze di Song ( canzoni ).</li>
+ *  <li>Metodi per gestire le proprie istanze ed interrogarle per ottenere dati.</li>
+ * </ul>
  *
  */
 public class Playlist {
@@ -24,13 +29,17 @@ public class Playlist {
     private Song[] playlist; 
 
     /**
-     * Crea l'oggetto Playlist prendendo come argomenti un oggetto owner di tipo User,
-        un oggetto playlistName di tipo String e un oggetto playlist di tipo ArrayList<Brano>.
-     * @throws IOException 
+     * Crea l'oggetto Playlist prendendo due stringhe come argomenti.Nota : l' oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.<ul>
+     *  <li> @param playlistName - una stringa rappresentante il nome della playlist</li>
+     *  <li> @param listSongsTag - una stringa contenente tutti i tag delle canzoni che contiene</li>
+     * </ul>
+     * 
+     * @param playlistName Nome da assegnare alla playlist
+     * @param listSongsTag Lista dei tag delle canzoni della playlist.
      */
-    public Playlist(String nomePlaylist,String listaCanzoniPlaylist) {
-        this.playlistName = nomePlaylist;
-        this.songsTags = listaCanzoniPlaylist.split(",");
+    public Playlist(String playlistName,String listSongsTag) {
+        this.playlistName = playlistName;
+        this.songsTags = listSongsTag.split(",");
         playlist = new Song[songsTags.length];
         for (int i = 0; i < songsTags.length; i++) {
             playlist[i] = searchFromTag(songsTags[i]);
@@ -39,7 +48,7 @@ public class Playlist {
     }
     
     /**
-     * Costruttore che costruisce una playlist usando le righie di un file. 
+     * Costruttore che costruisce una playlist usando le righie del file associato.
      * @param stringFromFile Righe del file rappresentanti le canzoni. 
      */
     public Playlist(String stringFromFile){
@@ -48,7 +57,8 @@ public class Playlist {
     
     /**
      * Costruisce un oggetto Playlist prendendo come argomenti nome della Playlist e un array di canzoni
-     * quali la rappresentano.
+     * quali la compongono.
+     * Nota : l' oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.
      * @param playlistName Nome Playlist.
      * @param selectedSongs Array di canzoni.
      */
@@ -72,7 +82,7 @@ public class Playlist {
     }
     
     /**
-     * Il metodo restituisce la dimensione della playlist.
+     * Il metodo restituisce un intero rappresentante il numero di brani presenti nella playlist.
      * @return Dimensione playlist.
      */
     public int getSize(){
@@ -80,17 +90,18 @@ public class Playlist {
     }
     
     /**
-     * Il metodo metodo prende come argomento un intero che rappresenta l'indice della canzione ricercata
-     * e ne restituisce il tag. 
+     * Il metodo prende come argomento un intero,
+     * rappresentante l'indice della canzione ricercata 
+     * all' interno del repository e ne restituisce il tag. 
      * @param index Indice della canzone.
      * @return Tag della canzone in posizione index.
      */
-    public String getSongByIndex(int index){
+    public String getSongTagByIndex(int index){
         return songsTags[index];
     }
     
     /**
-     * Il metodo restituisce il tag delle canzoni.
+     * Il metodo restituisce un array di stringhe contenente tutti i tags di tutte le canzoni della playlist.
      * @return  Tag delle canzoni.
      */
     public String[] getArrayTags() {
@@ -98,7 +109,7 @@ public class Playlist {
     }
     
     /**
-     * Il metodo restituisce un array di canzoni.
+     * Il metodo restituisce un array di istanze di song (canzoni).
      * @return Array di canzoni.
      */
     public Song[] getArraySongs() {
@@ -108,7 +119,8 @@ public class Playlist {
     //methods modifier
     
     /**
-     * Il metodo prende come argomento una canzone e l'aggiunge alla playlist.
+     * Il metodo prende come argomento una canzone (istanza di Song) e l'aggiunge alla playlist,
+     * successivamente riordina la playlist sulla base dei titoli delle canzoni.
      * @param newSong Nuova canzone.
      */
     public void addSong(Song newSong){
@@ -119,15 +131,17 @@ public class Playlist {
         newPlaylist[newPlaylist.length-1] = newSong;
         sortByTitles();
     }
+    
     //compare method
     /**
      * Il metodo restituisce:
      * <ul>
-     * <li>Un numero negativo se il nome della playlist che chiama il metodo
-     * è lessicograficamente precedente al nome della playlist passata come argomento </li>
-     * <li>Un intero positivo se lessicograficamente seguente al nome della playlist passata come argomento </li>
-     * <li>Zero se sono uguali </li>
+     * <li><b>Un intero negativo</b> se il nome della playlist che chiama il metodo.
+     * è <b>lessicograficamente precedente</b> al nome della playlist passata come argomento.</li>
+     * <li><b>Un intero positivo</b> se il nome della playlist che chiama il metodo è <b>lessicograficamente seguente</b> al nome della playlist passata come argomento.</li>
+     * <li><b>Zero</b> se i titoli della canzone che richiama il metodo e quella passata come argomento <b>sono uguali</b></li>
      * </ul>
+     * Nota: il metodo non è case sensitive, la capitalizzazione delle lettere che compongono le stringhe non è rilevante.
      * @param playlist Playlist.
      * @return Ritorna un numero intero.
      */
@@ -137,25 +151,28 @@ public class Playlist {
     
     //building methods
     /**
-     * Il metodo costruisce il pannello della Playlist.
-     * @return Il pannello.
+     * Il metodo costruisce Un istanza di PlaylistSongsViewPanel, che estende JPanel, che rappresenta graficamente il contenuto della Playlist.
+     * @return Rappresentazione grafica del contenuto dell playlist.
      */
     public PlaylistSongsViewPanel buildPlaylistView(){
         return new PlaylistSongsViewPanel(this);
     }
     
     /**
-     * Il metodo costruisce il pulsante per creare una Playlist.
-     * @return Il pulsante.
+     * Il Metodo Restistuisce un istanza di PlaylistButton, che estende JButton, relativa a questa playlist.
+     * L' interazione con questo bottone causa una variazione della GUI che mostrerà il contenuto della playlist.
+     * @return Pulsante per attivare la rappresentazione grafica della playlist.
      */
     public PlaylistButton buildPlaylistButton(){
         return new PlaylistButton(this);
     }
     
     /**
-     * Il metodo compone la stringa con il nome della playlist e i tag
-     * delle canzoni che contiene.
-     * @return La stringa corrispondente alla playlist.
+     * Il metodo compone la stringa nel formato deciso per rappresentare la playlist ed il suo contenuto
+     * all' interno del file di di sistema atto a memorizzarle, con il fine poi di avere un file su cui il costruttore possa appoggiarcisi.
+     * 
+     * Il formato è composta da: " |playlistName|:|songTag1|,|songTag2|,...,|songTagn|; "
+     * @return Stringa formattata rappresentante la playlist.
      */
     public String composeString(){
         sortByTags();
@@ -180,7 +197,7 @@ public class Playlist {
     
     private void sortByTitles(){
         EngineSorter sorter = new EngineSorter();
-        sorter.sortTracksByAuthors(playlist);
+        sorter.sortSongsByTitles(playlist);
     }
   
 }
