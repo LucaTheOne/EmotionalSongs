@@ -17,7 +17,7 @@ import java.net.*;
  * <ul>
  * <li>Mostrare i report della canzone rappresentata</li>
  * <li>Avviare la ricerca della canzone su youtube</li>
- * <ul>
+ * </ul>
  */
 public class SongPanelForRepositoryView extends javax.swing.JPanel {
 

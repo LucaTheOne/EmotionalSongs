@@ -12,7 +12,6 @@ import emotionalsongs.gui.allerter.*;
 import java.io.*;
 
 /**
- * <h3>Descrizione</h3>
  * Classe che rappresenta il contenitore di tutti i giudizi emozionali contenuti nel file Emozioni.dati.txt.
  * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
  * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
@@ -132,7 +131,7 @@ public class DataBaseJudgements {
     /**
      * Ritorna il giudizio emozionale di posizione index nel database
      * @param index posizione del database da esaminare.
-     * @return 
+     * @return Il giudizio emozionale di indice index.
      */
     public EmotionalJudgement getRecordFromIndex(int index){
         return dataBaseRecordsArray[index];
@@ -143,6 +142,7 @@ public class DataBaseJudgements {
      * @return <ul>
      * <li> true -> il database è vuoto.</li>
      * <li> false -> il database posside almeno un giudizio emozionale.</li>
+     * </ul>
      */
     public boolean isEmpty() {
         return empty;

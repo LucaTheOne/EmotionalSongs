@@ -16,7 +16,7 @@ import java.io.*;
  * <li> Il pulsante per ispezionare le playlist dell' utente</li>
  * <li> il pulsante per iniziare la creazione di una nuova playlist</li>
  * <li> Il pulsante di chiusura del software </li>
- * <ul>
+ * </ul>
  */
 public class MenuLeftLogged extends javax.swing.JPanel {
     

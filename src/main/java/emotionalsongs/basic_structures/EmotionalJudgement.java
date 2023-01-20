@@ -6,7 +6,7 @@
 package emotionalsongs.basic_structures;
 
 /**
- * <h3> Descrizione </h3>
+ * 
  * Classe le cui istanze rappresentano una valutazione emozionale:
  * <ul>
  * <li> Riguardo una singola canzone.</li>

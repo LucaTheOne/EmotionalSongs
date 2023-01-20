@@ -6,8 +6,7 @@
 package emotionalsongs.dialogs;
 
 /**
- *
- * @author alexandruboitor
+ * Classe astratta che fa da involucro per le classi che gestiscono la lingua del software.
  */
 public abstract class dialogs {
     

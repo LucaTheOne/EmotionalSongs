@@ -6,7 +6,6 @@ package emotionalsongs.basic_structures;
 
 
 /**
- * <h3>Descrizione</h3>
  * Tipo enumerativo le cui costanti rappresentano emozioni attribuibili ad ogni brano.
  * Ogni Emozione è composta di due campi:
  * <ul>

@@ -13,14 +13,15 @@ import java.awt.*;
  */
 public class PlaylistSongsViewPanel extends javax.swing.JPanel {
 
+    
+    private Playlist playlist;
     /**
      * Crea il contenitore che mostra le rappresentazioni grafiche delle canzoni di una playlist
      * passata come argomento.
-     * @param playlist playlist di mostrare le canzoni.
+     * @param playList Playlist di cuimostrare le canzoni.
      */
-    private Playlist playlist;
-    public PlaylistSongsViewPanel(Playlist playlist) {
-        this.playlist = playlist;
+    public PlaylistSongsViewPanel(Playlist playList) {
+        this.playlist = playList;
         initComponents();
     }
 

@@ -6,8 +6,7 @@
 package emotionalsongs.dialogs;
 
 /**
- *
- * @author alexandruboitor
+ * Classe che implemeta i dialoghi dell' interfaccia in inglese.
  */
 public class English extends dialogs{
     

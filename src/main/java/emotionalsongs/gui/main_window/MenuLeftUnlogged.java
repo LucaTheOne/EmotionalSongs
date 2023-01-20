@@ -13,7 +13,7 @@ import java.io.*;
  * <ul>
  * <li> Il pulsante per ispezionare il repository </li>
  * <li> Il pulsante di chiusura del software </li>
- * <ul>
+ * </ul>
  */
 public class MenuLeftUnlogged extends javax.swing.JPanel {
     

@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.logging.*;
 
 /**
- * <h3>Descrizione</h3>
+ * 
  * Classe che rappresenta il contenitore di tutti i PlaylistSet contenuti nel file Playlist.dati.txt.
  * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
  * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.

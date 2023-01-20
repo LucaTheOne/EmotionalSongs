@@ -12,7 +12,6 @@ import emotionalsongs.managers.*;
 import java.io.*;
 
 /**
-* <h3>Descrizione:</h3>
 * Classe le cui stanze rappresentano una canzone.
 * Le sue istanze sono composte da tre stringhe:
 * <ul>

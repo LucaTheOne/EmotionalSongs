@@ -11,7 +11,7 @@ import emotionalsongs.gui.main_window.*;
 import java.io.*;
 
 /**
- * <h3>Descrizione:</h3>
+ * 
  * Classe contenente l' unico metodo main del software, da qui viene lanciata la sua funzione principale
  * che da via alla iniziallizazione del software, offre l' accesso ad un campo publico 
  * statico detto dialoghi

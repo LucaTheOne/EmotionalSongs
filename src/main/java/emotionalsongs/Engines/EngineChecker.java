@@ -79,13 +79,13 @@ public class EngineChecker {
     * <li>(?=.*[0-9]) -> almeno un numero tra 0 e 9,
     * <li>(?=.*[a-z]) -> Almeno una lettera minuscola,
     * <li>(?=.*[A-Z]) -> Almeno una lettera maiuscola,
-    * <li>(?=.*[@#$%^&+=!]) -> almeno uno dei seguenti caratteri speciali @#$%^&+=!,
+    * <li> almeno un carattere speciale,
     * <li>(?=\\S+$) -> spazi bianchi non ammessi,
     * <li>{8,20} -> minimo 8, massimo 20 caratteri.
     * </ul>
     * @param password password da validare
     * @return True se la password rispetta tutti i criteri, altrimenti false.
-    * @throws PatternSyntaxException.
+    * 
     **/
     public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
         if(password == null) return false;
@@ -154,7 +154,7 @@ public class EngineChecker {
      * Metodo che convalida che la data inserita sia nel formato corretto: dd/mm/yyyy.
      * @param birthDay data di nascita da validare.
      * @return true se valida, false altrimenti.
-     * @throws PatternSyntaxException 
+     * 
      */
     public boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
         if(birthDay == null) return false;
@@ -172,6 +172,7 @@ public class EngineChecker {
      * <li>Non nullo</li>
      * <li>Almeno tre caratteri e non più di 19</li>
      * <li>Non sia una stringa vuota</li>
+     * </ul>
      * @param userId Id da validare.
      * @return true se rispetta i requisiti, false altrimenti.
      */
@@ -180,7 +181,7 @@ public class EngineChecker {
     }
     /**
      * Metodo che verifica che l' id scelto dal utente non sia già stato scelto da un altro.
-     * @param userId id la cui unicità va verificata.
+     * @param id Id la cui unicità si vuole verificare.
      * @return true se unico, false altrimenti.
      */
     public boolean checkIdNotTaken(DataBaseUsers userDatabase,String id) {

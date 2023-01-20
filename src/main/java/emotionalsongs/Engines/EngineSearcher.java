@@ -21,6 +21,7 @@ public class EngineSearcher {
      * <ul>
      * <li>Titolo, se nell' argomento passato alla funzione non ci sono ;</li>
      * <li>Autore ed anno se se nell' argomento passato alla funzione ci sono ;</li>
+     * </ul>
      * @param stringaCercata criterio di ricerca.
      * @return Un array di brani che corrispondono ai criteri di ricerca passati come argomento.
      */
@@ -112,7 +113,7 @@ public class EngineSearcher {
     /**
      * Il metodo prende come parametri il codice fiscale e il database utenti ed
      * effettua una ricerca nel databse dell'utente a cui i dati sono associati.
-     * @param database DataBaseUser.
+     * @param database DataBaseUsers interrogato.
      * @param cf Codice Fiscale. 
      * @return Utente il cui CF coincide con quello passato come argomento.
      */
@@ -138,7 +139,7 @@ public class EngineSearcher {
     /**
      * Il metodo prende come parametri un id utente e il database utenti ed
      * effettua una ricerca nel databse dell'utente associato ai dati.
-     * @param database DataBaseUser.
+     * @param dataBaseUsers DataBaseUser.
      * @param id id utente da cercare. 
      * @return Utente il cui Id coincide con quello passato come argomento.
      */

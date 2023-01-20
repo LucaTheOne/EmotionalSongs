@@ -9,7 +9,7 @@ import emotionalsongs.engines.*;
 import emotionalsongs.gui.playlists.*;
 
 /**
- * <h3>Descrizione</h3>
+ * 
  * Classe le cui istanze rappresentano una playlist, cioè un insieme di canzoni (Istanze di Song).
  * La classe si compone di:
  * <ul>

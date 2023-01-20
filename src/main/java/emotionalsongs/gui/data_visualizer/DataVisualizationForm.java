@@ -20,10 +20,10 @@ public class DataVisualizationForm extends javax.swing.JFrame {
     
     private EngineBuilderChartAndData dataBuilder;
     /**
-     * Crea il form per la visualizazzione del brano rappresentato dal tag passato
+     * Crea e restituisce il form per la visualizazzione del brano rappresentato dal tag passato
      * come argomento.
      * @param songToRepresentTag tag della canzone di cui mostrarne i giudizi emozionali in forma aggregata.
-     * @return Form di visulizzazione dei giudizi emozionali in forma aggregata.
+     * 
      */
     
     public DataVisualizationForm(String songToRepresentTag) {

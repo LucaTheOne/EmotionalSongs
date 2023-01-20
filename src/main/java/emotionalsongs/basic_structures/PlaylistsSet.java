@@ -7,11 +7,10 @@ package emotionalsongs.basic_structures;
 import emotionalsongs.engines.*;
 
 /**
- * <h3>Descrizione</h3>
- * Classe che rappresenta un insieme di canzoni (Un set di playlist).
  * 
- * <h3>Composizione</h3>
- * Composta da un array di istanze di Playlist ed una Stringa contenente l' id Utente Univoco del proprietario.
+ * Classe che rappresenta un insieme di canzoni (Un set di playlist).
+ * Composta da un array di istanze di Playlist ed una Stringa contenente l' id Utente Univoco
+ * del proprietario.
  */
 public class PlaylistsSet {
    

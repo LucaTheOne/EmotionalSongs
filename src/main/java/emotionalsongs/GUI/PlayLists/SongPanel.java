@@ -31,7 +31,7 @@ public class SongPanel extends javax.swing.JPanel {
      * all' utente che la possiede.
      * @param userId Id dell' utente proprietario.
      * @param representedSong Canzone rappresentata.
-     * @param playlistproperty Playlist che contiene la canzone.
+     * @param playlistProperty Playlist che contiene la canzone.
      */
     public SongPanel(String userId,Song representedSong,Playlist playlistProperty) {
         this.representedSong = representedSong;

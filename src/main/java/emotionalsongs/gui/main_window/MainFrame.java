@@ -10,11 +10,11 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * <h3>Descrizione</h3>
+ * 
  * Classe che rappresenta la finestra principale del software ed anche l' unica fissa in quanto ,nonostante 
  * i suoi pannelli interni possano variare, essendo una classe di tipo singleton esiste una sola istanza possibile di essa.
  * Ciò è dovuto al fatto che ci sono vari aspetti che necessitano che l' interfaccia grafica a cui fanno riferimento sia sempre la stessa.
- * <h3>Composizione</h3>
+ *
  * <ul>
  * <li> Pannello laterale sinistro che può assumere tre forme, in base che sia invisibile, di un utente loggato, di un utente non loggato </li>
  * <li> Pannello superiore le cui funzionalità variano a seconda che l' utente sia loggato o meno </li>

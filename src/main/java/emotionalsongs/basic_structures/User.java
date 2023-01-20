@@ -9,7 +9,7 @@ import emotionalsongs.engines.*;
 
 
 /**
- * <h3> Descrizione: </h3>
+ *
  * Classe le cui istanze rappresentano un utente.
  */
 public class User {
