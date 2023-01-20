@@ -7,6 +7,7 @@ package emotionalsongs.gui.playlists;
 
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.managers.*;
+import java.awt.*;
 
 /**
  *
@@ -120,6 +121,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         playListsManager.addToSelectedSongs(song);
         removeButton.setEnabled(true);
+        addButton.setBackground(new Color(125, 255, 147));
         addButton.setEnabled(false);
         playListsManager.increaseNumberOfSongToAdd();
         playListsManager.updateSongSelectedLabel();
@@ -129,6 +131,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         playListsManager.removeToSelectedSongs(song);
         removeButton.setEnabled(false);
         addButton.setEnabled(true);
+        addButton.setBackground(new Color(255,255,255));
         playListsManager.decreaseNumberOfSongToAdd();
         playListsManager.updateSongSelectedLabel();
     }//GEN-LAST:event_removeButtonActionPerformed

@@ -99,6 +99,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         createButton.setText(emotionalsongs.EmotionalSongs.dialoghi.creaNuovaPlaylist());
         createButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createButton.setOpaque(true);
         createButton.setPreferredSize(new java.awt.Dimension(150, 40));
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +115,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         annullaButton.setForeground(new java.awt.Color(255, 255, 255));
         annullaButton.setText(emotionalsongs.EmotionalSongs.dialoghi.annulla());
         annullaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        annullaButton.setOpaque(true);
         annullaButton.setPreferredSize(new java.awt.Dimension(120, 40));
         annullaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
