@@ -31,7 +31,6 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         dataBuilder = new EngineBuilderChartAndData(songToRepresentTag);
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
     }
 
     @SuppressWarnings("unchecked")

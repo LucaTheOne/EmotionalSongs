@@ -158,17 +158,26 @@ public class DataBaseJudgements {
         int firstIndexFound = getJudgementIndexFromTag(songTag);
         if(firstIndexFound<0) return null;
         EmotionalJudgement[] founds = new EmotionalJudgement[]{getRecordFromIndex(firstIndexFound)};
-        for(int i = firstIndexFound-1;i!=0;i--){
-            if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
-                founds = addTo(founds, dataBaseRecordsArray[i], 0);
-            else 
-                break;
-        }
-        for(int i = firstIndexFound+1;i<dataBaseRecordsArray.length;i++){
-            if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
-                founds = addTo(founds, dataBaseRecordsArray[i], 1);
-            else 
-                break;
+        if(firstIndexFound != 0){//cerca sia avanti che indietro
+            for(int i = firstIndexFound-1;i!=0;i--){
+                if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
+                    founds = addTo(founds, dataBaseRecordsArray[i], 0);
+                else 
+                    break;
+            }
+            for(int i = firstIndexFound+1;i<dataBaseRecordsArray.length;i++){
+                if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
+                    founds = addTo(founds, dataBaseRecordsArray[i], 1);
+                else 
+                    break;
+            }
+        } else if (firstIndexFound == 0){ //cerca solo in avanti
+            for(int i = firstIndexFound+1;i<dataBaseRecordsArray.length;i++){
+                if(dataBaseRecordsArray[i].getBranoTag().equals(songTag))
+                    founds = addTo(founds, dataBaseRecordsArray[i], 1);
+                else 
+                    break;
+            }
         }
          return  founds;
     }

@@ -1429,7 +1429,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     
     private String formatAndCleanString(String stringToFormat){
         if(stringToFormat.equals(new Italiano().songsJudge())||stringToFormat.equals(new English().songsJudge())) {
-            return "";
+            return "-";
         } else {
             stringToFormat.replace(";", ",");
             stringToFormat.replace("\n", " ");
