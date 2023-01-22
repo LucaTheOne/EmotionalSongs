@@ -117,21 +117,21 @@ public class RegistrationPanel extends javax.swing.JPanel {
         cognomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         cognomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         cognomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        cognomeLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cognome());
+        cognomeLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.surname());
         cognomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cognomeLabel);
 
         indirizzoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         indirizzoLabel.setForeground(new java.awt.Color(255, 255, 255));
         indirizzoLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        indirizzoLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.indirizzo());
+        indirizzoLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.address());
         indirizzoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(indirizzoLabel);
 
         dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dataDiNascitaLabel.setForeground(new java.awt.Color(255, 255, 255));
         dataDiNascitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        dataDiNascitaLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.dataNascita());
+        dataDiNascitaLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.birthDate());
         dataDiNascitaLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(dataDiNascitaLabel);
 
@@ -152,7 +152,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         idLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        idLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.userid());
+        idLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.userId());
         idLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(idLabel);
 
@@ -195,43 +195,43 @@ public class RegistrationPanel extends javax.swing.JPanel {
         nomeCheckLabel.setVisible(false);
         nomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         nomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        nomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.nomeNon());
+        nomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.nameNotValid());
         warningLabelsPanel.add(nomeCheckLabel);
 
         cognomeCheckLabel.setVisible(false);
         cognomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cognomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cognomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cognomeNon());
+        cognomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.notValidSurname());
         warningLabelsPanel.add(cognomeCheckLabel);
 
         indirizzoCheckLabel.setVisible(false);
         indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        indirizzoCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.indirizzoNon());
+        indirizzoCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.addrNotValid());
         warningLabelsPanel.add(indirizzoCheckLabel);
 
         dataDiNascitaCheckLabel.setVisible(false);
         dataDiNascitaCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         dataDiNascitaCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        dataDiNascitaCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.dataNasciataNon());
+        dataDiNascitaCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.invalidBirthDate());
         warningLabelsPanel.add(dataDiNascitaCheckLabel);
 
         cfCheckLabel.setVisible(false);
         cfCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         cfCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        cfCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.cfNon());
+        cfCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.invalidCf());
         warningLabelsPanel.add(cfCheckLabel);
 
         mailCheckLabel.setVisible(false);
         mailCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         mailCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        mailCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.emailNon());
+        mailCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.emailNotValid());
         warningLabelsPanel.add(mailCheckLabel);
 
         idCheckLabel.setVisible(false);
         idCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         idCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        idCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.useridNon());
+        idCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.userIdNotValid());
         warningLabelsPanel.add(idCheckLabel);
 
         mainGridPanel.add(warningLabelsPanel);
@@ -268,7 +268,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         passwordCheckLabel.setVisible(false);
         passwordCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         passwordCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        passwordCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passwordNon());
+        passwordCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passwordNotValid());
         passwordPanel.add(passwordCheckLabel);
 
         lowPanel.add(passwordPanel, java.awt.BorderLayout.NORTH);
@@ -277,7 +277,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 120));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
-        registratiButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrati());
+        registratiButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrer());
         registratiButton.setPreferredSize(new java.awt.Dimension(180, 60));
         registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
