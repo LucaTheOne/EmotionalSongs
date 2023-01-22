@@ -222,10 +222,6 @@ public class English extends dialogs{
     public String registrer() {
         return "Registration";
     }
-
-    public String chiudi() {
-        return "Close";
-    }
     
     //GUI PLATYLIST CREATION FRAME
     

@@ -128,9 +128,7 @@ public abstract class dialogs {
     public abstract String passwordsNotMatching();
     
     public abstract String registrer();
-    
-    public abstract String chiudi();
-    
+        
     //GUI PLAYLIST CREATION FRAME
     
     public abstract String newPlaylistName();

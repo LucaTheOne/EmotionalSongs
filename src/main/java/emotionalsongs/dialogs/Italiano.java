@@ -219,10 +219,6 @@ public class Italiano extends dialogs{
         return "Registrati";
     }
 
-    public String chiudi() {
-        return "Chiudi";
-    }
-
     //GUI PLATYLIST CREATION FRAME
     
     public String newPlaylistName() {
