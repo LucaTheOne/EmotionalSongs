@@ -170,8 +170,8 @@ public class SongJudgementForm extends javax.swing.JPanel {
         songDataLabel.setBackground(new java.awt.Color(255, 255, 255));
         songDataLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         songDataLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        songDataLabel.setText(EmotionalSongs.dialoghi.title() + songUnderVotation.getTitle() + " - " +
-            EmotionalSongs.dialoghi.author() + songUnderVotation.getAuthor() + " - " +
+        songDataLabel.setText(EmotionalSongs.dialoghi.titleCapitalizedWithColon() + songUnderVotation.getTitle() + " - " +
+            EmotionalSongs.dialoghi.authorCapitalizedWithColon() + songUnderVotation.getAuthor() + " - " +
             EmotionalSongs.dialoghi.yearOfPublication() + songUnderVotation.getYear());
         songDataLabel.setOpaque(true);
         GeneralDescriptionPane.add(songDataLabel, java.awt.BorderLayout.CENTER);
@@ -253,7 +253,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         amazementNotes.setColumns(20);
         amazementNotes.setRows(5);
-        amazementNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        amazementNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         amazementNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane2.setViewportView(amazementNotes);
 
@@ -344,7 +344,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         solemnityNotes.setColumns(20);
         solemnityNotes.setRows(5);
-        solemnityNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        solemnityNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         solemnityNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane11.setViewportView(solemnityNotes);
 
@@ -430,7 +430,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         tendernessNotes.setColumns(20);
         tendernessNotes.setRows(5);
-        tendernessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        tendernessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         tendernessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane12.setViewportView(tendernessNotes);
 
@@ -516,7 +516,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         nostalgiaNotes.setColumns(20);
         nostalgiaNotes.setRows(5);
-        nostalgiaNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        nostalgiaNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         nostalgiaNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane13.setViewportView(nostalgiaNotes);
 
@@ -602,7 +602,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         calmnessNotes.setColumns(20);
         calmnessNotes.setRows(5);
-        calmnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        calmnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         calmnessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane14.setViewportView(calmnessNotes);
 
@@ -688,7 +688,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         powerNotes.setColumns(20);
         powerNotes.setRows(5);
-        powerNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        powerNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         powerNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane15.setViewportView(powerNotes);
 
@@ -774,7 +774,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         joyNotes.setColumns(20);
         joyNotes.setRows(5);
-        joyNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        joyNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         joyNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane16.setViewportView(joyNotes);
 
@@ -860,7 +860,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         tensionNotes.setColumns(20);
         tensionNotes.setRows(5);
-        tensionNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        tensionNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         tensionNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane17.setViewportView(tensionNotes);
 
@@ -946,7 +946,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         sadnessNotes.setColumns(20);
         sadnessNotes.setRows(5);
-        sadnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
+        sadnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudgeCommentRequest());
         sadnessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane18.setViewportView(sadnessNotes);
 
@@ -970,7 +970,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         CompleteOperation.setBackground(new java.awt.Color(153, 204, 0));
         CompleteOperation.setForeground(new java.awt.Color(255, 255, 255));
-        CompleteOperation.setText(EmotionalSongs.dialoghi.vota());
+        CompleteOperation.setText(EmotionalSongs.dialoghi.vote());
         CompleteOperation.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CompleteOperation.setOpaque(true);
         CompleteOperation.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -986,7 +986,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         AbortOperation.setBackground(new java.awt.Color(255, 0, 51));
         AbortOperation.setForeground(new java.awt.Color(255, 255, 255));
-        AbortOperation.setText(EmotionalSongs.dialoghi.annulla());
+        AbortOperation.setText(EmotionalSongs.dialoghi.abort());
         AbortOperation.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         AbortOperation.setOpaque(true);
         AbortOperation.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -1428,7 +1428,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }
     
     private String formatAndCleanString(String stringToFormat){
-        if(stringToFormat.equals(new Italiano().songsJudge())||stringToFormat.equals(new English().songsJudge())) {
+        if(stringToFormat.equals(new Italiano().songsJudgeCommentRequest())||stringToFormat.equals(new English().songsJudgeCommentRequest())) {
             return "-";
         } else {
             stringToFormat.replace(";", ",");

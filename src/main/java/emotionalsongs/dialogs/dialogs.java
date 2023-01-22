@@ -12,52 +12,52 @@ public abstract class dialogs {
 
     public abstract String yearOfPublication();
 
-    public abstract String author();
+    public abstract String authorCapitalizedWithColon();
 
-    public abstract String title();
+    public abstract String titleCapitalizedWithColon();
     
-    public abstract String amazementNome();
+    public abstract String amazementName();
     
-    public abstract String amazementESpiegazione();
+    public abstract String amazementExplanation();
     
-    public abstract String solemnityNome();
+    public abstract String solemnityName();
     
-    public abstract String solemnitySpiegazione();
+    public abstract String solemnityExplanation();
     
-    public abstract String tendernessNome();
+    public abstract String tendernessName();
     
-    public abstract String tendernessSpiegazione();
+    public abstract String tendernessExplanation();
     
-    public abstract String nostalgiaNome();
+    public abstract String nostalgiaName();
     
-    public abstract String nostalgiaSpiegazione();
+    public abstract String nostalgiaExplanation();
     
-    public abstract String calmnessNome();
+    public abstract String calmnessName();
     
-    public abstract String calmnessSpiegazione();
+    public abstract String calmnessExplanation();
     
-    public abstract String powerNome();
+    public abstract String powerName();
     
-    public abstract String powerSpiegazione();
+    public abstract String powerExplanation();
     
-    public abstract String joyNome();
+    public abstract String joyName();
     
-    public abstract String joySpiegazione();
+    public abstract String joyExplanation();
     
-    public abstract String tensionNome();
+    public abstract String tensionName();
     
-    public abstract String tensioneSpiegazione();
+    public abstract String tensionExplanation();
     
-    public abstract String sadnessNome();
+    public abstract String sadnessName();
     
-    public abstract String sadnessSpiegazione();
+    public abstract String sadnessExplanation();
     
     
     //BASICS STRUCTURE: USER
     
-    public abstract String uProprietario();
+    public abstract String propertyUser();
     
-    public abstract String spazioG();
+    public abstract String spaceSuccessfullyGenerated();
     
     
     //BASICS DATABASES: DATABASEPLAYLISTS
@@ -67,15 +67,15 @@ public abstract class dialogs {
     
     // ENGINES : EngineRegister
     
-    public abstract String utenteCreato();
+    public abstract String userCreated();
     
-    public abstract String utenteAggiunto();
+    public abstract String userAdded();
     
     
     
-    public abstract String idUtente();
+    public abstract String userId();
     
-    public abstract String idUtenteInes();
+    public abstract String userIdNotFound();
     
     public abstract String password();
     
@@ -89,65 +89,65 @@ public abstract class dialogs {
     
     public abstract String name();
     
-    public abstract String nomeNon();
+    public abstract String nameNotValid();
     
-    public abstract String cognome();
+    public abstract String surname();
     
-    public abstract String cognomeNon();
+    public abstract String notValidSurname();
     
-    public abstract String indirizzo();
+    public abstract String address();
     
-    public abstract String indirizzoNon();
+    public abstract String addrNotValid();
     
-    public abstract String dataNascita();
+    public abstract String birthDate();
     
-    public abstract String dataNasciataNon();
+    public abstract String invalidBirthDate();
     
     public abstract String cf();
     
-    public abstract String cfNon();
+    public abstract String invalidCf();
     
-    public abstract String cfpresente();
+    public abstract String cfIsPresentYet();
     
     public abstract String email();
     
-    public abstract String emailNon();
+    public abstract String emailNotValid();
     
-    public abstract String userid();
+    public abstract String useridToUpperCaseWithColon();
     
-    public abstract String userIdpresente();
+    public abstract String userIdTaken();
     
-    public abstract String useridNon();
+    public abstract String userIdNotValid();
     
     public abstract String passswordR();
     
     public abstract String passwordCheck();
     
-    public abstract String passwordNon();
+    public abstract String passwordNotValid();
     
-    public abstract String passwordNonCoincidono();
+    public abstract String passwordsNotMatching();
     
-    public abstract String registrati();
+    public abstract String registrer();
     
     public abstract String chiudi();
     
     //GUI PLAYLIST CREATION FRAME
     
-    public abstract String nuovaPlaylist();
+    public abstract String newPlaylistName();
     
-    public abstract String titolo();
+    public abstract String title();
     
-    public abstract String autore();
+    public abstract String author();
     
-    public abstract String anno();
+    public abstract String year();
     
-    public abstract String creaNuovaPlaylist();
+    public abstract String creaNuovaPlaylistButton();
     
-    public abstract String annulla();
+    public abstract String abort();
     
     //GUI MAIN MENU LEFT LOGGED
     
-    public abstract String creaPlaylist();
+    public abstract String createPlaylist();
     
     //GUI MAIN UPPER BAR LOGGED PANEL
     
@@ -161,43 +161,43 @@ public abstract class dialogs {
     
     //GUI PLAYLISTS
     
-    public abstract String newPlaylist();
+    public abstract String newPlaylistLabel();
     
-    public abstract String creaNuovaPlaylistpiu();
+    public abstract String createNewPlaylist();
     
-    public abstract String datiCanzoni();
+    public abstract String songData();
     
-    public abstract String vota();
+    public abstract String vote();
     
     //GUI Songs Judgement
     
-    public abstract String songsJudge();
+    public abstract String songsJudgeCommentRequest();
     
     /// CHART AND DATA BUILDER
     
-    public abstract String graficEx();
+    public abstract String chartExport();
     
-    public abstract String emozioni();
+    public abstract String emotions();
 
     public abstract String trendsV();
     
-    public abstract String mediaVoti();
+    public abstract String marksMedium();
     
-    public abstract String quantoHaPercepito();
+    public abstract String howMuchFeeled();
     
-    public abstract String numeroUtenti();
+    public abstract String numberOfUser();
     
-    public abstract String report1();
+    public abstract String reportPaneTitle();
     
-    public abstract String espressoVoto();
+    public abstract String votedYet();
     
-    public abstract String datiRelativi();
+    public abstract String relativeData();
     
-    public abstract String mediaArit();
+    public abstract String aritmeticalMedium();
     
-    public abstract String moda();
+    public abstract String trend();
     
-    public abstract String mediana();
+    public abstract String median();
 
     public abstract String exportData();
 
@@ -205,9 +205,9 @@ public abstract class dialogs {
 
     public abstract String songDataView();
 
-    public abstract String userPlaylists();
+    public abstract String myPlaylistsText();
 
-    public abstract String createNewPlaylist();
+    public abstract String newPlaylistText();
 
     public abstract String registration();
 

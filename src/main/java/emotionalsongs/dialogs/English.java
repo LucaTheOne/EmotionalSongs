@@ -12,85 +12,85 @@ public class English extends dialogs{
     
     //BASICS STRUCTURE: EMOZIONI
 
-     public String amazementNome() {
+     public String amazementName() {
          return "Amazement";
     }
 
-    public String amazementESpiegazione() {
+    public String amazementExplanation() {
         return "Feeling of wonder or happiness.";
     }
 
-    public String solemnityNome() {
+    public String solemnityName() {
         return "Solemnity";
     }
 
-    public String solemnitySpiegazione() {
+    public String solemnityExplanation() {
         return "Feeling of transcendence, inspiration. Thrills.";
     }
 
-    public String tendernessNome() {
+    public String tendernessName() {
         return "Tenderness";
     }
 
-    public String tendernessSpiegazione() {
+    public String tendernessExplanation() {
         return "Sensuality, affect, feeling of love.";
     }
 
-    public String nostalgiaNome() {
+    public String nostalgiaName() {
         return "Nostalgia";
     }
 
-    public String nostalgiaSpiegazione() {
+    public String nostalgiaExplanation() {
         return "Dreamy, melancholic, sentimental feelings.";
     }
 
-    public String calmnessNome() {
+    public String calmnessName() {
         return "Calmness";
     }
 
-    public String calmnessSpiegazione() {
+    public String calmnessExplanation() {
         return "Relaxation, serenity, meditativeness";
     }
 
-    public String powerNome() {
+    public String powerName() {
         return "Power";
     }
 
-    public String powerSpiegazione() {
+    public String powerExplanation() {
         return "Feeling strong, heroic, triumphant, energetic.";
     }
 
-    public String joyNome() {
+    public String joyName() {
         return "Joy";
     }
 
-    public String joySpiegazione() {
+    public String joyExplanation() {
         return "Feels like dancing, bouncy feeling, animated, amused.";
     }
 
-    public String tensionNome() {
+    public String tensionName() {
         return "Tension";
     }
   
-    public String tensioneSpiegazione() {
+    public String tensionExplanation() {
         return "Feeling Nervous, impatient, irritated.";
     }
 
-    public String sadnessNome() {
+    public String sadnessName() {
         return "Sadness";
     }
 
-    public String sadnessSpiegazione() {
+    public String sadnessExplanation() {
         return "Feeling Depressed, sorrowful.";
     }
     
     //BASIC STRUCTURE : USER
     
-    public String uProprietario(){
+    public String propertyUser(){
         return "Proprietario: ";
     }
     
-    public String spazioG(){
+    public String spaceSuccessfullyGenerated(){
         return "Spazio generato con successo";
     }
     
@@ -102,22 +102,22 @@ public class English extends dialogs{
     
     // ENGINES : EngineRegister
     
-    public String utenteCreato(){
+    public String userCreated(){
         return "";
     }
     
-    public String utenteAggiunto(){
+    public String userAdded(){
         return "";
     }
     
 
     //GUI FRAME LOGIN 
   
-    public String idUtente() {
+    public String userId() {
         return "ID User: ";
     }
 
-    public String idUtenteInes() {
+    public String userIdNotFound() {
         return "ID User doesn't exist!";
     }
 
@@ -143,31 +143,31 @@ public class English extends dialogs{
         return "FIRST NAME: ";
     }
 
-    public String nomeNon() {
+    public String nameNotValid() {
         return "First name not valid!";
     }
 
-    public String cognome() {
+    public String surname() {
         return "LAST NAME: ";
     }
 
-    public String cognomeNon() {
+    public String notValidSurname() {
         return "Last name not valid!";
     }
 
-    public String indirizzo() {
+    public String address() {
         return "ADDRESS: ";
     }
 
-    public String indirizzoNon() {
+    public String addrNotValid() {
         return "This field cannot be empty!";
     }
 
-    public String dataNascita() {
+    public String birthDate() {
        return "DATE OF BIRTH:";
     }
 
-    public String dataNasciataNon() {
+    public String invalidBirthDate() {
         return "Format data not valid!";
     }
 
@@ -175,11 +175,11 @@ public class English extends dialogs{
         return "FISCAL CODE: ";
     }
 
-    public String cfNon() {
+    public String invalidCf() {
        return "Format data not valid!";
     }
     
-    public String cfpresente(){
+    public String cfIsPresentYet(){
         return "Fiscal code already used";
     }
 
@@ -187,19 +187,19 @@ public class English extends dialogs{
         return "E-MAIL ADDRESS: ";
     }
 
-    public String emailNon() {
+    public String emailNotValid() {
         return "Address not valid!";
     }
 
-    public String userid() {
+    public String useridToUpperCaseWithColon() {
         return "USER ID: ";
     }
     
-    public String userIdpresente(){
+    public String userIdTaken(){
         return "ID used";
     }
 
-    public String useridNon() {
+    public String userIdNotValid() {
         return "User ID not valid!";
     }
     
@@ -211,15 +211,15 @@ public class English extends dialogs{
         return "PASSWORD";
     }
 
-    public String passwordNon(){
+    public String passwordNotValid(){
         return "Password not valid!";
     }
     
-    public String passwordNonCoincidono(){
+    public String passwordsNotMatching(){
         return "Password non coincidono!";
     }
    
-    public String registrati() {
+    public String registrer() {
         return "Registration";
     }
 
@@ -229,33 +229,33 @@ public class English extends dialogs{
     
     //GUI PLATYLIST CREATION FRAME
     
-    public String nuovaPlaylist() {
+    public String newPlaylistName() {
         return "Nome of the new playlist: ";
     }
 
-    public String titolo() {
+    public String title() {
         return "Title";
     }
 
-    public String autore() {
+    public String author() {
         return "Autor";
     }
 
-    public String anno() {
+    public String year() {
         return "Year";
     }
 
-    public String creaNuovaPlaylist() {
+    public String creaNuovaPlaylistButton() {
         return "Create new playlist";
     }
 
-    public String annulla() {
+    public String abort() {
         return "Delete";
     }
     
     //GUI MAIN MENU LEFT LOGGED
     
-    public String creaPlaylist(){
+    public String createPlaylist(){
         return "Create Playlist";
     }
 
@@ -272,31 +272,31 @@ public class English extends dialogs{
         return "Menu";
     }
     
-    public String newPlaylist(){
+    public String newPlaylistLabel(){
         return "New playlist name";
     }
     
-    public String creaNuovaPlaylistpiu(){
+    public String createNewPlaylist(){
         return "+ Create new playlist";
     }
     
-    public String datiCanzoni(){
+    public String songData(){
         return "CHART ";
     }
     
-    public String vota(){
+    public String vote(){
         return "Vote";
     }
     
-   public String songsJudge(){
+   public String songsJudgeCommentRequest(){
        return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
    }
 
-    public String graficEx() {
+    public String chartExport() {
         return "Trend graph of emotion ratings";
     }
     
-    public String emozioni(){
+    public String emotions(){
         return "Emotion";
     }
     
@@ -304,40 +304,40 @@ public class English extends dialogs{
         return "Trends of vote";
     }
     
-    public String mediaVoti(){
+    public String marksMedium(){
         return "Grade point averages";
     }
     
-    public String quantoHaPercepito(){
+    public String howMuchFeeled(){
         return "How much a user perceived the emotion";
     }
   
-    public String numeroUtenti(){
+    public String numberOfUser(){
         return "Numbers of users";
     }
    
-    public String report1(){
+    public String reportPaneTitle(){
        return "DATA REPORT ON JUDGMENTS OF PERCEIVED EMOTIONS " + 
                 " FROM USERS LISTENING TO THE SONG:\n\n";
     }
     
-    public String espressoVoto(){
+    public String votedYet(){
         return "Number of users who have expressed their opinion: ";
     }
     
-    public String datiRelativi(){
+    public String relativeData(){
         return "DATA RELATING TO USER JUDGMENTS ABOUT THE PERCEPTION OF THEIR RESPECTIVE EMOTIONS: ";
     }
     
-    public String mediaArit(){
+    public String aritmeticalMedium(){
        return "   arithmetic average: ";
     }
     
-    public String moda(){
+    public String trend(){
         return "   trend: ";
     }
     
-    public String mediana(){
+    public String median(){
         return "   median: ";
 }
 
@@ -347,12 +347,12 @@ public class English extends dialogs{
     }
 
     @Override
-    public String author() {
+    public String authorCapitalizedWithColon() {
         return "Author: ";
     }
 
     @Override
-    public String title() {
+    public String titleCapitalizedWithColon() {
         return "Title: ";
     }
 
@@ -372,12 +372,12 @@ public class English extends dialogs{
     }
 
     @Override
-    public String userPlaylists() {
+    public String myPlaylistsText() {
         return "My playlists";
     }
 
     @Override
-    public String createNewPlaylist() {
+    public String newPlaylistText() {
         return "New playlist";
     }
 

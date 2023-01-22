@@ -60,65 +60,65 @@ public class RegistrationManager {
         if(checker.checkIdValidity(userId)){
             if(!checker.checkIdNotTaken(DataBaseUsers.getInstance(), userId)){
                 panel.idCheckLabel.setVisible(true);
-                panel.idCheckLabel.setText(EmotionalSongs.dialoghi.userIdpresente());
+                panel.idCheckLabel.setText(EmotionalSongs.dialoghi.userIdTaken());
                 allDataValid = false;
             }
         } else {
             panel.idCheckLabel.setVisible(true);
-            panel.idCheckLabel.setText(EmotionalSongs.dialoghi.useridNon());
+            panel.idCheckLabel.setText(EmotionalSongs.dialoghi.userIdNotValid());
             allDataValid = false;
         }
         
         if(!checker.checkNameValidity(name)){
             panel.nomeCheckLabel.setVisible(true);
-            panel.nomeCheckLabel.setText(EmotionalSongs.dialoghi.nomeNon());
+            panel.nomeCheckLabel.setText(EmotionalSongs.dialoghi.nameNotValid());
             allDataValid = false;
         }
         
         if(!checker.checkSurnameValidity(secondName)){
             panel.cognomeCheckLabel.setVisible(true);
-            panel.cognomeCheckLabel.setText(EmotionalSongs.dialoghi.cognomeNon());
+            panel.cognomeCheckLabel.setText(EmotionalSongs.dialoghi.notValidSurname());
             allDataValid = false;
         }
         
         if(checker.checkCfValidity(fiscalCode)){
             if(!checker.checkCfNotPresent(DataBaseUsers.getInstance(), fiscalCode)){
                 panel.cfCheckLabel.setVisible(true);
-                panel.cfCheckLabel.setText(EmotionalSongs.dialoghi.cfpresente());
+                panel.cfCheckLabel.setText(EmotionalSongs.dialoghi.cfIsPresentYet());
                 allDataValid = false;
             }
         }else{
             panel.cfCheckLabel.setVisible(true);
-            panel.cfCheckLabel.setText(EmotionalSongs.dialoghi.cfNon());
+            panel.cfCheckLabel.setText(EmotionalSongs.dialoghi.invalidCf());
             allDataValid = false;
         }
         
         if(!checker.checkAddresValidity(address)){
             panel.indirizzoCheckLabel.setVisible(true);
-            panel.indirizzoCheckLabel.setText(EmotionalSongs.dialoghi.indirizzoNon());
+            panel.indirizzoCheckLabel.setText(EmotionalSongs.dialoghi.addrNotValid());
             allDataValid = false;
         }
         
         if(!checker.checkMailValidity(email)){
             panel.mailCheckLabel.setVisible(true);
-            panel.mailCheckLabel.setText(EmotionalSongs.dialoghi.emailNon());
+            panel.mailCheckLabel.setText(EmotionalSongs.dialoghi.emailNotValid());
             allDataValid = false;
         }
         
         if(checker.checkPasswordValidity(password)){
             if(!checker.passwordsMatch(password, passwordControl)) {
-                panel.passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordNonCoincidono());
+                panel.passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordsNotMatching());
                 panel.passwordCheckLabel.setVisible(true);
                 allDataValid = false;                
             }
         } else {
-           panel.passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordNon());
+           panel.passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordNotValid());
            panel.passwordCheckLabel.setVisible(true);
            allDataValid = false;
         }
         
         if(!checker.checkBirthDayValidity(birthDay)){
-            panel.dataDiNascitaCheckLabel.setText(EmotionalSongs.dialoghi.dataNasciataNon());
+            panel.dataDiNascitaCheckLabel.setText(EmotionalSongs.dialoghi.invalidBirthDate());
             panel.dataDiNascitaCheckLabel.setVisible(true);
             allDataValid = false;
         }

@@ -19,39 +19,39 @@ public enum Emotions {
     /**
     * Meraviglia - Sensazione di stupore o felicità.
     */
-    AMAZEMENT(EmotionalSongs.dialoghi.amazementNome(),EmotionalSongs.dialoghi.amazementESpiegazione()),
+    AMAZEMENT(EmotionalSongs.dialoghi.amazementName(),EmotionalSongs.dialoghi.amazementExplanation()),
     /**
      * Solennità - Sensazione di trascendenza, ispirazione. Brividi.
      */
-    SOLEMNITY(EmotionalSongs.dialoghi.solemnityNome(),EmotionalSongs.dialoghi.solemnitySpiegazione()),
+    SOLEMNITY(EmotionalSongs.dialoghi.solemnityName(),EmotionalSongs.dialoghi.solemnityExplanation()),
     /**
      * Tenereza - Sensualità, affetto, sentimento di amore.
      */
-    TENDERNESS(EmotionalSongs.dialoghi.tendernessNome(),EmotionalSongs.dialoghi.tendernessSpiegazione()),
+    TENDERNESS(EmotionalSongs.dialoghi.tendernessName(),EmotionalSongs.dialoghi.tendernessExplanation()),
     /**
      * Nostalgia - Sognante, malinconia, sentimento di emotività.
      */
-    NOSTALGIA(EmotionalSongs.dialoghi.nostalgiaNome(),EmotionalSongs.dialoghi.nostalgiaSpiegazione()),
+    NOSTALGIA(EmotionalSongs.dialoghi.nostalgiaName(),EmotionalSongs.dialoghi.nostalgiaExplanation()),
     /**
      * Pacatezza - Rilassamento, serenità, meditatività.
      */
-    CALMNESS(EmotionalSongs.dialoghi.calmnessNome(),EmotionalSongs.dialoghi.calmnessSpiegazione()),
+    CALMNESS(EmotionalSongs.dialoghi.calmnessName(),EmotionalSongs.dialoghi.calmnessExplanation()),
     /**
      * Potere - Sentirsi forte, eroici , trionfanti, energetici.
      */
-    POWER(EmotionalSongs.dialoghi.powerNome(),EmotionalSongs.dialoghi.powerSpiegazione()),
+    POWER(EmotionalSongs.dialoghi.powerName(),EmotionalSongs.dialoghi.powerExplanation()),
     /**
      * Gioia - Sentirsi come danzanti, raggianti, animati, divertiti.
      */
-    JOY(EmotionalSongs.dialoghi.joyNome(),EmotionalSongs.dialoghi.joySpiegazione()),
+    JOY(EmotionalSongs.dialoghi.joyName(),EmotionalSongs.dialoghi.joyExplanation()),
     /**
      * Tensione - Sentire nervosismo, impazienza, irritazione.
      */
-    TENSION(EmotionalSongs.dialoghi.tensionNome(),EmotionalSongs.dialoghi.tensioneSpiegazione()),
+    TENSION(EmotionalSongs.dialoghi.tensionName(),EmotionalSongs.dialoghi.tensionExplanation()),
     /**
      * Tristezza - Sentirsi depressi, scarichi, dispiaciuti.
      */
-    SADNESS(EmotionalSongs.dialoghi.sadnessNome(),EmotionalSongs.dialoghi.sadnessSpiegazione());
+    SADNESS(EmotionalSongs.dialoghi.sadnessName(),EmotionalSongs.dialoghi.sadnessExplanation());
 
     //campi
     final private String nomeEmozione;

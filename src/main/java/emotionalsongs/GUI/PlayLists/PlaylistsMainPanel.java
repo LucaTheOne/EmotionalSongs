@@ -75,7 +75,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         buttonPanel.setLayout(new java.awt.BorderLayout());
 
         newPlaylistButton.setBackground(new java.awt.Color(239, 239, 239));
-        newPlaylistButton.setText(emotionalsongs.EmotionalSongs.dialoghi.creaNuovaPlaylistpiu());
+        newPlaylistButton.setText(emotionalsongs.EmotionalSongs.dialoghi.createNewPlaylist());
         newPlaylistButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(102, 102, 102)));
         newPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -5,6 +5,7 @@
 
 package emotionalsongs;
 
+import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import java.nio.file.*;
 import javax.swing.*;
@@ -156,6 +157,7 @@ public class Utilities {
      */  
     private static String generateBasePath(){
         String stringPath = new File(System.getProperty("user.dir")).getParent();
+        new PopUpAllert(stringPath).setVisible(true);
         stringPath += stringPath.endsWith((osFileSeparator+"EmotionalSongs")) ? "" : (osFileSeparator+"EmotionalSongs");
         return stringPath;
     }

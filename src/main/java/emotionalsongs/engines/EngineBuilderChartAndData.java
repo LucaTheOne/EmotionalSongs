@@ -112,59 +112,59 @@ public class EngineBuilderChartAndData {
      * @return Il report testuale dell'analisi dei dati immessi dagli utenti riguardo la valutazione emozionale del brano trattato.
      */
     public String getSongDataReport(){
-        String report = EmotionalSongs.dialoghi.report1() +
-                "   " + EmotionalSongs.dialoghi.titolo() + ":" + analizingSong.getTitle() + ",\n"+
-                "   " + EmotionalSongs.dialoghi.autore() + ":" + analizingSong.getAuthor() + ",\n"+
-                "   " + EmotionalSongs.dialoghi.anno() + ":" + analizingSong.getYear() + "\n\n"+
+        String report = EmotionalSongs.dialoghi.reportPaneTitle() +
+                "   " + EmotionalSongs.dialoghi.title() + ":" + analizingSong.getTitle() + ",\n"+
+                "   " + EmotionalSongs.dialoghi.author() + ":" + analizingSong.getAuthor() + ",\n"+
+                "   " + EmotionalSongs.dialoghi.year() + ":" + analizingSong.getYear() + "\n\n"+
                 
-                EmotionalSongs.dialoghi.espressoVoto() + getNumberOfJudgements() + ".\n\n"+   
+                EmotionalSongs.dialoghi.votedYet() + getNumberOfJudgements() + ".\n\n"+   
                 
-                EmotionalSongs.dialoghi.datiRelativi() +"\n\n"+
+                EmotionalSongs.dialoghi.relativeData() +"\n\n"+
                 
-                EmotionalSongs.dialoghi.amazementNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(amazementMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(amazementMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(amazementMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.amazementName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(amazementMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(amazementMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(amazementMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.solemnityNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(solemnityMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(solemnityMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(solemnityMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.solemnityName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(solemnityMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(solemnityMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(solemnityMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.tendernessNome() + ":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(tendernessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(tendernessMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(tendernessMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.tendernessName() + ":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tendernessMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(tendernessMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(tendernessMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.nostalgiaNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(nostalgiaMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(nostalgiaMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(nostalgiaMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.nostalgiaName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(nostalgiaMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(nostalgiaMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(nostalgiaMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.calmnessNome()+ ":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(calmnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(calmnessMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(calmnessMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.calmnessName()+ ":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(calmnessMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(calmnessMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(calmnessMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.powerNome() + ":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(powerMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(powerMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(powerMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.powerName() + ":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(powerMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(powerMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(powerMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.joyNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(joyMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(joyMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(joyMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.joyName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(joyMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(joyMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(joyMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.tensionNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(tensionMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(tensionMarks) + "\n"+
-                EmotionalSongs.dialoghi.mediana() + findMedian(tensionMarks) + "\n\n"+
+                EmotionalSongs.dialoghi.tensionName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tensionMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(tensionMarks) + "\n"+
+                EmotionalSongs.dialoghi.median() + findMedian(tensionMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.sadnessNome()+":\n" +
-                EmotionalSongs.dialoghi.mediaArit() + calculateAritmethicalMedium(sadnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.moda() + findTrend(sadnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.mediana() + findMedian(sadnessMarks) + ".\n";
+                EmotionalSongs.dialoghi.sadnessName()+":\n" +
+                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(sadnessMarks) + "\n" + 
+                EmotionalSongs.dialoghi.trend() + findTrend(sadnessMarks) + "\n" + 
+                EmotionalSongs.dialoghi.median() + findMedian(sadnessMarks) + ".\n";
         return report;
     }
     /**
@@ -311,7 +311,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(calculateAritmethicalMedium(tensionMarks), "tension", "");
         dataset.setValue(calculateAritmethicalMedium(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.graficEx(), EmotionalSongs.dialoghi.emozioni(), EmotionalSongs.dialoghi.mediaVoti(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();
@@ -333,7 +333,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(findTrend(tensionMarks), "tension", "");
         dataset.setValue(findTrend(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.graficEx(), EmotionalSongs.dialoghi.emozioni(), EmotionalSongs.dialoghi.trendsV(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.trendsV(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();
@@ -355,7 +355,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(findMedian(tensionMarks), "tension", "");
         dataset.setValue(findMedian(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.graficEx(), EmotionalSongs.dialoghi.emozioni(), EmotionalSongs.dialoghi.mediaVoti(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();
@@ -373,7 +373,7 @@ public class EngineBuilderChartAndData {
         dataSet.setValue(emotionMarkCounter[3], "4", "");
         dataSet.setValue(emotionMarkCounter[4], "5", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(typeOfEmotion, EmotionalSongs.dialoghi.quantoHaPercepito(), EmotionalSongs.dialoghi.numeroUtenti(), dataSet, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(typeOfEmotion, EmotionalSongs.dialoghi.howMuchFeeled(), EmotionalSongs.dialoghi.numberOfUser(), dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         return barChart;

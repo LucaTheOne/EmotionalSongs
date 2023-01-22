@@ -74,7 +74,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         PlayListButton.setBackground(new java.awt.Color(15, 52, 96));
         PlayListButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         PlayListButton.setForeground(new java.awt.Color(255, 255, 255));
-        PlayListButton.setText(EmotionalSongs.dialoghi.userPlaylists());
+        PlayListButton.setText(EmotionalSongs.dialoghi.myPlaylistsText());
         PlayListButton.setToolTipText("");
         PlayListButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
         PlayListButton.setOpaque(true);
@@ -88,7 +88,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(15, 52, 96));
         jButton4.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText(EmotionalSongs.dialoghi.createNewPlaylist());
+        jButton4.setText(EmotionalSongs.dialoghi.newPlaylistText());
         jButton4.setToolTipText("");
         jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
         jButton4.setOpaque(true);
