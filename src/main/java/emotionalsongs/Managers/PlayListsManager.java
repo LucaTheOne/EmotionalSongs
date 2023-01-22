@@ -16,7 +16,7 @@ import emotionalsongs.gui.playlists.*;
 
 /**
  * Classe che si occupa di gestire le playlist all' interno del software, la loro rappresentazione, manipolazione e tutto ciò che le riguarda.
- * Siccome vi è la necessità che l' istanza di questa classe sia la stessa per tutto il sistema, questa classe è strutturata come singleton.
+ * Siccome vi è la necessità che l'istanza di questa classe sia la stessa per tutto il sistema, questa classe è strutturata come singleton.
  * Questa classe può differire in base al utente che ha effettuato il login, quindi esiste un metodo di cancellazione per questa classe, così
  * che sia possibile de-istanziarla quando si effettua un logout e reinstanziarla sulla base del nuovo utente che effettua il logout.
  */

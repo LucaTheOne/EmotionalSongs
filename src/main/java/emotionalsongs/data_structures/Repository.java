@@ -13,8 +13,8 @@ import java.io.*;
 
 /**
  * Classe che rappresenta il contenitore dei brani dell software, contenuti nel file Canzoni.dati.txt.
- * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
- * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
+ * Di fatto funge da database locale, in quanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
+ * Essendovi la necessità che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
  */
 public class Repository {
     
@@ -23,9 +23,9 @@ public class Repository {
 
     //Costruttore
     /**
-     * Il costruttore privato crea l' oggetto di tipo Repository, unico. 
+     * Il costruttore privato crea l'oggetto di tipo Repository, unico. 
      * Usando il metodo BufferedReader accede al file contenente la lista di Brani e 
-     * li immagazina nella struttura dati al suo interno.
+     * li immagazzina nella struttura dati al suo interno.
      *
      * @throws FileNotFoundException
      * @throws IOException 
