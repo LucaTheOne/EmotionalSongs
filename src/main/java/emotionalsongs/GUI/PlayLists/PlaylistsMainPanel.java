@@ -3,14 +3,14 @@
 
 
 
-package emotionalsongs.gui.playlists;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.managers.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 
 /**
- *Classe le cui istanze sono pannelli per la visulizzazione di pulsanti delle playlist ed il loro contenuto.
+ * Classe le cui istanze sono pannelli per la visulizzazione di pulsanti delle playlist ed il loro contenuto.
  */
 public class PlaylistsMainPanel extends javax.swing.JPanel {
 
@@ -19,14 +19,14 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     
     
     /**
-     * Crea il form generale per l' ispezione del playlist set dell' utente passato come argomento e delle 
+     * Crea il form generale per l'ispezione del PlaylistSet dell'utente passato come argomento e delle 
      * canzoni contenute nelle playlist.
-     * In questo form ci sono pulsanti che permettono:
+     * In questo form ci sono pulsanti che permettono di:
      * <ul>
-     * <li> Esprimere giudizi emozionali per ogni canzone di ogni playlist del utente</li>
-     * <li> Aprire il report dei giudizi per ogni canzone </li>
-     * <li> Ricercare le canzoni su youtube</li>
-     * <li> Creare una nuova playlist</li>
+     * <li> esprimere giudizi emozionali per ogni canzone di ogni playlist del utente</li>
+     * <li> aprire il report dei giudizi per ogni canzone </li>
+     * <li> ricercare le canzoni su youtube</li>
+     * <li> creare una nuova playlist</li>
      * </ul>
      */
     public PlaylistsMainPanel(PlaylistsSet userSet) {

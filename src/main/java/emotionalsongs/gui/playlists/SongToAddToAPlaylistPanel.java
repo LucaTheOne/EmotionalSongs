@@ -3,10 +3,10 @@
 
 
 
-package emotionalsongs.gui.playlists;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.managers.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 
 /**
@@ -20,9 +20,9 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
     /**
      * Crea il pannello utilizzato per rappresentare le canzoni passate come argomento
-     * durante il form di creazione della playlis.
+     * durante il form di creazione della playlist.
      * Comunica fortemente con il playlist manager ed offre le funzioni
-     * per comunicare con esso e notificarli se aggiungere o togliere la anzone rappresentata
+     * per comunicare con esso e notificarli se aggiungere o togliere la canzone rappresentata
      * al buffer delle canzoni in attesa di essere aggiunte ad una nuova playlist.
      * @param representedSong canzone rappresentata.
      */

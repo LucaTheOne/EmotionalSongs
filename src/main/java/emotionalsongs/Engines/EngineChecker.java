@@ -2,7 +2,7 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.engines;
+package emotionalsongs.Engines;
 
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
@@ -19,12 +19,12 @@ public class EngineChecker {
      * Il metodo convalida la stringa name passata come argomento
      * e restituisce false se:
      * <ul>
-     *  <li>Se non e stato inserito nessun carattere.</li>
-     *  <li>Se il numero di caratteri e maggiore di 20.</li>
-     *  <li>Se il numero di caratteri è minore di 3.</li>
-     *  <li>Se contiene caratteri speciali. </li>
+     *  <li>non e stato inserito nessun carattere.</li>
+     *  <li>il numero di caratteri e maggiore di 20.</li>
+     *  <li>il numero di caratteri è minore di 3.</li>
+     *  <li>contiene caratteri speciali. </li>
      * </ul>
-     * Altrimeti restituisce true.
+     * Altrimenti restituisce true.
      * @param name Nome dell'utente da validare.
      * @return True o False.
      */
@@ -39,12 +39,12 @@ public class EngineChecker {
     /**
      * Il metodo convalida la stringa surname passata come argomento restituisce false se:
      * <ul>
-     * <li>Se non e stato inserito nessun carattere.</li>
-     * <li>Se i caratteri sono più di 20.</li>
-     * <li>Se i caratteri sono meno di 3.</li>
-     * <li>Se contiene caratteri speciali. </li>
+     * <li>non e stato inserito nessun carattere.</li>
+     * <li>i caratteri sono più di 20.</li>
+     * <li>i caratteri sono meno di 3.</li>
+     * <li>contiene caratteri speciali. </li>
      * </ul>
-     * Altrimeti restituisce true.
+     * Altrimenti restituisce true.
      * @param surname cognome da convalidare.
      * @return True o False.
      */
@@ -70,21 +70,21 @@ public class EngineChecker {
         return true;
     }
     
-    /**
-     * Il metodo controlla la validità della password.
-     * Per fare ciò sfrutta le regular expressions (regex),
-    *  tramite il quale viene effettuato un controllo sulla presenza
-    * di almeno una occorrenza, nella password analizzata, di:
+   /**
+    * Il metodo controlla la validità della password.
+    * Per fare ciò sfrutta le regular expressions (regex),
+    * tramite cui viene effettuato un controllo sulla presenza
+    * di almeno un'occorrenza, nella password analizzata, di:
     * <ul>
     * <li>(?=.*[0-9]) -> almeno un numero tra 0 e 9,
-    * <li>(?=.*[a-z]) -> Almeno una lettera minuscola,
-    * <li>(?=.*[A-Z]) -> Almeno una lettera maiuscola,
+    * <li>(?=.*[a-z]) -> almeno una lettera minuscola,
+    * <li>(?=.*[A-Z]) -> almeno una lettera maiuscola,
     * <li> almeno un carattere speciale,
     * <li>(?=\\S+$) -> spazi bianchi non ammessi,
     * <li>{8,20} -> minimo 8, massimo 20 caratteri.
     * </ul>
-    * @param password password da validare
-    * @return True se la password rispetta tutti i criteri, altrimenti false.
+    * @param password Password da validare
+    * @return True se la password rispetta tutti i criteri, false altrimenti.
     * 
     **/
     public boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
@@ -103,20 +103,20 @@ public class EngineChecker {
     }
     
     /**
-     * Metodo che verifica che entrambi le passwords immesse dal utente coincidano.
-     * Ritorna true qualora coincidano
+     * Metodo che verifica che entrambi le password immesse dall'utente coincidano.
+     * Ritorna true qualora coincidano.
      * @param password password da validare
      * @param controllo password da validare
-     * @return true qualora coincidano, altrimenti false.
+     * @return true qualora coincidano, false altrimenti.
      */
     public boolean passwordsMatch(String password,String controllo){
         if(controllo == null) return false;
         return password.equals(controllo);
     }
     /**
-     * Verifica la validità dell' indirizzo mail.
+     * Verifica la validità dell'indirizzo mail.
      * @param email da validare
-     * @return true se valida, altrimenti false.
+     * @return true se valida, false altrimenti.
      * @throws PatternSyntaxException 
      */
     public boolean checkMailValidity(String email) throws PatternSyntaxException{
@@ -167,7 +167,7 @@ public class EngineChecker {
         return m.matches();
     }
     /**
-     * Metodo che verifica che l' id scelto dal nuovo utente rispetti determinati requisiti:
+     * Metodo che verifica che l'id scelto dal nuovo utente rispetti determinati requisiti:
      * <ul>
      * <li>Non nullo</li>
      * <li>Almeno tre caratteri e non più di 19</li>
@@ -180,9 +180,9 @@ public class EngineChecker {
         return userId != null && userId.length()>3 && userId.length()<20 && !userId.isBlank();
     }
     /**
-     * Metodo che verifica che l' id scelto dal utente non sia già stato scelto da un altro.
-     * @param id Id la cui unicità si vuole verificare.
-     * @return true se unico, false altrimenti.
+     * Metodo che verifica che l'id scelto dall'utente non sia già stato scelto da un altro.
+     * @param id Id di cui si vuole verificare l'univocità.
+     * @return true se univoco, false altrimenti.
      */
     public boolean checkIdNotTaken(DataBaseUsers userDatabase,String id) {
         if(id == null) return false;
@@ -190,7 +190,7 @@ public class EngineChecker {
     }
     
     /**
-     * Metodo che verifica che nel database utenti non vi sia già presente il CF fornito dal nuovo utente.
+     * Metodo che verifica che nel database utenti non sia già presente il CF fornito dal nuovo utente.
      * @param userDatabase database utenti in cui effettuare la ricerca.
      * @param cf CF da validare
      * @return true se non è già presente nel database passato come argomento, false altrimenti.
@@ -201,10 +201,10 @@ public class EngineChecker {
     
     /**
      * Metodo che verifica se un utente ha già espresso un giudizio emozionale per una determinata canzone, ricercandola nel database passato come argomento.
-     * @param userId id del utente su cui si vuole effettuare la verifica.
+     * @param userId id dell'utente su cui si vuole effettuare la verifica.
      * @param song canzone di cui si vuole effettuare la verifica.
      * @param databaseJudgements database su cui effettuare la ricerca.
-     * @return true se l' utente non ha ancora valutato la canzone, false altrimenti.
+     * @return true se l'utente non ha ancora valutato la canzone, false altrimenti.
      */
     public boolean checkIfVoted(String userId, Song song, DataBaseJudgements databaseJudgements) {
         if (databaseJudgements.isEmpty()) {
@@ -222,7 +222,7 @@ public class EngineChecker {
     /**
      * Verifica se un array di canzoni ne contiene una associata al tag passato come argomento.
      * @param songs array di canzoni
-     * @param songtag tag della canzone di cui se ne vuole verificare la presenza.
+     * @param songtag tag della canzone di cui si vuole verificare la presenza.
      * @return true se presente, false altrimenti.
      */
     public boolean checkIfContains(Song[] songs,String songtag) {
@@ -233,7 +233,7 @@ public class EngineChecker {
     }
     /**
      * Metodo che verifica se un utente può esprimere giudizi su una determinata canzone.
-     * @param userId id del utente
+     * @param userId id dell'utente
      * @param songTag tag della canzone
      * @return true se non ha già espresso giudizi, false altrimenti.
      */

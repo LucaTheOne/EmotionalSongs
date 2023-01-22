@@ -10,12 +10,12 @@ import emotionalsongs.gui.playlists.*;
 
 /**
  * 
- * Classe le cui istanze rappresentano una playlist, cioè un insieme di canzoni (Istanze di Song).
+ * Classe le cui istanze rappresentano una playlist, cioè un insieme di canzoni (istanze di Song).
  * La classe si compone di:
  * <ul>
  *  <li>Un nome rappresentato da una stringa.</li>
- *  <li>Un arrai di stringhe contenente tutti i tag che rappresentano le canzoni che contine.</li>
- *  <li>Un array di istanze di Song ( canzoni ).</li>
+ *  <li>Un array di stringhe contenente tutti i tag che rappresentano le canzoni che contiene.</li>
+ *  <li>Un array di istanze di Song (canzoni).</li>
  *  <li>Metodi per gestire le proprie istanze ed interrogarle per ottenere dati.</li>
  * </ul>
  *
@@ -29,7 +29,7 @@ public class Playlist {
     private Song[] playlist; 
 
     /**
-     * Crea l'oggetto Playlist prendendo due stringhe come argomenti.Nota : l' oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.<ul>
+     * Crea l'oggetto Playlist prendendo due stringhe come argomenti. Nota : l'oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.<ul>
      *  <li> @param playlistName - una stringa rappresentante il nome della playlist</li>
      *  <li> @param listSongsTag - una stringa contenente tutti i tag delle canzoni che contiene</li>
      * </ul>
@@ -48,7 +48,7 @@ public class Playlist {
     }
     
     /**
-     * Costruttore che costruisce una playlist usando le righie del file associato.
+     * Costruttore che costruisce una playlist usando le righe del file associato.
      * @param stringFromFile Righe del file rappresentanti le canzoni. 
      */
     public Playlist(String stringFromFile){
@@ -58,7 +58,7 @@ public class Playlist {
     /**
      * Costruisce un oggetto Playlist prendendo come argomenti nome della Playlist e un array di canzoni
      * quali la compongono.
-     * Nota : l' oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.
+     * Nota: l'oggetto risulta già ordinato secondo i titoli delle canzoni che contiene.
      * @param playlistName Nome Playlist.
      * @param selectedSongs Array di canzoni.
      */
@@ -75,7 +75,7 @@ public class Playlist {
     //Getter methods
     /**
      * Il metodo restituisce una Stringa con il nome della playlist.
-     * @return il nome della playlist.
+     * @return Nome della playlist.
      */
     public String getName(){
         return this.playlistName;
@@ -83,7 +83,7 @@ public class Playlist {
     
     /**
      * Il metodo restituisce un intero rappresentante il numero di brani presenti nella playlist.
-     * @return Dimensione playlist.
+     * @return Dimensione della playlist.
      */
     public int getSize(){
         return playlist.length;
@@ -91,8 +91,8 @@ public class Playlist {
     
     /**
      * Il metodo prende come argomento un intero,
-     * rappresentante l'indice della canzione ricercata 
-     * all' interno del repository e ne restituisce il tag. 
+     * rappresentante l'indice della canzone ricercata 
+     * all'interno del repository e ne restituisce il tag. 
      * @param index Indice della canzone.
      * @return Tag della canzone in posizione index.
      */
@@ -101,15 +101,15 @@ public class Playlist {
     }
     
     /**
-     * Il metodo restituisce un array di stringhe contenente tutti i tags di tutte le canzoni della playlist.
-     * @return  Tag delle canzoni.
+     * Il metodo restituisce un array di stringhe contenente tutti i tag di tutte le canzoni della playlist.
+     * @return Tag delle canzoni.
      */
     public String[] getArrayTags() {
         return songsTags;
     }
     
     /**
-     * Il metodo restituisce un array di istanze di song (canzoni).
+     * Il metodo restituisce un array di istanze di Song (canzoni).
      * @return Array di canzoni.
      */
     public Song[] getArraySongs() {
@@ -151,7 +151,7 @@ public class Playlist {
     
     //building methods
     /**
-     * Il metodo costruisce Un istanza di PlaylistSongsViewPanel, che estende JPanel, che rappresenta graficamente il contenuto della Playlist.
+     * Il metodo costruisce un'istanza di PlaylistSongsViewPanel, che estende JPanel, che rappresenta graficamente il contenuto della Playlist.
      * @return Rappresentazione grafica del contenuto dell playlist.
      */
     public PlaylistSongsViewPanel buildPlaylistView(){
@@ -159,8 +159,8 @@ public class Playlist {
     }
     
     /**
-     * Il Metodo Restistuisce un istanza di PlaylistButton, che estende JButton, relativa a questa playlist.
-     * L' interazione con questo bottone causa una variazione della GUI che mostrerà il contenuto della playlist.
+     * Il metodo restistuisce un'istanza di PlaylistButton, che estende JButton, relativa a questa playlist.
+     * L'interazione con questo bottone causa una variazione della GUI che mostrerà il contenuto della playlist.
      * @return Pulsante per attivare la rappresentazione grafica della playlist.
      */
     public PlaylistButton buildPlaylistButton(){
@@ -169,7 +169,7 @@ public class Playlist {
     
     /**
      * Il metodo compone la stringa nel formato deciso per rappresentare la playlist ed il suo contenuto
-     * all' interno del file di di sistema atto a memorizzarle, con il fine poi di avere un file su cui il costruttore possa appoggiarcisi.
+     * all'interno del file di di sistema atto a memorizzarle, con il fine poi di avere un file su cui il costruttore possa appoggiarcisi.
      * 
      * Il formato è composta da: " |playlistName|:|songTag1|,|songTag2|,...,|songTagn|; "
      * @return Stringa formattata rappresentante la playlist.

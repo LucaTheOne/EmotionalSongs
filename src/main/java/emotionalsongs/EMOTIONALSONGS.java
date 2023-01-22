@@ -12,17 +12,17 @@ import java.io.*;
 
 /**
  * 
- * Classe contenente l' unico metodo main del software, da qui viene lanciata la sua funzione principale
- * che da via alla iniziallizazione del software, offre l' accesso ad un campo publico 
- * statico detto dialoghi
- * che permette di reperire i dialogi all' inetrno del software sia in italiano che in inglese.
+ * Classe contenente l' unico metodo main del software. Da qui viene lanciata la sua funzione principale
+ * che dà via all'inizializzazione del software, offrendo l'accesso ad un campo pubblico 
+ * statico detto dialogs, 
+ * il quale permette di reperire i dialogi all'interno del software, sia in italiano che in inglese.
  */
 public class EmotionalSongs {
     
     
     private static User loggedUser = null;
     /**
-     * rappresenta l' idioma attualmente attivo nel sistema.
+     * Rappresenta la lingua attualmente attiva nel sistema.
      */
     public static dialogs dialoghi = new Italiano();
     
@@ -42,15 +42,15 @@ public class EmotionalSongs {
     }
     
     /**
-     * Metodo che permette di interrogare la classe principale su quale istanza di User sia 
-     * attualmente loggata.
-     * @return L' istanza rappresentante l' utente attualmente loggato, null se l' utente non è loggato.
+     * Metodo che permette di interrogare la classe principale riguardo a quale istanza di User abbia 
+     * attualmente effettuato il login.
+     * @return L'istanza rappresentante l'utente attualmente loggato, null se l'utente non è loggato.
      */
     public static User getLoggedUser(){
         return loggedUser;
     }
     /**
-     * Metodo che permette di modificare l' istanza di utente attualmente loggato al sistema.
+     * Metodo che permette di modificare l'istanza di utente attualmente loggato al sistema.
      */
     public static void setLoggedUser(User loggedUser){
         EmotionalSongs.loggedUser = loggedUser;

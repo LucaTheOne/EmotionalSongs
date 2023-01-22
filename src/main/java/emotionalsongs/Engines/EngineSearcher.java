@@ -2,14 +2,14 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.engines;
+package emotionalsongs.Engines;
 
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
 import java.util.*;
 
 /**
- * Classe le cui istanze offrono metodi per effetture ricerche di dati all' interno del database delle valutazioni emozionali.
+ * Classe le cui istanze offrono metodi per effetture ricerche di dati all'interno del database delle valutazioni emozionali.
  */
 public class EngineSearcher {
 
@@ -17,12 +17,12 @@ public class EngineSearcher {
     
     //metodi di ricerca canzoni
     /**
-     * Il metodo permette effettuare la ricerca di una canzone per:
+     * Il metodo permette di effettuare la ricerca di una canzone per:
      * <ul>
-     * <li>Titolo, se nell' argomento passato alla funzione non ci sono ;</li>
-     * <li>Autore ed anno se se nell' argomento passato alla funzione ci sono ;</li>
+     * <li>Titolo, se sono presenti nell'argomento passato alla funzione;</li>
+     * <li>Autore ed anno se questi sono presenti nell'argomento passato alla funzione.</li>
      * </ul>
-     * @param stringaCercata criterio di ricerca.
+     * @param stringaCercata Criterio di ricerca.
      * @return Un array di brani che corrispondono ai criteri di ricerca passati come argomento.
      */
     public Song[] cercaBranoMusicale(String stringaCercata){
@@ -37,9 +37,9 @@ public class EngineSearcher {
     }   
     
     /**
-     * Il metodo effettua la ricerca per titolo nel repository di brani e li salva in un array di brani.
+     * Il metodo effettua la ricerca per titolo nel repository di brani e salva i risultati in un array di brani.
      * @param title titolo del brano da cercare.
-     * @return Un array contenente tutti i brani che nel titolo anno la parola cercata.
+     * @return Un array contenente tutti i brani che contengono nel titolo la parola cercata.
      */
     private Song[] ricercaPerTitolo(String title){
         
@@ -66,10 +66,10 @@ public class EngineSearcher {
     }
     
     /**
-     * Il metodo effettua la ricerca per autore ed anno e ne restituisce i risultati 
+     * Il metodo effettua la ricerca per autore ed anno e restituisce i risultati 
      * in un array di brani.
-     * @param autore - nome del autore del brano.
-     * @param anno - anno di publicazione del brano.
+     * @param autore - nome dell'autore del brano.
+     * @param anno - anno di pubblicazione del brano.
      * @return Array di canzoni aventi come autore ed anno quelli ricercati.
      */
     private Song[] ricercaPerAutoreEdAnno(String autore, String anno){
@@ -95,7 +95,7 @@ public class EngineSearcher {
     }
     
     /**
-     * Il metodo prende come parametri un repository di canzoni ed un songTag, e ne effettua la ricerca del brano associato.
+     * Il metodo prende come parametri un repository di canzoni ed un songTag, ed effettua la ricerca del brano associato.
      * @param repository Repository in cui cercare.
      * @param songTag Tag della canzone da cercare.
      * 
@@ -194,7 +194,7 @@ public class EngineSearcher {
     
     //metodi di ricerca playlist
     /**
-     * Metodo che ricerca il playlist set dell' utente passato come argomento, nel database anch' esso passato come argomento.
+     * Metodo che ricerca il PlaylistSet dell'utente passato come argomento, nel database anch'esso passato come argomento.
      * @param user Utente da ricercare.
      * @param dataBasePlaylists Database in cui effettuare la ricerca.
      * @return Il PlaylistSet del utente.
@@ -225,10 +225,10 @@ public class EngineSearcher {
     
     /**
      * Metodo che ritorna la posizione del giudizio emozionale relativo al brano rappresentato dal tag 
-     * passato come argomento, nel database passato anc' esso come argomento.
+     * passato come argomento, nel database passato anch'esso come argomento.
      * @param dataBase Database in cui cercare.
      * @param branoTag Tag del brano di cui cercare il giudizio emozionale.
-     * @return Posizione del giudizio emozionale del brano corrispondente al tag, all' interno del database.
+     * @return Posizione del giudizio emozionale del brano corrispondente al tag, all'interno del database.
      */
     public int searchJudgementIndexBySongTag(DataBaseJudgements dataBase, String branoTag) {
         if(!(dataBase == null)){
