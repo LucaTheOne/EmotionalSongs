@@ -7,9 +7,9 @@ package emotionalsongs.basic_structures;
 
 /**
  * Tipo enumerativo le cui costanti rappresentano emozioni attribuibili ad ogni brano.
- * Ogni Emozione è composta di due campi:
+ * Ogni Emozione è composta da due campi:
  * <ul>
- * <li>@param <i>name</i> che contiene il nome del' emozione.</li>
+ * <li>@param <i>name</i> che contiene il nome dell'emozione.</li>
  * <li>@param <i>explanation</i> che contiene la descrizione ufficiale dell' emozione.</li>
  * </ul>
  * 
