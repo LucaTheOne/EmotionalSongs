@@ -5,7 +5,6 @@
 
 package emotionalsongs;
 
-import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import java.nio.file.*;
 import javax.swing.*;
@@ -109,7 +108,7 @@ public class Utilities {
     /**
      * Oggetto di tipo ImageIcon che rappresenta il pannello dei crediti.
      */
-    public static ImageIcon CreditsIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CREDITS.jpg");
+    public static ImageIcon CreditsIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"credits.png");
     
     // metodi
     /**
