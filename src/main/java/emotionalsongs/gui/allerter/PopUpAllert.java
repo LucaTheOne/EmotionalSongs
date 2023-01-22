@@ -2,7 +2,7 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.GUI.allerter;
+package emotionalsongs.gui.allerter;
 
 /**
  *

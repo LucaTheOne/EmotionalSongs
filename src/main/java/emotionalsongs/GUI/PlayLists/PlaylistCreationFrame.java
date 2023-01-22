@@ -3,13 +3,13 @@
 
 
 
-package emotionalsongs.GUI.PlayLists;
+package emotionalsongs.gui.playlists;
 
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
-import emotionalsongs.Engines.*;
-import emotionalsongs.Managers.*;
+import emotionalsongs.engines.*;
+import emotionalsongs.managers.*;
 import java.awt.*;
 import javax.swing.*;
 
