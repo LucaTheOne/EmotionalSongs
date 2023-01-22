@@ -3,18 +3,18 @@
 
 
 
-package emotionalsongs.gui.playlists;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
-import emotionalsongs.engines.*;
-import emotionalsongs.managers.*;
+import emotionalsongs.Engines.*;
+import emotionalsongs.Managers.*;
 import java.awt.*;
 import javax.swing.*;
 
 /**
- *Classe le cui istanze sono form per la creazione di nuove playlist.
+ * Classe le cui istanze sono form per la creazione di nuove playlist.
  * Questa classe è fortemente dipendente dal playlistManager
  */
 public class PlaylistCreationFrame extends javax.swing.JFrame {

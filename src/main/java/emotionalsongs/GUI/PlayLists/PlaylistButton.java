@@ -9,13 +9,13 @@ import emotionalsongs.basic_structures.*;
 import emotionalsongs.managers.*;
 
 /**
- *Classe le cui istanze rappresentano i bottoni di ispezione delle playlist passate come argomenti al
+ * Classe le cui istanze rappresentano i bottoni di ispezione delle playlist passate come argomenti al
  * costruttore.
  */
 public class PlaylistButton extends javax.swing.JPanel {
 
     /**
-     * Crea il bottone con il nome della playlist passata come argomento che, qual'  ora premuto, ne
+     * Crea il bottone con il nome della playlist passata come argomento che, qualora premuto, ne
      * mostra nella schermata principale del pannello di visualizzazione delle playlist il contenuto.
      */
     private Playlist correlatedPlaylist;

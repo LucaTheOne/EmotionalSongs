@@ -2,7 +2,7 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.engines;
+package emotionalsongs.Engines;
 
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
@@ -21,7 +21,7 @@ public class EngineSorter {
     //User sort methods
     /**
      * Il metodo prende come parametro il Database di Utenti e lo ordina alfabeticamente relativamente agli
-     * id degli utenti.
+     * ID degli utenti.
      * @param dataBaseUsers Database da ordinare.
      */
     public void sortUsersById(DataBaseUsers dataBaseUsers){
@@ -83,7 +83,7 @@ public class EngineSorter {
     }
     
     /**
-     * Metodo che riordina un DataBase di PlaylistSet alfabeticamente rispetto agli id dei loro proprietari.
+     * Metodo che riordina un DataBase di PlaylistSet alfabeticamente rispetto agli ID dei loro proprietari.
      * @param dataBase Database da riordinare.
      */
     public void sortDataBaseOfPlaylistSet(DataBasePlaylists dataBase){
@@ -102,7 +102,7 @@ public class EngineSorter {
     }
     /**
      * Metodo che riordina un array di stringhe alfabeticamente.
-     * Il parametro caseSensitive identifica se l' ordinamento deve tenere conto delle lettere capitalizate.
+     * Il parametro caseSensitive identifica se l'ordinamento deve tenere conto delle lettere capitalizzate.
      * @param arrayString Array di stringhe da ordinare.
      * @param caseSensitive true -> Tiene conto delle capitalizzazioni, false -> non tiene conto delle capitalizzazioni.
      */

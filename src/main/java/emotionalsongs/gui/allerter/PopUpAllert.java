@@ -2,11 +2,11 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.gui.allerter;
+package emotionalsongs.GUI.allerter;
 
 /**
  *
- * Classe che costruisce una piccola interfaccia di comunicazione con l' utente da attivare
+ * Classe che costruisce una piccola interfaccia di comunicazione con l'utente, da attivare
  * per comunicare anomalie ed errori ad esso.
  * Il suo costruttore prende come argomento una stringa con il messaggio da mandare al utente.
  */
@@ -15,8 +15,8 @@ public class PopUpAllert extends javax.swing.JFrame {
     private String errorMessage;
     
     /**
-     * Costruttore della classe che genera il pop up con il messaggio passatao come argomento.
-     * @param message Messaggio per l' utente.
+     * Costruttore della classe che genera il pop up con il messaggio passato come argomento.
+     * @param message Messaggio per l'utente.
      */
     public PopUpAllert(String message) {
         this.errorMessage=message;

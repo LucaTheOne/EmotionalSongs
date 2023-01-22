@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  * 
- * Classe statica contenente i percorsi per giungere ai files sorgente 
+ * Classe statica contenente i percorsi per giungere ai file sorgente 
  * cui si appoggia il software e le immagini che sfrutta per costruire
  * la sua GUI.
  * Contiene anche dei metodi di uso comune nel sistema.
@@ -27,7 +27,7 @@ public class Utilities {
     //Path verso files
     /**
      * La stringa che rappresenta il percorso verso il file html
-     * usato come tamplate per costruire la mail di bevenuto.
+     * usato come tamplate per costruire la mail di benvenuto.
      */
     public static String HtmlPath = basePath+ osFileSeparator+"Risorse"+osFileSeparator+"email-registration-confirm-def"+osFileSeparator+"registration-confirm.html";
 
@@ -54,55 +54,55 @@ public class Utilities {
     
     //immagini
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine del logo del software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine del logo del software.
      */
     public static ImageIcon logo = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"EmotionalSongsLogo.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine della schermata di caricamento del software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine della schermata di caricamento del software.
      */
     public static ImageIcon loadingFrame = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoadingFrameWhite.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine della finestra principale del software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine della finestra principale del software.
      */
     public static ImageIcon mainBackGround = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"mainBackground.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine della icona del pulsante di ricerca delle canzoni.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante di ricerca delle canzoni.
      */
     public static ImageIcon searchIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"IconaRicerca.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine della icona del pulsante indietro della visualizzazione del repository.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante indietro della visualizzazione del repository.
      */
     public static ImageIcon backButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"BackButton.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine della icona del pulsante avanti della visualizzazione del repository.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante avanti della visualizzazione del repository.
      */
     public static ImageIcon nextButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"NextButton.png");  
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine dello sfondo del form di login al software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del form di login al software.
      */
     public static ImageIcon logingBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoginBG.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine dello sfondo del form di registrazione al software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del form di registrazione al software.
      */
     public static ImageIcon regBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegBg.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine dell' icona sullo sfondo del form di login al software.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona sullo sfondo del form di login al software.
      */
     public static ImageIcon regIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegIcon.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine del pulsante di reset della ricerca di canzoni nel repository.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine del pulsante di reset della ricerca di canzoni nel repository.
      */
     public static ImageIcon clearButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"ClearButtonIcon.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine del pulsante di chiusura del menu di visualizzazione del repository.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine del pulsante di chiusura del menu di visualizzazione del repository.
      */
     public static ImageIcon closeButton = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CloseButton.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta lo sfondo del pannello che rappresenta ogni singola canzone.
+     * Oggetto di tipo ImageIcon che rappresenta lo sfondo del pannello che raffigura ogni singola canzone.
      */
     public static ImageIcon SongViewIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"SongViewBorder.png");
     /**
-     * Oggetto di tipo ImageIcon che rappresenta l' immagine dello sfondo del repository di canzoni.
+     * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del repository di canzoni.
      */
     public static ImageIcon RepoBgIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RepoBG.png");
     /**
@@ -113,7 +113,7 @@ public class Utilities {
     // metodi
     /**
      * 
-     * @param stringToCapitalize la stringa cui si vuole rendere Maiuscola la prima lettera.
+     * @param stringToCapitalize La stringa cui si vuole rendere maiuscola la prima lettera.
      * @return La stringa passata come argomento con la prima lettera capitalizzata.
      */
     public static String capitalize(String stringToCapitalize){
@@ -123,8 +123,8 @@ public class Utilities {
 
     /**
      * 
-     * @param fileName Stringa che rappresenta un percorso verso il file di testo di cui si vuole contarne le righe, le righe si considerano divise da "\n".
-     * @return il numero di righe contenute nel file formato long.
+     * @param fileName Stringa che rappresenta un percorso verso il file di testo di cui si vuole contare le righe (le righe si considerano divise da "\n").
+     * @return Il numero di righe contenute nel file formato long.
      */
     public static long countLines(String fileName) {
         
@@ -141,11 +141,11 @@ public class Utilities {
     
     /**
      * <h3>Descrizione:</h3>
-     * Metodo interno privato che costruisce il path comune a tutti i path verso i files sorgente
+     * Metodo interno privato che costruisce il path comune a tutti i path verso i file sorgente
      * sulla base del sistema operativo in essere.
      *
      * <h3> Struttura delle cartelle:</h3>
-     * Si consideri fondamentale che:
+     * Si consideri fondamentale che
      * <ul>
      *  <li>I file <i>X.dati.txt</i> risiedano nella cartella <i>data</i>.</li>
      *  <li>I file <i>y.png</i> risiedano nella cartella <i>risorse</i> e con essi anche la cartella contenente il template html.</li>

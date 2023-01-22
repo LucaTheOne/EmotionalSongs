@@ -21,15 +21,15 @@ import java.io.*;
 * <li>Indirizzo di residenza.
 * <li>Indirizzo email.
 * <li>Data di nascita.
-* <li>Password a scelta dell'utente.
+* <li>Password scelta dall'utente.
 * </ul>
 * La classe in essere implementa anche vari metodi di controllo che verificano:
 * <ul>
-* <li>La validità del formato dei dati.
-* <li>Che l' utente non vi sia già registrato.
-* <li>Che l' utente sappia quale password ha scelto.
+* <li>la validità del formato dei dati.
+* <li>che l'utente non sia già registrato.
+* <li>che l'utente sappia quale password ha scelto.
 * </ul>
-* Oltreciò si occupa anche di salvarne i dati su un file .txt, con una precisa impostazione,
+* Oltre a ciò, si occupa anche di salvare i dati su un file .txt, con una precisa impostazione,
 * denominato utentiRegistrati.dati.txt .
 **/
 public class EngineRegister {
@@ -37,7 +37,7 @@ public class EngineRegister {
     private DataBaseUsers userDatabase;
     
     /**
-     * Costruisce della classe a cui si passa il database Utenti di appoggio.
+     * Costruttore della classe a cui si passa il database Utenti di appoggio.
      */
     public EngineRegister(DataBaseUsers database) { 
         userDatabase = database;
@@ -47,7 +47,7 @@ public class EngineRegister {
     * Il metodo riceve i dati userID, nome, 
     * cognome, codice fiscale, indirizzo, indirizzo email, password, data di nascita per costruire una nuova istanza di User da inserire nel database.
     * Effettua verifiche per ogni dato assicurandosi che esso sia valido.
-    * Qualora lo siano completa la registrazione dell' utente spedendogli una mail di benvenuto.
+    * Qualora lo siano completa la registrazione dell'utente spedendogli una mail di benvenuto.
     * @throws IOException
     */ 
     public void registraNuovoUtente(String userId,String name,String surname,String cf,String address,String email,String pswd,String contrPswd,String birthDate) throws IOException{

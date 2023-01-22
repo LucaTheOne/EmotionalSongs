@@ -3,7 +3,7 @@
 
 
 
-package emotionalsongs.engines;
+package emotionalsongs.Engines;
 
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
@@ -45,7 +45,7 @@ public class EngineLogger extends EmotionalSongs{
     
     /**
      * Il metodo prende come parametro un userID e controlla che sia presente nel database.
-     * @param userId UuserID.
+     * @param userId UserID.
      */
     public void foundsId(String userId) {
             EngineSearcher engineSearch = new EngineSearcher();
@@ -57,7 +57,7 @@ public class EngineLogger extends EmotionalSongs{
     /**
      * Il metodo prende come argomento la password e controlla che sia uguale
      * a quella assegnata durante la registrazione.
-     * @param password password da controllare che combaci con quella del user id associato
+     * @param password password da controllare che combaci con quella dell'userID associato.
      */
     public void passwordsMatch(String password) {
             passwordMatches = user.getPassword().equals(password);

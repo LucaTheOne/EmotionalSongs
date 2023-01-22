@@ -29,7 +29,7 @@ public class EngineBuilderChartAndData {
     
     /**
      * Costruttore che riceve come argomento il tag di un brano e ne ricava e costruisce i dati.
-     * @param songTag tag della canzone di cui costruire i dati.
+     * @param songTag Tag della canzone di cui costruire i dati.
      */
     public EngineBuilderChartAndData(String songTag) {
         buildData(songTag);
@@ -39,7 +39,7 @@ public class EngineBuilderChartAndData {
     // chart getter methods
     /**
      * 
-     * @return Un array di grafici rappresentanti ogniuno i dati di ogni emozione relativa ai giudizi emozionali
+     * @return Un array di grafici, ciascuno rappresentante i dati di ogni emozione relativa ai giudizi emozionali
      * espressi per la canzone di cui la classe costruisce i dati.
      */
     public JFreeChart[] getArrayCharts(){
@@ -47,15 +47,15 @@ public class EngineBuilderChartAndData {
     }
     /**
      * 
-     * @param emotion tipo di emozione di cui si vuole avere il grafico delle valutazioni degli utenti.
-     * @return Il Grafico relativo al emozione passata come argomento.
+     * @param emotion Tipo di emozione di cui si vuole avere il grafico delle valutazioni degli utenti.
+     * @return Il grafico relativo all'emozione passata come argomento.
      */
     public JFreeChart getChart(int emotion){
         return arrayChartsEmotions[emotion];
     }
     /**
      * 
-     * @return Il grafico che esprime la media dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * @return Il grafico che esprime la media dei voti che ciascuna emozione ha ricevuto, relativamente ai giudizi emozionali
      * espressi sul brano rappresentato da più utenti.
      */
     public JFreeChart getMediumsChart(){
@@ -63,7 +63,7 @@ public class EngineBuilderChartAndData {
     }
     /**
      * 
-     * @return Il grafico che esprime la moda dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * @return Il grafico che esprime la moda dei voti che ciascuna emozione ha ricevuto, relativamente ai giudizi emozionali
      * espressi sul brano rappresentato da più utenti.
      */
     public JFreeChart getTrendsChart(){
@@ -71,7 +71,7 @@ public class EngineBuilderChartAndData {
     }
     /**
      * 
-     * @return Il grafico che esprime la mediana dei voti che ciascuna emozione ha ricevuto,relativamente ai giudizi emozionali
+     * @return Il grafico che esprime la mediana dei voti che ciascuna emozione ha ricevuto, relativamente ai giudizi emozionali
      * espressi sul brano rappresentato da più utenti.
      */
     public JFreeChart getMediansChart(){
@@ -80,8 +80,8 @@ public class EngineBuilderChartAndData {
     
     //String data getters
     /**
-     * Metodo che costruisceun array di stringhe di 9 posizioni,una per ogni emozione.
-     * Ogni posizione dell' array contiene tutti i giudizi espressi da tutti gli utenti relativamente alla percezione
+     * Metodo che costruisce un array di stringhe di 9 posizioni, una per ogni emozione.
+     * Ogni posizione dell'array contiene tutti i giudizi espressi da tutti gli utenti relativamente alla percezione
      * di una precisa emozione.
      * @return Array con tutte le note emozionali.
      */
@@ -99,9 +99,9 @@ public class EngineBuilderChartAndData {
         return arrayNotes;
     }
     /**
-     * Metodo che prende come argomento una emozione e ne restituisce tutte le note associate relativamente al giudizio del brano trattato.
-     * @param emotion emozione di cui si vogliono ricevere le note emozionali.
-     * @return Stringa contenente tutte le note emozionali relative all' emozione passata come argomento, relativamente
+     * Metodo che prende come argomento un'emozione e ne restituisce tutte le note associate relativamente al giudizio del brano trattato.
+     * @param emotion Emozione di cui si vogliono ricevere le note emozionali.
+     * @return Stringa contenente tutte le note emozionali relative all'emozione passata come argomento, relativamente
      * al brano rappresentato.
      */
     public String getEmotionNotes(int emotion){
@@ -109,7 +109,7 @@ public class EngineBuilderChartAndData {
     }
     /**
      * 
-     * @return Il report testuale dell' analisi dei dati immessi dagli utenti riguardo la valutazione emozionale del brano trattato.
+     * @return Il report testuale dell'analisi dei dati immessi dagli utenti riguardo la valutazione emozionale del brano trattato.
      */
     public String getSongDataReport(){
         String report = EmotionalSongs.dialoghi.report1() +

@@ -2,13 +2,13 @@
 //Natanail Danailov Danailov - 739887 - VA
 
 
-package emotionalsongs.gui.playlists;
+package emotionalsongs.GUI.PlayLists;
 
 import emotionalsongs.basic_structures.*;
 import java.awt.*;
 
 /**
- * Classe le cui istanze sono pannelli il cui compito è di fare da contenitore per
+ * Classe le cui istanze sono pannelli il cui compito è quello di fare da contenitore per
  * istanze di SongPanel.
  */
 public class PlaylistSongsViewPanel extends javax.swing.JPanel {
@@ -18,7 +18,7 @@ public class PlaylistSongsViewPanel extends javax.swing.JPanel {
     /**
      * Crea il contenitore che mostra le rappresentazioni grafiche delle canzoni di una playlist
      * passata come argomento.
-     * @param playList Playlist di cuimostrare le canzoni.
+     * @param playList Playlist di cui mostrare le canzoni.
      */
     public PlaylistSongsViewPanel(Playlist playList) {
         this.playlist = playList;
