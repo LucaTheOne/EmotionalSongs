@@ -4,6 +4,7 @@
 
 package emotionalsongs.gui.main_window;
 
+import emotionalsongs.*;
 import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.login.*;
@@ -40,7 +41,7 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         menuButton = new javax.swing.JToggleButton();
-        RegisterButton = new javax.swing.JButton();
+        RegistrerButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
         LanguageButton = new javax.swing.JButton();
         LoginButton = new javax.swing.JButton();
@@ -84,31 +85,31 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         jPanel1.add(menuButton, gridBagConstraints);
 
-        RegisterButton.setBackground(new java.awt.Color(15, 52, 96));
-        RegisterButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
-        RegisterButton.setText("Register");
-        RegisterButton.setAlignmentY(0.0F);
-        RegisterButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        RegisterButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        RegisterButton.setOpaque(true);
-        RegisterButton.setPreferredSize(new java.awt.Dimension(72, 18));
-        RegisterButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
+        RegistrerButton.setBackground(new java.awt.Color(15, 52, 96));
+        RegistrerButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        RegistrerButton.setForeground(new java.awt.Color(255, 255, 255));
+        RegistrerButton.setText(EmotionalSongs.dialoghi.registration());
+        RegistrerButton.setAlignmentY(0.0F);
+        RegistrerButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        RegistrerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RegistrerButton.setOpaque(true);
+        RegistrerButton.setPreferredSize(new java.awt.Dimension(72, 18));
+        RegistrerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        RegistrerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterButtonActionPerformed(evt);
+                RegistrerButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(RegisterButton, gridBagConstraints);
+        jPanel1.add(RegistrerButton, gridBagConstraints);
 
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreditsButton.setText("Credits");
+        CreditsButton.setText(EmotionalSongs.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
         CreditsButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -129,7 +130,7 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
         LanguageButton.setBackground(new java.awt.Color(15, 52, 96));
         LanguageButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageButton.setText("English");
+        LanguageButton.setText(EmotionalSongs.dialoghi instanceof Italiano ? "English":"Italiano");
         LanguageButton.setAlignmentY(0.0F);
         LanguageButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -182,14 +183,16 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
     private void menuButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuButtonStateChanged
         if(menuButton.isSelected()){
             mainWindow.setLeftPanel(new MenuLeftUnlogged(mainWindow));
+            mainWindow.setMenuOpened();
         } else {
             mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
+            mainWindow.setMenuClosed();
         }
     }//GEN-LAST:event_menuButtonStateChanged
 
-    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+    private void RegistrerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrerButtonActionPerformed
             RegistrationManager.getInstance().startForm();
-    }//GEN-LAST:event_RegisterButtonActionPerformed
+    }//GEN-LAST:event_RegistrerButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
         mainWindow.setMainPanel(new CreditsPanel());
@@ -198,12 +201,20 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
         if(emotionalsongs.EmotionalSongs.dialoghi instanceof Italiano){
             emotionalsongs.EmotionalSongs.dialoghi = new English();
-            LanguageButton.setText("English");
+            LanguageButton.setText("Italiano");
+            RegistrerButton.setText("Registration");
+            CreditsButton.setText("Credits");
+            if(mainWindow.getIfLeftOpened()) mainWindow.setLeftPanel(new MenuLeftUnlogged(mainWindow));
+            else mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
             mainWindow.updateView();
        } else {
            emotionalsongs.EmotionalSongs.dialoghi = new Italiano();
-            LanguageButton.setText("Italiano");
-            mainWindow.updateView();
+           LanguageButton.setText("English");
+           RegistrerButton.setText("Registrazione");
+           CreditsButton.setText("Crediti");
+           if(mainWindow.getIfLeftOpened()) mainWindow.setLeftPanel(new MenuLeftUnlogged(mainWindow));
+           else mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
+           mainWindow.updateView();
        }
     }//GEN-LAST:event_LanguageButtonActionPerformed
 
@@ -212,7 +223,7 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
     private javax.swing.JButton CreditsButton;
     private javax.swing.JButton LanguageButton;
     private javax.swing.JButton LoginButton;
-    private javax.swing.JButton RegisterButton;
+    private javax.swing.JButton RegistrerButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton menuButton;
     // End of variables declaration//GEN-END:variables

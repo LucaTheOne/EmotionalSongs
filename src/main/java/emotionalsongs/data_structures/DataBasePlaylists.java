@@ -49,9 +49,9 @@ public class DataBasePlaylists {
             empty = false;
             sort();
         } catch (FileNotFoundException ex) {
-            new PopUpAllert("File Playlist.dati.txt non trovato!").setVisible(true);
+            new PopUpAllert(EmotionalSongs.dialoghi.fileNotFound() + "Playlist.dati.txt").setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(DataBasePlaylists.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }    
     }
     

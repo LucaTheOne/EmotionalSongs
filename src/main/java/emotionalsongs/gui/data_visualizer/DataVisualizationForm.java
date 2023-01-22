@@ -4,6 +4,7 @@
 
 package emotionalsongs.gui.data_visualizer;
 
+import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
@@ -47,14 +48,17 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         subPanel1 = new javax.swing.JPanel();
         ButtonsPanel = new javax.swing.JPanel();
         ExportButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
         chartPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
 
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(1000, 3200));
         mainPanel.setLayout(new java.awt.BorderLayout());
 
+        LabelAndTextPanel.setBackground(new java.awt.Color(255, 255, 255));
         LabelAndTextPanel.setPreferredSize(new java.awt.Dimension(100, 400));
         LabelAndTextPanel.setLayout(new java.awt.BorderLayout());
 
@@ -69,10 +73,9 @@ public class DataVisualizationForm extends javax.swing.JFrame {
 
         LabelAndTextPanel.add(TextAreaScrollablePanel, java.awt.BorderLayout.CENTER);
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("VISUALIZZAZIONE DATI CANZONE");
+        jLabel1.setText(EmotionalSongs.dialoghi.songDataView());
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(80, 80));
         LabelAndTextPanel.add(jLabel1, java.awt.BorderLayout.NORTH);
@@ -90,10 +93,16 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         subPanel1.setPreferredSize(new java.awt.Dimension(100, 1500));
         subPanel1.setLayout(new java.awt.BorderLayout());
 
+        ButtonsPanel.setBackground(new java.awt.Color(255, 255, 255));
         ButtonsPanel.setPreferredSize(new java.awt.Dimension(100, 60));
+        ButtonsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
 
-        ExportButton.setText("Esporta dati canzone");
+        ExportButton.setBackground(new java.awt.Color(0, 204, 102));
+        ExportButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ExportButton.setForeground(new java.awt.Color(255, 255, 255));
+        ExportButton.setText(EmotionalSongs.dialoghi.exportData());
         ExportButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ExportButton.setOpaque(true);
         ExportButton.setPreferredSize(new java.awt.Dimension(400, 50));
         ExportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +110,20 @@ public class DataVisualizationForm extends javax.swing.JFrame {
             }
         });
         ButtonsPanel.add(ExportButton);
+
+        closeButton.setBackground(new java.awt.Color(255, 0, 51));
+        closeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        closeButton.setForeground(new java.awt.Color(255, 255, 255));
+        closeButton.setText(EmotionalSongs.dialoghi.close());
+        closeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        closeButton.setOpaque(true);
+        closeButton.setPreferredSize(new java.awt.Dimension(100, 30));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        ButtonsPanel.add(closeButton);
 
         subPanel1.add(ButtonsPanel, java.awt.BorderLayout.SOUTH);
 
@@ -130,10 +153,9 @@ public class DataVisualizationForm extends javax.swing.JFrame {
             String whereToSave = fileChooser.getSelectedFile().getAbsolutePath()+
                     System.getProperty("file.separator")+
                     (dataBuilder.buildDataFolderName().replaceAll(" ", "-").replaceAll(System.getProperty("file.separator"), "_"));
-            //System.out.println(whereToSave);
             boolean created = new File(whereToSave).mkdir();
             if(!created){
-                new PopUpAllert("Errore: impossibile creare la cartella con i report!").setVisible(true);
+                new PopUpAllert(EmotionalSongs.dialoghi.ImpossibleToGenerateReport()).setVisible(true);
                 return;
             }
             File textFiles = new File(whereToSave + System.getProperty("file.separator") + "Report.txt");
@@ -183,7 +205,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
                         dataBuilder.getTrendsChart(),
                         2000, 1000);
                 
-                new PopUpAllert("Operazione terminata con successo").setVisible(true);
+                new PopUpAllert(EmotionalSongs.dialoghi.OpSucessTerminated()).setVisible(true);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -191,6 +213,10 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_ExportButtonActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPanel;
@@ -199,6 +225,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
     private javax.swing.JPanel LabelAndTextPanel;
     private javax.swing.JScrollPane TextAreaScrollablePanel;
     private javax.swing.JPanel chartPanel2;
+    private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel mainPanel;

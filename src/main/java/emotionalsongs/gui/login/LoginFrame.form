@@ -71,7 +71,6 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Estarossa97!"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 25]"/>
         </Property>

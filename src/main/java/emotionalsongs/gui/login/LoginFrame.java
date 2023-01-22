@@ -59,7 +59,6 @@ public class LoginFrame extends javax.swing.JFrame {
         idField.setPreferredSize(new java.awt.Dimension(150, 25));
         getContentPane().add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 253, -1, -1));
 
-        passwordField.setText("Estarossa97!");
         passwordField.setPreferredSize(new java.awt.Dimension(150, 25));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -26,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     
     private static MainFrame instance = null;
+    private boolean leftMenuOpened = false;
     /**
      * Metodo che permette di accedere alla istanza unica della finestra principale.
      */
@@ -89,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lowerBarStatusLabel.setBackground(new java.awt.Color(0, 0, 0));
         lowerBarStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
-        lowerBarStatusLabel.setText("EmotionalSongs ");
+        lowerBarStatusLabel.setText("      EmotionalSongs - LAB. A Project - Produced by: Bolelli Luca & Natanail Danailov Danailov - Big's developmenmt studio ");
         lowerBarStatusLabel.setOpaque(true);
         globalPanel.add(lowerBarStatusLabel, java.awt.BorderLayout.SOUTH);
         lowerBarStatusLabel.getAccessibleContext().setAccessibleName("LowerBarStatusLabel");
@@ -128,8 +129,8 @@ public class MainFrame extends javax.swing.JFrame {
         leftPanel.removeAll();
         leftPanel.setPreferredSize(new Dimension(newLeftPanel.getPreferredSize()));
         leftPanel.add(newLeftPanel,BorderLayout.CENTER);
-        revalidate();
-        repaint();
+        leftPanel.revalidate();
+        leftPanel.repaint();
     }
     /**
      * Metodo per modificare il pannello superiore, inserendo quello passato come argomento.
@@ -139,8 +140,8 @@ public class MainFrame extends javax.swing.JFrame {
         upperBar.removeAll();
         upperBar.setPreferredSize(new Dimension(newUpperBar.getPreferredSize()));
         upperBar.add(newUpperBar,BorderLayout.CENTER);
-        revalidate();
-        repaint(); 
+        upperBar.revalidate();
+        upperBar.repaint(); 
     }
     /**
      * Metodo per aggiornare il contenuto del pannello principale.
@@ -152,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.setOpaque(true);
         content.setVisible(true);
         revalidate();
-        repaint();
+        repaint(); 
     }
     /**
      * Metodo per ripulire il pannello principale.
@@ -162,6 +163,34 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.setOpaque(false);
         revalidate();
         repaint();
+    }
+    /**
+     * metodo utilizzato per ricostruire la view in caso di cambio di lingua.
+     */
+    public void restartView() {
+        instance.dispose();
+        instance = new MainFrame();
+        instance.setVisible(true);
+    }
+    
+    /**
+     * Metodo che setta il flag del menu sinistro come aperto.
+     */
+    public void setMenuOpened(){
+        leftMenuOpened = true;
+    }
+    /**
+     * Metodo che setta il flag del menù sinistro come chiuso.
+     */
+    public void setMenuClosed(){
+        leftMenuOpened = false;
+    }
+    /**
+     * Metodo che riporta il flag del menù sinistro.
+     * @return true se il menù è aperto, false altrimenti.
+     */
+    public boolean getIfLeftOpened(){
+        return leftMenuOpened;
     }
 
 }

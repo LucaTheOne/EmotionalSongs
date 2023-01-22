@@ -5,8 +5,10 @@
 
 package emotionalsongs.gui.songs_judgements;
 
+import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
+import emotionalsongs.dialogs.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.playlists.*;
@@ -24,10 +26,11 @@ public class SongJudgementForm extends javax.swing.JPanel {
      * @param songToVoteTag Tag della canzone giudicata.
      * @param callerComponent Pannello da cui la funzione è stata chiamata.
      */
-    public SongJudgementForm(String loggedUserId,String songToVoteTag,SongPanel callerComponent) {
+    public SongJudgementForm(String loggedUserId,String songToVoteTag,SongPanel callerComponent,JFrame container) {
         this.loggedUserId = loggedUserId;
         this.songToVoteTag = songToVoteTag;
         this.callerComponent = callerComponent;
+        this.container = container;
         EngineSearcher searcher = new EngineSearcher();
         songUnderVotation = searcher.searchBySongTag(Repository.getInstance(), songToVoteTag);
         initComponents();
@@ -152,6 +155,8 @@ public class SongJudgementForm extends javax.swing.JPanel {
         CompleteOperation = new javax.swing.JButton();
         AbortOperation = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1020, 3662));
         setLayout(new java.awt.BorderLayout());
 
         innerPanel.setPreferredSize(new java.awt.Dimension(998, 3600));
@@ -162,15 +167,18 @@ public class SongJudgementForm extends javax.swing.JPanel {
         GeneralDescriptionPane.setPreferredSize(new java.awt.Dimension(996, 50));
         GeneralDescriptionPane.setLayout(new java.awt.BorderLayout());
 
+        songDataLabel.setBackground(new java.awt.Color(255, 255, 255));
         songDataLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         songDataLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        songDataLabel.setText("Titolo Brano: " + songUnderVotation.getTitle() + " - " +
-            "Artista: "+ songUnderVotation.getAuthor() + " - " +
-            "Anno di publicazione: " + songUnderVotation.getYear());
+        songDataLabel.setText(EmotionalSongs.dialoghi.title() + songUnderVotation.getTitle() + " - " +
+            EmotionalSongs.dialoghi.author() + songUnderVotation.getAuthor() + " - " +
+            EmotionalSongs.dialoghi.yearOfPublication() + songUnderVotation.getYear());
+        songDataLabel.setOpaque(true);
         GeneralDescriptionPane.add(songDataLabel, java.awt.BorderLayout.CENTER);
 
         amazementPane.add(GeneralDescriptionPane, java.awt.BorderLayout.PAGE_START);
 
+        mainAmazementEmotionPane.setBackground(new java.awt.Color(255, 255, 255));
         mainAmazementEmotionPane.setLayout(new java.awt.GridBagLayout());
 
         amazementTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -187,6 +195,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         mainAmazementEmotionPane.add(amazementDescription, gridBagConstraints);
 
+        amazementMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         amazementMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         amazementMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -245,7 +254,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         amazementNotes.setColumns(20);
         amazementNotes.setRows(5);
         amazementNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        amazementNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        amazementNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane2.setViewportView(amazementNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -257,6 +266,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(amazementPane);
 
+        solemnityPane.setBackground(new java.awt.Color(255, 255, 255));
         java.awt.GridBagLayout solemnityPaneLayout = new java.awt.GridBagLayout();
         solemnityPaneLayout.columnWidths = new int[] {0, 15, 0};
         solemnityPaneLayout.rowHeights = new int[] {0, 15, 0, 15, 0, 15, 0};
@@ -276,6 +286,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         solemnityPane.add(solemnityDescription, gridBagConstraints);
 
+        solemnityMarksPane.setBackground(new java.awt.Color(255, 255, 255));
         solemnityMarksPane.setPreferredSize(new java.awt.Dimension(500, 50));
         solemnityMarksPane.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -334,7 +345,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         solemnityNotes.setColumns(20);
         solemnityNotes.setRows(5);
         solemnityNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        solemnityNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        solemnityNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane11.setViewportView(solemnityNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -344,6 +355,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(solemnityPane);
 
+        tendernessPane.setBackground(java.awt.Color.white);
         tendernessPane.setLayout(new java.awt.GridBagLayout());
 
         tendernessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -360,6 +372,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         tendernessPane.add(tendernessDescription, gridBagConstraints);
 
+        tendernessMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         tendernessMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         tendernessMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -418,7 +431,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         tendernessNotes.setColumns(20);
         tendernessNotes.setRows(5);
         tendernessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        tendernessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        tendernessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane12.setViewportView(tendernessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -428,6 +441,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(tendernessPane);
 
+        nostalgiaPane.setBackground(java.awt.Color.white);
         nostalgiaPane.setLayout(new java.awt.GridBagLayout());
 
         nostalgiaTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -444,6 +458,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         nostalgiaPane.add(nostalgiaDescription, gridBagConstraints);
 
+        nostalgiaMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         nostalgiaMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         nostalgiaMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -502,7 +517,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         nostalgiaNotes.setColumns(20);
         nostalgiaNotes.setRows(5);
         nostalgiaNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        nostalgiaNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        nostalgiaNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane13.setViewportView(nostalgiaNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -512,6 +527,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(nostalgiaPane);
 
+        calmnessPane.setBackground(java.awt.Color.white);
         calmnessPane.setLayout(new java.awt.GridBagLayout());
 
         calmnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -528,6 +544,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         calmnessPane.add(calmnessDescription, gridBagConstraints);
 
+        calmnessMarkPanel.setBackground(new java.awt.Color(255, 255, 255));
         calmnessMarkPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         calmnessMarkPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -586,7 +603,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         calmnessNotes.setColumns(20);
         calmnessNotes.setRows(5);
         calmnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        calmnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        calmnessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane14.setViewportView(calmnessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -596,6 +613,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(calmnessPane);
 
+        powerPane.setBackground(java.awt.Color.white);
         powerPane.setLayout(new java.awt.GridBagLayout());
 
         powerTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -612,6 +630,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         powerPane.add(powerDescription, gridBagConstraints);
 
+        powerMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         powerMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         powerMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -670,7 +689,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         powerNotes.setColumns(20);
         powerNotes.setRows(5);
         powerNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        powerNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        powerNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane15.setViewportView(powerNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -680,6 +699,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(powerPane);
 
+        joyPane.setBackground(java.awt.Color.white);
         joyPane.setLayout(new java.awt.GridBagLayout());
 
         joyTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -696,6 +716,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         joyPane.add(joyDescription, gridBagConstraints);
 
+        joyMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         joyMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         joyMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -754,7 +775,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         joyNotes.setColumns(20);
         joyNotes.setRows(5);
         joyNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        joyNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        joyNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane16.setViewportView(joyNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -764,6 +785,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(joyPane);
 
+        tensionPane.setBackground(java.awt.Color.white);
         tensionPane.setLayout(new java.awt.GridBagLayout());
 
         tensionTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -780,6 +802,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         tensionPane.add(tensionDescription, gridBagConstraints);
 
+        tensionMarksPanel.setBackground(new java.awt.Color(255, 255, 255));
         tensionMarksPanel.setPreferredSize(new java.awt.Dimension(500, 50));
         tensionMarksPanel.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -838,7 +861,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         tensionNotes.setColumns(20);
         tensionNotes.setRows(5);
         tensionNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        tensionNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        tensionNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane17.setViewportView(tensionNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -848,6 +871,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(tensionPane);
 
+        sadnessPane.setBackground(java.awt.Color.white);
         sadnessPane.setLayout(new java.awt.GridBagLayout());
 
         sadnessTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -864,6 +888,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         sadnessPane.add(sadnessDescription, gridBagConstraints);
 
+        sadnessMarksPanes.setBackground(new java.awt.Color(255, 255, 255));
         sadnessMarksPanes.setPreferredSize(new java.awt.Dimension(500, 50));
         sadnessMarksPanes.setLayout(new java.awt.GridLayout(1, 5));
 
@@ -922,7 +947,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         sadnessNotes.setColumns(20);
         sadnessNotes.setRows(5);
         sadnessNotes.setText(emotionalsongs.EmotionalSongs.dialoghi.songsJudge());
-        sadnessNotes.setPreferredSize(new java.awt.Dimension(800, 300));
+        sadnessNotes.setPreferredSize(new java.awt.Dimension(800, 150));
         jScrollPane18.setViewportView(sadnessNotes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -932,14 +957,23 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
         innerPanel.add(sadnessPane);
 
+        buttonPanel.setBackground(new java.awt.Color(255, 255, 255));
+        buttonPanel.setPreferredSize(new java.awt.Dimension(150, 205));
         buttonPanel.setLayout(new java.awt.GridLayout(5, 1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(150, 85));
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
         jPanel1Layout.columnWidths = new int[] {0};
-        jPanel1Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        jPanel1Layout.rowHeights = new int[] {0, 15, 0};
         jPanel1.setLayout(jPanel1Layout);
 
-        CompleteOperation.setText("Registra votazione");
+        CompleteOperation.setBackground(new java.awt.Color(153, 204, 0));
+        CompleteOperation.setForeground(new java.awt.Color(255, 255, 255));
+        CompleteOperation.setText(EmotionalSongs.dialoghi.vota());
+        CompleteOperation.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CompleteOperation.setOpaque(true);
+        CompleteOperation.setPreferredSize(new java.awt.Dimension(150, 30));
         CompleteOperation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CompleteOperationActionPerformed(evt);
@@ -950,10 +984,20 @@ public class SongJudgementForm extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         jPanel1.add(CompleteOperation, gridBagConstraints);
 
-        AbortOperation.setText("Annulla");
+        AbortOperation.setBackground(new java.awt.Color(255, 0, 51));
+        AbortOperation.setForeground(new java.awt.Color(255, 255, 255));
+        AbortOperation.setText(EmotionalSongs.dialoghi.annulla());
+        AbortOperation.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        AbortOperation.setOpaque(true);
+        AbortOperation.setPreferredSize(new java.awt.Dimension(100, 25));
+        AbortOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbortOperationActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 2;
         jPanel1.add(AbortOperation, gridBagConstraints);
 
         buttonPanel.add(jPanel1);
@@ -1342,7 +1386,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
                 if(notes[i].length()<256)
                     notes[i] = formatAndCleanString(notes[i]);
                 else {
-                    new PopUpAllert("Lunghezza massima di un commento o nata di 255 caratteri superata!").setVisible(true);
+                    new PopUpAllert(EmotionalSongs.dialoghi.maxStringLong255()).setVisible(true);
                     return;
                 }
             }
@@ -1369,18 +1413,22 @@ public class SongJudgementForm extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_CompleteOperationActionPerformed
+
+    private void AbortOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbortOperationActionPerformed
+        container.dispose();
+    }//GEN-LAST:event_AbortOperationActionPerformed
     //internal methods
     private boolean allEmotionsVoted(){
         for(int i = 0;i<marks.length;i++) 
             if(marks[i]==0) {
-                new PopUpAllert("Tutte le emozioni devono essere votate!").setVisible(true);
+                new PopUpAllert(EmotionalSongs.dialoghi.notAllVoted()).setVisible(true);
                 return false;
             }
         return true;
     }
     
     private String formatAndCleanString(String stringToFormat){
-        if(stringToFormat.equals("Se vuole inserisca qui una nota o commento riguardo la percezione di questa emozione nell' ascolto del brano.") || stringToFormat.equals("If you want, you can write here a comment about your perception of this emotion during the listening of the song.")){
+        if(stringToFormat.equals(new Italiano().songsJudge())||stringToFormat.equals(new English().songsJudge())) {
             return "";
         } else {
             stringToFormat.replace(";", ",");
@@ -1522,4 +1570,5 @@ public class SongJudgementForm extends javax.swing.JPanel {
     private String songToVoteTag;
     private Song songUnderVotation;
     private SongPanel callerComponent;
+    private JFrame container;
 }

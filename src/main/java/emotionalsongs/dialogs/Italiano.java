@@ -10,6 +10,7 @@ public class Italiano extends dialogs{
     
    //BASICS STRUCTURE: EMOZIONI
 
+    
      public String amazementNome() {
          return "Meraviglia";
     }
@@ -283,7 +284,7 @@ public class Italiano extends dialogs{
     }
     
     public String songsJudge(){
-        return "Se vuole inserisca qui una nota o commento riguardo "
+        return "Se vuoi puoi inserire qui una nota o commento riguardo "
                 + "la percezione di questa emozione nell' ascolto del brano.";
     }
 
@@ -334,5 +335,93 @@ public class Italiano extends dialogs{
     
     public String mediana(){
         return "   mediana: ";
+    }
+
+    @Override
+    public String yearOfPublication() {
+        return "Anno di pubblicazione: ";
+    }
+
+    @Override
+    public String author() {
+        return "Autore: ";
+    }
+
+    @Override
+    public String title() {
+        return "Titolo: ";
+    }
+
+    @Override
+    public String exportData() {
+        return "Esporta dati canzone";
+    }
+
+    @Override
+    public String close() {
+        return "Chiudi";
+    }
+
+    @Override
+    public String songDataView() {
+        return "Vista dati canzoni";
+    }
+
+    @Override
+    public String userPlaylists() {
+        return "Le mie playlists";
+    }
+
+    @Override
+    public String createNewPlaylist() {
+        return "Nuova playlist";
+    }
+
+    @Override
+    public String registration() {
+        return "Registrazione";
+    }
+
+    @Override
+    public String fileNotFound() {
+        return "File sorgente necessario irraggiungibile: ";
+    }
+
+    @Override
+    public String ImpossibleToGenerateReport() {
+        return "Errore accorso! impossibile generare il report!";
+    }
+
+    @Override
+    public String OpSucessTerminated() {
+        return "Operazione terminata con successo!";
+    }
+
+    @Override
+    public String maxStringLong255() {
+        return "Attenzione! Lunghezza massima dei commenti di 255 caratteri!";
+    }
+
+    @Override
+    public String notAllVoted() {
+        return "Errore: Tutte le emozioni devono ricevere un voto!";
+    }
+
+    @Override
+    public String voidPlaylistsDenied() {
+        return "Errore le playlist vuote non sono ammesse";
+    }
+
+    @Override
+    public String voteInstructions() {
+        return "Nel seguente form hai la possibilità \n"+
+                "di esprimere un parere sulla canzone scelta\n"+
+                "Sulla base di 9 emozioni.\n"+
+                "Per ogniuna delle emozioni devi esprimere un voto\n"+
+                "che va da 1 a 5:\n"+
+                "dove 1 indica che l'emozione è stata percepita per niente e\n"+
+                "5 indica che l' emozione è stata percepita appieno.\n"+
+                "Se lo desideri, per ogni emozione, puoi fornire \n"+
+                "un commento di massimo 255 caratteri.";
     }
 }

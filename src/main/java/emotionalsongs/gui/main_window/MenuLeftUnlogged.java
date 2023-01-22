@@ -4,6 +4,7 @@
 
 package emotionalsongs.gui.main_window;
 
+import emotionalsongs.*;
 import emotionalsongs.gui.repository.*;
 import java.io.*;
 
@@ -85,7 +86,7 @@ public class MenuLeftUnlogged extends javax.swing.JPanel {
 
         closeButton.setBackground(new java.awt.Color(255, 0, 51));
         closeButton.setForeground(new java.awt.Color(255, 255, 255));
-        closeButton.setText("Esci");
+        closeButton.setText(EmotionalSongs.dialoghi.exit());
         closeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, javax.swing.UIManager.getDefaults().getColor("Objects.Red"), javax.swing.UIManager.getDefaults().getColor("Component.custom.borderColor"), new java.awt.Color(102, 0, 0), new java.awt.Color(153, 0, 0)));
         closeButton.setOpaque(true);
         closeButton.setPreferredSize(new java.awt.Dimension(160, 50));

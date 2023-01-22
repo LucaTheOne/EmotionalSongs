@@ -54,7 +54,7 @@ public class DataBaseJudgements {
             }
             empty = false;
         } catch (FileNotFoundException ex) {
-            new PopUpAllert("File Emozioni.dati.txt non trovato!").setVisible(true);
+            new PopUpAllert(EmotionalSongs.dialoghi.fileNotFound() + "\n Emozioni.dati.txt").setVisible(true);
         } catch (IOException ex) {
             ex.getMessage();    
         }
@@ -182,7 +182,7 @@ public class DataBaseJudgements {
             for(int i = 0;i<judgements.length;i++) newOne[i] = judgements[i];
             newOne[newOne.length-1] = toAdd;
         } else {
-            new PopUpAllert("errore, dato non valido");
+            new PopUpAllert("error");
             newOne = judgements;
         }
         return newOne;

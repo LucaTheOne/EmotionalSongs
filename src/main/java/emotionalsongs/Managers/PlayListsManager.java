@@ -115,7 +115,7 @@ public class PlaylistsManager {
      */
     public void registraPlaylist(){
         if(songsToAdd.length == 0){
-            new PopUpAllert("Le playlist vuote non sono consentite!");
+            new PopUpAllert(EmotionalSongs.dialoghi.voidPlaylistsDenied());
             return;
         }
         Playlist newPlaylist = new Playlist(nameNewPlaylist, songsToAdd);

@@ -39,7 +39,7 @@ public class Repository {
                 repository[i] = new Song(splittedLine[3],splittedLine[2],splittedLine[0],splittedLine[1]);
             }    
         } catch (FileNotFoundException exception) {
-            new PopUpAllert("Il file sorgente non è stato trovato" + " \n"+Utilities.pathToCanzoniDatiTxt).setVisible(true);
+            new PopUpAllert(EmotionalSongs.dialoghi.fileNotFound()+ "\n"+Utilities.pathToCanzoniDatiTxt).setVisible(true);
         } catch (IOException exception){
             exception.getMessage();
         }

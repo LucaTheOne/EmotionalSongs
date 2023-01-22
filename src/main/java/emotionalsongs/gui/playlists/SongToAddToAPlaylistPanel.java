@@ -56,12 +56,14 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
 
         buttonsPanel.setBackground(new java.awt.Color(5, 23, 44));
         buttonsPanel.setPreferredSize(new java.awt.Dimension(120, 100));
-        buttonsPanel.setLayout(new java.awt.GridLayout(1, 0));
+        buttonsPanel.setLayout(new java.awt.GridLayout());
 
+        addButton.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         addButton.setText("+");
         addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         addButton.setEnabled(!playListsManager.containInSongsToAdd(song));
         addButton.setOpaque(true);
+        addButton.setPreferredSize(new java.awt.Dimension(40, 30));
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -70,6 +72,8 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         buttonsPanel.add(addButton);
 
         removeButton.setBackground(new java.awt.Color(204, 0, 51));
+        removeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        removeButton.setForeground(new java.awt.Color(255, 255, 255));
         removeButton.setText("-");
         removeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 51), new java.awt.Color(255, 102, 102), new java.awt.Color(153, 51, 0), new java.awt.Color(153, 51, 0)));
         removeButton.setEnabled(playListsManager.containInSongsToAdd(song));

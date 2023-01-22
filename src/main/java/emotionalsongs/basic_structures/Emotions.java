@@ -3,7 +3,7 @@
 
 
 package emotionalsongs.basic_structures;
-
+import emotionalsongs.*;
 
 /**
  * Tipo enumerativo le cui costanti rappresentano emozioni attribuibili ad ogni brano.
@@ -19,39 +19,39 @@ public enum Emotions {
     /**
     * Meraviglia - Sensazione di stupore o felicità.
     */
-    AMAZEMENT("Meraviglia","Sensazione di stupore o felicità."),
+    AMAZEMENT(EmotionalSongs.dialoghi.amazementNome(),EmotionalSongs.dialoghi.amazementESpiegazione()),
     /**
      * Solennità - Sensazione di trascendenza, ispirazione. Brividi.
      */
-    SOLEMNITY("Solennità","Sensazione di trascendenza, ispirazione. Brividi."),
+    SOLEMNITY(EmotionalSongs.dialoghi.solemnityNome(),EmotionalSongs.dialoghi.solemnitySpiegazione()),
     /**
      * Tenereza - Sensualità, affetto, sentimento di amore.
      */
-    TENDERNESS("Tenerezza","Sensualità, affetto, sentimento di amore."),
+    TENDERNESS(EmotionalSongs.dialoghi.tendernessNome(),EmotionalSongs.dialoghi.tendernessSpiegazione()),
     /**
      * Nostalgia - Sognante, malinconia, sentimento di emotività.
      */
-    NOSTALGIA("Nostalgia","Sognante, malinconia, sentimento di emotività."),
+    NOSTALGIA(EmotionalSongs.dialoghi.nostalgiaNome(),EmotionalSongs.dialoghi.nostalgiaSpiegazione()),
     /**
      * Pacatezza - Rilassamento, serenità, meditatività.
      */
-    CALMNESS("Pacatezza","Rilassamento, serenità, meditatività."),
+    CALMNESS(EmotionalSongs.dialoghi.calmnessNome(),EmotionalSongs.dialoghi.calmnessSpiegazione()),
     /**
      * Potere - Sentirsi forte, eroici , trionfanti, energetici.
      */
-    POWER("Potere","Sentirsi forte, eroici , trionfanti, energetici."),
+    POWER(EmotionalSongs.dialoghi.powerNome(),EmotionalSongs.dialoghi.powerSpiegazione()),
     /**
      * Gioia - Sentirsi come danzanti, raggianti, animati, divertiti.
      */
-    JOY("Gioia","Sentirrsi come danzanti, raggianti, animati, divertiti."),
+    JOY(EmotionalSongs.dialoghi.joyNome(),EmotionalSongs.dialoghi.joySpiegazione()),
     /**
      * Tensione - Sentire nervosismo, impazienza, irritazione.
      */
-    TENSION("Tensione","Sentire nervosismo, impazienza, irritazione."),
+    TENSION(EmotionalSongs.dialoghi.tensionNome(),EmotionalSongs.dialoghi.tensioneSpiegazione()),
     /**
      * Tristezza - Sentirsi depressi, scarichi, dispiaciuti.
      */
-    SADNESS("Tristezza","Sentirsi depressi, scarichi, dispiaciuti.");
+    SADNESS(EmotionalSongs.dialoghi.sadnessNome(),EmotionalSongs.dialoghi.sadnessSpiegazione());
 
     //campi
     final private String nomeEmozione;

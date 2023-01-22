@@ -59,7 +59,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelLeft.setBackground(new java.awt.Color(22, 33, 62));
         innerPanelLeft.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 204, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(0, 0, 102), new java.awt.Color(0, 0, 153)));
         innerPanelLeft.setPreferredSize(new Dimension(viewPlaylistScroll.getWidth(),60*playListsManager.getNumberOfPlaylists()));
-        innerPanelLeft.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
+        innerPanelLeft.setLayout(new java.awt.GridLayout(playListsManager.getNumberOfPlaylists()<20? 20:playListsManager.getNumberOfPlaylists(), 1, 5, 5));
         if(userSet != null){
             for(int i = 0; i<userSet.getSize();i++){
                 innerPanelLeft.add(userSet.getPlaylist(i).buildPlaylistButton(), playListsManager);

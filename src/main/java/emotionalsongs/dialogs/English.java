@@ -340,5 +340,90 @@ public class English extends dialogs{
     public String mediana(){
         return "   median: ";
 }
+
+    @Override
+    public String yearOfPublication() {
+        return "Year of publication: ";
+    }
+
+    @Override
+    public String author() {
+        return "Author: ";
+    }
+
+    @Override
+    public String title() {
+        return "Title: ";
+    }
+
+    @Override
+    public String exportData() {
+        return "Export song's data";
+    }
+
+    @Override
+    public String close() {
+        return "Close";
+    }
+
+    @Override
+    public String songDataView() {
+        return "Song's data view";
+    }
+
+    @Override
+    public String userPlaylists() {
+        return "My playlists";
+    }
+
+    @Override
+    public String createNewPlaylist() {
+        return "New playlist";
+    }
+
+    @Override
+    public String registration() {
+    return "Registration";
+    }
+
+    @Override
+    public String fileNotFound() {
+        return "Necessary file can't be found by the software: ";
+    }
+
+    @Override
+    public String ImpossibleToGenerateReport() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String OpSucessTerminated() {
+        return "Operation succesfully terminated !";
+    }
+
+    @Override
+    public String maxStringLong255() {
+        return "Error: comments' max legth is 255 characters!";
+    }
+
+    @Override
+    public String notAllVoted() {
+        return "Error: All emotions must be judged!";
+    }
+
+    @Override
+    public String voidPlaylistsDenied() {
+        return "Error: void playlists aren't allowed!";
+    }
+
+    @Override
+    public String voteInstructions() {
+        return "In the following form you have the opportunity to\n"+
+                "pass a judgement on the selected song on the base of\n"+
+                "nine emotions, for each one you have to pass a vote 1 to 5;\n"+
+                "where 1 means emotion little perceived and 5 means\n"+
+                "plenty perceived.\n"+
+                "If you want it, you can release a comment,\n of max 255 characters, for each emotion.";
+    }
     
 }

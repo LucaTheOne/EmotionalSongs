@@ -9,8 +9,12 @@ package emotionalsongs.dialogs;
  * Classe astratta che fa da involucro per le classi che gestiscono la lingua del software.
  */
 public abstract class dialogs {
-    
-    //BASICS STRUCTURE: EMOZIONI
+
+    public abstract String yearOfPublication();
+
+    public abstract String author();
+
+    public abstract String title();
     
     public abstract String amazementNome();
     
@@ -194,6 +198,30 @@ public abstract class dialogs {
     public abstract String moda();
     
     public abstract String mediana();
+
+    public abstract String exportData();
+
+    public abstract String close();
+
+    public abstract String songDataView();
+
+    public abstract String userPlaylists();
+
+    public abstract String createNewPlaylist();
+
+    public abstract String registration();
+
+    public abstract String fileNotFound();
+
+    public abstract String ImpossibleToGenerateReport();
+
+    public abstract String OpSucessTerminated();
+
+    public abstract String maxStringLong255(); 
     
+    public abstract String notAllVoted(); 
+
+    public abstract String voidPlaylistsDenied(); 
     
+    public abstract String voteInstructions();
 }

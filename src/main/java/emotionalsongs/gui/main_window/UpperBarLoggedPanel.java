@@ -84,7 +84,7 @@ public class UpperBarLoggedPanel extends javax.swing.JPanel {
         CreditsButton.setBackground(new java.awt.Color(15, 52, 96));
         CreditsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         CreditsButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreditsButton.setText(EmotionalSongs.dialoghi.credits());
+        CreditsButton.setText(emotionalsongs.EmotionalSongs.dialoghi.credits());
         CreditsButton.setAlignmentY(0.0F);
         CreditsButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CreditsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -105,7 +105,7 @@ public class UpperBarLoggedPanel extends javax.swing.JPanel {
         LanguageButton.setBackground(new java.awt.Color(15, 52, 96));
         LanguageButton.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         LanguageButton.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageButton.setText("English");
+        LanguageButton.setText(EmotionalSongs.dialoghi instanceof Italiano ? "English":"Italiano");
         LanguageButton.setAlignmentY(0.0F);
         LanguageButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LanguageButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -173,12 +173,18 @@ public class UpperBarLoggedPanel extends javax.swing.JPanel {
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
        if(emotionalsongs.EmotionalSongs.dialoghi instanceof Italiano){
             emotionalsongs.EmotionalSongs.dialoghi = new English();
-            LanguageButton.setText("English");
+            LanguageButton.setText("Italiano");
+            CreditsButton.setText("Credits");
+            if(mainWindow.getIfLeftOpened()) mainWindow.setLeftPanel(new MenuLeftLogged(mainWindow));
+            else mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
             mainWindow.updateView();
        } else {
            emotionalsongs.EmotionalSongs.dialoghi = new Italiano();
-            LanguageButton.setText("Italiano");
-            mainWindow.updateView();
+           LanguageButton.setText("English");
+           CreditsButton.setText("Crediti");
+           if(mainWindow.getIfLeftOpened()) mainWindow.setLeftPanel(new MenuLeftLogged(mainWindow));
+           else mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
+           mainWindow.updateView();
        }
     }//GEN-LAST:event_LanguageButtonActionPerformed
 

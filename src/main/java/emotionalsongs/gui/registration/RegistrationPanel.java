@@ -262,7 +262,6 @@ public class RegistrationPanel extends javax.swing.JPanel {
         controlloLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.passwordCheck());
         passwordPanel.add(controlloLabel);
 
-        controlloTextField.setText("jPasswordField2");
         controlloTextField.setPreferredSize(new java.awt.Dimension(180, 30));
         passwordPanel.add(controlloTextField);
 

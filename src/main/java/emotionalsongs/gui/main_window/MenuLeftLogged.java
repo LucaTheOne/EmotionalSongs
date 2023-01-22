@@ -4,6 +4,7 @@
 
 package emotionalsongs.gui.main_window;
 
+import emotionalsongs.*;
 import emotionalsongs.gui.repository.*;
 import emotionalsongs.managers.*;
 import java.io.*;
@@ -73,7 +74,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         PlayListButton.setBackground(new java.awt.Color(15, 52, 96));
         PlayListButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         PlayListButton.setForeground(new java.awt.Color(255, 255, 255));
-        PlayListButton.setText("PlayList Utente");
+        PlayListButton.setText(EmotionalSongs.dialoghi.userPlaylists());
         PlayListButton.setToolTipText("");
         PlayListButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
         PlayListButton.setOpaque(true);
@@ -87,7 +88,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(15, 52, 96));
         jButton4.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Crea Nuova Playlist");
+        jButton4.setText(EmotionalSongs.dialoghi.createNewPlaylist());
         jButton4.setToolTipText("");
         jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
         jButton4.setOpaque(true);
@@ -118,7 +119,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
 
         closeButton.setBackground(new java.awt.Color(255, 0, 51));
         closeButton.setForeground(new java.awt.Color(255, 255, 255));
-        closeButton.setText("Esci");
+        closeButton.setText(EmotionalSongs.dialoghi.exit());
         closeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, javax.swing.UIManager.getDefaults().getColor("Objects.Red"), javax.swing.UIManager.getDefaults().getColor("Component.custom.borderColor"), new java.awt.Color(102, 0, 0), new java.awt.Color(153, 0, 0)));
         closeButton.setOpaque(true);
         closeButton.setPreferredSize(new java.awt.Dimension(160, 50));
