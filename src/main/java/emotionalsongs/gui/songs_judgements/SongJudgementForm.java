@@ -1392,7 +1392,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
             }
 
             DataBaseJudgements dataBaseRecords = DataBaseJudgements.getInstance();
-            dataBaseRecords.addNewUserJudgement(new EmotionalJudgement(
+            dataBaseRecords.inserisciEmozioneBrano(new EmotionalJudgement(
                 songToVoteTag,
                 loggedUserId,
                 marks[0],notes[0],//amazement

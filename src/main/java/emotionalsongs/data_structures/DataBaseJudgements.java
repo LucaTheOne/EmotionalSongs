@@ -66,7 +66,7 @@ public class DataBaseJudgements {
      * Riordina il database dopo averlo aggiornatao, ma prima di salvarlo su file sorgente.
      * @param userJudgement giudizio emozionale da aggiungere.
      */    
-    public void addNewUserJudgement(EmotionalJudgement userJudgement){
+    public void inserisciEmozioneBrano(EmotionalJudgement userJudgement){
         if(!empty){
             EmotionalJudgement[] newDataBase = new EmotionalJudgement[dataBaseRecordsArray.length+1];
             for (int i = 0; i < dataBaseRecordsArray.length; i++) {
