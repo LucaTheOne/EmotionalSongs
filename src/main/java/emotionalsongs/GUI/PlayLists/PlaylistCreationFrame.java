@@ -10,7 +10,6 @@ import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.managers.*;
-import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -68,14 +67,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         authorLabel1 = new javax.swing.JLabel();
         yearLabel1 = new javax.swing.JLabel();
         scrollView = new javax.swing.JScrollPane();
-        innerScroll = new JPanel(){
-            @Override
-            protected void paintComponent(Graphics g){
-                Graphics g2 = g.create();
-                g2.drawImage(Utilities.RepoBgIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
-                g2.dispose();
-            }
-        };
+        innerScroll = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
@@ -250,7 +242,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.title());
+        titleLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.title()
+        );
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);

@@ -12,7 +12,6 @@ import emotionalsongs.engines.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
 import java.io.*;
-import javax.swing.*;
 
 /**
  *Classe le cui istanze mostrano il repository di canzoni.
@@ -55,14 +54,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         nextButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
-        scrollView = new JScrollPane(){
-            @Override
-            protected void paintComponent(Graphics g){
-                Graphics g2 = g.create();
-                g2.drawImage(Utilities.RepoBgIcon.getImage(), 0, 0, 1000, 800, null);
-                g2.dispose();
-            }
-        };
+        scrollView = new javax.swing.JScrollPane();
         innerScroll = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));

@@ -5,8 +5,10 @@
 
 package emotionalsongs;
 
+import java.awt.image.*;
 import java.io.*;
 import java.nio.file.*;
+import javax.imageio.*;
 import javax.swing.*;
 
 /**
@@ -56,59 +58,70 @@ public class Utilities {
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine del logo del software.
      */
-    public static ImageIcon logo = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"EmotionalSongsLogo.png");
+    //public static ImageIcon logo = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"EmotionalSongsLogo.png");
+    public static ImageIcon logo = new ImageIcon(loadImage("EmotionalSongsLogo.png"));
+
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine della schermata di caricamento del software.
      */
-    public static ImageIcon loadingFrame = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoadingFrameWhite.png");
+    //public static ImageIcon loadingFrame = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoadingFrameWhite.png");
+    public static ImageIcon loadingFrame = new ImageIcon(loadImage("LoadingFrameWhite.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine della finestra principale del software.
      */
-    public static ImageIcon mainBackGround = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"mainBackground.png");
+    //public static ImageIcon mainBackGround = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"mainBackground.png");
+    public static ImageIcon mainBackGround = new ImageIcon(loadImage("mainBackground.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante di ricerca delle canzoni.
      */
-    public static ImageIcon searchIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"IconaRicerca.png");
+    public static ImageIcon searchIcon = new ImageIcon(loadImage("IconaRicerca.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante indietro della visualizzazione del repository.
      */
-    public static ImageIcon backButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"BackButton.png");
+    public static ImageIcon backButtonIcon = new ImageIcon(loadImage("BackButton.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona del pulsante avanti della visualizzazione del repository.
      */
-    public static ImageIcon nextButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"NextButton.png");  
+    public static ImageIcon nextButtonIcon = new ImageIcon(loadImage("NextButton.png"));  
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del form di login al software.
      */
-    public static ImageIcon logingBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"LoginBG.png");
+    public static ImageIcon logingBG = new ImageIcon(loadImage("LoginBG.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del form di registrazione al software.
      */
-    public static ImageIcon regBG = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegBg.png");
+    public static ImageIcon regBG = new ImageIcon(loadImage("RegBg.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine dell'icona sullo sfondo del form di login al software.
      */
-    public static ImageIcon regIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RegIcon.png");
+    public static ImageIcon regIcon = new ImageIcon(loadImage("RegIcon.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine del pulsante di reset della ricerca di canzoni nel repository.
      */
-    public static ImageIcon clearButtonIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"ClearButtonIcon.png");
+    public static ImageIcon clearButtonIcon = new ImageIcon(loadImage("ClearButtonIcon.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine del pulsante di chiusura del menu di visualizzazione del repository.
      */
-    public static ImageIcon closeButton = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"CloseButton.png");
+    public static ImageIcon closeButton = new ImageIcon(loadImage("CloseButton.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta lo sfondo del pannello che raffigura ogni singola canzone.
      */
-    public static ImageIcon SongViewIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"SongViewBorder.png");
-    /**
-     * Oggetto di tipo ImageIcon che rappresenta l'immagine dello sfondo del repository di canzoni.
-     */
-    public static ImageIcon RepoBgIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"RepoBG.png");
+    public static ImageIcon SongViewIcon = new ImageIcon(loadImage("SongViewBorder.png"));
+    
     /**
      * Oggetto di tipo ImageIcon che rappresenta il pannello dei crediti.
      */
-    public static ImageIcon CreditsIcon = new ImageIcon(basePath+ osFileSeparator+"Risorse"+osFileSeparator+"credits.png");
+    public static ImageIcon CreditsIcon = new ImageIcon(loadImage("credits.png"));
     
     // metodi
     /**
@@ -161,5 +174,15 @@ public class Utilities {
         stringPath += stringPath.endsWith("EmotionalSongs") ? "" : (osFileSeparator+"EmotionalSongs");
         //new PopUpAllert(stringPath).setVisible(true);
         return stringPath;
+    }
+    
+    private static BufferedImage loadImage(String pathString){
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(Utilities.class.getResource(osFileSeparator+"images"+osFileSeparator+pathString));
+        } catch (IOException ex) {
+            ex.getCause();
+        }
+        return img;
     }
 }

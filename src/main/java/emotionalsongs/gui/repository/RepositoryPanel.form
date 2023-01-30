@@ -370,9 +370,6 @@
             <Property name="alignmentY" type="float" value="0.0"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JScrollPane(){&#xa;    @Override&#xa;    protected void paintComponent(Graphics g){&#xa;        Graphics g2 = g.create();&#xa;        g2.drawImage(Utilities.RepoBgIcon.getImage(), 0, 0, 1000, 800, null);&#xa;        g2.dispose();&#xa;    }&#xa;}"/>
-          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
