@@ -154,10 +154,12 @@ public class Utilities {
      * </ul>
      * @return La stringa rappresentante il path comune.
      */  
+    
     private static String generateBasePath(){
         String stringPath = new File(System.getProperty("user.dir")).getParent();
         //new PopUpAllert(stringPath).setVisible(true);
-        stringPath += stringPath.endsWith((osFileSeparator+"EmotionalSongs")) ? "" : (osFileSeparator+"EmotionalSongs");
+        stringPath += stringPath.endsWith("EmotionalSongs") ? "" : (osFileSeparator+"EmotionalSongs");
+        //new PopUpAllert(stringPath).setVisible(true);
         return stringPath;
     }
 }
