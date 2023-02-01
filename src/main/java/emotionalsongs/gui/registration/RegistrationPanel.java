@@ -4,9 +4,9 @@
 
 package emotionalsongs.gui.registration;
 
+import emotionalsongs.managers.RegistrationManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
-import emotionalsongs.managers.*;
 import java.awt.*;
 import javax.swing.*;
 

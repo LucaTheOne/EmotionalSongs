@@ -5,11 +5,11 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
 import emotionalsongs.engines.*;
-import emotionalsongs.managers.*;
 import javax.swing.*;
 
 /**

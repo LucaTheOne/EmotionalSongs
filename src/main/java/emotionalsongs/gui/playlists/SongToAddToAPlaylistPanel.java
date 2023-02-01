@@ -5,8 +5,8 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.managers.*;
 import java.awt.*;
 
 /**

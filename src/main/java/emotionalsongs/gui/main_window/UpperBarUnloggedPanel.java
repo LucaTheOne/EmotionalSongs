@@ -4,11 +4,11 @@
 
 package emotionalsongs.gui.main_window;
 
+import emotionalsongs.managers.RegistrationManager;
 import emotionalsongs.*;
 import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.login.*;
-import emotionalsongs.managers.*;
 
 /**
  * Le istanze di questa classe costruiscono la barra superiore della schermata principale del software

@@ -5,10 +5,10 @@
 
 package emotionalsongs.engines;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
-import emotionalsongs.managers.*;
 
 /**
  * La classe le cui istanze offrono dei metodi per effettuare il login al software. 

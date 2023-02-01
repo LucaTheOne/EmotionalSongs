@@ -4,11 +4,11 @@
 
 package emotionalsongs.basic_structures;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.data_visualizer.*;
 import emotionalsongs.gui.playlists.*;
 import emotionalsongs.gui.repository.*;
-import emotionalsongs.managers.*;
 import java.io.*;
 
 /**

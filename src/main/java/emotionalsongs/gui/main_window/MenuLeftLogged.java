@@ -4,9 +4,9 @@
 
 package emotionalsongs.gui.main_window;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.repository.*;
-import emotionalsongs.managers.*;
 import java.io.*;
 
 /**

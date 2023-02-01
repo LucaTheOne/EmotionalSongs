@@ -5,12 +5,12 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.songs_judgements.*;
-import emotionalsongs.managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
