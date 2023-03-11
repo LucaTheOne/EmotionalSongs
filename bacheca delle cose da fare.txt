@@ -8,4 +8,4 @@ Approfondire il manuale utente con:
 
 Controllare l'utilizzo dei path
 
-Pacchettizzare tutto nel .jar?
+Pacchettizzare tutto nel .jar? -Fatto-
