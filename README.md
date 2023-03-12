@@ -3,5 +3,7 @@
 
 Autori:
 
--    Luca Bolelli
--    Natanail Danailov
+- Luca Bolelli - 
+- Natanail Danailov - 739887
+- Riccardo Rosarin - 
+- Eleonora Macchi - 
