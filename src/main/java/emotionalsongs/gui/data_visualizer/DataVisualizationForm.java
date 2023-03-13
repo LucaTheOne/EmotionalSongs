@@ -149,68 +149,67 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         // Some init code, if you need one, like setting title
         int returnValue = fileChooser.showOpenDialog(parentComponent);
         if ( returnValue == JFileChooser.APPROVE_OPTION) {
-            String whereToSave = fileChooser.getSelectedFile().getAbsolutePath()+
+            String whereToSave = 
+                    fileChooser.getSelectedFile().getAbsolutePath()+
                     System.getProperty("file.separator")+
-                    (dataBuilder.buildDataFolderName().replaceAll(" ", "-").replaceAll(System.getProperty("file.separator"), "_"));
+                    (dataBuilder.buildDataFolderName().replaceAll(" ", "_").replaceAll(System.getProperty("file.separator"), "_"));
             boolean created = new File(whereToSave).mkdir();
             if(!created){
                 new PopUpAllert(EmotionalSongs.dialoghi.ImpossibleToGenerateReport()).setVisible(true);
                 return;
-            }
-            File textFiles = new File(whereToSave + System.getProperty("file.separator") + "Report.txt");
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(textFiles));
-                writer.write(dataBuilder.getSongDataReport());
-                writer.write(dataBuilder.getSongNotesReport());
-                writer.close();
-                //saving single emotions chart
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Amazement_chart"+".png"),
+            } else {
+                File textFiles = new File(whereToSave + System.getProperty("file.separator") + "Report.txt");
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(textFiles));
+                    writer.write(dataBuilder.getSongDataReport());
+                    writer.write(dataBuilder.getSongNotesReport());
+                    writer.close();
+                    //saving single emotions chart
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Amazement_chart"+".png"),
                         dataBuilder.getChart(Emotions.AMAZEMENT_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
                         dataBuilder.getChart(Emotions.SOLEMNITY_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
                         dataBuilder.getChart(Emotions.TENDERNESS_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
                         dataBuilder.getChart(Emotions.NOSTALGIA_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Calmness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Calmness_chart"+".png"),
                         dataBuilder.getChart(Emotions.CALMNESS_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Power_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Power_chart"+".png"),
                         dataBuilder.getChart(Emotions.POWER_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Joy_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Joy_chart"+".png"),
                         dataBuilder.getChart(Emotions.JOY_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tension_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tension_chart"+".png"),
                         dataBuilder.getChart(Emotions.TENSION_INDEX),
                         1000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Sadness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Sadness_chart"+".png"),
                         dataBuilder.getChart(Emotions.SADNESS_INDEX),
                         1000, 1000);
                 
-                //saving aggregated data charts
+                    //saving aggregated data charts
                 
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Mediums_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Mediums_chart"+".png"),
                         dataBuilder.getMediumsChart(),
                         2000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Medians_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Medians_chart"+".png"),
                         dataBuilder.getMediansChart(),
                         2000, 1000);
-                ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Trends_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Trends_chart"+".png"),
                         dataBuilder.getTrendsChart(),
                         2000, 1000);
-                
-                new PopUpAllert(EmotionalSongs.dialoghi.OpSucessTerminated()).setVisible(true);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            
-        }
-        
+                    new PopUpAllert(EmotionalSongs.dialoghi.OpSucessTerminated()).setVisible(true);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }    
+        }   
     }//GEN-LAST:event_ExportButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed

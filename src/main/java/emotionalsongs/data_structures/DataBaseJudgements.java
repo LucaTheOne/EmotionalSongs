@@ -15,7 +15,7 @@ import java.io.*;
  * Classe che rappresenta il contenitore di tutti i giudizi emozionali contenuti nel file Emozioni.dati.txt.
  * Di fatto funge da database locale, inquanto fornisce metodi per la gestione, modifica e manipolazione dei dati.
  * Essendovi la necessita che l' istanza dela classe sia la stessa per tutto il sistema, essa è stata strutturata come singleton.
- */
+*/
 public class DataBaseJudgements {
     
     //Campi

@@ -116,6 +116,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         numberResultsLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel6.add(numberResultsLabel, java.awt.BorderLayout.LINE_END);
 
+        searchBar.setText(EmotionalSongs.dialoghi.searchBarText());
         searchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         searchBar.addActionListener(new java.awt.event.ActionListener() {

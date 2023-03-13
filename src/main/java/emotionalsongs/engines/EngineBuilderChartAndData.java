@@ -311,7 +311,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(calculateAritmethicalMedium(tensionMarks), "tension", "");
         dataset.setValue(calculateAritmethicalMedium(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartMedium(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();
@@ -333,7 +333,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(findTrend(tensionMarks), "tension", "");
         dataset.setValue(findTrend(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.trendsV(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartTrend(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.trendsV(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();
@@ -355,7 +355,7 @@ public class EngineBuilderChartAndData {
         dataset.setValue(findMedian(tensionMarks), "tension", "");
         dataset.setValue(findMedian(sadnessMarks), "sadness", "");
         
-        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartExport(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart(EmotionalSongs.dialoghi.chartMedian(), EmotionalSongs.dialoghi.emotions(), EmotionalSongs.dialoghi.marksMedium(), dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot plot = barChart.getCategoryPlot();
         plot.setRangeGridlinePaint(Color.BLACK);
         NumberAxis yRange = new NumberAxis();

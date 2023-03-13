@@ -9,6 +9,7 @@ package emotionalsongs.dialogs;
  * Classe astratta che fa da involucro per le classi che gestiscono la lingua del software.
  */
 public abstract class dialogs {
+    public abstract String searchBarText();
 
     public abstract String yearOfPublication();
 
@@ -173,8 +174,12 @@ public abstract class dialogs {
     
     /// CHART AND DATA BUILDER
     
-    public abstract String chartExport();
+    public abstract String chartMedian();
     
+    public abstract String chartMedium();
+
+    public abstract String chartTrend();
+
     public abstract String emotions();
 
     public abstract String trendsV();

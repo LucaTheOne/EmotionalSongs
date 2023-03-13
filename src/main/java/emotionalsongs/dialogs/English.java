@@ -10,6 +10,11 @@ package emotionalsongs.dialogs;
  */
 public class English extends dialogs{
     
+    //Generici
+    public String searchBarText(){
+        return "Insert title or author;year";
+    }
+    
     //BASICS STRUCTURE: EMOZIONI
 
      public String amazementName() {
@@ -288,8 +293,16 @@ public class English extends dialogs{
        return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
    }
 
-    public String chartExport() {
-        return "Trend graph of emotion ratings";
+    public String chartMedian() {
+        return "Medians' graph of emotion ratings";
+    }
+
+    public String chartMedium() {
+        return "Mediums' graph of emotion ratings";
+    }
+
+    public String chartTrend() {
+        return "Trends' graph of emotion ratings";
     }
     
     public String emotions(){

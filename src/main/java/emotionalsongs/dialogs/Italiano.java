@@ -7,10 +7,13 @@ package emotionalsongs.dialogs;
  * Classe che implementa i dialogi dell' interfaccia in italiano.
  */
 public class Italiano extends dialogs{
+    //Generici
+    public String searchBarText(){
+        return "Digiti titolo oppure autore;anno";
+    }
     
    //BASICS STRUCTURE: EMOZIONI
 
-    
      public String amazementName() {
          return "Meraviglia";
     }
@@ -284,10 +287,17 @@ public class Italiano extends dialogs{
                 + "la percezione di questa emozione nell' ascolto del brano.";
     }
 
-    public String chartExport() {
-        return "Grafico dei trends dei voti delle emozioni";
+    public String chartMedian() {
+        return "Grafico delle mediane dei voti delle emozioni";
     }
     
+    public String chartMedium(){
+        return "Grafico delle medie aritmetiche dei voti delle emozioni";
+    }
+
+    public String chartTrend(){
+        return "Grafico dei trend dei voti delle emozioni";
+    }
     public String emotions(){
         return "Emozioni";
     }

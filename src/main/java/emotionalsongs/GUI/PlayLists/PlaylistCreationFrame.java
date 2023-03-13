@@ -5,11 +5,11 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
 import emotionalsongs.engines.*;
+import emotionalsongs.managers.*;
 import javax.swing.*;
 
 /**
@@ -141,6 +141,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         numberSelectedSongLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
 
+        searchBar.setText(EmotionalSongs.dialoghi.searchBarText());
         searchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         searchBar.addActionListener(new java.awt.event.ActionListener() {

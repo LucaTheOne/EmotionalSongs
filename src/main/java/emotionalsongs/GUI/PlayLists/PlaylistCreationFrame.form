@@ -370,6 +370,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="searchBar">
                   <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="EmotionalSongs.dialoghi.searchBarText()" type="code"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                         <EtchetBorder/>
