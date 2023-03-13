@@ -5,6 +5,7 @@
 
 package emotionalsongs;
 
+import emotionalsongs.gui.allerter.PopUpAllert;
 import java.awt.image.*;
 import java.io.*;
 import java.nio.file.*;
@@ -179,7 +180,8 @@ public class Utilities {
     private static BufferedImage loadImage(String pathString){
         BufferedImage img = null;
         try {
-            img = ImageIO.read(Utilities.class.getResource(osFileSeparator+"images"+osFileSeparator+pathString));
+            //new PopUpAllert(EmotionalSongs.class.getResource(osFileSeparator+"images"+osFileSeparator+pathString).getPath()).setVisible(true);
+            img = ImageIO.read(EmotionalSongs.class.getResource("/"+"images"+"/"+pathString));
         } catch (IOException ex) {
             ex.getCause();
         }
