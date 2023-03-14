@@ -52,6 +52,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
+        setPreferredSize(new java.awt.Dimension(1020, 650));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(1000, 3200));
@@ -139,6 +140,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         getContentPane().add(mainScrollPane, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
@@ -149,59 +151,64 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         // Some init code, if you need one, like setting title
         int returnValue = fileChooser.showOpenDialog(parentComponent);
         if ( returnValue == JFileChooser.APPROVE_OPTION) {
-            String whereToSave = 
+            String whereToSaveOsDependent = 
                     fileChooser.getSelectedFile().getAbsolutePath()+
                     System.getProperty("file.separator")+
-                    (dataBuilder.buildDataFolderName().replaceAll(" ", "_").replaceAll(System.getProperty("file.separator"), "_"));
-            boolean created = new File(whereToSave).mkdir();
+                    (dataBuilder.buildDataFolderName());
+            boolean created = new File(whereToSaveOsDependent).mkdir();
             if(!created){
                 new PopUpAllert(EmotionalSongs.dialoghi.ImpossibleToGenerateReport()).setVisible(true);
                 return;
             } else {
-                File textFiles = new File(whereToSave + System.getProperty("file.separator") + "Report.txt");
+                File textFiles = new File(whereToSaveOsDependent + System.getProperty("file.separator") + "Report.txt");
+                try {
+                    textFiles.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(textFiles));
                     writer.write(dataBuilder.getSongDataReport());
                     writer.write(dataBuilder.getSongNotesReport());
                     writer.close();
                     //saving single emotions chart
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Amazement_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Amazement_chart"+".png"),
                         dataBuilder.getChart(Emotions.AMAZEMENT_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
                         dataBuilder.getChart(Emotions.SOLEMNITY_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
                         dataBuilder.getChart(Emotions.TENDERNESS_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
                         dataBuilder.getChart(Emotions.NOSTALGIA_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Calmness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Calmness_chart"+".png"),
                         dataBuilder.getChart(Emotions.CALMNESS_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Power_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Power_chart"+".png"),
                         dataBuilder.getChart(Emotions.POWER_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Joy_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Joy_chart"+".png"),
                         dataBuilder.getChart(Emotions.JOY_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Tension_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Tension_chart"+".png"),
                         dataBuilder.getChart(Emotions.TENSION_INDEX),
                         1000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Sadness_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Sadness_chart"+".png"),
                         dataBuilder.getChart(Emotions.SADNESS_INDEX),
                         1000, 1000);
                 
                     //saving aggregated data charts
                 
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Mediums_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Mediums_chart"+".png"),
                         dataBuilder.getMediumsChart(),
                         2000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Medians_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Medians_chart"+".png"),
                         dataBuilder.getMediansChart(),
                         2000, 1000);
-                    ChartUtilities.saveChartAsPNG(new File(whereToSave+System.getProperty("file.separator")+"Trends_chart"+".png"),
+                    ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Trends_chart"+".png"),
                         dataBuilder.getTrendsChart(),
                         2000, 1000);
                     new PopUpAllert(EmotionalSongs.dialoghi.OpSucessTerminated()).setVisible(true);
@@ -230,4 +237,27 @@ public class DataVisualizationForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JPanel subPanel1;
     // End of variables declaration//GEN-END:variables
+    public static void main(String[] args) {
+        String whereToSaveOsDependent = null;
+        JFrame parentComponent = new JFrame();
+        parentComponent.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        JFileChooser fileChooser= new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        // Some init code, if you need one, like setting title
+        int returnValue = fileChooser.showOpenDialog(parentComponent);
+        if ( returnValue == JFileChooser.APPROVE_OPTION) {
+            whereToSaveOsDependent = 
+                    fileChooser.getSelectedFile().getAbsolutePath()+
+                    System.getProperty("file.separator")
+                   ; 
+        }
+        new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Prova").mkdir();
+        File textFiles = new File(whereToSaveOsDependent + System.getProperty("file.separator") +"Prova" + System.getProperty("file.separator") + "Report.txt");
+        try {
+            textFiles.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(whereToSaveOsDependent);
+    }
 }

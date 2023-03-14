@@ -105,7 +105,7 @@ public class EngineBuilderChartAndData {
      * al brano rappresentato.
      */
     public String getEmotionNotes(int emotion){
-        return getArrayNotes()[emotion];
+        return "    "+getArrayNotes()[emotion];
     }
     /**
      * 
@@ -121,50 +121,50 @@ public class EngineBuilderChartAndData {
                 
                 EmotionalSongs.dialoghi.relativeData() +"\n\n"+
                 
-                EmotionalSongs.dialoghi.amazementName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(amazementMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(amazementMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(amazementMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.amazementName()+":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(amazementMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(amazementMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(amazementMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.solemnityName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(solemnityMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(solemnityMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(solemnityMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.solemnityName()+":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(solemnityMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(solemnityMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(solemnityMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.tendernessName() + ":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tendernessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(tendernessMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(tendernessMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.tendernessName() + ":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tendernessMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(tendernessMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(tendernessMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.nostalgiaName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(nostalgiaMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(nostalgiaMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(nostalgiaMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.nostalgiaName()+":\n" +
+                "   " +EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(nostalgiaMarks) + "\n" + 
+                "   " +EmotionalSongs.dialoghi.trend() + findTrend(nostalgiaMarks) + "\n"+
+                "   " +EmotionalSongs.dialoghi.median() + findMedian(nostalgiaMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.calmnessName()+ ":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(calmnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(calmnessMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(calmnessMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.calmnessName()+ ":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(calmnessMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(calmnessMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(calmnessMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.powerName() + ":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(powerMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(powerMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(powerMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.powerName() + ":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(powerMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(powerMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(powerMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.joyName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(joyMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(joyMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(joyMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.joyName()+":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(joyMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(joyMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(joyMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.tensionName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tensionMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(tensionMarks) + "\n"+
-                EmotionalSongs.dialoghi.median() + findMedian(tensionMarks) + "\n\n"+
+                "   " + EmotionalSongs.dialoghi.tensionName()+":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(tensionMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(tensionMarks) + "\n"+
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(tensionMarks) + "\n\n"+
                 
-                EmotionalSongs.dialoghi.sadnessName()+":\n" +
-                EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(sadnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.trend() + findTrend(sadnessMarks) + "\n" + 
-                EmotionalSongs.dialoghi.median() + findMedian(sadnessMarks) + ".\n";
+                "   " + EmotionalSongs.dialoghi.sadnessName()+":\n" +
+                "   " + EmotionalSongs.dialoghi.aritmeticalMedium() + calculateAritmethicalMedium(sadnessMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.trend() + findTrend(sadnessMarks) + "\n" + 
+                "   " + EmotionalSongs.dialoghi.median() + findMedian(sadnessMarks) + ".\n\n";
         return report;
     }
     /**
@@ -173,31 +173,31 @@ public class EngineBuilderChartAndData {
      */
     public String getSongNotesReport(){
         String report = "COMMENTI ESPRESSI DAGLI UTENTI RIGUARDO OGNI EMOZIONE:\n\n"+
-                "Meraviglia:\n"+
+                "   Meraviglia:\n"+
                 getEmotionNotes(Emotions.AMAZEMENT_INDEX)+"\n\n"+
                 
-                "Solennità:\n"+
+                "   Solennità:\n"+
                 getEmotionNotes(Emotions.SOLEMNITY_INDEX)+"\n\n"+
                 
-                "Tenerezza:\n"+
+                "   Tenerezza:\n"+
                 getEmotionNotes(Emotions.TENDERNESS_INDEX)+"\n\n"+
                 
-                "Nostalgia:\n"+
+                "   Nostalgia:\n"+
                 getEmotionNotes(Emotions.NOSTALGIA_INDEX)+"\n\n"+
                 
-                "Calma:\n"+
+                "   Calma:\n"+
                 getEmotionNotes(Emotions.CALMNESS_INDEX)+"\n\n"+
                 
-                "Potere:\n"+
+                "   Potere:\n"+
                 getEmotionNotes(Emotions.POWER_INDEX)+"\n\n"+
                 
-                "Gioia:\n"+
+                "   Gioia:\n"+
                 getEmotionNotes(Emotions.JOY_INDEX)+"\n\n"+
                 
-                "Tensione:\n"+
+                "   Tensione:\n"+
                 getEmotionNotes(Emotions.TENSION_INDEX)+"\n\n"+
                 
-                "Tristezza:\n"+
+                "   Tristezza:\n"+
                 getEmotionNotes(Emotions.SADNESS_INDEX)+"\n";
         
         return report;
@@ -207,7 +207,10 @@ public class EngineBuilderChartAndData {
      * @return Il nome che verrà assegnato alla cartella che conterrà il report esportato, relativo al brano rappresentato.
      */
     public String buildDataFolderName(){
-        return "Report_"+analizingSong.getTitle()+"_"+analizingSong.getAuthor()+"_"+analizingSong.getYear()+"_"+analizingSong.getTag();
+        String folderName = "Report_"+analizingSong.getTitle()+"_"+analizingSong.getAuthor()+"_"+analizingSong.getYear()+"_"+analizingSong.getTag();
+        folderName.replace(" ","_");
+        folderName.replace(System.getProperty("file.separator"),"_");
+        return folderName ;
     }
     
     // private internal methods

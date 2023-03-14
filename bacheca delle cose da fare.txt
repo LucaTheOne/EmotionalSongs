@@ -6,6 +6,6 @@ Approfondire il manuale utente con:
 
 - procedura di usabilità (frecce, barra di ricerca, etc.)
 
-Controllare l'utilizzo dei path
+Controllare l'utilizzo dei path -Fatto-
 
 Pacchettizzare tutto nel .jar? -Fatto-
