@@ -69,7 +69,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.userId());
+        jLabel1.setText(emotionalsongs.EmotionalSongs.dialoghi.idUtente());
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 255, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -79,7 +79,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         wrongId.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
         wrongId.setForeground(new java.awt.Color(255, 51, 51));
-        wrongId.setText(emotionalsongs.EmotionalSongs.dialoghi.userIdNotFound());
+        wrongId.setText(emotionalsongs.EmotionalSongs.dialoghi.idUtenteInes());
         wrongId.setVisible(false);
         getContentPane().add(wrongId, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 263, -1, -1));
 
