@@ -1,5 +1,6 @@
+//Luca Bolelli - 749137 - VA
+//Natanail Danailov Danailov - 739887 - VA
 package serverES;
-
 
 import java.net.*;
 import java.rmi.*;
@@ -10,8 +11,7 @@ import java.util.logging.*;
 
 
 /**
- *
- * @author big
+ *Classe contenente il metodo main da cui avrà inizio la vita operativa del server.
  */
 public class Server {
     private static final int PORT_TO_DB = 9876;
@@ -19,7 +19,11 @@ public class Server {
     private static InetAddress SERVER_INET_ADDRESS = null;
     private static Registry registroServizi = null;
     private Vector<String> servicesNamesVector;
-
+    /**
+     * Con la chiamata a tale costruttore si settano i dati necessari alla sua operatività,
+     * nonchè si registrano in un registro tutti i servizi che offre.
+     * @throws RemoteException 
+     */
     public Server() throws RemoteException {
         try {
             SERVER_INET_ADDRESS = InetAddress.getLocalHost();
@@ -32,6 +36,12 @@ public class Server {
         }  
     }
     
+    /**
+     * Metodo che permette di aggiungere un servizio remoto al registry, passandogli il nome con il quale ci si riferirà 
+     * a tale servizio e l' oggetto remoto il quale vi rappresenta.
+     * @param serviceName Stringa con il nome da assegnare al servizio.
+     * @param servizio Oggetto remoto da aggiungere come servizio.
+     */
     private void addService(String serviceName,Remote servizio){
         try {
             registroServizi.rebind(serviceName, servizio);
@@ -39,7 +49,9 @@ public class Server {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Metodo tramite il quale tutti i servizi del server vengono resi non più disponibili.
+     */
     protected void terminateServices(){
         if(!servicesNamesVector.isEmpty()){
             for(String serv: servicesNamesVector){

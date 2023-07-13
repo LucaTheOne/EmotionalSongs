@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+//Luca Bolelli - 749137 - VA
+//Natanail Danailov Danailov - 739887 - VA
 package serverES;
 
 /**
- *
- * @author big
+ * Classe "slave" il cui scopo è di offrire alla classe ServerControlGui un interfaccia grafica verso l' utente
+ * per domandargli se vuole o meno esportare il contenuto del terminale.
  */
 class AskIfTOSaveLog extends javax.swing.JFrame {
 
     /**
-     * Creates new form AskIfTOSaveLog
+     * Crea l' istanza di questa classe.
+     * NB: il frame è reso subito visibile con l' instanziazione della classe.
      */
-    ServerControlGUI controlGUI;
-    public AskIfTOSaveLog(ServerControlGUI controlGUI) {
+    private ServerControlGUI controlGUI;
+    protected AskIfTOSaveLog(ServerControlGUI controlGUI) {
         this.controlGUI=controlGUI;
         initComponents();
         setVisible(true);

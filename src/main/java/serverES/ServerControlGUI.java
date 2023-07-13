@@ -1,3 +1,5 @@
+//Luca Bolelli - 749137 - VA
+//Natanail Danailov Danailov - 739887 - VA
 
 package serverES;
 
@@ -6,8 +8,8 @@ import java.time.*;
 import javax.swing.*;
 
 /**
- *
- * @author big
+ * Classe il cui unico scopo è quello di permettere all' utenti di controllare il server,
+ * fornendovi una basilare interfaccia grafica.
  */
 class ServerControlGUI extends javax.swing.JFrame {
     
@@ -15,9 +17,12 @@ class ServerControlGUI extends javax.swing.JFrame {
     private int port;
     private Server server;
     /**
-     * Creates new form ServerControlGUI
+     * Crea una nuova istanza di questa classe;
+     * @param InetAddressServer Stringa con l' indirizzo ip della macchina corrente.
+     * @param port Porta sul quale il registry è operativo.
+     * @param server Riferimento al server che deve controllare.
      */
-    public ServerControlGUI(String InetAddressServer,int port,Server server) {
+    protected ServerControlGUI(String InetAddressServer,int port,Server server) {
         addr=InetAddressServer;
         this.port=port;
         this.server=server;
@@ -176,7 +181,12 @@ class ServerControlGUI extends javax.swing.JFrame {
     private void ExportLogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportLogButtonActionPerformed
         exportAction(false);
     }//GEN-LAST:event_ExportLogButtonActionPerformed
-    
+    /**
+     * Metodo il quale permette di esportare il contenuto del log in un file di testo.
+     * Permette all' utente di sceglierne la destinazione.
+     * Vi si può passare un parametro boolean il quale se è true fa si che questo frame venga chiuso.
+     * @param dispose Se true chiude il corrente frame.
+     */
     protected void exportAction(boolean dispose){
         addLineLog("Console: exporting current log...\n"+
                 "Select where to export by the opened window");
@@ -209,41 +219,12 @@ class ServerControlGUI extends javax.swing.JFrame {
         addLineLog("All services shutted down!\n");
         new AskIfTOSaveLog(this);
     }//GEN-LAST:event_ExitButtonActionPerformed
-
     /**
-     * @param args the command line arguments
+     * Metodo tramite il quale si può aggiungere una riga di testo al log.
+     * NB: ritorno a capo a fine riga incluso nel metodo.
+     * @param stringToAddToLog Stringa da aggiungere al terminale.
      */
-    /**
-    public static void main(String args[]) {
-        
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServerControlGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServerControlGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServerControlGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServerControlGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ServerControlGUI().setVisible(true);
-            }
-        });
-    }*/
-    
-    public void addLineLog(String stringToAddToLog){
+    protected void addLineLog(String stringToAddToLog){
         String tmp = logTextArea.getText();
         String formatted = LocalDateTime.now().toString()+":"+
                 stringToAddToLog+"\n";
