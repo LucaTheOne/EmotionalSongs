@@ -5,12 +5,12 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.songs_judgements.*;
+import emotionalsongs.managers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -200,6 +200,8 @@ public class SongPanel extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        voteFrame.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         voteFrame.add(new SongJudgementForm(userId, representedSong.getTag(),this,voteFrame));
         voteFrame.setVisible(canBeVotedByUser);
         PopUpAllert instructions = new PopUpAllert(EmotionalSongs.dialoghi.voteInstructions());
