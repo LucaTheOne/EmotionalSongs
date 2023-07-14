@@ -10,6 +10,7 @@ import javax.swing.*;
 /**
  * Classe il cui unico scopo è quello di permettere all' utenti di controllare il server,
  * fornendovi una basilare interfaccia grafica.
+ * NB: il frame è reso subito visibile con l' instanziazione della classe.
  */
 class ServerControlGUI extends javax.swing.JFrame {
     
@@ -39,20 +40,33 @@ class ServerControlGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        globalPanel = new javax.swing.JPanel();
+        exitButtonPanel = new javax.swing.JPanel();
         ExitButton = new javax.swing.JButton();
+        dataPanel = new javax.swing.JPanel();
         ServiceDataInfo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         IPLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        logAndExportButtonPanel = new javax.swing.JPanel();
+        exportButtonPanel = new javax.swing.JPanel();
+        ExportLogButton = new javax.swing.JButton();
+        logPanel = new javax.swing.JPanel();
         ServerLogTerminal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logTextArea = new javax.swing.JTextArea();
-        ExportLogButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+
+        globalPanel.setBackground(new java.awt.Color(0, 0, 102));
+        globalPanel.setLayout(new java.awt.BorderLayout(0, 4));
+
+        exitButtonPanel.setOpaque(false);
+        exitButtonPanel.setPreferredSize(new java.awt.Dimension(1000, 60));
+        exitButtonPanel.setLayout(new java.awt.BorderLayout());
 
         ExitButton.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         ExitButton.setText("Close Server's Services");
@@ -61,22 +75,34 @@ class ServerControlGUI extends javax.swing.JFrame {
                 ExitButtonActionPerformed(evt);
             }
         });
+        exitButtonPanel.add(ExitButton, java.awt.BorderLayout.CENTER);
+
+        globalPanel.add(exitButtonPanel, java.awt.BorderLayout.PAGE_END);
+
+        dataPanel.setOpaque(false);
+        dataPanel.setPreferredSize(new java.awt.Dimension(1000, 300));
+        dataPanel.setLayout(new java.awt.BorderLayout());
 
         ServiceDataInfo.setBackground(new java.awt.Color(255, 255, 255));
+        ServiceDataInfo.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Service's ip address:");
 
         IPLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
+        IPLabel.setForeground(new java.awt.Color(255, 255, 255));
         IPLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IPLabel.setText(addr);
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Service's port:");
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText(String.valueOf(port));
 
@@ -85,18 +111,18 @@ class ServerControlGUI extends javax.swing.JFrame {
         ServiceDataInfoLayout.setHorizontalGroup(
             ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ServiceDataInfoLayout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addGroup(ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(IPLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(144, 144, 144))
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addGroup(ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(204, 204, 204))
         );
         ServiceDataInfoLayout.setVerticalGroup(
             ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServiceDataInfoLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(IPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,10 +130,51 @@ class ServerControlGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        dataPanel.add(ServiceDataInfo, java.awt.BorderLayout.CENTER);
+
+        globalPanel.add(dataPanel, java.awt.BorderLayout.PAGE_START);
+
+        logAndExportButtonPanel.setOpaque(false);
+        logAndExportButtonPanel.setLayout(new java.awt.BorderLayout());
+
+        exportButtonPanel.setOpaque(false);
+        exportButtonPanel.setPreferredSize(new java.awt.Dimension(200, 280));
+
+        ExportLogButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ExportLogButton.setText("Export log");
+        ExportLogButton.setPreferredSize(new java.awt.Dimension(112, 29));
+        ExportLogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportLogButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout exportButtonPanelLayout = new javax.swing.GroupLayout(exportButtonPanel);
+        exportButtonPanel.setLayout(exportButtonPanelLayout);
+        exportButtonPanelLayout.setHorizontalGroup(
+            exportButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exportButtonPanelLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(ExportLogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        exportButtonPanelLayout.setVerticalGroup(
+            exportButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exportButtonPanelLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(ExportLogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        logAndExportButtonPanel.add(exportButtonPanel, java.awt.BorderLayout.LINE_END);
+
+        logPanel.setLayout(new java.awt.BorderLayout());
+
         ServerLogTerminal.setBackground(new java.awt.Color(0, 0, 0));
+        ServerLogTerminal.setLayout(new java.awt.BorderLayout());
 
         logTextArea.setBackground(new java.awt.Color(0, 0, 0));
         logTextArea.setColumns(20);
@@ -116,63 +183,15 @@ class ServerControlGUI extends javax.swing.JFrame {
         logTextArea.setText("SERVER CONSOLE LOG STARTED: "+LocalDateTime.now().toString()+"\n"+"(output only)"+"\n");
         jScrollPane1.setViewportView(logTextArea);
 
-        javax.swing.GroupLayout ServerLogTerminalLayout = new javax.swing.GroupLayout(ServerLogTerminal);
-        ServerLogTerminal.setLayout(ServerLogTerminalLayout);
-        ServerLogTerminalLayout.setHorizontalGroup(
-            ServerLogTerminalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ServerLogTerminalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        ServerLogTerminalLayout.setVerticalGroup(
-            ServerLogTerminalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ServerLogTerminalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        ServerLogTerminal.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        ExportLogButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        ExportLogButton.setText("Export log");
-        ExportLogButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExportLogButtonActionPerformed(evt);
-            }
-        });
+        logPanel.add(ServerLogTerminal, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ExitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ServerLogTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ExportLogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(ServiceDataInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(ServiceDataInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ServerLogTerminal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ExportLogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        logAndExportButtonPanel.add(logPanel, java.awt.BorderLayout.CENTER);
+
+        globalPanel.add(logAndExportButtonPanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(globalPanel, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -210,8 +229,15 @@ class ServerControlGUI extends javax.swing.JFrame {
             addLineLog("Report Exported!");
         } else{
             addLineLog("Error: impossible to generate report");
+            if(dispose) dispose();
+            System.exit(0);
+            return;
         }
-        if(dispose) dispose();
+        if(dispose){
+            dispose();
+            System.exit(0);
+        }
+        
     }
     
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
@@ -239,10 +265,16 @@ class ServerControlGUI extends javax.swing.JFrame {
     private javax.swing.JLabel IPLabel;
     private javax.swing.JPanel ServerLogTerminal;
     private javax.swing.JPanel ServiceDataInfo;
+    private javax.swing.JPanel dataPanel;
+    private javax.swing.JPanel exitButtonPanel;
+    private javax.swing.JPanel exportButtonPanel;
+    private javax.swing.JPanel globalPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel logAndExportButtonPanel;
+    private javax.swing.JPanel logPanel;
     private javax.swing.JTextArea logTextArea;
     // End of variables declaration//GEN-END:variables
 }
