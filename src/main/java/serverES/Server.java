@@ -14,11 +14,13 @@ import java.util.logging.*;
  *Classe contenente il metodo main da cui avrà inizio la vita operativa del server.
  */
 public class Server {
+    
     private static final int PORT_TO_DB = 9876;
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
     private static InetAddress SERVER_INET_ADDRESS = null;
     private static Registry registroServizi = null;
     private Vector<String> servicesNamesVector;
+    
     /**
      * Con la chiamata a tale costruttore si settano i dati necessari alla sua operatività,
      * nonchè si registrano in un registro tutti i servizi che offre.
@@ -27,9 +29,11 @@ public class Server {
     public Server() throws RemoteException {
         try {
             SERVER_INET_ADDRESS = InetAddress.getLocalHost();
-            registroServizi =LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
+            registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
             servicesNamesVector = new Vector<>();
+            
             //adding all necessary service to the vector with addService
+            
         } catch (java.net.UnknownHostException ex) {
             System.err.println("Impossibile avviare il server!");
             System.err.println(ex.getMessage());
@@ -49,6 +53,7 @@ public class Server {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     /**
      * Metodo tramite il quale tutti i servizi del server vengono resi non più disponibili.
      */

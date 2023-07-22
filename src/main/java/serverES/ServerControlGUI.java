@@ -245,6 +245,7 @@ class ServerControlGUI extends javax.swing.JFrame {
         addLineLog("All services shutted down!\n");
         new AskIfTOSaveLog(this);
     }//GEN-LAST:event_ExitButtonActionPerformed
+    
     /**
      * Metodo tramite il quale si può aggiungere una riga di testo al log.
      * NB: ritorno a capo a fine riga incluso nel metodo.
@@ -259,6 +260,7 @@ class ServerControlGUI extends javax.swing.JFrame {
         logTextArea.validate();
         logTextArea.repaint();
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton ExportLogButton;

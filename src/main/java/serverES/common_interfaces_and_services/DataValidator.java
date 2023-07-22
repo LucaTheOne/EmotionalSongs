@@ -1,13 +1,17 @@
 
 package serverES.common_interfaces_and_services;
 
+
+import clientES.common_interfaces_and_services.*;
 import java.rmi.*;
 
 /**
  * Interfaccia che descrive i metodi dell' oggetto remoto che si dovrà occupare
  * di validare i dati prima del loro inserimento nel database.
  */
+
 public interface DataValidator extends Remote{
+    
     //Song and playlist data validation
     /**
      * Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
@@ -17,6 +21,7 @@ public interface DataValidator extends Remote{
      * @return true se l' uente non ha già espresso un parere, false altrimenti.
      */
     public boolean userCanVoteSong(String userId,String songId);
+    
     /**
      * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
      * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
@@ -31,6 +36,7 @@ public interface DataValidator extends Remote{
      * 5 - Commento contiene più di 256 caratteri.
      */
     public int validateVote(String IDSong,int[] emotionalMarks,String Comment);
+    
     /**
      * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
      * Ritorna 0 se si, altrimenti un intero rappresentante un errore
@@ -38,7 +44,7 @@ public interface DataValidator extends Remote{
      * @param songsIds array con gli ids delle canzoni da aggiungervi.
      * @return 0 - operazione terminata con successo,
      * 1 - almeno uno degli IDs delle canzoni non è valido.
-     * 2 - l' id della canzone non è valido.
+     * 2 - l' id della playlist non è valido.
      */
     public int validatePlaylist(String playlistId,String[] songsIds);
     
@@ -92,6 +98,7 @@ public interface DataValidator extends Remote{
             String provincia,
             String città
     );
+    
     /**
      * Metodo per la verifica dei dati di login.
      * Ritorna 0 se i dati sono validi.

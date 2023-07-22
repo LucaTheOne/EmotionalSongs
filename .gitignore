@@ -1,2 +1,4 @@
 /target/
 /EmotionalSongs.app/Contents/Java/EmotionalSongs/target/
+.DS_Store
+src/main/java/.DS_Store
