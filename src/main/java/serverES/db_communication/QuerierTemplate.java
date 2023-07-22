@@ -10,6 +10,7 @@ import java.sql.*;
  */
 public class QuerierTemplate {
     private int index = 0;
+    Connection connector = null;
     String currentString = "";
     File initializationFile = new File("/Users/big/Desktop/FiveHundredThousandSongs.txt");
     public QuerierTemplate(Connection DBConnection) {
