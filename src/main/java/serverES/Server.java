@@ -15,7 +15,6 @@ import java.util.logging.*;
  */
 public class Server {
     
-    private static final int PORT_TO_DB = 9876;
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
     private static InetAddress SERVER_INET_ADDRESS = null;
     private static Registry registroServizi = null;

@@ -6,10 +6,14 @@
  */
 package serverES.db_communication;
 
+import java.sql.*;
+
 /**
  *
  * @author big
  */
 public class DBQuerier {
+    
+    private Connection ConnectionToDB = DBConnector.getConnection(DBConnector.PORT_TO_DB);
     
 }

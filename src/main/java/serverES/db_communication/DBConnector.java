@@ -8,6 +8,8 @@ import java.sql.*;
  * @author big
  */
 public class DBConnector {
+    protected static final int PORT_TO_DB = 9876;
+    
     public static Connection getConnection(int DBPort) {
         Connection connection = null;
         final String url = "jdbc:postgresql://localhost:"+DBPort+"/postgres";
