@@ -3,7 +3,7 @@
 
 Autori:
 
-- Luca Bolelli - 
+- Luca Bolelli - 749137
 - Natanail Danailov - 739887
-- Riccardo Rosarin - 
-- Eleonora Macchi - 
+- Riccardo Maria Rosarin - 749914
+- Eleonora Macchi - 748736
