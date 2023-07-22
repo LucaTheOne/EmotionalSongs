@@ -1,7 +1,11 @@
-
+/*
+ * Luca Bolelli - 749137 - VA
+ * Natanail Danailov Danailov - 739887 - VA
+ * Riccardo Rosarin - 749914 - VA
+ * Eleonora Macchi - 748736 - VA
+ */
 package serverES.common_interfaces_and_services;
 
-import clientES.common_interfaces_and_services.*;
 import java.rmi.*;
 
 /**
@@ -11,6 +15,7 @@ import java.rmi.*;
 public interface DataManager extends Remote {
     
     //Songs and playlists data management
+    //luca
     /**
      * Metodo usato per interrogare il database, ritorna un array di stringhe, nel quale in ogni posizione ci sono i dati di una canzone,
      * Separati da "$SEP$", a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
@@ -20,7 +25,7 @@ public interface DataManager extends Remote {
      * @return Array di stringhe con i dati delle canzoni contenute tra startIndex ed endIndex compresi.
      */
     public String[] requestRepositorysSongByIndex(int startIndex,int endIndex);
-    
+    //Natan
     /**
      * Metodo usato per richiedere al DB un array di stringhe, 
      * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
@@ -30,7 +35,7 @@ public interface DataManager extends Remote {
      * @return array di Stringhe contenente id e nomi delle playlist.
      */
     public String[] requestPlaylistsUser(String idUser);
-    
+    //Natan
     /**
      * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
      * i dati di una canzone  della playlist passata come argomento, separati da $SEP$;
@@ -39,7 +44,7 @@ public interface DataManager extends Remote {
      * @return array di stringhe contenenti i dati delle canzoni della playlist.
      */
     public String[] requestPlaylistSongs(String PlaylistID);
-    
+    //Natan
     /**
      * Metodo che interroga il DB per ottenere informazioni riguardo 
      * ai giudizi emozionali relativi alla canzone il cui id è passato come argomento.
@@ -50,6 +55,7 @@ public interface DataManager extends Remote {
      */
     public String[] requestDataJudgementsSong(String idSong);
     
+    //luca
     /**
      * Comando per aggiornare il DB con una nuova playlist.
      * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
@@ -61,7 +67,7 @@ public interface DataManager extends Remote {
      * 1 - operazione non andata a buon fine.
      */
     public int createPlaylist(String IDNuovaPlaylist,String nomeNuovaPlaylist,String userIdProprietario,String[] idsSongsContenute);
-    
+    //luca
     /**
      * Comando che aggiorna il DB con un nuovo giudizio emozionale.
      * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
@@ -74,6 +80,7 @@ public interface DataManager extends Remote {
     public int voteSongEmotion(String IDSong,int[] emotionalMarks,String Comment);
     
     //user data management
+    //Riccardo
     /**
      * Metodo che aggiorna il DB con un nuovo utente.
      * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.

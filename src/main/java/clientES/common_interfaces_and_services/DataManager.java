@@ -1,4 +1,9 @@
-
+/*
+ * Luca Bolelli - 749137 - VA
+ * Natanail Danailov Danailov - 739887 - VA
+ * Riccardo Rosarin - 749914 - VA
+ * Eleonora Macchi - 748736 - VA
+ */
 package clientES.common_interfaces_and_services;
 
 import java.rmi.*;

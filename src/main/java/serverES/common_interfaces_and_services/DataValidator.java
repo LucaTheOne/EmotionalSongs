@@ -1,8 +1,12 @@
-
+/*
+ * Luca Bolelli - 749137 - VA
+ * Natanail Danailov Danailov - 739887 - VA
+ * Riccardo Rosarin - 749914 - VA
+ * Eleonora Macchi - 748736 - VA
+ */
 package serverES.common_interfaces_and_services;
 
 
-import clientES.common_interfaces_and_services.*;
 import java.rmi.*;
 
 /**
@@ -13,6 +17,7 @@ import java.rmi.*;
 public interface DataValidator extends Remote{
     
     //Song and playlist data validation
+    //Eleonora
     /**
      * Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
      * per una determinata canzone (identificata dal suo id).
@@ -21,7 +26,7 @@ public interface DataValidator extends Remote{
      * @return true se l' uente non ha già espresso un parere, false altrimenti.
      */
     public boolean userCanVoteSong(String userId,String songId);
-    
+    //Eleonora
     /**
      * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
      * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
@@ -36,7 +41,7 @@ public interface DataValidator extends Remote{
      * 5 - Commento contiene più di 256 caratteri.
      */
     public int validateVote(String IDSong,int[] emotionalMarks,String Comment);
-    
+    //Eleonora
     /**
      * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
      * Ritorna 0 se si, altrimenti un intero rappresentante un errore
@@ -49,6 +54,7 @@ public interface DataValidator extends Remote{
     public int validatePlaylist(String playlistId,String[] songsIds);
     
     //User data validation
+    //Riccardo
     /**
      * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.
      * Rittorna 0 se lo sono, altrimenti un intero rappresentante il dato non valido e le cause.
@@ -98,7 +104,7 @@ public interface DataValidator extends Remote{
             String provincia,
             String città
     );
-    
+    //Riccardo
     /**
      * Metodo per la verifica dei dati di login.
      * Ritorna 0 se i dati sono validi.
