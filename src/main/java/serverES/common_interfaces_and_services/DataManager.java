@@ -25,6 +25,7 @@ public interface DataManager extends Remote {
      * @return Array di stringhe con i dati delle canzoni contenute tra startIndex ed endIndex compresi.
      */
     public String[] requestRepositorysSongByIndex(int startIndex,int endIndex);
+    
     //Natan
     /**
      * Metodo usato per richiedere al DB un array di stringhe, 
@@ -35,6 +36,7 @@ public interface DataManager extends Remote {
      * @return array di Stringhe contenente id e nomi delle playlist.
      */
     public String[] requestPlaylistsUser(String idUser);
+    
     //Natan
     /**
      * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
@@ -44,6 +46,7 @@ public interface DataManager extends Remote {
      * @return array di stringhe contenenti i dati delle canzoni della playlist.
      */
     public String[] requestPlaylistSongs(String PlaylistID);
+    
     //Natan
     /**
      * Metodo che interroga il DB per ottenere informazioni riguardo 
@@ -67,6 +70,7 @@ public interface DataManager extends Remote {
      * 1 - operazione non andata a buon fine.
      */
     public int createPlaylist(String IDNuovaPlaylist,String nomeNuovaPlaylist,String userIdProprietario,String[] idsSongsContenute);
+    
     //luca
     /**
      * Comando che aggiorna il DB con un nuovo giudizio emozionale.

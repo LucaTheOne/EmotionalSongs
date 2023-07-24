@@ -21,20 +21,25 @@ class ServerControlGUI extends javax.swing.JFrame {
     private String addr;
     private int port;
     private Server server;
+    public static ServerControlGUI serverControlGui = null;
     /**
      * Crea una nuova istanza di questa classe;
      * @param InetAddressServer Stringa con l' indirizzo ip della macchina corrente.
      * @param port Porta sul quale il registry è operativo.
      * @param server Riferimento al server che deve controllare.
      */
-    protected ServerControlGUI(String InetAddressServer,int port,Server server) {
+    private ServerControlGUI(String InetAddressServer,int port,Server server) {
         addr=InetAddressServer;
         this.port=port;
         this.server=server;
         initComponents();
         setVisible(true);
     }
-
+    
+    protected static ServerControlGUI obtainControlGuiReference(String InetAddressServer,int port,Server server){
+        if(serverControlGui == null) serverControlGui = new ServerControlGUI(InetAddressServer,port,server);
+        return serverControlGui;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

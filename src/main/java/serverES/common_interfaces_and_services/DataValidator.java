@@ -26,6 +26,7 @@ public interface DataValidator extends Remote{
      * @return true se l' uente non ha già espresso un parere, false altrimenti.
      */
     public boolean userCanVoteSong(String userId,String songId);
+    
     //Eleonora
     /**
      * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
@@ -41,10 +42,11 @@ public interface DataValidator extends Remote{
      * 5 - Commento contiene più di 256 caratteri.
      */
     public int validateVote(String IDSong,int[] emotionalMarks,String Comment);
+    
     //Eleonora
     /**
      * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
-     * Ritorna 0 se si, altrimenti un intero rappresentante un errore
+     * Ritorna 0 se si, altrimenti un intero rappresentante un errore.
      * @param playlistId Id della nuova playlist
      * @param songsIds array con gli ids delle canzoni da aggiungervi.
      * @return 0 - operazione terminata con successo,
@@ -104,6 +106,7 @@ public interface DataValidator extends Remote{
             String provincia,
             String città
     );
+    
     //Riccardo
     /**
      * Metodo per la verifica dei dati di login.

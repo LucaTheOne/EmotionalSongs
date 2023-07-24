@@ -13,6 +13,7 @@ import java.sql.*;
  * @author big
  */
 public class DBConnector {
+    
     protected static final int PORT_TO_DB = 9876;
     
     public static Connection getConnection(int DBPort) {
@@ -35,7 +36,8 @@ public class DBConnector {
         return null;
     }
     
+    /*
     public static void main(String[] args) {
         DBConnector.getConnection(9876);
-    }
+    }*/
 }

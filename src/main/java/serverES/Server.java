@@ -52,6 +52,7 @@ public class Server {
     private void addService(String serviceName,Remote servizio){
         try {
             registroServizi.rebind(serviceName, servizio);
+            servicesNamesVector.add(serviceName);
         } catch (RemoteException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,11 +73,12 @@ public class Server {
                 }
             } 
         }
+        
     }
     
     
     public static void main(String[] args) throws RemoteException {
         Server server = new Server();
-        ServerControlGUI terminal = new ServerControlGUI(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES, server);
+        ServerControlGUI terminal = ServerControlGUI.obtainControlGuiReference(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES, server);
     }
 }
