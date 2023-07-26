@@ -15,7 +15,33 @@ import java.rmi.*;
 public interface DataManager extends Remote {
     
     //Songs and playlists data management
-    //luca
+    
+    //luca - fatto
+    /**
+     * Metodo usato per interrogare il database, ritorna un array di stringhe, 
+     * nel quale in ogni posizione ci sono i dati di una canzone contenente nel titolo la stringa passata
+     * come argomento.
+     * Gli elementi saranno separati da "£SEP£". 
+     *      -Formato: "ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     * @param title stringa da ricercare nel titolo delle canzoni.
+     * @return Array di stringhe con i dati delle canzoni contenenti la stringa argomento nel titolo.
+     */
+    public String[] cercaBranoMusicale(String title);
+    
+    //luca - fatto
+    /**
+     * Metodo usato per interrogare il database; ritorna un array di stringhe, 
+     * nel quale in ogni posizione ci sono i dati di una canzone che contiene sia, nel campo autore, la stringa passata
+     * come argomento che , nel campo anno, l' intero passato come argomento.
+     * Gli elementi saranno separati da "£SEP£".
+     *      -Formato: "ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     * @param author Stringa che si vuole ricercare nel campo autore.
+     * @param year anno che si intende cercare.
+     * @return Array di stringhe con i dati delle canzoni cui la stringa argomento compare nel campo autore e l' intero compare nel campo anno.
+     */
+    public String[] cercaBranoMusicale(String author,int year);
+    
+//luca - fatto
     /**
      * Metodo usato per interrogare il database, ritorna un array di stringhe, nel quale in ogni posizione ci sono i dati di una canzone,
      * Separati da "£SEP£", a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
@@ -58,7 +84,7 @@ public interface DataManager extends Remote {
      */
     public String[] requestDataJudgementsSong(String idSong);
     
-    //luca
+    //luca - fatto
     /**
      * Comando per aggiornare il DB con una nuova playlist.
      * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
@@ -69,9 +95,9 @@ public interface DataManager extends Remote {
      * @return 0 - operazione completata con successo.
      * 1 - operazione non andata a buon fine.
      */
-    public int createPlaylist(String IDNuovaPlaylist,String nomeNuovaPlaylist,String userIdProprietario,String[] idsSongsContenute);
+    public int updatePlaylistTable(String nomeNuovaPlaylist,String userIdProprietario,String[] idsSongsContenute);
     
-    //luca
+    //luca - fatto
     /**
      * Comando che aggiorna il DB con un nuovo giudizio emozionale.
      * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
@@ -80,8 +106,9 @@ public interface DataManager extends Remote {
      * @param Comment eventuale commento dell' utente, null altrimenti.
      * @return 0 - operazione completata con successo.
      * 1 - operazione non andata a buon fine.
+     * 2 - operazione abortita causa: array voti non valido;
      */
-    public int voteSongEmotion(String IDSong,int[] emotionalMarks,String Comment);
+    public int voteSongEmotion(String idUser,String idSong,int[] emotionalMarks,String Comment);
     
     //user data management
     //Riccardo

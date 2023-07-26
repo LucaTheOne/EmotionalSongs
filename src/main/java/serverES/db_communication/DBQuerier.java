@@ -23,9 +23,56 @@ public class DBQuerier {
         this.connectionToDB = connectionToDB;
     }
     
+    /**
+     * Metodo che ritorna un array di stringhe, in ogni sua posizione ci sono i dati
+     * di una canzone cui il titolo coincide alla stringa passata come argomento, 
+     * oppure che vi è contenuta in esso.
+     * NB: i match precisi sono nelle prime posizioni dell' array.
+     * @param title Stringa da cercare nei titoli delle canzoni.
+     * @return array di stringhe rappresentanti le canzoni che soddisfano i criteri di ricerca.
+     */
+    public String[] cercaBranoMusicale(String title){
+        try {
+            String query = "SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE LOWER(TITOLO) LIKE LOWER('%"+title+"%') ORDER BY TITOLO,AUTORE,ANNO ASC;";
+            
+            Statement statement = connectionToDB.createStatement();
+            statement = connectionToDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(query);
+            String[] resultArray = convertResultToArrayString(queryResult);
+            statement.close();
+            return resultArray;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
     
     /**
-     * Metodo chew ritorna un array di canzoni comprese tra i due indici (che sono compresi).
+     * Metodo che ritorna un array di stringhe, in ogni sua posizione ci sono i dati
+     * di una canzone cui il autore coincide alla stringa passata come argomento, 
+     * oppure che vi è contenuta in esso e l' anno coincide con l' intero passato come argomento.
+     * @param author Stringa da cercare negli autori delle canzoni.
+     * @param year Anno delle canzoni ricercate
+     * @return array di stringhe rappresentanti le canzoni che soddisfano i criteri di ricerca.
+     */
+    public String[] cercaBranoMusicale(String author, int year){
+        try {
+            String query = "SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%"+author+"%') INTERSECT SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE ANNO = "+year+" ORDER BY ANNO,AUTORE,TITOLO ASC;";
+            
+            Statement statement = connectionToDB.createStatement();
+            statement = connectionToDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(query);
+            String[] resultArray = convertResultToArrayString(queryResult);
+            statement.close();
+            return resultArray;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    /**
+     * Metodo che ritorna un array di canzoni comprese tra i due indici (che sono compresi).
      * Gli elementi sono adeguatamente formattati come da interfaccia "DataManager".
      * @param startIndex indice prima canzone.
      * @param endIndex indice ultima canzone.
@@ -54,16 +101,13 @@ public class DBQuerier {
      * @return 0 - operazione avvenuta con successo.
      * 1 - transazione abortita.
      */
-    public int updatePlaylistTable(
-            String newPlaylistName,
-            String userIdOwner,
-            String[] idsSongs) {
+    public int updatePlaylistTable(String newPlaylistName,String userIdOwner,String[] idsSongs) {
         //query to update playlist table.
         String queryPlaylist = "INSERT INTO PLAYLIST(ID_PLAYLIST,USER_PROP_ID,NOME_PLAYLIST) VALUES(?,?,?);";
         //query to update contenuto_playlist table.
         String queryContenuto_playlist = "INSERT INTO CONTENUTO_PLAYLIST(PLAYLIST_ID,CANZONE_ID) VALUES (?,?);";
         //generate an unique id for this new playlist.
-        String idUniqueNewPlaylist = generateIdUnique();
+        String idUniqueNewPlaylist = generateIdUnique(20);
         
         //statement to build's container
         PreparedStatement statement = null;
@@ -139,6 +183,49 @@ public class DBQuerier {
         return 0;
     }
     
+    /**
+     * Metodoche si occupa di aggiornare la tabella Emozioni con un nuovo giudizio emozionale.
+     * il metodo controlla da solo la lunghezza del commento ed il numero di voti.
+     * @param idUser Id dell' utente che effettua il giudizio emozionale.
+     * @param idSong Id della canzone giudicata dall' utente.
+     * @param emotionalMarks array con i voti emozionali nel seguente ordine: [MERAVIGLIA,SOLENNITA,TENEREZZA,NOSTALGIA,PACATEZZA,POTERE,GIOIA,TENSIONE,TRISTEZZA].
+     * @param comment commento opzionale.
+     * @return 0 - operazione completata con successo.
+     * 1 - errore db.
+     * 2 - dati non validi.
+     */
+    public int updateEmozioniTable(String idUser,String idSong,int[] emotionalMarks,String comment){
+        //control marks array
+        if(emotionalMarks.length!=9){
+            System.out.println("Error MARKS data invalid");
+            return 2;
+        }
+        //control comment length
+        if (comment.length()>256) {
+            System.out.println("Error comment contain too characters, max: 256, actual: "+comment.length());
+            return 2;
+        }
+        //string with the needed query
+        String queryEmotions = "INSERT INTO EMOZIONI(USER_PROP_ID,CANZONE_ID,COMMENTO,MERAVIGLIA,SOLENNITA,TENEREZZA,NOSTALGIA,PACATEZZA,POTERE,GIOIA,TENSIONE,TRISTEZZA) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+        
+        try {
+            PreparedStatement statement = connectionToDB.prepareStatement(queryEmotions);
+            statement.setString(1, idUser);
+            statement.setString(2, idSong);
+            statement.setString(3, comment);
+            for(int i = 4; i<13; i++){
+                statement.setInt(i, emotionalMarks[i-4]);
+            }
+            statement.execute();
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error: impossible to update Emozioni table!");
+            System.out.println(ex.getCause());
+            return 1;
+        }
+        return 0;
+    }
+    
     //metodi di supporto interni alla classe.
     /**
      * Metodo interno alla classe di supporto, si occupa di convertire un result set in un array
@@ -148,16 +235,22 @@ public class DBQuerier {
      */
     private String[] convertResultToArrayString(ResultSet queryResultSet) {
         try {
+            // se il result set è null ritorna null.
+            if(queryResultSet == null) return null;
+            
             ResultSetMetaData metaData = queryResultSet.getMetaData();
             int numberOfColumns = metaData.getColumnCount();
+            
             Vector<String> listaRisultati = new Vector<>();
-            while(queryResultSet.next()){
+            
+            while (queryResultSet.next()){
                 String stringaFormattata = "";
                 for (int i = 0; i < numberOfColumns; i++) {    
                     stringaFormattata+=queryResultSet.getString(i+1) + (i==numberOfColumns-1? "":divider);
                 }
                 listaRisultati.add(stringaFormattata);
             }
+            if(listaRisultati.isEmpty()) return null;
             return fromVectorToArray(listaRisultati);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -184,9 +277,9 @@ public class DBQuerier {
      * che questo sia realmente unico, finchè non ne trova uno unico continua a generali.
      * @return Stringa con id univoco.
      */
-    private String generateIdUnique() {
+    private String generateIdUnique(int lenght) {
         
-            String idProposed = RandomStringUtils.randomAlphanumeric(20);
+            String idProposed = RandomStringUtils.randomAlphanumeric(lenght);
             boolean unique = false;
             final String controlQuery = "SELECT COUNT(ID_PLAYLIST) FROM PLAYLIST WHERE ID_PLAYLIST = ?;";
         try {    
@@ -217,15 +310,26 @@ public class DBQuerier {
     public static void main(String[] args) {
         
         DBQuerier querier = new DBQuerier(DBConnector.getConnection(DBConnector.PORT_TO_DB));
-        /*
-        String[] res = querier. getSongsBeetweenIndexes(0, 10);
-        for(int i = 0; i<res.length;i++){
-        System.out.println(res[i]);
-        }
-         */
-        /*
-        String[] ids = {"TRMYDFV128F42511FC","TRRAHXQ128F42511FF","TRFAFTK12903CC77B8","TRSTBUY128F4251203","TRODGCA128F4251206"};
-        querier.updatePlaylistTable("playlist caricata da java", "theOne",ids );
-        */
+        
+        //String[] res = querier. getSongsBeetweenIndexes(0, 10);
+        //for(int i = 0; i<res.length;i++){
+        //  System.out.println(res[i]);
+        //}
+         
+        
+        //String[] ids = {"TRMYDFV128F42511FC","TRRAHXQ128F42511FF","TRFAFTK12903CC77B8","TRSTBUY128F4251203","TRODGCA128F4251206"};
+        //querier.updatePlaylistTable("playlist caricata da java", "theOne",ids );
+        
+        
+        //querier.updateEmozioniTable("theOne", "TRWSZDB128F934171B", new int[]{1,2,3,4,5,4,3,2,1}, "commento prova da java");
+        
+        //String[] result = querier.cercaBranoMusicale("titolo");
+        //if(result == null){
+            //System.out.println("No songs founded!");
+        //} else {
+            //for(int i = 0; i<result.length;i++){
+                //System.out.println(result[i]);
+            //}
+        //}
     }
 }
