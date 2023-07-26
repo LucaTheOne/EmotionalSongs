@@ -1,10 +1,5 @@
-/*
- * Luca Bolelli - 749137 - VA
- * Natanail Danailov Danailov - 739887 - VA
- * Riccardo Rosarin - 749914 - VA
- * Eleonora Macchi - 748736 - VA
- */
-package serverES.db_communication;
+
+package bigsdevelopmentstudio.database_builder_emotionalsongs;
 
 import java.io.*;
 import java.sql.*;
@@ -13,20 +8,22 @@ import java.sql.*;
  *
  * @author big
  */
-public class QuerierTemplate {
+public class DBRepoLoader {
     private int index = 0;
-    Connection connector = null;
-    String currentString = "";
-    File initializationFile = new File("/Users/big/Desktop/FiveHundredThousandSongs.txt");
-    public QuerierTemplate(Connection DBConnection) {
+    private int failed = 0;
+    private Connection connector = null;
+    private String currentString = "";
+    private String filepath = "/Users/big/Desktop/FiveHundredThousandSongs.txt";
+    private File initializationFile = new File(filepath);
+    public DBRepoLoader(Connection DBConnection) {
         connector = DBConnection;
     }
     
-    public synchronized boolean insertSongs(Connection connector){
+    public boolean insertSongs(){
         try {
             BufferedReader reader = new BufferedReader( new FileReader(initializationFile));
             currentString = reader.readLine();
-            System.out.println(currentString);
+            System.out.println("Loading to DB all repository songs, only errors reported!...\n");
             while(currentString != null) {
                 //System.out.println(currentString);
                 String id,titolo,autore;
@@ -36,24 +33,31 @@ public class QuerierTemplate {
                 autore = currentString.split("<SEP>")[2];
                 anno = Integer.parseInt(currentString.split("<SEP>")[0]);
                 String query = "INSERT INTO CANZONI(REPO_INDEX,ID_UNIVOCO,TITOLO,AUTORE,ANNO) VALUES(?,?,?,?,?);";
-                PreparedStatement statement = connector.prepareStatement(query);
-                statement.setInt(1, index++);
-                statement.setString(2, id);
-                statement.setString(3, titolo);
-                statement.setString(4, autore);
-                statement.setInt(5, anno);
-                statement.executeUpdate();
+                
+                try {
+                    PreparedStatement statement = connector.prepareStatement(query);
+                    statement.setInt(1, index++);
+                    statement.setString(2, id);
+                    statement.setString(3, titolo);
+                    statement.setString(4, autore);
+                    statement.setInt(5, anno);
+                    statement.executeUpdate();
+                } catch (SQLException ex) {
+                    System.out.println(currentString.replace("<SEP>"," ") + " not added!");
+                    System.out.println(ex.getMessage()+"\n");
+                    failed++;
+                    currentString = reader.readLine();
+                    continue;
+                }
+                
                 //System.out.println(currentString.replace("<SEP>"," ") + " added!");
                 currentString = reader.readLine();
             } 
-            System.out.println("OK!");
+            System.out.println("Repository loaded to DB:\n\tsuccessfully loaded: "+(index+1)+"\n\tfailed: "+failed+"\n\n");
         } catch (FileNotFoundException ex) {
-            ex.getCause();
+            System.out.println(ex.getMessage());
         } catch (IOException ex) {
-            ex.getCause();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            
+            System.out.println(ex.getMessage());
         }
        return true;
     }

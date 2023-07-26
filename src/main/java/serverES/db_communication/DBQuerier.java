@@ -16,5 +16,4 @@ public class DBQuerier {
     
     private Connection ConnectionToDB = DBConnector.getConnection(DBConnector.PORT_TO_DB);
     
-    
 }
