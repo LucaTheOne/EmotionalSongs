@@ -226,7 +226,97 @@ public class DBQuerier {
         return 0;
     }
     
-    //metodi di supporto interni alla classe.
+    //eleonora
+    /** Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
+    * per una determinata canzone (identificata dal suo id).
+    * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
+    * @param songId Id della canzone da votare.
+    * @return true se l' uente non ha già espresso un parere, false altrimenti.
+    */
+    public boolean userCanVoteSong(String userId,String songId) { // DA TESTARE, NON MI CREA IL DB ->
+           /*Ciao eleonora,veramente ottimo lavoro :), non funzionava solo per un piccolo dettaglio da nulla che ho corretto al volo in tre secondi.
+            * Ho aggiunto count(*) alla clausola select dato che mi aspetto che se l' utente non ha votato il brano,la query mi ridarrà count = 0.
+            * Quando lavori con un resultSets ricorda sempre che questo appena ottenuto punta alla posizione precedente al primo risultato, 
+            *quindi devi chiamare una volta resultSet.next() per spostarti sul primo risultato.
+            *successivamente se questo ritorno count < 1, significa che l' utente non ha ancora votato.*/
+        try {
+            String query ="SELECT COUNT(*) FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;";
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
+            statementControl.setString(1, userId);
+            statementControl.setString(2, songId);
+            ResultSet resultSet = statementControl.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt(1)<1) return true; 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
+     * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
+     * @param IDSong Id canzone votata.
+     * @param emotionalMarks array di 9 posizioni contenente i voti di ogni emozione.
+     * @param Comment commento opzionale
+     * @return 0 - tutti i dati sono stati verificati,
+     * 1 - Id Canzone non presente nel database
+     * 2 - Dimensione array voti non conforme
+     * 3 - Almeno un voto fuori dal range 1-5 inclusi.
+     * 4 - caratteri non ammessi nel commento.
+     * 5 - Commento contiene più di 256 caratteri.
+     * 6 - eccezione SQL.
+     */
+    public int validateVote(String IDSong, int[] emotionalMarks, String Comment){
+        try {
+            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;";//stessa cosa di prima
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
+            statementControl.setString(1, IDSong);
+            ResultSet resultSet = statementControl.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt(1)<1)
+            {
+                return 1;
+            }
+
+            if(emotionalMarks.length > 9 || emotionalMarks.length < 1)
+            {
+                return 2;
+            } 
+            
+            for(int i = 0; i < 9; i++)
+            {
+                if(emotionalMarks[i] < 1 || emotionalMarks[i] > 5)
+                {
+                    return 3;
+                }
+            }
+
+            char[] comment = Comment.toCharArray();
+            for(int i = 0; i < comment.length; i++) 
+            {
+                if(comment[i] == '<') //  CONTROLLA QUALI CARATTERI NON SONO AMMESSI
+                {
+                    return 4;
+                }
+            }
+
+
+            if(Comment.length() > 256)
+            {
+                return 5;
+            }
+
+            return 0;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 6;
+        }
+    }
+    
+    //metodi privati di supporto, interni alla classe.
+    
     /**
      * Metodo interno alla classe di supporto, si occupa di convertire un result set in un array
      * di stringhe già formattate adeguatamente.
@@ -306,96 +396,7 @@ public class DBQuerier {
         return idProposed;
     }
 
-    //eleonora
-    /* Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
-    * per una determinata canzone (identificata dal suo id).
-    * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
-    * @param songId Id della canzone da votare.
-    * @return true se l' uente non ha già espresso un parere, false altrimenti.
-    */
-   public boolean userCanVoteSong(String userId,String songId) // DA TESTARE, NON MI CREA IL DB
-   {
-        try {
-            String query ="SELECT * FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;";
-            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
-            statementControl.setString(1, userId);
-            statementControl.setString(2, songId);
-            ResultSet resultSet = statementControl.executeQuery();
-            if(resultSet == null)
-            {
-                return true; 
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return false;
-   }
-
-    /**
-     * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
-     * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
-     * @param IDSong Id canzone votata.
-     * @param emotionalMarks array di 9 posizioni contenente i voti di ogni emozione.
-     * @param Comment commento opzionale
-     * @return 0 - operazione terminata con successo,
-     * 1 - Id Canzone non presente nel database
-     * 2 - Dimensione array voti non conforme
-     * 3 - Almeno un voto fuori dal range 1-5 inclusi.
-     * 4 - caratteri non ammessi nel commento.
-     * 5 - Commento contiene più di 256 caratteri.
-     * 6 - eccezione SQL.
-     */
-    public int validateVote(String IDSong, int[] emotionalMarks, String Comment)
-    {
-        try {
-            String query ="SELECT * FROM CANZONI WHERE ID_UNIVOCO = ?;";
-            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
-            statementControl.setString(1, IDSong);
-            ResultSet resultSet = statementControl.executeQuery();
-            if(resultSet == null)
-            {
-                return 1;
-            }
-
-            if(emotionalMarks.length > 9 || emotionalMarks.length < 1)
-            {
-                return 2;
-            } 
-            
-            for(int i = 0; i < 9; i++)
-            {
-                if(emotionalMarks[i] < 1 || emotionalMarks[i] > 5)
-                {
-                    return 3;
-                }
-            }
-
-            char[] comment = Comment.toCharArray();
-            for(int i = 0; i < comment.length; i++) 
-            {
-                if(comment[i] == '<') //  CONTROLLA QUALI CARATTERI NON SONO AMMESSI
-                {
-                    return 4;
-                }
-            }
-
-
-            if(Comment.length() > 256)
-            {
-                return 5;
-            }
-
-            return 0;
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return 6;
-        }
-    }
-    
-    
+  
     //debugger and test main
     public static void main(String[] args) {
         
@@ -421,6 +422,13 @@ public class DBQuerier {
                 //System.out.println(result[i]);
             //}
         //}
+        
+        //boolean canVote = querier.userCanVoteSong("theOne", "TRWSZDB128F934171B");
+        //System.out.println(canVote);
+        
+        //int res = querier.validateVote("TRWSZDB128F934171B", new int[]{1,2,3,4,5,4,3,2,1}, "prova");
+        //
+        //System.out.println(res);
     }
 
 }
