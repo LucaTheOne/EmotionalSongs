@@ -212,6 +212,96 @@ public class DBQuerier {
         }
         return idProposed;
     }
+
+    //eleonora
+    /* Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
+    * per una determinata canzone (identificata dal suo id).
+    * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
+    * @param songId Id della canzone da votare.
+    * @return true se l' uente non ha già espresso un parere, false altrimenti.
+    */
+   public boolean userCanVoteSong(String userId,String songId) // DA TESTARE, NON MI CREA IL DB
+   {
+        try {
+            String query ="SELECT * FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;";
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
+            statementControl.setString(1, userId);
+            statementControl.setString(2, songId);
+            ResultSet resultSet = statementControl.executeQuery();
+            if(resultSet == null)
+            {
+                return true; 
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return false;
+   }
+
+    /**
+     * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
+     * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
+     * @param IDSong Id canzone votata.
+     * @param emotionalMarks array di 9 posizioni contenente i voti di ogni emozione.
+     * @param Comment commento opzionale
+     * @return 0 - operazione terminata con successo,
+     * 1 - Id Canzone non presente nel database
+     * 2 - Dimensione array voti non conforme
+     * 3 - Almeno un voto fuori dal range 1-5 inclusi.
+     * 4 - caratteri non ammessi nel commento.
+     * 5 - Commento contiene più di 256 caratteri.
+     * 6 - eccezione SQL.
+     */
+    public int validateVote(String IDSong, int[] emotionalMarks, String Comment)
+    {
+        try {
+            String query ="SELECT * FROM CANZONI WHERE ID_UNIVOCO = ?;";
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
+            statementControl.setString(1, IDSong);
+            ResultSet resultSet = statementControl.executeQuery();
+            if(resultSet == null)
+            {
+                return 1;
+            }
+
+            if(emotionalMarks.length > 9 || emotionalMarks.length < 1)
+            {
+                return 2;
+            } 
+            
+            for(int i = 0; i < 9; i++)
+            {
+                if(emotionalMarks[i] < 1 || emotionalMarks[i] > 5)
+                {
+                    return 3;
+                }
+            }
+
+            char[] comment = Comment.toCharArray();
+            for(int i = 0; i < comment.length; i++) 
+            {
+                if(comment[i] == '<') //  CONTROLLA QUALI CARATTERI NON SONO AMMESSI
+                {
+                    return 4;
+                }
+            }
+
+
+            if(Comment.length() > 256)
+            {
+                return 5;
+            }
+
+            return 0;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 6;
+        }
+    }
+    
     
     //debugger and test main
     public static void main(String[] args) {
@@ -228,4 +318,5 @@ public class DBQuerier {
         querier.updatePlaylistTable("playlist caricata da java", "theOne",ids );
         */
     }
+
 }
