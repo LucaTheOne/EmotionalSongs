@@ -17,8 +17,8 @@ public interface DataManager extends Remote {
     //Songs and playlists data management
     /**
      * Metodo usato per interrogare il database, ritorna un array di stringhe, nel quale in ogni posizione ci sono i dati di una canzone,
-     * Separati da "$SEP$", a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
-     *      -Formato: "REPO_INDEX$SEP$ID_UNIVOCO$SEP$TITOLO$SEP$AUTORE$SEP$ANNO" -
+     * Separati da "£SEP£", a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
+     *      -Formato: "REPO_INDEX£SEP£ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param startIndex indice della prima canzone richiesta.
      * @param endIndex indice dell' ultima canzone richiesta.
      * @return Array di stringhe con i dati delle canzoni contenute tra startIndex ed endIndex compresi.
@@ -28,8 +28,8 @@ public interface DataManager extends Remote {
     /**
      * Metodo usato per richiedere al DB un array di stringhe, 
      * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
-     * ed il suo nome separati da "$SEP$".
-     *      -Formato: "ID_PLAYLIST$SEP$NOME_PLAYLIST" -
+     * ed il suo nome separati da "£SEP£".
+     *      -Formato: "ID_PLAYLIST£SEP£NOME_PLAYLIST" -
      * @param idUser id utente di cui si vuole sapere il nome delle playlist.
      * @return array di Stringhe contenente id e nomi delle playlist.
      */
@@ -37,8 +37,8 @@ public interface DataManager extends Remote {
     
     /**
      * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
-     * i dati di una canzone  della playlist passata come argomento, separati da $SEP$;
-     *      -Formato: "REPO_INDEX$SEP$ID_UNIVOCO$SEP$TITOLO$SEP$AUTORE$SEP$ANNO"
+     * i dati di una canzone  della playlist passata come argomento, separati da £SEP£;
+     *      -Formato: "REPO_INDEX£SEP£ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO"
      * @param PlaylistID id della playlist il quale si vuole sapere il contenuto.
      * @return array di stringhe contenenti i dati delle canzoni della playlist.
      */
@@ -48,7 +48,7 @@ public interface DataManager extends Remote {
      * Metodo che interroga il DB per ottenere informazioni riguardo 
      * ai giudizi emozionali relativi alla canzone il cui id è passato come argomento.
      * Ritorna un array contenente in ogni posizione un giudizio ricevuto da un utente.
-     *      -Formato: "meraviglia_voto$SEP$solennita_voto$SEP$tenerezza_voto$SEP$nostalgia_voto$SEP$pacatezza_voto$SEP$potere_voto$SEP$gioia_voto$SEP$tensione_voto$SEP$tristezza_voto$SEP$commento"
+     *      -Formato: "meraviglia_voto£SEP£solennita_voto£SEP£tenerezza_voto£SEP£nostalgia_voto£SEP£pacatezza_voto£SEP£potere_voto£SEP£gioia_voto£SEP£tensione_voto£SEP£tristezza_voto£SEP£commento"
      * @param idSong id della canzone il quale si vogliono ottenere i giudizi emozionali.
      * @return array contenente in ogni posizione un giudizio ricevuto da un utente.
      */
