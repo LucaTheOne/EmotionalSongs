@@ -11,7 +11,7 @@ import java.sql.*;
 public class DBEmotionsLoader {
     private Connection connector = null; // la connessione con il DB.
     private String currentString = ""; //buffer contenente la stringa correntemente trattata.
-    private String sourcePath = "/Users/big/Coding/javaDevelopment/GitHub/EmotionalSongs/data/Emozioni.dati.txt";//path verso sorgente.
+    private String sourcePath = "/home/lola/repo/EmotionalSongs/data/Emozioni.dati.txt"; //da modificare secondo il proprio path
     private File initializationFile = new File(sourcePath);
     public DBEmotionsLoader(Connection DBConnection) {
         connector = DBConnection;

@@ -7,6 +7,7 @@
 package serverES.db_communication;
 
 import java.sql.*;
+//per creare stringa da array
 import java.util.*;
 import org.apache.commons.lang3.*;
 
@@ -226,19 +227,13 @@ public class DBQuerier {
         return 0;
     }
     
-    //eleonora
     /** Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
     * per una determinata canzone (identificata dal suo id).
     * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
     * @param songId Id della canzone da votare.
     * @return true se l' uente non ha già espresso un parere, false altrimenti.
     */
-    public boolean userCanVoteSong(String userId,String songId) { // DA TESTARE, NON MI CREA IL DB ->
-           /*Ciao eleonora,veramente ottimo lavoro :), non funzionava solo per un piccolo dettaglio da nulla che ho corretto al volo in tre secondi.
-            * Ho aggiunto count(*) alla clausola select dato che mi aspetto che se l' utente non ha votato il brano,la query mi ridarrà count = 0.
-            * Quando lavori con un resultSets ricorda sempre che questo appena ottenuto punta alla posizione precedente al primo risultato, 
-            *quindi devi chiamare una volta resultSet.next() per spostarti sul primo risultato.
-            *successivamente se questo ritorno count < 1, significa che l' utente non ha ancora votato.*/
+    public boolean userCanVoteSong(String userId,String songId) { 
         try {
             String query ="SELECT COUNT(*) FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;";
             PreparedStatement statementControl = connectionToDB.prepareStatement(query);
@@ -269,7 +264,7 @@ public class DBQuerier {
      */
     public int validateVote(String IDSong, int[] emotionalMarks, String Comment){
         try {
-            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;";//stessa cosa di prima
+            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;"; //stessa cosa di prima
             PreparedStatement statementControl = connectionToDB.prepareStatement(query);
             statementControl.setString(1, IDSong);
             ResultSet resultSet = statementControl.executeQuery();
@@ -292,15 +287,16 @@ public class DBQuerier {
                 }
             }
 
-            char[] comment = Comment.toCharArray();
-            for(int i = 0; i < comment.length; i++) 
+            int ascii;
+            char c;
+            for(int i = 0; i < Comment.length(); i++)   //per ogni carattere controllo il suo valore ASCII. se supera il numero 128 non rientra nell'ASCII standard
             {
-                if(comment[i] == '<') //  CONTROLLA QUALI CARATTERI NON SONO AMMESSI
-                {
+                c = Comment.charAt(i);
+                ascii = (int)c;
+                if(ascii > 128)     
                     return 4;
-                }
             }
-
+            
 
             if(Comment.length() > 256)
             {
@@ -315,6 +311,58 @@ public class DBQuerier {
         }
     }
     
+    //Eleonora
+    /**
+     * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
+     * Ritorna 0 se si, altrimenti un intero rappresentante un errore.
+     * @param playlistId Id della nuova playlist
+     * @param songsIds array con gli ids delle canzoni da aggiungervi.
+     * @return 0 - operazione terminata con successo,
+     * 1 - almeno uno degli IDs delle canzoni non è valido.
+     * 2 - l' id della playlist non è valido.
+     * 3 - errore chatch
+     */
+    public int validatePlaylist(String playlistId,String[] songsIds) //domanda, l'associazione id-playlist - idCanzoni devo controllarla qui o viene gestita prima?
+    {
+        try{
+            String query ="SELECT COUNT(*) FROM PLAYLIST WHERE ID_PLAYLIST = ?;"; 
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
+            statementControl.setString(1, playlistId);
+            ResultSet resultSet = statementControl.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt(1) == 0)
+                return 2;
+            
+            String str = String.join(",", songsIds); // creo una stringa con i codici separati da una virgola
+
+System.out.println(str);
+
+            query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO IN (?"; //creo una query con tanti punti interrogativi quanti elementi dell'array di canzoni
+            String quest = ",?".repeat(songsIds.length - 1);
+            query += quest += ");";                                 
+
+             
+
+            statementControl = connectionToDB.prepareStatement(query); //assegno ad ogni ? un elemento dell'array
+            for (int i=0; i<songsIds.length; i++)
+            {
+                statementControl.setString(i+1, songsIds[i]);
+            }
+            
+            resultSet = statementControl.executeQuery();
+            resultSet.next();
+
+            if (resultSet.getInt(1) != songsIds.length)
+                return 1;
+
+            return 0;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 3;
+        }
+    }
+
     //metodi privati di supporto, interni alla classe.
     
     /**
@@ -429,6 +477,34 @@ public class DBQuerier {
         //int res = querier.validateVote("TRWSZDB128F934171B", new int[]{1,2,3,4,5,4,3,2,1}, "prova");
         //
         //System.out.println(res);
+
+
+        // TEST userCanVoteSong
+       /* boolean ris = querier.userCanVoteSong("alex12", "RSGHLU128F421DF83"); 
+        if(ris==true)
+                System.out.println("puo");
+        else
+                System.out.println("errore");
+
+        ris = querier.userCanVoteSong("theOne", "TRMYDFV128F42511FC");
+        if(ris==true)
+                System.out.println("puo");
+        else
+                System.out.println("errore");*/
+
+        // TEST validate vote
+      /*  int[] voti = {1, 2, 3, 4, 5, 1, 2, 3, 4};
+        int ris = querier.validateVote("TRSGHLU128F421DF83", voti, "~");
+        System.out.println(ris);
+
+        ris = querier.validateVote("TRSGHLU128F421DF83", voti, "€");
+        System.out.println(ris);*/
+
+        // TEST validatePlaylist
+       /* String [] cod = {"TRSGHLU128F421DF83", "TRZKAOZ128F4280C36", "TRVQNFB12903CEC8AA"};
+        int ris = querier.validatePlaylist("UFTzEUYkTptX7dbMSvjL", cod);
+        System.out.println(ris);*/
     }
+
 
 }

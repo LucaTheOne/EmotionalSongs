@@ -12,7 +12,7 @@ public class DBUsersLoader {
     private int index = 0;
     private Connection connector = null;
     private String currentString = "";
-    private String sourcePath = "/Users/big/Coding/javaDevelopment/GitHub/EmotionalSongs/data/UtentiRegistrati.dati.txt";
+    private String sourcePath = "/home/lola/repo/EmotionalSongs/data/UtentiRegistrati.dati.txt"; //da modificare secondo il proprio path
     private File initializationFile = new File(sourcePath);
     public DBUsersLoader(Connection DBConnection) {
         connector = DBConnection;
@@ -72,8 +72,8 @@ public class DBUsersLoader {
        return true;
     }
     
-    /*
-    public static void main(String[] args) {
+    
+  /*  public static void main(String[] args) {
         try {
                 String currenString = "1922<SEP>TRSGHLU128F421DF83<SEP>Alberta Hunter<SEP>Don't Pan Me";
                 String id,titolo,autore,anno;

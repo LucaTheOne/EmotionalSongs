@@ -14,7 +14,7 @@ public class DBPlaylistsLoader {
     
     private Connection connector = null;
     private String currentLine = "";
-    private String sourcePath = "/Users/big/Coding/javaDevelopment/GitHub/EmotionalSongs/data/Playlist.dati.txt";
+    private String sourcePath = "/home/lola/repo/EmotionalSongs/data/Playlist.dati.txt"; //da modificare secondo il proprio path
     private File initializationFile = new File(sourcePath);
     public DBPlaylistsLoader(Connection DBConnection) {
         connector = DBConnection;
