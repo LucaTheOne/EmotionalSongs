@@ -19,6 +19,18 @@ public class English extends dialogs{
         return "Insert title or author;year";
     }
     
+    public String availableSongs(){
+        return "available songs!";
+    }
+    
+    public String foundedResults(){
+        return "Song founded!";
+    }
+    
+    public String noSongsFounded(){
+        return "0 results founded!";
+    }
+    
     //BASICS STRUCTURE: EMOZIONI
 
      public String amazementName() {

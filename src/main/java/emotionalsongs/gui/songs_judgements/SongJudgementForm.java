@@ -30,7 +30,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
      * @param songToVoteTag Tag della canzone giudicata.
      * @param callerComponent Pannello da cui la funzione è stata chiamata.
      */
-    public SongJudgementForm(String loggedUserId,String songToVoteTag,SongPanel callerComponent,JFrame container) {
+    public SongJudgementForm(String loggedUserId,String songToVoteTag,SongPanelForPlaylistView callerComponent,JFrame container) {
         this.loggedUserId = loggedUserId;
         this.songToVoteTag = songToVoteTag;
         this.callerComponent = callerComponent;
@@ -1573,6 +1573,6 @@ public class SongJudgementForm extends javax.swing.JPanel {
     private String loggedUserId;
     private String songToVoteTag;
     private Song songUnderVotation;
-    private SongPanel callerComponent;
+    private SongPanelForPlaylistView callerComponent;
     private JFrame container;
 }

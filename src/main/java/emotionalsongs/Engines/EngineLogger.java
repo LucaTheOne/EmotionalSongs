@@ -9,7 +9,7 @@
 
 package emotionalsongs.engines;
 
-import emotionalsongs.managers.PlaylistsManager;
+import emotionalsongs.managers.PlaylistsCreationManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.data_structures.*;
@@ -41,7 +41,7 @@ public class EngineLogger extends EmotionalSongs{
             if(idFounded&&passwordMatches){
                 EngineSearcher finder = new EngineSearcher();
                 EmotionalSongs.setLoggedUser(finder.getUserFromId(database, UserId));
-                PlaylistsManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
+                PlaylistsCreationManager.getInstanceFirstTime(DataBasePlaylists.getInstance());
                 
             }  
         }
@@ -73,6 +73,6 @@ public class EngineLogger extends EmotionalSongs{
      */
     public static void logout(){
         EmotionalSongs.setLoggedUser(null);
-        PlaylistsManager.eraseInstance();
+        PlaylistsCreationManager.eraseInstance();
     }
 }

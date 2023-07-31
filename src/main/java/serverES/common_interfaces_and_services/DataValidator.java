@@ -51,9 +51,9 @@ public interface DataValidator extends Remote{
      * @param songsIds array con gli ids delle canzoni da aggiungervi.
      * @return 0 - operazione terminata con successo,
      * 1 - almeno uno degli IDs delle canzoni non è valido.
-     * 2 - l' id della playlist non è valido.
+     * 2 - il nome della playlist non è valido.
      */
-    public int validatePlaylist(String playlistId,String[] songsIds);
+    public int validatePlaylist(String playlistName,String[] songsIds);
     
     //User data validation
     //Riccardo

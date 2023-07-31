@@ -9,8 +9,7 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.managers.PlaylistsManager;
-import emotionalsongs.basic_structures.*;
+import emotionalsongs.managers.*;
 import java.awt.*;
 
 /**
@@ -19,8 +18,9 @@ import java.awt.*;
  */
 public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
-    private Song song;
-    private PlaylistsManager playListsManager = PlaylistsManager.getInstance();
+    private String songId,title,author;
+    private int year;
+    private PlaylistsCreationManager playListsManager = PlaylistsCreationManager.getInstance();
     
     /**
      * Crea il pannello utilizzato per rappresentare le canzoni passate come argomento
@@ -30,8 +30,12 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
      * al buffer delle canzoni in attesa di essere aggiunte ad una nuova playlist.
      * @param representedSong canzone rappresentata.
      */
-    public SongToAddToAPlaylistPanel(Song representedSong,PlaylistsManager playListsManager) {
-        this.song = representedSong;
+    public SongToAddToAPlaylistPanel(String songData) {
+        String[] songDataSplitted = songData.split("£SEP£");
+        songId = songDataSplitted[0];
+        title = songDataSplitted[2];
+        author = songDataSplitted[3];
+        year = Integer.parseInt(songDataSplitted[4]);
         initComponents();
     }
 
@@ -60,12 +64,12 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
 
         buttonsPanel.setBackground(new java.awt.Color(5, 23, 44));
         buttonsPanel.setPreferredSize(new java.awt.Dimension(120, 100));
-        buttonsPanel.setLayout(new java.awt.GridLayout());
+        buttonsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         addButton.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         addButton.setText("+");
         addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
-        addButton.setEnabled(!playListsManager.containInSongsToAdd(song));
+        addButton.setEnabled(!playListsManager.containInSongsToAdd(songId));
         addButton.setOpaque(true);
         addButton.setPreferredSize(new java.awt.Dimension(40, 30));
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +84,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         removeButton.setForeground(new java.awt.Color(255, 255, 255));
         removeButton.setText("-");
         removeButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 51), new java.awt.Color(255, 102, 102), new java.awt.Color(153, 51, 0), new java.awt.Color(153, 51, 0)));
-        removeButton.setEnabled(playListsManager.containInSongsToAdd(song));
+        removeButton.setEnabled(playListsManager.containInSongsToAdd(songId));
         removeButton.setOpaque(true);
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +102,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText(song.getTitle());
+        titleLabel1.setText(title);
         titleLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         titleLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel1.setOpaque(true);
@@ -109,7 +113,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         authorLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         authorLabel1.setForeground(new java.awt.Color(255, 255, 255));
         authorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        authorLabel1.setText(song.getAuthor());
+        authorLabel1.setText(author);
         authorLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         authorLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorLabel1.setOpaque(true);
@@ -120,7 +124,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
         yearLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         yearLabel1.setForeground(new java.awt.Color(255, 255, 255));
         yearLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yearLabel1.setText(String.valueOf(song.getYear()));
+        yearLabel1.setText(String.valueOf(year));
         yearLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         yearLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         yearLabel1.setOpaque(true);
@@ -131,7 +135,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        playListsManager.addToSelectedSongs(song);
+        playListsManager.addToSelectedSongs(songId);
         removeButton.setEnabled(true);
         addButton.setBackground(new Color(125, 255, 147));
         addButton.setEnabled(false);
@@ -140,7 +144,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        playListsManager.removeToSelectedSongs(song);
+        playListsManager.removeToSelectedSongs(songId);
         removeButton.setEnabled(false);
         addButton.setEnabled(true);
         addButton.setBackground(new Color(255,255,255));

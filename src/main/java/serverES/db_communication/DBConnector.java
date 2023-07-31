@@ -18,7 +18,7 @@ public class DBConnector {
     
     public static Connection getConnection(int DBPort) {
         Connection connection = null;
-        final String url = "jdbc:postgresql://localhost:9876/postgres";
+        final String url = "jdbc:postgresql://localhost:"+DBPort+"/postgres";
         final String id = "postgres";
         final String pswd = "root";
         try {
@@ -36,8 +36,13 @@ public class DBConnector {
         return null;
     }
     
+    public static Connection getDefaultConnection(){
+        return getConnection(PORT_TO_DB);
+    }
     
+    //debugging main
+    /** 
     public static void main(String[] args) {
         DBConnector.getConnection(9876);
-    }
+    }*/
 }

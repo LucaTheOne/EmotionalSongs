@@ -18,14 +18,14 @@ import java.awt.*;
 public class PlaylistSongsViewPanel extends javax.swing.JPanel {
 
     
-    private Playlist playlist;
+    private String[] songsData;
     /**
      * Crea il contenitore che mostra le rappresentazioni grafiche delle canzoni di una playlist
      * passata come argomento.
      * @param playList Playlist di cui mostrare le canzoni.
      */
-    public PlaylistSongsViewPanel(Playlist playList) {
-        this.playlist = playList;
+    public PlaylistSongsViewPanel(String[] songsData) {
+        this.songsData = songsData;
         initComponents();
     }
 
@@ -41,11 +41,11 @@ public class PlaylistSongsViewPanel extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(22, 33, 62));
-        jPanel1.setPreferredSize(new Dimension(jScrollPane1.getWidth(),playlist.getSize()>7?75*playlist.getSize():7*75));
-        for(int i = 0; i<playlist.getSize();i++){
-            jPanel1.add(playlist.getArraySongs()[i].buildPanelForPlaylist(playlist));
+        jPanel1.setPreferredSize(new Dimension(jScrollPane1.getWidth(),songsData.length>7?75*songsData.length:7*75));
+        for(int i = 0; i<songsData.length;i++){
+            jPanel1.add(Song.buildPanelForPlaylist(songsData[i]));
         }
-        jPanel1.setLayout(new java.awt.GridLayout(playlist.getSize()>7?playlist.getSize():7, 1));
+        jPanel1.setLayout(new java.awt.GridLayout(songsData.length>7?songsData.length:7, 1));
         jScrollPane1.setViewportView(jPanel1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

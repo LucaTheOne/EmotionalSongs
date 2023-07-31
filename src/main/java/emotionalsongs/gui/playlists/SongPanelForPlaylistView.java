@@ -9,41 +9,33 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.managers.PlaylistsManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.songs_judgements.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
+import serverES.db_communication.*;
 
 /**
  * Classe le cui istanze sono rappresentazioni grafiche delle canzoni di una playlist
  */
-public class SongPanel extends javax.swing.JPanel {
+public class SongPanelForPlaylistView extends javax.swing.JPanel {
 
-    
-    private Song representedSong;
-    private PlaylistsManager playListsManager = PlaylistsManager.getInstance();
-    private Playlist propertyPlaylist;
-    private String userId;
+    private final DBQuerier service;
+    private final String[] songData;//{(0:)ID_UNIVOCO £SEP£ (1:)REPO_INDEX £SEP£ (2:)TITOLO £SEP£ (3:)AUTORE £SEP£ (4:)ANNO} 
     private boolean canBeVotedByUser;
     /**
-     * Crea il pannello della canzone passata come argomento in base alla playlist che la contiene ed 
+     * Crea il pannello di rappresentanza, per una playlist, della canzone relativa all' id passato come argomento. 
      * all' utente che la possiede.
-     * @param userId Id dell' utente proprietario.
-     * @param representedSong Canzone rappresentata.
-     * @param playlistProperty Playlist che contiene la canzone.
+     * @param songData id della canzone da rappresentare;
      */
-    public SongPanel(String userId,Song representedSong,Playlist playlistProperty) {
-        this.representedSong = representedSong;
-        this.propertyPlaylist = playlistProperty;
-        this.userId = userId;
-        canBeVotedByUser = new EngineChecker().checkIfCanVote(userId, representedSong.getTag());
-        
+    public SongPanelForPlaylistView(String songData) {
+        service = new DBQuerier(DBConnector.getDefaultConnection());
+        this.songData = songData.split("£SEP£");
+        canBeVotedByUser = service.userCanVoteSong(EmotionalSongs.getLoggedUser().getUserId(), songData);
         initComponents();
     }
 
@@ -78,7 +70,7 @@ public class SongPanel extends javax.swing.JPanel {
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText(representedSong.getTitle());
+        titleLabel.setText(songData[2]);
         titleLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         titlePanel.add(titleLabel, java.awt.BorderLayout.CENTER);
 
@@ -105,7 +97,7 @@ public class SongPanel extends javax.swing.JPanel {
         AuthorYearLabels.setLayout(new java.awt.BorderLayout());
 
         authorLabel.setForeground(new java.awt.Color(204, 204, 204));
-        authorLabel.setText(representedSong.getAuthor()+"       "+String.valueOf(representedSong.getYear()));
+        authorLabel.setText(songData[3]+"       "+String.valueOf(songData[4]));
         authorLabel.setPreferredSize(new java.awt.Dimension(400, 20));
         AuthorYearLabels.add(authorLabel, java.awt.BorderLayout.CENTER);
 
@@ -135,7 +127,7 @@ public class SongPanel extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        voteButton.setText(EmotionalSongs.dialoghi.vote());
+        voteButton.setText(emotionalsongs.EmotionalSongs.dialoghi.vote());
         voteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         voteButton.setEnabled(canBeVotedByUser);
         voteButton.setOpaque(true);
@@ -150,7 +142,7 @@ public class SongPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         buttonsLabel.add(voteButton, gridBagConstraints);
 
-        chartButton.setText(EmotionalSongs.dialoghi.songData());
+        chartButton.setText(emotionalsongs.EmotionalSongs.dialoghi.songData());
         chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chartButton.setOpaque(true);
         chartButton.setPreferredSize(new java.awt.Dimension(125, 25));
@@ -182,14 +174,14 @@ public class SongPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
-        representedSong.visualizzaEmozioneBrano();
+        Song.visualizzaEmozioneBrano(songData[0]);
     }//GEN-LAST:event_chartButtonActionPerformed
 
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed
         Desktop desktop = java.awt.Desktop.getDesktop();
             try {
                 //specify the protocol along with the URL
-		URI linkToYT = new URI(representedSong.buildResearchQueryUrl());
+		URI linkToYT = new URI(Song.buildResearchQueryUrl(songData[2], songData[3], Integer.parseInt(songData[4])));
 		desktop.browse(linkToYT);
             } catch (URISyntaxException e) {
 		// TODO Auto-generated catch block
@@ -204,19 +196,19 @@ public class SongPanel extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
-        voteFrame.add(new SongJudgementForm(userId, representedSong.getTag(),this,voteFrame));
+        voteFrame.add(new SongJudgementForm(EmotionalSongs.getLoggedUser().getUserId(), songData[0],this,voteFrame));
         voteFrame.setVisible(canBeVotedByUser);
         PopUpAllert instructions = new PopUpAllert(EmotionalSongs.dialoghi.voteInstructions());
         instructions.setPreferredSize(new Dimension(800,400));
         instructions.setVisible(true);
     }//GEN-LAST:event_voteButtonActionPerformed
 
-            @Override
-            protected void paintComponent(Graphics g){
-                Graphics g2 = g.create();
-                g2.drawImage(Utilities.SongViewIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
-                g2.dispose();
-            }
+    @Override
+    protected void paintComponent(Graphics g){
+        Graphics g2 = g.create();
+        g2.drawImage(Utilities.SongViewIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
+        g2.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AuthorYearLabels;

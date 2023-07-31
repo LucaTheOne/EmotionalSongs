@@ -8,7 +8,7 @@
 
 package emotionalsongs.gui.main_window;
 
-import emotionalsongs.managers.PlaylistsManager;
+import emotionalsongs.managers.PlaylistsCreationManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.repository.*;
 import java.io.*;
@@ -150,11 +150,11 @@ public class MenuLeftLogged extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void PlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayListButtonActionPerformed
-        PlaylistsManager.getInstance().updatePlaylistsPanel();
+        PlaylistsCreationManager.getInstance().updatePlaylistsPanel();
     }//GEN-LAST:event_PlayListButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PlaylistsManager.getInstance().startCreation();
+        PlaylistsCreationManager.getInstance().startCreation();
     }//GEN-LAST:event_jButton4ActionPerformed
     
     

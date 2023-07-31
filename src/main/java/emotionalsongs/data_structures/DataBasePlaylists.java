@@ -8,7 +8,7 @@
 
 package emotionalsongs.data_structures;
 
-import emotionalsongs.managers.PlaylistsManager;
+import emotionalsongs.managers.PlaylistsCreationManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.engines.*;
@@ -82,7 +82,7 @@ public class DataBasePlaylists {
      * @param playlist 
      */
     public void addToLoggedUserSet(Playlist playlist){
-        PlaylistsManager.getInstance().getUserSet().addPlaylist(playlist);
+        PlaylistsCreationManager.getInstance().getUserSet().addPlaylist(playlist);
         save();
     }
     

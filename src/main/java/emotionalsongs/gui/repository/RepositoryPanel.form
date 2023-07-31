@@ -170,7 +170,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="actualArrayWorking.length + &quot; brani presenti!&quot;" type="code"/>
+                      <Connection code="maxIndex+1 +&quot; &quot;+ EmotionalSongs.dialoghi.availableSongs()" type="code"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[190, 50]"/>
@@ -391,13 +391,13 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="for(int i = 0;i&lt;actualArrayWorking.length &amp;&amp; i&lt;tracksPerView;i++){&#xa;    innerScroll.add(actualArrayWorking[i].buildPanelView());   &#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="for(int i = 0;i&lt;actualSongsArray.length;i++){&#xa;    innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   &#xa;}"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="1"/>
                 <Property name="rows" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="tracksPerView" type="code"/>
+                  <Connection code="tracksPerView+1" type="code"/>
                 </Property>
               </Layout>
             </Container>

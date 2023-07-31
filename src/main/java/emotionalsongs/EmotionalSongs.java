@@ -8,7 +8,6 @@
 package emotionalsongs;
 
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.data_structures.*;
 import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.main_window.*;
@@ -37,9 +36,9 @@ public class EmotionalSongs {
     
     private void initialize() throws IOException{
         InitializationFrame init = new InitializationFrame();
-        Repository.getInstance();
-        DataBaseUsers.getInstance();
-        DataBasePlaylists.getInstance();
+        //Repository.getInstance();
+        //DataBaseUsers.getInstance();
+        //DataBasePlaylists.getInstance();
         init.dispose();
         MainFrame.getIstance().setVisible(true);
         

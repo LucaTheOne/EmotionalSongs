@@ -16,6 +16,17 @@ public class Italiano extends dialogs{
         return "Digiti titolo oppure autore;anno";
     }
     
+    public String availableSongs(){
+        return "canzoni disponibili!";
+    }
+    
+    public String foundedResults(){
+        return "risultati trovati";
+    }
+    
+    public String noSongsFounded(){
+        return "0 risultati trovati!";
+    }
    //BASICS STRUCTURE: EMOZIONI
 
      public String amazementName() {

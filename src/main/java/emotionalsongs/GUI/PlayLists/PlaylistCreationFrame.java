@@ -10,11 +10,10 @@
 package emotionalsongs.gui.playlists;
 
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
-import emotionalsongs.data_structures.*;
 import emotionalsongs.engines.*;
 import emotionalsongs.managers.*;
 import javax.swing.*;
+import serverES.db_communication.*;
 
 /**
  * Classe le cui istanze sono form per la creazione di nuove playlist.
@@ -25,9 +24,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     /**
      * Crea il form per la creazione di nuove playlist.
      */
-    PlaylistsManager playlistsManager = PlaylistsManager.getInstance();
-    Repository repositoryCorrelated = Repository.getInstance();
-    Song[] actualArrayWorking = repositoryCorrelated.getArray();
+    PlaylistsCreationManager playlistsCreationManager = PlaylistsCreationManager.getInstance();
+    String[] songsData;
+    DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
     
     int tracksPerView = 100;
     int startIndex = 0;
@@ -35,6 +34,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     boolean lastPage = false;
     
     public PlaylistCreationFrame() {
+        songsData = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -141,7 +141,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         numberSelectedSongLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberSelectedSongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numberSelectedSongLabel.setText(playlistsManager.getNumberOfSongToAdd() + " brani selezionati!");
+        numberSelectedSongLabel.setText(playlistsCreationManager.getNumberOfSongToAdd() + " brani selezionati!");
         numberSelectedSongLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
 
@@ -319,20 +319,20 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_annullaButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        playlistsManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
-        playlistsManager.registraPlaylist();
-        
+        playlistsCreationManager.setTitlePlaylist(playlistNameTextField.getText().isBlank()?"newPlaylist":playlistNameTextField.getText());
+        playlistsCreationManager.registraPlaylist();
         close();
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelated.getArray();
+            startIndex
+            songsData = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
             innerScroll.removeAll();
 
-            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-                innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+            for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
             }
 
             numberSelectedSongLabel.revalidate();
@@ -345,10 +345,10 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         }
 
         EngineSearcher searchEngine = new EngineSearcher();
-        actualArrayWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        actualArraySongsWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
         innerScroll.removeAll();
 
-        if(actualArrayWorking == null){
+        if(actualArraySongsWorking == null){
             innerScroll.removeAll();
             innerScroll.revalidate();
             innerScroll.repaint();
@@ -359,8 +359,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             return;
         }
 
-        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
+            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
         }
 
         numberSelectedSongLabel.revalidate();
@@ -374,11 +374,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         if(searchBar.getText().isBlank()) {
-            actualArrayWorking = repositoryCorrelated.getArray();
+            actualArraySongsWorking = repositoryCorrelated.getArray();
             innerScroll.removeAll();
 
-            for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-                innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+            for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
+                innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
             }
 
             numberSelectedSongLabel.revalidate();
@@ -391,10 +391,10 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         }
 
         EngineSearcher searchEngine = new EngineSearcher();
-        actualArrayWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        actualArraySongsWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
         innerScroll.removeAll();
 
-        if(actualArrayWorking == null){
+        if(actualArraySongsWorking == null){
             innerScroll.removeAll();
             innerScroll.revalidate();
             innerScroll.repaint();
@@ -405,8 +405,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             return;
         }
 
-        for(int i = 0;i<actualArrayWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
+            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
         }
 
         numberSelectedSongLabel.revalidate();
@@ -427,8 +427,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         }
         innerScroll.removeAll();
 
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArraySongsWorking.length;i++){
+            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
         }
 
         lastPage = false;
@@ -437,7 +437,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if((startIndex+tracksPerView) >= actualArrayWorking.length-1 ) lastPage = true;
+        if((startIndex+tracksPerView) >= actualArraySongsWorking.length-1 ) lastPage = true;
 
         if (lastPage) return;
         firstPage = false;
@@ -446,8 +446,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         innerScroll.removeAll();
 
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArrayWorking.length;i++){
-            innerScroll.add(actualArrayWorking[i].buildPanelAddToPlaylist());
+        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArraySongsWorking.length;i++){
+            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
         }
 
         innerScroll.revalidate();
@@ -496,9 +496,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     
     public void close() {
         this.dispose();
-        playlistsManager.eraseSongToAdd();
-        playlistsManager.eraseTitlePlaylist();
-        playlistsManager.eraseNumberOfSelectedSong();
+        playlistsCreationManager.eraseSongToAdd();
+        playlistsCreationManager.eraseTitlePlaylist();
+        playlistsCreationManager.eraseNumberOfSelectedSong();
     }
     
     public void updateSongSelectedLabel(){

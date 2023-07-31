@@ -15,6 +15,15 @@ import java.rmi.*;
 public interface DataManager extends Remote {
     
     //Songs and playlists data management
+
+    //luca
+    /**
+     * Metodo che ritorna i dati di una canzone di cui se ne passa l' id.
+     *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     * @param songId stringa con l' id della canzone di cui cercare i dati.
+     * @return Stringa con i dati della canzone corrispondente all' id, null in caso di errori.
+     */
+    public String requestSongdata(String songId);
     
     //luca - fatto
     /**
@@ -22,7 +31,7 @@ public interface DataManager extends Remote {
      * nel quale in ogni posizione ci sono i dati di una canzone contenente nel titolo la stringa passata
      * come argomento.
      * Gli elementi saranno separati da "£SEP£". 
-     *      -Formato: "ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param title stringa da ricercare nel titolo delle canzoni.
      * @return Array di stringhe con i dati delle canzoni contenenti la stringa argomento nel titolo.
      */
@@ -34,7 +43,7 @@ public interface DataManager extends Remote {
      * nel quale in ogni posizione ci sono i dati di una canzone che contiene sia, nel campo autore, la stringa passata
      * come argomento che , nel campo anno, l' intero passato come argomento.
      * Gli elementi saranno separati da "£SEP£".
-     *      -Formato: "ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param author Stringa che si vuole ricercare nel campo autore.
      * @param year anno che si intende cercare.
      * @return Array di stringhe con i dati delle canzoni cui la stringa argomento compare nel campo autore e l' intero compare nel campo anno.
@@ -52,18 +61,18 @@ public interface DataManager extends Remote {
      */
     public String[] requestRepositorysSongByIndex(int startIndex,int endIndex);
     
-    //Natan
+    //Luca -  fatto
     /**
      * Metodo usato per richiedere al DB un array di stringhe, 
      * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
      * ed il suo nome separati da "£SEP£".
-     *      -Formato: "ID_PLAYLIST£SEP£NOME_PLAYLIST" -
+     *      -Formato: "ID_PLAYLIST£SEP£User_PROP_ID£SEP£NOME_PLAYLIST" -
      * @param idUser id utente di cui si vuole sapere il nome delle playlist.
      * @return array di Stringhe contenente id e nomi delle playlist.
      */
     public String[] requestPlaylistsUser(String idUser);
     
-    //Natan
+    //Luca - fatto
     /**
      * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
      * i dati di una canzone  della playlist passata come argomento, separati da £SEP£;
@@ -71,9 +80,9 @@ public interface DataManager extends Remote {
      * @param PlaylistID id della playlist il quale si vuole sapere il contenuto.
      * @return array di stringhe contenenti i dati delle canzoni della playlist.
      */
-    public String[] requestPlaylistSongs(String PlaylistID);
+    public String[] requestPlaylistSongs(String playlistId);
     
-    //Natan
+    //Luca - fatto
     /**
      * Metodo che interroga il DB per ottenere informazioni riguardo 
      * ai giudizi emozionali relativi alla canzone il cui id è passato come argomento.

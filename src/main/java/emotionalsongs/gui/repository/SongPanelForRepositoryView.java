@@ -26,13 +26,22 @@ import java.net.*;
 public class SongPanelForRepositoryView extends javax.swing.JPanel {
 
     
-    private Song representedSong;
+    private String representedSong;
+    private String title,idUnique,author;
+    private int year;
     /**
      * Crea il pannello di rappresentazione della canzone passata come argomento.
      * @param representedSong Canzone rappresentata dal pannello.
      */
-    public SongPanelForRepositoryView(Song representedSong) {
+    public SongPanelForRepositoryView(String representedSong) {
         this.representedSong = representedSong;
+        String[] splitted = representedSong.split("£SEP£");
+        if(splitted.length!=5) System.out.println("Errore, stringa canzone non valida.");
+        idUnique = splitted[0];
+        
+        title = splitted[2];
+        author = splitted[3];
+        year = Integer.parseInt(splitted[4]);
         
         initComponents();
     }
@@ -67,7 +76,7 @@ public class SongPanelForRepositoryView extends javax.swing.JPanel {
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText(representedSong.getTitle());
+        titleLabel.setText(title);
         titleLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         titlePanel.add(titleLabel, java.awt.BorderLayout.CENTER);
 
@@ -94,7 +103,7 @@ public class SongPanelForRepositoryView extends javax.swing.JPanel {
         AuthorYearLabels.setLayout(new java.awt.BorderLayout());
 
         authorLabel.setForeground(new java.awt.Color(204, 204, 204));
-        authorLabel.setText(representedSong.getAuthor()+"       "+String.valueOf(representedSong.getYear()));
+        authorLabel.setText(author+"       "+String.valueOf(year));
         authorLabel.setPreferredSize(new java.awt.Dimension(400, 20));
         AuthorYearLabels.add(authorLabel, java.awt.BorderLayout.CENTER);
 
@@ -156,14 +165,14 @@ public class SongPanelForRepositoryView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
-        new DataVisualizationForm(representedSong.getTag()).setVisible(true);
+        new DataVisualizationForm(idUnique).setVisible(true);
     }//GEN-LAST:event_chartButtonActionPerformed
 
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed
         Desktop desktop = java.awt.Desktop.getDesktop();
             try {
                 //specify the protocol along with the URL
-		URI linkToYT = new URI(representedSong.buildResearchQueryUrl());
+		URI linkToYT = new URI(Song.buildResearchQueryUrl(title,author,year));
 		desktop.browse(linkToYT);
             } catch (URISyntaxException e) {
 		// TODO Auto-generated catch block

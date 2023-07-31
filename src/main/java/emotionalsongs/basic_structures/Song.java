@@ -8,8 +8,6 @@
 
 package emotionalsongs.basic_structures;
 
-import emotionalsongs.managers.PlaylistsManager;
-import emotionalsongs.*;
 import emotionalsongs.gui.data_visualizer.*;
 import emotionalsongs.gui.playlists.*;
 import emotionalsongs.gui.repository.*;
@@ -108,8 +106,8 @@ public class Song {
      * Il frame che così appare contiene grafici con i dati relativi ai giudizi emozionali relativi alla Istanza di Song che chiama il metodo,
      * un report testuale e dei metodi per esportare tali dati.
      */
-    public void visualizzaEmozioneBrano(){
-        new DataVisualizationForm(tag).setVisible(true);
+    public static void visualizzaEmozioneBrano(String idSong){
+        new DataVisualizationForm(idSong).setVisible(true);
     }
     
     //metodi di costruzione
@@ -118,8 +116,8 @@ public class Song {
      * esponente i campi rappresentanti dell ' istanza di Song che chiama questo metodo.
      * @return Pannello rappresentativo della canzone durante l' ispezione del repository.
      */
-    public SongPanelForRepositoryView buildPanelView(){
-        return new SongPanelForRepositoryView(this);
+    public static SongPanelForRepositoryView buildPanelView(String songString){
+        return new SongPanelForRepositoryView(songString);
     }
     
     /**
@@ -128,15 +126,15 @@ public class Song {
      * durante il form di creazione.
      * @return Pannello rappresentativo della canzone durante la creazione di una playlist.
      */
-    public SongToAddToAPlaylistPanel buildPanelAddToPlaylist() {
-        return new SongToAddToAPlaylistPanel(this, PlaylistsManager.getInstance());
+    public static SongToAddToAPlaylistPanel buildPanelAddToPlaylist(String songData) {
+        return new SongToAddToAPlaylistPanel(songData);
     }
     
     /**
      * Il metodo ritorna una stringa con il link di ricerca della canzone, rappresentata dall' istanza che ne chiama il metodo, su youtube.
      * @return L'url di ricerca della canzone.
      */
-    public String buildResearchQueryUrl(){
+    public static String buildResearchQueryUrl(String title,String author,int year){
         return "https://www.youtube.com/results?search_query=" + 
                 title.replaceAll(" ", "+") +
                 "+" + author.replaceAll(" ", "")+
@@ -144,13 +142,13 @@ public class Song {
     }
     
     /**
-     * Il metodo ritorna un istanza di SongPanel, estensione di JPanel, la quale rappresenta graficamente l' istanza di Song che richiama il metodo
-     * come parte di una playlist.
-     * @param propertyPlaylist la Playlist in cui il brano è contenuto.
+     * Il metodo ritorna un istanza di SongPanelForPlaylistView, estensione di JPanel, la quale rappresenta graficamente l' istanza di Song che richiama il metodo
+ come parte di una playlist.
+     * @param songdata la Playlist in cui il brano è contenuto.
      * @return Il pannello con la Playlist.
      */
-    public SongPanel buildPanelForPlaylist(Playlist propertyPlaylist){
-        return new SongPanel(EmotionalSongs.getLoggedUser().getUserId(),this,propertyPlaylist);
+    public static SongPanelForPlaylistView buildPanelForPlaylist(String songdata){
+        return new SongPanelForPlaylistView(songdata);
     }
     
     //metodi di confronto

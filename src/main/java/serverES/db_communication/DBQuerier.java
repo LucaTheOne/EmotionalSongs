@@ -6,8 +6,8 @@
  */
 package serverES.db_communication;
 
+import java.rmi.*;
 import java.sql.*;
-//per creare stringa da array
 import java.util.*;
 import org.apache.commons.lang3.*;
 
@@ -15,15 +15,16 @@ import org.apache.commons.lang3.*;
  *
  * @author big
  */
-public class DBQuerier {
+public class DBQuerier implements Remote{
     
-    private Connection connectionToDB;
-    private String divider = "£SEP£";
+    private final Connection connectionToDB;
+    private final String divider = "£SEP£";
 
     public DBQuerier(Connection connectionToDB) {
         this.connectionToDB = connectionToDB;
     }
     
+    //Luca
     /**
      * Metodo che ritorna un array di stringhe, in ogni sua posizione ci sono i dati
      * di una canzone cui il titolo coincide alla stringa passata come argomento, 
@@ -34,7 +35,7 @@ public class DBQuerier {
      */
     public String[] cercaBranoMusicale(String title){
         try {
-            String query = "SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE LOWER(TITOLO) LIKE LOWER('%"+title+"%') ORDER BY TITOLO,AUTORE,ANNO ASC;";
+            String query = "SELECT ID_UNIVOCO,REPO_INDEX,TITOLO,AUTORE,ANNO FROM CANZONI WHERE LOWER(TITOLO) LIKE LOWER('%"+title+"%') ORDER BY TITOLO,AUTORE,ANNO ASC;";
             
             Statement statement = connectionToDB.createStatement();
             statement = connectionToDB.createStatement();
@@ -48,6 +49,7 @@ public class DBQuerier {
         return null;
     }
     
+    //Luca
     /**
      * Metodo che ritorna un array di stringhe, in ogni sua posizione ci sono i dati
      * di una canzone cui il autore coincide alla stringa passata come argomento, 
@@ -72,6 +74,7 @@ public class DBQuerier {
         return null;
     }
     
+    //Luca
     /**
      * Metodo che ritorna un array di canzoni comprese tra i due indici (che sono compresi).
      * Gli elementi sono adeguatamente formattati come da interfaccia "DataManager".
@@ -92,6 +95,7 @@ public class DBQuerier {
         return null;
     }
     
+    //Luca
     /**
      * Metodo che si occupa di aggiungere al db una nuova playlist.
      * Le sue operazioni compongono una transazione, se qualcosa va storto viene annullato tutto.
@@ -184,6 +188,7 @@ public class DBQuerier {
         return 0;
     }
     
+    //Luca
     /**
      * Metodoche si occupa di aggiornare la tabella Emozioni con un nuovo giudizio emozionale.
      * il metodo controlla da solo la lunghezza del commento ed il numero di voti.
@@ -227,7 +232,8 @@ public class DBQuerier {
         return 0;
     }
     
-    /** Metodo che verifica se un determinato utente (identificato dal CF) non abbia già espresso un parere
+    //Eleonora
+    /** Metodo che verifica se un determinato utente (identificato dal userId) non abbia già espresso un parere
     * per una determinata canzone (identificata dal suo id).
     * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
     * @param songId Id della canzone da votare.
@@ -247,7 +253,8 @@ public class DBQuerier {
         }
         return false;
     }
-
+    
+    //Eleonora
     /**
      * Metodo il quale verifica che tutti i parametri passati come argomento siano accettabili,
      * ritorna 0 se lo sono tutti, altrimenti un intero rappresentante un errore.
@@ -264,7 +271,7 @@ public class DBQuerier {
      */
     public int validateVote(String IDSong, int[] emotionalMarks, String Comment){
         try {
-            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;"; //stessa cosa di prima
+            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;"; 
             PreparedStatement statementControl = connectionToDB.prepareStatement(query);
             statementControl.setString(1, IDSong);
             ResultSet resultSet = statementControl.executeQuery();
@@ -287,15 +294,7 @@ public class DBQuerier {
                 }
             }
 
-            int ascii;
-            char c;
-            for(int i = 0; i < Comment.length(); i++)   //per ogni carattere controllo il suo valore ASCII. se supera il numero 128 non rientra nell'ASCII standard
-            {
-                c = Comment.charAt(i);
-                ascii = (int)c;
-                if(ascii > 128)     
-                    return 4;
-            }
+            if(!isFitToPostgresql(Comment)) return 4;
             
 
             if(Comment.length() > 256)
@@ -315,41 +314,35 @@ public class DBQuerier {
     /**
      * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
      * Ritorna 0 se si, altrimenti un intero rappresentante un errore.
-     * @param playlistId Id della nuova playlist
+     * @param playlistName Id della nuova playlist
      * @param songsIds array con gli ids delle canzoni da aggiungervi.
      * @return 0 - operazione terminata con successo,
      * 1 - almeno uno degli IDs delle canzoni non è valido.
-     * 2 - l' id della playlist non è valido.
+     * 2 - il nome della playlist non è valido.
      * 3 - errore chatch
      */
-    public int validatePlaylist(String playlistId,String[] songsIds) //domanda, l'associazione id-playlist - idCanzoni devo controllarla qui o viene gestita prima?
+    public int validatePlaylist(String playlistName,String[] songsIds) //domanda, l'associazione id-playlist - idCanzoni devo controllarla qui o viene gestita prima?
     {
         try{
-            String query ="SELECT COUNT(*) FROM PLAYLIST WHERE ID_PLAYLIST = ?;"; 
-            PreparedStatement statementControl = connectionToDB.prepareStatement(query);
-            statementControl.setString(1, playlistId);
-            ResultSet resultSet = statementControl.executeQuery();
-            resultSet.next();
-            if(resultSet.getInt(1) == 0)
-                return 2;
+            
+            if(!isFitToPostgresql(playlistName)) return 2;
             
             String str = String.join(",", songsIds); // creo una stringa con i codici separati da una virgola
+            System.out.println(str);
 
-System.out.println(str);
-
-            query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO IN (?"; //creo una query con tanti punti interrogativi quanti elementi dell'array di canzoni
+            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO IN (?"; //creo una query con tanti punti interrogativi quanti elementi dell'array di canzoni
             String quest = ",?".repeat(songsIds.length - 1);
             query += quest += ");";                                 
 
              
 
-            statementControl = connectionToDB.prepareStatement(query); //assegno ad ogni ? un elemento dell'array
+            PreparedStatement statementControl = connectionToDB.prepareStatement(query); //assegno ad ogni ? un elemento dell'array
             for (int i=0; i<songsIds.length; i++)
             {
                 statementControl.setString(i+1, songsIds[i]);
             }
             
-            resultSet = statementControl.executeQuery();
+            ResultSet resultSet = statementControl.executeQuery();
             resultSet.next();
 
             if (resultSet.getInt(1) != songsIds.length)
@@ -362,8 +355,155 @@ System.out.println(str);
             return 3;
         }
     }
-
+    
+    //luca
+    /**
+     * 
+     * @return 
+     */
+    public int getRepoSize(){
+        try {
+            String query = "SELECT MAX(REPO_INDEX) FROM CANZONI;";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+    
+    //luca
+    /**
+     * Metodo che ritorna un array di stringhe, 
+     * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
+     * ed il suo nome separati da "£SEP£".
+     *      -Formato: "ID_PLAYLIST£SEP£User_PROP_ID£SEP£NOME_PLAYLIST" -
+     * @param idUser id utente di cui si vuole sapere il nome delle playlist.
+     * @return array di Stringhe contenente id e nomi delle playlist, null se l' utente non ha playlist.
+     */
+    public String[] requestPlaylistsUser(String idUser){
+        try {
+            String query = "SELECT * FROM PLAYLIST WHERE USER_PROP_ID = '"+idUser+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            return convertResultToArrayString(result);    
+        } catch (SQLException ex) {
+            System.out.println(ex.getCause());
+            return null;
+        }
+    }
+    
+    //luca
+    /**
+     * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
+     * i dati di una canzone  della playlist passata come argomento, separati da £SEP£;
+     *      -Formato: "REPO_INDEX£SEP£ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO"-
+     * @param playlistId id della playlist il quale si vuole sapere il contenuto.
+     * @return array di stringhe contenenti i dati delle canzoni della playlist, null in caso di anomalie.
+     */
+    public String[] requestPlaylistSongs(String playlistId){
+        try {
+            String query = "SELECT * FROM CONTENUTO_PLAYLIST WHERE PLAYLIST_ID = '"+playlistId+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            return convertResultToArrayString(result);    
+        } catch (SQLException ex) {
+            System.out.println(ex.getCause());
+            return null;
+        }
+    }
+    
+    //luca
+    /**
+     * Metodo che interroga il DB per ottenere informazioni riguardo 
+     * ai giudizi emozionali relativi alla canzone il cui id è passato come argomento.
+     * Ritorna un array contenente in ogni posizione un giudizio ricevuto da un utente.
+     *      -Formato: "meraviglia_voto£SEP£solennita_voto£SEP£tenerezza_voto£SEP£nostalgia_voto£SEP£pacatezza_voto£SEP£potere_voto£SEP£gioia_voto£SEP£tensione_voto£SEP£tristezza_voto£SEP£commento"
+     * @param idSong id della canzone il quale si vogliono ottenere i giudizi emozionali.
+     * @return array contenente in ogni posizione un giudizio ricevuto da un utente, null se non ve ne sono disponibili.
+     */
+    public String[] requestDataJudgementsSong(String idSong){
+        try {
+            String query = "SELECT * FROM EMOZIONI WHERE CANZONE_ID = '"+idSong+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            return convertResultToArrayString(result);    
+        } catch (SQLException ex) {
+            System.out.println(ex.getCause());
+            return null;
+        }
+    }
+    
+    //luca
+    /**
+     * Metodo che ritorna i dati di una canzone di cui se ne passa l' id.
+     *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     * @param songId stringa con l' id della canzone di cui cercare i dati.
+     * @return Stringa con i dati della canzone corrispondente all' id, null in caso di errori.
+     */
+    public String requestSongdata(String songId){
+        try {
+            String query = "SELECT * FROM CANZONI WHERE ID_UNIVOCO = '"+songId+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            String resulString[] = convertResultToArrayString(result);
+            if(resulString.length != 1) return null;
+            return resulString[0];
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    //Luca
+    
+    public int getPlaylistDimension(String playlistId){
+        try {
+            String query = "SELECT COUNT(*) FROM CONTENUTO_PLAYLIST WHERE PLAYLIST_ID = '"+playlistId+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 0;
+        }
+    }
+    
+    //luca
+    public int getUserPlaylistsNumber(String userId){
+        try {
+            String query = "SELECT COUNT(*) FROM PLAYLIST WHERE USER_PROP_ID = '"+userId+"';";
+            PreparedStatement statement = connectionToDB.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 0;
+        }
+    }
+    
     //metodi privati di supporto, interni alla classe.
+    /**
+     * Metodo usato per controllare che la stringa passata come argomento sia composta da soli caratteri ASCII.
+     * @param stringToCheck Stringa da controllare.
+     * @return true se ci sono solo caratteri ASCII, false altrimenti.
+     */
+    private boolean isFitToPostgresql(String stringToCheck){
+        int ascii;
+        char c;
+        for(int i = 0; i < stringToCheck.length(); i++) {  
+            //per ogni carattere controllo il suo valore ASCII. se supera il numero 128 non rientra nell'ASCII standard
+            c = stringToCheck.charAt(i);
+            ascii = (int)c;
+            if(ascii > 128) return false;
+        }
+        return true;
+        //thx to eleonora for this support method  :)
+    }
     
     /**
      * Metodo interno alla classe di supporto, si occupa di convertire un result set in un array
@@ -461,15 +601,15 @@ System.out.println(str);
         
         
         //querier.updateEmozioniTable("theOne", "TRWSZDB128F934171B", new int[]{1,2,3,4,5,4,3,2,1}, "commento prova da java");
-        
-        //String[] result = querier.cercaBranoMusicale("titolo");
-        //if(result == null){
-            //System.out.println("No songs founded!");
-        //} else {
-            //for(int i = 0; i<result.length;i++){
-                //System.out.println(result[i]);
-            //}
-        //}
+        /*
+        String[] result = querier.cercaBranoMusicale("warm");
+        if(result == null){
+            System.out.println("No songs founded!");
+        } else {
+            for(int i = 0; i<result.length;i++){
+                System.out.println(result[i]);
+            }
+        }*/
         
         //boolean canVote = querier.userCanVoteSong("theOne", "TRWSZDB128F934171B");
         //System.out.println(canVote);
@@ -504,7 +644,24 @@ System.out.println(str);
        /* String [] cod = {"TRSGHLU128F421DF83", "TRZKAOZ128F4280C36", "TRVQNFB12903CEC8AA"};
         int ris = querier.validatePlaylist("UFTzEUYkTptX7dbMSvjL", cod);
         System.out.println(ris);*/
+       
+        //System.out.println(querier.getRepoSize());
+        
+        /*
+        String[] res = querier.requestPlaylistsUser("theOne");
+        System.out.println(res.length);
+        for(String str:res){
+            System.out.println(str);
+        }*/
+        /*
+        String [] res = querier.requestDataJudgementsSong("TRMYDFV128F42511FC");
+        System.out.println(res.length);
+        for(String str:res){
+            System.out.println(str);
+        }*/
+        
+        //System.out.println(querier.getPlaylistDimension("RK52HLI0F2TQFb5zoa9k"));
+        //System.out.println(querier.getUserPlaylistsNumber("theOne"));
+
     }
-
-
 }
