@@ -62,7 +62,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * 15 - citta non valida.
      */
     @Override
-    public int[] validateNewUserData(String userId, String email, String cf, String password, String rePassword, String nome, String cognome, String tipoIndirizzo, String indirizzo, int civico, int cap, int nazione, String provincia, String città) throws RemoteException{
+    public boolean[] validateNewUserData(String userId, String email, String cf, String password, String rePassword, String nome, String cognome, String tipoIndirizzo, String indirizzo, int civico, int cap, int nazione, String provincia, String città) throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
@@ -91,7 +91,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * 2 - Password errata.
      */
     @Override
-    public int[] validateLogin(String userId, String password) throws RemoteException{
+    public boolean[] validateLogin(String userId, String password) throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

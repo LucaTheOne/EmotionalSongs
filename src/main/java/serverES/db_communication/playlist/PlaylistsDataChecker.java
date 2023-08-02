@@ -37,11 +37,11 @@ public class PlaylistsDataChecker extends UnicastRemoteObject implements Playlis
      * 2 - il nome della playlist non è valido.
      */
     @Override
-    public int[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException{
-        int[] errors = new int[]{0,0,0};
+    public boolean[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException{
+        boolean[] errors = new boolean[]{false,false,false};
         
         try{
-            if(!ServerUtils.isFitToPostgresql(playlistName)) errors[0] = 2;
+            if(!ServerUtils.isFitToPostgresql(playlistName)) errors[0] = true;
             
             String str = String.join(",", songsIds); // creo una stringa con i codici separati da una virgola
             System.out.println(str);
@@ -59,11 +59,11 @@ public class PlaylistsDataChecker extends UnicastRemoteObject implements Playlis
             ResultSet resultSet = statementControl.executeQuery();
             resultSet.next();
 
-            if (resultSet.getInt(1) != songsIds.length) errors[1] = 1;
+            if (resultSet.getInt(1) != songsIds.length) errors[1] = true;
         }
         catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            errors[2] = 3;
+            errors[2] = false;
         }
         return errors;
     }

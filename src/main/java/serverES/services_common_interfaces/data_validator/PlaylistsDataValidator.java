@@ -27,5 +27,5 @@ public interface PlaylistsDataValidator extends Remote {
      * 1 - almeno uno degli IDs delle canzoni non è valido.
      * 2 - il nome della playlist non è valido.
      */
-    public int[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException;
+    public boolean[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException;
 }

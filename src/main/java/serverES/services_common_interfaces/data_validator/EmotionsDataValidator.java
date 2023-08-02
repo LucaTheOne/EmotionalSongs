@@ -31,5 +31,5 @@ public interface EmotionsDataValidator extends Remote {
      * 5 - Commento contiene più di 256 caratteri.
      * 6 - eccezione SQL.
      */
-    public int[] validateVote(String songId,int[] emotionalMarks,String Comment)throws RemoteException;
+    public boolean[] validateVote(String songId,int[] emotionalMarks,String Comment)throws RemoteException;
 }

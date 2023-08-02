@@ -52,7 +52,7 @@ public interface UsersDataValidator extends Remote {
      * 14 - provincia non valida.
      * 15 - citta non valida.
      */
-    public int[] validateNewUserData(
+    public boolean[] validateNewUserData(
             String userId,
             String email,
             String cf,
@@ -87,5 +87,5 @@ public interface UsersDataValidator extends Remote {
      * @return 0 - dati validi.
      * 1 - id e/o password errati.
      */
-    public int[] validateLogin(String userId,String password)throws RemoteException;
+    public boolean[] validateLogin(String userId,String password)throws RemoteException;
 }

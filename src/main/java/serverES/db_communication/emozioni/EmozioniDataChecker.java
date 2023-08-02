@@ -43,8 +43,8 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
      * 6 - eccezione SQL.
      */
     @Override
-    public int[] validateVote(String songId, int[] emotionalMarks, String Comment)throws RemoteException{
-        int[] errors = new int[]{0,0,0,0,0,0};
+    public boolean[] validateVote(String songId, int[] emotionalMarks, String Comment)throws RemoteException{
+        boolean[] errors = new boolean[]{false,false,false,false,false,false};
         try {
             String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;"; 
             PreparedStatement statementControl = CONNECTION_TO_DB.prepareStatement(query);
@@ -53,32 +53,32 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
             resultSet.next();
             if(resultSet.getInt(1)<1)
             {
-                errors[0] = 1;
+                errors[0] = true;
             }
 
             if(emotionalMarks.length > 9 || emotionalMarks.length < 1)
             {
-                errors[1] = 2;
+                errors[1] = true;
             } 
             
             for(int i = 0; i < 9; i++)
             {
                 if(emotionalMarks[i] < 1 || emotionalMarks[i] > 5)
                 {
-                    errors[2] = 3;
+                    errors[2] = true;
                 }
             }
 
-            if(!ServerUtils.isFitToPostgresql(Comment)) errors[3] = 4;
+            if(!ServerUtils.isFitToPostgresql(Comment)) errors[3] = true;
             
 
             if(Comment.length() > 256)
             {
-                errors[4] = 5;
+                errors[4] = true;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            errors[0] = 6;
+            errors[0] = true;
         }
         return errors;
     }
