@@ -13,6 +13,8 @@ package emotionalsongs.dialogs;
  * Classe astratta che fa da involucro per le classi che gestiscono la lingua del software.
  */
 public abstract class dialogs {
+
+    public abstract String tryConnectToService();
     //generics
     public abstract String searchBarText();
     
@@ -21,6 +23,8 @@ public abstract class dialogs {
     public abstract String foundedResults();
     
     public abstract String noSongsFounded();
+    
+    public abstract String selectedSongs();
     
     //songs
     public abstract String yearOfPublication();
@@ -239,4 +243,12 @@ public abstract class dialogs {
     public abstract String voidPlaylistsDenied(); 
     
     public abstract String voteInstructions();
+
+    public abstract String typeAnHostAddressError();
+
+    public abstract String typeAPortError(); 
+    
+    public abstract String hostServiceLabel();
+
+    public abstract String portLabel();
 }

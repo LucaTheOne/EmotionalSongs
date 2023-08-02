@@ -31,6 +31,10 @@ public class English extends dialogs{
         return "0 results founded!";
     }
     
+    public String selectedSongs(){
+        return "selected songs!";
+    }
+    
     //BASICS STRUCTURE: EMOZIONI
 
      public String amazementName() {
@@ -449,6 +453,31 @@ public class English extends dialogs{
                 "where 1 means emotion little perceived and 5 means\n"+
                 "plenty perceived.\n"+
                 "If you want it, you can release a comment,\n of max 255 characters, for each emotion.";
+    }
+
+    @Override
+    public String tryConnectToService() {
+        return "Connect";
+    }
+
+    @Override
+    public String typeAnHostAddressError() {
+        return "Type a valid IP Host address";
+    }
+
+    @Override
+    public String typeAPortError() {
+        return "Type Host service's port";
+    }
+
+    @Override
+    public String hostServiceLabel() {
+        return "Host service's IP address:";
+    }
+
+    @Override
+    public String portLabel() {
+        return "Host service's port";
     }
     
 }

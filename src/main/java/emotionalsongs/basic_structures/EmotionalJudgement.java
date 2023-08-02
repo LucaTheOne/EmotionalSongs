@@ -21,7 +21,7 @@ package emotionalsongs.basic_structures;
  */
 public class EmotionalJudgement {
     
-    private String branoTag;
+    private String idUniqueBrano;
     
     private String userID;
     
@@ -39,7 +39,7 @@ public class EmotionalJudgement {
         
         String[] fileLineSplitted = fileLine.split(";");
         
-        branoTag = fileLineSplitted[0];
+        idUniqueBrano = fileLineSplitted[0];
         userID= fileLineSplitted[1];
         
         amazementMark = Integer.parseInt(fileLineSplitted[2]); amazementNotes = fileLineSplitted[3];
@@ -77,7 +77,7 @@ public class EmotionalJudgement {
      */
     public EmotionalJudgement(String branoTag, String userID, int amazementMarks, String amazementNotes, int solemnityMarks, String solemnityNotes, int tendernessMarks, String tendernessNotes, int nostalgiaMarks, String nostalgiaNotes, int calmnessMarks, String calmnessNotes, int powerMarks, String powerNotes, int joyMarks, String joyNotes, int tensionMarks, String tensionNotes, int sadnessMarks, String sadnessNotes) {
         
-        this.branoTag = branoTag;
+        this.idUniqueBrano = branoTag;
         this.userID = userID;
         
         this.amazementMark = amazementMarks; this.amazementNotes = amazementNotes;
@@ -97,7 +97,7 @@ public class EmotionalJudgement {
      * @return Stringa per il formato del file Emozioni.dati.txt.
      */
     public String stringaRecord() {
-        return branoTag +";"+
+        return idUniqueBrano +";"+
                 userID +";"+
                 amazementMark+";"+ amazementNotes +";"+
                 solemnityMark+";"+ solemnityNotes +";"+
@@ -116,7 +116,7 @@ public class EmotionalJudgement {
      * @return Tag del brano.
      */
     public String getBranoTag() {
-        return this.branoTag;
+        return this.idUniqueBrano;
     }
 
     /**
@@ -139,7 +139,7 @@ public class EmotionalJudgement {
      * </ul>
      */
     public int compareTo(EmotionalJudgement record) {
-        return this.branoTag.compareTo(record.getBranoTag());
+        return this.idUniqueBrano.compareTo(record.getBranoTag());
     }
     
     /**

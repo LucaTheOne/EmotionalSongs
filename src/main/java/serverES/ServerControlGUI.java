@@ -253,6 +253,7 @@ class ServerControlGUI extends javax.swing.JFrame {
         server.terminateServices();
         addLineLog("All services shutted down!\n");
         new AskIfTOSaveLog(this);
+        
     }//GEN-LAST:event_ExitButtonActionPerformed
     
     /**
@@ -270,6 +271,13 @@ class ServerControlGUI extends javax.swing.JFrame {
         logTextArea.repaint();
     }
     
+    protected void terminateAll(){
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+        }
+        System.exit(0);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton ExportLogButton;

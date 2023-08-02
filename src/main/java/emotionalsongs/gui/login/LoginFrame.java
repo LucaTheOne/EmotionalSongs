@@ -10,22 +10,23 @@
 package emotionalsongs.gui.login;
 
 import emotionalsongs.*;
-import emotionalsongs.engines.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
 import java.awt.geom.*;
+import serverES.db_communication.*;
 
 /**
  *Classe le cui istanze rappresentano il form di login.
  */
 public class LoginFrame extends javax.swing.JFrame {
-    private EngineLogger logger = new EngineLogger();
     private Image bg = Utilities.logingBG.getImage();
     private MainFrame mainWindow = MainFrame.getIstance();
+    private DBQuerier service;
     /**
      * Crea un form per il login.
      */
-    public LoginFrame() {
+    public LoginFrame(DBQuerier remoteService) {
+        service = remoteService;
         setAlwaysOnTop(true);
         initComponents();
     }

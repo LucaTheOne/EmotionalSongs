@@ -6,16 +6,19 @@
  */
 package serverES.db_communication;
 
+import java.io.*;
 import java.sql.*;
 
 /**
  *
  * @author big
  */
-public class DBConnector {
+public class DBConnector implements Serializable{
     
+    private static final long serialVersionUID = 1L;
     protected static final int PORT_TO_DB = 9876;
-    
+    public static String UNIV_SEP = "£SEP£";
+
     public static Connection getConnection(int DBPort) {
         Connection connection = null;
         final String url = "jdbc:postgresql://localhost:"+DBPort+"/postgres";
@@ -28,12 +31,13 @@ public class DBConnector {
                 System.out.println("Connected to DB");
                 return connection;
             } else {
-                System.out.println("Error");
+                System.out.println("Error; impossible to connect with DB!");
+                return null;
             }  
         } catch (Exception e) {
             System.out.println(e);
-        }
-        return null;
+            return null;
+        }    
     }
     
     public static Connection getDefaultConnection(){

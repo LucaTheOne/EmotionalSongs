@@ -10,7 +10,7 @@
 package emotionalsongs.gui.playlists;
 
 import emotionalsongs.*;
-import emotionalsongs.engines.*;
+import emotionalsongs.basic_structures.*;
 import emotionalsongs.managers.*;
 import javax.swing.*;
 import serverES.db_communication.*;
@@ -25,16 +25,20 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
      * Crea il form per la creazione di nuove playlist.
      */
     PlaylistsCreationManager playlistsCreationManager = PlaylistsCreationManager.getInstance();
-    String[] songsData;
-    DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
+    String[] actualSongsArray;
+    private final DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
     
-    int tracksPerView = 100;
-    int startIndex = 0;
+    private final int tracksPerView = 100;
+    private int startIndex = 0;
+    private final int maxIndex;
+    private boolean throughFullRepo = true;
     boolean firstPage = true;
     boolean lastPage = false;
+    private int actualSearchedSongIndex;
     
     public PlaylistCreationFrame() {
-        songsData = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
+        actualSongsArray = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
+        maxIndex = service.getRepoSize();
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -141,7 +145,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         numberSelectedSongLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberSelectedSongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numberSelectedSongLabel.setText(playlistsCreationManager.getNumberOfSongToAdd() + " brani selezionati!");
+        numberSelectedSongLabel.setText(playlistsCreationManager.getNumberOfSongToAdd() + " "+EmotionalSongs.dialoghi.selectedSongs());
         numberSelectedSongLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
 
@@ -292,9 +296,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
         innerScroll.setOpaque(false);
         innerScroll.setPreferredSize(new java.awt.Dimension(810, 3200));
-        innerScroll.setLayout(new java.awt.GridLayout(100, 1));
+        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView+1, 1));
         for(int i = 0;i<tracksPerView;i++){
-            innerScroll.add(repositoryCorrelated.getBrano(i).buildPanelAddToPlaylist());
+            innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
         }
         scrollView.setViewportView(innerScroll);
 
@@ -326,95 +330,54 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
+        firstPage = true;
+        lastPage=false;
+        
         if(searchBar.getText().isBlank()) {
-            startIndex
-            songsData = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
+            startIndex = 0;
+            throughFullRepo = true;
+            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
             innerScroll.removeAll();
-
-            for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
-                innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
+            throughFullRepo=true;
+            for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
+                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
-
-            numberSelectedSongLabel.revalidate();
-            numberSelectedSongLabel.repaint();
-            firstPage = true;
-            lastPage = false;
             scrollView.revalidate();
             scrollView.repaint();
             return;
         }
-
-        EngineSearcher searchEngine = new EngineSearcher();
-        actualArraySongsWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
+        
+        String request = searchBar.getText();
+        if(request.contains(";")){
+            String[] requestSplitted = request.split(";");
+            actualSongsArray = service.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+        } else {
+            actualSongsArray = service.cercaBranoMusicale(request);
+        }
         innerScroll.removeAll();
+        throughFullRepo = false;
 
-        if(actualArraySongsWorking == null){
+        if(actualSongsArray == null||actualSongsArray.length == 0){
             innerScroll.removeAll();
-            innerScroll.revalidate();
-            innerScroll.repaint();
-            numberSelectedSongLabel.revalidate();
-            numberSelectedSongLabel.repaint();
+            scrollView.revalidate();
+            scrollView.repaint();
             firstPage = true;
             lastPage = true;
             return;
         }
-
-        for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
-        }
-
-        numberSelectedSongLabel.revalidate();
-        numberSelectedSongLabel.repaint();
+        actualSearchedSongIndex = 0;
+        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+            innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
+        } 
         firstPage = true;
         lastPage = false;
-        innerScroll.revalidate();
-        innerScroll.repaint();
+        scrollView.revalidate();
+        scrollView.repaint();
 
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
-        if(searchBar.getText().isBlank()) {
-            actualArraySongsWorking = repositoryCorrelated.getArray();
-            innerScroll.removeAll();
-
-            for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
-                innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
-            }
-
-            numberSelectedSongLabel.revalidate();
-            numberSelectedSongLabel.repaint();
-            firstPage = true;
-            lastPage = false;
-            scrollView.revalidate();
-            scrollView.repaint();
-            return;
-        }
-
-        EngineSearcher searchEngine = new EngineSearcher();
-        actualArraySongsWorking = searchEngine.cercaBranoMusicale(searchBar.getText());
-        innerScroll.removeAll();
-
-        if(actualArraySongsWorking == null){
-            innerScroll.removeAll();
-            innerScroll.revalidate();
-            innerScroll.repaint();
-            numberSelectedSongLabel.revalidate();
-            numberSelectedSongLabel.repaint();
-            firstPage = true;
-            lastPage = true;
-            return;
-        }
-
-        for(int i = 0;i<actualArraySongsWorking.length && i<tracksPerView;i++){
-            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
-        }
-
-        numberSelectedSongLabel.revalidate();
-        numberSelectedSongLabel.repaint();
-        firstPage = true;
-        lastPage = false;
-        innerScroll.revalidate();
-        innerScroll.repaint();
+        
     }//GEN-LAST:event_searchBarActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -422,32 +385,54 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             return;
         }
         startIndex -= tracksPerView;
-        if (startIndex == 0) {
+        if ((startIndex < 0)&&throughFullRepo) {
             firstPage = true;
+            startIndex = 0;
         }
         innerScroll.removeAll();
-
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArraySongsWorking.length;i++){
-            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
-        }
-
         lastPage = false;
+        if(throughFullRepo){
+            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            for(int i = 0; i<actualSongsArray.length;i++){
+                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+            }
+        }else{
+            actualSearchedSongIndex -= tracksPerView;
+            if(actualSearchedSongIndex<0) {
+                actualSearchedSongIndex = 0;
+                firstPage = true;
+            }
+            for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+tracksPerView)&&i<actualSongsArray.length;i++){
+                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+            }
+        }
         innerScroll.revalidate();
         innerScroll.repaint();
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if((startIndex+tracksPerView) >= actualArraySongsWorking.length-1 ) lastPage = true;
-
-        if (lastPage) return;
+        if(((startIndex+tracksPerView) >= maxIndex )&&throughFullRepo) {
+            lastPage = true;
+        }
         firstPage = false;
-
-        startIndex += tracksPerView;
-
+        if (lastPage&&throughFullRepo) return;
+        if(throughFullRepo) startIndex += tracksPerView;
+        
         innerScroll.removeAll();
-
-        for(int i = startIndex; i<(startIndex+tracksPerView) && i<actualArraySongsWorking.length;i++){
-            innerScroll.add(actualArraySongsWorking[i].buildPanelAddToPlaylist());
+        
+        if(throughFullRepo){
+            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            for(int i = 0; i<actualSongsArray.length;i++){
+                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+            }
+        } else {
+            actualSearchedSongIndex += tracksPerView;
+            if(actualSearchedSongIndex==(actualSongsArray.length-tracksPerView)){
+                actualSearchedSongIndex = actualSongsArray.length-tracksPerView;
+            }
+            for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
+            }
         }
 
         innerScroll.revalidate();

@@ -90,13 +90,14 @@ class AskIfTOSaveLog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
-        controlGUI.dispose();
+        controlGUI.addLineLog("Log saving suppressed!\n System will be shutted down...");
+        controlGUI.terminateAll();
         this.dispose();
     }//GEN-LAST:event_noButtonActionPerformed
 
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
         controlGUI.exportAction(true);
-        controlGUI.dispose();
+        controlGUI.terminateAll();
         this.dispose();
     }//GEN-LAST:event_yesButtonActionPerformed
 

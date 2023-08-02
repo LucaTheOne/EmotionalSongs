@@ -1,0 +1,71 @@
+/*
+ * Luca Bolelli - 749137 - VA
+ * Natanail Danailov Danailov - 739887 - VA
+ * Riccardo Rosarin - 749914 - VA
+ * Eleonora Macchi - 748736 - VA
+ */
+package serverES.db_communication.playlist;
+
+import java.rmi.*;
+import java.rmi.server.*;
+import java.sql.*;
+import serverES.db_communication.*;
+import serverES.services_common_interfaces.data_validator.*;
+
+/**
+ *
+ * @author big
+ */
+public class PlaylistsDataChecker extends UnicastRemoteObject implements PlaylistsDataValidator {
+    
+    private static final long serialVersionUID = 1L;
+    private final Connection CONNECTION_TO_DB;
+    
+    public PlaylistsDataChecker(Connection Conn) throws RemoteException{
+        super();
+        CONNECTION_TO_DB = Conn;
+    }
+    
+    //Eleonora
+    /**
+     * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
+     * Ritorna 0 se si, altrimenti un intero rappresentante un errore.
+     * @param playlistName nome della nuova playlist
+     * @param songsIds array con gli ids delle canzoni da aggiungervi.
+     * @return 0 - operazione terminata con successo,
+     * 1 - almeno uno degli IDs delle canzoni non è valido.
+     * 2 - il nome della playlist non è valido.
+     */
+    @Override
+    public int[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException{
+        int[] errors = new int[]{0,0,0};
+        
+        try{
+            if(!ServerUtils.isFitToPostgresql(playlistName)) errors[0] = 2;
+            
+            String str = String.join(",", songsIds); // creo una stringa con i codici separati da una virgola
+            System.out.println(str);
+
+            String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO IN (?"; //creo una query con tanti punti interrogativi quanti elementi dell'array di canzoni
+            String quest = ",?".repeat(songsIds.length - 1);
+            query += quest += ");";                                 
+
+            PreparedStatement statementControl = CONNECTION_TO_DB.prepareStatement(query); //assegno ad ogni ? un elemento dell'array
+            for (int i=0; i<songsIds.length; i++)
+            {
+                statementControl.setString(i+1, songsIds[i]);
+            }
+            
+            ResultSet resultSet = statementControl.executeQuery();
+            resultSet.next();
+
+            if (resultSet.getInt(1) != songsIds.length) errors[1] = 1;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            errors[2] = 3;
+        }
+        return errors;
+    }
+    
+}

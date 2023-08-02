@@ -27,6 +27,11 @@ public class Italiano extends dialogs{
     public String noSongsFounded(){
         return "0 risultati trovati!";
     }
+    
+    public String selectedSongs(){
+        return "brani selezionati!";
+    }
+    
    //BASICS STRUCTURE: EMOZIONI
 
      public String amazementName() {
@@ -444,5 +449,30 @@ public class Italiano extends dialogs{
                 "5 indica che l' emozione è stata percepita appieno.\n"+
                 "Se lo desideri, per ogni emozione, puoi fornire \n"+
                 "un commento di massimo 255 caratteri.";
+    }
+
+    @Override
+    public String tryConnectToService() {
+        return "Connettere";
+    }
+
+    @Override
+    public String typeAnHostAddressError() {
+        return "Inserire un indirizzo ip host valido";
+    }
+
+    @Override
+    public String typeAPortError() {
+        return "Inserire la porta del servizio!";
+    }
+
+    @Override
+    public String hostServiceLabel() {
+        return "IP Host servizio:";
+    }
+
+    @Override
+    public String portLabel() {
+        return "Porta servizio:";
     }
 }

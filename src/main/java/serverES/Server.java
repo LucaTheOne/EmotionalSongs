@@ -9,8 +9,15 @@ package serverES;
 import java.net.*;
 import java.rmi.*;
 import java.rmi.registry.*;
+import java.sql.*;
 import java.util.*;
-import java.util.logging.*;
+import serverES.db_communication.*;
+import serverES.db_communication.canzoni.*;
+import serverES.db_communication.emozioni.*;
+import serverES.db_communication.playlist.*;
+import serverES.db_communication.utenti_registrati_table.*;
+import serverES.services_common_interfaces.data_handler.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 
 
@@ -22,7 +29,7 @@ public class Server {
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
     private static InetAddress SERVER_INET_ADDRESS = null;
     private static Registry registroServizi = null;
-    private Vector<String> servicesNamesVector;
+    private Vector<String> servicesNamesVector = new Vector<>();
     
     /**
      * Con la chiamata a tale costruttore si settano i dati necessari alla sua operatività,
@@ -33,9 +40,18 @@ public class Server {
         try {
             SERVER_INET_ADDRESS = InetAddress.getLocalHost();
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
-            servicesNamesVector = new Vector<>();
-            
+            Connection ConnToDB = DBConnector.getDefaultConnection();
             //adding all necessary service to the vector with addService
+            addService(EmotionsDataHandler.SERVICE_NAME, new ProxyToDBEmozioni(ConnToDB));
+            addService(EmotionsDataValidator.SERVICE_NAME, new EmozioniDataChecker(ConnToDB));
+            
+            addService(PlaylistsDataHandler.SERVICE_NAME, new ProxyToDBPlaylists(ConnToDB));
+            addService(PlaylistsDataValidator.SERVICE_NAME, new PlaylistsDataChecker(ConnToDB));
+            
+            addService(UsersDataHandler.SERVICE_NAME, new ProxyToDBUtenti_Registrati(ConnToDB));
+            addService(UsersDataValidator.SERVICE_NAME, new UtentiDataChecker(ConnToDB));
+            
+            addService(SongsDataHandler.SERVICE_NAME, new ProxyToDBCanzoni(ConnToDB));
             
         } catch (java.net.UnknownHostException ex) {
             System.err.println("Impossibile avviare il server!");
@@ -54,7 +70,7 @@ public class Server {
             registroServizi.rebind(serviceName, servizio);
             servicesNamesVector.add(serviceName);
         } catch (RemoteException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
     
@@ -67,18 +83,18 @@ public class Server {
                 try {
                     registroServizi.unbind(serv);  
                 } catch (RemoteException ex) {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 } catch (NotBoundException ex) {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             } 
         }
-        
     }
     
     
     public static void main(String[] args) throws RemoteException {
         Server server = new Server();
         ServerControlGUI terminal = ServerControlGUI.obtainControlGuiReference(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES, server);
+        
     }
 }
