@@ -9,13 +9,16 @@
 
 package emotionalsongs.gui.repository;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
 import java.io.*;
+import java.rmi.*;
+import java.util.logging.*;
 import javax.swing.*;
-import serverES.db_communication.*;
+import serverES.services_common_interfaces.data_handler.*;
 
 /**
  *Classe le cui istanze mostrano il repository di canzoni.
@@ -23,10 +26,10 @@ import serverES.db_communication.*;
  */
 public class RepositoryPanel extends javax.swing.JPanel {
     
-    private final MainFrame mainWindow = MainFrame.getIstance();
-    private final int tracksPerView = 100;
+    private final MainFrame MAIN_WINDOW = MainFrame.getIstance();
+    private final int TRACKS_PER_VIEW = 100;
     private int startIndex = 0;
-    private final int maxIndex;
+    private final int MAX_INDEX;
     private boolean throughFullRepo = true;
     private boolean firstPage = true;
     private boolean lastPage = false;
@@ -35,8 +38,8 @@ public class RepositoryPanel extends javax.swing.JPanel {
     /** no DB old method
     private Repository repositoryCorrelated = Repository.getInstance();
     */
-    private final DBQuerier remoteObject = new DBQuerier(DBConnector.getDefaultConnection());
-    private String[] actualSongsArray = remoteObject.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+    private final SongsDataHandler remoteService;
+    private String[] actualSongsArray;
     
     
     
@@ -45,7 +48,9 @@ public class RepositoryPanel extends javax.swing.JPanel {
      * @throws java.io.IOException
      */
     public RepositoryPanel() throws IOException {
-        maxIndex=remoteObject.getRepoSize();
+        remoteService = (SongsDataHandler) ServicesBox.getInstance().getService(ServicesBox.SONGS_DATA_HANDLER);
+        MAX_INDEX=remoteService.getRepoSize();
+        actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
         initComponents();
     }
 
@@ -126,7 +131,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
 
         numberResultsLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberResultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numberResultsLabel.setText(maxIndex+1 +" "+ EmotionalSongs.dialoghi.availableSongs());
+        numberResultsLabel.setText(MAX_INDEX+1 +" "+ EmotionalSongs.dialoghi.availableSongs());
         numberResultsLabel.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel6.add(numberResultsLabel, java.awt.BorderLayout.LINE_END);
 
@@ -204,8 +209,8 @@ public class RepositoryPanel extends javax.swing.JPanel {
         scrollView.setOpaque(false);
 
         innerScroll.setBackground(new java.awt.Color(22, 33, 62));
-        innerScroll.setPreferredSize(new Dimension(730,75*tracksPerView));
-        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView+1, 1));
+        innerScroll.setPreferredSize(new Dimension(730,75*TRACKS_PER_VIEW));
+        innerScroll.setLayout(new java.awt.GridLayout(TRACKS_PER_VIEW+1, 1));
         for(int i = 0;i<actualSongsArray.length;i++){
             innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
         }
@@ -228,13 +233,17 @@ public class RepositoryPanel extends javax.swing.JPanel {
         if(searchBar.getText().isBlank()) {
             startIndex = 0;
             throughFullRepo = true;
-            actualSongsArray = remoteObject.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
+            } catch (RemoteException ex) {
+                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             innerScroll.removeAll();
             throughFullRepo=true;
-            for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
+            for(int i = 0;i<actualSongsArray.length && i<TRACKS_PER_VIEW;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
-            numberResultsLabel.setText(maxIndex +" "+EmotionalSongs.dialoghi.availableSongs());
+            numberResultsLabel.setText(MAX_INDEX +" "+EmotionalSongs.dialoghi.availableSongs());
             numberResultsLabel.revalidate();
             numberResultsLabel.repaint();
             scrollView.revalidate();
@@ -245,9 +254,17 @@ public class RepositoryPanel extends javax.swing.JPanel {
         String request = searchBar.getText();
         if(request.contains(";")){
             String[] requestSplitted = request.split(";");
-            actualSongsArray = remoteObject.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+            try {
+                actualSongsArray = remoteService.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+            } catch (RemoteException ex) {
+                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            actualSongsArray = remoteObject.cercaBranoMusicale(request);
+            try {
+                actualSongsArray = remoteService.cercaBranoMusicale(request);
+            } catch (RemoteException ex) {
+                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         innerScroll.removeAll();
         throughFullRepo = false;
@@ -264,7 +281,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
             return;
         }
         actualSearchedSongIndex = 0;
-        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+TRACKS_PER_VIEW);i++){
             innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
         } 
         
@@ -281,7 +298,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         if (firstPage) {
             return;
         }
-        startIndex -= tracksPerView;
+        startIndex -= TRACKS_PER_VIEW;
         if ((startIndex < 0)&&throughFullRepo) {
             firstPage = true;
             startIndex = 0;
@@ -289,17 +306,21 @@ public class RepositoryPanel extends javax.swing.JPanel {
         innerScroll.removeAll();
         lastPage = false;
         if(throughFullRepo){
-            actualSongsArray = remoteObject.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
+            } catch (RemoteException ex) {
+                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             for(int i = 0; i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
         }else{
-            actualSearchedSongIndex -= tracksPerView;
+            actualSearchedSongIndex -= TRACKS_PER_VIEW;
             if(actualSearchedSongIndex<0) {
                 actualSearchedSongIndex = 0;
                 firstPage = true;
             }
-            for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+tracksPerView)&&i<actualSongsArray.length;i++){
+            for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+TRACKS_PER_VIEW)&&i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
         }
@@ -308,30 +329,34 @@ public class RepositoryPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XActionPerformed
-        mainWindow.cleanUpMainPanel();
+        MAIN_WINDOW.cleanUpMainPanel();
     }//GEN-LAST:event_XActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if(((startIndex+tracksPerView) >= maxIndex )&&throughFullRepo) {
+        if(((startIndex+TRACKS_PER_VIEW) >= MAX_INDEX )&&throughFullRepo) {
             lastPage = true;
         }
         firstPage = false;
         if (lastPage&&throughFullRepo) return;
-        if(throughFullRepo) startIndex += tracksPerView;
+        if(throughFullRepo) startIndex += TRACKS_PER_VIEW;
         
         innerScroll.removeAll();
         
         if(throughFullRepo){
-            actualSongsArray = remoteObject.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
+            } catch (RemoteException ex) {
+                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             for(int i = 0; i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
         } else {
-            actualSearchedSongIndex += tracksPerView;
-            if(actualSearchedSongIndex==(actualSongsArray.length-tracksPerView)){
-                actualSearchedSongIndex = actualSongsArray.length-tracksPerView;
+            actualSearchedSongIndex += TRACKS_PER_VIEW;
+            if(actualSearchedSongIndex==(actualSongsArray.length-TRACKS_PER_VIEW)){
+                actualSearchedSongIndex = actualSongsArray.length-TRACKS_PER_VIEW;
             }
-            for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+            for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+TRACKS_PER_VIEW);i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
             }
         }
@@ -343,15 +368,19 @@ public class RepositoryPanel extends javax.swing.JPanel {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         searchBar.setText("");
         startIndex = 0;
-        actualSongsArray = remoteObject.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+        try {
+            actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
+        } catch (RemoteException ex) {
+            Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         throughFullRepo = true;
         innerScroll.removeAll();
-        for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
+        for(int i = 0;i<actualSongsArray.length && i<TRACKS_PER_VIEW;i++){
             innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
         }
         firstPage = true;
         lastPage = false;
-        numberResultsLabel.setText(maxIndex+1 +" "+EmotionalSongs.dialoghi.availableSongs());
+        numberResultsLabel.setText(MAX_INDEX+1 +" "+EmotionalSongs.dialoghi.availableSongs());
         innerScroll.revalidate();
         innerScroll.repaint();
         scrollView.revalidate();

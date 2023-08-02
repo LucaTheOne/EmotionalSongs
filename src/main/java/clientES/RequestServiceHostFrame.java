@@ -7,6 +7,7 @@
 package clientES;
 
 import emotionalsongs.*;
+import java.rmi.*;
 /**
  *
  * @author big
@@ -17,7 +18,6 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
      * Creates new form RequestServiceHostFrame
      */
     public RequestServiceHostFrame() {
-   
         initComponents();
         setVisible(true);
     }
@@ -139,14 +139,30 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
         if(ok) {
             ServicesBox.setHost(host);
             ServicesBox.setPort(Integer.parseInt(port));
+            ServicesBox.getInstance();
             dispose();
         }
+        
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public static void main(String[] args) throws RemoteException {
+        //try {
+            new RequestServiceHostFrame();
+            
+            /*
+            Registry registryServices = LocateRegistry.getRegistry("192.168.1.6", 5432);
+            SongsDataHandler dh = (SongsDataHandler) registryServices.lookup("songs_data_handler");
+            System.out.println(dh.getRepoSize());
+        //} catch (NotBoundException ex) {
+            //System.out.println(ex.getMessage());
+        //} catch (AccessException ex) {
+            //System.out.println(ex.getMessage());
+        //}*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectButton;

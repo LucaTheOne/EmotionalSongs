@@ -44,15 +44,15 @@ public class Server {
             //adding all necessary service to the vector with addService
             addService(EmotionsDataHandler.SERVICE_NAME, new ProxyToDBEmozioni(ConnToDB));
             addService(EmotionsDataValidator.SERVICE_NAME, new EmozioniDataChecker(ConnToDB));
-            
+            System.out.println("Emotion services added!");
             addService(PlaylistsDataHandler.SERVICE_NAME, new ProxyToDBPlaylists(ConnToDB));
             addService(PlaylistsDataValidator.SERVICE_NAME, new PlaylistsDataChecker(ConnToDB));
-            
+            System.out.println("Playlists services added!");
             addService(UsersDataHandler.SERVICE_NAME, new ProxyToDBUtenti_Registrati(ConnToDB));
             addService(UsersDataValidator.SERVICE_NAME, new UtentiDataChecker(ConnToDB));
-            
+            System.out.println("Users services added!");
             addService(SongsDataHandler.SERVICE_NAME, new ProxyToDBCanzoni(ConnToDB));
-            
+            System.out.println("Songs services added!");
         } catch (java.net.UnknownHostException ex) {
             System.err.println("Impossibile avviare il server!");
             System.err.println(ex.getMessage());

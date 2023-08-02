@@ -6,31 +6,31 @@
  */
 package clientES;
 
-import clientES.services_common_interfaces.data_handler.*;
-import clientES.services_common_interfaces.data_validator.*;
 import java.rmi.*;
 import java.rmi.registry.*;
+import serverES.services_common_interfaces.data_handler.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 /**
  *
  * @author big
  */
-public class ServicesBox {
+public class ServicesBox extends Thread{
     
     private static ServicesBox services = null;
-    private static int servicesPort;
-    private static String servicesHost;
+    private static int servicesPort = 5432; // default port
+    private static String servicesHost = "127.0.1.1";
     protected static boolean readyToBeInitialized = false;
     
     //services ids
-    public final int EMOTIONS_DATA_HANDLER = 0;
-    public final int USERS_DATA_HANDLER = 1;
-    public final int SONGS_DATA_HANDLER = 2;
-    public final int PLAYLISTS_DATA_HANDLER = 3;
+    public final static int EMOTIONS_DATA_HANDLER = 0;
+    public final static int USERS_DATA_HANDLER = 1;
+    public final static int SONGS_DATA_HANDLER = 2;
+    public final static int PLAYLISTS_DATA_HANDLER = 3;
     
-    public final int EMOTIONS_DATA_VALIDATOR = 4;
-    public final int USERS_DATA_VALIDATOR = 5;
-    public final int PLAYLISTS_DATA_VALIDATOR = 6;
+    public final static int EMOTIONS_DATA_VALIDATOR = 4;
+    public final static int USERS_DATA_VALIDATOR = 5;
+    public final static int PLAYLISTS_DATA_VALIDATOR = 6;
     
     //Getting and updating data services
     private EmotionsDataHandler emotionsDataHandler;
@@ -43,7 +43,7 @@ public class ServicesBox {
     private PlaylistsDataValidator playlistsDataValidator;
     private UsersDataValidator usersDataValidator;
     
-    private ServicesBox(String servicesHost,int servicesPort){
+    protected ServicesBox(String servicesHost,int servicesPort){
         try {
             Registry registryServices = LocateRegistry.getRegistry(servicesHost, servicesPort);
             
@@ -66,16 +66,8 @@ public class ServicesBox {
     }
     
     public static ServicesBox getInstance(){
-        if(!(services == null)) return services;
-        return initializeSevicesBox();
-    }
-    
-    private static ServicesBox initializeSevicesBox(){
-        new RequestServiceHostFrame();
-        while(!readyToBeInitialized){
-            if(servicesPort != 0 && servicesHost != null) readyToBeInitialized = true;
-        }
-        return new ServicesBox(servicesHost, servicesPort);
+        if(services == null) services = new ServicesBox(servicesHost, servicesPort);
+        return services;
     }
     
     public Remote getService(int serviceId){
@@ -100,14 +92,14 @@ public class ServicesBox {
     protected static void setHost(String host){
         servicesHost = host;
     }
-    
-    public static void main(String[] args) {
-        ServicesBox sb = ServicesBox.getInstance();
-        SongsDataHandler dh = (SongsDataHandler)sb.getService(sb.SONGS_DATA_HANDLER);
-        try {
-            System.out.println("DB size: " + dh.getRepoSize());
-        } catch (RemoteException ex) {
-            System.out.println(ex.getMessage());
+    /*
+    public static void main(String[] args) throws InterruptedException, RemoteException {
+        new RequestServiceHostFrame();
+        while (services == null) {            
+           Thread.sleep(300); 
         }
-    }
+        SongsDataHandler sdh = (SongsDataHandler)services.getService(2);
+        System.out.println(sdh.getRepoSize());
+        
+    }*/
 }
