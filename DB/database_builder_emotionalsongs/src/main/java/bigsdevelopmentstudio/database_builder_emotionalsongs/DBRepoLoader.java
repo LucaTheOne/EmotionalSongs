@@ -13,7 +13,7 @@ public class DBRepoLoader {
     private int failed = 0;
     private Connection connector = null;
     private String currentString = "";
-    private String filepath = "/home/lola/repo/EmotionalSongs/data/Canzoni.dati.txt"; //da modificare secondo il proprio path
+    private String filepath = "C:/Ricky/Universita/Lab_B_Interdisciplinare/EmotionalSongs/data/Canzoni.dati.txt"; //da modificare secondo il proprio path
     private File initializationFile = new File(filepath);
     public DBRepoLoader(Connection DBConnection) {
         connector = DBConnection;

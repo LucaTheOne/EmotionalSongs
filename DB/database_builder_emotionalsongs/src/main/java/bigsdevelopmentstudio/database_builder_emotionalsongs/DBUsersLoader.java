@@ -12,7 +12,7 @@ public class DBUsersLoader {
     private int index = 0;
     private Connection connector = null;
     private String currentString = "";
-    private String sourcePath = "/home/lola/repo/EmotionalSongs/data/UtentiRegistrati.dati.txt"; //da modificare secondo il proprio path
+    private String sourcePath = "C:/Ricky/Universita/Lab_B_Interdisciplinare/EmotionalSongs/data/UtentiRegistrati.dati.txt"; //da modificare secondo il proprio path
     private File initializationFile = new File(sourcePath);
     public DBUsersLoader(Connection DBConnection) {
         connector = DBConnection;
