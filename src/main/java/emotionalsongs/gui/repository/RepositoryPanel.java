@@ -9,7 +9,6 @@
 
 package emotionalsongs.gui.repository;
 
-import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.main_window.*;
@@ -17,7 +16,6 @@ import java.awt.*;
 import java.io.*;
 import java.rmi.*;
 import java.util.logging.*;
-import javax.swing.*;
 import serverES.services_common_interfaces.data_handler.*;
 
 /**
@@ -27,7 +25,7 @@ import serverES.services_common_interfaces.data_handler.*;
 public class RepositoryPanel extends javax.swing.JPanel {
     
     private final MainFrame MAIN_WINDOW = MainFrame.getIstance();
-    private final int TRACKS_PER_VIEW = 100;
+    private final int TRACKS_PER_VIEW = 10;
     private int startIndex = 0;
     private final int MAX_INDEX;
     private boolean throughFullRepo = true;
@@ -47,8 +45,8 @@ public class RepositoryPanel extends javax.swing.JPanel {
      * Crea un nuovo pannello di ispezione nel repository.
      * @throws java.io.IOException
      */
-    public RepositoryPanel() throws IOException {
-        remoteService = (SongsDataHandler) ServicesBox.getInstance().getService(ServicesBox.SONGS_DATA_HANDLER);
+    public RepositoryPanel(SongsDataHandler serviceProvider) throws IOException {
+        remoteService = serviceProvider;
         MAX_INDEX=remoteService.getRepoSize();
         actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+TRACKS_PER_VIEW));
         initComponents();
@@ -77,7 +75,6 @@ public class RepositoryPanel extends javax.swing.JPanel {
         innerScroll = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));
-        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(900, 700));
         setLayout(new java.awt.BorderLayout());
 
@@ -386,18 +383,14 @@ public class RepositoryPanel extends javax.swing.JPanel {
         scrollView.revalidate();
         scrollView.repaint();       
     }//GEN-LAST:event_clearButtonActionPerformed
-
-    public static void main(String[] args) {
+    
+    /*
+    public static void main(String[] args) throws IOException {
         JFrame frame = new JFrame();
-        frame.setSize(1080, 720);
-        try {
-            frame.add(new RepositoryPanel());
-            frame.setVisible(true);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            System.exit(1);
-        }
-    }
+        frame.setSize(1000, 800);
+        frame.add(new RepositoryPanel((SongsDataHandler)ServicesBox.getInstance().getService(ServicesBox.SONGS_DATA_HANDLER)));
+        frame.setVisible(true);
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;

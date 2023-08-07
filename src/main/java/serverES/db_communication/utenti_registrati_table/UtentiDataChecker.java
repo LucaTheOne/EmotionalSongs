@@ -10,6 +10,7 @@ import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
 import java.util.regex.*;
+import serverES.db_communication.*;
 import serverES.services_common_interfaces.data_validator.*;
 
 /**
@@ -26,29 +27,18 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param email
      * @return 
      */
-    private boolean mailControl(String email)
+    private boolean isValidMail(String email)
     {
-        char[] emailArray = email.toCharArray();
-        int i;
-        
-        //Controllo la presenza di @
-        for(i=1; i<email.length(); i++)
-        {
-            if(emailArray[i]=='@') break; //Se la trova esce dal ciclo
-        }
-        
-        //Se è arrivato in fondo al ciclo vuol dire che non l'ha trovata: mail non valida
-        if(i==email.length()) return false;  
-        
-        //Controllo la presenza del punto
-        while(i<email.length()-2)
-        {
-            //Se lo trova all'interno del ciclo, la mail è valida
-            if(emailArray[i] == '.') return true; 
-        }
-        
-        //Se non ha fatto il return all'interno del ciclo, vuol dire che la mail non è valida
-        return false;
+        if(email == null) return false;
+        // Regex to check valid password.
+        String regex = "^(.+)@(.+)$";
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+        // Pattern class contains matcher() method to find matching between given password and regular expression.
+        Matcher m = p.matcher(email);
+        // Nel caso la password non rispettasse i requisiti
+      
+        return m.matches() && ServerUtils.isFitToPostgresql(email);
     }
     
     /**
@@ -68,7 +58,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
     * @return True se la password rispetta tutti i criteri, false altrimenti.
     * 
     **/
-    private static boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
+    private boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
         if(password == null) return false;
     
         String regex = "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=!])" + "(?=\\S+$).{8,20}";
@@ -88,16 +78,11 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param prov
      * @return 
      */
-    private static boolean verificaProvincia(String prov) {
+    private boolean verificaProvincia(String prov) {
         // Controlla se la stringa ha esattamente due caratteri
         if (prov.length() != 2) {
             return false;
         }
-
-        // Controlla se entrambi i caratteri sono maiuscoli
-        char char1 = prov.charAt(0);
-        char char2 = prov.charAt(1);
-        return Character.isUpperCase(char1) && Character.isUpperCase(char2);
     }
     
     //Methods checking data validity
@@ -114,9 +99,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param name Nome dell'utente da validare.
      * @return True o False.
      */
-    private static boolean checkNameValidity(String name){
+    private boolean checkNameValidity(String name){
         if(name == null) return false;
-        if (name.isBlank()||name.length()>20||name.length()<2||name.matches(".*\\d.*")) {
+        if (name.isBlank() || name.length()>20 || name.length()<2 || name.matches(".*\\d.*")) {
             return false;   
         }
         return true;
@@ -135,7 +120,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param surname cognome da convalidare.
      * @return True o False.
      */
-    private static boolean checkSurnameValidity(String surname){
+    private boolean checkSurnameValidity(String surname){
         if(surname == null) return false;
         if (surname == null && surname.length()>20||surname.length()<2||surname.isBlank()||surname.matches(".*\\d.*")) {
             return false;
@@ -149,7 +134,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param address Indirizzo da validare.
      * @return True o False.
      */    
-    private static boolean checkAddresValidity(String address){
+    private boolean checkAddresValidity(String address){
         if(address == null) return false;
         if(address.isBlank()){
             return false;
@@ -163,7 +148,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return true se valido, false altrimenti.
      * @throws PatternSyntaxException 
      */
-    private static boolean checkCfValidity(String cf) throws PatternSyntaxException {
+    private boolean checkCfValidity(String cf) throws PatternSyntaxException {
         if(cf == null) return false;
         String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
         /** compila il pattern precedente **/
@@ -183,7 +168,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return true se valida, false altrimenti.
      * 
      */
-    private static boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
+    private boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
         if(birthDay == null) return false;
         String regex = "^([0-9]{2}[/][0-9]{2}[/][0-9]{4})$";
       /** compila il pattern precedente **/
@@ -192,6 +177,16 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         Matcher m = p.matcher(birthDay);
 
         return m.matches();
+    }
+    
+    private boolean checkUserId(String userId){
+        return ( 
+                (userId != null) && 
+                (userId.length()>3) && 
+                (userId.length()<20) && 
+                (!userId.isBlank()) && 
+                (ServerUtils.isFitToPostgresql(userId))
+               );
     }
     
     public UtentiDataChecker(Connection Conn) throws RemoteException{
@@ -203,7 +198,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
     
     //Riccardo
     /**
-     * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.Ritorna un array di booleani in cui i "false" rappresentano gli errori occorsi.
+     * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
      * @param userId Stringa contenente l' id del nuovo utente.
      * @param email Stringa contenente la mail del nuovo utente.
      * @param cf Stringa contenente il codice fiscale del nuovo utente.
@@ -211,7 +206,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param rePassword Stringa contenente per la verifica che la password inserita sia quella che l' utente voleva.
      * @param nome Stringa contenente il nome del nuovo utente.
      * @param cognome Stringa contenente il cognome del nuovo utente.
-     * @param compleanno Stringa contenente la data di nascita
+     * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
      * @param tipoIndirizzo Stringa contenente: "via" | "viale" | "piazza" | "piazzetta" | "salita" | "discesa".
      * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
      * @param civico Intero rappresentante il numero civico dell' indirizzo del nuovo utente.
@@ -220,141 +215,157 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param provincia Stringa contenente la provincia di residenza del nuovo utente.
      * @param citta Stringa contenente la città di residenza del nuovo utente.
      * @return 
+     * false - dato non valido, true dato valido.
+     * posizioni errori nell' array:
      * 0 - userId non valido.
      * 1 - userId già scelto da un altro utente.
-     * 2 - email non valida.
-     * 3 - email già presente nel DB.
-     * 4 - codice fiscale non valido.
-     * 5 - codice fiscale già presente nel DB.
-     * 6 - password non valida.
-     * 7 - password non coincidono.
-     * 8 - nome non valido.
-     * 9 - cognome non valido.
-     * 10 - data di nascita non valida
-     * 11 - tipo indirizzo non ammesso.
-     * 12 - indirizzo non valido.
-     * 13 - civico non valido.
-     * 14 - cap non valido.
-     * 15 - nazione non valida.
-     * 16 - provincia non valida.
-     * 17 - citta non valida.
+     * 2 - codice fiscale non valido.
+     * 3 - codice fiscale già presente nel DB.
+     * 4 - password non valida.
+     * 5 - password non coincidono.
+     * 6 - nome non valido.
+     * 7 - cognome non valido.
+     * 8 - tipo indirizzo non ammesso.
+     * 9 - indirizzo non valido.
+     * 10 - civico non valido.
+     * 11 - cap non valido.
+     * 12 - nazione non valida.
+     * 13 - provincia non valida.
+     * 14 - citta non valida.
      * @throws java.rmi.RemoteException
      */
     @Override
-    public boolean[] validateNewUserData(String userId, String email, String cf, String password, String rePassword, String nome, String cognome, String compleanno, String tipoIndirizzo, String indirizzo, int civico, int cap, String nazione, String provincia, String citta) throws RemoteException
-    {
-        boolean[] errors = new boolean[]{false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
-        boolean exception;
+    public boolean[] validateNewUserData(String userId, String email, String cf, String password, String rePassword, String nome, String cognome, String compleanno, String tipoIndirizzo, String indirizzo, int civico, int cap, String nazione, String provincia, String citta) throws RemoteException {
+        boolean userIdValid = false,
+                userIdNotChesenYet = false,
+                emailValid = false,
+                emailNotPresent = false,
+                cfValid = false,
+                cfNotPresent = false,
+                passwordValid = false, 
+                passwordsMatch = false,
+                nomeValid= false,
+                cognomeValid= false,
+                compleannoValid= false,
+                tipoIndirizzoValid = false,
+                indirizzoValid = false,
+                civicoValid = false,
+                capValid= false,
+                nazioneValid= false,
+                provinciaValid= false,
+                cittaValid = false;
         try{
             //Inizializzazione
             String query;
             PreparedStatement statementControl;
             ResultSet resultSet;
             
-            
             //Controllo dell'ID
-            //Inserire controllo regole (quali sono?)
-            query ="SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
+            userIdValid = checkUserId(userId);
+            
+            //controllo la presenza dell' id nel DB
+            query ="SELECT COUNT(ID_USER) FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
             statementControl = CONNECTION_TO_DB.prepareStatement(query);
             statementControl.setString(1, userId);
             resultSet = statementControl.executeQuery();
-            //resultSet.next(); //non ho capito cosa fa questo
+            resultSet.next(); //non ho capito cosa fa questo -> quando ottenuto, il result set punta alla posizione precedente al primo dato valido, quindio serve .next()
             
-            if(resultSet!=null)
-                errors[1]=true;
+            userIdValid = resultSet.getInt(1) == 0;
             
             //Controllo della mail
-            if(!mailControl(email))
-                errors[2]=true;
+            emailValid = isValidMail(email);
+            if(!isValidMail(email)) {}
             else
             {
-                query ="SELECT EMAIL FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
+                query ="SELECT count(EMAIL) FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
                 statementControl = CONNECTION_TO_DB.prepareStatement(query);
                 statementControl.setString(1, email);
                 resultSet = statementControl.executeQuery();
-
-                if(resultSet!=null)
-                    errors[3]=true;
+                resultSet.next();
+                emailNotPresent = resultSet.getInt(1) == 0;
+                
             }
+            
             //Controllo del codice fiscale
-            if(!checkCfValidity(cf))
-                errors[4]=true;
+            cfValid = checkCfValidity(cf);
+            if(!cfValid){}
             else
             {
                 query ="SELECT CF FROM UTENTI_REGISTRATI WHERE CF = ?;"; 
                 statementControl = CONNECTION_TO_DB.prepareStatement(query);
                 statementControl.setString(1, cf);
                 resultSet = statementControl.executeQuery();
-
-                if(resultSet!=null)
-                    errors[5]=true;
+                resultSet.next();
+                cfNotPresent = resultSet.getInt(1) == 0;
+                
             }
             
             //Controllo Password
-            if(!checkPasswordValidity(password))
-                errors[6] = true;
-            else if(!password.equals(rePassword))
-                errors[7]=true;
+            passwordValid = checkPasswordValidity(password);
+            passwordsMatch = password.equals(rePassword);
             
             //Controllo Nome
-            if(!checkNameValidity(nome))
-                errors[8]=true;
+            nomeValid = checkNameValidity(nome);
             
             //Controllo Cognome
-            if(!checkSurnameValidity(cognome))
-                errors[9]=true;
+            cognomeValid = checkSurnameValidity(cognome);
             
-            if(!checkBirthDayValidity(compleanno))
-                errors[10]=true;
+            compleannoValid = checkBirthDayValidity(compleanno);
             
-            //Tipo indirizzo non ha senso
+            //Tipo indirizzo non ha senso -> ce l' ha per via della struttura del DB.
+            tipoIndirizzoValid = (
+                    tipoIndirizzo.equalsIgnoreCase("via") ||
+                    tipoIndirizzo.equalsIgnoreCase("viale") ||
+                    tipoIndirizzo.equalsIgnoreCase("controviale") ||
+                    tipoIndirizzo.equalsIgnoreCase("piazza") ||
+                    tipoIndirizzo.equalsIgnoreCase("piazzetta") ||
+                    tipoIndirizzo.equalsIgnoreCase("corso")
+                    );
             
-            //I controlli su indirizzo non hanno senso se non si integra un database stradale
-            //Nel dubbio controllo che i nomi delle vie abbiano almeno 3 lettere
-            if(!checkAddresValidity(indirizzo))
-                errors[12]=true;
+            //I controlli su indirizzo non hanno senso se non si integra un database stradale -> basta assicurarsi non sia vuoto.
+            indirizzoValid = !indirizzo.isBlank();
             
             
             //Controllo che il civico non sia negativo 
-            //(inserire eventuale interno?)
-            if(civico<1)
-                errors[13]=true;
+            //(inserire eventuale interno? -> no)
+            civicoValid = (civico >= 0);
             
             //Controllo CAP
-            if(cap<10000 || cap >99999)
-                errors[14]=true;
+            capValid = (cap>10000 || cap >99999);
             
             //Controllo Nazione (è l'Oman quello con il nome più corto?)
-            if(nazione.length()<4)
-                errors[15]=true;
-            
+            nazioneValid =  !nazione.isBlank() && nazione.length() >= 4 && ServerUtils.isFitToPostgresql(nazione);
+                
             //Controllo provincia
-            if(!verificaProvincia(provincia))
-                errors[16]=true;
+            provinciaValid = verificaProvincia(provincia);
             
             //Controllo città
-            if(citta.length()<2)
-                errors[17]=true;
-            
-            exception=false;
-            
-            
-            
+            cittaValid = !citta.isBlank() && !(citta == null) && ServerUtils.isFitToPostgresql(citta); 
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
-            exception=true;
-            
         }
         
-        //Inversione del vettore errors
-        if(!exception)
-            for(int j=0; j<17; j++)
-                errors[j]=!errors[j];
-        
-        
+        boolean[] errors = new boolean[]{
+            userIdValid,
+            userIdNotChesenYet,
+            emailValid,
+            emailNotPresent,
+            cfValid,
+            passwordValid,
+            passwordsMatch,
+            nomeValid,
+            cognomeValid,
+            compleannoValid,
+            tipoIndirizzoValid,
+            indirizzoValid,
+            civicoValid,
+            capValid,
+            nazioneValid,
+            provinciaValid,
+            cittaValid
+        };
         return errors;
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     //Riccardo deve implementare
@@ -376,14 +387,14 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             
             
             
-            query ="SELECT USER_ID FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;"; 
+            query ="SELECT COUNT(*) FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;"; //chiedo al db quante righe ci sono corrispondenti al criterio di ricerca espresso nella query
             statementControl = CONNECTION_TO_DB.prepareStatement(query);
             statementControl.setString(1, userId);
             statementControl.setString(2, songId);
             resultSet = statementControl.executeQuery();
             resultSet.next();
             
-            if(resultSet==null)
+            if(resultSet.getInt(1) == 0) //se ottengo esattamente 0, vuol dire che l' utente non ha già espresso un parere riguardo l' emozione, quindi può votarla.
                 return true;
             
         }catch(SQLException ex){
@@ -392,9 +403,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         
         return false;
         
-        
-        
-       //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     //Riccardo deve implementare
@@ -441,8 +449,12 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         }
         return errors;
 
-
-//throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public static void main(String[] args) throws RemoteException {
+        //System.out.println(new UtentiDataChecker(DBConnector.getDefaultConnection()).userCanVoteSong("theOne","TRGDRZV128F92DC96D" ));
+        boolean valid,valid2 = false;
+        System.out.println(valid);
     }
     
 }

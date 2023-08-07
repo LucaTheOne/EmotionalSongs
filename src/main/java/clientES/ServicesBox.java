@@ -19,7 +19,7 @@ public class ServicesBox extends Thread{
     
     private static ServicesBox services = null;
     private static int servicesPort = 5432; // default port
-    private static String servicesHost = "127.0.1.1";
+    private static String servicesHost = "127.0.0.1";
     protected static boolean readyToBeInitialized = false;
     
     //services ids
@@ -92,14 +92,15 @@ public class ServicesBox extends Thread{
     protected static void setHost(String host){
         servicesHost = host;
     }
-    /*
+    
     public static void main(String[] args) throws InterruptedException, RemoteException {
         new RequestServiceHostFrame();
         while (services == null) {            
            Thread.sleep(300); 
         }
         SongsDataHandler sdh = (SongsDataHandler)services.getService(2);
-        System.out.println(sdh.getRepoSize());
-        
-    }*/
+        //System.out.println(sdh.getRepoSize());
+        String[] arr = sdh.requestRepositorysSongByIndex(0, 100);
+        for(String str: arr) System.out.println(str);
+    }
 }

@@ -7,7 +7,6 @@
 package clientES;
 
 import emotionalsongs.*;
-import java.rmi.*;
 /**
  *
  * @author big
@@ -149,9 +148,9 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    public static void main(String[] args) throws RemoteException {
+    //public static void main(String[] args) throws RemoteException {
         //try {
-            new RequestServiceHostFrame();
+            //new RequestServiceHostFrame();
             
             /*
             Registry registryServices = LocateRegistry.getRegistry("192.168.1.6", 5432);
@@ -162,7 +161,7 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
         //} catch (AccessException ex) {
             //System.out.println(ex.getMessage());
         //}*/
-    }
+    //}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectButton;

@@ -8,25 +8,30 @@
 
 package emotionalsongs.gui.registration;
 
-import emotionalsongs.managers.RegistrationManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
+import java.rmi.*;
 import javax.swing.*;
+import serverES.services_common_interfaces.data_handler.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 /**
  * Classe le cui istanze sono dei form per la registrazione di un nuovo utente.
  */
 public class RegistrationPanel extends javax.swing.JPanel {
     
-    private MainFrame mainWindow = MainFrame.getIstance();
-    private RegistrationManager manager;
+    private final MainFrame mainWindow = MainFrame.getIstance();
+    private final UsersDataHandler dataHandler;
+    private final UsersDataValidator dataValidator;
+    private String tipoVia;
     /**
      * Crea form di registrazione gestito dal manager passato come argomento.
      * @param manager manager di gestione della registrazione.
      */
-    public RegistrationPanel(RegistrationManager manager) {
-        this.manager = manager;
+    public RegistrationPanel(UsersDataHandler dataHandlerService, UsersDataValidator dataValidatorService) {
+        dataHandler = dataHandlerService;
+        dataValidator = dataValidatorService;
         initComponents();
     }
 
@@ -52,27 +57,51 @@ public class RegistrationPanel extends javax.swing.JPanel {
         labelsPanel = new javax.swing.JPanel();
         nomeLabel = new javax.swing.JLabel();
         cognomeLabel = new javax.swing.JLabel();
-        indirizzoLabel = new javax.swing.JLabel();
         dataDiNascitaLabel = new javax.swing.JLabel();
         cfLabel = new javax.swing.JLabel();
         mailLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
+        voidLabel = new javax.swing.JLabel();
+        IndirizzoTextLabel = new javax.swing.JLabel();
+        nazioneLabel = new javax.swing.JLabel();
+        regioneTextLabel = new javax.swing.JLabel();
+        cittàTextLabel = new javax.swing.JLabel();
+        capLabel = new javax.swing.JLabel();
         textFieldsLabel = new javax.swing.JPanel();
         nomeTextField = new javax.swing.JTextField();
         cognomeTextField = new javax.swing.JTextField();
-        indirizzoTextField = new javax.swing.JTextField();
-        dataDiNascitaTextField = new javax.swing.JTextField();
+        dataNascitaPanel = new javax.swing.JPanel();
+        dayTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        monthTextField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        yearTextField = new javax.swing.JTextField();
         cfTextField = new javax.swing.JTextField();
         mailTextField = new javax.swing.JTextField();
         idTextField = new javax.swing.JTextField();
+        tipoViaPanel = new javax.swing.JPanel();
+        viaRB = new javax.swing.JRadioButton();
+        vialeRB = new javax.swing.JRadioButton();
+        corsoRB = new javax.swing.JRadioButton();
+        piazzaRB = new javax.swing.JRadioButton();
+        IndirizzoPanel = new javax.swing.JPanel();
+        civicoTextField = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        indirizzoTextField = new javax.swing.JTextField();
+        nazioneTextLabel = new javax.swing.JTextField();
+        regioneTextField = new javax.swing.JTextField();
+        cittaTextField = new javax.swing.JTextField();
+        capTextField = new javax.swing.JTextField();
         warningLabelsPanel = new javax.swing.JPanel();
         nomeCheckLabel = new javax.swing.JLabel();
         cognomeCheckLabel = new javax.swing.JLabel();
-        indirizzoCheckLabel = new javax.swing.JLabel();
         dataDiNascitaCheckLabel = new javax.swing.JLabel();
         cfCheckLabel = new javax.swing.JLabel();
         mailCheckLabel = new javax.swing.JLabel();
         idCheckLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        indirizzoCheckLabel = new javax.swing.JLabel();
         lowPanel = new javax.swing.JPanel();
         passwordPanel = new javax.swing.JPanel();
         passwordLabel = new javax.swing.JLabel();
@@ -94,7 +123,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         iconPanel.setOpaque(false);
-        iconPanel.setPreferredSize(new java.awt.Dimension(100, 250));
+        iconPanel.setPreferredSize(new java.awt.Dimension(100, 220));
         iconPanel.setLayout(new java.awt.GridLayout(1, 3));
         iconPanel.add(jLabel1);
 
@@ -109,7 +138,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         mainGridPanel.setLayout(new java.awt.GridLayout(1, 3));
 
         labelsPanel.setOpaque(false);
-        labelsPanel.setLayout(new java.awt.GridLayout(7, 1));
+        labelsPanel.setLayout(new java.awt.GridLayout(12, 1));
 
         nomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nomeLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,13 +153,6 @@ public class RegistrationPanel extends javax.swing.JPanel {
         cognomeLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.surname());
         cognomeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(cognomeLabel);
-
-        indirizzoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        indirizzoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        indirizzoLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        indirizzoLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.address());
-        indirizzoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        labelsPanel.add(indirizzoLabel);
 
         dataDiNascitaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dataDiNascitaLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,10 +182,45 @@ public class RegistrationPanel extends javax.swing.JPanel {
         idLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         labelsPanel.add(idLabel);
 
+        voidLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        voidLabel.setForeground(new java.awt.Color(255, 255, 255));
+        voidLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        voidLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(voidLabel);
+
+        IndirizzoTextLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        IndirizzoTextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        IndirizzoTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        IndirizzoTextLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.name());
+        IndirizzoTextLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(IndirizzoTextLabel);
+
+        nazioneLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        nazioneLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nazioneLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        nazioneLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.name());
+        nazioneLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(nazioneLabel);
+
+        regioneTextLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        regioneTextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        regioneTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        regioneTextLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.name());
+        regioneTextLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(regioneTextLabel);
+
+        cittàTextLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cittàTextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cittàTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        cittàTextLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.name());
+        cittàTextLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelsPanel.add(cittàTextLabel);
+        labelsPanel.add(capLabel);
+
         mainGridPanel.add(labelsPanel);
 
         textFieldsLabel.setOpaque(false);
-        textFieldsLabel.setLayout(new java.awt.GridLayout(7, 1));
+        textFieldsLabel.setLayout(new java.awt.GridLayout(12, 1));
 
         nomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(nomeTextField);
@@ -171,16 +228,25 @@ public class RegistrationPanel extends javax.swing.JPanel {
         cognomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(cognomeTextField);
 
-        indirizzoTextField.setPreferredSize(new java.awt.Dimension(400, 30));
-        textFieldsLabel.add(indirizzoTextField);
+        dayTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dayTextField.setText("dd");
+        dataNascitaPanel.add(dayTextField);
 
-        dataDiNascitaTextField.setPreferredSize(new java.awt.Dimension(350, 30));
-        dataDiNascitaTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataDiNascitaTextFieldActionPerformed(evt);
-            }
-        });
-        textFieldsLabel.add(dataDiNascitaTextField);
+        jLabel4.setText("/");
+        dataNascitaPanel.add(jLabel4);
+
+        monthTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        monthTextField.setText("mm");
+        dataNascitaPanel.add(monthTextField);
+
+        jLabel5.setText("/");
+        dataNascitaPanel.add(jLabel5);
+
+        yearTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        yearTextField.setText("yyyy");
+        dataNascitaPanel.add(yearTextField);
+
+        textFieldsLabel.add(dataNascitaPanel);
 
         cfTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(cfTextField);
@@ -191,10 +257,53 @@ public class RegistrationPanel extends javax.swing.JPanel {
         idTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(idTextField);
 
+        viaRB.setSelected(true);
+        viaRB.setText("via");
+        viaRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viaRBActionPerformed(evt);
+            }
+        });
+        tipoViaPanel.add(viaRB);
+
+        vialeRB.setText("viale");
+        tipoViaPanel.add(vialeRB);
+
+        corsoRB.setText("corso");
+        tipoViaPanel.add(corsoRB);
+
+        piazzaRB.setText("piazza");
+        tipoViaPanel.add(piazzaRB);
+
+        textFieldsLabel.add(tipoViaPanel);
+
+        IndirizzoPanel.setLayout(new java.awt.BorderLayout());
+        IndirizzoPanel.add(civicoTextField, java.awt.BorderLayout.LINE_END);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel6.setText("num.");
+        jPanel2.add(jLabel6, java.awt.BorderLayout.LINE_END);
+        jPanel2.add(indirizzoTextField, java.awt.BorderLayout.CENTER);
+
+        IndirizzoPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        textFieldsLabel.add(IndirizzoPanel);
+        textFieldsLabel.add(nazioneTextLabel);
+
+        regioneTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regioneTextFieldActionPerformed(evt);
+            }
+        });
+        textFieldsLabel.add(regioneTextField);
+        textFieldsLabel.add(cittaTextField);
+        textFieldsLabel.add(capTextField);
+
         mainGridPanel.add(textFieldsLabel);
 
         warningLabelsPanel.setOpaque(false);
-        warningLabelsPanel.setLayout(new java.awt.GridLayout(7, 1));
+        warningLabelsPanel.setLayout(new java.awt.GridLayout(12, 1));
 
         nomeCheckLabel.setVisible(false);
         nomeCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
@@ -207,12 +316,6 @@ public class RegistrationPanel extends javax.swing.JPanel {
         cognomeCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
         cognomeCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.notValidSurname());
         warningLabelsPanel.add(cognomeCheckLabel);
-
-        indirizzoCheckLabel.setVisible(false);
-        indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
-        indirizzoCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.addrNotValid());
-        warningLabelsPanel.add(indirizzoCheckLabel);
 
         dataDiNascitaCheckLabel.setVisible(false);
         dataDiNascitaCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
@@ -237,6 +340,13 @@ public class RegistrationPanel extends javax.swing.JPanel {
         idCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
         idCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.userIdNotValid());
         warningLabelsPanel.add(idCheckLabel);
+        warningLabelsPanel.add(jPanel1);
+
+        indirizzoCheckLabel.setVisible(false);
+        indirizzoCheckLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        indirizzoCheckLabel.setForeground(new java.awt.Color(255, 51, 51));
+        indirizzoCheckLabel.setText(emotionalsongs.EmotionalSongs.dialoghi.addrNotValid());
+        warningLabelsPanel.add(indirizzoCheckLabel);
 
         mainGridPanel.add(warningLabelsPanel);
 
@@ -245,7 +355,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         mainPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         lowPanel.setOpaque(false);
-        lowPanel.setPreferredSize(new java.awt.Dimension(600, 150));
+        lowPanel.setPreferredSize(new java.awt.Dimension(600, 120));
         lowPanel.setLayout(new java.awt.BorderLayout());
 
         passwordPanel.setOpaque(false);
@@ -278,7 +388,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         lowPanel.add(passwordPanel, java.awt.BorderLayout.NORTH);
 
         buttonsPanel.setOpaque(false);
-        buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 120));
+        buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 100));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
         registratiButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrer());
@@ -316,62 +426,99 @@ public class RegistrationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
-        exportToManager();
-        manager.startRegistration();
+        
     }//GEN-LAST:event_registratiButtonActionPerformed
 
-    private void dataDiNascitaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataDiNascitaTextFieldActionPerformed
+    private void regioneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regioneTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataDiNascitaTextFieldActionPerformed
+    }//GEN-LAST:event_regioneTextFieldActionPerformed
+
+    private void viaRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viaRBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viaRBActionPerformed
     
     public void setAllCheckOff(){
         cfCheckLabel.setVisible(false);
-        cfCheckLabel.setText("Codice fiscale non valido!");cfCheckLabel.setVisible(false);
+        cfCheckLabel.setVisible(false);
         nomeCheckLabel.setVisible(false);
         cognomeCheckLabel.setVisible(false);
         indirizzoCheckLabel.setVisible(false);
         mailCheckLabel.setVisible(false);
         passwordCheckLabel.setVisible(false);
-        idCheckLabel.setVisible(false);
+        idCheckLabel.setVisible(false);   
+    }
+    
+    private boolean checkData() throws RemoteException{
+        String idUser,email,cf,password,controlpswd,nome,cognome,tipoInd,indirizzo,nazione,provincia,città;
+        int ddNascita,mmNascita,yyyyNascita,civico,cap;
+        idUser = idTextField.getText();
+        email = mailTextField.getText();
+        cf = capTextField.getText();
+        password = String.copyValueOf(passwordTextField.getPassword());
+        controlpswd = String.copyValueOf(controlloTextField.getPassword());
+        nome = nomeTextField.getText();
+        cognome = cognomeTextField.getText();
+        ddNascita = Integer.parseInt(dayTextField.getText());
+        mmNascita = Integer.parseInt(monthTextField.getText());
+        yyyyNascita = Integer.parseInt(yearTextField.getText());
+        tipoInd = getTipoVia();
+        indirizzo = indirizzoTextField.getText();
+        civico = Integer.parseInt(civicoTextField.getText());
+        cap = Integer.parseInt(capTextField.getText());
+        nazione = nazioneTextLabel.getText();
+        provincia = regioneTextLabel.getText();
+        città = cittaTextField.getText();
         
+        boolean[] booleani = dataValidator.validateNewUserData(idUser, email, cf, password, controlpswd, nome, cognome, tipoInd, indirizzo, civico, cap, nazione, provincia, città);
+        if(!booleani[0]){
+            
+        }
     }
     
-    public void exportToManager(){
-        manager.userId = idTextField.getText();
-        manager.name = nomeTextField.getText();
-        manager.secondName = cognomeTextField.getText();
-        manager.fiscalCode = cfTextField.getText();
-        manager.address = indirizzoTextField.getText();
-        manager.email = mailTextField.getText();
-        manager.password = String.valueOf(passwordTextField.getPassword());
-        manager.passwordControl = String.valueOf(controlloTextField.getPassword());
-        manager.birthDay = dataDiNascitaTextField.getText();
+    private String getTipoVia(){
+        if(viaRB.isSelected()) return "via";
+        else if (vialeRB.isSelected()) return "viale";
+        else if (corsoRB.isSelected()) return "corso";
+        else if (piazzaRB.isSelected()) return "piazza";
+        else return "via";
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel IndirizzoPanel;
+    private javax.swing.JLabel IndirizzoTextLabel;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JLabel capLabel;
+    private javax.swing.JTextField capTextField;
     public javax.swing.JLabel cfCheckLabel;
     private javax.swing.JLabel cfLabel;
     private javax.swing.JTextField cfTextField;
+    private javax.swing.JTextField cittaTextField;
+    private javax.swing.JLabel cittàTextLabel;
+    private javax.swing.JTextField civicoTextField;
     private javax.swing.JButton closeButton;
     public javax.swing.JLabel cognomeCheckLabel;
     private javax.swing.JLabel cognomeLabel;
     private javax.swing.JTextField cognomeTextField;
     private javax.swing.JLabel controlloLabel;
     private javax.swing.JPasswordField controlloTextField;
+    private javax.swing.JRadioButton corsoRB;
     public javax.swing.JLabel dataDiNascitaCheckLabel;
     private javax.swing.JLabel dataDiNascitaLabel;
-    private javax.swing.JTextField dataDiNascitaTextField;
+    private javax.swing.JPanel dataNascitaPanel;
+    private javax.swing.JTextField dayTextField;
     private javax.swing.JPanel iconPanel;
     public javax.swing.JLabel idCheckLabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTextField;
     public javax.swing.JLabel indirizzoCheckLabel;
-    private javax.swing.JLabel indirizzoLabel;
     private javax.swing.JTextField indirizzoTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel labelsPanel;
     private javax.swing.JPanel lowPanel;
@@ -380,6 +527,9 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JTextField mailTextField;
     private javax.swing.JPanel mainGridPanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JTextField monthTextField;
+    private javax.swing.JLabel nazioneLabel;
+    private javax.swing.JTextField nazioneTextLabel;
     public javax.swing.JLabel nomeCheckLabel;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JTextField nomeTextField;
@@ -387,8 +537,16 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel passwordPanel;
     private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JRadioButton piazzaRB;
+    private javax.swing.JTextField regioneTextField;
+    private javax.swing.JLabel regioneTextLabel;
     private javax.swing.JButton registratiButton;
     private javax.swing.JPanel textFieldsLabel;
+    private javax.swing.JPanel tipoViaPanel;
+    private javax.swing.JRadioButton viaRB;
+    private javax.swing.JRadioButton vialeRB;
+    private javax.swing.JLabel voidLabel;
     private javax.swing.JPanel warningLabelsPanel;
+    private javax.swing.JTextField yearTextField;
     // End of variables declaration//GEN-END:variables
 }

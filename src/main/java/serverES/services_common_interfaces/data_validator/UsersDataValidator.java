@@ -19,7 +19,7 @@ public interface UsersDataValidator extends Remote {
     //Riccardo
     /**
      * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.
-     * Ritorna un array di interi rappresentante tutti gli errori occorsi.
+     * Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
      * @param userId Stringa contenente l' id del nuovo utente.
      * @param email Stringa contenente la mail del nuovo utente.
      * @param cf Stringa contenente il codice fiscale del nuovo utente.
@@ -27,6 +27,7 @@ public interface UsersDataValidator extends Remote {
      * @param rePassword Stringa contenente per la verifica che la password inserita sia quella che l' utente voleva.
      * @param nome Stringa contenente il nome del nuovo utente.
      * @param cognome Stringa contenente il cognome del nuovo utente.
+     * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
      * @param tipoIndirizzo Stringa contenente: "via" | "viale" | "piazza" | "piazzetta" | "salita" | "discesa".
      * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
      * @param civico Intero rappresentante il numero civico dell' indirizzo del nuovo utente.
@@ -35,22 +36,23 @@ public interface UsersDataValidator extends Remote {
      * @param provincia Stringa contenente la provincia di residenza del nuovo utente.
      * @param città Stringa contenente la città di residenza del nuovo utente.
      * @return 
-     * 0 - tutti i dati risultano validi.
-     * 1 - userId non valido.
-     * 2 - userId già scelto da un altro utente.
-     * 3 - codice fiscale non valido.
-     * 4 - codice fiscale già presente nel DB.
-     * 5 - password non valida.
-     * 6 - password non coincidono.
-     * 7 - nome non valido.
-     * 8 - cognome non valido.
-     * 9 - tipo indirizzo non ammesso.
-     * 10 - indirizzo non valido.
-     * 11 - civico non valido.
-     * 12 - cap non valido.
-     * 13 - nazione non valida.
-     * 14 - provincia non valida.
-     * 15 - citta non valida.
+     * 0 - dato valido, 1 dato non valido
+     * posizioni errori nell' array:
+     * 0 - userId non valido.
+     * 1 - userId già scelto da un altro utente.
+     * 2 - codice fiscale non valido.
+     * 3 - codice fiscale già presente nel DB.
+     * 4 - password non valida.
+     * 5 - password non coincidono.
+     * 6 - nome non valido.
+     * 7 - cognome non valido.
+     * 8 - tipo indirizzo non ammesso.
+     * 9 - indirizzo non valido.
+     * 10 - civico non valido.
+     * 11 - cap non valido.
+     * 12 - nazione non valida.
+     * 13 - provincia non valida.
+     * 14 - citta non valida.
      */
     public boolean[] validateNewUserData(
             String userId,
@@ -58,12 +60,12 @@ public interface UsersDataValidator extends Remote {
             String cf,
             String password,
             String rePassword,
-            String nome,String cognome,
+            String nome,String cognome,String compleanno,
             String tipoIndirizzo,
             String indirizzo,
             int civico,
             int cap,
-            int nazione,
+            String nazione,
             String provincia,
             String città
     )throws RemoteException;
