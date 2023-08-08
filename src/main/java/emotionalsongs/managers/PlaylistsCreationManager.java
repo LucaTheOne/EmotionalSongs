@@ -15,7 +15,6 @@ import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.main_window.*;
 import emotionalsongs.gui.playlists.*;
 import java.util.*;
-import serverES.db_communication.*;
 
 
 /**
@@ -35,7 +34,6 @@ public class PlaylistsCreationManager {
     private Vector<String> songsToAddIds = new Vector<>();
     private int numberOfSongsSelected = 0;
     
-    private DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
     
     /**
      * Metodo per accedere alla classe, richiamandone la sua unica istanza.

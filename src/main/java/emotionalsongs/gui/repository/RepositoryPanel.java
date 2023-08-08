@@ -9,6 +9,7 @@
 
 package emotionalsongs.gui.repository;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.main_window.*;
@@ -16,6 +17,7 @@ import java.awt.*;
 import java.io.*;
 import java.rmi.*;
 import java.util.logging.*;
+import javax.swing.*;
 import serverES.services_common_interfaces.data_handler.*;
 
 /**
@@ -384,13 +386,14 @@ public class RepositoryPanel extends javax.swing.JPanel {
         scrollView.repaint();       
     }//GEN-LAST:event_clearButtonActionPerformed
     
-    /*
+    
     public static void main(String[] args) throws IOException {
         JFrame frame = new JFrame();
         frame.setSize(1000, 800);
         frame.add(new RepositoryPanel((SongsDataHandler)ServicesBox.getInstance().getService(ServicesBox.SONGS_DATA_HANDLER)));
         frame.setVisible(true);
-    }*/
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel SearchPanel;

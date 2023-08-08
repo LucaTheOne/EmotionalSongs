@@ -192,8 +192,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         CONNECTION_TO_DB = Conn;
     }
     
-    
-    
     //Riccardo
     /**
      * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
@@ -290,15 +288,13 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             //Controllo del codice fiscale
             cfValid = checkCfValidity(cf);
             if(!cfValid){ }
-            else
-            {
+            else {
                 query ="SELECT CF FROM UTENTI_REGISTRATI WHERE CF = ?;"; 
                 statementControl = CONNECTION_TO_DB.prepareStatement(query);
                 statementControl.setString(1, cf);
                 resultSet = statementControl.executeQuery();
                 resultSet.next();
-                cfNotPresent = resultSet.getInt(1) == 0;
-                
+                cfNotPresent = resultSet.getInt(1) == 0;   
             }
             
             //Controllo Password
@@ -314,8 +310,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             compleannoValid = checkBirthDayValidity(compleanno);
             
             //I controlli su indirizzo non hanno senso se non si integra un database stradale -> basta assicurarsi non sia vuoto.
-            indirizzoValid = checkAddressValidity(indirizzo);
-            
+            indirizzoValid = checkAddressValidity(indirizzo);    
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -331,7 +326,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             nomeValid,
             cognomeValid,
             compleannoValid,
-            indirizzoValid,
+            indirizzoValid
         };
         return reverseArrayValues(errors);
     }
@@ -352,8 +347,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             String query;
             PreparedStatement statementControl;
             ResultSet resultSet;
-            
-            
             
             query ="SELECT COUNT(*) FROM EMOZIONI WHERE USER_PROP_ID = ? AND CANZONE_ID = ?;"; //chiedo al db quante righe ci sono corrispondenti al criterio di ricerca espresso nella query
             statementControl = CONNECTION_TO_DB.prepareStatement(query);
@@ -427,6 +420,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return temp;
     }
     
+    //riccardo
     private boolean checkAddressValidity(String indirizzo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
