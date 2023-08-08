@@ -73,9 +73,18 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
      * 1 - operazione non andata a buon fine.
      */
     @Override
-    public int requestToUpdateUsersTable(String userId, String email, String cf, String password, String nome, String cognome,String dataNascita, String tipoIndirizzo, String indirizzo, int civico, int cap, String nazione, String provincia, String città) throws RemoteException{
+    public int requestToUpdateUsersTable(
+            String userId, 
+            String email, 
+            String cf, 
+            String password, 
+            String nome, 
+            String cognome,
+            String dataNascita,  
+            String indirizzo
+        ) throws RemoteException{
         try {
-            String query = "INSERT INTO UTENTI_REGISTRATI(ID_USER,EMAIL,CF,PASSWORD,NOME,COGNOME,DATA_NASCITA) VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO UTENTI_REGISTRATI(ID_USER,EMAIL,CF,PASSWORD,NOME,COGNOME,DATA_NASCITA,INDIRIZZO_RESIDENZA) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
             int yyyy,mm,dd;
             yyyy = Integer.parseInt(dataNascita.split("/")[2]);
@@ -88,19 +97,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             statement.setString(5, nome);
             statement.setString(6, cognome);
             statement.setDate(7, new Date(yyyy, mm,dd));
-            statement.executeUpdate();
-            statement.close();
-            
-            query = "INSERT INTO INDIRIZZI (RESIDENTE_ID,TIPO,INDIRIZZO,CIVICO,CAP,NAZIONE,PROVINCIA,CITTA) VALUES (?,?,?,?,?,?,?,?)";
-            statement = CONNECTION_TO_DB.prepareStatement(query);
-            statement.setString(1, userId);
-            statement.setString(2, tipoIndirizzo);
-            statement.setString(3, indirizzo);
-            statement.setInt(4, civico);
-            statement.setInt(5, cap);
-            statement.setString(6, nazione);
-            statement.setString(7, provincia);
-            statement.setString(8,città);
+            statement.setString(8, indirizzo);
             statement.executeUpdate();
             statement.close();
             return 0;

@@ -80,9 +80,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      */
     private boolean verificaProvincia(String prov) {
         // Controlla se la stringa ha esattamente due caratteri
-        if (prov.length() != 2) {
-            return false;
-        }
+        return prov.length() != 2;
     }
     
     //Methods checking data validity
@@ -235,9 +233,19 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @throws java.rmi.RemoteException
      */
     @Override
-    public boolean[] validateNewUserData(String userId, String email, String cf, String password, String rePassword, String nome, String cognome, String compleanno, String tipoIndirizzo, String indirizzo, int civico, int cap, String nazione, String provincia, String citta) throws RemoteException {
+    public boolean[] validateNewUserData(
+            String userId, 
+            String email, 
+            String cf, 
+            String password, 
+            String rePassword, 
+            String nome, 
+            String cognome, 
+            String compleanno,
+            String indirizzo
+        ) throws RemoteException {
         boolean userIdValid = false,
-                userIdNotChesenYet = false,
+                userIdAvailable = false,
                 emailValid = false,
                 emailNotPresent = false,
                 cfValid = false,
@@ -247,13 +255,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
                 nomeValid= false,
                 cognomeValid= false,
                 compleannoValid= false,
-                tipoIndirizzoValid = false,
-                indirizzoValid = false,
-                civicoValid = false,
-                capValid= false,
-                nazioneValid= false,
-                provinciaValid= false,
-                cittaValid = false;
+                indirizzoValid = false;
         try{
             //Inizializzazione
             String query;
@@ -270,25 +272,24 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             resultSet = statementControl.executeQuery();
             resultSet.next(); //non ho capito cosa fa questo -> quando ottenuto, il result set punta alla posizione precedente al primo dato valido, quindio serve .next()
             
-            userIdValid = resultSet.getInt(1) == 0;
+            userIdAvailable = resultSet.getInt(1) == 0;
             
             //Controllo della mail
             emailValid = isValidMail(email);
             if(!isValidMail(email)) {}
             else
             {
-                query ="SELECT count(EMAIL) FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
+                query ="SELECT COUNT(EMAIL) FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
                 statementControl = CONNECTION_TO_DB.prepareStatement(query);
                 statementControl.setString(1, email);
                 resultSet = statementControl.executeQuery();
                 resultSet.next();
-                emailNotPresent = resultSet.getInt(1) == 0;
-                
+                emailNotPresent = resultSet.getInt(1) == 0; 
             }
             
             //Controllo del codice fiscale
             cfValid = checkCfValidity(cf);
-            if(!cfValid){}
+            if(!cfValid){ }
             else
             {
                 query ="SELECT CF FROM UTENTI_REGISTRATI WHERE CF = ?;"; 
@@ -312,35 +313,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             
             compleannoValid = checkBirthDayValidity(compleanno);
             
-            //Tipo indirizzo non ha senso -> ce l' ha per via della struttura del DB.
-            tipoIndirizzoValid = (
-                    tipoIndirizzo.equalsIgnoreCase("via") ||
-                    tipoIndirizzo.equalsIgnoreCase("viale") ||
-                    tipoIndirizzo.equalsIgnoreCase("controviale") ||
-                    tipoIndirizzo.equalsIgnoreCase("piazza") ||
-                    tipoIndirizzo.equalsIgnoreCase("piazzetta") ||
-                    tipoIndirizzo.equalsIgnoreCase("corso")
-                    );
-            
             //I controlli su indirizzo non hanno senso se non si integra un database stradale -> basta assicurarsi non sia vuoto.
-            indirizzoValid = !indirizzo.isBlank();
-            
-            
-            //Controllo che il civico non sia negativo 
-            //(inserire eventuale interno? -> no)
-            civicoValid = (civico >= 0);
-            
-            //Controllo CAP
-            capValid = (cap>10000 || cap >99999);
-            
-            //Controllo Nazione (è l'Oman quello con il nome più corto?)
-            nazioneValid =  !nazione.isBlank() && nazione.length() >= 4 && ServerUtils.isFitToPostgresql(nazione);
-                
-            //Controllo provincia
-            provinciaValid = verificaProvincia(provincia);
-            
-            //Controllo città
-            cittaValid = !citta.isBlank() && !(citta == null) && ServerUtils.isFitToPostgresql(citta); 
+            indirizzoValid = checkAddressValidity(indirizzo);
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -348,7 +322,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         
         boolean[] errors = new boolean[]{
             userIdValid,
-            userIdNotChesenYet,
+            userIdAvailable,
             emailValid,
             emailNotPresent,
             cfValid,
@@ -357,15 +331,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             nomeValid,
             cognomeValid,
             compleannoValid,
-            tipoIndirizzoValid,
             indirizzoValid,
-            civicoValid,
-            capValid,
-            nazioneValid,
-            provinciaValid,
-            cittaValid
         };
-        return errors;
+        return reverseArrayValues(errors);
     }
     
     //Riccardo deve implementare
@@ -412,6 +380,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param userId Stringa contenente l' user id del utente.
      * @param password Stringa contenente l'account id del utente.
      * @return
+     * per ogni posizione dell' array: true errore occorso, false nessun errore occorso
+     * posizioni errori:
      * 0 - id utente non presente nel DB.
      * 1 - Password errata.
      */
@@ -419,42 +389,59 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
     public boolean[] validateLogin(String userId, String password) throws RemoteException
     {
         boolean[] errors = new boolean[]{false,false};
-        boolean exception;
         try{
             //Inizializzazione
             String query;
             PreparedStatement statementControl;
-            ResultSet resultSet;
+            ResultSet resultSet;            
             
-            
-            
-            query ="SELECT PASSWORD FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
+            query = "SELECT COUNT(ID_USER) FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
             statementControl = CONNECTION_TO_DB.prepareStatement(query);
             statementControl.setString(1, userId);
             resultSet = statementControl.executeQuery();
             resultSet.next();
             
-            if(resultSet==null)
-            {
+            if(!(resultSet.getInt(1)==1)){
+                errors[0] = true;
                 return errors;
-            }
-            errors[0]=true;
+            }else{
+                statementControl.close();
+                query ="SELECT PASSWORD FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
+                statementControl = CONNECTION_TO_DB.prepareStatement(query);
+                statementControl.setString(1, userId);
+                resultSet = statementControl.executeQuery();
+                resultSet.next();
             
-            if(password.equals(resultSet))
-                errors[1]=true;
-               
+                if(!(resultSet.getString(1).equals(password))) errors[1] = true;
+            }   
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
-            
         }
         return errors;
-
+    }
+    
+    private boolean[] reverseArrayValues(boolean[] arrayToReverse){
+        boolean[] temp = new boolean[arrayToReverse.length];
+        for(int i = 0; i<arrayToReverse.length;i++) 
+            temp[i] = !arrayToReverse[i];
+        return temp;
+    }
+    
+    private boolean checkAddressValidity(String indirizzo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     public static void main(String[] args) throws RemoteException {
         //System.out.println(new UtentiDataChecker(DBConnector.getDefaultConnection()).userCanVoteSong("theOne","TRGDRZV128F92DC96D" ));
-        boolean valid,valid2 = false;
-        System.out.println(valid);
-    }
+        /*
+        boolean[] bool = new boolean[]{true,true,true,false,false};
+        bool = reverseArrayValues(bool);
+        System.out.print("[ ");
+        for(boolean booleans: bool) {
+            System.out.print(String.valueOf(booleans)+",");
+        }
+        System.out.println(" ]");
+        */
+    } 
     
 }

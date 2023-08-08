@@ -36,7 +36,7 @@ public interface UsersDataValidator extends Remote {
      * @param provincia Stringa contenente la provincia di residenza del nuovo utente.
      * @param città Stringa contenente la città di residenza del nuovo utente.
      * @return 
-     * 0 - dato valido, 1 dato non valido
+     * false - dato valido, true dato non valido
      * posizioni errori nell' array:
      * 0 - userId non valido.
      * 1 - userId già scelto da un altro utente.
@@ -46,13 +46,9 @@ public interface UsersDataValidator extends Remote {
      * 5 - password non coincidono.
      * 6 - nome non valido.
      * 7 - cognome non valido.
-     * 8 - tipo indirizzo non ammesso.
-     * 9 - indirizzo non valido.
-     * 10 - civico non valido.
-     * 11 - cap non valido.
-     * 12 - nazione non valida.
-     * 13 - provincia non valida.
-     * 14 - citta non valida.
+     * 8 - Compleanno non valido.
+     * 9 - Indirizzo non valido.
+     * 10 - email non valida
      */
     public boolean[] validateNewUserData(
             String userId,
@@ -61,14 +57,8 @@ public interface UsersDataValidator extends Remote {
             String password,
             String rePassword,
             String nome,String cognome,String compleanno,
-            String tipoIndirizzo,
-            String indirizzo,
-            int civico,
-            int cap,
-            String nazione,
-            String provincia,
-            String città
-    )throws RemoteException;
+            String indirizzo
+        )throws RemoteException;
     
     //Eleonora
     /**

@@ -63,13 +63,13 @@ public class RegistrationManager {
         EngineChecker checker = new EngineChecker();
         if(checker.checkIdValidity(userId)){
             if(!checker.checkIdNotTaken(DataBaseUsers.getInstance(), userId)){
-                panel.idCheckLabel.setVisible(true);
-                panel.idCheckLabel.setText(EmotionalSongs.dialoghi.userIdTaken());
+                panel.idUserCheckLabel.setVisible(true);
+                panel.idUserCheckLabel.setText(EmotionalSongs.dialoghi.userIdTaken());
                 allDataValid = false;
             }
         } else {
-            panel.idCheckLabel.setVisible(true);
-            panel.idCheckLabel.setText(EmotionalSongs.dialoghi.userIdNotValid());
+            panel.idUserCheckLabel.setVisible(true);
+            panel.idUserCheckLabel.setText(EmotionalSongs.dialoghi.userIdNotValid());
             allDataValid = false;
         }
         

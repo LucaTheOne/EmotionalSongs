@@ -45,13 +45,7 @@ public interface UsersDataHandler extends Remote{
             String password,
             String nome,String cognome,
             String dataNascita,
-            String tipoIndirizzo,
-            String indirizzo,
-            int civico,
-            int cap,
-            String nazione,
-            String provincia,
-            String città
+            String indirizzo
     )throws RemoteException;
     
     //Eleonora
