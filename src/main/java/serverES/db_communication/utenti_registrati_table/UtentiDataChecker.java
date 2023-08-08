@@ -425,7 +425,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public static void main(String[] args) throws RemoteException {
+    //public static void main(String[] args) throws RemoteException {
         //System.out.println(new UtentiDataChecker(DBConnector.getDefaultConnection()).userCanVoteSong("theOne","TRGDRZV128F92DC96D" ));
         /*
         boolean[] bool = new boolean[]{true,true,true,false,false};
@@ -436,6 +436,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         }
         System.out.println(" ]");
         */
-    } 
+    //} 
     
 }

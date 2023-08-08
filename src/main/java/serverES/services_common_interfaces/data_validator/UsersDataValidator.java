@@ -73,11 +73,14 @@ public interface UsersDataValidator extends Remote {
     //Riccardo
     /**
      * Metodo per la verifica dei dati di login.
-     * Ritorna un array di interi rappresentanti tutti gli errori occorsi.
+     * Ritorna un array di booleani in cui "false" rappresentano gli errori commessi, secondo la elegenda sottostante.
      * @param userId Stringa contenente l' user id del utente.
      * @param password Stringa contenente l'account id del utente.
-     * @return 0 - dati validi.
-     * 1 - id e/o password errati.
+     * @return
+     * per ogni posizione dell' array: true errore occorso, false nessun errore occorso
+     * posizioni errori:
+     * 0 - id utente non presente nel DB.
+     * 1 - Password errata.
      */
     public boolean[] validateLogin(String userId,String password)throws RemoteException;
 }

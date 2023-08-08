@@ -7,7 +7,6 @@
 
 package emotionalsongs;
 
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.main_window.*;
@@ -23,7 +22,7 @@ import java.io.*;
 public class EmotionalSongs {
     
     
-    private static User loggedUser = null;
+    private static String loggedUser = "";
     /**
      * Rappresenta la lingua attualmente attiva nel sistema.
      */
@@ -49,13 +48,13 @@ public class EmotionalSongs {
      * attualmente effettuato il login.
      * @return L'istanza rappresentante l'utente attualmente loggato, null se l'utente non è loggato.
      */
-    public static User getLoggedUser(){
+    public static String getLoggedUser(){
         return loggedUser;
     }
     /**
      * Metodo che permette di modificare l'istanza di utente attualmente loggato al sistema.
      */
-    public static void setLoggedUser(User loggedUser){
+    public static void setLoggedUser(String loggedUser){
         EmotionalSongs.loggedUser = loggedUser;
     }
     

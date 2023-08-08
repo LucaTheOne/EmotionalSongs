@@ -13,7 +13,8 @@ import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
 import java.awt.geom.*;
-import serverES.db_communication.*;
+import java.rmi.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 /**
  *Classe le cui istanze rappresentano il form di login.
@@ -21,12 +22,12 @@ import serverES.db_communication.*;
 public class LoginFrame extends javax.swing.JFrame {
     private Image bg = Utilities.logingBG.getImage();
     private MainFrame mainWindow = MainFrame.getIstance();
-    private DBQuerier service;
+    private UsersDataValidator dataValidator;
     /**
      * Crea un form per il login.
      */
-    public LoginFrame(DBQuerier remoteService) {
-        service = remoteService;
+    public LoginFrame(UsersDataValidator dataValidator) {
+        this.dataValidator = dataValidator;
         setAlwaysOnTop(true);
         initComponents();
     }
@@ -111,23 +112,35 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        logger.login(idField.getText(), String.valueOf(passwordField.getPassword()));
-        if(!logger.idFounded){
-            this.wrongId.setVisible(true);
-            this.revalidate();
-            this.repaint();
-        }
-        if(!logger.passwordMatches){
-            this.wrongPassword.setVisible(true);
-            this.revalidate();
-            this.repaint();
-        }
-        if(logger.idFounded&&logger.passwordMatches){
-            mainWindow.cleanUpMainPanel();
-            mainWindow.setUpperBar(new UpperBarLoggedPanel(mainWindow));
+        wrongId.setVisible(false);
+        wrongPassword.setVisible(false);
+        try {
+            boolean[] errors = dataValidator.validateLogin(idField.getText(), String.valueOf(passwordField.getPassword()));
+            if(errors[0] == true){
+                wrongId.setText(EmotionalSongs.dialoghi.userIdNotFound());
+                wrongId.setVisible(true);
+                revalidate();
+                repaint();
+                return;
+            } else {
+                if(errors[1] == true){
+                    wrongPassword.setText(EmotionalSongs.dialoghi.passwordErr());
+                    wrongPassword.setVisible(true);
+                    revalidate();
+                    repaint();
+                    return;
+                }
+            }
+            EmotionalSongs.setLoggedUser(idField.getText());
+            //efficientare
             mainWindow.setLeftPanel(new MenuLeftLogged(mainWindow));
+            mainWindow.setUpperBar(new UpperBarLoggedPanel(mainWindow));
+            mainWindow.updateView();
+            
             dispose();
-        }
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }  
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -137,8 +150,12 @@ public class LoginFrame extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
-
-
+    /*
+    public static void main(String[] args) {
+        JFrame frame = new LoginFrame((UsersDataValidator) ServicesBox.getInstance().getService(ServicesBox.USERS_DATA_VALIDATOR));
+        frame.setVisible(true);
+    }
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;

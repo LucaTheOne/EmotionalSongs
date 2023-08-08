@@ -96,7 +96,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.idUtente()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.userId()" type="code"/>
         </Property>
       </Properties>
       <Constraints>
@@ -130,7 +130,7 @@
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.idUtenteInes()" type="code"/>
+          <Connection code="emotionalsongs.EmotionalSongs.dialoghi.userIdNotFound()" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
