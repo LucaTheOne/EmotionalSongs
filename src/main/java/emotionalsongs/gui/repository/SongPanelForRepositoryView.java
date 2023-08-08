@@ -38,11 +38,10 @@ public class SongPanelForRepositoryView extends javax.swing.JPanel {
         String[] splitted = representedSong.split("£SEP£");
         if(splitted.length!=5) System.out.println("Errore, stringa canzone non valida.");
         idUnique = splitted[0];
-        
+        //repo index isn't needed
         title = splitted[2];
         author = splitted[3];
         year = Integer.parseInt(splitted[4]);
-        
         initComponents();
     }
 

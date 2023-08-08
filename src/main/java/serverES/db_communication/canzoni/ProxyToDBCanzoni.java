@@ -86,7 +86,10 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     @Override
     public String[] cercaBranoMusicale(String author, int year)throws RemoteException{
         try {
-            String query = "SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%"+author+"%') INTERSECT SELECT ID_UNIVOCO,TITOLO,AUTORE,ANNO FROM CANZONI WHERE ANNO = "+year+" ORDER BY ANNO,AUTORE,TITOLO ASC;";
+            String query = "SELECT * FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%"+author+"%') "+
+                    "INTERSECT"+
+                    " SELECT * FROM CANZONI WHERE ANNO = "+year+
+                    " ORDER BY ANNO,AUTORE,TITOLO ASC;";
             
             Statement statement = CONNECTION_TO_DB.createStatement();
             statement = CONNECTION_TO_DB.createStatement();
@@ -138,5 +141,10 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
             System.out.println(ex.getMessage());
         }
         return 0;
+    }
+    
+    public static void main(String[] args) throws RemoteException {
+        String[] res = new ProxyToDBCanzoni(DBConnector.getDefaultConnection()).cercaBranoMusicale("Asleep At The Wheel", 1992);
+        for(String str: res) System.out.println(str);
     }
 }

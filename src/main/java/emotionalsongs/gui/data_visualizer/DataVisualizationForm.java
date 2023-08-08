@@ -10,7 +10,6 @@ package emotionalsongs.gui.data_visualizer;
 
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.engines.*;
 import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import javax.swing.*;

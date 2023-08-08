@@ -22,17 +22,19 @@ import serverES.services_common_interfaces.data_validator.*;
  */
 public class RegistrationPanel extends javax.swing.JPanel {
     
-    private final MainFrame mainWindow = MainFrame.getIstance();
+    private final MainFrame mainWindow;
     private final UsersDataHandler dataHandler;
     private final UsersDataValidator dataValidator;
-    private String tipoVia;
     /**
-     * Crea form di registrazione gestito dal manager passato come argomento.
-     * @param manager manager di gestione della registrazione.
+     * Crea form di registrazione.
+     * @param dataHandlerService servizio di gestione degli utenti.
+     * @param dataValidatorService servizio di validazione dati degli utenti.
+     * @param container MainFrame che conterrà questo pannello.
      */
-    public RegistrationPanel(UsersDataHandler dataHandlerService, UsersDataValidator dataValidatorService) {
+    public RegistrationPanel(UsersDataHandler dataHandlerService, UsersDataValidator dataValidatorService, MainFrame container) {
         dataHandler = dataHandlerService;
         dataValidator = dataValidatorService;
+        mainWindow = container;
         initComponents();
     }
 
@@ -87,7 +89,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         controlloTextField = new javax.swing.JPasswordField();
         passwordCheckLabel = new javax.swing.JLabel();
         buttonsPanel = new javax.swing.JPanel();
-        registratiButton = new javax.swing.JButton();
+        registerNewUserButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -171,26 +173,19 @@ public class RegistrationPanel extends javax.swing.JPanel {
         textFieldsLabel.setOpaque(false);
         textFieldsLabel.setLayout(new java.awt.GridLayout(7, 1));
 
-        nomeTextField.setText("Nome");
         nomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(nomeTextField);
 
-        cognomeTextField.setText("Cognome");
         cognomeTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(cognomeTextField);
-
-        birthdayTextField.setText("gg/mm/yyyyy");
         textFieldsLabel.add(birthdayTextField);
 
-        cfTextField.setText("CF");
         cfTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(cfTextField);
 
-        mailTextField.setText("mail@dominio.com");
         mailTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(mailTextField);
 
-        idTextField.setText("idUser");
         idTextField.setPreferredSize(new java.awt.Dimension(350, 30));
         textFieldsLabel.add(idTextField);
 
@@ -287,17 +282,17 @@ public class RegistrationPanel extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(900, 100));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
-        registratiButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrer());
-        registratiButton.setPreferredSize(new java.awt.Dimension(180, 60));
-        registratiButton.addActionListener(new java.awt.event.ActionListener() {
+        registerNewUserButton.setText(emotionalsongs.EmotionalSongs.dialoghi.registrer());
+        registerNewUserButton.setPreferredSize(new java.awt.Dimension(180, 60));
+        registerNewUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registratiButtonActionPerformed(evt);
+                registerNewUserButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 28, 0, 28);
-        buttonsPanel.add(registratiButton, gridBagConstraints);
+        buttonsPanel.add(registerNewUserButton, gridBagConstraints);
 
         closeButton.setText(emotionalsongs.EmotionalSongs.dialoghi.close());
         closeButton.setPreferredSize(new java.awt.Dimension(180, 60));
@@ -321,7 +316,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         mainWindow.cleanUpMainPanel();
     }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
+    private void registerNewUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerNewUserButtonActionPerformed
         setAllCheckOff();
         boolean okData = false;
         try {
@@ -345,15 +340,24 @@ public class RegistrationPanel extends javax.swing.JPanel {
                 System.out.println("Error! impossible to register the new user: internal errors occurred!");
             } else {
                 //i obtain the containing frame and close it and then this panel.
-                WelcomeMailSender.sendMailToNewUser(nomeTextField.getText(), cognomeTextField.getText(), tipoVia, tipoVia, tipoVia, tipoVia, tipoVia, tipoVia);
+                WelcomeMailSender.sendMailToNewUser(
+                        nomeTextField.getText(), 
+                        cognomeTextField.getText(), 
+                        birthdayTextField.getText(), 
+                        cfTextField.getText(),
+                        addressTextField.getText(),
+                        mailTextField.getText(),
+                        idTextField.getText(), 
+                        String.valueOf(passwordTextField.getPassword())
+                    ); // manda mail di benvenuto al nuovo utente con i suoi dati inseriti.
                 ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose();
             }
         }catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-    }//GEN-LAST:event_registratiButtonActionPerformed
+    }//GEN-LAST:event_registerNewUserButtonActionPerformed
     
-    public void setAllCheckOff(){
+    private void setAllCheckOff(){
         cfCheckLabel.setVisible(false);
         cfCheckLabel.setVisible(false);
         nomeCheckLabel.setVisible(false);
@@ -445,6 +449,20 @@ public class RegistrationPanel extends javax.swing.JPanel {
         
         return allOk;
     }
+    /*
+    public static void main(String[] args){
+        JFrame frame = new JFrame();
+        frame.setSize(600, 800);
+        ServicesBox sb = ServicesBox.getInstance();
+        frame.add(
+                new RegistrationPanel(
+                    (UsersDataHandler) sb.getService(ServicesBox.USERS_DATA_HANDLER),
+                    (UsersDataValidator)sb.getService(ServicesBox.USERS_DATA_VALIDATOR),
+                    MainFrame.getIstance()
+                )
+            );
+        frame.setVisible(true);
+    }*/
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IndirizzoTextLabel;
@@ -485,7 +503,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel passwordPanel;
     private javax.swing.JPasswordField passwordTextField;
-    private javax.swing.JButton registratiButton;
+    private javax.swing.JButton registerNewUserButton;
     private javax.swing.JPanel textFieldsLabel;
     private javax.swing.JPanel warningLabelsPanel;
     // End of variables declaration//GEN-END:variables

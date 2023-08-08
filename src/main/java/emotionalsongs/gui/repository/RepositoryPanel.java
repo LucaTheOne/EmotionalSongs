@@ -252,17 +252,17 @@ public class RepositoryPanel extends javax.swing.JPanel {
         
         String request = searchBar.getText();
         if(request.contains(";")){
-            String[] requestSplitted = request.split(";");
+            String[] requestSplitted = request.split(";"); // 0 - autore, 1 - anno
             try {
-                actualSongsArray = remoteService.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+                actualSongsArray = remoteService.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1].replaceAll(" ", "")));
             } catch (RemoteException ex) {
-                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         } else {
             try {
                 actualSongsArray = remoteService.cercaBranoMusicale(request);
             } catch (RemoteException ex) {
-                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
         innerScroll.removeAll();
@@ -280,7 +280,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
             return;
         }
         actualSearchedSongIndex = 0;
-        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+SONGS_PER_VIEW);i++){
+        for(int i = actualSearchedSongIndex; i<=actualSongsArray.length-1 && i<(actualSearchedSongIndex+SONGS_PER_VIEW);i++){
             innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
         } 
         

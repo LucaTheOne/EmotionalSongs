@@ -93,6 +93,7 @@ public class ServicesBox extends Thread{
         servicesHost = host;
     }
     
+    /*
     public static void main(String[] args) throws InterruptedException, RemoteException {
         new RequestServiceHostFrame();
         while (services == null) {            
@@ -102,5 +103,5 @@ public class ServicesBox extends Thread{
         //System.out.println(sdh.getRepoSize());
         String[] arr = sdh.requestRepositorysSongByIndex(0, 100);
         for(String str: arr) System.out.println(str);
-    }
+    }*/
 }

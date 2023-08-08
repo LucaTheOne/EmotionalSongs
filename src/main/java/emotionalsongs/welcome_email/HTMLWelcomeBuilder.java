@@ -24,7 +24,7 @@ class HTMLWelcomeBuilder {
     /**
      * Costruttore della classe che si occupa di compilare il form html di benvenuto sulla base dei dati dell' utente appena registrato.
      */
-    public HTMLWelcomeBuilder(String name, String surname,String birthdate,String cf,String address,String email,String userId, String password) {
+    protected HTMLWelcomeBuilder(String name, String surname,String birthdate,String cf,String address,String email,String userId, String password) {
         userdata[0] = name;
         userdata[1] = surname;
         userdata[2] = birthdate;
@@ -53,7 +53,7 @@ class HTMLWelcomeBuilder {
      * Restituisce il form compilato sotto forma di stringa.
      * @return stringa rappresentante il form compilato.
      */
-    public String getwelcomeMessage(){
+    protected String getwelcomeMessage(){
         return message;
     }
      
