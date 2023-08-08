@@ -10,7 +10,6 @@ package emotionalsongs.welcome_email;
 
 
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import java.io.*;
 import java.util.logging.*;
 /**
@@ -18,7 +17,6 @@ import java.util.logging.*;
  */
 class HTMLWelcomeBuilder {
     
-    private User user = EmotionalSongs.getLoggedUser();
     private String message ="";
     private String[] userdata = new String[8];
     private String[] identifiers = {"%&0","%&1","%&2","%&3","%&4","%&5","%&6","%&7"};
@@ -26,15 +24,15 @@ class HTMLWelcomeBuilder {
     /**
      * Costruttore della classe che si occupa di compilare il form html di benvenuto sulla base dei dati dell' utente appena registrato.
      */
-    public HTMLWelcomeBuilder() {
-        userdata[0] = user.getName();
-        userdata[1] = user.getSurname();
-        userdata[2] = user.getBirthDate();
-        userdata[3] = user.getCF();
-        userdata[4] = user.getAddress();
-        userdata[5] = user.getEmail();
-        userdata[6] = user.getUserId();
-        userdata[7] = user.getPassword();
+    public HTMLWelcomeBuilder(String name, String surname,String birthdate,String cf,String address,String email,String userId, String password) {
+        userdata[0] = name;
+        userdata[1] = surname;
+        userdata[2] = birthdate;
+        userdata[3] = cf;
+        userdata[4] = address;
+        userdata[5] = email;
+        userdata[6] = userId;
+        userdata[7] = password;
         
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(Utilities.HtmlPath)));

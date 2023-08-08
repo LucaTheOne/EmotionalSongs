@@ -10,6 +10,7 @@ package emotionalsongs.gui.registration;
 
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
+import emotionalsongs.welcome_email.*;
 import java.awt.*;
 import java.rmi.*;
 import javax.swing.*;
@@ -344,6 +345,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
                 System.out.println("Error! impossible to register the new user: internal errors occurred!");
             } else {
                 //i obtain the containing frame and close it and then this panel.
+                WelcomeMailSender.sendMailToNewUser(nomeTextField.getText(), cognomeTextField.getText(), tipoVia, tipoVia, tipoVia, tipoVia, tipoVia, tipoVia);
                 ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose();
             }
         }catch (RemoteException ex) {

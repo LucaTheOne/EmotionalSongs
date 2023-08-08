@@ -10,7 +10,6 @@ package emotionalsongs.welcome_email;
 
 
 
-import emotionalsongs.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -22,10 +21,10 @@ public class WelcomeMailSender {
     /**
      * Metodo che spedisce la mail di benvenuto.
      */
-    public static void sendMailToNewUser() {
+    public static void sendMailToNewUser(String name, String surname,String birthdate,String cf,String address,String email,String userId, String password) {
 
         // Recipient's email ID needs to be mentioned.
-        String to = EmotionalSongs.getLoggedUser().getEmail();
+        String to = email;
 
         // Sender's email ID needs to be mentioned
         String sender = "bigs.development.studio@gmail.com";
@@ -42,7 +41,7 @@ public class WelcomeMailSender {
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object.// and pass username and password
+        // Get the Session object and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -69,9 +68,9 @@ public class WelcomeMailSender {
             // Set Subject: header field
             message.setSubject("Benvenuto in EmotionalSongs");
             
-            HTMLWelcomeBuilder b = new HTMLWelcomeBuilder();
+            HTMLWelcomeBuilder b = new HTMLWelcomeBuilder(name, surname, birthdate, cf, address, email, userId, password);
             // Now set the actual message
-             message.setContent(b.getwelcomeMessage(),"text/html");
+            message.setContent(b.getwelcomeMessage(),"text/html");
 
             // Send message
             Transport.send(message);
