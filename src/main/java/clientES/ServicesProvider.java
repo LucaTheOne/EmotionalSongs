@@ -49,7 +49,7 @@ public class ServicesProvider {
         servicesBox = new ServicesBox(servicesHost, servicesPort);
     }
     
-    public Remote getServices(int serviceId){
+    public Remote getService(int serviceId){
         return servicesBox.getService(serviceId);
     }
     
@@ -72,7 +72,7 @@ public class ServicesProvider {
     
     public static void main(String[] args) throws RemoteException {
         /*ServicesProvider sp = ServicesProvider.getInstance();
-        UsersDataHandler dh = (UsersDataHandler) sp.getServices(USERS_DATA_HANDLER);
+        UsersDataHandler dh = (UsersDataHandler) sp.getService(USERS_DATA_HANDLER);
         boolean result = dh.userCanVoteSong("theOne", "TRPDMSM128F42B7CE0");
         System.out.println(result);*/
         System.out.println(EmotionalSongs.dialoghi.name());

@@ -46,14 +46,15 @@ public class PlaylistsCreationManager {
      * @return playlist manager
      */
     public static PlaylistsCreationManager getInstance(){
-        if(instance != null)return instance;
-        else return new PlaylistsCreationManager();
+        if(instance == null) instance = new PlaylistsCreationManager();
+        return instance;
     }
     
     private PlaylistsCreationManager() {
         user = EmotionalSongs.getLoggedUser();
-        playlistsDataHandler = (PlaylistsDataHandler) ServicesBox.getInstance().getService(ServicesBox.PLAYLISTS_DATA_HANDLER);
-        playlistsDataValidator = (PlaylistsDataValidator) ServicesBox.getInstance().getService(ServicesBox.PLAYLISTS_DATA_VALIDATOR);
+        ServicesProvider sp = ServicesProvider.getInstance();
+        playlistsDataHandler = (PlaylistsDataHandler) sp.getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
+        playlistsDataValidator = (PlaylistsDataValidator) sp.getService(ServicesProvider.PLAYLISTS_DATA_VALIDATOR);
         mainFrame = MainFrame.getIstance();
     }
     
