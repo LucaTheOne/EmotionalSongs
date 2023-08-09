@@ -9,9 +9,9 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.client_internal_services.PlaylistsCreationManager;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.managers.*;
 import javax.swing.*;
 import serverES.db_communication.*;
 
@@ -481,7 +481,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     
     public void close() {
         this.dispose();
-        playlistsCreationManager.eraseSongToAdd();
+        playlistsCreationManager.resetManager();
         playlistsCreationManager.eraseTitlePlaylist();
         playlistsCreationManager.eraseNumberOfSelectedSong();
     }

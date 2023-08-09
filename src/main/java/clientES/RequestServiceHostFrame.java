@@ -7,16 +7,24 @@
 package clientES;
 
 import emotionalsongs.*;
+import emotionalsongs.dialogs.*;
 /**
  *
  * @author big
  */
-public class RequestServiceHostFrame extends javax.swing.JFrame {
+class RequestServiceHostFrame extends javax.swing.JFrame{
+    
+    private String host;
+    private int port;
+    private ClientDialogs language;
     
     /**
      * Creates new form RequestServiceHostFrame
      */
-    public RequestServiceHostFrame() {
+    protected RequestServiceHostFrame(String hostToSet,int portToSet) {
+        host = hostToSet;
+        port = portToSet;
+        language = EmotionalSongs.dialoghi;
         initComponents();
         setVisible(true);
     }
@@ -121,27 +129,25 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         boolean ok = true;
-        String host = hostText.getText();
-        String port = portText.getText();
-        if(host.isBlank() || host.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAnHostAddressError())){
+        String selectedHost = hostText.getText();
+        String selectedPort = portText.getText();
+        if(selectedHost.isBlank() || selectedHost.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAnHostAddressError())){
             hostText.setText(EmotionalSongs.dialoghi.typeAnHostAddressError());
             ok = false;
             this.revalidate();
             this.repaint();
         }
-        if(port.isBlank() || port.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAPortError())){
+        if(selectedPort.isBlank() || selectedPort.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAPortError())){
             portText.setText(EmotionalSongs.dialoghi.typeAPortError());
             ok = false;
             this.revalidate();
             this.repaint();
         }
         if(ok) {
-            ServicesBox.setHost(host);
-            ServicesBox.setPort(Integer.parseInt(port));
-            ServicesBox.getInstance();
+            this.host = selectedHost;
+            this.port = Integer.parseInt(selectedPort);
             dispose();
-        }
-        
+        }    
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -172,4 +178,5 @@ public class RequestServiceHostFrame extends javax.swing.JFrame {
     private javax.swing.JLabel portLabel;
     private javax.swing.JTextField portText;
     // End of variables declaration//GEN-END:variables
+
 }

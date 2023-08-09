@@ -12,7 +12,7 @@ package emotionalsongs.dialogs;
 /**
  * Classe che implemeta i dialoghi dell' interfaccia in inglese.
  */
-public class English extends dialogs{
+public class English extends ClientDialogs{
     
     //Generici
     public String searchBarText(){
@@ -478,6 +478,36 @@ public class English extends dialogs{
     @Override
     public String portLabel() {
         return "Host service's port";
+    }
+
+    @Override
+    public String errorSongNotEsists() {
+        return "Error: song not in database!";
+    }
+
+    @Override
+    public String errorVoteArrayDim() {
+        return "Error: number of marks doesn't match the number of emotions!";
+    }
+
+    @Override
+    public String errorVoteRange() {
+        return "Error: one or more marks out of range 1-5!";
+    }
+
+    @Override
+    public String errorCharacterInComment() {
+        return "Error: Characters not tolerated in comment!";
+    }
+
+    @Override
+    public String errorCommentLength() {
+        return "Error: Max comment's characters' number is 256!";
+    }
+
+    @Override
+    public String errorSql() {
+       return "Error: impossible to comunicate with the DataBase!";
     }
     
 }

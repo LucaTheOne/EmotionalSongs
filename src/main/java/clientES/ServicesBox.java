@@ -15,22 +15,20 @@ import serverES.services_common_interfaces.data_validator.*;
  *
  * @author big
  */
-public class ServicesBox extends Thread{
+class ServicesBox {
     
-    private static ServicesBox services = null;
-    private static int servicesPort = 5432; // default port
-    private static String servicesHost = "127.0.0.1";
-    protected static boolean readyToBeInitialized = false;
+    private int servicesPort = 5432; // default port
+    private String servicesHost = "127.0.0.1";//default host
     
     //services ids
-    public final static int EMOTIONS_DATA_HANDLER = 0;
-    public final static int USERS_DATA_HANDLER = 1;
-    public final static int SONGS_DATA_HANDLER = 2;
-    public final static int PLAYLISTS_DATA_HANDLER = 3;
+    private final int EMOTIONS_DATA_HANDLER = 0;
+    private final int USERS_DATA_HANDLER = 1;
+    private final int SONGS_DATA_HANDLER = 2;
+    private final int PLAYLISTS_DATA_HANDLER = 3;
     
-    public final static int EMOTIONS_DATA_VALIDATOR = 4;
-    public final static int USERS_DATA_VALIDATOR = 5;
-    public final static int PLAYLISTS_DATA_VALIDATOR = 6;
+    private final int EMOTIONS_DATA_VALIDATOR = 4;
+    private final int USERS_DATA_VALIDATOR = 5;
+    private final int PLAYLISTS_DATA_VALIDATOR = 6;
     
     //Getting and updating data services
     private EmotionsDataHandler emotionsDataHandler;
@@ -45,7 +43,10 @@ public class ServicesBox extends Thread{
     
     protected ServicesBox(String servicesHost,int servicesPort){
         try {
-            Registry registryServices = LocateRegistry.getRegistry(servicesHost, servicesPort);
+            this.servicesHost = servicesHost;
+            this.servicesPort = servicesPort;
+            
+            Registry registryServices = LocateRegistry.getRegistry(this.servicesHost, this.servicesPort);
             
             //Getting and updating data services
             emotionsDataHandler = (EmotionsDataHandler)registryServices.lookup(EmotionsDataHandler.SERVICE_NAME);
@@ -65,11 +66,6 @@ public class ServicesBox extends Thread{
         }
     }
     
-    public static ServicesBox getInstance(){
-        if(services == null) services = new ServicesBox(servicesHost, servicesPort);
-        return services;
-    }
-    
     public Remote getService(int serviceId){
         switch (serviceId) {
             case EMOTIONS_DATA_HANDLER: return emotionsDataHandler;
@@ -83,14 +79,6 @@ public class ServicesBox extends Thread{
             
             default: throw new AssertionError();
         }
-    }
-    
-    protected static void setPort(int port){
-        servicesPort=port;
-    }
-    
-    protected static void setHost(String host){
-        servicesHost = host;
     }
     
     /*

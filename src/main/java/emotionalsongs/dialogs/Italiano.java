@@ -10,58 +10,71 @@ package emotionalsongs.dialogs;
 /**
  * Classe che implementa i dialogi dell' interfaccia in italiano.
  */
-public class Italiano extends dialogs{
+public class Italiano extends ClientDialogs{
     //Generici
+    @Override
     public String searchBarText(){
         return "Digiti titolo oppure autore;anno";
     }
     
+    @Override
     public String availableSongs(){
         return "canzoni disponibili!";
     }
     
+    @Override
     public String foundedResults(){
         return "risultati trovati";
     }
     
+    @Override
     public String noSongsFounded(){
         return "0 risultati trovati!";
     }
     
+    @Override
     public String selectedSongs(){
         return "brani selezionati!";
     }
     
    //BASICS STRUCTURE: EMOZIONI
 
+    @Override
      public String amazementName() {
          return "Meraviglia";
     }
 
+    @Override
     public String amazementExplanation() {
         return "Sensazione di stupore o felicità.";
     }
-
+    
+    @Override
     public String solemnityName() {
         return "Solennità";
     }
-
+    
+    @Override
     public String solemnityExplanation() {
         return "Sensazione di trascendenza, ispirazione.Brividi.";
     }
-
+    
+    @Override
     public String tendernessName() {
         return "Tenereza";
     }
-
+    
+    @Override
     public String tendernessExplanation() {
         return "Sensualità, affetto, sentimento di emotività.";
     }
 
+    @Override
     public String nostalgiaName() {
         return "Nostalgia";
     }
-
+    
+    @Override
     public String nostalgiaExplanation() {
         return "Sognante, malinconia, sentimento di emotività.";
     }
@@ -474,5 +487,35 @@ public class Italiano extends dialogs{
     @Override
     public String portLabel() {
         return "Porta servizio:";
+    }
+
+    @Override
+    public String errorSongNotEsists() {
+        return "Errore: Canzone non presente nel database!";
+    }
+
+    @Override
+    public String errorVoteArrayDim() {
+        return "Errore: i voti superano in numero le emozioni!";
+    }
+
+    @Override
+    public String errorVoteRange() {
+        return "Errore: un voto è fuori dal range 1-5!";
+    }
+
+    @Override
+    public String errorCharacterInComment() {
+        return "Errore: Sono presenti caratteri non ammessi nel commento!";
+    }
+
+    @Override
+    public String errorCommentLength() {
+        return "Errore: Numero massimo di caratteri ammessi 256!";
+    }
+
+    @Override
+    public String errorSql() {
+        return "Errore di comunicazione con il database!";
     }
 }

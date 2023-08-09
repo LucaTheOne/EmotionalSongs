@@ -9,8 +9,8 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.client_internal_services.PlaylistsCreationManager;
 import emotionalsongs.basic_structures.*;
-import emotionalsongs.managers.*;
 import serverES.db_communication.*;
 
 /**

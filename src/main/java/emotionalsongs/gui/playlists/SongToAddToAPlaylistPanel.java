@@ -9,7 +9,7 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.managers.*;
+import emotionalsongs.client_internal_services.PlaylistsCreationManager;
 import java.awt.*;
 
 /**

@@ -23,13 +23,17 @@ public interface EmotionsDataValidator extends Remote {
      * @param songId Id canzone votata.
      * @param emotionalMarks array di 9 posizioni contenente i voti di ogni emozione.
      * @param Comment commento opzionale
-     * @return 0 - tutti i dati sono stati verificati,
-     * 1 - Id Canzone non presente nel database
-     * 2 - Dimensione array voti non conforme
-     * 3 - Almeno un voto fuori dal range 1-5 inclusi.
-     * 4 - caratteri non ammessi nel commento.
-     * 5 - Commento contiene più di 256 caratteri.
-     * 6 - eccezione SQL.
+     * @return 
+     * per ogni posizione dell' array:
+     *      -True errore occorso.
+     *      -False errore non occorso.
+     * Indice - errore
+     * 0 - Id Canzone non presente nel database
+     * 1 - Dimensione array voti non conforme
+     * 2 - Almeno un voto fuori dal range 1-5 inclusi.
+     * 3 - caratteri non ammessi nel commento.
+     * 4 - Commento contiene più di 256 caratteri.
+     * 5 - eccezione SQL.
      */
     public boolean[] validateVote(String songId,int[] emotionalMarks,String Comment)throws RemoteException;
 }

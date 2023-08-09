@@ -7,14 +7,17 @@
 
 
 
-package emotionalsongs.managers;
+package emotionalsongs.client_internal_services;
 
+import clientES.*;
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.main_window.*;
 import emotionalsongs.gui.playlists.*;
+import java.rmi.*;
 import java.util.*;
+import serverES.services_common_interfaces.data_handler.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 
 /**
@@ -28,12 +31,15 @@ public class PlaylistsCreationManager {
     private static PlaylistsCreationManager instance = null;
     private PlaylistsMainPanel playlistmainPanel ;
     private PlaylistCreationFrame creationFrame;
+    private final MainFrame mainFrame;
         
-    private User user = EmotionalSongs.getLoggedUser();
+    private String user;
     private String nameNewPlaylist = "";
-    private Vector<String> songsToAddIds = new Vector<>();
+    private final Vector<String> songsToAddIds = new Vector<>();
     private int numberOfSongsSelected = 0;
     
+    private final PlaylistsDataHandler playlistsDataHandler;
+    private final PlaylistsDataValidator playlistsDataValidator;
     
     /**
      * Metodo per accedere alla classe, richiamandone la sua unica istanza.
@@ -45,6 +51,10 @@ public class PlaylistsCreationManager {
     }
     
     private PlaylistsCreationManager() {
+        user = EmotionalSongs.getLoggedUser();
+        playlistsDataHandler = (PlaylistsDataHandler) ServicesBox.getInstance().getService(ServicesBox.PLAYLISTS_DATA_HANDLER);
+        playlistsDataValidator = (PlaylistsDataValidator) ServicesBox.getInstance().getService(ServicesBox.PLAYLISTS_DATA_VALIDATOR);
+        mainFrame = MainFrame.getIstance();
     }
     
     //getter method
@@ -80,14 +90,18 @@ public class PlaylistsCreationManager {
     /**
      * Metodo che avvia il processo responsabile della creazione di una nuova playlist.
      * Il form associato è fortemente guidato dai metodi di questa classe.
-     * Una volta creata, la playlist, viene mostrata nella finestra prrincipale del software.
+     * Una volta creata, la playlist, viene mostrata nella finestra principale del software.
      */
     public void registraPlaylist(){
         if(songsToAddIds.isEmpty()){
             new PopUpAllert(EmotionalSongs.dialoghi.voidPlaylistsDenied());
             return;
         }
-        service.updatePlaylistTable(nameNewPlaylist, user.getUserId(), songsToAddArray());
+        try {
+            playlistsDataHandler.updatePlaylistTable(nameNewPlaylist, user, songsToAddArray());
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
         updatePlaylistsPanel();
     }
     
@@ -95,7 +109,7 @@ public class PlaylistsCreationManager {
     /**
      * Aggiunge la canzone passata come argomento al buffer ddelle canzoni in attesa di essere
      * aggiunte ad una playlist.
-     * @param song Canzone da aggiungere al buffer.
+     * @param songId id della canzone da aggiungere al buffer.
      */
     public void addToSelectedSongs(String songId) {
         songsToAddIds.add(songId);
@@ -105,7 +119,7 @@ public class PlaylistsCreationManager {
     /**
      * Rimuove la canzone passata come argomento dal buffer 
      * delle canzoni in attesa di essere aggiunte ad una playlist.
-     * @param song 
+     * @param songId id della canzone da rimuovere dal buffer. 
      */
     public void removeToSelectedSongs(String songId) {
         for(String str:songsToAddIds){
@@ -115,27 +129,24 @@ public class PlaylistsCreationManager {
         numberOfSongsSelected--;
     }
     /**
-     * Ripulisce il buffer delle anzoni in attesa di essere aggiunte ad una playlist.
+     * Resetta tutti i dati contenuti nel manager.
      */
-    public void eraseSongToAdd(){
+    public void resetManager(){
         songsToAddIds.removeAllElements();
+        nameNewPlaylist = "";
         numberOfSongsSelected = 0;
     }
     
     /**
-     * Resetta il buffer contenente il titolo della playlist in fase di creazione.
-     */
-    public void eraseTitlePlaylist() {
-        nameNewPlaylist = "";
-    }
-    /**
      * salva nel buffer il titolo della playlist in fase di creazione.
+     * @param title titolo da assegnare alla nuova playlist.
      */
     public void setTitlePlaylist(String title) {
         nameNewPlaylist = title;
     }
     
-    public void updateUser(User user){
+    public void updateUser(String user){
+        resetManager();
         this.user = user;
     }
     
@@ -170,18 +181,22 @@ public class PlaylistsCreationManager {
      * Metodo di gestione della GUI, fa si che venga mostrata la lista di playlist dell' utente loggato.
      */
     public void setPlaylistsButtonPanel(){
-        playlistmainPanel.setLeftInnerPanel(service.requestPlaylistsUser(EmotionalSongs.getLoggedUser().getUserId()));
+        try {
+            playlistmainPanel.setLeftInnerPanel(playlistsDataHandler.requestPlaylistsUser(user));
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     //checker methods
     /**
      * Metodo che verifica la presenza della canzone passata come argomento nel buffer delle canzoni in attesa
      * di essere aggiunte ad una playlist.
-     * @param song Canzone di cui verificare la presenza.
-     * @return true -> se la canzone è presente.
+     * @param songId id univoco della canzone di cui verificare la presenza nel buffer.
+     * @return true -> se la canzone è presente, false altrimenti.
      */
     public boolean containInSongsToAdd(String songId) {
-        if(!(songsToAddIds.size() == 0)) {
+        if(!(songsToAddIds.isEmpty())) {
             for(String str:songsToAddIds){
                 if(str.equals(songId)){
                     return true;
@@ -202,7 +217,12 @@ public class PlaylistsCreationManager {
      * @return Numero di playlist create dall' utente loggato.
      */
     public int getNumberOfPlaylists() {
-        return service.getUserPlaylistsNumber(EmotionalSongs.getLoggedUser().getUserId());
+        try {
+            return playlistsDataHandler.getUserPlaylistsNumber(user);
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+             return -1;
+        }  
     }
     
     /**
@@ -218,26 +238,10 @@ public class PlaylistsCreationManager {
      * Metodo per aggiornare il pannello delle playlist del utente.
      */
     public void updatePlaylistsPanel() {
-        playlistmainPanel = new PlaylistsMainPanel(EmotionalSongs.getLoggedUser().getUserId());
-        MainFrame.getIstance().setMainPanel(playlistmainPanel);
-        MainFrame.getIstance().revalidate();
-        MainFrame.getIstance().repaint();
+        playlistmainPanel = new PlaylistsMainPanel(user);
+        mainFrame.setMainPanel(playlistmainPanel);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
-    
-    /**
-     * Metodo per resettare tutti i buffer presenti nel playlist manager.
-     */
-    public void reset() {
-        numberOfSongsSelected = 0;
-        songsToAddIds.removeAllElements();
-    }
-    /**
-     * Metodo per liberare il buffer delle canzoni in attesa di essere aggiunte ad una playlist.
-     */
-    public void eraseNumberOfSelectedSong() {
-        numberOfSongsSelected = 0;
-    }
-
-    
 }
 

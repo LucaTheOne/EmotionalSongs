@@ -8,7 +8,7 @@
 
 package emotionalsongs.gui.main_window;
 
-import emotionalsongs.managers.PlaylistsCreationManager;
+import emotionalsongs.client_internal_services.PlaylistsCreationManager;
 import emotionalsongs.*;
 import emotionalsongs.gui.repository.*;
 import java.io.*;

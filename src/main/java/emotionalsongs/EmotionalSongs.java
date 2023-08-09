@@ -26,7 +26,7 @@ public class EmotionalSongs {
     /**
      * Rappresenta la lingua attualmente attiva nel sistema.
      */
-    public static dialogs dialoghi = new Italiano();
+    public static ClientDialogs dialoghi = new Italiano();
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         EmotionalSongs software = new EmotionalSongs();

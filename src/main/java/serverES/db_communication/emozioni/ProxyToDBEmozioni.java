@@ -74,9 +74,9 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
             System.out.println("Error comment contain too characters, max: 256, actual: "+comment.length());
             return 2;
         }
+        
         //string with the needed query
         String queryEmotions = "INSERT INTO EMOZIONI(USER_PROP_ID,CANZONE_ID,COMMENTO,MERAVIGLIA,SOLENNITA,TENEREZZA,NOSTALGIA,PACATEZZA,POTERE,GIOIA,TENSIONE,TRISTEZZA) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
-        
         try {
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(queryEmotions);
             statement.setString(1, idUser);

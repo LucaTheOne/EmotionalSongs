@@ -21,6 +21,7 @@ public class ServerUtils {
      * @return true se ci sono solo caratteri ASCII, false altrimenti.
      */
     public static boolean isFitToPostgresql(String stringToCheck){
+        if(stringToCheck.isBlank()) return true;
         int ascii;
         char c;
         for(int i = 0; i < stringToCheck.length(); i++) {  

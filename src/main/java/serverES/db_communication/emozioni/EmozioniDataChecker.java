@@ -33,17 +33,21 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
      * ritorna un array di interi contenenti tutti gli errori occorsi. 
      * @param songId Id canzone votata.
      * @param emotionalMarks array di 9 posizioni contenente i voti di ogni emozione.
-     * @param Comment commento opzionale
-     * @return 0 - tutti i dati sono stati verificati,
-     * 1 - Id Canzone non presente nel database
-     * 2 - Dimensione array voti non conforme
-     * 3 - Almeno un voto fuori dal range 1-5 inclusi.
-     * 4 - caratteri non ammessi nel commento.
-     * 5 - Commento contiene più di 256 caratteri.
-     * 6 - eccezione SQL.
+     * @param comment commento opzionale
+     * @return 
+     * per ogni posizione dell' array:
+     *      -True errore occorso.
+     *      -False errore non occorso.
+     * Indice - errore
+     * 0 - Id Canzone non presente nel database
+     * 1 - Dimensione array voti non conforme
+     * 2 - Almeno un voto fuori dal range 1-5 inclusi.
+     * 3 - caratteri non ammessi nel commento.
+     * 4 - Commento contiene più di 256 caratteri.
+     * 5 - eccezione SQL.
      */
     @Override
-    public boolean[] validateVote(String songId, int[] emotionalMarks, String Comment)throws RemoteException{
+    public boolean[] validateVote(String songId, int[] emotionalMarks, String comment)throws RemoteException{
         boolean[] errors = new boolean[]{false,false,false,false,false,false};
         try {
             String query ="SELECT COUNT(*) FROM CANZONI WHERE ID_UNIVOCO = ?;"; 
@@ -68,11 +72,10 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
                     errors[2] = true;
                 }
             }
-
-            if(!ServerUtils.isFitToPostgresql(Comment)) errors[3] = true;
+            if(!ServerUtils.isFitToPostgresql(comment)) errors[3] = true;
             
 
-            if(Comment.length() > 256)
+            if(comment.length() > 256)
             {
                 errors[4] = true;
             }
