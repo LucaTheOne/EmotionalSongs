@@ -177,6 +177,28 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return m.matches();
     }
     
+    /**
+     * Metodo che convalida la validità dell'indirizzo.
+     * Il formato supportato è: via/piazza/largo/... NomeStrada Civico Città CAP Provincia Nazione
+     * @param indirizzo
+     * @return true se è valida, false altrimenti
+     */
+    private boolean checkAddressValidity(String indirizzo) 
+    {
+        if(indirizzo == null) return false;
+        String regex = "^([A-Za-z]{3,}" + "\s[A-Za-z]{2,}" + "\s[0-9]{1,4}" + "\s[A-Za-z]{2,}" + "\s[0-9]{5}" + "\s[A-Z]{2}" + "\s[A-Za-z]{4,})$";
+        /** compila il pattern precedente **/
+        Pattern p = Pattern.compile(regex);
+        /** Pattern class contiene il metodo .matcher() per verificare se l'indirizzo coincide con il pattern.**/
+        Matcher m = p.matcher(indirizzo);
+        /**
+        * Questa parte del codice gestisce la situazione
+        * nel caso in cui l'indirizzo non rispetti il pattern.
+        **/
+        return m.matches();
+    }
+    
+    
     private boolean checkUserId(String userId){
         return ( 
                 (userId != null) && 
@@ -203,13 +225,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param nome Stringa contenente il nome del nuovo utente.
      * @param cognome Stringa contenente il cognome del nuovo utente.
      * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
-     * @param tipoIndirizzo Stringa contenente: "via" | "viale" | "piazza" | "piazzetta" | "salita" | "discesa".
      * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
-     * @param civico Intero rappresentante il numero civico dell' indirizzo del nuovo utente.
-     * @param cap Intero rappresentante il cap della citta di residenza del nuovo utente.
-     * @param nazione Stringa contenente la nazione di residenza del nuovo utente.
-     * @param provincia Stringa contenente la provincia di residenza del nuovo utente.
-     * @param citta Stringa contenente la città di residenza del nuovo utente.
      * @return 
      * false - dato non valido, true dato valido.
      * posizioni errori nell' array:
@@ -221,13 +237,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * 5 - password non coincidono.
      * 6 - nome non valido.
      * 7 - cognome non valido.
-     * 8 - tipo indirizzo non ammesso.
+     * 8 - compleanno non valido.
      * 9 - indirizzo non valido.
-     * 10 - civico non valido.
-     * 11 - cap non valido.
-     * 12 - nazione non valida.
-     * 13 - provincia non valida.
-     * 14 - citta non valida.
      * @throws java.rmi.RemoteException
      */
     @Override
@@ -420,10 +431,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return temp;
     }
     
-    //riccardo
-    private boolean checkAddressValidity(String indirizzo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     //public static void main(String[] args) throws RemoteException {
         //System.out.println(new UtentiDataChecker(DBConnector.getDefaultConnection()).userCanVoteSong("theOne","TRGDRZV128F92DC96D" ));
