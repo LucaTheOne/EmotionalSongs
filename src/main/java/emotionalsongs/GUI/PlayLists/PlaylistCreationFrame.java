@@ -9,11 +9,14 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.client_internal_services.PlaylistsCreationManager;
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
+import emotionalsongs.client_internal_services.*;
+import java.rmi.*;
 import javax.swing.*;
-import serverES.db_communication.*;
+import serverES.services_common_interfaces.data_handler.*;
+import serverES.services_common_interfaces.data_validator.*;
 
 /**
  * Classe le cui istanze sono form per la creazione di nuove playlist.
@@ -26,7 +29,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
      */
     PlaylistsCreationManager playlistsCreationManager = PlaylistsCreationManager.getInstance();
     String[] actualSongsArray;
-    private final DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
+    private final PlaylistsDataHandler playlistsDataHandler;
+    private final PlaylistsDataValidator playlistsDataChecker;
+    private final SongsDataHandler songsDataHandler;
     
     private final int tracksPerView = 100;
     private int startIndex = 0;
@@ -36,9 +41,12 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     boolean lastPage = false;
     private int actualSearchedSongIndex;
     
-    public PlaylistCreationFrame() {
-        actualSongsArray = service.getSongsBeetweenIndexes(startIndex, startIndex+tracksPerView);
-        maxIndex = service.getRepoSize();
+    public PlaylistCreationFrame() throws RemoteException {
+        ServicesProvider servicesProvider = ServicesProvider.getInstance();
+        playlistsDataHandler = (PlaylistsDataHandler) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
+        playlistsDataChecker = (PlaylistsDataValidator) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_VALIDATOR);
+        songsDataHandler = (SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER);
+        maxIndex = ((SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER)).getRepoSize();
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -131,7 +139,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
-        searchButton.setIcon(Utilities.searchIcon);
+        searchButton.setIcon(ClientUtilities.searchIcon);
         searchButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -169,7 +177,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setIcon(ClientUtilities.backButtonIcon);
         BackButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +193,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setIcon(ClientUtilities.nextButtonIcon);
         nextButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
         nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -336,7 +344,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         if(searchBar.getText().isBlank()) {
             startIndex = 0;
             throughFullRepo = true;
-            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+            } catch (RemoteException ex) {
+                System.out.println(ex.getMessage());
+            }
             innerScroll.removeAll();
             throughFullRepo=true;
             for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
@@ -350,9 +362,18 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         String request = searchBar.getText();
         if(request.contains(";")){
             String[] requestSplitted = request.split(";");
-            actualSongsArray = service.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+            try {
+                actualSongsArray = songsDataHandler.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1]));
+            } catch (RemoteException ex) {
+                System.out.println(ex.getMessage());
+            }
         } else {
-            actualSongsArray = service.cercaBranoMusicale(request);
+            try{
+                actualSongsArray = songsDataHandler.cercaBranoMusicale(request);
+            } catch (RemoteException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
         }
         innerScroll.removeAll();
         throughFullRepo = false;
@@ -392,7 +413,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         innerScroll.removeAll();
         lastPage = false;
         if(throughFullRepo){
-            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+            } catch (RemoteException ex) {
+                System.out.println(ex.getMessage());
+            }
             for(int i = 0; i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
@@ -421,7 +446,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         innerScroll.removeAll();
         
         if(throughFullRepo){
-            actualSongsArray = service.getSongsBeetweenIndexes(startIndex, (startIndex+tracksPerView));
+            try {
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+            } catch (RemoteException ex) {
+                System.out.println(ex.getMessage());
+            }
             for(int i = 0; i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
             }
@@ -474,7 +503,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlaylistCreationFrame().setVisible(true);
+                try {
+                    new PlaylistCreationFrame().setVisible(true);
+                } catch (RemoteException ex) {
+                    System.err.println(ex.getMessage());
+                }
             }
         });
     }
@@ -482,8 +515,6 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     public void close() {
         this.dispose();
         playlistsCreationManager.resetManager();
-        playlistsCreationManager.eraseTitlePlaylist();
-        playlistsCreationManager.eraseNumberOfSelectedSong();
     }
     
     public void updateSongSelectedLabel(){

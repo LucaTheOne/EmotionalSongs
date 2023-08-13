@@ -23,7 +23,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="mainPanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JPanel(){&#xa;    @Override&#xa;    protected void paintComponent(Graphics g){&#xa;        Graphics g2 = g.create();&#xa;        g2.drawImage(Utilities.regBG.getImage(), 0, 0, getWidth(), getHeight(), null);&#xa;        g2.dispose();&#xa;    }&#xa;};"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JPanel(){&#xa;    @Override&#xa;    protected void paintComponent(Graphics g){&#xa;        Graphics g2 = g.create();&#xa;        g2.drawImage(emotionalsongs.ClientUtilities.regBG.getImage(), 0, 0, getWidth(), getHeight(), null);&#xa;        g2.dispose();&#xa;    }&#xa;};"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -72,7 +72,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Utilities.regIcon" type="code"/>
+                      <Connection code="emotionalsongs.ClientUtilities.regIcon" type="code"/>
                     </Property>
                   </Properties>
                 </Component>

@@ -6,25 +6,22 @@
  */
 package clientES;
 
-import emotionalsongs.*;
-import emotionalsongs.dialogs.*;
-import java.rmi.*;
-import serverES.services_common_interfaces.data_handler.*;
 /**
  *
  * @author big
  */
 class RequestServiceHostFrame extends javax.swing.JFrame{
     
-    private ServicesProvider servicesProviderToInit;
-    private ClientDialogs language;
+    private String host;
+    private int port;
     
     /**
      * Creates new form RequestServiceHostFrame
      */
-    protected RequestServiceHostFrame(ServicesProvider servicesProviderToInit) {
-        this.servicesProviderToInit = servicesProviderToInit;
-        language = EmotionalSongs.dialoghi;
+    protected RequestServiceHostFrame(String hostToSet,int portToSet) {
+        host = hostToSet;
+        port = portToSet;
+        
         initComponents();
         setVisible(true);
     }
@@ -51,7 +48,7 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
         setResizable(false);
 
         connectButton.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        connectButton.setText(EmotionalSongs.dialoghi.tryConnectToService());
+        connectButton.setText("conn");
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 connectButtonActionPerformed(evt);
@@ -66,13 +63,13 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
 
         hostLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         hostLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        hostLabel.setText(EmotionalSongs.dialoghi.hostServiceLabel());
+        hostLabel.setText("host");
 
         portLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         portLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        portLabel.setText(EmotionalSongs.dialoghi.portLabel());
+        portLabel.setText("ip");
 
-        jButton1.setText(EmotionalSongs.dialoghi.exit());
+        jButton1.setText("exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -131,29 +128,22 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
         boolean ok = true;
         String selectedHost = hostText.getText();
         String selectedPort = portText.getText();
-        if(selectedHost.isBlank() || selectedHost.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAnHostAddressError())){
-            hostText.setText(EmotionalSongs.dialoghi.typeAnHostAddressError());
+        if(selectedHost.isBlank() ){
+            hostText.setText("Errore");
             ok = false;
             this.revalidate();
             this.repaint();
         }
-        if(selectedPort.isBlank() || selectedPort.equalsIgnoreCase(EmotionalSongs.dialoghi.typeAPortError())){
-            portText.setText(EmotionalSongs.dialoghi.typeAPortError());
+        if(selectedPort.isBlank()){
+            portText.setText("Errore");
             ok = false;
             this.revalidate();
             this.repaint();
         }
         if(ok) {
-            servicesProviderToInit.buildServicesBox(selectedHost, Integer.parseInt(selectedPort));
-            UsersDataHandler udh = (UsersDataHandler) servicesProviderToInit.getService(ServicesProvider.USERS_DATA_HANDLER);
-            try {
-                System.out.println(udh.userCanVoteSong("theOne", "TRXPYTR128F92C284D"));
-            } catch (RemoteException ex) {
-                System.out.println(ex.getMessage());
-            }
+            this.host = selectedHost;
+            this.port = Integer.parseInt(selectedPort);
             dispose();
-        }else{
-            System.out.println("impossible to find services!");
         }    
     }//GEN-LAST:event_connectButtonActionPerformed
 

@@ -9,6 +9,7 @@
 
 package emotionalsongs.gui.login;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
@@ -20,14 +21,15 @@ import serverES.services_common_interfaces.data_validator.*;
  *Classe le cui istanze rappresentano il form di login.
  */
 public class LoginFrame extends javax.swing.JFrame {
-    private Image bg = Utilities.logingBG.getImage();
-    private MainFrame mainWindow = MainFrame.getIstance();
-    private UsersDataValidator dataValidator;
+    private final Image bg = ClientUtilities.logingBG.getImage();
+    private final MainFrame mainWindow;
+    private final UsersDataValidator dataValidator;
     /**
      * Crea un form per il login.
      */
-    public LoginFrame(UsersDataValidator dataValidator) {
-        this.dataValidator = dataValidator;
+    public LoginFrame() {
+        this.dataValidator = (UsersDataValidator) ServicesProvider.getInstance().getService(ServicesProvider.USERS_DATA_VALIDATOR);
+        mainWindow = MainFrame.getIstance();
         setAlwaysOnTop(true);
         initComponents();
     }
@@ -104,7 +106,7 @@ public class LoginFrame extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 339, 100, 40));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(Utilities.logingBG);
+        jLabel3.setIcon(ClientUtilities.logingBG);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
         pack();

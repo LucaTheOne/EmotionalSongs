@@ -10,6 +10,7 @@ package emotionalsongs.gui.data_visualizer;
 
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
+import emotionalsongs.client_internal_services.*;
 import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import javax.swing.*;
@@ -22,7 +23,7 @@ import org.jfree.chart.*;
  */
 public class DataVisualizationForm extends javax.swing.JFrame {
     
-    private EngineBuilderChartAndData dataBuilder;
+    private SongsDataBuilder songDataBuilder;
     /**
      * Crea e restituisce il form per la visualizazzione del brano rappresentato dal tag passato
      * come argomento.
@@ -31,7 +32,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
      */
     
     public DataVisualizationForm(String songToRepresentTag) {
-        dataBuilder = new EngineBuilderChartAndData(songToRepresentTag);
+        songDataBuilder = new SongsDataBuilder(songToRepresentTag);
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -55,7 +56,6 @@ public class DataVisualizationForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 660));
-        setPreferredSize(new java.awt.Dimension(1020, 650));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(1000, 3200));
@@ -71,7 +71,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTextArea1.setRows(1);
         jTextArea1.setBorder(null);
-        jTextArea1.setText(dataBuilder.getSongDataReport()+"\nn.b voti da 1 a 5, dove 1 indica per nulla percepita e 5 indica pienamente percepita."+"\n\n"+dataBuilder.getSongNotesReport());
+        jTextArea1.setText(songDataBuilder.getSongDataReport()+"\nn.b voti da 1 a 5, dove 1 indica per nulla percepita e 5 indica pienamente percepita."+"\n\n"+songDataBuilder.getSongNotesReport());
         TextAreaScrollablePanel.setViewportView(jTextArea1);
 
         LabelAndTextPanel.add(TextAreaScrollablePanel, java.awt.BorderLayout.CENTER);
@@ -87,7 +87,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
 
         EmotionsGraphPanel.setPreferredSize(new java.awt.Dimension(1000, 2700));
         EmotionsGraphPanel.setLayout(new java.awt.GridLayout(3, 3));
-        JFreeChart[] charts = dataBuilder.getArrayCharts();
+        JFreeChart[] charts = songDataBuilder.getArrayCharts();
         for(int i = 0; i<9;i++){
             EmotionsGraphPanel.add(new ChartPanel(charts[i]));
         }
@@ -131,9 +131,9 @@ public class DataVisualizationForm extends javax.swing.JFrame {
         subPanel1.add(ButtonsPanel, java.awt.BorderLayout.SOUTH);
 
         chartPanel2.setLayout(new java.awt.GridLayout(3, 1));
-        chartPanel2.add(new ChartPanel(dataBuilder.getMediumsChart()));
-        chartPanel2.add(new ChartPanel(dataBuilder.getMediansChart()));
-        chartPanel2.add(new ChartPanel(dataBuilder.getTrendsChart()));
+        chartPanel2.add(new ChartPanel(songDataBuilder.getMediumsChart()));
+        chartPanel2.add(new ChartPanel(songDataBuilder.getMediansChart()));
+        chartPanel2.add(new ChartPanel(songDataBuilder.getTrendsChart()));
         subPanel1.add(chartPanel2, java.awt.BorderLayout.CENTER);
 
         mainPanel.add(subPanel1, java.awt.BorderLayout.SOUTH);
@@ -157,7 +157,7 @@ public class DataVisualizationForm extends javax.swing.JFrame {
             String whereToSaveOsDependent = 
                     fileChooser.getSelectedFile().getAbsolutePath()+
                     System.getProperty("file.separator")+
-                    (dataBuilder.buildDataFolderName());
+                    (songDataBuilder.buildDataFolderName());
             boolean created = new File(whereToSaveOsDependent).mkdir();
             if(!created){
                 new PopUpAllert(EmotionalSongs.dialoghi.ImpossibleToGenerateReport()).setVisible(true);
@@ -171,48 +171,48 @@ public class DataVisualizationForm extends javax.swing.JFrame {
                 }
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(textFiles));
-                    writer.write(dataBuilder.getSongDataReport());
-                    writer.write(dataBuilder.getSongNotesReport());
+                    writer.write(songDataBuilder.getSongDataReport());
+                    writer.write(songDataBuilder.getSongNotesReport());
                     writer.close();
                     //saving single emotions chart
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Amazement_chart"+".png"),
-                        dataBuilder.getChart(Emotions.AMAZEMENT_INDEX),
+                        songDataBuilder.getChart(Emotions.AMAZEMENT_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Solemnity_chart"+".png"),
-                        dataBuilder.getChart(Emotions.SOLEMNITY_INDEX),
+                        songDataBuilder.getChart(Emotions.SOLEMNITY_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Tenderness_chart"+".png"),
-                        dataBuilder.getChart(Emotions.TENDERNESS_INDEX),
+                        songDataBuilder.getChart(Emotions.TENDERNESS_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Nostalgia_chart"+".png"),
-                        dataBuilder.getChart(Emotions.NOSTALGIA_INDEX),
+                        songDataBuilder.getChart(Emotions.NOSTALGIA_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Calmness_chart"+".png"),
-                        dataBuilder.getChart(Emotions.CALMNESS_INDEX),
+                        songDataBuilder.getChart(Emotions.CALMNESS_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Power_chart"+".png"),
-                        dataBuilder.getChart(Emotions.POWER_INDEX),
+                        songDataBuilder.getChart(Emotions.POWER_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Joy_chart"+".png"),
-                        dataBuilder.getChart(Emotions.JOY_INDEX),
+                        songDataBuilder.getChart(Emotions.JOY_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Tension_chart"+".png"),
-                        dataBuilder.getChart(Emotions.TENSION_INDEX),
+                        songDataBuilder.getChart(Emotions.TENSION_INDEX),
                         1000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Sadness_chart"+".png"),
-                        dataBuilder.getChart(Emotions.SADNESS_INDEX),
+                        songDataBuilder.getChart(Emotions.SADNESS_INDEX),
                         1000, 1000);
                 
                     //saving aggregated data charts
                 
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Mediums_chart"+".png"),
-                        dataBuilder.getMediumsChart(),
+                        songDataBuilder.getMediumsChart(),
                         2000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Medians_chart"+".png"),
-                        dataBuilder.getMediansChart(),
+                        songDataBuilder.getMediansChart(),
                         2000, 1000);
                     ChartUtilities.saveChartAsPNG(new File(whereToSaveOsDependent+System.getProperty("file.separator")+"Trends_chart"+".png"),
-                        dataBuilder.getTrendsChart(),
+                        songDataBuilder.getTrendsChart(),
                         2000, 1000);
                     new PopUpAllert(EmotionalSongs.dialoghi.OpSucessTerminated()).setVisible(true);
                 } catch (Exception e) {

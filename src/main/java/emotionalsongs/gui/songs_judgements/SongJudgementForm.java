@@ -50,10 +50,10 @@ public class SongJudgementForm extends javax.swing.JPanel {
         this.songId = songToVoteId;
         this.callerComponent = callerComponent;
         this.container = container;
-        ServicesBox serviceForniture = ServicesBox.getInstance();
-        emotionsDataHandler = (EmotionsDataHandler) serviceForniture.getService(ServicesBox.EMOTIONS_DATA_HANDLER);
-        emotionsDataValidator = (EmotionsDataValidator) serviceForniture.getService(ServicesBox.EMOTIONS_DATA_VALIDATOR);
-        SongsDataHandler songsDataHandler = (SongsDataHandler) serviceForniture.getService(ServicesBox.SONGS_DATA_HANDLER);
+        ServicesProvider servicesProvider = ServicesProvider.getInstance();
+        emotionsDataHandler = (EmotionsDataHandler) servicesProvider.getService(ServicesProvider.EMOTIONS_DATA_HANDLER);
+        emotionsDataValidator = (EmotionsDataValidator) servicesProvider.getService(ServicesProvider.EMOTIONS_DATA_VALIDATOR);
+        SongsDataHandler songsDataHandler = (SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER);
         String songData = "";
         try {
             songData = songsDataHandler.requestSongdata(songId);

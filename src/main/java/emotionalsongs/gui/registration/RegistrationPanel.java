@@ -8,6 +8,7 @@
 
 package emotionalsongs.gui.registration;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;
 import emotionalsongs.welcome_email.*;
@@ -31,9 +32,10 @@ public class RegistrationPanel extends javax.swing.JPanel {
      * @param dataValidatorService servizio di validazione dati degli utenti.
      * @param container MainFrame che conterrà questo pannello.
      */
-    public RegistrationPanel(UsersDataHandler dataHandlerService, UsersDataValidator dataValidatorService, MainFrame container) {
-        dataHandler = dataHandlerService;
-        dataValidator = dataValidatorService;
+    public RegistrationPanel(MainFrame container) {
+        ServicesProvider sp = ServicesProvider.getInstance();
+        dataHandler = (UsersDataHandler) sp.getService(ServicesProvider.USERS_DATA_HANDLER);
+        dataValidator = (UsersDataValidator) sp.getService(ServicesProvider.USERS_DATA_VALIDATOR);;
         mainWindow = container;
         initComponents();
     }
@@ -47,7 +49,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
             @Override
             protected void paintComponent(Graphics g){
                 Graphics g2 = g.create();
-                g2.drawImage(Utilities.regBG.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.drawImage(ClientUtilities.regBG.getImage(), 0, 0, getWidth(), getHeight(), null);
                 g2.dispose();
             }
         };
@@ -107,7 +109,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         iconPanel.add(jLabel1);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(Utilities.regIcon);
+        jLabel3.setIcon(ClientUtilities.regIcon);
         iconPanel.add(jLabel3);
         iconPanel.add(jLabel2);
 

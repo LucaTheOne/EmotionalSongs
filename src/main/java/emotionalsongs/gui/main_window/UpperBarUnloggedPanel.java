@@ -8,11 +8,11 @@
 
 package emotionalsongs.gui.main_window;
 
-import emotionalsongs.managers.RegistrationManager;
 import emotionalsongs.*;
 import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.login.*;
+import emotionalsongs.gui.registration.*;
 
 /**
  * Le istanze di questa classe costruiscono la barra superiore della schermata principale del software
@@ -195,7 +195,7 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_menuButtonStateChanged
 
     private void RegistrerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrerButtonActionPerformed
-            RegistrationManager.getInstance().startForm();
+            mainWindow.setMainPanel(new RegistrationPanel(mainWindow));
     }//GEN-LAST:event_RegistrerButtonActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed

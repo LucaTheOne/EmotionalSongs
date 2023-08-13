@@ -66,4 +66,5 @@ public interface PlaylistsDataHandler extends Remote{
      * @return Il numero di canzoni contenute nbella playlist corrispondente al ID passato come argomento.
      */
     public int getPlaylistDimension(String playlistId)throws RemoteException;
+
 }

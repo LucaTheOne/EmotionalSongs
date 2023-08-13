@@ -55,7 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             protected void paintComponent(Graphics g){
                 Graphics g2 = g.create();
-                g2.drawImage(Utilities.mainBackGround.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.drawImage(ClientUtilities.mainBackGround.getImage(), 0, 0, getWidth(), getHeight(), null);
                 g2.dispose();
             }
         };
@@ -68,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EmotionalSongs");
         setAutoRequestFocus(false);
-        setIconImage(Utilities.logo.getImage());
+        setIconImage(ClientUtilities.logo.getImage());
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setName("mainPageFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1000, 700));

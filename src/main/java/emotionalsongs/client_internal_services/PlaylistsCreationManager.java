@@ -210,7 +210,11 @@ public class PlaylistsCreationManager {
      * Metodo cha avvia il form per la creazione di una nuova playlist.
      */
     public void startCreation(){
-        creationFrame = new PlaylistCreationFrame();
+        try {
+            creationFrame = new PlaylistCreationFrame();
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
         creationFrame.setVisible(true);
     }
     /**

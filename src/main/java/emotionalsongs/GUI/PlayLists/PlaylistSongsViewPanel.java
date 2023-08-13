@@ -8,6 +8,7 @@
 
 package emotionalsongs.gui.playlists;
 
+import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import java.awt.*;
 
@@ -43,7 +44,7 @@ public class PlaylistSongsViewPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(22, 33, 62));
         jPanel1.setPreferredSize(new Dimension(jScrollPane1.getWidth(),songsData.length>7?75*songsData.length:7*75));
         for(int i = 0; i<songsData.length;i++){
-            jPanel1.add(Song.buildPanelForPlaylist(songsData[i]));
+            jPanel1.add(Song.buildPanelForPlaylist(songsData[i],EmotionalSongs.getLoggedUser()));
         }
         jPanel1.setLayout(new java.awt.GridLayout(songsData.length>7?songsData.length:7, 1));
         jScrollPane1.setViewportView(jPanel1);

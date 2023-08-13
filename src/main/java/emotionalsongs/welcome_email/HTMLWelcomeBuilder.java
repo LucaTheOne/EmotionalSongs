@@ -35,7 +35,7 @@ class HTMLWelcomeBuilder {
         userdata[7] = password;
         
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(Utilities.HtmlPath)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(ClientUtilities.HtmlPath)));
             String current = "";
             while((current = reader.readLine()) != null){
                 message += current;

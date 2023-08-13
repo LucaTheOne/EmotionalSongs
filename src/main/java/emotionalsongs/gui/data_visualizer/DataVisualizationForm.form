@@ -93,7 +93,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextArea1.setText(dataBuilder.getSongDataReport()+&quot;\nn.b voti da 1 a 5, dove 1 indica per nulla percepita e 5 indica pienamente percepita.&quot;+&quot;\n\n&quot;+dataBuilder.getSongNotesReport());"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextArea1.setText(songDataBuilder.getSongDataReport()+&quot;\nn.b voti da 1 a 5, dove 1 indica per nulla percepita e 5 indica pienamente percepita.&quot;+&quot;\n\n&quot;+songDataBuilder.getSongNotesReport());"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -127,7 +127,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="JFreeChart[] charts = dataBuilder.getArrayCharts();&#xa;for(int i = 0; i&lt;9;i++){&#xa;    EmotionsGraphPanel.add(new ChartPanel(charts[i]));&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="JFreeChart[] charts = songDataBuilder.getArrayCharts();&#xa;for(int i = 0; i&lt;9;i++){&#xa;    EmotionsGraphPanel.add(new ChartPanel(charts[i]));&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -233,7 +233,7 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="chartPanel2">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="chartPanel2.add(new ChartPanel(dataBuilder.getMediumsChart()));&#xa;chartPanel2.add(new ChartPanel(dataBuilder.getMediansChart()));&#xa;chartPanel2.add(new ChartPanel(dataBuilder.getTrendsChart()));"/>
+                    <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="chartPanel2.add(new ChartPanel(songDataBuilder.getMediumsChart()));&#xa;chartPanel2.add(new ChartPanel(songDataBuilder.getMediansChart()));&#xa;chartPanel2.add(new ChartPanel(songDataBuilder.getTrendsChart()));"/>
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">

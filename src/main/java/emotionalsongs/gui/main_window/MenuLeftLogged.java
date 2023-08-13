@@ -8,10 +8,9 @@
 
 package emotionalsongs.gui.main_window;
 
-import emotionalsongs.client_internal_services.PlaylistsCreationManager;
 import emotionalsongs.*;
-import emotionalsongs.gui.repository.*;
-import java.io.*;
+import emotionalsongs.client_internal_services.*;
+import emotionalsongs.gui.registration.*;
 
 /**
  * Classi le cui istanze sono il pannello laterale della schermata principale del software, quando un utente ha efettuato il login.
@@ -142,11 +141,7 @@ public class MenuLeftLogged extends javax.swing.JPanel {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            mainPage.setMainPanel(new RepositoryPanel());
-        } catch (IOException ex) {
-            ex.getMessage();
-        }
+        mainPage.setMainPanel(new RegistrationPanel(mainPage));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void PlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayListButtonActionPerformed

@@ -9,6 +9,7 @@
 
 package emotionalsongs.gui.playlists;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.allerter.*;
@@ -16,26 +17,36 @@ import emotionalsongs.gui.songs_judgements.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
+import java.rmi.*;
 import javax.swing.*;
-import serverES.db_communication.*;
+import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze sono rappresentazioni grafiche delle canzoni di una playlist
  */
 public class SongPanelForPlaylistView extends javax.swing.JPanel {
 
-    private final DBQuerier service;
+    private final SongsDataHandler songsDataHandler;
+    private final UsersDataHandler usersDataHandler;
     private final String[] songData;//{(0:)ID_UNIVOCO £SEP£ (1:)REPO_INDEX £SEP£ (2:)TITOLO £SEP£ (3:)AUTORE £SEP£ (4:)ANNO} 
     private boolean canBeVotedByUser;
+    private String userId;
     /**
      * Crea il pannello di rappresentanza, per una playlist, della canzone relativa all' id passato come argomento. 
      * all' utente che la possiede.
      * @param songData id della canzone da rappresentare;
      */
-    public SongPanelForPlaylistView(String songData) {
-        service = new DBQuerier(DBConnector.getDefaultConnection());
+    public SongPanelForPlaylistView(String songData,String loggedUser) {
+        ServicesProvider sp = ServicesProvider.getInstance();
+        songsDataHandler = (SongsDataHandler) sp.getService(ServicesProvider.SONGS_DATA_HANDLER);
+        usersDataHandler = (UsersDataHandler) sp.getService(ServicesProvider.USERS_DATA_HANDLER);
+        userId = loggedUser;
         this.songData = songData.split("£SEP£");
-        canBeVotedByUser = service.userCanVoteSong(EmotionalSongs.getLoggedUser().getUserId(), songData);
+        try {
+            canBeVotedByUser = usersDataHandler.userCanVoteSong(loggedUser, songData);
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
         initComponents();
     }
 
@@ -196,7 +207,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);
-        voteFrame.add(new SongJudgementForm(EmotionalSongs.getLoggedUser().getUserId(), songData[0],this,voteFrame));
+        voteFrame.add(new SongJudgementForm(userId, songData[0],this,voteFrame));
         voteFrame.setVisible(canBeVotedByUser);
         PopUpAllert instructions = new PopUpAllert(EmotionalSongs.dialoghi.voteInstructions());
         instructions.setPreferredSize(new Dimension(800,400));
@@ -206,7 +217,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics g){
         Graphics g2 = g.create();
-        g2.drawImage(Utilities.SongViewIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
+        g2.drawImage(ClientUtilities.SongViewIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
         g2.dispose();
     }
 

@@ -9,10 +9,12 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.client_internal_services.PlaylistsCreationManager;
+import clientES.*;
 import emotionalsongs.basic_structures.*;
+import emotionalsongs.client_internal_services.*;
 import java.awt.*;
-import serverES.db_communication.*;
+import java.rmi.*;
+import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze sono pannelli per la visulizzazione di pulsanti delle playlist ed il loro contenuto.
@@ -20,9 +22,9 @@ import serverES.db_communication.*;
 public class PlaylistsMainPanel extends javax.swing.JPanel {
 
     private final String userId;
-    private final DBQuerier service;
+    private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsCreationManager playlistsManager = PlaylistsCreationManager.getInstance();
-    private final String[] playlistsData;
+    private String[] playlistsData;
     
     
     /**
@@ -38,8 +40,12 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
      */
     public PlaylistsMainPanel(String userId) {
         this.userId = userId;
-        service = new DBQuerier(DBConnector.getDefaultConnection());
-        playlistsData = service.requestPlaylistsUser(userId);
+        playlistsDataHandler = (PlaylistsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
+        try {
+            playlistsData = playlistsDataHandler.requestPlaylistsUser(userId);
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
         initComponents();
     }
 

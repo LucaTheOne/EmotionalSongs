@@ -24,7 +24,7 @@ public interface EmotionsDataHandler extends Remote{
      * Ritorna un array contenente in ogni posizione un giudizio ricevuto da un utente.
      *      -Formato: "meraviglia_voto£SEP£solennita_voto£SEP£tenerezza_voto£SEP£nostalgia_voto£SEP£pacatezza_voto£SEP£potere_voto£SEP£gioia_voto£SEP£tensione_voto£SEP£tristezza_voto£SEP£commento"
      * @param idSong id della canzone il quale si vogliono ottenere i giudizi emozionali.
-     * @return array contenente in ogni posizione un giudizio ricevuto da un utente.
+     * @return array contenente in ogni posizione un giudizio ricevuto da un utente, null se non sono presenti dati.
      */
     public String[] requestDataJudgementsSong(String idSong) throws RemoteException;
     

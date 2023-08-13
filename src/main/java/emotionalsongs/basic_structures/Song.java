@@ -147,8 +147,8 @@ public class Song {
      * @param songdata la Playlist in cui il brano è contenuto.
      * @return Il pannello con la Playlist.
      */
-    public static SongPanelForPlaylistView buildPanelForPlaylist(String songdata){
-        return new SongPanelForPlaylistView(songdata);
+    public static SongPanelForPlaylistView buildPanelForPlaylist(String songdata,String userId){
+        return new SongPanelForPlaylistView(songdata,userId);
     }
     
     //metodi di confronto

@@ -9,6 +9,7 @@
 
 package emotionalsongs.gui.repository;
 
+import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.main_window.*;
@@ -36,7 +37,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
     /** no DB old method
     private Repository repositoryCorrelated = Repository.getInstance();
     */
-    private final SongsDataHandler remoteService;
+    private final SongsDataHandler songsDataHandler;
     private String[] actualSongsArray;
     
     
@@ -45,10 +46,10 @@ public class RepositoryPanel extends javax.swing.JPanel {
      * Crea un nuovo pannello di ispezione nel repository.
      * @throws java.io.IOException
      */
-    public RepositoryPanel(SongsDataHandler serviceProvider) throws IOException {
-        remoteService = serviceProvider;
-        MAX_INDEX=remoteService.getRepoSize();
-        actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
+    public RepositoryPanel() throws IOException {
+        songsDataHandler = (SongsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.SONGS_DATA_HANDLER);
+        MAX_INDEX=songsDataHandler.getRepoSize();
+        actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
         initComponents();
     }
 
@@ -82,7 +83,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         SearchPanel.setPreferredSize(new java.awt.Dimension(814, 50));
         SearchPanel.setLayout(new java.awt.BorderLayout());
 
-        searchButton.setIcon(Utilities.searchIcon);
+        searchButton.setIcon(ClientUtilities.searchIcon);
         searchButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -97,7 +98,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         X.setBackground(new java.awt.Color(255, 51, 51));
         X.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         X.setForeground(new java.awt.Color(255, 255, 255));
-        X.setIcon(Utilities.closeButton);
+        X.setIcon(ClientUtilities.closeButton);
         X.setAlignmentY(0.0F);
         X.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 102), new java.awt.Color(255, 102, 102), new java.awt.Color(102, 0, 0), new java.awt.Color(153, 0, 0)));
         X.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -112,7 +113,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         centerLowPanel.setLayout(new java.awt.BorderLayout());
 
         clearButton.setBackground(new java.awt.Color(85, 124, 147));
-        clearButton.setIcon(Utilities.clearButtonIcon);
+        clearButton.setIcon(ClientUtilities.clearButtonIcon);
         clearButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         clearButton.setOpaque(true);
         clearButton.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -167,7 +168,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        BackButton.setIcon(Utilities.backButtonIcon);
+        BackButton.setIcon(ClientUtilities.backButtonIcon);
         BackButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         BackButton.setPreferredSize(new java.awt.Dimension(50, 50));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +184,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(50, 100));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        nextButton.setIcon(Utilities.nextButtonIcon);
+        nextButton.setIcon(ClientUtilities.nextButtonIcon);
         nextButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         nextButton.setPreferredSize(new java.awt.Dimension(50, 50));
         nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +232,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
             startIndex = 0;
             throughFullRepo = true;
             try {
-                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -252,13 +253,13 @@ public class RepositoryPanel extends javax.swing.JPanel {
         if(request.contains(";")){
             String[] requestSplitted = request.split(";"); // 0 - autore, 1 - anno
             try {
-                actualSongsArray = remoteService.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1].replaceAll(" ", "")));
+                actualSongsArray = songsDataHandler.cercaBranoMusicale(requestSplitted[0],Integer.parseInt(requestSplitted[1].replaceAll(" ", "")));
             } catch (RemoteException ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
             try {
-                actualSongsArray = remoteService.cercaBranoMusicale(request);
+                actualSongsArray = songsDataHandler.cercaBranoMusicale(request);
             } catch (RemoteException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -304,7 +305,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         lastPage = false;
         if(throughFullRepo){
             try {
-                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -341,7 +342,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         
         if(throughFullRepo){
             try {
-                actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -366,7 +367,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
         searchBar.setText("");
         startIndex = 0;
         try {
-            actualSongsArray = remoteService.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
+            actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
         } catch (RemoteException ex) {
             Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

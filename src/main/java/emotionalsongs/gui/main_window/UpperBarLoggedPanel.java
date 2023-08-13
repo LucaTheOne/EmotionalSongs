@@ -10,7 +10,6 @@ package emotionalsongs.gui.main_window;
 
 import emotionalsongs.*;
 import emotionalsongs.dialogs.*;
-import emotionalsongs.engines.*;
 import emotionalsongs.gui.generics.*;
 /**
  * Le istanze di questa classe costruiscono la barra superiore della schermata principale del software
@@ -168,7 +167,7 @@ public class UpperBarLoggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
-        EngineLogger.logout();
+        EmotionalSongs.setLoggedUser("");
         mainWindow.setUpperBar(new UpperBarUnloggedPanel(mainWindow));
         mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
         mainWindow.cleanUpMainPanel();

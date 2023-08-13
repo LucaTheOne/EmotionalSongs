@@ -50,7 +50,7 @@ public class InitializationFrame extends javax.swing.JFrame {
 
         BGLabel.setBackground(new java.awt.Color(255, 255, 255));
         BGLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BGLabel.setIcon(Utilities.loadingFrame);
+        BGLabel.setIcon(ClientUtilities.loadingFrame);
         BGLabel.setToolTipText("");
         BGLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         BGLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);

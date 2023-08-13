@@ -32,7 +32,7 @@ public class CreditsPanel extends javax.swing.JPanel {
         @Override
             protected void paintComponent(Graphics g){
                 Graphics g2 = g.create();
-                g2.drawImage(Utilities.CreditsIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
+                g2.drawImage(ClientUtilities.CreditsIcon.getImage(), 0, 0, getWidth(), getHeight(), null);
                 g2.dispose();
             }
 

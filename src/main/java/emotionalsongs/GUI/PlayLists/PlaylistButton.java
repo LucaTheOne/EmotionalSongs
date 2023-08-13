@@ -9,9 +9,11 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.client_internal_services.PlaylistsCreationManager;
+import clientES.*;
 import emotionalsongs.basic_structures.*;
-import serverES.db_communication.*;
+import emotionalsongs.client_internal_services.*;
+import java.rmi.*;
+import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze rappresentano i bottoni di ispezione delle playlist passate come argomenti al
@@ -25,11 +27,12 @@ public class PlaylistButton extends javax.swing.JPanel {
      */
     private final String playlistName;
     private final String playlistId;
-    private final DBQuerier service = new DBQuerier(DBConnector.getDefaultConnection());
+    private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsCreationManager playListsManager = PlaylistsCreationManager.getInstance();
     public PlaylistButton(String playlistName, String playlistId) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
+        playlistsDataHandler = (PlaylistsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
         initComponents();
     }
 
@@ -59,8 +62,12 @@ public class PlaylistButton extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
-        playListsManager.setRightPane(Playlist.buildPlaylistSongsView(service.requestPlaylistSongs(playlistId)));
-        //playListsManager.setSelectedPlaylist(playlistName);
+        try {
+            playListsManager.setRightPane(Playlist.buildPlaylistSongsView(playlistsDataHandler.requestPlaylistSongs(playlistId)));
+            //playListsManager.setSelectedPlaylist(playlistName);
+        } catch (RemoteException ex) {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_playListButtonActionPerformed
 
 

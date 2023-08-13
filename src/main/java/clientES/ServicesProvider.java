@@ -6,7 +6,6 @@
  */
 package clientES;
 
-import emotionalsongs.*;
 import java.rmi.*;
 
 /**
@@ -25,9 +24,7 @@ public class ServicesProvider {
     public static final int PLAYLISTS_DATA_VALIDATOR = 6;
     
     private static ServicesProvider singleton = null;
-    private final ServicesBox servicesBox;
-    private int servicesPort = 0;
-    private String servicesHost = "";
+    private ServicesBox servicesBox;
     
     public static ServicesProvider getInstance(){
         if(singleton == null){
@@ -38,15 +35,6 @@ public class ServicesProvider {
     
     private ServicesProvider() {
         initialize();
-        while(servicesPort == 0 || servicesHost.isBlank()){
-            try {
-                Thread.sleep(100);
-                System.out.println("waiting data...");
-            } catch (InterruptedException ex) {
-                System.out.println(ex.getMessage());
-            } 
-        }
-        servicesBox = new ServicesBox(servicesHost, servicesPort);
     }
     
     public Remote getService(int serviceId){
@@ -54,28 +42,14 @@ public class ServicesProvider {
     }
     
     private void initialize(){
-        new InitOperator(servicesHost, servicesPort).run();
+        new RequestServiceHostFrame(this);
     }
     
-    private class InitOperator extends Thread{
-        private String serHost;
-        private int serPort;
-        public InitOperator(String serHost,int serPort) {
-            this.serHost = serHost;
-            this.serPort = serPort;
-        }
-        @Override
-        public void run(){
-            new RequestServiceHostFrame(serHost, serPort);
-        }
+    protected void buildServicesBox(String servicesHost,int servicesPort){
+        this.servicesBox = new ServicesBox(servicesHost, servicesPort);
     }
-    
+    /*    
     public static void main(String[] args) throws RemoteException {
-        /*ServicesProvider sp = ServicesProvider.getInstance();
-        UsersDataHandler dh = (UsersDataHandler) sp.getService(USERS_DATA_HANDLER);
-        boolean result = dh.userCanVoteSong("theOne", "TRPDMSM128F42B7CE0");
-        System.out.println(result);*/
-        System.out.println(EmotionalSongs.dialoghi.name());
-    }
-    
+        ServicesProvider sp = ServicesProvider.getInstance();
+    }*/
 }
