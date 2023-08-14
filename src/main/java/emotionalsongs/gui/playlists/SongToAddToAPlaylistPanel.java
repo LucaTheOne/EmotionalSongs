@@ -9,7 +9,7 @@
 
 package emotionalsongs.gui.playlists;
 
-import emotionalsongs.client_internal_services.PlaylistsCreationManager;
+import emotionalsongs.client_internal_services.PlaylistsManager;
 import java.awt.*;
 
 /**
@@ -20,7 +20,7 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
     private String songId,title,author;
     private int year;
-    private PlaylistsCreationManager playListsManager = PlaylistsCreationManager.getInstance();
+    private PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     
     /**
      * Crea il pannello utilizzato per rappresentare le canzoni passate come argomento

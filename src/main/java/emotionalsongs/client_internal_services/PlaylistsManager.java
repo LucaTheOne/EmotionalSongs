@@ -26,9 +26,9 @@ import serverES.services_common_interfaces.data_validator.*;
  * Questa classe può differire in base al utente che ha effettuato il login, quindi esiste un metodo di cancellazione per questa classe, così
  * che sia possibile de-istanziarla quando si effettua un logout e reinstanziarla sulla base del nuovo utente che effettua il logout.
  */
-public class PlaylistsCreationManager {
+public class PlaylistsManager {
     
-    private static PlaylistsCreationManager instance = null;
+    private static PlaylistsManager instance = null;
     private PlaylistsMainPanel playlistmainPanel ;
     private PlaylistCreationFrame creationFrame;
     private final MainFrame mainFrame;
@@ -45,12 +45,12 @@ public class PlaylistsCreationManager {
      * Metodo per accedere alla classe, richiamandone la sua unica istanza.
      * @return playlist manager
      */
-    public static PlaylistsCreationManager getInstance(){
-        if(instance == null) instance = new PlaylistsCreationManager();
+    public static PlaylistsManager getInstance(){
+        if(instance == null) instance = new PlaylistsManager();
         return instance;
     }
     
-    private PlaylistsCreationManager() {
+    private PlaylistsManager() {
         user = EmotionalSongs.getLoggedUser();
         ServicesProvider sp = ServicesProvider.getInstance();
         playlistsDataHandler = (PlaylistsDataHandler) sp.getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);

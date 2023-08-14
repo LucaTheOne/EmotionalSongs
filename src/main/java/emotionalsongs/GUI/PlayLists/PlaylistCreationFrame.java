@@ -27,7 +27,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     /**
      * Crea il form per la creazione di nuove playlist.
      */
-    PlaylistsCreationManager playlistsCreationManager = PlaylistsCreationManager.getInstance();
+    PlaylistsManager playlistsCreationManager = PlaylistsManager.getInstance();
     String[] actualSongsArray;
     private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsDataValidator playlistsDataChecker;

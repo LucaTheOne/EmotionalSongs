@@ -23,7 +23,7 @@ public interface SongsDataHandler extends Remote{
      * @param songId stringa con l' id della canzone di cui cercare i dati.
      * @return Stringa con i dati della canzone corrispondente all' id, null in caso di errori.
      */
-    public String requestSongdata(String songId)throws RemoteException;
+    public String requestSongData(String songId)throws RemoteException;
     
     //luca - fatto
     /**

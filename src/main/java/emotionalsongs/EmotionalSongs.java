@@ -7,11 +7,9 @@
 
 package emotionalsongs;
 
+import clientES.*;
 import emotionalsongs.dialogs.*;
-import emotionalsongs.gui.generics.*;
-import emotionalsongs.gui.main_window.*;
 import java.io.*;
-
 /**
  * 
  * Classe contenente l' unico metodo main del software. Da qui viene lanciata la sua funzione principale
@@ -34,14 +32,10 @@ public class EmotionalSongs {
     }
     
     private void initialize() throws IOException{
-        InitializationFrame init = new InitializationFrame();
-        //Repository.getInstance();
-        //DataBaseUsers.getInstance();
-        //DataBasePlaylists.getInstance();
-        init.dispose();
-        MainFrame.getIstance().setVisible(true);
-        
+        new ClientInitializer();
     }
+    
+    
     
     /**
      * Metodo che permette di interrogare la classe principale riguardo a quale istanza di User abbia 

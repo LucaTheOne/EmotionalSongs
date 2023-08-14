@@ -56,7 +56,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
         SongsDataHandler songsDataHandler = (SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER);
         String songData = "";
         try {
-            songData = songsDataHandler.requestSongdata(songId);
+            songData = songsDataHandler.requestSongData(songId);
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }

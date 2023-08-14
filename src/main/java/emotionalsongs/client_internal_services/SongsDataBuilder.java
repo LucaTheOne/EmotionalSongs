@@ -58,7 +58,7 @@ public class SongsDataBuilder {
         SONGS_DATA_HANDLER = (SongsDataHandler) sp.getService(ServicesProvider.SONGS_DATA_HANDLER);
         String songData[] = null;
         try {
-            songData = SONGS_DATA_HANDLER.requestSongdata(SONG_ID).split("£SEP£");
+            songData = SONGS_DATA_HANDLER.requestSongData(SONG_ID).split("£SEP£");
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
@@ -129,7 +129,7 @@ public class SongsDataBuilder {
     public String getSongDataReport(){
         String[] songData = null;
         try {
-            songData = SONGS_DATA_HANDLER.requestSongdata(SONG_ID).split("£SEP£");
+            songData = SONGS_DATA_HANDLER.requestSongData(SONG_ID).split("£SEP£");
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }

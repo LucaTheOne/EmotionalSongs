@@ -23,7 +23,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
 
     private final String userId;
     private final PlaylistsDataHandler playlistsDataHandler;
-    private final PlaylistsCreationManager playlistsManager = PlaylistsCreationManager.getInstance();
+    private final PlaylistsManager playlistsManager = PlaylistsManager.getInstance();
     private String[] playlistsData;
     
     

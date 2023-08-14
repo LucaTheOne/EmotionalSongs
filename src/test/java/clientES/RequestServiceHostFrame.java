@@ -10,7 +10,7 @@ package clientES;
  *
  * @author big
  */
-class RequestServiceHostFrame extends javax.swing.JFrame{
+class ClientInitializer extends javax.swing.JFrame{
     
     private String host;
     private int port;
@@ -18,7 +18,7 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
     /**
      * Creates new form RequestServiceHostFrame
      */
-    protected RequestServiceHostFrame(String hostToSet,int portToSet) {
+    protected ClientInitializer(String hostToSet,int portToSet) {
         host = hostToSet;
         port = portToSet;
         
@@ -153,7 +153,7 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
     
     //public static void main(String[] args) throws RemoteException {
         //try {
-            //new RequestServiceHostFrame();
+            //new ClientInitializer();
             
             /*
             Registry registryServices = LocateRegistry.getRegistry("192.168.1.6", 5432);

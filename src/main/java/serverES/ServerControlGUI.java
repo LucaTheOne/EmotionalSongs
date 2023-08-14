@@ -18,26 +18,32 @@ import javax.swing.*;
  */
 class ServerControlGUI extends javax.swing.JFrame {
     
-    private String addr;
-    private int port;
-    private Server server;
+    private String addr = "";
+    private int port = 0;
+    private Server serverToControl;
     public static ServerControlGUI serverControlGui = null;
     /**
      * Crea una nuova istanza di questa classe;
      * @param InetAddressServer Stringa con l' indirizzo ip della macchina corrente.
      * @param port Porta sul quale il registry è operativo.
-     * @param server Riferimento al server che deve controllare.
+     * @param server Riferimento al serverToControl che deve controllare.
      */
-    private ServerControlGUI(String InetAddressServer,int port,Server server) {
-        addr=InetAddressServer;
-        this.port=port;
-        this.server=server;
+    protected ServerControlGUI(Server server) {
+        this.serverToControl=server;
         initComponents();
-        setVisible(true);
     }
     
-    protected static ServerControlGUI obtainControlGuiReference(String InetAddressServer,int port,Server server){
-        if(serverControlGui == null) serverControlGui = new ServerControlGUI(InetAddressServer,port,server);
+    protected void setAddress(String addres,int port){
+        this.addr = addres;
+        this.port = port;
+        IPLabel.setText(addr);
+        portLabel.setText(String.valueOf(port));
+        revalidate();
+        repaint();
+        setVisible(true);
+    }
+    protected static ServerControlGUI obtainControlGuiReference(Server server){
+        if(serverControlGui == null) serverControlGui = new ServerControlGUI(server);
         return serverControlGui;
     }
     /**
@@ -57,7 +63,7 @@ class ServerControlGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         IPLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        portLabel = new javax.swing.JLabel();
         logAndExportButtonPanel = new javax.swing.JPanel();
         exportButtonPanel = new javax.swing.JPanel();
         ExportLogButton = new javax.swing.JButton();
@@ -110,10 +116,10 @@ class ServerControlGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Service's port:");
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText(String.valueOf(port));
+        portLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
+        portLabel.setForeground(new java.awt.Color(255, 255, 255));
+        portLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        portLabel.setText(String.valueOf(port));
 
         javax.swing.GroupLayout ServiceDataInfoLayout = new javax.swing.GroupLayout(ServiceDataInfo);
         ServiceDataInfo.setLayout(ServiceDataInfoLayout);
@@ -122,7 +128,7 @@ class ServerControlGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ServiceDataInfoLayout.createSequentialGroup()
                 .addContainerGap(224, Short.MAX_VALUE)
                 .addGroup(ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(portLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(IPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -138,7 +144,7 @@ class ServerControlGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(portLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -154,7 +160,6 @@ class ServerControlGUI extends javax.swing.JFrame {
 
         ExportLogButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ExportLogButton.setText("Export log");
-        ExportLogButton.setPreferredSize(new java.awt.Dimension(112, 29));
         ExportLogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExportLogButtonActionPerformed(evt);
@@ -250,7 +255,7 @@ class ServerControlGUI extends javax.swing.JFrame {
     }
     
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
-        server.terminateServices();
+        serverToControl.terminateServices();
         addLineLog("All services shutted down!\n");
         new AskIfTOSaveLog(this);
         
@@ -290,10 +295,10 @@ class ServerControlGUI extends javax.swing.JFrame {
     private javax.swing.JPanel globalPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel logAndExportButtonPanel;
     private javax.swing.JPanel logPanel;
     private javax.swing.JTextArea logTextArea;
+    private javax.swing.JLabel portLabel;
     // End of variables declaration//GEN-END:variables
 }

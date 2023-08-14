@@ -28,7 +28,7 @@ public class PlaylistButton extends javax.swing.JPanel {
     private final String playlistName;
     private final String playlistId;
     private final PlaylistsDataHandler playlistsDataHandler;
-    private final PlaylistsCreationManager playListsManager = PlaylistsCreationManager.getInstance();
+    private final PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     public PlaylistButton(String playlistName, String playlistId) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
@@ -63,8 +63,8 @@ public class PlaylistButton extends javax.swing.JPanel {
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
         try {
-            playListsManager.setRightPane(Playlist.buildPlaylistSongsView(playlistsDataHandler.requestPlaylistSongs(playlistId)));
-            //playListsManager.setSelectedPlaylist(playlistName);
+            String[] PlaylistSongsIds = playlistsDataHandler.requestPlaylistSongs(playlistId);
+            playListsManager.setRightPane(Playlist.buildPlaylistSongsView(PlaylistSongsIds));
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }

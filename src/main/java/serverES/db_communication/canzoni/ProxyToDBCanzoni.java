@@ -36,7 +36,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
      * @return Stringa con i dati della canzone corrispondente all' id, null in caso di errori.
      */
     @Override
-    public String requestSongdata(String songId)throws RemoteException{
+    public String requestSongData(String songId)throws RemoteException{
         try {
             String query = "SELECT * FROM CANZONI WHERE ID_UNIVOCO = '"+songId+"';";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
@@ -143,8 +143,9 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
         return 0;
     }
     
+    
     public static void main(String[] args) throws RemoteException {
-        String[] res = new ProxyToDBCanzoni(DBConnector.getDefaultConnection()).cercaBranoMusicale("Asleep At The Wheel", 1992);
-        for(String str: res) System.out.println(str);
+        String res = new ProxyToDBCanzoni(DBConnector.getDefaultConnection()).requestSongData("TRMYDFV128F42511FC");
+        System.out.println(res);
     }
 }

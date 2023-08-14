@@ -12,7 +12,7 @@ import java.rmi.*;
  *
  * @author big
  */
-public class ServicesProvider {
+public class ServicesProvider{
     
     public static final int EMOTIONS_DATA_HANDLER = 0;
     public static final int USERS_DATA_HANDLER = 1;
@@ -23,33 +23,36 @@ public class ServicesProvider {
     public static final int USERS_DATA_VALIDATOR = 5;
     public static final int PLAYLISTS_DATA_VALIDATOR = 6;
     
-    private static ServicesProvider singleton = null;
+    protected static ServicesProvider singleton = null;
     private ServicesBox servicesBox;
-    
     public static ServicesProvider getInstance(){
         if(singleton == null){
-            singleton = new ServicesProvider();
+            System.out.println("Error, Service provider not initialized yet!");
         }
         return singleton;
     }
     
-    private ServicesProvider() {
-        initialize();
+    protected ServicesProvider(String serviceHost,int servicePort) {
+        servicesBox = new ServicesBox(serviceHost, servicePort);
     }
     
     public Remote getService(int serviceId){
         return servicesBox.getService(serviceId);
     }
     
-    private void initialize(){
-        new RequestServiceHostFrame(this);
+    protected void buildServicesBox(String servicesHost,int servicesPort){
+        servicesBox = new ServicesBox(servicesHost, servicesPort);
     }
     
-    protected void buildServicesBox(String servicesHost,int servicesPort){
-        this.servicesBox = new ServicesBox(servicesHost, servicesPort);
+    protected void unlock(){
+        notifyAll();
     }
     /*    
     public static void main(String[] args) throws RemoteException {
         ServicesProvider sp = ServicesProvider.getInstance();
-    }*/
+        SongsDataHandler sdh = (SongsDataHandler) sp.getService(ServicesProvider.SONGS_DATA_HANDLER);
+        int res = sdh.getRepoSize();
+        System.out.println(res);
+    }
+    */
 }

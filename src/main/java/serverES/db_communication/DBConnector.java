@@ -6,6 +6,7 @@
  */
 package serverES.db_communication;
 
+import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import java.sql.*;
 
@@ -31,13 +32,13 @@ public class DBConnector implements Serializable{
                 System.out.println("Connected to DB");
                 return connection;
             } else {
-                System.out.println("Error; impossible to connect with DB!");
-                return null;
+                new PopUpAllert("Error; impossible to connect with DB!");
             }  
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
-            return null;
-        }    
+            
+        }  
+        return null;
     }
     
     public static Connection getDefaultConnection(){

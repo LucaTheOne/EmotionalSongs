@@ -66,7 +66,7 @@ public class ServicesProvider {
         }
         @Override
         public void run(){
-            new RequestServiceHostFrame(serHost, serPort);
+            new ClientInitializer(serHost, serPort);
         }
     }
     

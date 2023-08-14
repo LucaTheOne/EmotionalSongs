@@ -30,6 +30,7 @@ public class Server {
     private static InetAddress SERVER_INET_ADDRESS = null;
     private static Registry registroServizi = null;
     private Vector<String> servicesNamesVector = new Vector<>();
+    private ServerControlGUI serverControlGUI;
     
     /**
      * Con la chiamata a tale costruttore si settano i dati necessari alla sua operatività,
@@ -37,28 +38,41 @@ public class Server {
      * @throws RemoteException 
      */
     public Server() throws RemoteException {
-        try {
+         
+    }
+    public void startServer(){
+        serverControlGUI = new ServerControlGUI(this);
+        try { 
             SERVER_INET_ADDRESS = InetAddress.getLocalHost();
+            serverControlGUI.setAddress(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES);
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
+            serverControlGUI.addLineLog("Services' registry created!");
             Connection ConnToDB = DBConnector.getDefaultConnection();
+            
             //adding all necessary service to the vector with addService
             addService(EmotionsDataHandler.SERVICE_NAME, new ProxyToDBEmozioni(ConnToDB));
             addService(EmotionsDataValidator.SERVICE_NAME, new EmozioniDataChecker(ConnToDB));
-            System.out.println("Emotion services added!");
+            serverControlGUI.addLineLog("Emotion services added!");
+            
             addService(PlaylistsDataHandler.SERVICE_NAME, new ProxyToDBPlaylists(ConnToDB));
             addService(PlaylistsDataValidator.SERVICE_NAME, new PlaylistsDataChecker(ConnToDB));
-            System.out.println("Playlists services added!");
+            serverControlGUI.addLineLog("Playlists services added!");
+            
             addService(UsersDataHandler.SERVICE_NAME, new ProxyToDBUtenti_Registrati(ConnToDB));
             addService(UsersDataValidator.SERVICE_NAME, new UtentiDataChecker(ConnToDB));
-            System.out.println("Users services added!");
+            serverControlGUI.addLineLog("Users services added!");
+            
             addService(SongsDataHandler.SERVICE_NAME, new ProxyToDBCanzoni(ConnToDB));
-            System.out.println("Songs services added!");
+            serverControlGUI.addLineLog("Songs services added!");
+            
         } catch (java.net.UnknownHostException ex) {
-            System.err.println("Impossibile avviare il server!");
-            System.err.println(ex.getMessage());
-        }  
+            System.out.println("Impossibile avviare il server!");
+            System.out.println(ex.getMessage());
+        } catch (RemoteException ex) {
+            System.out.println("Impossibile avviare il server!");
+            System.out.println(ex.getMessage());
+        } 
     }
-    
     /**
      * Metodo che permette di aggiungere un servizio remoto al registry, passandogli il nome con il quale ci si riferirà 
      * a tale servizio e l' oggetto remoto il quale vi rappresenta.
@@ -89,12 +103,12 @@ public class Server {
                 }
             } 
         }
+        serverControlGUI.addLineLog("All services shutted down!");
     }
     
     
     public static void main(String[] args) throws RemoteException {
-        Server server = new Server();
-        ServerControlGUI terminal = ServerControlGUI.obtainControlGuiReference(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES, server);
+        new Server().startServer();
         
     }
 }

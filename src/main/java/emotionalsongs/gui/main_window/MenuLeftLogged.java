@@ -145,11 +145,11 @@ public class MenuLeftLogged extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void PlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayListButtonActionPerformed
-        PlaylistsCreationManager.getInstance().updatePlaylistsPanel();
+        PlaylistsManager.getInstance().updatePlaylistsPanel();
     }//GEN-LAST:event_PlayListButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PlaylistsCreationManager.getInstance().startCreation();
+        PlaylistsManager.getInstance().startCreation();
     }//GEN-LAST:event_jButton4ActionPerformed
     
     

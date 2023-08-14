@@ -8,25 +8,27 @@ package clientES;
 
 import emotionalsongs.*;
 import emotionalsongs.dialogs.*;
-import java.rmi.*;
-import serverES.services_common_interfaces.data_handler.*;
+import emotionalsongs.gui.generics.*;
+import emotionalsongs.gui.main_window.*;
 /**
  *
  * @author big
  */
-class RequestServiceHostFrame extends javax.swing.JFrame{
+public class ClientInitializer extends javax.swing.JFrame{
     
-    private ServicesProvider servicesProviderToInit;
+    private InitializationFrame initFrame;
+    private EmotionalSongs emotionalSongs;
     private ClientDialogs language;
     
     /**
      * Creates new form RequestServiceHostFrame
      */
-    protected RequestServiceHostFrame(ServicesProvider servicesProviderToInit) {
-        this.servicesProviderToInit = servicesProviderToInit;
+    public ClientInitializer() {
+        initFrame = new InitializationFrame();
+        initFrame.setVisible(true);
         language = EmotionalSongs.dialoghi;
         initComponents();
-        setVisible(true);
+        this.setVisible(true);
     }
 
     /**
@@ -144,13 +146,9 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
             this.repaint();
         }
         if(ok) {
-            servicesProviderToInit.buildServicesBox(selectedHost, Integer.parseInt(selectedPort));
-            UsersDataHandler udh = (UsersDataHandler) servicesProviderToInit.getService(ServicesProvider.USERS_DATA_HANDLER);
-            try {
-                System.out.println(udh.userCanVoteSong("theOne", "TRXPYTR128F92C284D"));
-            } catch (RemoteException ex) {
-                System.out.println(ex.getMessage());
-            }
+            ServicesProvider.singleton = new ServicesProvider(selectedHost, Integer.parseInt(selectedPort));
+            initFrame.dispose();
+            MainFrame.getIstance().setVisible(true);
             dispose();
         }else{
             System.out.println("impossible to find services!");
@@ -158,12 +156,12 @@ class RequestServiceHostFrame extends javax.swing.JFrame{
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     //public static void main(String[] args) throws RemoteException {
         //try {
-            //new RequestServiceHostFrame();
+            //new ClientInitializer();
             
             /*
             Registry registryServices = LocateRegistry.getRegistry("192.168.1.6", 5432);

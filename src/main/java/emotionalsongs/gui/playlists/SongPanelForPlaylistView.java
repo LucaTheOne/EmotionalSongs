@@ -41,6 +41,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
         songsDataHandler = (SongsDataHandler) sp.getService(ServicesProvider.SONGS_DATA_HANDLER);
         usersDataHandler = (UsersDataHandler) sp.getService(ServicesProvider.USERS_DATA_HANDLER);
         userId = loggedUser;
+            System.out.println(songData);
         this.songData = songData.split("£SEP£");
         try {
             canBeVotedByUser = usersDataHandler.userCanVoteSong(loggedUser, songData);

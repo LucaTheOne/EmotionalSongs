@@ -240,6 +240,8 @@ public class DataVisualizationForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JPanel subPanel1;
     // End of variables declaration//GEN-END:variables
+    
+    /*
     public static void main(String[] args) {
         String whereToSaveOsDependent = null;
         JFrame parentComponent = new JFrame();
@@ -262,5 +264,5 @@ public class DataVisualizationForm extends javax.swing.JFrame {
             e.printStackTrace();
         }
         System.out.println(whereToSaveOsDependent);
-    }
+    }*/
 }
