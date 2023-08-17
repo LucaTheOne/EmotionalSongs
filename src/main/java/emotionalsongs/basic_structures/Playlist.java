@@ -50,8 +50,8 @@ public class Playlist {
      * Il metodo costruisce un'istanza di PlaylistSongsViewPanel, che estende JPanel, che rappresenta graficamente il contenuto della Playlist.
      * @return Rappresentazione grafica del contenuto dell playlist.
      */
-    public static PlaylistSongsViewPanel buildPlaylistSongsView(String[] playlistSongsIds){
-        return new PlaylistSongsViewPanel(playlistSongsIds);
+    public static PlaylistSongsViewPanel buildPlaylistContentsView(String[] playlistContents){
+        return new PlaylistSongsViewPanel(playlistContents);
     }
     
     /**

@@ -36,7 +36,6 @@ public class PlaylistsManager {
     private String user;
     private String nameNewPlaylist = "";
     private final Vector<String> songsToAddIds = new Vector<>();
-    private int numberOfSongsSelected = 0;
     
     private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsDataValidator playlistsDataValidator;
@@ -65,7 +64,7 @@ public class PlaylistsManager {
      * @return Numero di canzoni nel buffer in attesa di essere aggiunte ad una playlist.
      */
     public int getNumberOfSongToAdd() {
-        return numberOfSongsSelected;
+        return songsToAddIds.size();
     }
     /**
      * Ritorna la canzone, nel buffer delle canzoni in attesa di essere aggiunte ad una playlist, in posizione index.
@@ -103,7 +102,7 @@ public class PlaylistsManager {
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-        updatePlaylistsPanel();
+        openUserPlaylistsView();
     }
     
     //updater methods
@@ -115,7 +114,6 @@ public class PlaylistsManager {
     public void addToSelectedSongs(String songId) {
         songsToAddIds.add(songId);
         System.out.println("song added in position" + (songsToAddIds.size()-1));
-        numberOfSongsSelected++;
     }
     /**
      * Rimuove la canzone passata come argomento dal buffer 
@@ -127,7 +125,7 @@ public class PlaylistsManager {
             if(str.equals(songId)) songsToAddIds.remove(str);
         }
         System.out.println(songId +": id of the removed song from the add list");
-        numberOfSongsSelected--;
+        
     }
     /**
      * Resetta tutti i dati contenuti nel manager.
@@ -135,7 +133,6 @@ public class PlaylistsManager {
     public void resetManager(){
         songsToAddIds.removeAllElements();
         nameNewPlaylist = "";
-        numberOfSongsSelected = 0;
     }
     
     /**
@@ -156,28 +153,11 @@ public class PlaylistsManager {
      * in attesa di essere aggiunte ad una playlist.
      */
     public void updateSongSelectedLabel(){
-        creationFrame.numberSelectedSongLabel.setText(numberOfSongsSelected+" brani selezionati");
+        creationFrame.numberSelectedSongLabel.setText(songsToAddIds.size()+" brani selezionati");
         creationFrame.revalidate();
         creationFrame.repaint();
     }
-    /**
-     * Incrementa il numero che rappresenta le canzoni nel buffer di attesa.
-     */
-    public void increaseNumberOfSongToAdd(){
-        numberOfSongsSelected++;
-    }
-    /**
-     * Decrementa il numero che rappresenta le canzoni nel buffer di attesa.
-     */
-    public void decreaseNumberOfSongToAdd(){
-        numberOfSongsSelected--;
-    }
-    /**
-     * Azzera il numero che rappresenta le canzoni nel buffer di attesa.
-     */
-    public void eraseNumberOfSongsToAdd(){
-        numberOfSongsSelected = 0;
-    }
+
     /**
      * Metodo di gestione della GUI, fa si che venga mostrata la lista di playlist dell' utente loggato.
      */
@@ -242,11 +222,20 @@ public class PlaylistsManager {
     /**
      * Metodo per aggiornare il pannello delle playlist del utente.
      */
-    public void updatePlaylistsPanel() {
-        playlistmainPanel = new PlaylistsMainPanel(user);
-        mainFrame.setMainPanel(playlistmainPanel);
-        mainFrame.revalidate();
-        mainFrame.repaint();
+    public void openUserPlaylistsView() {
+        try {
+            int nplaylists = playlistsDataHandler.getUserPlaylistsNumber(EmotionalSongs.getLoggedUser());
+            if(nplaylists==0){
+                new PopUpAllert(EmotionalSongs.dialoghi.noPlaylists());
+                return;
+            }
+            playlistmainPanel = new PlaylistsMainPanel(user);
+            mainFrame.setMainPanel(playlistmainPanel);
+            mainFrame.revalidate();
+            mainFrame.repaint();
+        } catch (RemoteException ex) {
+            new PopUpAllert(ex.getMessage());
+        }
     }
 }
 

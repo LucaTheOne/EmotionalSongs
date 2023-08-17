@@ -7,8 +7,9 @@
 
 
 
-package emotionalsongs;
+package emotionalsongs.client_internal_services;
 
+import emotionalsongs.*;
 import java.awt.image.*;
 import java.io.*;
 import java.nio.file.*;
@@ -30,6 +31,9 @@ public class ClientUtilities {
     private static String osFileSeparator = FileSystems.getDefault().getSeparator();
     private static String basePath = generateBasePath();
     
+    //COMMON STRINGS
+    public static final String STRING_SEPARATOR = "£SEP£";
+    
     //Path verso files
     /**
      * La stringa che rappresenta il percorso verso il file html
@@ -37,28 +41,7 @@ public class ClientUtilities {
      */
     public static String HtmlPath = basePath+ osFileSeparator+"Risorse"+osFileSeparator+"email-registration-confirm-def"+osFileSeparator+"registration-confirm.html";
 
-    /**
-     * La stringa che rappresenta il percorso verso il file
-     * dove le canzoni del repository sono memorizzate.
-     */
-    public static String pathToCanzoniDatiTxt =basePath +  osFileSeparator+"data"+osFileSeparator+"Canzoni.dati.txt";
-    /**
-     * La stringa che rappresenta il percorso verso il file
-     * dove i dati dei giudizi emozionali sono memorizzati.
-     */
-    public static String pathToEmozioniDati = basePath + osFileSeparator +"data" +osFileSeparator+"Emozioni.dati.txt";
-    /**
-     * La stringa che rappresenta il percorso verso il file
-     * dove le playlist di ogni utente sono memorizzate.
-     */
-    public static String pathToPlaylistDati = basePath + osFileSeparator +"data" +osFileSeparator+"Playlist.dati.txt";
-    /**
-     * La stringa che rappresenta il percorso verso il file
-     * dove i dati di tutti gli utenti registrati sono memorizzati.
-     */
-    public static String pathToUserDatabase = basePath + osFileSeparator +"data" +osFileSeparator+"UtentiRegistrati.dati.txt";
-    
-    //immagini
+    //GUI's Images
     /**
      * Oggetto di tipo ImageIcon che rappresenta l'immagine del logo del software.
      */

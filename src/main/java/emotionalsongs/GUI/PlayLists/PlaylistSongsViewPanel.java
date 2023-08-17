@@ -8,12 +8,9 @@
 
 package emotionalsongs.gui.playlists;
 
-import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
 import java.awt.*;
-import java.rmi.*;
-import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze sono pannelli il cui compito è quello di fare da contenitore per
@@ -21,15 +18,19 @@ import serverES.services_common_interfaces.data_handler.*;
  */
 public class PlaylistSongsViewPanel extends javax.swing.JPanel {
 
+    private String[] songsData;
     
-    private String[] songsIds;
     /**
      * Crea il contenitore che mostra le rappresentazioni grafiche delle canzoni di una playlist
      * passata come argomento.
-     * @param playList Playlist di cui mostrare le canzoni.
+     * @param playlistContents Playlist di cui mostrare le canzoni.
      */
-    public PlaylistSongsViewPanel(String[] songsIds) {
-        this.songsIds = songsIds;
+    public PlaylistSongsViewPanel(String[] playlistContents) {
+        songsData = playlistContents;
+        if(playlistContents.length<1|| playlistContents == null) {
+            System.out.println("Error: invalid playlists");
+            return;
+        }
         initComponents();
     }
 
@@ -37,33 +38,27 @@ public class PlaylistSongsViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        mainPanelScroll = new javax.swing.JScrollPane();
+        mainPanelContainer = new javax.swing.JPanel();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(800, 800));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(22, 33, 62));
-        jPanel1.setPreferredSize(new Dimension(jScrollPane1.getWidth(),songsIds.length>7?75*songsIds.length:7*75));
-        SongsDataHandler sdh = (SongsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.SONGS_DATA_HANDLER);
-        for(int i = 0; i<songsIds.length;i++){
-            try{
-                String songData = sdh.requestSongData(songsIds[i]);
-                jPanel1.add(Song.buildPanelForPlaylist(songData,EmotionalSongs.getLoggedUser()));
-            } catch (RemoteException ex){
-                System.out.println(ex.getMessage());
-            }
+        mainPanelContainer.setBackground(new java.awt.Color(22, 33, 62));
+        mainPanelContainer.setPreferredSize(new Dimension(mainPanelScroll.getWidth(),songsData.length>7?75*songsData.length:7*75));
+        for(int i = 0; i<songsData.length;i++){
+            mainPanelContainer.add(Song.buildPanelForPlaylist(songsData[i],EmotionalSongs.getLoggedUser()));
         }
-        jPanel1.setLayout(new java.awt.GridLayout(songsIds.length>7?songsIds.length:7, 1));
-        jScrollPane1.setViewportView(jPanel1);
+        mainPanelContainer.setLayout(new java.awt.GridLayout(songsData.length>7?songsData.length:7, 1));
+        mainPanelScroll.setViewportView(mainPanelContainer);
 
-        add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        add(mainPanelScroll, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel mainPanelContainer;
+    private javax.swing.JScrollPane mainPanelScroll;
     // End of variables declaration//GEN-END:variables
 }

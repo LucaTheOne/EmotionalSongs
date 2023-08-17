@@ -33,7 +33,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private final PlaylistsDataValidator playlistsDataChecker;
     private final SongsDataHandler songsDataHandler;
     
-    private final int tracksPerView = 100;
+    private final int tracksPerView = 10;
     private int startIndex = 0;
     private final int maxIndex;
     private boolean throughFullRepo = true;
@@ -47,6 +47,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         playlistsDataChecker = (PlaylistsDataValidator) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_VALIDATOR);
         songsDataHandler = (SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER);
         maxIndex = ((SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER)).getRepoSize();
+        actualSongsArray = new String[tracksPerView];
+        actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, startIndex+tracksPerView);
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -303,8 +305,8 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
         innerScroll.setOpaque(false);
-        innerScroll.setPreferredSize(new java.awt.Dimension(810, 3200));
-        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView+1, 1));
+        innerScroll.setPreferredSize(new java.awt.Dimension(810, tracksPerView+1));
+        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView+1, 1, 0, 1));
         for(int i = 0;i<tracksPerView;i++){
             innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
         }
@@ -352,7 +354,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             innerScroll.removeAll();
             throughFullRepo=true;
             for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
-                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+                innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
             scrollView.revalidate();
             scrollView.repaint();
@@ -388,7 +390,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         }
         actualSearchedSongIndex = 0;
         for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
-            innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
+            innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));   
         } 
         firstPage = true;
         lastPage = false;
@@ -419,7 +421,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 System.out.println(ex.getMessage());
             }
             for(int i = 0; i<actualSongsArray.length;i++){
-                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+                innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         }else{
             actualSearchedSongIndex -= tracksPerView;
@@ -428,7 +430,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 firstPage = true;
             }
             for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+tracksPerView)&&i<actualSongsArray.length;i++){
-                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+                innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         }
         innerScroll.revalidate();
@@ -452,7 +454,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 System.out.println(ex.getMessage());
             }
             for(int i = 0; i<actualSongsArray.length;i++){
-                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));
+                innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         } else {
             actualSearchedSongIndex += tracksPerView;
@@ -460,7 +462,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 actualSearchedSongIndex = actualSongsArray.length-tracksPerView;
             }
             for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
-                innerScroll.add(Song.buildPanelView(actualSongsArray[i]));   
+                innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));   
             }
         }
 
@@ -469,7 +471,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     
-    public void run() {
+    public static void run() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -551,4 +553,5 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private javax.swing.JPanel titlesPanel;
     private javax.swing.JLabel yearLabel1;
     // End of variables declaration//GEN-END:variables
+    
 }

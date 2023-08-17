@@ -19,7 +19,7 @@ public interface PlaylistsDataHandler extends Remote{
     /**
      * Metodo usato per richiedere al DB un array di stringhe, 
      * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
-     * ed il suo nome separati da "£SEP£".
+     * ed il suo nome separati da SEP.
      *      -Formato: "ID_PLAYLIST£SEP£User_PROP_ID£SEP£NOME_PLAYLIST" -
      * @param idUser id utente di cui si vuole sapere il nome delle playlist.
      * @return array di Stringhe contenente id e nomi delle playlist.

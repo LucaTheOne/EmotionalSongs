@@ -263,5 +263,7 @@ public abstract class ClientDialogs {
     public abstract String errorCommentLength();
     
     public abstract String errorSql();
+
+    public abstract String noPlaylists();
     
 }

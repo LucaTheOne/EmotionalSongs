@@ -10,7 +10,8 @@ package emotionalsongs.gui.main_window;
 
 import emotionalsongs.*;
 import emotionalsongs.client_internal_services.*;
-import emotionalsongs.gui.registration.*;
+import emotionalsongs.gui.repository.*;
+import java.io.*;
 
 /**
  * Classi le cui istanze sono il pannello laterale della schermata principale del software, quando un utente ha efettuato il login.
@@ -38,9 +39,9 @@ public class MenuLeftLogged extends javax.swing.JPanel {
 
         buttonsPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        repoButton = new javax.swing.JButton();
         PlayListButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        createPlaylistsButton = new javax.swing.JButton();
         leftSpaceVoidPanel = new javax.swing.JPanel();
         rightSpaceVoidPanel = new javax.swing.JPanel();
         upperSpaceVoidPanel = new javax.swing.JPanel();
@@ -60,19 +61,19 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(230, 300));
         jPanel2.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        jButton3.setBackground(new java.awt.Color(15, 52, 96));
-        jButton3.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Repository");
-        jButton3.setToolTipText("");
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        jButton3.setOpaque(true);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        repoButton.setBackground(new java.awt.Color(15, 52, 96));
+        repoButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        repoButton.setForeground(new java.awt.Color(255, 255, 255));
+        repoButton.setText("Repository");
+        repoButton.setToolTipText("");
+        repoButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        repoButton.setOpaque(true);
+        repoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                repoButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3);
+        jPanel2.add(repoButton);
 
         PlayListButton.setBackground(new java.awt.Color(15, 52, 96));
         PlayListButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
@@ -88,19 +89,19 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         });
         jPanel2.add(PlayListButton);
 
-        jButton4.setBackground(new java.awt.Color(15, 52, 96));
-        jButton4.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText(EmotionalSongs.dialoghi.newPlaylistText());
-        jButton4.setToolTipText("");
-        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        jButton4.setOpaque(true);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        createPlaylistsButton.setBackground(new java.awt.Color(15, 52, 96));
+        createPlaylistsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        createPlaylistsButton.setForeground(new java.awt.Color(255, 255, 255));
+        createPlaylistsButton.setText(EmotionalSongs.dialoghi.createNewPlaylist());
+        createPlaylistsButton.setToolTipText("");
+        createPlaylistsButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        createPlaylistsButton.setOpaque(true);
+        createPlaylistsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                createPlaylistsButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4);
+        jPanel2.add(createPlaylistsButton);
 
         buttonsPanel.add(jPanel2, java.awt.BorderLayout.NORTH);
 
@@ -140,17 +141,21 @@ public class MenuLeftLogged extends javax.swing.JPanel {
         mainPage.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        mainPage.setMainPanel(new RegistrationPanel(mainPage));
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void repoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repoButtonActionPerformed
+        try {
+            mainPage.setMainPanel(new RepositoryPanel());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_repoButtonActionPerformed
 
     private void PlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayListButtonActionPerformed
-        PlaylistsManager.getInstance().updatePlaylistsPanel();
+        PlaylistsManager.getInstance().openUserPlaylistsView();
     }//GEN-LAST:event_PlayListButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void createPlaylistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlaylistsButtonActionPerformed
         PlaylistsManager.getInstance().startCreation();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_createPlaylistsButtonActionPerformed
     
     
 
@@ -159,10 +164,10 @@ public class MenuLeftLogged extends javax.swing.JPanel {
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton closeButton;
     private javax.swing.JPanel closeButtonPanel;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton createPlaylistsButton;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel leftSpaceVoidPanel;
+    private javax.swing.JButton repoButton;
     private javax.swing.JPanel rightSpaceVoidPanel;
     private javax.swing.JPanel upperSpaceVoidPanel;
     // End of variables declaration//GEN-END:variables

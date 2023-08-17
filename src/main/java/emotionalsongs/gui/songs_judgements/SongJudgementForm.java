@@ -11,6 +11,7 @@ package emotionalsongs.gui.songs_judgements;
 
 import clientES.*;
 import emotionalsongs.*;
+import emotionalsongs.client_internal_services.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.playlists.*;
 import java.rmi.*;
@@ -35,8 +36,25 @@ public class SongJudgementForm extends javax.swing.JPanel {
     private SongPanelForPlaylistView callerComponent;
     private JFrame container;
     
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
+    
     private final EmotionsDataHandler emotionsDataHandler;
     private final EmotionsDataValidator emotionsDataValidator;
+    
+    private final int MERAVIGLIA = 0,
+            SOLEMNITY = 1,
+            TENDERNESS = 2,
+            NOSTALGIA = 3,
+            CALMNESS = 4,
+            POWER = 5,
+            JOY = 6,
+            TENSION = 7,
+            SADNESS = 8,
+            //ID_UNIVOCO = 0, REPO_INDEX = 1 NON RICHIESTI IN QUESTO SERVIZIO.
+            TITOLO = 2,
+            AUTHOR = 3,
+            YEAR = 4;
+            
     
     /**
      * Crea il form per creare un giudizio emozionale relativo alla canzone rappresentata dal tag passato
@@ -60,10 +78,10 @@ public class SongJudgementForm extends javax.swing.JPanel {
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-        String[] songDataSplitted = songData.split("£SEP£");
-        songTitle = songDataSplitted[2];
-        songAuthor = songDataSplitted[3];
-        songYear = songDataSplitted[4];
+        String[] songDataSplitted = songData.split(SEP);
+        songTitle = songDataSplitted[TITOLO];
+        songAuthor = songDataSplitted[AUTHOR];
+        songYear = songDataSplitted[YEAR];
         initComponents();
     }
 
@@ -984,7 +1002,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     //solemnityZone
     private void solemnityMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark1ActionPerformed
-        marks[1] = 1;
+        marks[SOLEMNITY] = 1;
         solemnityMark2.setSelected(false);
         solemnityMark3.setSelected(false);
         solemnityMark4.setSelected(false);
@@ -992,7 +1010,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_solemnityMark1ActionPerformed
 
     private void solemnityMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark2ActionPerformed
-        marks[1] = 2;
+        marks[SOLEMNITY] = 2;
         solemnityMark1.setSelected(false);
         solemnityMark3.setSelected(false);
         solemnityMark4.setSelected(false);
@@ -1000,7 +1018,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_solemnityMark2ActionPerformed
 
     private void solemnityMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark3ActionPerformed
-        marks[1] = 3;
+        marks[SOLEMNITY] = 3;
         solemnityMark2.setSelected(false);
         solemnityMark1.setSelected(false);
         solemnityMark4.setSelected(false);
@@ -1008,7 +1026,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_solemnityMark3ActionPerformed
 
     private void solemnityMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark4ActionPerformed
-        marks[1] = 4;
+        marks[SOLEMNITY] = 4;
         solemnityMark2.setSelected(false);
         solemnityMark3.setSelected(false);
         solemnityMark1.setSelected(false);
@@ -1016,7 +1034,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_solemnityMark4ActionPerformed
 
     private void solemnityMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solemnityMark5ActionPerformed
-        marks[1] = 5;
+        marks[SOLEMNITY] = 5;
         solemnityMark2.setSelected(false);
         solemnityMark3.setSelected(false);
         solemnityMark4.setSelected(false);
@@ -1024,7 +1042,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_solemnityMark5ActionPerformed
     //tenderness Zone
     private void tendernessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark1ActionPerformed
-        marks[2] = 1;
+        marks[TENDERNESS] = 1;
         tendernessMark2.setSelected(false);
         tendernessMark3.setSelected(false);
         tendernessMark4.setSelected(false);
@@ -1032,7 +1050,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tendernessMark1ActionPerformed
 
     private void tendernessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark2ActionPerformed
-        marks[2] = 2;
+        marks[TENDERNESS] = 2;
         tendernessMark1.setSelected(false);
         tendernessMark3.setSelected(false);
         tendernessMark4.setSelected(false);
@@ -1040,7 +1058,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tendernessMark2ActionPerformed
 
     private void tendernessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark3ActionPerformed
-        marks[2] = 3;
+        marks[TENDERNESS] = 3;
         tendernessMark2.setSelected(false);
         tendernessMark1.setSelected(false);
         tendernessMark4.setSelected(false);
@@ -1048,7 +1066,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tendernessMark3ActionPerformed
 
     private void tendernessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark4ActionPerformed
-        marks[2] = 4;
+        marks[TENDERNESS] = 4;
         tendernessMark1.setSelected(false);
         tendernessMark2.setSelected(false);
         tendernessMark3.setSelected(false);
@@ -1056,7 +1074,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tendernessMark4ActionPerformed
 
     private void tendernessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tendernessMark5ActionPerformed
-        marks[2] = 5;
+        marks[TENDERNESS] = 5;
         tendernessMark1.setSelected(false);
         tendernessMark2.setSelected(false);
         tendernessMark3.setSelected(false);
@@ -1064,7 +1082,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tendernessMark5ActionPerformed
     //nostalgia Zone
     private void nostalgiaMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark1ActionPerformed
-        marks[3] = 1;
+        marks[NOSTALGIA] = 1;
         nostalgiaMark2.setSelected(false);
         nostalgiaMark3.setSelected(false);
         nostalgiaMark4.setSelected(false);
@@ -1072,7 +1090,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nostalgiaMark1ActionPerformed
 
     private void nostalgiaMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark2ActionPerformed
-        marks[3] = 2;
+        marks[NOSTALGIA] = 2;
         nostalgiaMark1.setSelected(false);
         nostalgiaMark3.setSelected(false);
         nostalgiaMark4.setSelected(false);
@@ -1080,7 +1098,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nostalgiaMark2ActionPerformed
 
     private void nostalgiaMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark3ActionPerformed
-        marks[3] = 3;
+        marks[NOSTALGIA] = 3;
         nostalgiaMark1.setSelected(false);
         nostalgiaMark2.setSelected(false);
         nostalgiaMark4.setSelected(false);
@@ -1088,7 +1106,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nostalgiaMark3ActionPerformed
 
     private void nostalgiaMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark4ActionPerformed
-        marks[3] = 4;
+        marks[NOSTALGIA] = 4;
         nostalgiaMark1.setSelected(false);
         nostalgiaMark2.setSelected(false);
         nostalgiaMark3.setSelected(false);
@@ -1096,7 +1114,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nostalgiaMark4ActionPerformed
 
     private void nostalgiaMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nostalgiaMark5ActionPerformed
-        marks[3] = 5;
+        marks[NOSTALGIA] = 5;
         nostalgiaMark1.setSelected(false);
         nostalgiaMark2.setSelected(false);
         nostalgiaMark3.setSelected(false);
@@ -1104,7 +1122,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nostalgiaMark5ActionPerformed
     //calmness Zone
     private void calmnessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark1ActionPerformed
-        marks[4] = 1;
+        marks[CALMNESS] = 1;
         calmnessMark2.setSelected(false);
         calmnessMark3.setSelected(false);
         calmnessMark4.setSelected(false);
@@ -1112,7 +1130,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_calmnessMark1ActionPerformed
 
     private void calmnessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark2ActionPerformed
-        marks[4] = 2;
+        marks[CALMNESS] = 2;
         calmnessMark1.setSelected(false);
         calmnessMark3.setSelected(false);
         calmnessMark4.setSelected(false);
@@ -1120,7 +1138,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_calmnessMark2ActionPerformed
 
     private void calmnessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark3ActionPerformed
-        marks[4] = 3;
+        marks[CALMNESS] = 3;
         calmnessMark1.setSelected(false);
         calmnessMark2.setSelected(false);
         calmnessMark4.setSelected(false);
@@ -1128,7 +1146,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_calmnessMark3ActionPerformed
 
     private void calmnessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark4ActionPerformed
-        marks[4] = 4;
+        marks[CALMNESS] = 4;
         calmnessMark2.setSelected(false);
         calmnessMark3.setSelected(false);
         calmnessMark1.setSelected(false);
@@ -1136,7 +1154,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_calmnessMark4ActionPerformed
 
     private void calmnessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calmnessMark5ActionPerformed
-        marks[4] = 5;
+        marks[CALMNESS] = 5;
         calmnessMark2.setSelected(false);
         calmnessMark3.setSelected(false);
         calmnessMark4.setSelected(false);
@@ -1144,7 +1162,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_calmnessMark5ActionPerformed
     //power zone
     private void powerMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark1ActionPerformed
-        marks[5] = 1;
+        marks[POWER] = 1;
         powerMark2.setSelected(false);
         powerMark3.setSelected(false);
         powerMark4.setSelected(false);
@@ -1152,7 +1170,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_powerMark1ActionPerformed
 
     private void powerMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark2ActionPerformed
-        marks[5] = 2;
+        marks[POWER] = 2;
         powerMark1.setSelected(false);
         powerMark3.setSelected(false);
         powerMark4.setSelected(false);
@@ -1160,7 +1178,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_powerMark2ActionPerformed
 
     private void powerMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark3ActionPerformed
-        marks[5] = 3;
+        marks[POWER] = 3;
         powerMark2.setSelected(false);
         powerMark1.setSelected(false);
         powerMark4.setSelected(false);
@@ -1168,7 +1186,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_powerMark3ActionPerformed
 
     private void powerMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark4ActionPerformed
-        marks[5] = 4;
+        marks[POWER] = 4;
         powerMark2.setSelected(false);
         powerMark3.setSelected(false);
         powerMark1.setSelected(false);
@@ -1176,7 +1194,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_powerMark4ActionPerformed
 
     private void powerMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerMark5ActionPerformed
-        marks[5] = 5;
+        marks[POWER] = 5;
         powerMark2.setSelected(false);
         powerMark3.setSelected(false);
         powerMark4.setSelected(false);
@@ -1184,7 +1202,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_powerMark5ActionPerformed
     //joy zone
     private void joyMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark1ActionPerformed
-        marks[6] = 1;
+        marks[JOY] = 1;
         joyMark2.setSelected(false);
         joyMark3.setSelected(false);
         joyMark4.setSelected(false);
@@ -1192,7 +1210,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_joyMark1ActionPerformed
 
     private void joyMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark2ActionPerformed
-        marks[6] = 2;
+        marks[JOY] = 2;
         joyMark1.setSelected(false);
         joyMark3.setSelected(false);
         joyMark4.setSelected(false);
@@ -1200,7 +1218,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_joyMark2ActionPerformed
 
     private void joyMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark3ActionPerformed
-        marks[6] = 3;
+        marks[JOY] = 3;
         joyMark2.setSelected(false);
         joyMark1.setSelected(false);
         joyMark4.setSelected(false);
@@ -1208,7 +1226,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_joyMark3ActionPerformed
 
     private void joyMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark4ActionPerformed
-        marks[6] = 4;
+        marks[JOY] = 4;
         joyMark2.setSelected(false);
         joyMark3.setSelected(false);
         joyMark1.setSelected(false);
@@ -1216,7 +1234,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_joyMark4ActionPerformed
 
     private void joyMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyMark5ActionPerformed
-        marks[6] = 5;
+        marks[JOY] = 5;
         joyMark2.setSelected(false);
         joyMark3.setSelected(false);
         joyMark4.setSelected(false);
@@ -1224,7 +1242,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_joyMark5ActionPerformed
     //tension Zone
     private void tensionMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark1ActionPerformed
-        marks[7] = 1;
+        marks[TENSION] = 1;
         tensionMark2.setSelected(false);
         tensionMark3.setSelected(false);
         tensionMark4.setSelected(false);
@@ -1232,7 +1250,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tensionMark1ActionPerformed
 
     private void tensionMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark2ActionPerformed
-        marks[7] = 2;
+        marks[TENSION] = 2;
         tensionMark1.setSelected(false);
         tensionMark3.setSelected(false);
         tensionMark4.setSelected(false);
@@ -1240,7 +1258,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tensionMark2ActionPerformed
 
     private void tensionMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark3ActionPerformed
-        marks[7] = 3;
+        marks[TENSION] = 3;
         tensionMark2.setSelected(false);
         tensionMark1.setSelected(false);
         tensionMark4.setSelected(false);
@@ -1248,7 +1266,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tensionMark3ActionPerformed
 
     private void tensionMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark4ActionPerformed
-        marks[7] = 4;
+        marks[TENSION] = 4;
         tensionMark2.setSelected(false);
         tensionMark3.setSelected(false);
         tensionMark1.setSelected(false);
@@ -1256,7 +1274,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tensionMark4ActionPerformed
 
     private void tensionMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tensionMark5ActionPerformed
-        marks[7] = 5;
+        marks[TENSION] = 5;
         tensionMark2.setSelected(false);
         tensionMark3.setSelected(false);
         tensionMark4.setSelected(false);
@@ -1264,7 +1282,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tensionMark5ActionPerformed
     //sadness zone
     private void sadnessMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark1ActionPerformed
-        marks[8] = 1;
+        marks[SADNESS] = 1;
         sadnessMark2.setSelected(false);
         sadnessMark3.setSelected(false);
         sadnessMark4.setSelected(false);
@@ -1272,7 +1290,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_sadnessMark1ActionPerformed
 
     private void sadnessMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark2ActionPerformed
-        marks[8] = 2;
+        marks[SADNESS] = 2;
         sadnessMark1.setSelected(false);
         sadnessMark3.setSelected(false);
         sadnessMark4.setSelected(false);
@@ -1280,7 +1298,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_sadnessMark2ActionPerformed
 
     private void sadnessMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark3ActionPerformed
-        marks[8] = 3;
+        marks[SADNESS] = 3;
         sadnessMark2.setSelected(false);
         sadnessMark1.setSelected(false);
         sadnessMark4.setSelected(false);
@@ -1288,7 +1306,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_sadnessMark3ActionPerformed
 
     private void amazementMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark5ActionPerformed
-        marks[0] = 5;
+        marks[MERAVIGLIA] = 5;
         amazementMark2.setSelected(false);
         amazementMark3.setSelected(false);
         amazementMark4.setSelected(false);
@@ -1296,7 +1314,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_amazementMark5ActionPerformed
 
     private void amazementMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark4ActionPerformed
-        marks[0] = 4;
+        marks[MERAVIGLIA] = 4;
         amazementMark2.setSelected(false);
         amazementMark3.setSelected(false);
         amazementMark1.setSelected(false);
@@ -1304,7 +1322,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_amazementMark4ActionPerformed
 
     private void amazementMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark3ActionPerformed
-        marks[0] = 3;
+        marks[MERAVIGLIA] = 3;
         amazementMark2.setSelected(false);
         amazementMark1.setSelected(false);
         amazementMark4.setSelected(false);
@@ -1312,7 +1330,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_amazementMark3ActionPerformed
 
     private void amazementMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark2ActionPerformed
-        marks[0] = 2;
+        marks[MERAVIGLIA] = 2;
         amazementMark1.setSelected(false);
         amazementMark3.setSelected(false);
         amazementMark4.setSelected(false);
@@ -1321,7 +1339,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
 
     //amazementZone
     private void amazementMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amazementMark1ActionPerformed
-        marks[0] = 1;
+        marks[MERAVIGLIA] = 1;
         amazementMark2.setSelected(false);
         amazementMark3.setSelected(false);
         amazementMark4.setSelected(false);
@@ -1329,7 +1347,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_amazementMark1ActionPerformed
 
     private void sadnessMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark4ActionPerformed
-        marks[8] = 4;
+        marks[SADNESS] = 4;
         sadnessMark2.setSelected(false);
         sadnessMark3.setSelected(false);
         sadnessMark1.setSelected(false);
@@ -1337,7 +1355,7 @@ public class SongJudgementForm extends javax.swing.JPanel {
     }//GEN-LAST:event_sadnessMark4ActionPerformed
 
     private void sadnessMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sadnessMark5ActionPerformed
-        marks[8] = 5;
+        marks[SADNESS] = 5;
         sadnessMark2.setSelected(false);
         sadnessMark3.setSelected(false);
         sadnessMark4.setSelected(false);
@@ -1377,9 +1395,9 @@ public class SongJudgementForm extends javax.swing.JPanel {
             System.out.println(ex.getMessage());
             new PopUpAllert("Error communication!\noperation aborted!");
         }
-        //callerComponent.setVoteButton(false);
-        //callerComponent.revalidate();
-        //callerComponent.repaint();
+        callerComponent.setVoteButton(false);
+        callerComponent.revalidate();
+        callerComponent.repaint();
         SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_CompleteOperationActionPerformed
 

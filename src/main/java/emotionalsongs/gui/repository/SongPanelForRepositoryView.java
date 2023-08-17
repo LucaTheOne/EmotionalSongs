@@ -8,7 +8,7 @@
 
 package emotionalsongs.gui.repository;
 
-import emotionalsongs.*;
+import emotionalsongs.client_internal_services.ClientUtilities;
 import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.data_visualizer.*;
 import java.awt.*;
@@ -29,13 +29,15 @@ public class SongPanelForRepositoryView extends javax.swing.JPanel {
     private String representedSong;
     private String title,idUnique,author;
     private int year;
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
+    
     /**
      * Crea il pannello di rappresentazione della canzone passata come argomento.
      * @param representedSong Canzone rappresentata dal pannello.
      */
     public SongPanelForRepositoryView(String representedSong) {
         this.representedSong = representedSong;
-        String[] splitted = representedSong.split("£SEP£");
+        String[] splitted = representedSong.split(SEP);
         if(splitted.length!=5) System.out.println("Errore, stringa canzone non valida.");
         idUnique = splitted[0];
         //repo index isn't needed

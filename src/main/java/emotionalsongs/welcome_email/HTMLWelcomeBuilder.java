@@ -9,6 +9,7 @@
 package emotionalsongs.welcome_email;
 
 
+import emotionalsongs.client_internal_services.ClientUtilities;
 import emotionalsongs.*;
 import java.io.*;
 import java.util.logging.*;

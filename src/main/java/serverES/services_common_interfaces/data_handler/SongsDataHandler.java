@@ -30,7 +30,7 @@ public interface SongsDataHandler extends Remote{
      * Metodo usato per interrogare il database, ritorna un array di stringhe, 
      * nel quale in ogni posizione ci sono i dati di una canzone contenente nel titolo la stringa passata
      * come argomento.
-     * Gli elementi saranno separati da "£SEP£". 
+     * Gli elementi saranno separati da SEP. 
      *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param title stringa da ricercare nel titolo delle canzoni.
      * @return Array di stringhe con i dati delle canzoni contenenti la stringa argomento nel titolo.
@@ -42,7 +42,7 @@ public interface SongsDataHandler extends Remote{
      * Metodo usato per interrogare il database; ritorna un array di stringhe, 
      * nel quale in ogni posizione ci sono i dati di una canzone che contiene sia, nel campo autore, la stringa passata
      * come argomento che , nel campo anno, l' intero passato come argomento.
-     * Gli elementi saranno separati da "£SEP£".
+     * Gli elementi saranno separati da SEP.
      *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param author Stringa che si vuole ricercare nel campo autore.
      * @param year anno che si intende cercare.
@@ -53,7 +53,7 @@ public interface SongsDataHandler extends Remote{
     //luca - fatto
     /**
      * Metodo usato per interrogare il database, ritorna un array di stringhe, nel quale in ogni posizione ci sono i dati di una canzone,
-     * Separati da "£SEP£", a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
+     * Separati da SEP, a partire dalla canzone di indice startIndex fino a quella di indice endIndex inclusa.
      *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param startIndex indice della prima canzone richiesta.
      * @param endIndex indice dell' ultima canzone richiesta.

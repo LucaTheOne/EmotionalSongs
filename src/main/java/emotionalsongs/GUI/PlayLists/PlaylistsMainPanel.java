@@ -25,6 +25,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsManager playlistsManager = PlaylistsManager.getInstance();
     private String[] playlistsData;
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
     
     
     /**
@@ -77,8 +78,8 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelLeft.setLayout(new java.awt.GridLayout(playlistsData.length<15? 15 : playlistsData.length, 1, 5, 5));
         if(playlistsData.length != 0){
             for(int i = 0; i<playlistsData.length;i++){
-                String playlistId = playlistsData[i].split("£SEP£")[0];
-                String playlistName = playlistsData[i].split("£SEP£")[2];
+                String playlistId = playlistsData[i].split(SEP)[0];
+                String playlistName = playlistsData[i].split(SEP)[2];
                 innerPanelLeft.add(Playlist.buildPlaylistButton(playlistName, playlistId), playlistsManager);
             }
         }
@@ -133,9 +134,8 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     public void setLeftInnerPanel(String[] userPlaylistsData) {
         innerPanelLeft.removeAll();
         for(int i = 0; i<userPlaylistsData.length;i++){
-            String id = userPlaylistsData[i].split("$SEP£")[0];
-            String nome = userPlaylistsData[i].split("$SEP£")[2];
-            innerPanelLeft.add(new PlaylistButton(nome, id));
+            String[] lineData = userPlaylistsData[i].split(SEP);
+            innerPanelLeft.add(new PlaylistButton(lineData[0], lineData[2]));
         }
         innerPanelLeft.revalidate();
         innerPanelLeft.repaint();

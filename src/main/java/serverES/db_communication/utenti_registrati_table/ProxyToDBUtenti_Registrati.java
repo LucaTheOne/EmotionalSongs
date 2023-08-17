@@ -9,7 +9,6 @@ package serverES.db_communication.utenti_registrati_table;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
-import serverES.db_communication.*;
 import serverES.services_common_interfaces.data_handler.*;
 
 /**
@@ -20,7 +19,6 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
-    private final String UNIV_SEP = DBConnector.UNIV_SEP;
     
     public ProxyToDBUtenti_Registrati(Connection DBConn) throws RemoteException{
         super();
@@ -33,6 +31,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
     * @param songId Id della canzone da votare.
     * @return true se l' uente non ha già espresso un parere, false altrimenti.
+    * @throws java.rmi.RemoteException
     */
     @Override
     public boolean userCanVoteSong(String userId,String songId) throws RemoteException{ 
@@ -43,7 +42,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             statementControl.setString(2, songId);
             ResultSet resultSet = statementControl.executeQuery();
             resultSet.next();
-            if(resultSet.getInt(1)<1) return true; 
+            if(resultSet.getInt(1)==0) return true; 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -52,27 +51,22 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     
     //luca - fatto
     /**
-     * Metodo che aggiorna il DB con un nuovo utente, ed il suo indirizzo.
-     * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
+     * Metodo che aggiorna il DB con un nuovo utente, ed il suo indirizzo.Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
      * @param userId
      * @param email
      * @param cf
      * @param password
      * @param nome
      * @param cognome
-     * @param dataNascita 
-     * @param tipoIndirizzo
+     * @param dataNascita
      * @param indirizzo
-     * @param civico
-     * @param cap
-     * @param nazione
-     * @param provincia
-     * @param città
      * @return 
      * 0 - operazione completata con successo.
      * 1 - operazione non andata a buon fine.
+     * @throws java.rmi.RemoteException
      */
     @Override
+    @SuppressWarnings("deprecation")
     public int requestToUpdateUsersTable(
             String userId, 
             String email, 
@@ -84,7 +78,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             String indirizzo
         ) throws RemoteException{
         try {
-            String query = "INSERT INTO UTENTI_REGISTRATI(ID_USER,EMAIL,CF,PASSWORD,NOME,COGNOME,DATA_NASCITA,INDIRIZZO_RESIDENZA) VALUES (?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO UTENTI_REGISTRATI(ID_USER,EMAIL,CF,PASSWORD,NOME,COGNOME,DATA_NASCITA,INDIRIZZO) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
             int yyyy,mm,dd;
             yyyy = Integer.parseInt(dataNascita.split("/")[2]);
@@ -106,5 +100,9 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             return 1;
         }
     }
-    
+    /*
+    public static void main(String[] args) throws RemoteException {
+        boolean can = new ProxyToDBUtenti_Registrati(DBConnector.getDefaultConnection()).userCanVoteSong("theOne", "TRYVYLV128F4222E69");
+        System.out.println(can);
+    }*/
 }

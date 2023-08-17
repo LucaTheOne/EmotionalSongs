@@ -509,5 +509,10 @@ public class English extends ClientDialogs{
     public String errorSql() {
        return "Error: impossible to comunicate with the DataBase!";
     }
+
+    @Override
+    public String noPlaylists() {
+        return "You haven't any playlists yet! Please proceed to create one cliccking on the button: '"+createNewPlaylist()+"'.";
+    }
     
 }

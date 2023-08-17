@@ -8,6 +8,7 @@
 
 package emotionalsongs.gui.registration;
 
+import emotionalsongs.client_internal_services.ClientUtilities;
 import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.gui.main_window.*;

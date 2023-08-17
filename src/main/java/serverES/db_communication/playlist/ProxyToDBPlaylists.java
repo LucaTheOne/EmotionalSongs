@@ -6,6 +6,7 @@
  */
 package serverES.db_communication.playlist;
 
+import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -20,7 +21,6 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
 
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
-    private final String UNIV_SEP = DBConnector.UNIV_SEP;
     
     public ProxyToDBPlaylists(Connection DBConn) throws RemoteException{
         super();
@@ -31,7 +31,7 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
     /**
      * Metodo che ritorna un array di stringhe, 
      * nel quale ogni posizione contiene l'id univoco di una playlist dell' utente
-     * ed il suo nome separati da "£SEP£".
+     * ed il suo nome separati da SEP.
      *      -Formato: "ID_PLAYLIST£SEP£User_PROP_ID£SEP£NOME_PLAYLIST" -
      * @param idUser id utente di cui si vuole sapere il nome delle playlist.
      * @return array di Stringhe contenente id e nomi delle playlist, null se l' utente non ha playlist.
@@ -168,11 +168,14 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
     @Override
     public int getUserPlaylistsNumber(String userId) throws RemoteException{
         try {
-            String query = "SELECT COUNT(*) FROM PLAYLIST WHERE USER_PROP_ID = '"+userId+"';";
+            String query = "SELECT COUNT(*) FROM PLAYLIST WHERE USER_PROP_ID = ?;";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
+            statement.setString(1, userId);
             ResultSet result = statement.executeQuery();
             result.next();
-            return result.getInt(1);
+            int n = result.getInt(1);
+            statement.close();
+            return n;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return 0;

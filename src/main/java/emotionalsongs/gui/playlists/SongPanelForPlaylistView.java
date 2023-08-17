@@ -12,6 +12,7 @@ package emotionalsongs.gui.playlists;
 import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;
+import emotionalsongs.client_internal_services.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.songs_judgements.*;
 import java.awt.*;
@@ -25,12 +26,19 @@ import serverES.services_common_interfaces.data_handler.*;
  * Classe le cui istanze sono rappresentazioni grafiche delle canzoni di una playlist
  */
 public class SongPanelForPlaylistView extends javax.swing.JPanel {
-
-    private final SongsDataHandler songsDataHandler;
+    
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
     private final UsersDataHandler usersDataHandler;
     private final String[] songData;//{(0:)ID_UNIVOCO £SEP£ (1:)REPO_INDEX £SEP£ (2:)TITOLO £SEP£ (3:)AUTORE £SEP£ (4:)ANNO} 
     private boolean canBeVotedByUser;
     private String userId;
+    
+    private final int 
+            ID_UNIQUE = 0,
+            //REPO_INDEX = 1, not requested in this service.
+            TITLE = 2,
+            AUTHOR = 3,
+            YEAR = 4;
     /**
      * Crea il pannello di rappresentanza, per una playlist, della canzone relativa all' id passato come argomento. 
      * all' utente che la possiede.
@@ -38,13 +46,11 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
      */
     public SongPanelForPlaylistView(String songData,String loggedUser) {
         ServicesProvider sp = ServicesProvider.getInstance();
-        songsDataHandler = (SongsDataHandler) sp.getService(ServicesProvider.SONGS_DATA_HANDLER);
         usersDataHandler = (UsersDataHandler) sp.getService(ServicesProvider.USERS_DATA_HANDLER);
         userId = loggedUser;
-            System.out.println(songData);
-        this.songData = songData.split("£SEP£");
+        this.songData = songData.split(SEP);
         try {
-            canBeVotedByUser = usersDataHandler.userCanVoteSong(loggedUser, songData);
+            canBeVotedByUser = usersDataHandler.userCanVoteSong(loggedUser, this.songData[ID_UNIQUE]);
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
@@ -82,7 +88,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText(songData[2]);
+        titleLabel.setText(songData[TITLE]);
         titleLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         titlePanel.add(titleLabel, java.awt.BorderLayout.CENTER);
 
@@ -109,7 +115,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
         AuthorYearLabels.setLayout(new java.awt.BorderLayout());
 
         authorLabel.setForeground(new java.awt.Color(204, 204, 204));
-        authorLabel.setText(songData[3]+"       "+String.valueOf(songData[4]));
+        authorLabel.setText(songData[AUTHOR]+"       "+String.valueOf(songData[YEAR]));
         authorLabel.setPreferredSize(new java.awt.Dimension(400, 20));
         AuthorYearLabels.add(authorLabel, java.awt.BorderLayout.CENTER);
 
@@ -192,19 +198,17 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
     private void ytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ytButtonActionPerformed
         Desktop desktop = java.awt.Desktop.getDesktop();
             try {
-                //specify the protocol along with the URL
 		URI linkToYT = new URI(Song.buildResearchQueryUrl(songData[2], songData[3], Integer.parseInt(songData[4])));
 		desktop.browse(linkToYT);
             } catch (URISyntaxException e) {
 		// TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
     }//GEN-LAST:event_ytButtonActionPerformed
 
     private void voteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteButtonActionPerformed
-        
         JFrame voteFrame = new JFrame();
         voteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         voteFrame.setSize(1080, 720);

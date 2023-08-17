@@ -6,6 +6,7 @@
  */
 package serverES.db_communication.emozioni;
 
+import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -20,7 +21,6 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
     
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
-    private final String UNIV_SEP = DBConnector.UNIV_SEP;
     
     public ProxyToDBEmozioni(Connection DBConn) throws RemoteException{
         super();
@@ -71,7 +71,11 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
         }
         //control comment length
         if (comment.length()>256) {
-            System.out.println("Error comment contain too characters, max: 256, actual: "+comment.length());
+            System.out.println("Error: comment contain too characters, max: 256, actual: "+comment.length());
+            return 2;
+        }
+        if(!ServerUtils.isFitToPostgresql(comment)){
+            System.out.println("Error: comment contain not admitted characters, only ASCII permitted!");
             return 2;
         }
         
@@ -89,10 +93,19 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
             statement.close();
         } catch (SQLException ex) {
             System.out.println("Error: impossible to update Emozioni table!");
-            System.out.println(ex.getCause());
+            System.out.println(ex.getMessage());
             return 1;
         }
         return 0;
     }
-
+    /*
+    public static void main(String[] args) throws RemoteException {
+        new ProxyToDBEmozioni(DBConnector.getDefaultConnection()).voteSongEmotions(
+                "theOne",
+                "TRHHLUR128F932AFB4", 
+                new int[]{2,3,4,5,4,3,2,1,1}, 
+                "prova"
+        );
+        System.exit(0);
+    }*/
 }

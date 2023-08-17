@@ -9,6 +9,7 @@
 
 package emotionalsongs.gui.repository;
 
+import emotionalsongs.client_internal_services.ClientUtilities;
 import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.basic_structures.*;

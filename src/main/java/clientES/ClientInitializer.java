@@ -7,7 +7,6 @@
 package clientES;
 
 import emotionalsongs.*;
-import emotionalsongs.dialogs.*;
 import emotionalsongs.gui.generics.*;
 import emotionalsongs.gui.main_window.*;
 /**
@@ -17,8 +16,6 @@ import emotionalsongs.gui.main_window.*;
 public class ClientInitializer extends javax.swing.JFrame{
     
     private InitializationFrame initFrame;
-    private EmotionalSongs emotionalSongs;
-    private ClientDialogs language;
     
     /**
      * Creates new form RequestServiceHostFrame
@@ -26,7 +23,6 @@ public class ClientInitializer extends javax.swing.JFrame{
     public ClientInitializer() {
         initFrame = new InitializationFrame();
         initFrame.setVisible(true);
-        language = EmotionalSongs.dialoghi;
         initComponents();
         this.setVisible(true);
     }

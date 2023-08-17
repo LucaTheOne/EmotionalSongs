@@ -4,16 +4,20 @@
  * Riccardo Rosarin - 749914 - VA
  * Eleonora Macchi - 748736 - VA
  */
-package serverES.db_communication;
+package serverES;
 
 import java.sql.*;
 import java.util.*;
 import org.apache.commons.lang3.*;
+import serverES.db_communication.*;
 
 /**
  * Classe contenente metodi utili ai servizi remoti per svolgere i loro rispettivi compiti.
  */
 public class ServerUtils {
+    
+    //COMMON STRINGS
+    public static final String STRING_SEPARATOR = "£SEP£";
     
     /**
      * Metodo usato per controllare che la stringa passata come argomento sia composta da soli caratteri ASCII.
@@ -53,7 +57,7 @@ public class ServerUtils {
             while (queryResultSet.next()){
                 String stringaFormattata = "";
                 for (int i = 0; i < numberOfColumns; i++) {    
-                    stringaFormattata+=queryResultSet.getString(i+1) + (i==numberOfColumns-1? "":DBConnector.UNIV_SEP);
+                    stringaFormattata+=queryResultSet.getString(i+1) + (i==numberOfColumns-1? "":DBConnector.SEP);
                 }
                 listaRisultati.add(stringaFormattata);
             }

@@ -6,6 +6,7 @@
  */
 package serverES.db_communication.canzoni;
 
+import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -20,7 +21,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
 
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
-    private final String UNIV_SEP = DBConnector.UNIV_SEP;
+    private final String UNIV_SEP = DBConnector.SEP;
     
     public ProxyToDBCanzoni(Connection DBConn)throws RemoteException{
         super();
@@ -38,11 +39,14 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     @Override
     public String requestSongData(String songId)throws RemoteException{
         try {
-            String query = "SELECT * FROM CANZONI WHERE ID_UNIVOCO = '"+songId+"';";
+            String query = "SELECT * FROM CANZONI WHERE ID_UNIVOCO = ?;" ;
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
+            statement.setString(1, songId);
             ResultSet result = statement.executeQuery();
             String resulString[] = ServerUtils.convToArrayStr(result);
+            System.out.println(resulString[0]);
             if(resulString.length != 1) return null;
+            statement.close();
             return resulString[0];
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -117,7 +121,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
             String query = "SELECT * FROM CANZONI WHERE REPO_INDEX BETWEEN "+startIndex+" AND "+endIndex+";";
             Statement statement = CONNECTION_TO_DB.createStatement();
             ResultSet queryResult = statement.executeQuery(query);
-            String[] results = serverES.db_communication.ServerUtils.convToArrayStr(queryResult);
+            String[] results = serverES.ServerUtils.convToArrayStr(queryResult);
             return results;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -145,7 +149,8 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     
     
     public static void main(String[] args) throws RemoteException {
-        String res = new ProxyToDBCanzoni(DBConnector.getDefaultConnection()).requestSongData("TRMYDFV128F42511FC");
+        ProxyToDBCanzoni pc = new ProxyToDBCanzoni(DBConnector.getDefaultConnection());
+        String res = pc.requestSongData("TRVICBU128F424ADCE");
         System.out.println(res);
     }
 }

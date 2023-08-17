@@ -518,4 +518,10 @@ public class Italiano extends ClientDialogs{
     public String errorSql() {
         return "Errore di comunicazione con il database!";
     }
+
+    @Override
+    public String noPlaylists() {
+                return "Non possiede alcuna playlists, perfavorte ne crei una premendo sul bottone: '" +createNewPlaylist()+"'.";
+
+    }
 }

@@ -9,6 +9,7 @@
 package emotionalsongs.gui.main_window;
 
 
+import emotionalsongs.client_internal_services.ClientUtilities;
 import emotionalsongs.*;
 import java.awt.*;
 import javax.swing.*;

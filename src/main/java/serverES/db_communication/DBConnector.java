@@ -9,6 +9,7 @@ package serverES.db_communication;
 import emotionalsongs.gui.allerter.*;
 import java.io.*;
 import java.sql.*;
+import serverES.*;
 
 /**
  *
@@ -18,7 +19,7 @@ public class DBConnector implements Serializable{
     
     private static final long serialVersionUID = 1L;
     protected static final int PORT_TO_DB = 9876;
-    public static String UNIV_SEP = "£SEP£";
+    public static String SEP = ServerUtils.STRING_SEPARATOR;
 
     public static Connection getConnection(int DBPort) {
         Connection connection = null;
