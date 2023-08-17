@@ -8,6 +8,8 @@
 
 package emotionalsongs.gui.registration;
 
+import serverES.server_services_common_interfaces.data_validator.UsersDataValidator;
+import serverES.server_services_common_interfaces.data_handler.UsersDataHandler;
 import emotionalsongs.client_internal_services.ClientUtilities;
 import clientES.*;
 import emotionalsongs.*;
@@ -16,8 +18,6 @@ import emotionalsongs.welcome_email.*;
 import java.awt.*;
 import java.rmi.*;
 import javax.swing.*;
-import serverES.services_common_interfaces.data_handler.*;
-import serverES.services_common_interfaces.data_validator.*;
 
 /**
  * Classe le cui istanze sono dei form per la registrazione di un nuovo utente.

@@ -6,10 +6,10 @@
  */
 package serverES;
 
+import serverES.db_connector.DBConnector;
 import java.sql.*;
 import java.util.*;
 import org.apache.commons.lang3.*;
-import serverES.db_communication.*;
 
 /**
  * Classe contenente metodi utili ai servizi remoti per svolgere i loro rispettivi compiti.

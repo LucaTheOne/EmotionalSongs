@@ -6,6 +6,8 @@
  */
 package emotionalsongs.client_internal_services;
 
+import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
+import serverES.server_services_common_interfaces.data_handler.EmotionsDataHandler;
 import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.gui.allerter.*;
@@ -16,7 +18,6 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
 import serverES.*;
-import serverES.services_common_interfaces.data_handler.*;
 
 
 /**

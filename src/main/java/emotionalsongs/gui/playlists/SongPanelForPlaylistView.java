@@ -9,9 +9,10 @@
 
 package emotionalsongs.gui.playlists;
 
+import serverES.server_services_common_interfaces.data_handler.UsersDataHandler;
+import emotionalsongs.wrappers.Song;
 import clientES.*;
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.client_internal_services.*;
 import emotionalsongs.gui.allerter.*;
 import emotionalsongs.gui.songs_judgements.*;
@@ -20,7 +21,6 @@ import java.io.*;
 import java.net.*;
 import java.rmi.*;
 import javax.swing.*;
-import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze sono rappresentazioni grafiche delle canzoni di una playlist

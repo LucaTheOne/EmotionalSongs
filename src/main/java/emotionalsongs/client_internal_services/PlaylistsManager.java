@@ -9,6 +9,8 @@
 
 package emotionalsongs.client_internal_services;
 
+import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
+import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
 import clientES.*;
 import emotionalsongs.*;
 import emotionalsongs.gui.allerter.*;
@@ -16,8 +18,6 @@ import emotionalsongs.gui.main_window.*;
 import emotionalsongs.gui.playlists.*;
 import java.rmi.*;
 import java.util.*;
-import serverES.services_common_interfaces.data_handler.*;
-import serverES.services_common_interfaces.data_validator.*;
 
 
 /**

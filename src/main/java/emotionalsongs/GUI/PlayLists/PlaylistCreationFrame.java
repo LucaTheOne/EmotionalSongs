@@ -9,14 +9,15 @@
 
 package emotionalsongs.gui.playlists;
 
+import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
+import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
+import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
+import emotionalsongs.wrappers.Song;
 import clientES.*;
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.client_internal_services.*;
 import java.rmi.*;
 import javax.swing.*;
-import serverES.services_common_interfaces.data_handler.*;
-import serverES.services_common_interfaces.data_validator.*;
 
 /**
  * Classe le cui istanze sono form per la creazione di nuove playlist.

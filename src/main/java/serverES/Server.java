@@ -6,18 +6,26 @@
  */
 package serverES;
 
+import serverES.server_services_common_interfaces.data_validator.UsersDataValidator;
+import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
+import serverES.server_services_common_interfaces.data_validator.EmotionsDataValidator;
+import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
+import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
+import serverES.server_services_common_interfaces.data_handler.EmotionsDataHandler;
+import serverES.server_services_common_interfaces.data_handler.UsersDataHandler;
+import serverES.server_services.canzoni.ProxyToDBCanzoni;
+import serverES.server_services.emozioni.EmozioniDataChecker;
+import serverES.server_services.emozioni.ProxyToDBEmozioni;
+import serverES.server_services.playlist.PlaylistsDataChecker;
+import serverES.server_services.playlist.ProxyToDBPlaylists;
+import serverES.server_services.utenti_registrati.UtentiDataChecker;
+import serverES.server_services.utenti_registrati.ProxyToDBUtenti_Registrati;
+import serverES.db_connector.DBConnector;
 import java.net.*;
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.sql.*;
 import java.util.*;
-import serverES.db_communication.*;
-import serverES.db_communication.canzoni.*;
-import serverES.db_communication.emozioni.*;
-import serverES.db_communication.playlist.*;
-import serverES.db_communication.utenti_registrati_table.*;
-import serverES.services_common_interfaces.data_handler.*;
-import serverES.services_common_interfaces.data_validator.*;
 
 
 

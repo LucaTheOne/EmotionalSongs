@@ -9,16 +9,16 @@
 
 package emotionalsongs.gui.repository;
 
+import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
+import emotionalsongs.wrappers.Song;
 import emotionalsongs.client_internal_services.ClientUtilities;
 import clientES.*;
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.gui.main_window.*;
 import java.awt.*;
 import java.io.*;
 import java.rmi.*;
 import java.util.logging.*;
-import serverES.services_common_interfaces.data_handler.*;
 
 /**
  *Classe le cui istanze mostrano il repository di canzoni.

@@ -8,8 +8,8 @@
 
 package emotionalsongs.gui.data_visualizer;
 
+import emotionalsongs.wrappers.Emotions;
 import emotionalsongs.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.client_internal_services.*;
 import emotionalsongs.gui.allerter.*;
 import java.io.*;

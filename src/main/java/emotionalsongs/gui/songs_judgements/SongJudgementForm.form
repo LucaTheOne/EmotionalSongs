@@ -108,7 +108,7 @@
                           <Font name="Helvetica Neue" size="36" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="emotionalsongs.basic_structures.Emotions.AMAZEMENT.getName()" type="code"/>
+                          <Connection code="emotionalsongs.wrappers.Emotions.AMAZEMENT.getName()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -123,7 +123,7 @@
                           <Font name="Helvetica Neue" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="emotionalsongs.basic_structures.Emotions.AMAZEMENT.getDescription()" type="code"/>
+                          <Connection code="emotionalsongs.wrappers.Emotions.AMAZEMENT.getDescription()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -246,7 +246,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.SOLEMNITY.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.SOLEMNITY.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -261,7 +261,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.SOLEMNITY.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.SOLEMNITY.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -598,7 +598,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.TENDERNESS.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.TENDERNESS.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -613,7 +613,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.TENDERNESS.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.TENDERNESS.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -721,7 +721,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.NOSTALGIA.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.NOSTALGIA.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -736,7 +736,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.NOSTALGIA.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.NOSTALGIA.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -844,7 +844,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.CALMNESS.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.CALMNESS.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -859,7 +859,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.CALMNESS.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.CALMNESS.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -967,7 +967,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.POWER.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.POWER.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -982,7 +982,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.POWER.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.POWER.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1090,7 +1090,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.JOY.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.JOY.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1105,7 +1105,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.JOY.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.JOY.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1213,7 +1213,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.TENSION.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.TENSION.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1228,7 +1228,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.TENSION.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.TENSION.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1336,7 +1336,7 @@
                       <Font name="Helvetica Neue" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.SADNESS.getName()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.SADNESS.getName()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1351,7 +1351,7 @@
                       <Font name="Helvetica Neue" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="emotionalsongs.basic_structures.Emotions.SADNESS.getDescription()" type="code"/>
+                      <Connection code="emotionalsongs.wrappers.Emotions.SADNESS.getDescription()" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>

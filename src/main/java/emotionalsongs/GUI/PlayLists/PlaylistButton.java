@@ -9,11 +9,11 @@
 
 package emotionalsongs.gui.playlists;
 
+import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
+import emotionalsongs.wrappers.Playlist;
 import clientES.*;
-import emotionalsongs.basic_structures.*;
 import emotionalsongs.client_internal_services.*;
 import java.rmi.*;
-import serverES.services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze rappresentano i bottoni di ispezione delle playlist passate come argomenti al
