@@ -9,11 +9,11 @@
 
 package emotionalsongs.gui.playlists;
 
-import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
-import emotionalsongs.wrappers.Playlist;
 import clientES.*;
 import emotionalsongs.client_internal_services.*;
+import emotionalsongs.wrappers.*;
 import java.rmi.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze rappresentano i bottoni di ispezione delle playlist passate come argomenti al
@@ -27,13 +27,16 @@ public class PlaylistButton extends javax.swing.JPanel {
      */
     private final String playlistName;
     private final String playlistId;
-    private final PlaylistsDataHandler playlistsDataHandler;
+    private final PlaylistsDataHandler PLAYLISTS_DATA_HANDLER;
+    private final SongsDataHandler SONGS_DATA_HANDLER;
     private final PlaylistsManager playListsManager = PlaylistsManager.getInstance();
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
     
     public PlaylistButton(String playlistName, String playlistId) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
-        playlistsDataHandler = (PlaylistsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
+        PLAYLISTS_DATA_HANDLER = (PlaylistsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
+        SONGS_DATA_HANDLER = (SongsDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.SONGS_DATA_HANDLER);
         initComponents();
     }
 
@@ -64,8 +67,9 @@ public class PlaylistButton extends javax.swing.JPanel {
 
     private void playListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListButtonActionPerformed
         try {
-            String[] research = playlistsDataHandler.requestPlaylistSongs(playlistId);
+            String[] research = PLAYLISTS_DATA_HANDLER.requestPlaylistSongs(playlistId);
             String[] songsData = new String[research.length];
+            for(int i = 0; i<songsData.length;i++) songsData[i] = SONGS_DATA_HANDLER.requestSongData(research[i].split(SEP)[1]);
             playListsManager.setRightPane(Playlist.buildPlaylistContentsView(songsData));
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
