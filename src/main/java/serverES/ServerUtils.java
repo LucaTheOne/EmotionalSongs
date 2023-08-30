@@ -6,10 +6,15 @@
  */
 package serverES;
 
-import serverES.db_connector.DBConnector;
+import emotionalsongs.*;
+import java.awt.image.*;
+import java.io.*;
 import java.sql.*;
 import java.util.*;
+import javax.imageio.*;
+import javax.swing.*;
 import org.apache.commons.lang3.*;
+import serverES.db_connector.*;
 
 /**
  * Classe contenente metodi utili ai servizi remoti per svolgere i loro rispettivi compiti.
@@ -18,6 +23,9 @@ public class ServerUtils {
     
     //COMMON STRINGS
     public static final String STRING_SEPARATOR = "£SEP£";
+    
+    //SERVER IMAGES
+    public static ImageIcon serverIcon = new ImageIcon(loadImage("serverLogo.png"));
     
     /**
      * Metodo usato per controllare che la stringa passata come argomento sia composta da soli caratteri ASCII.
@@ -114,5 +122,15 @@ public class ServerUtils {
             return null;
         }
         return idProposed;
+    }
+    
+    private static BufferedImage loadImage(String pathString){
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(EmotionalSongs.class.getResource("/"+"images"+"/"+pathString));
+        } catch (IOException ex) {
+            ex.getCause();
+        }
+        return img;
     }
 }

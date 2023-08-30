@@ -32,7 +32,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      */
     private boolean isMailValid(String email)
     {
-        if(email == null) return false;
+        if(email == null||email.isBlank()) return false;
         // Regex to check valid password.
         String regex = "^(.+)@(.+)$";
         // Compile the ReGex
@@ -40,8 +40,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         // Pattern class contains matcher() method to find matching between given password and regular expression.
         Matcher m = p.matcher(email);
         // Nel caso la password non rispettasse i requisiti
-      
-        return m.matches() && ServerUtils.isFitToPostgresql(email);
+        if(ServerUtils.isFitToPostgresql(email)) 
+            return m.matches();
+        else return false;
     }
     
     /**
@@ -61,8 +62,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
     * @return True se la password rispetta tutti i criteri, false altrimenti.
     * 
     **/
-    private boolean checkPasswordValidity(String password) throws PatternSyntaxException{ 
-        if(password == null) return false;
+    private boolean isPasswordValid(String password) throws PatternSyntaxException{ 
+        if(password == null|| password.isBlank()) return false;
     
         String regex = "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=!])" + "(?=\\S+$).{8,20}";
     /** Compila il pattern precedente. **/
@@ -91,8 +92,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return True o False.
      */
     private boolean isNameValid(String name){
-        if(name == null) return false;
-        if (name.isBlank() || name.length()>20 || name.length()<2 || !(ServerUtils.isFitToPostgresql(name))) {
+        if (name == null || name.isBlank() || name.length()>20 || name.length()<2 || !(ServerUtils.isFitToPostgresql(name))) {
             return false;   
         }
         return true;
@@ -112,8 +112,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return True o False.
      */
     private boolean isSurnameValid(String surname){
-        if(surname == null) return false;
-        if (surname == null && surname.length()>20||surname.length()<2||surname.isBlank()|| !(ServerUtils.isFitToPostgresql(surname))) {
+
+        if (surname == null || surname.isBlank() || surname.length()>20||surname.length()<2|| !(ServerUtils.isFitToPostgresql(surname))) {
             return false;
         }
         return true;
@@ -139,6 +139,22 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return m.matches();
     }
     
+    private boolean isCFTaken(String cf){
+        try {
+            String query = "SELECT COUNT(*) FROM UTENTI_REGISTRATI WHERE CF = ?";
+            PreparedStatement statement = DBConnector.getConnection().prepareStatement(query);
+            statement.setString(1, cf);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int res = resultSet.getInt(1);
+            if(res != 0) return true;
+            else return false;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return true;
+        }
+    }
+    
     /**
      * Metodo che convalida che la data inserita sia nel formato corretto: dd/mm/yyyy.
      * @param birthDay data di nascita da validare.
@@ -158,28 +174,34 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      */
     private boolean isAddressValid(String indirizzo) 
     {
-        if(indirizzo == null) return false;
-        String regex = "^([A-Za-z]{3,}" + "\s[A-Za-z]{2,}" + "\s[0-9]{1,4}" + "\s[A-Za-z]{2,}" + "\s[0-9]{5}" + "\s[A-Z]{2}" + "\s[A-Za-z]{4,})$";
-        /** compila il pattern precedente **/
-        Pattern p = Pattern.compile(regex);
-        /** Pattern class contiene il metodo .matcher() per verificare se l'indirizzo coincide con il pattern.**/
-        Matcher m = p.matcher(indirizzo);
-        /**
-        * Questa parte del codice gestisce la situazione
-        * nel caso in cui l'indirizzo non rispetti il pattern.
-        **/
-        return m.matches();
+        if(indirizzo.isBlank() || indirizzo == null || !(ServerUtils.isFitToPostgresql(indirizzo))) return false;
+        else return true;
     }
-    
     
     private boolean isNewUserIDValid(String userId){
         return ( 
-                (userId != null) && 
+                (userId != null) &&
+                (!userId.isBlank()) &&
                 (userId.length()>3) && 
-                (userId.length()<20) && 
-                (!userId.isBlank()) && 
+                (userId.length()<20) &&     
                 (ServerUtils.isFitToPostgresql(userId))
                );
+    }
+    
+    private boolean isNewUserIdTaken(String userId){
+        try {
+            String query = "SELECT COUNT(*) FROM UTENTI_REGISTRATI WHERE ID_USER = ?";
+            PreparedStatement statement = DBConnector.getConnection().prepareStatement(query);
+            statement.setString(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int res = resultSet.getInt(1);
+            if(res != 0) return true;
+            else return false;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return true;
+        }
     }
     
     public UtentiDataChecker(Connection Conn) throws RemoteException{
@@ -194,123 +216,41 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param cf Stringa contenente il codice fiscale del nuovo utente.
      * @param password Stringa contenente la password scelta dal nuovo utente per l' accesso al suo account.
      * @param rePassword Stringa contenente per la verifica che la password inserita sia quella che l' utente voleva.
-     * @param nome Stringa contenente il nome del nuovo utente.
-     * @param cognome Stringa contenente il cognome del nuovo utente.
-     * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
-     * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
+     * @param name Stringa contenente il name del nuovo utente.
+     * @param surname Stringa contenente il surname del nuovo utente.
+     * @param birthDay birthDay dell' utente formato dd/mm/yyyy.
+     * @param address Stringa contenente l' address di residenza del nuovo utente.
      * @return 
      * false - errore non occorso, true errore occorso.
-     * posizioni errori nell' array:
-     * 0 - userId non valido.
-     * 1 - userId già scelto da un altro utente.
-     * 2 - codice fiscale non valido.
-     * 3 - codice fiscale già presente nel DB.
-     * 4 - password non valida.
-     * 5 - password non coincidono.
-     * 6 - nome non valido.
-     * 7 - cognome non valido.
-     * 8 - compleanno non valido.
-     * 9 - indirizzo non valido.
+ posizioni errori nell' array:
+ 0 - userId non valido.
+ 1 - userId già scelto da un altro utente.
+ 2 - codice fiscale non valido.
+ 3 - codice fiscale già presente nel DB.
+ 4 - password non valida.
+ 5 - password non coincidono.
+ 6 - name non valido.
+ 7 - surname non valido.
+ 8 - birthDay non valido.
+ 9 - address non valido.
      * @throws java.rmi.RemoteException
      */
     @Override
-    public boolean[] validateNewUserData(
-            String userId, 
-            String email, 
-            String cf, 
-            String password, 
-            String rePassword, 
-            String nome, 
-            String cognome, 
-            String compleanno,
-            String indirizzo
-        ) throws RemoteException {
-        boolean userIdValid = false,
-                userIdAvailable = false,
-                emailValid = false,
-                emailNotPresent = false,
-                cfValid = false,
-                cfNotPresent = false,
-                passwordValid = false, 
-                passwordsMatch = false,
-                nameValid= false,
-                surnameValid= false,
-                birthdayValid= false,
-                indirizzoValid = false;
-        try{
-            //Inizializzazione
-            String query;
-            PreparedStatement statementControl;
-            ResultSet resultSet;
-            
-            //Controllo adeguatezza dell'ID del nuovo utente
-            userIdValid = isNewUserIDValid(userId);
-            
-            //controllo la presenza dell' id nel DB
-            query ="SELECT COUNT(ID_USER) FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
-            statementControl = CONNECTION_TO_DB.prepareStatement(query);
-            statementControl.setString(1, userId);
-            resultSet = statementControl.executeQuery();
-            resultSet.next(); 
-            userIdAvailable = resultSet.getInt(1) == 0;
-            
-            //Controllo della mail
-            emailValid = isMailValid(email);
-            if(!isMailValid(email)) {}
-            else
-            {
-                query ="SELECT COUNT(EMAIL) FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
-                statementControl = CONNECTION_TO_DB.prepareStatement(query);
-                statementControl.setString(1, email);
-                resultSet = statementControl.executeQuery();
-                resultSet.next();
-                emailNotPresent = resultSet.getInt(1) == 0; 
-            }
-            
-            //Controllo del codice fiscale
-            cfValid = isCFValid(cf);
-            if(!cfValid){ }
-            else {
-                query ="SELECT CF FROM UTENTI_REGISTRATI WHERE CF = ?;"; 
-                statementControl = CONNECTION_TO_DB.prepareStatement(query);
-                statementControl.setString(1, cf);
-                resultSet = statementControl.executeQuery();
-                resultSet.next();
-                cfNotPresent = resultSet.getInt(1) == 0;   
-            }
-            
-            //Controllo Password
-            passwordValid = checkPasswordValidity(password);
-            passwordsMatch = password.equals(rePassword);
-            
-            //Controllo Nome
-            nameValid = isNameValid(nome);
-            
-            //Controllo Cognome
-            surnameValid = isSurnameValid(cognome);
-            
-            birthdayValid = isBirthDayValid(compleanno);
-            
-            //I controlli su indirizzo non hanno senso se non si integra un database stradale -> basta assicurarsi non sia vuoto.
-            indirizzoValid = isAddressValid(indirizzo);    
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
+    public boolean[] validateNewUserData( String userId, String email, String cf, String password, String rePassword, String name, String surname, String birthDay, String address) throws RemoteException {
+        boolean[] errorsOccurred = new boolean[10];
         
-        boolean[] errors = new boolean[]{
-            userIdValid,
-            userIdAvailable,
-            emailValid,
-            emailNotPresent,
-            cfValid,
-            passwordValid,
-            passwordsMatch,
-            nameValid,
-            surnameValid,
-            birthdayValid,
-            indirizzoValid
-        };
-        return reverseArrayValues(errors);
+        errorsOccurred[0] = !isNewUserIDValid(userId);
+        errorsOccurred[1] = isNewUserIdTaken(userId);
+        errorsOccurred[2] = !isCFValid(cf);
+        errorsOccurred[3] = isCFTaken(cf);
+        errorsOccurred[4] = !isPasswordValid(password);
+        errorsOccurred[5] = !password.equals(rePassword);
+        errorsOccurred[6] = !isNameValid(name);
+        errorsOccurred[7] = !isSurnameValid(surname);
+        errorsOccurred[8] = !isBirthDayValid(birthDay);
+        errorsOccurred[9] = !isAddressValid(address);
+        
+        return errorsOccurred;
     }
     
     //Riccardo deve implementare
@@ -412,27 +352,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return errors;
     }
     
-    private boolean[] reverseArrayValues(boolean[] arrayToReverse){
-        boolean[] temp = new boolean[arrayToReverse.length];
-        for(int i = 0; i<arrayToReverse.length;i++) 
-            temp[i] = !arrayToReverse[i];
-        return temp;
+    public static void main(String[] args) throws RemoteException {
+        UtentiDataChecker udc = new UtentiDataChecker(DBConnector.getTextConn());
+        boolean[] bool = udc.validateLogin("theOne", "Estarossa97!");
+        for(boolean bol:bool) System.out.println(bol);
     }
-    
-    
-    //public static void main(String[] args) throws RemoteException {
-        //System.out.println(new UtentiDataChecker(DBConnector.getDefaultConnection()).userCanVoteSong("theOne","TRGDRZV128F92DC96D" ));
-        /*
-        boolean[] bool = new boolean[]{true,true,true,false,false};
-        bool = reverseArrayValues(bool);
-        System.out.print("[ ");
-        for(boolean booleans: bool) {
-            System.out.print(String.valueOf(booleans)+",");
-        }
-        System.out.println(" ]");
-        */
-        //boolean i = new UtentiDataChecker(DBConnector.getDefaultConnection()).isNameValid("Asia");
-        //System.out.println(i);
-    //} 
-    
 }

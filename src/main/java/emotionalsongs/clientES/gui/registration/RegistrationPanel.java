@@ -372,6 +372,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
     
     private boolean checkData() throws RemoteException{
         String idUser,email,cf,password,controlpswd,nome,cognome,birthday,indirizzo;
+        
         idUser = idTextField.getText();
         email = mailTextField.getText();
         cf = cfTextField.getText();
@@ -382,64 +383,65 @@ public class RegistrationPanel extends javax.swing.JPanel {
         birthday = birthdayTextField.getText();
         indirizzo = addressTextField.getText();
         
-        boolean[] booleani = dataValidator.validateNewUserData(idUser, email, cf, password, controlpswd, nome, cognome, birthday, indirizzo);
+        boolean[] errorsOccurred = dataValidator.validateNewUserData(idUser, email, cf, password, controlpswd, nome, cognome, birthday, indirizzo);
         boolean allOk = true;
+        
         //advises if user id is not valid
-        if(booleani[0]) {
+        if(errorsOccurred[0]) {
            idUserCheckLabel.setText(EmotionalSongs.dialoghi.userIdNotValid());
            idUserCheckLabel.setVisible(true);
            allOk = false;
         }
         //advises if user id is taken
-        if(booleani[1]){
+        if(errorsOccurred[1]){
            idUserCheckLabel.setText(EmotionalSongs.dialoghi.userIdTaken());
            idUserCheckLabel.setVisible(true);
            allOk = false;
         }
         //advises if cf is not valid
-        if(booleani[2]){
+        if(errorsOccurred[2]){
             cfCheckLabel.setText(EmotionalSongs.dialoghi.invalidCf());
             cfCheckLabel.setVisible(true);
             allOk = false;
         }
         //advises if cf is already present
-        if(booleani[3]){
+        if(errorsOccurred[3]){
             cfCheckLabel.setText(EmotionalSongs.dialoghi.cfIsPresentYet());
             cfCheckLabel.setVisible(true);
             allOk = false;
         }
         //advises if password isn't valid
-        if(booleani[4]){
+        if(errorsOccurred[4]){
             passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordNotValid());
             passwordCheckLabel.setVisible(true);
             allOk = false;
         }
         //advises if passwords don't match
-        if(booleani[5]){
+        if(errorsOccurred[5]){
             passwordCheckLabel.setText(EmotionalSongs.dialoghi.passwordsNotMatching());
             passwordCheckLabel.setVisible(true);
             allOk = false;
         }
         //check if name isn't valid
-        if(booleani[6]){
+        if(errorsOccurred[6]){
             nomeCheckLabel.setText(EmotionalSongs.dialoghi.nameNotValid());
             nomeCheckLabel.setVisible(true);
             allOk = false;
         }
         //check id surname is not valid
-        if(booleani[7]){
+        if(errorsOccurred[7]){
             cognomeCheckLabel.setText(EmotionalSongs.dialoghi.notValidSurname());
             cognomeCheckLabel.setVisible(true);
             allOk = false;
         }
         //check if birthday is valid
-        if(booleani[8]){
+        if(errorsOccurred[8]){
             dataDiNascitaCheckLabel.setText(EmotionalSongs.dialoghi.invalidBirthDate());
             dataDiNascitaCheckLabel.setVisible(true);
             allOk = false;
         }
         //check if address is valid
-        if(booleani[9]){
+        if(errorsOccurred[9]){
             indirizzoCheckLabel.setText(EmotionalSongs.dialoghi.addrNotValid());
             indirizzoCheckLabel.setVisible(true);
             allOk = false;

@@ -31,6 +31,7 @@ class ServerControlGUI extends javax.swing.JFrame {
      */
     protected ServerControlGUI(Server server) {
         this.serverToControl=server;
+        setIconImage(ServerUtils.serverIcon.getImage());
         initComponents();
     }
     

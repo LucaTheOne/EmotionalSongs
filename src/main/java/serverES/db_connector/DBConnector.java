@@ -43,11 +43,11 @@ public class DBConnector implements Serializable{
     public static Connection getConnection(){
         return connection;
     }
-    /** only for texting purpose
-    public static Connection getDefaultConnection(){
+    // only for texting purpose
+    public static Connection getTextConn(){
         connectToPostgres("postgres", "root", 9876);
         return connection;
-    }*/
+    }
     
     //debugging main
     /** 

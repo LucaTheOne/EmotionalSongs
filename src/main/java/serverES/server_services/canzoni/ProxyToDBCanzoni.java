@@ -93,7 +93,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
                     " SELECT * FROM CANZONI WHERE ANNO = "+year+
                     " ORDER BY AUTORE,ANNO,TITOLO ASC;";
             PreparedStatement statement = DBConnector.getConnection().prepareStatement(query);
-            //PreparedStatement statement = DBConnector.getDefaultConnection().prepareStatement(query);
+            //PreparedStatement statement = DBConnector.getTextConn().prepareStatement(query);
             ResultSet queryResult = statement.executeQuery();
             String[] resultArray = ServerUtils.convToArrayStr(queryResult);
             statement.close();
@@ -146,7 +146,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     
     /*
     public static void main(String[] args) throws RemoteException {
-        ProxyToDBCanzoni pc = new ProxyToDBCanzoni(DBConnector.getDefaultConnection());
+        ProxyToDBCanzoni pc = new ProxyToDBCanzoni(DBConnector.getTextConn());
         String[] res = pc.cercaBranoMusicale("barrington levy",1922);
         for(String str:res) System.out.println(str);
     }*/

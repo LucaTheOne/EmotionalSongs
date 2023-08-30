@@ -36,7 +36,6 @@ public class MainFrame extends javax.swing.JFrame {
     private MainFrame() {
         
         initComponents();
-        
         setLeftPanel(new MenuLeftVoid(this));
         setUpperBar(new UpperBarUnloggedPanel(this));
     }
@@ -93,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lowerBarStatusLabel.setBackground(new java.awt.Color(0, 0, 0));
         lowerBarStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
-        lowerBarStatusLabel.setText("      EmotionalSongs - Progetto di Laboratorio Interdisciplinare – A.A. 2022-23");
+        lowerBarStatusLabel.setText("      EmotionalSongs- v2.0 - Progetto di Laboratorio Interdisciplinare – A.A. 2022-23");
         lowerBarStatusLabel.setOpaque(true);
         globalPanel.add(lowerBarStatusLabel, java.awt.BorderLayout.SOUTH);
         lowerBarStatusLabel.getAccessibleContext().setAccessibleName("LowerBarStatusLabel");
