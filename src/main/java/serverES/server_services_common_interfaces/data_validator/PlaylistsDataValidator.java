@@ -18,14 +18,14 @@ public interface PlaylistsDataValidator extends Remote {
     
     //Eleonora
     /**
-     * Metodo il quale controlla che i dati della playlist che si sta creando siano validi.
-     * Ritorna un array di interi con gli errori occorsi.
-     * @param playlistId Id della nuova playlist
-     * @param songsIds array con gli ids delle canzoni da aggiungervi.
+     * Metodo che controlla che i dati della playlist che si sta creando siano validi. Ritorna un array di interi con gli errori occorsi.
+     * @param playlistName Nome della playlist
+     * @param songsIds Array con gli ID delle canzoni da aggiungere alla playlist.
      * @return 
-     * 0 - operazione terminata con successo,
-     * 1 - almeno uno degli IDs delle canzoni non è valido.
-     * 2 - il nome della playlist non è valido.
+     * 0 - Operazione terminata con successo,
+     * 1 - Almeno uno degli ID delle canzoni non è valido.
+     * 2 - Il nome della playlist non è valido.
+     * @throws java.rmi.RemoteException
      */
     public boolean[] validatePlaylist(String playlistName,String[] songsIds)throws RemoteException;
 }

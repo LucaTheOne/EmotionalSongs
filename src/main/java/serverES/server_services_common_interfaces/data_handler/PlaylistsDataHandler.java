@@ -28,11 +28,12 @@ public interface PlaylistsDataHandler extends Remote{
     
     //Luca - fatto
     /**
-     * Metodo usato per interrogare il DB, ritorna un array di stringhe il quale in ogni posizione sono contenuti
-     * i dati di una canzone  della playlist passata come argomento, separati da £SEP£;
-     *      -Formato: "REPO_INDEX£SEP£ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO"
-     * @param PlaylistID id della playlist il quale si vuole sapere il contenuto.
-     * @return array di stringhe contenenti i dati delle canzoni della playlist.
+     * Metodo usato per interrogare il DB, ritorna un array di stringhe dove in ogni posizione sono contenuti
+     * i dati di una canzone della playlist passata come argomento, separati da £SEP£;
+     *      - Formato: "REPO_INDEX£SEP£ID_UNIVOCO£SEP£TITOLO£SEP£AUTORE£SEP£ANNO"
+     * @param playlistId ID della playlist.
+     * @return Array di stringhe contenenti i dati delle canzoni della playlist.
+     * @throws java.rmi.RemoteException
      */
     public String[] requestPlaylistSongs(String playlistId) throws RemoteException;
     
@@ -40,14 +41,13 @@ public interface PlaylistsDataHandler extends Remote{
     
     //luca - fatto
     /**
-     * Comando per aggiornare il DB con una nuova playlist.
-     * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
-     * @param IDNuovaPlaylist id della nuova playlist.
+     * Comando per aggiornare il DB con una nuova playlist.Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
      * @param nomeNuovaPlaylist nome della nuova playlist.
      * @param userIdProprietario userid del proprietario della playlist.
      * @param idsSongsContenute array di stringhe con gli ids delle canzoni nella nuova playlists.
      * @return 0 - operazione completata con successo.
      * 1 - operazione non andata a buon fine.
+     * @throws java.rmi.RemoteException
      */
     public int updatePlaylistTable(String nomeNuovaPlaylist,String userIdProprietario,String[] idsSongsContenute)throws RemoteException;
     
@@ -57,6 +57,7 @@ public interface PlaylistsDataHandler extends Remote{
      * possedute dall' utente corrispondente all' id passato come argomento.
      * @param userId ID Utente di cui si vuole sapere il numero di playlists in possesso.
      * @return numero di playlists in possesso dell' utente.
+     * @throws java.rmi.RemoteException
      */
     public int getUserPlaylistsNumber(String userId)throws RemoteException; 
     
@@ -64,6 +65,7 @@ public interface PlaylistsDataHandler extends Remote{
     /**
      * @param playlistId ID playlist di cui si vuole sapere il numero di canzoni contenute.
      * @return Il numero di canzoni contenute nbella playlist corrispondente al ID passato come argomento.
+     * @throws java.rmi.RemoteException
      */
     public int getPlaylistDimension(String playlistId)throws RemoteException;
 

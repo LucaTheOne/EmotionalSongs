@@ -28,14 +28,12 @@ public class RegistrationPanel extends javax.swing.JPanel {
     private final UsersDataValidator dataValidator;
     /**
      * Crea form di registrazione.
-     * @param dataHandlerService servizio di gestione degli utenti.
-     * @param dataValidatorService servizio di validazione dati degli utenti.
      * @param container MainFrame che conterrà questo pannello.
      */
     public RegistrationPanel(MainFrame container) {
         ServicesProvider sp = ServicesProvider.getInstance();
         dataHandler = (UsersDataHandler) sp.getService(ServicesProvider.USERS_DATA_HANDLER);
-        dataValidator = (UsersDataValidator) sp.getService(ServicesProvider.USERS_DATA_VALIDATOR);;
+        dataValidator = (UsersDataValidator) sp.getService(ServicesProvider.USERS_DATA_VALIDATOR);
         mainWindow = container;
         initComponents();
     }

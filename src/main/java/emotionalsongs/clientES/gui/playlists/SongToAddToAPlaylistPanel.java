@@ -26,11 +26,10 @@ public class SongToAddToAPlaylistPanel extends javax.swing.JPanel {
     
     /**
      * Crea il pannello utilizzato per rappresentare le canzoni passate come argomento
-     * durante il form di creazione della playlist.
-     * Comunica fortemente con il playlist manager ed offre le funzioni
+     * durante il form di creazione della playlist.Comunica fortemente con il playlist manager ed offre le funzioni
      * per comunicare con esso e notificarli se aggiungere o togliere la canzone rappresentata
      * al buffer delle canzoni in attesa di essere aggiunte ad una nuova playlist.
-     * @param representedSong canzone rappresentata.
+     * @param songData Stringa contenente le canzoni da rappresentare.
      */
     public SongToAddToAPlaylistPanel(String songData) {
         String[] songDataSplitted = songData.split(SEP);

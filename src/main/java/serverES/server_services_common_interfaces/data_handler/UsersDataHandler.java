@@ -18,25 +18,19 @@ public interface UsersDataHandler extends Remote{
     //update methods
     //luca - fatto
     /**
-     * Metodo che aggiorna il DB con un nuovo utente, ed il suo indirizzo.
-     * Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
+     * Metodo che aggiorna il DB con un nuovo utente, ed il suo indirizzo.Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
      * @param userId
      * @param email
      * @param cf
      * @param password
      * @param nome
      * @param cognome
-     * @param dataNascita 
-     * @param tipoIndirizzo
+     * @param dataNascita
      * @param indirizzo
-     * @param civico
-     * @param cap
-     * @param nazione
-     * @param provincia
-     * @param città
      * @return 
-     * 0 - operazione completata con successo.
-     * 1 - operazione non andata a buon fine.
+     * 0 - Operazione completata con successo.
+     * 1 - Operazione non andata a buon fine.
+     * @throws java.rmi.RemoteException
      */
     public int requestToUpdateUsersTable(
             String userId,
@@ -54,6 +48,7 @@ public interface UsersDataHandler extends Remote{
     * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
     * @param songId Id della canzone da votare.
     * @return true se l' uente non ha già espresso un parere, false altrimenti.
+     * @throws java.rmi.RemoteException
     */
     public boolean userCanVoteSong(String userId,String songId)throws RemoteException;
     

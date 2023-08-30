@@ -5,8 +5,6 @@
  * Eleonora Macchi - 748736 - VA
  */
 
-
-
 package emotionalsongs.clientES.client_internal_services;
 
 import emotionalsongs.*;

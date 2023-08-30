@@ -18,8 +18,7 @@ public interface UsersDataValidator extends Remote {
     
     //Riccardo
     /**
-     * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.
-     * Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
+     * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
      * @param userId Stringa contenente l' id del nuovo utente.
      * @param email Stringa contenente la mail del nuovo utente.
      * @param cf Stringa contenente il codice fiscale del nuovo utente.
@@ -28,13 +27,7 @@ public interface UsersDataValidator extends Remote {
      * @param nome Stringa contenente il nome del nuovo utente.
      * @param cognome Stringa contenente il cognome del nuovo utente.
      * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
-     * @param tipoIndirizzo Stringa contenente: "via" | "viale" | "piazza" | "piazzetta" | "salita" | "discesa".
      * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
-     * @param civico Intero rappresentante il numero civico dell' indirizzo del nuovo utente.
-     * @param cap Intero rappresentante il cap della citta di residenza del nuovo utente.
-     * @param nazione Stringa contenente la nazione di residenza del nuovo utente.
-     * @param provincia Stringa contenente la provincia di residenza del nuovo utente.
-     * @param città Stringa contenente la città di residenza del nuovo utente.
      * @return 
      * false -> errore non occorso, true -> errore occorso
      * posizioni errori nell' array:
@@ -49,6 +42,7 @@ public interface UsersDataValidator extends Remote {
      * 8 - Compleanno non valido.
      * 9 - Indirizzo non valido.
      * 10 - email non valida
+     * @throws java.rmi.RemoteException
      */
     public boolean[] validateNewUserData(
             String userId,
@@ -67,13 +61,13 @@ public interface UsersDataValidator extends Remote {
      * @param userId Id dell'utente quale si vuole verificare la possibilità di voto.
      * @param songId Id della canzone da votare.
      * @return true se l' uente non ha già espresso un parere, false altrimenti.
+     * @throws java.rmi.RemoteException
      */
     public boolean userCanVoteSong(String userId,String songId)throws RemoteException;
     
     //Riccardo
     /**
-     * Metodo per la verifica dei dati di login.
-     * Ritorna un array di booleani in cui "false" rappresentano gli errori commessi, secondo la elegenda sottostante.
+     * Metodo per la verifica dei dati di login.Ritorna un array di booleani in cui "false" rappresentano gli errori commessi, secondo la elegenda sottostante.
      * @param userId Stringa contenente l' user id del utente.
      * @param password Stringa contenente l'account id del utente.
      * @return
@@ -81,6 +75,7 @@ public interface UsersDataValidator extends Remote {
      * posizioni errori:
      * 0 - id utente non presente nel DB.
      * 1 - Password errata.
+     * @throws java.rmi.RemoteException
      */
     public boolean[] validateLogin(String userId,String password)throws RemoteException;
 }
