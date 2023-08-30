@@ -56,12 +56,12 @@ public class Italiano extends ClientDialogs{
     
     @Override
     public String solemnityExplanation() {
-        return "Sensazione di trascendenza, ispirazione.Brividi.";
+        return "Sensazione di trascendenza, ispirazione. Brividi.";
     }
     
     @Override
     public String tendernessName() {
-        return "Tenereza";
+        return "Tenerezza";
     }
     
     @Override
@@ -92,7 +92,7 @@ public class Italiano extends ClientDialogs{
     }
 
     public String powerExplanation() {
-        return "Sentirsi forte, eroici , trionfanti, energetici.";
+        return "Sentirsi forti, eroici, trionfanti, energici.";
     }
 
     public String joyName() {
@@ -126,13 +126,13 @@ public class Italiano extends ClientDialogs{
     }
     
     public String spaceSuccessfullyGenerated(){
-        return "Spazio generato con successo";
+        return "Spazio generato con successo!";
     }
     
     //BASICS DATABASES: DATABASEPLAYLISTS
     
     public String isVoid(){
-        return "Il basa dati e vuoto!";
+        return "Il database è vuoto!";
     }
     
     // ENGINES : EngineRegister
@@ -163,7 +163,7 @@ public class Italiano extends ClientDialogs{
     }
     
     public String passwordsNotMatching(){
-        return "Password non coincidono!";
+        return "Le due password non coincidono!";
     }
 
     public String log() {
@@ -187,7 +187,7 @@ public class Italiano extends ClientDialogs{
     }
 
     public String notValidSurname() {
-        return "Cognome non valioa!";
+        return "Cognome non valido!";
     }
 
     public String address() {
@@ -224,7 +224,7 @@ public class Italiano extends ClientDialogs{
     }
 
     public String emailNotValid() {
-        return "Indirizzo non valido!";
+        return "Indirizzo e-mail non valido!";
     }
   
     public String useridToUpperCaseWithColon() {
@@ -236,7 +236,7 @@ public class Italiano extends ClientDialogs{
     }
 
     public String userIdNotValid() {
-        return "User id non valido!";
+        return "User ID non valido!";
     }
 
     public String passswordR(){
@@ -248,7 +248,7 @@ public class Italiano extends ClientDialogs{
     }
     
     public String passwordNotValid(){
-        return "Password non valido!";
+        return "Password non valida!";
     }
     
     public String registrer() {
@@ -284,7 +284,7 @@ public class Italiano extends ClientDialogs{
    //GUI MAIN MENU LEFT LOGGED
     
     public String createPlaylist(){
-        return "Crea Playlist";
+        return "Crea playlist";
     }
 
     public String profile() {
@@ -316,8 +316,9 @@ public class Italiano extends ClientDialogs{
     }
     
     public String songsJudgeCommentRequest(){
-        return "Se vuoi puoi inserire qui una nota o commento riguardo "
-                + "la percezione di questa emozione nell' ascolto del brano.";
+        return """
+               Se vuoi puoi inserire qui una nota o commento riguardo 
+               la percezione di questa emozione nell'ascolto del brano.""";
     }
 
     public String chartMedian() {
@@ -336,24 +337,25 @@ public class Italiano extends ClientDialogs{
     }
     
     public String trendsV(){
-        return "Trends dei voti";
+        return "Trend dei voti";
     }
     
     public String marksMedium(){
-        return "media dei voti";
+        return "Media dei voti";
     }
     
     public String howMuchFeeled(){
-        return "Quanto un utente ha percepito l' emozione";
+        return "Quanto un utente ha percepito l'emozione";
     }
     
     public String numberOfUser(){
-        return "Numeri di utenti";
+        return "Numero di utenti";
     }
 
      public String reportPaneTitle(){
-        return "REPORT DATI SUI GIUDIZI DELLE EMOZIONI PERCEPITE " + 
-                " DAGLI UTENTI NELL' ASCOLTO DELLA CANZONE:\n\n";
+        return """
+               REPORT DATI SUI GIUDIZI DELLE EMOZIONI PERCEPITE  DAGLI UTENTI NELL'ASCOLTO DELLA CANZONE:
+               """;
     }
    
     public String votedYet(){
@@ -408,7 +410,7 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String myPlaylistsText() {
-        return "Le mie playlists";
+        return "Le mie playlist";
     }
 
     @Override
@@ -428,7 +430,7 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String ImpossibleToGenerateReport() {
-        return "Errore accorso! impossibile generare il report!";
+        return "Errore: impossibile generare il report!";
     }
 
     @Override
@@ -443,35 +445,37 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String notAllVoted() {
-        return "Errore: Tutte le emozioni devono ricevere un voto!";
+        return "Errore: tutte le emozioni devono ricevere un voto!";
     }
 
     @Override
     public String voidPlaylistsDenied() {
-        return "Errore le playlist vuote non sono ammesse";
+        return "Errore: le playlist vuote non sono ammesse!";
     }
 
     @Override
     public String voteInstructions() {
-        return "Nel seguente form hai la possibilità \n"+
-                "di esprimere un parere sulla canzone scelta\n"+
-                "Sulla base di 9 emozioni.\n"+
-                "Per ogniuna delle emozioni devi esprimere un voto\n"+
-                "che va da 1 a 5:\n"+
-                "dove 1 indica che l'emozione è stata percepita per niente e\n"+
-                "5 indica che l' emozione è stata percepita appieno.\n"+
-                "Se lo desideri, per ogni emozione, puoi fornire \n"+
-                "un commento di massimo 255 caratteri.";
+        return """
+               Nel seguente form hai la possibilit\u00e0 
+               di esprimere un parere sulla canzone scelta
+               sulla base di 9 emozioni.
+               Per ognuna delle emozioni devi esprimere un voto
+               che va da 1 a 5 \u2013 
+               dove 1 indica che l'emozione non \u00e8 stata percepita 
+               per niente e 5 indica che l' emozione \u00e8 stata 
+               percepita appieno.
+               Se lo desideri, per ogni emozione, puoi fornire 
+               un commento di massimo 255 caratteri.""";
     }
 
     @Override
     public String tryConnectToService() {
-        return "Connettere";
+        return "Connetti";
     }
 
     @Override
     public String typeAnHostAddressError() {
-        return "Inserire un indirizzo ip host valido";
+        return "Inserire un indirizzo IP host valido!";
     }
 
     @Override
@@ -481,17 +485,17 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String hostServiceLabel() {
-        return "IP Host servizio:";
+        return "IP host del servizio:";
     }
 
     @Override
     public String portLabel() {
-        return "Porta servizio:";
+        return "Porta del servizio:";
     }
 
     @Override
     public String errorSongNotEsists() {
-        return "Errore: Canzone non presente nel database!";
+        return "Errore: canzone non presente nel database!";
     }
 
     @Override
@@ -506,12 +510,12 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String errorCharacterInComment() {
-        return "Errore: Sono presenti caratteri non ammessi nel commento!";
+        return "Errore: sono presenti caratteri non ammessi nel commento!";
     }
 
     @Override
     public String errorCommentLength() {
-        return "Errore: Numero massimo di caratteri ammessi 256!";
+        return "Errore: numero massimo di caratteri ammessi 255!";
     }
 
     @Override
@@ -521,7 +525,7 @@ public class Italiano extends ClientDialogs{
 
     @Override
     public String noPlaylists() {
-                return "Non possiede alcuna playlists, perfavorte ne crei una premendo sul bottone: '" +createNewPlaylist()+"'.";
+                return "Non possiede alcuna playlist. Ne può creare una premendo sul bottone: '" +createNewPlaylist()+"'.";
 
     }
 }

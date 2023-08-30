@@ -24,7 +24,7 @@ public class English extends ClientDialogs{
     }
     
     public String foundedResults(){
-        return "Song founded!";
+        return "songs found!";
     }
     
     public String noSongsFounded(){
@@ -112,38 +112,38 @@ public class English extends ClientDialogs{
     //BASIC STRUCTURE : USER
     
     public String propertyUser(){
-        return "Proprietario: ";
+        return "Owner: ";
     }
     
     public String spaceSuccessfullyGenerated(){
-        return "Spazio generato con successo";
+        return "Space generated successfully!";
     }
     
     //BASICS DATABASES: DATABASEPLAYLISTS
 
     public String isVoid(){
-        return "Database is void";
+        return "Database is empty!";
     }
     
     // ENGINES : EngineRegister
     
     public String userCreated(){
-        return "";
+        return "User created successfully!";
     }
     
     public String userAdded(){
-        return "";
+        return "User added successfully!";
     }
     
 
     //GUI FRAME LOGIN 
   
     public String userId() {
-        return "ID User: ";
+        return "User ID: ";
     }
 
     public String userIdNotFound() {
-        return "ID User doesn't exist!";
+        return "User ID doesn't exist!";
     }
 
     public String password() {
@@ -193,7 +193,7 @@ public class English extends ClientDialogs{
     }
 
     public String invalidBirthDate() {
-        return "Format data not valid!";
+        return "Invalid data format!";
     }
 
     public String cf() {
@@ -201,11 +201,11 @@ public class English extends ClientDialogs{
     }
 
     public String invalidCf() {
-       return "Format data not valid!";
+       return "Invalid data format!";
     }
     
     public String cfIsPresentYet(){
-        return "Fiscal code already used";
+        return "Fiscal code already used!";
     }
 
     public String email() {
@@ -213,7 +213,7 @@ public class English extends ClientDialogs{
     }
 
     public String emailNotValid() {
-        return "Address not valid!";
+        return "Invalid e-mail address!";
     }
 
     public String useridToUpperCaseWithColon() {
@@ -221,11 +221,11 @@ public class English extends ClientDialogs{
     }
     
     public String userIdTaken(){
-        return "ID used";
+        return "User ID already used!";
     }
 
     public String userIdNotValid() {
-        return "User ID not valid!";
+        return "Invalid user ID!";
     }
     
     public String passswordR(){
@@ -237,11 +237,11 @@ public class English extends ClientDialogs{
     }
 
     public String passwordNotValid(){
-        return "Password not valid!";
+        return "Invalid password!";
     }
     
     public String passwordsNotMatching(){
-        return "Password non coincidono!";
+        return "Passwords don't match!";
     }
    
     public String registrer() {
@@ -251,7 +251,7 @@ public class English extends ClientDialogs{
     //GUI PLATYLIST CREATION FRAME
     
     public String newPlaylistName() {
-        return "Nome of the new playlist: ";
+        return "New playlist's name: ";
     }
 
     public String title() {
@@ -259,7 +259,7 @@ public class English extends ClientDialogs{
     }
 
     public String author() {
-        return "Autor";
+        return "Author";
     }
 
     public String year() {
@@ -277,7 +277,7 @@ public class English extends ClientDialogs{
     //GUI MAIN MENU LEFT LOGGED
     
     public String createPlaylist(){
-        return "Create Playlist";
+        return "Create playlist";
     }
 
     
@@ -310,7 +310,7 @@ public class English extends ClientDialogs{
     }
     
    public String songsJudgeCommentRequest(){
-       return "If you want, insert here a note or comment about the perception of this emotion while listening to the piece.";
+       return "If you wish, insert here a note or comment about the perception of this emotion while listening to the piece.";
    }
 
     public String chartMedian() {
@@ -342,12 +342,13 @@ public class English extends ClientDialogs{
     }
   
     public String numberOfUser(){
-        return "Numbers of users";
+        return "Number of users";
     }
    
     public String reportPaneTitle(){
-       return "DATA REPORT ON JUDGMENTS OF PERCEIVED EMOTIONS " + 
-                " FROM USERS LISTENING TO THE SONG:\n\n";
+       return """
+              DATA REPORT ON JUDGEMENTS ABOUT PERCEIVED EMOTIONS FROM USERS LISTENING TO THE SONG:
+              """;
     }
     
     public String votedYet(){
@@ -417,7 +418,7 @@ public class English extends ClientDialogs{
 
     @Override
     public String fileNotFound() {
-        return "Necessary file can't be found by the software: ";
+        return "Needed file couldn't be found by the software: ";
     }
 
     @Override
@@ -427,32 +428,29 @@ public class English extends ClientDialogs{
 
     @Override
     public String OpSucessTerminated() {
-        return "Operation succesfully terminated !";
+        return "Operation terminated succesfully!";
     }
 
     @Override
     public String maxStringLong255() {
-        return "Error: comments' max legth is 255 characters!";
+        return "Error: comments' max length is 255 characters!";
     }
 
     @Override
     public String notAllVoted() {
-        return "Error: All emotions must be judged!";
+        return "Error: all emotions must be judged!";
     }
 
     @Override
     public String voidPlaylistsDenied() {
-        return "Error: void playlists aren't allowed!";
+        return "Error: empty playlists aren't allowed!";
     }
 
     @Override
     public String voteInstructions() {
-        return "In the following form you have the opportunity to\n"+
-                "pass a judgement on the selected song on the base of\n"+
-                "nine emotions, for each one you have to pass a vote 1 to 5;\n"+
-                "where 1 means emotion little perceived and 5 means\n"+
-                "plenty perceived.\n"+
-                "If you want it, you can release a comment,\n of max 255 characters, for each emotion.";
+        return """
+               In the following form you have the opportunity to pass a judgement on the selected song on the base of nine emotions, for each one you have to pass a vote 1 to 5; where 1 means emotion little perceived and 5 means plenty perceived. If you want it, you can release a comment, of max 255 characters, for each emotion.
+               """;
     }
 
     @Override
@@ -462,27 +460,27 @@ public class English extends ClientDialogs{
 
     @Override
     public String typeAnHostAddressError() {
-        return "Type a valid IP Host address";
+        return "Type a valid host IP address";
     }
 
     @Override
     public String typeAPortError() {
-        return "Type Host service's port";
+        return "Type service host's port";
     }
 
     @Override
     public String hostServiceLabel() {
-        return "Host service's IP address:";
+        return "Service host's IP address:";
     }
 
     @Override
     public String portLabel() {
-        return "Host service's port";
+        return "Service host's port";
     }
 
     @Override
     public String errorSongNotEsists() {
-        return "Error: song not in database!";
+        return "Error: song not available in database!";
     }
 
     @Override
@@ -497,22 +495,22 @@ public class English extends ClientDialogs{
 
     @Override
     public String errorCharacterInComment() {
-        return "Error: Characters not tolerated in comment!";
+        return "Error: not allowed characters in comment!";
     }
 
     @Override
     public String errorCommentLength() {
-        return "Error: Max comment's characters' number is 256!";
+        return "Error: max comment's characters' number is 255!";
     }
 
     @Override
     public String errorSql() {
-       return "Error: impossible to comunicate with the DataBase!";
+       return "Error: impossible to comunicate with the database!";
     }
 
     @Override
     public String noPlaylists() {
-        return "You haven't any playlists yet! Please proceed to create one cliccking on the button: '"+createNewPlaylist()+"'.";
+        return "You haven't any playlists yet! Please proceed to create one clicking on the button: '"+createNewPlaylist()+"'.";
     }
     
 }

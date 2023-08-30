@@ -29,7 +29,7 @@ public enum Emotions {
      */
     SOLEMNITY(EmotionalSongs.dialoghi.solemnityName(),EmotionalSongs.dialoghi.solemnityExplanation()),
     /**
-     * Tenereza - Sensualità, affetto, sentimento di amore.
+     * Tenerezza - Sensualità, affetto, sentimento di amore.
      */
     TENDERNESS(EmotionalSongs.dialoghi.tendernessName(),EmotionalSongs.dialoghi.tendernessExplanation()),
     /**
