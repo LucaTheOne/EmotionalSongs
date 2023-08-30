@@ -18,7 +18,8 @@ import javax.swing.*;
  */
 class ServerControlGUI extends javax.swing.JFrame {
     
-    private String addr = "";
+    private String localAddress = "";
+    private String globalAddress = "";
     private int port = 0;
     private Server serverToControl;
     public static ServerControlGUI serverControlGui = null;
@@ -33,10 +34,18 @@ class ServerControlGUI extends javax.swing.JFrame {
         initComponents();
     }
     
-    protected void setAddress(String addres,int port){
-        this.addr = addres;
+    protected void setGlobalAddress(String globalIPAddress) {
+        this.globalAddress = globalIPAddress;
+        IPGlobalLabel.setText(globalIPAddress);
+        revalidate();
+        repaint();
+        setVisible(true);
+    }
+    
+    protected void setLocalAddress(String addres,int port){
+        this.localAddress = addres;
         this.port = port;
-        IPLabel.setText(addr);
+        IPLocalLabel.setText(localAddress);
         portLabel.setText(String.valueOf(port));
         revalidate();
         repaint();
@@ -60,10 +69,12 @@ class ServerControlGUI extends javax.swing.JFrame {
         ExitButton = new javax.swing.JButton();
         dataPanel = new javax.swing.JPanel();
         ServiceDataInfo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        IPLabel = new javax.swing.JLabel();
+        localAddressLabel = new javax.swing.JLabel();
+        IPLocalLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         portLabel = new javax.swing.JLabel();
+        globalAddressLabel = new javax.swing.JLabel();
+        IPGlobalLabel = new javax.swing.JLabel();
         logAndExportButtonPanel = new javax.swing.JPanel();
         exportButtonPanel = new javax.swing.JPanel();
         ExportLogButton = new javax.swing.JButton();
@@ -101,15 +112,15 @@ class ServerControlGUI extends javax.swing.JFrame {
         ServiceDataInfo.setBackground(new java.awt.Color(255, 255, 255));
         ServiceDataInfo.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Service's ip address:");
+        localAddressLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        localAddressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        localAddressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        localAddressLabel.setText("Local address:");
 
-        IPLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
-        IPLabel.setForeground(new java.awt.Color(255, 255, 255));
-        IPLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        IPLabel.setText(addr);
+        IPLocalLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
+        IPLocalLabel.setForeground(new java.awt.Color(255, 255, 255));
+        IPLocalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IPLocalLabel.setText(localAddress);
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,6 +132,16 @@ class ServerControlGUI extends javax.swing.JFrame {
         portLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         portLabel.setText(String.valueOf(port));
 
+        globalAddressLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        globalAddressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        globalAddressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        globalAddressLabel.setText("Global address:");
+
+        IPGlobalLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
+        IPGlobalLabel.setForeground(new java.awt.Color(255, 255, 255));
+        IPGlobalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IPGlobalLabel.setText(globalAddress);
+
         javax.swing.GroupLayout ServiceDataInfoLayout = new javax.swing.GroupLayout(ServiceDataInfo);
         ServiceDataInfo.setLayout(ServiceDataInfoLayout);
         ServiceDataInfoLayout.setHorizontalGroup(
@@ -128,24 +149,30 @@ class ServerControlGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ServiceDataInfoLayout.createSequentialGroup()
                 .addContainerGap(224, Short.MAX_VALUE)
                 .addGroup(ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IPGlobalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(globalAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(portLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IPLocalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(localAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(204, 204, 204))
         );
         ServiceDataInfoLayout.setVerticalGroup(
             ServiceDataInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServiceDataInfoLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(globalAddressLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IPLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(IPGlobalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(localAddressLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(IPLocalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(portLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(portLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dataPanel.add(ServiceDataInfo, java.awt.BorderLayout.CENTER);
@@ -185,6 +212,7 @@ class ServerControlGUI extends javax.swing.JFrame {
 
         logAndExportButtonPanel.add(exportButtonPanel, java.awt.BorderLayout.LINE_END);
 
+        logPanel.setPreferredSize(new java.awt.Dimension(234, 70));
         logPanel.setLayout(new java.awt.BorderLayout());
 
         ServerLogTerminal.setBackground(new java.awt.Color(0, 0, 0));
@@ -286,19 +314,23 @@ class ServerControlGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton ExportLogButton;
-    private javax.swing.JLabel IPLabel;
+    private javax.swing.JLabel IPGlobalLabel;
+    private javax.swing.JLabel IPLocalLabel;
     private javax.swing.JPanel ServerLogTerminal;
     private javax.swing.JPanel ServiceDataInfo;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JPanel exitButtonPanel;
     private javax.swing.JPanel exportButtonPanel;
+    private javax.swing.JLabel globalAddressLabel;
     private javax.swing.JPanel globalPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel localAddressLabel;
     private javax.swing.JPanel logAndExportButtonPanel;
     private javax.swing.JPanel logPanel;
     private javax.swing.JTextArea logTextArea;
     private javax.swing.JLabel portLabel;
     // End of variables declaration//GEN-END:variables
+
+    
 }

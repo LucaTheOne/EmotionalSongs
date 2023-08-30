@@ -56,4 +56,21 @@ public interface UsersDataHandler extends Remote{
     * @return true se l' uente non ha già espresso un parere, false altrimenti.
     */
     public boolean userCanVoteSong(String userId,String songId)throws RemoteException;
-}
+    
+    /**
+     * Metodo usato per notificare al DB che l' utente ha già effettuato il login!
+     * @param userId user id dell' utente che vuole eseguire il login.
+     * @return 1 se qualcosa non va a buon fine.
+     * @throws RemoteException 
+     */
+    public int login(String userId)throws RemoteException;
+    
+    /**
+     * Metodo usato per notificare il logout dell' utente al DB.
+     * @param userId userId dell' utente che vuole effettuare il log out;
+     * @return 1 se qualcosa non va a buon fine.
+     * @throws RemoteException 
+     */
+    public int logout(String userId) throws RemoteException;
+}   
+

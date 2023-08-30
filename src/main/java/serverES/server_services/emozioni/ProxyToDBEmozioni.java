@@ -6,11 +6,11 @@
  */
 package serverES.server_services.emozioni;
 
-import serverES.server_services_common_interfaces.data_handler.EmotionsDataHandler;
-import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import serverES.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  *
@@ -39,10 +39,12 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
     @Override
     public String[] requestDataJudgementsSong(String idSong)throws RemoteException{
         try {
-            String query = "SELECT * FROM EMOZIONI WHERE CANZONE_ID = '"+idSong+"';";
+            String query = "SELECT * FROM EMOZIONI WHERE CANZONE_ID = ?;";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
+            statement.setString(1, idSong);
             ResultSet result = statement.executeQuery();
-            return ServerUtils.convToArrayStr(result);    
+            String[] temp =  ServerUtils.convToArrayStr(result);    
+            return temp;
         } catch (SQLException ex) {
             System.out.println(ex.getCause());
             return null;
@@ -62,7 +64,7 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
      * 2 - dati non validi.
      */
     @Override
-    public int voteSongEmotions(String idUser,String idSong,int[] emotionalMarks,String comment)throws RemoteException{
+    public synchronized int InserisciEmozioniBrano(String idUser,String idSong,int[] emotionalMarks,String comment)throws RemoteException{
         //control marks array
         if(emotionalMarks.length!=9){
             System.out.println("Error MARKS data invalid");
@@ -99,12 +101,8 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
     }
     /*
     public static void main(String[] args) throws RemoteException {
-        new ProxyToDBEmozioni(DBConnector.getDefaultConnection()).voteSongEmotions(
-                "theOne",
-                "TRHHLUR128F932AFB4", 
-                new int[]{2,3,4,5,4,3,2,1,1}, 
-                "prova"
-        );
-        System.exit(0);
+        ProxyToDBEmozioni p = new ProxyToDBEmozioni(DBConnector.getDefaultConnection());
+        String[] res =p.requestDataJudgementsSong("TRMYDFV128F42511FC");
+        for(String str:res) System.out.println(str);
     }*/
 }

@@ -6,11 +6,11 @@
  */
 package serverES.server_services.playlist;
 
-import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
-import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import serverES.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  *
@@ -81,7 +81,7 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
      * 1 - transazione abortita.
      */
     @Override
-    public int updatePlaylistTable(String newPlaylistName,String userIdOwner,String[] idsSongs) throws RemoteException{
+    public synchronized int updatePlaylistTable(String newPlaylistName,String userIdOwner,String[] idsSongs) throws RemoteException{
         //query to update playlist table.
         String queryPlaylist = "INSERT INTO PLAYLIST(ID_PLAYLIST,USER_PROP_ID,NOME_PLAYLIST) VALUES(?,?,?);";
         //query to update contenuto_playlist table.

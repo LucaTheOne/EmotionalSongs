@@ -6,12 +6,15 @@
  */
 package serverES.server_services.utenti_registrati;
 
-import serverES.server_services_common_interfaces.data_validator.UsersDataValidator;
-import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import java.util.*;
 import java.util.regex.*;
+import org.apache.commons.validator.*;
+import serverES.*;
+import serverES.db_connector.*;
+import serverES.server_services_common_interfaces.data_validator.*;
 
 /**
  *
@@ -27,7 +30,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param email
      * @return 
      */
-    private boolean isValidMail(String email)
+    private boolean isMailValid(String email)
     {
         if(email == null) return false;
         // Regex to check valid password.
@@ -73,16 +76,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         return m.matches();
     }
     
-    /**
-     * Metodo privato che controlla che la provincia sia scritta in maiuscolo
-     * @param prov
-     * @return 
-     */
-    private boolean verificaProvincia(String prov) {
-        // Controlla se la stringa ha esattamente due caratteri
-        return prov.length() != 2;
-    }
-    
     //Methods checking data validity
     /**
      * Il metodo convalida la stringa name passata come argomento
@@ -97,9 +90,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param name Nome dell'utente da validare.
      * @return True o False.
      */
-    private boolean checkNameValidity(String name){
+    private boolean isNameValid(String name){
         if(name == null) return false;
-        if (name.isBlank() || name.length()>20 || name.length()<2 || name.matches(".*\\d.*")) {
+        if (name.isBlank() || name.length()>20 || name.length()<2 || !(ServerUtils.isFitToPostgresql(name))) {
             return false;   
         }
         return true;
@@ -118,23 +111,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param surname cognome da convalidare.
      * @return True o False.
      */
-    private boolean checkSurnameValidity(String surname){
+    private boolean isSurnameValid(String surname){
         if(surname == null) return false;
-        if (surname == null && surname.length()>20||surname.length()<2||surname.isBlank()||surname.matches(".*\\d.*")) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * Il metodo convalida la stringa address passata come argomento
-     * e restituisce false se è nulla opppure bianca.
-     * @param address Indirizzo da validare.
-     * @return True o False.
-     */    
-    private boolean checkAddresValidity(String address){
-        if(address == null) return false;
-        if(address.isBlank()){
+        if (surname == null && surname.length()>20||surname.length()<2||surname.isBlank()|| !(ServerUtils.isFitToPostgresql(surname))) {
             return false;
         }
         return true;
@@ -146,7 +125,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return true se valido, false altrimenti.
      * @throws PatternSyntaxException 
      */
-    private boolean checkCfValidity(String cf) throws PatternSyntaxException {
+    private boolean isCFValid(String cf) throws PatternSyntaxException {
         if(cf == null) return false;
         String regex = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
         /** compila il pattern precedente **/
@@ -166,15 +145,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @return true se valida, false altrimenti.
      * 
      */
-    private boolean checkBirthDayValidity(String birthDay) throws PatternSyntaxException {
-        if(birthDay == null) return false;
-        String regex = "^([0-9]{2}[/][0-9]{2}[/][0-9]{4})$";
-      /** compila il pattern precedente **/
-        Pattern p = Pattern.compile(regex);
-      /** Pattern class contiene il metodo .matcher() per verificare se il cf coincide con il pattern.**/
-        Matcher m = p.matcher(birthDay);
-
-        return m.matches();
+    private boolean isBirthDayValid(String birthDay) throws PatternSyntaxException {
+        if(birthDay.isBlank()||(birthDay==null)) return false;
+        return GenericValidator.isDate(birthDay, Locale.ITALY);
     }
     
     /**
@@ -183,7 +156,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param indirizzo
      * @return true se è valida, false altrimenti
      */
-    private boolean checkAddressValidity(String indirizzo) 
+    private boolean isAddressValid(String indirizzo) 
     {
         if(indirizzo == null) return false;
         String regex = "^([A-Za-z]{3,}" + "\s[A-Za-z]{2,}" + "\s[0-9]{1,4}" + "\s[A-Za-z]{2,}" + "\s[0-9]{5}" + "\s[A-Z]{2}" + "\s[A-Za-z]{4,})$";
@@ -199,7 +172,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
     }
     
     
-    private boolean checkUserId(String userId){
+    private boolean isNewUserIDValid(String userId){
         return ( 
                 (userId != null) && 
                 (userId.length()>3) && 
@@ -214,7 +187,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         CONNECTION_TO_DB = Conn;
     }
     
-    //Riccardo
     /**
      * Metodo il quale controlla che i dati inseriti dal nuovo utente siano validi.Ritorna un array di booleani, il quale per ogni posizione identifica se un errore è occorso o meno.
      * @param userId Stringa contenente l' id del nuovo utente.
@@ -227,7 +199,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * @param compleanno compleanno dell' utente formato dd/mm/yyyy.
      * @param indirizzo Stringa contenente l' indirizzo di residenza del nuovo utente.
      * @return 
-     * false - dato non valido, true dato valido.
+     * false - errore non occorso, true errore occorso.
      * posizioni errori nell' array:
      * 0 - userId non valido.
      * 1 - userId già scelto da un altro utente.
@@ -261,9 +233,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
                 cfNotPresent = false,
                 passwordValid = false, 
                 passwordsMatch = false,
-                nomeValid= false,
-                cognomeValid= false,
-                compleannoValid= false,
+                nameValid= false,
+                surnameValid= false,
+                birthdayValid= false,
                 indirizzoValid = false;
         try{
             //Inizializzazione
@@ -271,21 +243,20 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             PreparedStatement statementControl;
             ResultSet resultSet;
             
-            //Controllo dell'ID
-            userIdValid = checkUserId(userId);
+            //Controllo adeguatezza dell'ID del nuovo utente
+            userIdValid = isNewUserIDValid(userId);
             
             //controllo la presenza dell' id nel DB
             query ="SELECT COUNT(ID_USER) FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
             statementControl = CONNECTION_TO_DB.prepareStatement(query);
             statementControl.setString(1, userId);
             resultSet = statementControl.executeQuery();
-            resultSet.next(); //non ho capito cosa fa questo -> quando ottenuto, il result set punta alla posizione precedente al primo dato valido, quindio serve .next()
-            
+            resultSet.next(); 
             userIdAvailable = resultSet.getInt(1) == 0;
             
             //Controllo della mail
-            emailValid = isValidMail(email);
-            if(!isValidMail(email)) {}
+            emailValid = isMailValid(email);
+            if(!isMailValid(email)) {}
             else
             {
                 query ="SELECT COUNT(EMAIL) FROM UTENTI_REGISTRATI WHERE EMAIL = ?;"; 
@@ -297,7 +268,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             }
             
             //Controllo del codice fiscale
-            cfValid = checkCfValidity(cf);
+            cfValid = isCFValid(cf);
             if(!cfValid){ }
             else {
                 query ="SELECT CF FROM UTENTI_REGISTRATI WHERE CF = ?;"; 
@@ -313,15 +284,15 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             passwordsMatch = password.equals(rePassword);
             
             //Controllo Nome
-            nomeValid = checkNameValidity(nome);
+            nameValid = isNameValid(nome);
             
             //Controllo Cognome
-            cognomeValid = checkSurnameValidity(cognome);
+            surnameValid = isSurnameValid(cognome);
             
-            compleannoValid = checkBirthDayValidity(compleanno);
+            birthdayValid = isBirthDayValid(compleanno);
             
             //I controlli su indirizzo non hanno senso se non si integra un database stradale -> basta assicurarsi non sia vuoto.
-            indirizzoValid = checkAddressValidity(indirizzo);    
+            indirizzoValid = isAddressValid(indirizzo);    
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -334,9 +305,9 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
             cfValid,
             passwordValid,
             passwordsMatch,
-            nomeValid,
-            cognomeValid,
-            compleannoValid,
+            nameValid,
+            surnameValid,
+            birthdayValid,
             indirizzoValid
         };
         return reverseArrayValues(errors);
@@ -377,7 +348,6 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         
     }
     
-    //Riccardo deve implementare
     /**
      * Metodo per la verifica dei dati di login.
      * Ritorna un array di booleani in cui "false" rappresentano gli errori commessi, secondo la elegenda sottostante.
@@ -388,11 +358,12 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
      * posizioni errori:
      * 0 - id utente non presente nel DB.
      * 1 - Password errata.
+     * 2 - utente già loggato.
      */
     @Override
-    public boolean[] validateLogin(String userId, String password) throws RemoteException
+    public synchronized boolean[] validateLogin(String userId, String password) throws RemoteException
     {
-        boolean[] errors = new boolean[]{false,false};
+        boolean[] errors = new boolean[]{false,false,false};
         try{
             //Inizializzazione
             String query;
@@ -410,13 +381,30 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
                 return errors;
             }else{
                 statementControl.close();
+                
                 query ="SELECT PASSWORD FROM UTENTI_REGISTRATI WHERE ID_USER = ?;"; 
                 statementControl = CONNECTION_TO_DB.prepareStatement(query);
                 statementControl.setString(1, userId);
                 resultSet = statementControl.executeQuery();
                 resultSet.next();
-            
-                if(!(resultSet.getString(1).equals(password))) errors[1] = true;
+                if(!(resultSet.getString(1).equals(password))) {
+                    errors[1] = true;
+                    return errors;
+                }
+                statementControl.close();
+                
+                query = "SELECT LOGGED FROM UTENTI_REGISTRATI WHERE ID_USER = ?";
+                statementControl = CONNECTION_TO_DB.prepareStatement(query);
+                statementControl.setString(1, userId);
+                ResultSet res = statementControl.executeQuery();
+                boolean logged = res.getBoolean(1);
+                if(logged){
+                    System.out.println("user already logged!");
+                    errors[2] = true;
+                }
+                statementControl.close();
+                ProxyToDBUtenti_Registrati udh = new ProxyToDBUtenti_Registrati(DBConnector.getDefaultConnection());
+                udh.login(userId);
             }   
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -443,6 +431,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         }
         System.out.println(" ]");
         */
+        //boolean i = new UtentiDataChecker(DBConnector.getDefaultConnection()).isNameValid("Asia");
+        //System.out.println(i);
     //} 
     
 }

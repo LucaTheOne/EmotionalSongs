@@ -6,26 +6,19 @@
  */
 package serverES;
 
-import serverES.server_services_common_interfaces.data_validator.UsersDataValidator;
-import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
-import serverES.server_services_common_interfaces.data_validator.EmotionsDataValidator;
-import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
-import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
-import serverES.server_services_common_interfaces.data_handler.EmotionsDataHandler;
-import serverES.server_services_common_interfaces.data_handler.UsersDataHandler;
-import serverES.server_services.canzoni.ProxyToDBCanzoni;
-import serverES.server_services.emozioni.EmozioniDataChecker;
-import serverES.server_services.emozioni.ProxyToDBEmozioni;
-import serverES.server_services.playlist.PlaylistsDataChecker;
-import serverES.server_services.playlist.ProxyToDBPlaylists;
-import serverES.server_services.utenti_registrati.UtentiDataChecker;
-import serverES.server_services.utenti_registrati.ProxyToDBUtenti_Registrati;
-import serverES.db_connector.DBConnector;
+import java.io.*;
 import java.net.*;
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.sql.*;
 import java.util.*;
+import serverES.db_connector.*;
+import serverES.server_services.canzoni.*;
+import serverES.server_services.emozioni.*;
+import serverES.server_services.playlist.*;
+import serverES.server_services.utenti_registrati.*;
+import serverES.server_services_common_interfaces.data_handler.*;
+import serverES.server_services_common_interfaces.data_validator.*;
 
 
 
@@ -35,7 +28,8 @@ import java.util.*;
 public class Server {
     
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
-    private static InetAddress SERVER_INET_ADDRESS = null;
+    private static InetAddress SERVER_INET_ADDRESS_LOCAL = null;
+    private static String SERVER_INET_ADDRESS_GLOBAL = null;
     private static Registry registroServizi = null;
     private Vector<String> servicesNamesVector = new Vector<>();
     private ServerControlGUI serverControlGUI;
@@ -51,8 +45,10 @@ public class Server {
     public void startServer(){
         serverControlGUI = new ServerControlGUI(this);
         try { 
-            SERVER_INET_ADDRESS = InetAddress.getLocalHost();
-            serverControlGUI.setAddress(SERVER_INET_ADDRESS.getHostAddress(), PORT_TO_REMOTE_SERVICES);
+            SERVER_INET_ADDRESS_LOCAL = InetAddress.getLocalHost();
+            SERVER_INET_ADDRESS_GLOBAL = getMyGlobalAddress();
+            serverControlGUI.setLocalAddress(SERVER_INET_ADDRESS_LOCAL.getHostAddress(), PORT_TO_REMOTE_SERVICES);
+            serverControlGUI.setGlobalAddress(SERVER_INET_ADDRESS_GLOBAL);
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
             serverControlGUI.addLineLog("Services' registry created!");
             Connection ConnToDB = DBConnector.getDefaultConnection();
@@ -114,9 +110,21 @@ public class Server {
         serverControlGUI.addLineLog("All services shutted down!");
     }
     
+    private String getMyGlobalAddress(){
+        try {
+            URL myIpFinder = new URL("http://checkip.amazonaws.com");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(myIpFinder.openStream()));
+            return reader.readLine();    
+        } catch (MalformedURLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
     
-    public static void main(String[] args) throws RemoteException {
+    public static void main(String[] args) throws RemoteException{
         new Server().startServer();
-        
     }
 }

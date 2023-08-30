@@ -6,12 +6,11 @@
  */
 package serverES.server_services.canzoni;
 
-import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
-import serverES.db_connector.DBConnector;
-import serverES.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import serverES.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  *
@@ -21,7 +20,6 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
 
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
-    private final String UNIV_SEP = DBConnector.SEP;
     
     public ProxyToDBCanzoni(Connection DBConn)throws RemoteException{
         super();
@@ -90,9 +88,9 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     @Override
     public String[] cercaBranoMusicale(String author, int year)throws RemoteException{
         try {
-            String query = "SELECT * FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%"+author+"%') "+
+            String query = "SELECT * FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%?%') "+
                     "INTERSECT"+
-                    " SELECT * FROM CANZONI WHERE ANNO = "+year+
+                    " SELECT * FROM CANZONI WHERE ANNO = ?"+
                     " ORDER BY ANNO,AUTORE,TITOLO ASC;";
             
             Statement statement = CONNECTION_TO_DB.createStatement();
@@ -147,10 +145,10 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
         return 0;
     }
     
-    
+    /*
     public static void main(String[] args) throws RemoteException {
         ProxyToDBCanzoni pc = new ProxyToDBCanzoni(DBConnector.getDefaultConnection());
         String res = pc.requestSongData("TRVICBU128F424ADCE");
         System.out.println(res);
-    }
+    }*/
 }

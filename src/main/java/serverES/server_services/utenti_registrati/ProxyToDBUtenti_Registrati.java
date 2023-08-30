@@ -6,10 +6,10 @@
  */
 package serverES.server_services.utenti_registrati;
 
-import serverES.server_services_common_interfaces.data_handler.UsersDataHandler;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  *
@@ -67,7 +67,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
      */
     @Override
     @SuppressWarnings("deprecation")
-    public int requestToUpdateUsersTable(
+    public synchronized int requestToUpdateUsersTable(
             String userId, 
             String email, 
             String cf, 
@@ -94,12 +94,45 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             statement.setString(8, indirizzo);
             statement.executeUpdate();
             statement.close();
+            login(userId);
             return 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return 1;
         }
     }
+    
+    
+    public int logout(String loggedUserId){
+        try {
+            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = FALSE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
+            PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
+            preparedStatement.setString(1, loggedUserId);
+            preparedStatement.executeUpdate();
+            return 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 1;
+        }
+    }
+    
+    /**
+     * Metodo usato per notificare al DB che l' utente ha già effettuato il login!
+     * @param loggedUserId user id dell' utente che vuole eseguire il login. 
+     */
+    public int login(String loggedUserId){
+        try {
+            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = TRUE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
+            PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
+            preparedStatement.setString(1, loggedUserId);
+            preparedStatement.execute();
+            return 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 1;
+        }
+    }
+    
     /*
     public static void main(String[] args) throws RemoteException {
         boolean can = new ProxyToDBUtenti_Registrati(DBConnector.getDefaultConnection()).userCanVoteSong("theOne", "TRYVYLV128F4222E69");

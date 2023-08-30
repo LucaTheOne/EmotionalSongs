@@ -41,7 +41,7 @@ public interface EmotionsDataHandler extends Remote{
      * 1 - operazione non andata a buon fine.
      * 2 - operazione abortita causa: array voti non valido;
      */
-    public int voteSongEmotions(String idUser,String idSong,int[] emotionalMarks,String Comment) throws RemoteException;
+    public int InserisciEmozioniBrano(String idUser,String idSong,int[] emotionalMarks,String Comment) throws RemoteException;
     
     
 }

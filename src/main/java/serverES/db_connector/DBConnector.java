@@ -6,7 +6,7 @@
  */
 package serverES.db_connector;
 
-import emotionalsongs.gui.allerter.*;
+import emotionalsongs.clientES.gui.allerter.PopUpAllert;
 import java.io.*;
 import java.sql.*;
 import serverES.*;
