@@ -51,7 +51,7 @@ public class Server {
             serverControlGUI.setGlobalAddress(SERVER_INET_ADDRESS_GLOBAL);
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
             serverControlGUI.addLineLog("Services' registry created!");
-            Connection ConnToDB = DBConnector.getDefaultConnection();
+            Connection ConnToDB = DBConnector.getConnection();
             
             //adding all necessary service to the vector with addService
             addService(EmotionsDataHandler.SERVICE_NAME, new ProxyToDBEmozioni(ConnToDB));
@@ -125,6 +125,7 @@ public class Server {
     }
     
     public static void main(String[] args) throws RemoteException{
-        new Server().startServer();
+        Server server = new Server();
+        new ServerInitializer(server);
     }
 }

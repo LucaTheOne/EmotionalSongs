@@ -10,6 +10,7 @@ import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
 import serverES.*;
+import serverES.db_connector.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
@@ -42,7 +43,6 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
             statement.setString(1, songId);
             ResultSet result = statement.executeQuery();
             String resulString[] = ServerUtils.convToArrayStr(result);
-            System.out.println(resulString[0]);
             if(resulString.length != 1) return null;
             statement.close();
             return resulString[0];
@@ -88,14 +88,13 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     @Override
     public String[] cercaBranoMusicale(String author, int year)throws RemoteException{
         try {
-            String query = "SELECT * FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%?%') "+
+            String query = "SELECT * FROM CANZONI WHERE LOWER(AUTORE) LIKE LOWER('%"+author+"%')"+
                     "INTERSECT"+
-                    " SELECT * FROM CANZONI WHERE ANNO = ?"+
-                    " ORDER BY ANNO,AUTORE,TITOLO ASC;";
-            
-            Statement statement = CONNECTION_TO_DB.createStatement();
-            statement = CONNECTION_TO_DB.createStatement();
-            ResultSet queryResult = statement.executeQuery(query);
+                    " SELECT * FROM CANZONI WHERE ANNO = "+year+
+                    " ORDER BY AUTORE,ANNO,TITOLO ASC;";
+            PreparedStatement statement = DBConnector.getConnection().prepareStatement(query);
+            //PreparedStatement statement = DBConnector.getDefaultConnection().prepareStatement(query);
+            ResultSet queryResult = statement.executeQuery();
             String[] resultArray = ServerUtils.convToArrayStr(queryResult);
             statement.close();
             return resultArray;
@@ -148,7 +147,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     /*
     public static void main(String[] args) throws RemoteException {
         ProxyToDBCanzoni pc = new ProxyToDBCanzoni(DBConnector.getDefaultConnection());
-        String res = pc.requestSongData("TRVICBU128F424ADCE");
-        System.out.println(res);
+        String[] res = pc.cercaBranoMusicale("barrington levy",1922);
+        for(String str:res) System.out.println(str);
     }*/
 }

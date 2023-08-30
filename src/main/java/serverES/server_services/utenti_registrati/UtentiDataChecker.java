@@ -403,7 +403,7 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
                     errors[2] = true;
                 }
                 statementControl.close();
-                ProxyToDBUtenti_Registrati udh = new ProxyToDBUtenti_Registrati(DBConnector.getDefaultConnection());
+                ProxyToDBUtenti_Registrati udh = new ProxyToDBUtenti_Registrati(DBConnector.getConnection());
                 udh.login(userId);
             }   
         }catch(SQLException ex){

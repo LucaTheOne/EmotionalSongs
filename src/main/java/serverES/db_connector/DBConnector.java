@@ -6,7 +6,7 @@
  */
 package serverES.db_connector;
 
-import emotionalsongs.clientES.gui.allerter.PopUpAllert;
+import emotionalsongs.clientES.gui.allerter.*;
 import java.io.*;
 import java.sql.*;
 import serverES.*;
@@ -18,33 +18,36 @@ import serverES.*;
 public class DBConnector implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    protected static final int PORT_TO_DB = 9876;
+    protected static int PORT_TO_DB;
     public static String SEP = ServerUtils.STRING_SEPARATOR;
-
-    public static Connection getConnection(int DBPort) {
-        Connection connection = null;
-        final String url = "jdbc:postgresql://localhost:"+DBPort+"/postgres";
-        final String id = "postgres";
-        final String pswd = "root";
+    public static Connection connection;
+    
+    protected static void connectToPostgres(String idPostgres,String passwordPostgres,int portPostgres) {
+        PORT_TO_DB = portPostgres;
+        final String url = "jdbc:postgresql://localhost:"+portPostgres+"/postgres";
+        final String id = idPostgres;
+        final String pswd = passwordPostgres;
         try {
             Class.forName("org.postgresql.Driver");
             connection= DriverManager.getConnection(url,id,pswd);
             if(connection!=null){
-                System.out.println("Connected to DB");
-                return connection;
+                new PopUpAllert("Connected to DB!");
             } else {
                 new PopUpAllert("Error; impossible to connect with DB!");
             }  
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
-            
+            new PopUpAllert(e.getMessage());          
         }  
-        return null;
     }
     
-    public static Connection getDefaultConnection(){
-        return getConnection(PORT_TO_DB);
+    public static Connection getConnection(){
+        return connection;
     }
+    /** only for texting purpose
+    public static Connection getDefaultConnection(){
+        connectToPostgres("postgres", "root", 9876);
+        return connection;
+    }*/
     
     //debugging main
     /** 
