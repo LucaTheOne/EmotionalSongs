@@ -33,9 +33,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     private final PlaylistsDataValidator playlistsDataChecker;
     private final SongsDataHandler songsDataHandler;
     
-    private final int tracksPerView = 10;
+    private final int SONGS_PER_VIEW = 10;
     private int startIndex = 0;
-    private final int maxIndex;
+    private final int MAX_INDEX;
     private boolean throughFullRepo = true;
     boolean firstPage = true;
     boolean lastPage = false;
@@ -46,9 +46,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         playlistsDataHandler = (PlaylistsDataHandler) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
         playlistsDataChecker = (PlaylistsDataValidator) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_VALIDATOR);
         songsDataHandler = (SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER);
-        maxIndex = ((SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER)).getRepoSize();
-        actualSongsArray = new String[tracksPerView];
-        actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, startIndex+tracksPerView);
+        MAX_INDEX = ((SongsDataHandler) servicesProvider.getService(ServicesProvider.SONGS_DATA_HANDLER)).getRepoSize();
+        actualSongsArray = new String[SONGS_PER_VIEW];
+        actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, startIndex+SONGS_PER_VIEW);
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -305,9 +305,9 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
 
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
         innerScroll.setOpaque(false);
-        innerScroll.setPreferredSize(new java.awt.Dimension(810, tracksPerView+1));
-        innerScroll.setLayout(new java.awt.GridLayout(tracksPerView+1, 1, 0, 1));
-        for(int i = 0;i<tracksPerView;i++){
+        innerScroll.setPreferredSize(new java.awt.Dimension(810, SONGS_PER_VIEW+1));
+        innerScroll.setLayout(new java.awt.GridLayout(SONGS_PER_VIEW+1, 1, 0, 1));
+        for(int i = 0;i<SONGS_PER_VIEW;i++){
             innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
         }
         scrollView.setViewportView(innerScroll);
@@ -347,13 +347,13 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             startIndex = 0;
             throughFullRepo = true;
             try {
-                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 System.out.println(ex.getMessage());
             }
             innerScroll.removeAll();
             throughFullRepo=true;
-            for(int i = 0;i<actualSongsArray.length && i<tracksPerView;i++){
+            for(int i = 0;i<actualSongsArray.length && i<SONGS_PER_VIEW;i++){
                 innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
             scrollView.revalidate();
@@ -389,7 +389,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
             return;
         }
         actualSearchedSongIndex = 0;
-        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+        for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+SONGS_PER_VIEW);i++){
             innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));   
         } 
         firstPage = true;
@@ -407,7 +407,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         if (firstPage) {
             return;
         }
-        startIndex -= tracksPerView;
+        startIndex -= SONGS_PER_VIEW;
         if ((startIndex < 0)&&throughFullRepo) {
             firstPage = true;
             startIndex = 0;
@@ -416,7 +416,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         lastPage = false;
         if(throughFullRepo){
             try {
-                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -424,12 +424,12 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         }else{
-            actualSearchedSongIndex -= tracksPerView;
+            actualSearchedSongIndex -= SONGS_PER_VIEW;
             if(actualSearchedSongIndex<0) {
                 actualSearchedSongIndex = 0;
                 firstPage = true;
             }
-            for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+tracksPerView)&&i<actualSongsArray.length;i++){
+            for(int i = actualSearchedSongIndex;i<(actualSearchedSongIndex+SONGS_PER_VIEW)&&i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         }
@@ -438,18 +438,21 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if(((startIndex+tracksPerView) >= maxIndex )&&throughFullRepo) {
-            lastPage = true;
+        if(throughFullRepo) {
+            lastPage = (startIndex+SONGS_PER_VIEW) >= MAX_INDEX;
+        } else {
+            int maxSearchedSongIndex = actualSongsArray.length-1;
+            if(actualSearchedSongIndex+SONGS_PER_VIEW >= maxSearchedSongIndex) lastPage = true;
         }
         firstPage = false;
-        if (lastPage&&throughFullRepo) return;
-        if(throughFullRepo) startIndex += tracksPerView;
+        if (lastPage) return;
+        if(throughFullRepo) startIndex += SONGS_PER_VIEW;
         
         innerScroll.removeAll();
         
         if(throughFullRepo){
             try {
-                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+tracksPerView));
+                actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -457,11 +460,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
                 innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));
             }
         } else {
-            actualSearchedSongIndex += tracksPerView;
-            if(actualSearchedSongIndex==(actualSongsArray.length-tracksPerView)){
-                actualSearchedSongIndex = actualSongsArray.length-tracksPerView;
+            actualSearchedSongIndex += SONGS_PER_VIEW;
+            if(actualSearchedSongIndex==(actualSongsArray.length-SONGS_PER_VIEW)){
+                actualSearchedSongIndex = actualSongsArray.length-SONGS_PER_VIEW;
             }
-            for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+tracksPerView);i++){
+            for(int i = actualSearchedSongIndex;i<actualSongsArray.length && i<(actualSearchedSongIndex+SONGS_PER_VIEW);i++){
                 innerScroll.add(Song.buildPanelAddToPlaylist(actualSongsArray[i]));   
             }
         }

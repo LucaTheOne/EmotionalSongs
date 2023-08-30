@@ -9,15 +9,15 @@
 
 package emotionalsongs.clientES.gui.repository;
 
-import emotionalsongs.clientES.gui.main_window.MainFrame;
-import emotionalsongs.clientES.ServicesProvider;
-import serverES.server_services_common_interfaces.data_handler.SongsDataHandler;
-import emotionalsongs.clientES.wrappers.Song;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.gui.main_window.*;
+import emotionalsongs.clientES.wrappers.*;
 import java.awt.*;
 import java.io.*;
 import java.rmi.*;
 import java.util.logging.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  *Classe le cui istanze mostrano il repository di canzoni.
@@ -331,11 +331,14 @@ public class RepositoryPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_XActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if(((startIndex+SONGS_PER_VIEW) >= MAX_INDEX )&&throughFullRepo) {
-            lastPage = true;
+        if(throughFullRepo) {
+            lastPage = (startIndex+SONGS_PER_VIEW) >= MAX_INDEX;
+        } else {
+            int maxSearchedSongIndex = actualSongsArray.length-1;
+            if(actualSearchedSongIndex+SONGS_PER_VIEW >= maxSearchedSongIndex) lastPage = true;
         }
         firstPage = false;
-        if (lastPage&&throughFullRepo) return;
+        if (lastPage) return;
         if(throughFullRepo) startIndex += SONGS_PER_VIEW;
         
         innerScroll.removeAll();
@@ -344,7 +347,7 @@ public class RepositoryPanel extends javax.swing.JPanel {
             try {
                 actualSongsArray = songsDataHandler.requestRepositorysSongByIndex(startIndex, (startIndex+SONGS_PER_VIEW));
             } catch (RemoteException ex) {
-                Logger.getLogger(RepositoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
             for(int i = 0; i<actualSongsArray.length;i++){
                 innerScroll.add(Song.buildPanelView(actualSongsArray[i]));

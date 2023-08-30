@@ -9,17 +9,15 @@
 
 package emotionalsongs.clientES.client_internal_services;
 
-import emotionalsongs.clientES.gui.playlists.PlaylistsMainPanel;
-import emotionalsongs.clientES.gui.playlists.PlaylistSongsViewPanel;
-import emotionalsongs.clientES.gui.playlists.PlaylistCreationFrame;
-import emotionalsongs.clientES.gui.main_window.MainFrame;
-import emotionalsongs.clientES.gui.allerter.PopUpAllert;
-import emotionalsongs.clientES.ServicesProvider;
-import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
-import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.gui.allerter.*;
+import emotionalsongs.clientES.gui.main_window.*;
+import emotionalsongs.clientES.gui.playlists.*;
 import java.rmi.*;
 import java.util.*;
+import serverES.server_services_common_interfaces.data_handler.*;
+import serverES.server_services_common_interfaces.data_validator.*;
 
 
 /**
@@ -37,7 +35,7 @@ public class PlaylistsManager {
         
     private String user;
     private String nameNewPlaylist = "";
-    private final Vector<String> songsToAddIds = new Vector<>();
+    private final NavigableSet<String> songsToAddIds = new TreeSet<String>();
     
     private final PlaylistsDataHandler playlistsDataHandler;
     private final PlaylistsDataValidator playlistsDataValidator;
@@ -69,23 +67,16 @@ public class PlaylistsManager {
         return songsToAddIds.size();
     }
     /**
-     * Ritorna la canzone, nel buffer delle canzoni in attesa di essere aggiunte ad una playlist, in posizione index.
-     * @param index posizione a cui riferirsi.
-     * @return Canzone di posizione index nel buffer.
-     */
-    public String getSongToAdd(int index){
-        return songsToAddIds.elementAt(index);
-    }
-    /**
      *
      * @return array contenente l' intero buffer delle canzoni in attesa di essere aggiunte ad una playlist.
      */
     public String[] songsToAddArray() {
-        String[] temp = new String[songsToAddIds.size()];
-        for(int i = 0;i<temp.length;i++ ){
-            temp[i] = songsToAddIds.get(i);
-        }
-        return temp;
+        
+        Object[] temp = songsToAddIds.toArray();
+        String[] strTemp = new String[temp.length];
+        for(int i = 0; i< temp.length;i++)
+            strTemp[i] = String.valueOf(temp[i]);
+        return strTemp;
     }
     
     //generator method
@@ -133,7 +124,7 @@ public class PlaylistsManager {
      * Resetta tutti i dati contenuti nel manager.
      */
     public void resetManager(){
-        songsToAddIds.removeAllElements();
+        songsToAddIds.removeAll(songsToAddIds);
         nameNewPlaylist = "";
     }
     
