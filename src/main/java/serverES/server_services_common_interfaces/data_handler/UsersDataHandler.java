@@ -32,7 +32,7 @@ public interface UsersDataHandler extends Remote{
      * 1 - Operazione non andata a buon fine.
      * @throws java.rmi.RemoteException
      */
-    public int requestToUpdateUsersTable(
+    public int registraNuovoUtente(
             String userId,
             String email,
             String cf,

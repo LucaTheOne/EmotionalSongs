@@ -9,6 +9,8 @@ package serverES.server_services.utenti_registrati;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
+import java.time.*;
+import serverES.db_connector.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
@@ -67,7 +69,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
      */
     @Override
     @SuppressWarnings("deprecation")
-    public synchronized int requestToUpdateUsersTable(
+    public synchronized int registraNuovoUtente(
             String userId, 
             String email, 
             String cf, 
@@ -90,7 +92,8 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             statement.setString(4, password);
             statement.setString(5, nome);
             statement.setString(6, cognome);
-            statement.setDate(7, new Date(yyyy, mm,dd));
+            LocalDate localDate = LocalDate.of(yyyy, mm, dd);
+            statement.setDate(7, Date.valueOf(localDate));
             statement.setString(8, indirizzo);
             statement.executeUpdate();
             statement.close();
@@ -102,8 +105,8 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
         }
     }
     
-    
-    public int logout(String loggedUserId){
+    @Override
+    public int logout(String loggedUserId) throws RemoteException{
         try {
             String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = FALSE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
             PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
@@ -120,7 +123,8 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
      * Metodo usato per notificare al DB che l' utente ha già effettuato il login!
      * @param loggedUserId user id dell' utente che vuole eseguire il login. 
      */
-    public int login(String loggedUserId){
+    @Override
+    public int login(String loggedUserId) throws RemoteException{
         try {
             String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = TRUE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
             PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
@@ -133,9 +137,9 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
         }
     }
     
-    /*
+    
     public static void main(String[] args) throws RemoteException {
-        boolean can = new ProxyToDBUtenti_Registrati(DBConnector.getDefaultConnection()).userCanVoteSong("theOne", "TRYVYLV128F4222E69");
-        System.out.println(can);
-    }*/
+        ProxyToDBUtenti_Registrati proxy = new ProxyToDBUtenti_Registrati(DBConnector.getTextConn());
+        proxy.registraNuovoUtente("vdanailova", "nddanailov@outlook.com", "DNLVYG73R68Z104G", "Password123!", "Vanya Georgieva", "Danailova", "1/1/1970", "varese");
+    }
 }

@@ -323,11 +323,11 @@ public class RegistrationPanel extends javax.swing.JPanel {
             okData = checkData();
             int okUpdate = 1;
             if(okData){
-                okUpdate = dataHandler.requestToUpdateUsersTable(
+                okUpdate = dataHandler.registraNuovoUtente(
                      idTextField.getText(),
                       mailTextField.getText(),
                         cfTextField.getText(),
-                    String.valueOf(passwordTextField.getPassword()),
+                        String.valueOf(passwordTextField.getPassword()),
                        nomeTextField.getText(),
                      cognomeTextField.getText(), 
                   birthdayTextField.getText(),
@@ -350,7 +350,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
                         idTextField.getText(), 
                         String.valueOf(passwordTextField.getPassword())
                     ); // manda mail di benvenuto al nuovo utente con i suoi dati inseriti.
-                ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose();
+                MainFrame.getIstance().cleanUpMainPanel();
             }
         }catch (RemoteException ex) {
             System.out.println(ex.getMessage());
