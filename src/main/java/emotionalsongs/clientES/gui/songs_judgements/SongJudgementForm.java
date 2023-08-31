@@ -9,11 +9,11 @@
 
 package emotionalsongs.clientES.gui.songs_judgements;
 
-import emotionalsongs.clientES.gui.playlists.SongPanelForPlaylistView;
-import emotionalsongs.clientES.gui.allerter.PopUpAllert;
-import emotionalsongs.clientES.client_internal_services.ClientUtilities;
 import emotionalsongs.*;
 import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.client_internal_services.*;
+import emotionalsongs.clientES.gui.allerter.*;
+import emotionalsongs.clientES.gui.playlists.*;
 import java.rmi.*;
 import javax.swing.*;
 import serverES.server_services_common_interfaces.data_handler.*;

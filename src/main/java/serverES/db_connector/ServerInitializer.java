@@ -89,6 +89,7 @@ public class ServerInitializer extends javax.swing.JFrame {
         connectButton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         connectButton.setForeground(new java.awt.Color(255, 255, 255));
         connectButton.setText("CONNECT");
+        connectButton.setOpaque(true);
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 connectButtonActionPerformed(evt);

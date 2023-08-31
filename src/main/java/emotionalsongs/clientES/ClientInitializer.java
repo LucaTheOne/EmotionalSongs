@@ -6,9 +6,9 @@
  */
 package emotionalsongs.clientES;
 
-import emotionalsongs.clientES.gui.main_window.MainFrame;
-import emotionalsongs.clientES.gui.generics.InitializationFrame;
 import emotionalsongs.*;
+import emotionalsongs.clientES.gui.generics.*;
+import emotionalsongs.clientES.gui.main_window.*;
 /**
  *
  * @author big

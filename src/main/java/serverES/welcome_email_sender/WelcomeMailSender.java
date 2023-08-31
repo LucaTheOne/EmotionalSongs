@@ -6,7 +6,7 @@
  */
 
 
-package emotionalsongs.clientES.welcome_email;
+package serverES.welcome_email_sender;
 
 
 
@@ -46,7 +46,7 @@ public class WelcomeMailSender {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("bigs.development.studio@gmail.com", "zcaivjomuuuruwzg");
+                return new PasswordAuthentication("bigs.development.studio@gmail.com", "tojzfpqylgsfcokc");
 
             }
 
@@ -78,4 +78,8 @@ public class WelcomeMailSender {
             mex.printStackTrace();
         }
     }
+    /*
+    public static void main(String[] args) {
+        WelcomeMailSender.sendMailToNewUser("luca", "Bolelli", "16/10/1997", "BLLLCU97R16E290S", "Via delle vie", "big.luca97@outlook.it", "theOne", "Estarossa97!");
+    }*/
 }

@@ -7,9 +7,8 @@
 
 package emotionalsongs;
 
-import emotionalsongs.clientES.dialogs.Italiano;
-import emotionalsongs.clientES.dialogs.ClientDialogs;
-import emotionalsongs.clientES.ClientInitializer;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.dialogs.*;
 import java.io.*;
 /**
  * 

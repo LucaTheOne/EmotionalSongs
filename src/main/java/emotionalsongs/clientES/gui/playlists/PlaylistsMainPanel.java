@@ -9,13 +9,13 @@
 
 package emotionalsongs.clientES.gui.playlists;
 
-import emotionalsongs.clientES.client_internal_services.PlaylistsManager;
-import emotionalsongs.clientES.client_internal_services.ClientUtilities;
-import emotionalsongs.clientES.ServicesProvider;
-import serverES.server_services_common_interfaces.data_handler.PlaylistsDataHandler;
-import emotionalsongs.clientES.wrappers.Playlist;
+import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.client_internal_services.*;
+import emotionalsongs.clientES.wrappers.*;
 import java.awt.*;
 import java.rmi.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  * Classe le cui istanze sono pannelli per la visulizzazione di pulsanti delle playlist ed il loro contenuto.
@@ -94,7 +94,7 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         buttonPanel.setLayout(new java.awt.BorderLayout());
 
         newPlaylistButton.setBackground(new java.awt.Color(239, 239, 239));
-        newPlaylistButton.setText(emotionalsongs.EmotionalSongs.dialoghi.creaNuovaPlaylistButton());
+        newPlaylistButton.setText(EmotionalSongs.dialoghi.creaNuovaPlaylistButton());
         newPlaylistButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(102, 102, 102), new java.awt.Color(102, 102, 102)));
         newPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

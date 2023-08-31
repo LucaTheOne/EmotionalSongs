@@ -9,12 +9,12 @@
 
 package emotionalsongs.clientES.gui.playlists;
 
-import emotionalsongs.clientES.wrappers.Song;
-import emotionalsongs.clientES.gui.songs_judgements.SongJudgementForm;
-import emotionalsongs.clientES.gui.allerter.PopUpAllert;
-import emotionalsongs.clientES.client_internal_services.ClientUtilities;
-import emotionalsongs.clientES.ServicesProvider;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.client_internal_services.*;
+import emotionalsongs.clientES.gui.allerter.*;
+import emotionalsongs.clientES.gui.songs_judgements.*;
+import emotionalsongs.clientES.wrappers.*;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -145,7 +145,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
         buttonsLabelLayout.rowHeights = new int[] {0, 8, 0};
         buttonsLabel.setLayout(buttonsLabelLayout);
 
-        voteButton.setText(emotionalsongs.EmotionalSongs.dialoghi.vote());
+        voteButton.setText(EmotionalSongs.dialoghi.vote());
         voteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         voteButton.setEnabled(canBeVotedByUser);
         voteButton.setOpaque(true);
@@ -160,7 +160,7 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         buttonsLabel.add(voteButton, gridBagConstraints);
 
-        chartButton.setText(emotionalsongs.EmotionalSongs.dialoghi.songData());
+        chartButton.setText(EmotionalSongs.dialoghi.songData());
         chartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chartButton.setOpaque(true);
         chartButton.setPreferredSize(new java.awt.Dimension(125, 25));

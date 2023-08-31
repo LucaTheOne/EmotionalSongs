@@ -6,9 +6,9 @@
  */
 package emotionalsongs.clientES.client_internal_services;
 
-import emotionalsongs.clientES.gui.allerter.PopUpAllert;
-import emotionalsongs.clientES.ServicesProvider;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.gui.allerter.*;
 import java.awt.*;
 import java.rmi.*;
 import org.jfree.chart.*;

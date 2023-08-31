@@ -8,9 +8,9 @@
 
 package emotionalsongs.clientES.gui.main_window;
 
-import emotionalsongs.clientES.gui.repository.RepositoryPanel;
-import emotionalsongs.clientES.client_internal_services.PlaylistsManager;
 import emotionalsongs.*;
+import emotionalsongs.clientES.client_internal_services.*;
+import emotionalsongs.clientES.gui.repository.*;
 import java.io.*;
 
 /**

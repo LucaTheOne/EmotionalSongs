@@ -6,11 +6,11 @@
  */
 package serverES.server_services.utenti_registrati;
 
+import serverES.welcome_email_sender.WelcomeMailSender;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
 import java.time.*;
-import serverES.db_connector.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
@@ -53,15 +53,15 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     
     //luca - fatto
     /**
-     * Metodo che aggiorna il DB con un nuovo utente, ed il suo indirizzo.Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
+     * Metodo che aggiorna il DB con un nuovo utente, ed il suo address.Ritorna 0 se l' operazione termina con successo, 1 altrimenti.
      * @param userId
      * @param email
      * @param cf
      * @param password
-     * @param nome
-     * @param cognome
-     * @param dataNascita
-     * @param indirizzo
+     * @param name
+     * @param surname
+     * @param birthDay
+     * @param address
      * @return 
      * 0 - operazione completata con successo.
      * 1 - operazione non andata a buon fine.
@@ -74,30 +74,31 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
             String email, 
             String cf, 
             String password, 
-            String nome, 
-            String cognome,
-            String dataNascita,  
-            String indirizzo
+            String name, 
+            String surname,
+            String birthDay,  
+            String address
         ) throws RemoteException{
         try {
             String query = "INSERT INTO UTENTI_REGISTRATI(ID_USER,EMAIL,CF,PASSWORD,NOME,COGNOME,DATA_NASCITA,INDIRIZZO) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = CONNECTION_TO_DB.prepareStatement(query);
             int yyyy,mm,dd;
-            yyyy = Integer.parseInt(dataNascita.split("/")[2]);
-            mm = Integer.parseInt(dataNascita.split("/")[1]);
-            dd = Integer.parseInt(dataNascita.split("/")[0]);
+            yyyy = Integer.parseInt(birthDay.split("/")[2]);
+            mm = Integer.parseInt(birthDay.split("/")[1]);
+            dd = Integer.parseInt(birthDay.split("/")[0]);
             statement.setString(1, userId);
             statement.setString(2, email);
             statement.setString(3, cf);
             statement.setString(4, password);
-            statement.setString(5, nome);
-            statement.setString(6, cognome);
+            statement.setString(5, name);
+            statement.setString(6, surname);
             LocalDate localDate = LocalDate.of(yyyy, mm, dd);
             statement.setDate(7, Date.valueOf(localDate));
-            statement.setString(8, indirizzo);
+            statement.setString(8, address);
             statement.executeUpdate();
             statement.close();
             login(userId);
+            WelcomeMailSender.sendMailToNewUser(name, surname, birthDay, cf, address, email, userId, password);
             return 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -137,9 +138,9 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
         }
     }
     
-    
+    /*
     public static void main(String[] args) throws RemoteException {
         ProxyToDBUtenti_Registrati proxy = new ProxyToDBUtenti_Registrati(DBConnector.getTextConn());
         proxy.registraNuovoUtente("vdanailova", "nddanailov@outlook.com", "DNLVYG73R68Z104G", "Password123!", "Vanya Georgieva", "Danailova", "1/1/1970", "varese");
-    }
+    }*/
 }

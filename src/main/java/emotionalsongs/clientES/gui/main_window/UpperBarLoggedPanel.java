@@ -8,11 +8,10 @@
 
 package emotionalsongs.clientES.gui.main_window;
 
-import emotionalsongs.clientES.gui.generics.CreditsPanel;
-import emotionalsongs.clientES.dialogs.Italiano;
-import emotionalsongs.clientES.dialogs.English;
-import emotionalsongs.clientES.ServicesProvider;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.dialogs.*;
+import emotionalsongs.clientES.gui.generics.*;
 import java.rmi.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 /**

@@ -8,8 +8,8 @@
 
 package emotionalsongs.clientES.gui.playlists;
 
-import emotionalsongs.clientES.wrappers.Song;
 import emotionalsongs.*;
+import emotionalsongs.clientES.wrappers.*;
 import java.awt.*;
 
 /**

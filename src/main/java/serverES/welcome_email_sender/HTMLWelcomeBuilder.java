@@ -6,13 +6,7 @@
  */
 
 
-package emotionalsongs.clientES.welcome_email;
-
-
-import emotionalsongs.clientES.client_internal_services.ClientUtilities;
-import emotionalsongs.*;
-import java.io.*;
-import java.util.logging.*;
+package serverES.welcome_email_sender;
 /**
  * Classe che si occupa di fornire metodi per la compilazione del form html di benvenuto.
  */
@@ -35,19 +29,10 @@ class HTMLWelcomeBuilder {
         userdata[6] = userId;
         userdata[7] = password;
         
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(ClientUtilities.HtmlPath)));
-            String current = "";
-            while((current = reader.readLine()) != null){
-                message += current;
-            }
-            for (int i = 0; i < 8; i++) {
-                message = message.replace(identifiers[i], userdata[i]);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HTMLWelcomeBuilder.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLWelcomeBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        message = new WelcomeMailMessageTemplate().getMailWelcomeTemplate();
+        
+        for (int i = 0; i < 8; i++) {
+            message = message.replace(identifiers[i], userdata[i]);
         }
     }
     /**

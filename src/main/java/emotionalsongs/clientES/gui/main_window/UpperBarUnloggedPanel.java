@@ -8,12 +8,11 @@
 
 package emotionalsongs.clientES.gui.main_window;
 
-import emotionalsongs.clientES.wrappers.Users;
-import emotionalsongs.clientES.gui.login.LoginFrame;
-import emotionalsongs.clientES.gui.generics.CreditsPanel;
-import emotionalsongs.clientES.dialogs.Italiano;
-import emotionalsongs.clientES.dialogs.English;
 import emotionalsongs.*;
+import emotionalsongs.clientES.dialogs.*;
+import emotionalsongs.clientES.gui.generics.*;
+import emotionalsongs.clientES.gui.login.*;
+import emotionalsongs.clientES.wrappers.*;
 
 /**
  * Le istanze di questa classe costruiscono la barra superiore della schermata principale del software
@@ -204,8 +203,8 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
-        if(emotionalsongs.EmotionalSongs.dialoghi instanceof Italiano){
-            emotionalsongs.EmotionalSongs.dialoghi = new English();
+        if(EmotionalSongs.dialoghi instanceof Italiano){
+            EmotionalSongs.dialoghi = new English();
             LanguageButton.setText("Italiano");
             RegistrerButton.setText("Registration");
             CreditsButton.setText("Credits");
@@ -213,7 +212,7 @@ public class UpperBarUnloggedPanel extends javax.swing.JPanel {
             else mainWindow.setLeftPanel(new MenuLeftVoid(mainWindow));
             mainWindow.updateView();
         } else {
-           emotionalsongs.EmotionalSongs.dialoghi = new Italiano();
+           EmotionalSongs.dialoghi = new Italiano();
            LanguageButton.setText("English");
            RegistrerButton.setText("Registrazione");
            CreditsButton.setText("Crediti");

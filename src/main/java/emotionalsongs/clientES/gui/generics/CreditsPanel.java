@@ -8,7 +8,6 @@
 
 package emotionalsongs.clientES.gui.generics;
 import emotionalsongs.clientES.client_internal_services.ClientUtilities;
-import emotionalsongs.*;
 import java.awt.*;
 
 /**

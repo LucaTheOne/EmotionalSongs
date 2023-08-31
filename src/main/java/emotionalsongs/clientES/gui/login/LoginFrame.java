@@ -9,14 +9,12 @@
 
 package emotionalsongs.clientES.gui.login;
 
-import emotionalsongs.clientES.gui.main_window.MenuLeftLogged;
-import emotionalsongs.clientES.gui.main_window.MainFrame;
-import emotionalsongs.clientES.gui.main_window.UpperBarLoggedPanel;
-import emotionalsongs.clientES.ServicesProvider;
-import serverES.server_services_common_interfaces.data_validator.UsersDataValidator;
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
+import emotionalsongs.clientES.gui.main_window.*;
 import java.awt.geom.*;
 import java.rmi.*;
+import serverES.server_services_common_interfaces.data_validator.*;
 
 /**
  *Classe le cui istanze rappresentano il form di login.
