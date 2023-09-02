@@ -33,6 +33,12 @@ public class PlaylistButton extends javax.swing.JPanel {
     private final PlaylistsManager playListsManager = PlaylistsManager.getInstance();
     private final String SEP = ClientUtilities.STRING_SEPARATOR;
     
+    /**
+     * Metodo costruttore della classe.
+     * Crea l'istanza e inserisce nei campi i nomi e ID della playlist
+     * @param playlistName: nome della playlist
+     * @param playlistId: ID della playlist
+     */
     public PlaylistButton(String playlistName, String playlistId) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;

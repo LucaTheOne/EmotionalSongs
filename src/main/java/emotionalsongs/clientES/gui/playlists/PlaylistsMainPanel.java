@@ -132,6 +132,11 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane viewPlaylistSetPanel;
     // End of variables declaration//GEN-END:variables
 
+    
+    /**
+     * Azzera il pannello sinistro e lo aggiorna con l'elenco di playlist dell'utente loggato
+     * @param userPlaylistsData: datti delle playlist dell'utente loggato
+     */
     public void setLeftInnerPanel(String[] userPlaylistsData) {
         innerPanelLeft.removeAll();
         for(int i = 0; i<userPlaylistsData.length;i++){
@@ -142,6 +147,10 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelLeft.repaint();
     }
     
+    /**
+     * Aggiorna il pannello destro con l'elenco di canzopni della playlist selezionata
+     * @param viewPanel: contiene i pannelli delle canzoni da visualizzare
+     */
     public void redrawRightPanel(PlaylistSongsViewPanel viewPanel){
         innerPanelRight.removeAll();
         innerPanelRight.add(viewPanel);
@@ -149,9 +158,9 @@ public class PlaylistsMainPanel extends javax.swing.JPanel {
         innerPanelRight.repaint();
     }
 
-    public void addToLeftPanel(PlaylistButton playlistButton) {
+    /*public void addToLeftPanel(PlaylistButton playlistButton) {
         innerPanelLeft.add(playlistButton);
         innerPanelLeft.revalidate();
         innerPanelLeft.repaint();
-    }
+    }*/
 }
