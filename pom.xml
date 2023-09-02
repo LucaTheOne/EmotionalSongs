@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>emotionalsongs</groupId>
     <artifactId>EmotionalSongs</artifactId>
-    <version>1.0</version>
+    <version>2.0-distribuited-arch</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
