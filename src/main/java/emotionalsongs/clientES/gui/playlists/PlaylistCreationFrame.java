@@ -41,6 +41,11 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     boolean lastPage = false;
     private int actualSearchedSongIndex;
     
+    
+    /**
+     * Metodo costruttore della classe, genera un'istanza della finestra da vistualizzare
+     * @throws RemoteException: solleva l'eccezione se non riesce a ottenere i servizi remoti
+     */
     public PlaylistCreationFrame() throws RemoteException {
         ServicesProvider servicesProvider = ServicesProvider.getInstance();
         playlistsDataHandler = (PlaylistsDataHandler) servicesProvider.getService(ServicesProvider.PLAYLISTS_DATA_HANDLER);
@@ -474,58 +479,20 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     
-    public static void run() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlaylistCreationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new PlaylistCreationFrame().setVisible(true);
-                } catch (RemoteException ex) {
-                    System.err.println(ex.getMessage());
-                }
-            }
-        });
-    }
-    
+    /**
+     * Chiude e resetta la pagina.
+     * Torna alla pagina principale
+     */
     public void close() {
         this.dispose();
         playlistsCreationManager.resetManager();
     }
     
+    /*
     public void updateSongSelectedLabel(){
         numberSelectedSongLabel.revalidate();
         numberSelectedSongLabel.repaint();
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;

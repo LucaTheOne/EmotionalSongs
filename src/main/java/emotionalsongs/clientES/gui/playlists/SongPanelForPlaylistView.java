@@ -240,8 +240,12 @@ public class SongPanelForPlaylistView extends javax.swing.JPanel {
     private javax.swing.JButton ytButton;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Blocca il bottone di voto
+     * @param b: sempre FALSE
+     */
     public void setVoteButton(boolean b) {
-        canBeVotedByUser = false;
+        canBeVotedByUser = b;
         voteButton.setEnabled(canBeVotedByUser);
     }
 }
