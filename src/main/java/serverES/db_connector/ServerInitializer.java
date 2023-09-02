@@ -85,10 +85,11 @@ public class ServerInitializer extends javax.swing.JFrame {
             }
         });
 
-        connectButton.setBackground(new java.awt.Color(102, 255, 153));
+        connectButton.setBackground(new java.awt.Color(0, 204, 0));
         connectButton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         connectButton.setForeground(new java.awt.Color(255, 255, 255));
         connectButton.setText("CONNECT");
+        connectButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         connectButton.setOpaque(true);
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

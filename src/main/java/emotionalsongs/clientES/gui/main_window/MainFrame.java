@@ -63,7 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         lowerBarStatusLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("EmotionalSongs");
         setAutoRequestFocus(false);
         setIconImage(emotionalsongs.clientES.client_internal_services.ClientUtilities.logo.getImage());

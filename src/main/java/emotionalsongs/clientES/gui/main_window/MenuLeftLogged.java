@@ -9,9 +9,12 @@
 package emotionalsongs.clientES.gui.main_window;
 
 import emotionalsongs.*;
+import emotionalsongs.clientES.*;
 import emotionalsongs.clientES.client_internal_services.*;
 import emotionalsongs.clientES.gui.repository.*;
 import java.io.*;
+import java.rmi.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
  * Classi le cui istanze sono il pannello laterale della schermata principale del software, quando un utente ha efettuato il login.
@@ -138,6 +141,12 @@ public class MenuLeftLogged extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        UsersDataHandler udh = (UsersDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.USERS_DATA_HANDLER);
+        try {
+            udh.logout(EmotionalSongs.getLoggedUser());
+        } catch (RemoteException ex) {
+            System.exit(1);
+        }
         System.exit(0);
     }//GEN-LAST:event_closeButtonActionPerformed
 

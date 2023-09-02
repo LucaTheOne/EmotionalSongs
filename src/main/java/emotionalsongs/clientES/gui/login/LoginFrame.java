@@ -14,6 +14,7 @@ import emotionalsongs.clientES.*;
 import emotionalsongs.clientES.gui.main_window.*;
 import java.awt.geom.*;
 import java.rmi.*;
+import serverES.server_services_common_interfaces.data_handler.*;
 import serverES.server_services_common_interfaces.data_validator.*;
 
 /**
@@ -22,11 +23,13 @@ import serverES.server_services_common_interfaces.data_validator.*;
 public class LoginFrame extends javax.swing.JFrame {
     private final MainFrame mainWindow;
     private final UsersDataValidator dataValidator;
+    private final UsersDataHandler dataHandler;
     /**
      * Crea un form per il login.
      */
     public LoginFrame() {
         this.dataValidator = (UsersDataValidator) ServicesProvider.getInstance().getService(ServicesProvider.USERS_DATA_VALIDATOR);
+        this.dataHandler = (UsersDataHandler) ServicesProvider.getInstance().getService(ServicesProvider.USERS_DATA_HANDLER);
         mainWindow = MainFrame.getIstance();
         setAlwaysOnTop(true);
         initComponents();
@@ -132,7 +135,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
             }
             EmotionalSongs.setLoggedUser(idField.getText());
-            //efficientare
+            dataHandler.login(idField.getText());
             mainWindow.setLeftPanel(new MenuLeftLogged(mainWindow));
             mainWindow.setUpperBar(new UpperBarLoggedPanel(mainWindow));
             mainWindow.updateView();
