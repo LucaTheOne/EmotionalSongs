@@ -14,6 +14,10 @@ import emotionalsongs.clientES.gui.main_window.MainFrame;
  * @author big
  */
 public class Users {
+    
+    /**
+     * Avvia il processo di registrazione
+     */
     public static void registrazione(){
         MainFrame mainWindow = MainFrame.getIstance();
         mainWindow.setMainPanel(new RegistrationPanel(mainWindow));
