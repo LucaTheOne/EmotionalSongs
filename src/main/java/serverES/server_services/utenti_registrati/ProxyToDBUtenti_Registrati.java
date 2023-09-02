@@ -6,12 +6,12 @@
  */
 package serverES.server_services.utenti_registrati;
 
-import serverES.welcome_email_sender.WelcomeMailSender;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
 import java.time.*;
 import serverES.server_services_common_interfaces.data_handler.*;
+import serverES.welcome_email_sender.*;
 
 /**
  *
@@ -109,7 +109,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     @Override
     public int logout(String loggedUserId) throws RemoteException{
         try {
-            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = FALSE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
+            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = FALSE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?);";
             PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
             preparedStatement.setString(1, loggedUserId);
             preparedStatement.executeUpdate();
