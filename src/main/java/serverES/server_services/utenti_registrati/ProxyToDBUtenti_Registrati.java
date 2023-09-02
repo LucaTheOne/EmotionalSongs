@@ -127,7 +127,7 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     @Override
     public int login(String loggedUserId) throws RemoteException{
         try {
-            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = TRUE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?;";
+            String query = "UPDATE UTENTI_REGISTRATI SET LOGGED = TRUE WHERE ID_USER = (SELECT ID_USER FROM UTENTI_REGISTRATI WHERE ID_USER = ?);";
             PreparedStatement preparedStatement = CONNECTION_TO_DB.prepareStatement(query);
             preparedStatement.setString(1, loggedUserId);
             preparedStatement.execute();
