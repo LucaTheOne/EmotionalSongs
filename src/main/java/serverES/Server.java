@@ -28,7 +28,7 @@ import serverES.server_services_common_interfaces.data_validator.*;
 public class Server {
     
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
-    private static InetAddress SERVER_INET_ADDRESS_LOCAL = null;
+    private static String SERVER_INET_ADDRESS_LOCAL = null;
     private static String SERVER_INET_ADDRESS_GLOBAL = null;
     private static Registry registroServizi = null;
     private Vector<String> servicesNamesVector = new Vector<>();
@@ -45,11 +45,13 @@ public class Server {
     public void startServer(){
         serverControlGUI = new ServerControlGUI(this);
         try { 
-            SERVER_INET_ADDRESS_LOCAL = InetAddress.getLocalHost();
+            SERVER_INET_ADDRESS_LOCAL = InetAddress.getLocalHost().getHostAddress();
             SERVER_INET_ADDRESS_GLOBAL = getMyGlobalAddress();
-            serverControlGUI.setLocalAddress(SERVER_INET_ADDRESS_LOCAL.getHostAddress(), PORT_TO_REMOTE_SERVICES);
+            serverControlGUI.setLocalAddress(SERVER_INET_ADDRESS_LOCAL, PORT_TO_REMOTE_SERVICES);
             serverControlGUI.setGlobalAddress(SERVER_INET_ADDRESS_GLOBAL);
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
+            serverControlGUI.revalidate();
+            serverControlGUI.repaint();
             serverControlGUI.addLineLog("Services' registry created!");
             Connection ConnToDB = DBConnector.getConnection();
             
