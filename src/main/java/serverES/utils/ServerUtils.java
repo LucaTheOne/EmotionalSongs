@@ -4,9 +4,8 @@
  * Riccardo Rosarin - 749914 - VA
  * Eleonora Macchi - 748736 - VA
  */
-package serverES;
+package serverES.utils;
 
-import emotionalsongs.*;
 import java.awt.image.*;
 import java.io.*;
 import java.sql.*;
@@ -14,6 +13,7 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.*;
 import org.apache.commons.lang3.*;
+import serverES.*;
 import serverES.db_connector.*;
 
 /**
@@ -25,7 +25,7 @@ public class ServerUtils {
     public static final String STRING_SEPARATOR = "£SEP£";
     
     //SERVER IMAGES
-    public static ImageIcon serverIcon = new ImageIcon(loadImage("serverLogo.png"));
+    public final static ImageIcon serverIcon = new ImageIcon(loadIconImage());
     
     /**
      * Metodo usato per controllare che la stringa passata come argomento sia composta da soli caratteri ASCII.
@@ -124,13 +124,22 @@ public class ServerUtils {
         return idProposed;
     }
     
-    private static BufferedImage loadImage(String pathString){
+    private static BufferedImage loadIconImage(){
         BufferedImage img = null;
         try {
-            img = ImageIO.read(EmotionalSongs.class.getResource("/"+"images"+"/"+pathString));
+            img = ImageIO.read(ServerES.class.getResource("/images/ServerLogo.png"));
         } catch (IOException ex) {
-            ex.getCause();
+            ex.getMessage();
         }
         return img;
+    }
+    
+    /**
+     * Metodo main
+     * @param args 
+     */
+    //Non so esattamente a cosa serva avere questo metodo main
+    public static void main(String[] args) {
+        System.out.println(ServerUtils.class.getResource("/images/logo.png").getPath());
     }
 }

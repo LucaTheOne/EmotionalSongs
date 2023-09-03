@@ -22,6 +22,11 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param DBConn: istanza di connessione al database
+     * @throws RemoteException 
+     */
     public ProxyToDBUtenti_Registrati(Connection DBConn) throws RemoteException{
         super();
         CONNECTION_TO_DB = DBConn;
@@ -106,6 +111,13 @@ public class ProxyToDBUtenti_Registrati extends UnicastRemoteObject implements U
         }
     }
     
+    /**
+     * Esegue il logout dell'utente.
+     * Setta il parametro logged nel database come FALSE
+     * @param loggedUserId
+     * @return 0 se logout andato a buon fine, 1 se l'utente non risultava loggato
+     * @throws RemoteException 
+     */
     @Override
     public int logout(String loggedUserId) throws RemoteException{
         try {

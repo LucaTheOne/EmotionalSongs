@@ -16,7 +16,7 @@ public class English extends ClientDialogs{
     
     //Generici
     public String searchBarText(){
-        return "Insert title or author;year";
+        return "";
     }
     
     public String availableSongs(){

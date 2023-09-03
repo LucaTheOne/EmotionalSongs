@@ -172,6 +172,10 @@ public class ClientUtilities {
         return img;
     }
     
+    /**
+     * Metodo che implementa il Merge Sort per l'ordinamento di un array di interi
+     * @param arrayToSort 
+     */
     public static void sort(int[] arrayToSort) {	
 	int currentSize;
 	int leftStartIndex;

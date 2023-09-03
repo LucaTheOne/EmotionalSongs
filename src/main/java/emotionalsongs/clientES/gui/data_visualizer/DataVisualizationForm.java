@@ -24,13 +24,13 @@ import org.jfree.chart.*;
 public class DataVisualizationForm extends javax.swing.JFrame {
     
     private SongsDataBuilder songDataBuilder;
+    
     /**
      * Crea e restituisce il form per la visualizazzione del brano rappresentato dal tag passato
      * come argomento.
      * @param songId tag della canzone di cui mostrarne i giudizi emozionali in forma aggregata.
      * 
      */
-    
     public DataVisualizationForm(String songId) {
         songDataBuilder = new SongsDataBuilder(songId);
         initComponents();

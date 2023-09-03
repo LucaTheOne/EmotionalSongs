@@ -6,6 +6,7 @@
  */
 package serverES.server_services.playlist;
 
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -21,6 +22,11 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param DBConn: istanza di connessione al database
+     * @throws RemoteException: sollevata nel caso la connessione al database dovesse fallire
+     */
     public ProxyToDBPlaylists(Connection DBConn) throws RemoteException{
         super();
         CONNECTION_TO_DB = DBConn;
@@ -164,6 +170,7 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
     }
   
     //luca
+    //Non utilizzato
     @Override
     public int getUserPlaylistsNumber(String userId) throws RemoteException{
         try {
@@ -180,6 +187,7 @@ public class ProxyToDBPlaylists extends UnicastRemoteObject implements Playlists
             return 0;
         }
     }
+    
     
     //luca - fatto
     /**

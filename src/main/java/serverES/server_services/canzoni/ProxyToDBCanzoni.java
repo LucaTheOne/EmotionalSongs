@@ -6,10 +6,11 @@
  */
 package serverES.server_services.canzoni;
 
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
-import serverES.*;
+//import serverES.*;
 import serverES.db_connector.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
@@ -22,6 +23,11 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param DBConn: istanza di connessione al database
+     * @throws RemoteException: sollevata se il collegamento con il database fallisce
+     */
     public ProxyToDBCanzoni(Connection DBConn)throws RemoteException{
         super();
         CONNECTION_TO_DB = DBConn;
@@ -30,10 +36,11 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     
     //luca
     /**
-     * Metodo che ritorna i dati di una canzone di cui se ne passa l' id.
-     *      -Formato: "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
+     * Metodo che ritorna i dati di una canzone di cui se ne passa l' id.-Formato: 
+     * "ID_UNIVOCO£SEP£REPO_INDEX£SEP£TITOLO£SEP£AUTORE£SEP£ANNO" -
      * @param songId stringa con l' id della canzone di cui cercare i dati.
      * @return Stringa con i dati della canzone corrispondente all' id, null in caso di errori.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public String requestSongData(String songId)throws RemoteException{
@@ -56,10 +63,10 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     /**
      * Metodo che ritorna un array di stringhe, in ogni sua posizione ci sono i dati
      * di una canzone cui il titolo coincide alla stringa passata come argomento, 
-     * oppure che vi è contenuta in esso.
-     * NB: i match precisi sono nelle prime posizioni dell' array.
+     * oppure che vi è contenuta in esso.NB: i match precisi sono nelle prime posizioni dell' array.
      * @param title Stringa da cercare nei titoli delle canzoni.
      * @return array di stringhe rappresentanti le canzoni che soddisfano i criteri di ricerca.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public String[] cercaBranoMusicale(String title)throws RemoteException{
@@ -84,6 +91,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
      * @param author Stringa da cercare negli autori delle canzoni.
      * @param year Anno delle canzoni ricercate
      * @return array di stringhe rappresentanti le canzoni che soddisfano i criteri di ricerca.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public String[] cercaBranoMusicale(String author, int year)throws RemoteException{
@@ -111,6 +119,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
      * @param startIndex Indice prima canzone.
      * @param endIndex Indice ultima canzone.
      * @return Array di stringhe con i dati delle canzoni contenute tra startIndex ed endIndex compresi.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public String[] requestRepositorysSongByIndex(int startIndex, int endIndex)throws RemoteException {
@@ -118,7 +127,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
             String query = "SELECT * FROM CANZONI WHERE REPO_INDEX BETWEEN "+startIndex+" AND "+endIndex+";";
             Statement statement = CONNECTION_TO_DB.createStatement();
             ResultSet queryResult = statement.executeQuery(query);
-            String[] results = serverES.ServerUtils.convToArrayStr(queryResult);
+            String[] results = serverES.utils.ServerUtils.convToArrayStr(queryResult);
             return results;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -129,6 +138,7 @@ public class ProxyToDBCanzoni extends UnicastRemoteObject implements SongsDataHa
     //luca
     /**
      * @return Numero di canzoni presenti nel DB. 
+     * @throws java.rmi.RemoteException 
      */
     @Override
     public int getRepoSize()throws RemoteException{

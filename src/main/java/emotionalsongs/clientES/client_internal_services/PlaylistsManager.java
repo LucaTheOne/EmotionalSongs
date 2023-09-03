@@ -136,6 +136,10 @@ public class PlaylistsManager {
         nameNewPlaylist = title;
     }
     
+    /**
+     * Aggiorna il campo dell'utente attivo
+     * @param user: stringa contenente il dato user da aggiornare
+     */
     public void updateUser(String user){
         resetManager();
         this.user = user;

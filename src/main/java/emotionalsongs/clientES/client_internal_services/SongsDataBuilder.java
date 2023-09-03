@@ -15,7 +15,6 @@ import org.jfree.chart.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
-import serverES.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
 
@@ -32,7 +31,7 @@ public class SongsDataBuilder {
     private JFreeChart[] arrayChartsEmotions;
     private final EmotionsDataHandler   EMOTIONS_DATA_HANDLER;
     private final SongsDataHandler SONGS_DATA_HANDLER;
-    private final String SEP = ServerUtils.STRING_SEPARATOR;
+    private final String SEP = ClientUtilities.STRING_SEPARATOR;
     
     private final String TITLE,AUTHOR,YEAR;
     private String[] usersEmotionalJudgements;

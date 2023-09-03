@@ -7,7 +7,7 @@
 package serverES.server_services.emozioni;
 
 import serverES.server_services_common_interfaces.data_validator.EmotionsDataValidator;
-import serverES.ServerUtils;
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -21,6 +21,11 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param Conn: connessione con il database
+     * @throws RemoteException: sollevata se il collegamento con il database dovesse fallire
+     */
     public EmozioniDataChecker(Connection Conn)throws RemoteException{
         super();
         CONNECTION_TO_DB = Conn;
@@ -45,6 +50,7 @@ public class EmozioniDataChecker extends UnicastRemoteObject implements Emotions
      * 3 - caratteri non ammessi nel commento.
      * 4 - Commento contiene più di 256 caratteri.
      * 5 - eccezione SQL.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public boolean[] validateVote(String songId, int[] emotionalMarks, String comment)throws RemoteException{

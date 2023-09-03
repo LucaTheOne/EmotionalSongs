@@ -32,18 +32,37 @@ public class ServicesProvider{
         return singleton;
     }
     
+    /**
+     * Metodo costruttore della classe.
+     * Richiama il cotruttore di ServicesBox
+     * @param serviceHost
+     * @param servicePort 
+     */
     protected ServicesProvider(String serviceHost,int servicePort) {
         servicesBox = new ServicesBox(serviceHost, servicePort);
     }
     
+    /**
+     * Metodo che richiede il riferimento remoto al ServicesBox
+     * @param serviceId
+     * @return restituisce il riferimento remoto al metodo richiesto
+     */
     public Remote getService(int serviceId){
         return servicesBox.getService(serviceId);
     }
     
+    /**
+     * Crea un'istanza di ServicesBox chiamandone il costruttore
+     * @param servicesHost
+     * @param servicesPort 
+     */
     protected void buildServicesBox(String servicesHost,int servicesPort){
         servicesBox = new ServicesBox(servicesHost, servicesPort);
     }
     
+    /**
+     * Sblocca tutti i thread in attesa
+     */
     protected void unlock(){
         notifyAll();
     }

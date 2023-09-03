@@ -6,10 +6,11 @@
  */
 package serverES.server_services.emozioni;
 
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
-import serverES.*;
+//import serverES.*;
 import serverES.server_services_common_interfaces.data_handler.*;
 
 /**
@@ -21,6 +22,11 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param DBConn: istanza di connessione al database
+     * @throws RemoteException: sollevata nel caso la connessione al database dovesse fallire
+     */
     public ProxyToDBEmozioni(Connection DBConn) throws RemoteException{
         super();
         CONNECTION_TO_DB = DBConn;
@@ -35,6 +41,7 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
      *      -Formato: "meraviglia_voto£SEP£solennita_voto£SEP£tenerezza_voto£SEP£nostalgia_voto£SEP£pacatezza_voto£SEP£potere_voto£SEP£gioia_voto£SEP£tensione_voto£SEP£tristezza_voto£SEP£commento"
      * @param idSong id della canzone il quale si vogliono ottenere i giudizi emozionali.
      * @return array contenente in ogni posizione un giudizio ricevuto da un utente, null se non ve ne sono disponibili.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public String[] requestDataJudgementsSong(String idSong)throws RemoteException{
@@ -54,7 +61,7 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
     //Luca
     /**
      * Metodoche si occupa di aggiornare la tabella Emozioni con un nuovo giudizio emozionale.
-     * il metodo controlla da solo la lunghezza del commento ed il numero di voti.
+     * Il metodo controlla da solo la lunghezza del commento ed il numero di voti.
      * @param idUser Id dell' utente che effettua il giudizio emozionale.
      * @param idSong Id della canzone giudicata dall' utente.
      * @param emotionalMarks array con i voti emozionali nel seguente ordine: [MERAVIGLIA,SOLENNITA,TENEREZZA,NOSTALGIA,PACATEZZA,POTERE,GIOIA,TENSIONE,TRISTEZZA].
@@ -62,6 +69,7 @@ public class ProxyToDBEmozioni extends UnicastRemoteObject implements EmotionsDa
      * @return 0 - operazione completata con successo.
      * 1 - errore db.
      * 2 - dati non validi.
+     * @throws java.rmi.RemoteException
      */
     @Override
     public synchronized int InserisciEmozioniBrano(String idUser,String idSong,int[] emotionalMarks,String comment)throws RemoteException{

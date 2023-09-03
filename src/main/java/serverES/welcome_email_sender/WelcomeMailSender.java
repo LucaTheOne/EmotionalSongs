@@ -75,7 +75,7 @@ public class WelcomeMailSender {
             // Send message
             Transport.send(message);
         } catch (MessagingException mex) {
-            mex.getMessage();
+            mex.printStackTrace();
         }
     }
     /*

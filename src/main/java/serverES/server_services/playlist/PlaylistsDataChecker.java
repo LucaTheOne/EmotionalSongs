@@ -7,7 +7,7 @@
 package serverES.server_services.playlist;
 
 import serverES.server_services_common_interfaces.data_validator.PlaylistsDataValidator;
-import serverES.ServerUtils;
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
@@ -21,6 +21,11 @@ public class PlaylistsDataChecker extends UnicastRemoteObject implements Playlis
     private static final long serialVersionUID = 1L;
     private final Connection CONNECTION_TO_DB;
     
+    /**
+     * Metodo costruttore della classe
+     * @param Conn: connessione con il database
+     * @throws RemoteException: sollevata se il collegamento con il database dovesse fallire
+     */
     public PlaylistsDataChecker(Connection Conn) throws RemoteException{
         super();
         CONNECTION_TO_DB = Conn;

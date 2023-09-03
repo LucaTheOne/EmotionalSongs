@@ -17,6 +17,11 @@ class AskIfTOSaveLog extends javax.swing.JFrame {
      * NB: il frame è reso subito visibile con l' instanziazione della classe.
      */
     private ServerControlGUI controlGUI;
+    
+    /**
+     * Costruttore della classe
+     * @param controlGUI 
+     */
     protected AskIfTOSaveLog(ServerControlGUI controlGUI) {
         this.controlGUI=controlGUI;
         initComponents();

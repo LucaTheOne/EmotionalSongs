@@ -14,7 +14,7 @@ public class Italiano extends ClientDialogs{
     //Generici
     @Override
     public String searchBarText(){
-        return "Digiti titolo oppure autore;anno";
+        return "";
     }
     
     @Override

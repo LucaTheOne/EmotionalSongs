@@ -17,9 +17,13 @@ public class ServerInitializer extends javax.swing.JFrame {
     /**
      * Creates new form DBConnectorIniitalizer
      */
-    Server server;
+    ServerES server;
     
-    public ServerInitializer(Server serverToInit) {
+    /**
+     * Metodo costruttore della classe
+     * @param serverToInit: istanza del server da inizializzare
+     */
+    public ServerInitializer(ServerES serverToInit) {
         server = serverToInit;
         initComponents();
         setVisible(true);

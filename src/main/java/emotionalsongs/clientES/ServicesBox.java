@@ -46,6 +46,11 @@ class ServicesBox {
     private PlaylistsDataValidator playlistsDataValidator;
     private UsersDataValidator usersDataValidator;
     
+    /**
+     * Metodo costruttore della classe
+     * @param servicesHost
+     * @param servicesPort 
+     */
     protected ServicesBox(String servicesHost,int servicesPort){
         try {
             this.servicesHost = servicesHost;
@@ -71,6 +76,11 @@ class ServicesBox {
         }
     }
     
+    /**
+     * Metodo che richiama i metodi dal Registry
+     * @param serviceId
+     * @return restituisce un riferimento remoto al metodo richiesto
+     */
     public Remote getService(int serviceId){
         switch (serviceId) {
             case EMOTIONS_DATA_HANDLER: return emotionsDataHandler;

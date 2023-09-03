@@ -10,6 +10,7 @@ package serverES;
 import java.io.*;
 import java.time.*;
 import javax.swing.*;
+import serverES.utils.*;
 
 /**
  * Classe il cui unico scopo è quello di permettere all' utenti di controllare il server,
@@ -21,7 +22,7 @@ class ServerControlGUI extends javax.swing.JFrame {
     private String localAddress = "";
     private String globalAddress = "";
     private int port = 0;
-    private Server serverToControl;
+    private ServerES serverToControl;
     public static ServerControlGUI serverControlGui = null;
     /**
      * Crea una nuova istanza di questa classe;
@@ -29,12 +30,16 @@ class ServerControlGUI extends javax.swing.JFrame {
      * @param port Porta sul quale il registry è operativo.
      * @param server Riferimento al serverToControl che deve controllare.
      */
-    protected ServerControlGUI(Server server) {
+    protected ServerControlGUI(ServerES server) {
         this.serverToControl=server;
         setIconImage(ServerUtils.serverIcon.getImage());
         initComponents();
     }
     
+    /**
+     * Imposta l'indirizzo IP globale
+     * @param globalIPAddress: stringa che contiene l'IP da impostare
+     */
     protected void setGlobalAddress(String globalIPAddress) {
         this.globalAddress = globalIPAddress;
         IPGlobalLabel.setText(globalIPAddress);
@@ -43,6 +48,11 @@ class ServerControlGUI extends javax.swing.JFrame {
         setVisible(true);
     }
     
+    /**
+     * Imposta l'indirizzo IP locale e la porta
+     * @param addres: Contiene l'indirizzo da impostare
+     * @param port: contiene la porta di accesso al server
+     */
     protected void setLocalAddress(String addres,int port){
         this.localAddress = addres;
         this.port = port;
@@ -52,7 +62,13 @@ class ServerControlGUI extends javax.swing.JFrame {
         repaint();
         setVisible(true);
     }
-    protected static ServerControlGUI obtainControlGuiReference(Server server){
+    
+    /**
+     * Controlla se è presente una istanza della GUi del server e se non esiste ne richiede la creazione
+     * @param server: istanza del server
+     * @return serverControlGui: istanza della GUI del server
+     */
+    protected static ServerControlGUI obtainControlGuiReference(ServerES server){
         if(serverControlGui == null) serverControlGui = new ServerControlGUI(server);
         return serverControlGui;
     }
@@ -305,6 +321,9 @@ class ServerControlGUI extends javax.swing.JFrame {
         logTextArea.repaint();
     }
     
+    /**
+     * Attede 0.3 secondi poi spegne i server
+     */
     protected void terminateAll(){
         try {
             Thread.sleep(300);

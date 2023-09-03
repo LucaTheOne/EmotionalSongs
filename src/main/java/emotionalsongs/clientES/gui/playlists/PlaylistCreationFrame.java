@@ -165,6 +165,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         SearchPanel.add(numberSelectedSongLabel, java.awt.BorderLayout.EAST);
 
         searchBar.setText(EmotionalSongs.dialoghi.searchBarText());
+        searchBar.setToolTipText("Digiti titolo oppure autore;anno");
         searchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchBar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         searchBar.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +229,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         selectPlaylistNamePanel.add(jLabel1, gridBagConstraints);
 
         playlistNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        playlistNameTextField.setText("<new playlist>");
+        playlistNameTextField.setToolTipText("Inserisci il nome della nuova playlist");
         playlistNameTextField.setPreferredSize(new java.awt.Dimension(250, 30));
         playlistNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,6 +310,7 @@ public class PlaylistCreationFrame extends javax.swing.JFrame {
         scrollView.setAlignmentY(0.0F);
 
         innerScroll.setBackground(new java.awt.Color(0, 24, 46));
+        innerScroll.setToolTipText("");
         innerScroll.setOpaque(false);
         innerScroll.setPreferredSize(new java.awt.Dimension(810, SONGS_PER_VIEW+1));
         innerScroll.setLayout(new java.awt.GridLayout(SONGS_PER_VIEW+1, 1, 0, 1));

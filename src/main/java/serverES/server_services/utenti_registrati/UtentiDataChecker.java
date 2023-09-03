@@ -6,13 +6,14 @@
  */
 package serverES.server_services.utenti_registrati;
 
+import serverES.utils.ServerUtils;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.sql.*;
 import java.util.*;
 import java.util.regex.*;
 import org.apache.commons.validator.*;
-import serverES.*;
+//import serverES.*;
 import serverES.db_connector.*;
 import serverES.server_services_common_interfaces.data_validator.*;
 
@@ -204,6 +205,12 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         }
     }
     
+    /**
+     * Metodo costruttore della classe
+     * @param Conn: connessione con il database
+     * @throws java.rmi.RemoteException
+     * @throws RemoteException: sollevata se il collegamento con il database dovesse fallire
+     */
     public UtentiDataChecker(Connection Conn) throws RemoteException{
         super();
         CONNECTION_TO_DB = Conn;
@@ -241,6 +248,8 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         
         errorsOccurred[0] = !isNewUserIDValid(userId);
         errorsOccurred[1] = isNewUserIdTaken(userId);
+        //Manca il controllo della mail
+        //errorsOccurred[2] = !isMailValid(email);
         errorsOccurred[2] = !isCFValid(cf);
         errorsOccurred[3] = isCFTaken(cf);
         errorsOccurred[4] = !isPasswordValid(password);
@@ -351,10 +360,11 @@ public class UtentiDataChecker extends UnicastRemoteObject implements UsersDataV
         }
         return errors;
     }
-    
+    /*
     public static void main(String[] args) throws RemoteException {
         UtentiDataChecker udc = new UtentiDataChecker(DBConnector.getTextConn());
         boolean[] bool = udc.validateLogin("theOne", "Estarossa97!");
         for(boolean bol:bool) System.out.println(bol);
     }
+    */
 }

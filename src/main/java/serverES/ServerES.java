@@ -25,7 +25,7 @@ import serverES.server_services_common_interfaces.data_validator.*;
 /**
  *Classe contenente il metodo main da cui avrà inizio la vita operativa del server.
  */
-public class Server {
+public class ServerES {
     
     private static final int PORT_TO_REMOTE_SERVICES = 5432;
     private static String SERVER_INET_ADDRESS_LOCAL = null;
@@ -39,9 +39,13 @@ public class Server {
      * nonchè si registrano in un registro tutti i servizi che offre.
      * @throws RemoteException 
      */
-    public Server() throws RemoteException {
+    public ServerES() throws RemoteException {
          
     }
+    
+    /**
+     * Avvia il server avviando tutti i servizi necessari il suo funzionameto
+     */
     public void startServer(){
         serverControlGUI = new ServerControlGUI(this);
         try { 
@@ -50,8 +54,6 @@ public class Server {
             serverControlGUI.setLocalAddress(SERVER_INET_ADDRESS_LOCAL, PORT_TO_REMOTE_SERVICES);
             serverControlGUI.setGlobalAddress(SERVER_INET_ADDRESS_GLOBAL);
             registroServizi = LocateRegistry.createRegistry(PORT_TO_REMOTE_SERVICES);
-            serverControlGUI.revalidate();
-            serverControlGUI.repaint();
             serverControlGUI.addLineLog("Services' registry created!");
             Connection ConnToDB = DBConnector.getConnection();
             
@@ -126,8 +128,13 @@ public class Server {
         }
     }
     
+    /**
+     * Metodo main, all'avvio questo è il primo metodo eseguito
+     * @param args
+     * @throws RemoteException 
+     */
     public static void main(String[] args) throws RemoteException{
-        Server server = new Server();
+        ServerES server = new ServerES();
         new ServerInitializer(server);
     }
 }
